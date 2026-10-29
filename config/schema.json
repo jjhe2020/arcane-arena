@@ -6779,23 +6779,23 @@
           "key": "BONUS ATTACK RANGE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外攻击距离",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "BONUS MOVE SPEED",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 MOVE 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外固定移动速度",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "DURATION",
@@ -6805,184 +6805,118 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
+          "key": "CORROSIVE DAMAGE",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:981；buff(c, c.caster, 'elderDragon', 1, value(c, 'DURATION'))"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:982；buff(c, c.caster, 'magicResist', .25, value(c, 'DURATION'))"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:983；buff(c, c.caster, 'freePathing', 1, value(c, 'DURATION'))"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:990；G(c) ? 1 : .6 + (S(c) ? .15 : 0)"
-        },
-        {
-          "key": "skill_effects_extra.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:990；.6 + (S(c) ? .15 : 0)"
-        },
-        {
-          "key": "skill_effects_extra.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:990；S(c) ? .15 : 0"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:991；G(c) ? 30 : 20"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:991；G(c) ? 30 : 20"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "meaning": "腐蚀每秒魔法伤害",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:991；interval: 1"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.debuff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:992；G(c) ? .6 : .4"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:992；G(c) ? .6 : .4"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:992；G(c) ? -60 : -40"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.6",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:992；G(c) ? -60 : -40"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "CORROSIVE DURATION",
           "unit": "ms",
+          "meaning": "腐蚀持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:994；debuff(c, target, 'dot', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',30) : balanceNumber(c,'skill_effects_extra.debuff_amount.2',20), 5, { damageType: 'magical', i"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
+          "key": "CORROSIVE INTERVAL",
           "unit": "ms",
+          "meaning": "腐蚀跳伤间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:995；debuff(c, target, 'slow', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.3',0.6) : balanceNumber(c,'skill_effects_extra.debuff_amount.4',0.4), 3)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.debuff_duration.3",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SPLASH DAMAGE",
+          "unit": "%",
+          "meaning": "分裂溅射攻击伤害百分比",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:995；debuff(c, target, 'attackSpeed', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.5',-60) : balanceNumber(c,'skill_effects_extra.debuff_amount.6',-40), 3)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "SPLASH RADIUS",
+          "unit": "Dota单位",
+          "meaning": "溅射作用半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "FROST MOVE SLOW",
+          "unit": "%",
+          "meaning": "冰霜移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "FROST ATTACK SLOW",
+          "unit": "数值",
+          "meaning": "冰霜固定攻击速度降低",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "FROST DURATION",
+          "unit": "ms",
+          "meaning": "冰霜减速持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "龙形态攻击弹速",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "MAGIC RESISTANCE",
+          "unit": "%",
+          "meaning": "额外魔法抗性百分比",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -7001,23 +6935,23 @@
           "key": "BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外基础攻击百分比",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "CLEAVE DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "CLEAVE 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "分裂攻击百分比",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "DURATION",
@@ -7027,19 +6961,74 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SELF BONUS",
+          "unit": "%",
+          "meaning": "对自身的增强幅度百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:195；buff(c, c.caster, 'empowerAura', 1)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "CLEAVE START RADIUS",
+          "unit": "Dota单位",
+          "meaning": "分裂扇形起始半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "CLEAVE END RADIUS",
+          "unit": "Dota单位",
+          "meaning": "分裂扇形末端半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "CLEAVE DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "分裂距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "AURA LINGER",
+          "unit": "ms",
+          "meaning": "光环离开残留时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "AURA INTERVAL",
+          "unit": "ms",
+          "meaning": "光环刷新间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -7058,34 +7047,45 @@
           "key": "BONUS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "图腾额外基础攻击百分比",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BONUS ATTACK RANGE",
+          "unit": "Dota单位",
+          "meaning": "额外攻击距离",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:649；buff(c, c.caster, 'enchantTotem', 1)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BUFF DURATION",
+          "unit": "ms",
+          "meaning": "图腾攻击增益持续时间",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:649；buff(c, c.caster, 'range', .75)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "GABEN BASE DAMAGE",
+          "unit": "数值",
+          "meaning": "Gaben每次成功图腾攻击永久基础攻击",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -7104,67 +7104,67 @@
           "key": "ATTACK SLOW",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "固定攻击速度降低",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "MOVEMENT SLOW",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "移动速度降低百分比",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "PULSES",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "PULSES",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "总震波次数",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "RADIUS INCREASE PER PULSE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径 INCREASE 每 PULSE",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次震波半径增加量",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "SLOW DURATION",
@@ -7173,53 +7173,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "减速持续时间",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
+          "key": "PULSE DURATION",
           "unit": "ms",
+          "meaning": "全部主动震波的施加时长",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:212；i * .3"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "MOVEMENT DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "移动多少距离触发被动震波",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:221；distance(target, c.caster) <= 3"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_more.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben被动震波作用半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:221；gabenLevel(c) && distance(target, c.caster) <= 3 ? 2 : 1"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_more.damage.4",
-          "kind": "program",
+          "key": "GABEN DAMAGE MULTIPLIER",
           "unit": "数值",
-          "min": -1000000000,
+          "meaning": "Gaben被动震波伤害倍率",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:221；gabenLevel(c) && distance(target, c.caster) <= 3 ? 2 : 1"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -7238,56 +7238,56 @@
           "key": "CHANCE",
           "kind": "value",
           "unit": "%",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "概率",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "触发概率",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "MAX MANA RESTORE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 法力 RESTORE",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:281；radius:.1"
-        },
-        {
-          "key": "skill_effects.duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:281；duration:120"
+          "meaning": "最大法力恢复百分比",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "BONUS ATTACK RANGE",
+          "unit": "Dota单位",
+          "meaning": "额外攻击距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:281；interval:.1"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "BONUS CAST RANGE",
+          "unit": "Dota单位",
+          "meaning": "额外施法距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "MAX SPELL AMPLIFICATION",
+          "unit": "%",
+          "meaning": "空法力时最大法术增强百分比",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -7336,26 +7336,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "PERMANENT AGILITY",
+          "unit": "属性点",
+          "meaning": "Super每次英雄死亡永久敏捷",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:311；maxStacks:100"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Slark；https://liquipedia.net/dota2/Slark/Changelogs"
         },
         {
-          "key": "skill_effects.maxstacks.2",
-          "kind": "program",
-          "unit": "次数",
+          "key": "SPELL PROC COOLDOWN",
+          "unit": "ms",
+          "meaning": "Gaben技能命中窃取的独立冷却",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:312；maxStacks:100"
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Slark；https://liquipedia.net/dota2/Slark/Changelogs"
         }
       ]
     },
@@ -7421,64 +7421,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "STRIKE 间隔",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "风暴攻击间隔",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Archive%3ARazor；https://liquipedia.net/dota2/Razor/Changelogs"
         },
         {
           "key": "TARGETS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "TARGETS",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_more.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
           "min": 0,
           "max": 1000000000,
           "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:226；maxStacks: 1000"
+          "meaning": "每次风暴攻击的目标数",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Archive%3ARazor；https://liquipedia.net/dota2/Razor/Changelogs"
         },
         {
-          "key": "skill_effects_more.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:227；v(c, 'DAMAGE') * .33"
-        },
-        {
-          "key": "skill_effects_more.armor_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:227；v(c, 'ARMOR REDUCTION') * .33"
-        },
-        {
-          "key": "skill_effects_more.maxstacks.2",
-          "kind": "program",
-          "unit": "次数",
+          "key": "OPPOSITE EFFECT PERCENT",
+          "unit": "%",
+          "meaning": "Gaben对盟友反向效果百分比",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:227；maxStacks: 1000"
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Archive%3ARazor；https://liquipedia.net/dota2/Razor/Changelogs"
         }
       ]
     },
@@ -7538,26 +7505,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:233；c.projectile(target, 12, t => { visited.add(t.id); c.damage(t, v(c, 'DAMAGE') * Math.pow(1 - P(v(c, 'JUMP REDUCTION')), hop)); c.status(t, 'attackDamageReduction', v(c, 'DE"
-        },
-        {
-          "key": "skill_effects_more.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "BOUNCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "搜索下一弹跳目标的半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:237；maxStacks: 1000"
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；2023KVpoint.1/range800/radius440/jump_delay.25 direct;backswing.93 currentWiki compatiblecandidate pendinghistorical capture；https://liquipedia.net/dota2/Rubick；https://liquipedia.net/dota2/Rubick/Changelogs"
+        },
+        {
+          "key": "BOUNCE INTERVAL",
+          "unit": "ms",
+          "meaning": "目标间弹跳延迟",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；2023KVpoint.1/range800/radius440/jump_delay.25 direct;backswing.93 currentWiki compatiblecandidate pendinghistorical capture；https://liquipedia.net/dota2/Rubick；https://liquipedia.net/dota2/Rubick/Changelogs"
         }
       ]
     },
@@ -7602,52 +7569,41 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；point.3 direct2023KV;backswing.97 compatible currentWiki candidate；https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle；https://liquipedia.net/dota2/Oracle/Changelogs"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
+          "key": "BONUS ARMOR",
           "unit": "数值",
-          "min": -1000000000,
+          "meaning": "Super额外护甲",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:791；buff(c, c.target, 'falsePromise', 1, seconds, { data: { healMultiplier: 1 + P(value(c, 'DELAYED HEAL AMPLIFICATION')) }, dispel: 'none' })"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；point.3 direct2023KV;backswing.97 compatible currentWiki candidate；https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle；https://liquipedia.net/dota2/Oracle/Changelogs"
         },
         {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ATTACK LIFESTEAL",
+          "unit": "%",
+          "meaning": "Gaben攻击吸血百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:792；buff(c, c.target, 'armor', 15, seconds)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；point.3 direct2023KV;backswing.97 compatible currentWiki candidate；https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle；https://liquipedia.net/dota2/Oracle/Changelogs"
         },
         {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SPELL LIFESTEAL",
+          "unit": "%",
+          "meaning": "Gaben法术吸血百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:793；buff(c, c.target, 'lifesteal', .25, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:793；buff(c, c.target, 'spellLifesteal', .25, seconds)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；point.3 direct2023KV;backswing.97 compatible currentWiki candidate；https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle；https://liquipedia.net/dota2/Oracle/Changelogs"
         }
       ]
     },
@@ -7867,114 +7823,81 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:207；radius:1000"
-        },
-        {
-          "key": "skill_effects.duration.1",
-          "kind": "program",
+          "key": "CHANNEL TIME",
           "unit": "ms",
+          "meaning": "无状态抗性时最终引导时长",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:207；duration:6"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "基础伤害和法力跳间隔；首跳立即",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:207；interval:.1"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         },
         {
-          "key": "skill_effects.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:207；v(c,'DAMAGE')*.1"
-        },
-        {
-          "key": "skill_effects.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:207；c.status(x,'stun',.15,0,{harmful:true,dispel:'strong',piercesImmunity:true})"
-        },
-        {
-          "key": "main_upgrades_remaining.count.1",
-          "kind": "program",
+          "key": "ILLUSION COUNT",
           "unit": "次数",
+          "meaning": "Super独立引导幻象数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:26；count:2"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         },
         {
-          "key": "main_upgrades_remaining.damagetaken.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "ILLUSION DAMAGE TAKEN",
+          "unit": "%",
+          "meaning": "原生幻象承伤倍率",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "承伤倍率",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:26；damageTaken:3"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         },
         {
-          "key": "main_upgrades_remaining.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ILLUSION OFFSET",
+          "unit": "Dota单位",
+          "meaning": "幻象左右出生偏移",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:26；step+.01"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         },
         {
-          "key": "main_upgrades_remaining.damage.1",
-          "kind": "program",
+          "key": "HEALTH DRAIN",
+          "unit": "%",
+          "meaning": "Super每秒最大生命偷取；类型与受益者工作解释",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
+        },
+        {
+          "key": "CHANNEL COOLDOWN REDUCTION",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:26；victim.maxHp*.05"
-        },
-        {
-          "key": "main_upgrades_remaining.delay.1",
-          "kind": "program",
-          "unit": "ms",
+          "meaning": "Gaben每秒引导减少本技能冷却秒数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:26；c.delay(.5,pulse,!S(c))"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane；官方AA Season5.5施法距离625→800。目标Strong按官方AA实际驱散修复+Wiki裁决，网站Cannot类别冲突保留。"
         }
       ]
     },
@@ -7993,12 +7916,12 @@
           "key": "ATTACK SPEED BONUS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 速度 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层最终固定攻击速度",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20211120070423id_/https://dota2.fandom.com/wiki/Lina；AA按cast而非2023hit版，4层8秒/S70AS9%MS/G两层无限。Strong驱散覆nativeundispellable，Break只阻新层。"
         },
         {
           "key": "DURATION",
@@ -8014,24 +7937,35 @@
         {
           "key": "MAX STACKS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "最大层数；0表示无限",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20211120070423id_/https://dota2.fandom.com/wiki/Lina；AA按cast而非2023hit版，4层8秒/S70AS9%MS/G两层无限。Strong驱散覆nativeundispellable，Break只阻新层。"
         },
         {
           "key": "MOVE SPEED BONUS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MOVE 速度 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层最终移动速度增益",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20211120070423id_/https://dota2.fandom.com/wiki/Lina；AA按cast而非2023hit版，4层8秒/S70AS9%MS/G两层无限。Strong驱散覆nativeundispellable，Break只阻新层。"
+        },
+        {
+          "key": "STACKS PER CAST",
+          "unit": "次数",
+          "meaning": "每次合格释放新增层数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20211120070423id_/https://dota2.fandom.com/wiki/Lina；AA按cast而非2023hit版，4层8秒/S70AS9%MS/G两层无限。Strong驱散覆nativeundispellable，Break只阻新层。"
         }
       ]
     },
@@ -8050,12 +7984,12 @@
           "key": "DAMAGE PER KILL",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 KILL",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次有效英雄死亡增加的最终伤害",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion；AA大幅延长击杀宽限未见秒数，3秒仅有证native baseline工作候选。"
         },
         {
           "key": "DAMAGE",
@@ -8069,15 +8003,48 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "main_upgrades_advanced.fingercredit_duration.1",
-          "kind": "program",
+          "key": "DAMAGE DELAY",
           "unit": "ms",
+          "meaning": "释放后额外伤害延迟",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 FINGERCREDIT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:14；c.status(t,'fingerCredit',.05,0,{harmful:true,dispel:'none'})"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion；AA大幅延长击杀宽限未见秒数，3秒仅有证native baseline工作候选。"
+        },
+        {
+          "key": "KILL GRACE",
+          "unit": "ms",
+          "meaning": "击杀宽限；AA更长秒数待证",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion；AA大幅延长击杀宽限未见秒数，3秒仅有证native baseline工作候选。"
+        },
+        {
+          "key": "HEALTH PER KILL",
+          "unit": "数值",
+          "meaning": "Super每层最大生命增益，保持生命比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion；AA大幅延长击杀宽限未见秒数，3秒仅有证native baseline工作候选。"
+        },
+        {
+          "key": "SPLASH RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben同时施法半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion；AA大幅延长击杀宽限未见秒数，3秒仅有证native baseline工作候选。"
         }
       ]
     },
@@ -8096,12 +8063,12 @@
           "key": "HOP DISTANCE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HOP 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终向接收者朝向跳距",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
         },
         {
           "key": "IMPACT DAMAGE",
@@ -8137,92 +8104,169 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:249；c.heal(ally, 200)"
-        },
-        {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；c.damage(t, 300)"
-        },
-        {
-          "key": "skill_effects_more.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；radius: 2.75"
-        },
-        {
-          "key": "skill_effects_more.duration.1",
-          "kind": "program",
+          "key": "HOP DURATION",
           "unit": "ms",
+          "meaning": "最终跳跃时长",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；duration: 3"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
         },
         {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "友军饼干弹速",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；interval: .2"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
         },
         {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；c.damage(t, 6)"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；slow(c, t, 25, .3)"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
+          "key": "SELF CAST POINT",
           "unit": "ms",
+          "meaning": "自我施法前摇",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:255；slow(c, t, 25, .3)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "SELF CAST BACKSWING",
+          "unit": "ms",
+          "meaning": "自我施法后摇",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "HEAL",
+          "unit": "数值",
+          "meaning": "Super弹道命中治疗",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "HOLDER HEALTH BONUS",
+          "unit": "数值",
+          "meaning": "持有者最大生命候选；归属待证",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "EXTRA COOKIE COUNT",
+          "unit": "次数",
+          "meaning": "Gaben追加饼干数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "EXTRA COOKIE INTERVAL",
+          "unit": "ms",
+          "meaning": "追加饼干发射间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "KISS IMPACT DAMAGE",
+          "unit": "数值",
+          "meaning": "授予AA基础Kiss冲击伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "KISS DAMAGE PER SECOND",
+          "unit": "数值",
+          "meaning": "Cookie熔岩每秒伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "KISS RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Kiss冲击与熔岩半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "KISS SLOW",
+          "unit": "%",
+          "meaning": "熔岩移速降低",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "PUDDLE DURATION",
+          "unit": "ms",
+          "meaning": "熔岩范围持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "BURN INTERVAL",
+          "unit": "ms",
+          "meaning": "熔岩标记及伤害间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
+        },
+        {
+          "key": "BURN LINGER",
+          "unit": "ms",
+          "meaning": "离开熔岩残留",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire；官方AA Season2施法距离800。200最大生命holder一次为旧项目候选。单Kiss保AA最大基础300冲击/30DPS，不采用native320/100。"
         }
       ]
     },
@@ -8263,12 +8307,12 @@
           "key": "FISSURE RANGE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "FISSURE 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终沟壑长度",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
         },
         {
           "key": "STUN DURATION",
@@ -8282,26 +8326,70 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:268；c.damage(t, 150)"
-        },
-        {
-          "key": "skill_effects_more.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "DAMAGE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "伤害与眩晕半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:268；stun(c, t, 1.5)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "RIDGE START OFFSET",
+          "unit": "Dota单位",
+          "meaning": "起点及次沟壑偏移候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "RIDGE WIDTH",
+          "unit": "Dota单位",
+          "meaning": "连续障碍宽度候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "AFTERSHOCK RADIUS",
+          "unit": "Dota单位",
+          "meaning": "沿沟壑余震范围候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "AFTERSHOCK DAMAGE",
+          "unit": "数值",
+          "meaning": "授予最大原生余震伤害候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "AFTERSHOCK STUN",
+          "unit": "ms",
+          "meaning": "官方AA校准余震眩晕",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
         }
       ]
     },
@@ -26964,23 +27052,23 @@
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "作用半径",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "DURATION",
@@ -26990,107 +27078,52 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
           "key": "LINGER",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "LINGER",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "skill_effects_extra.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1213；c.caster.statuses.some(s => s.kind === 'elderDragon' && s.until > c.battle.time) ? 14 : 6"
-        },
-        {
-          "key": "skill_effects_extra.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1213；c.caster.statuses.some(s => s.kind === 'elderDragon' && s.until > c.battle.time) ? 14 : 6"
-        },
-        {
-          "key": "skill_effects_extra.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1215；radius: 3.5"
-        },
-        {
-          "key": "skill_effects_extra.duration.1",
-          "kind": "program",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1215；duration: 8"
+          "meaning": "离开火焰后的燃烧残留",
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
+          "key": "BURN INTERVAL",
           "unit": "ms",
+          "meaning": "燃烧伤害间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1215；interval: .5"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1216；debuff(c, unit, 'fireballBurn', 1, 2.01)"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1223；c.damage(unit, 37.5, 'magical', false)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "DRAGON CAST RANGE",
+          "unit": "Dota单位",
+          "meaning": "龙形态火球施法距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1219；debuff(c, unit, 'fireballBurn', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), 2.01)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
+        },
+        {
+          "key": "DRAGON BACKSWING",
+          "unit": "ms",
+          "meaning": "龙形态火球后摇",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://news.abilityarena.com/ability-arena-season-4/；https://news.abilityarena.com/ability-arena-season-4-5/；https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/；https://dota2.fandom.com/wiki/Dragon_Knight；https://dota2.fandom.com/wiki/Magnus；https://dota2.fandom.com/wiki/Earthshaker；https://dota2.fandom.com/wiki/Sand_King；https://dota2.fandom.com/wiki/Outworld_Destroyer；https://liquipedia.net/dota2/Archive%3AVersion_7.27b；references/dota-20230216/npc_abilities.txt；TotemMana:AA empty array retained zero,not native cost；TotemBackswing:LP Archive:Version_7.27b .57->.38 dated2020-07-15；EmpowerAura:captured global aura live-holder .25refresh/.35linger engineering candidate;Season2 Nov2 announcement instead replaced oldaura by permanent startcast(not adopted)；EmpowerSuperGeometry:200added only end radius retained working candidate;exact AA geometry pending；DragonGabenSplash:Gaben100overrides inherited Super15 retained working interpretation;not asserted115；EpicenterDuration:native2023duration3mapped to AA custom pulsecount;first=3/N,last3；Fireball:pinned2023KV75DPS/100mana;modern80mana not adopted"
         }
       ]
     },
@@ -29519,10 +29552,7 @@
       "domain": "native",
       "id": "life_stealer_open_wounds",
       "tiers": [
-        1,
-        2,
-        3,
-        4
+        1
       ],
       "params": [
         {
@@ -29537,35 +29567,24 @@
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
         {
-          "key": "SLOW_STEPS",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "减速 STEPS",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
           "key": "HEAL_PERCENT",
           "kind": "value",
           "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "治疗 百分比",
+          "meaning": "合格伤害转化为攻击者治疗的百分比",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
         {
           "key": "MAX_HEALTH_AS_DAMAGE_PCT",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 生命 AS 伤害 PCT",
+          "meaning": "每次普通攻击追加目标最大生命值百分比伤害",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
@@ -29576,7 +29595,7 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 THRESHOLD",
+          "meaning": "累计受到伤害后传播伤口的门槛",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
@@ -29587,119 +29606,97 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SPREAD 半径",
+          "meaning": "传播伤口的敌方搜索半径",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
         {
-          "key": "SLOW_TOOLTIP",
+          "key": "SLOW SECOND 1",
+          "unit": "%",
+          "meaning": "第1段移动速度降低百分比",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "减速 TOOLTIP",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "historical_upgrades.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；c.status(t,'slow',1.05,Math.abs([50,50,40,30,20,10,10][Math.min(i,6)])/100,{harmful:true})"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 2",
+          "unit": "%",
+          "meaning": "第2段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 3",
+          "unit": "%",
+          "meaning": "第3段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 4",
+          "unit": "%",
+          "meaning": "第4段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 5",
+          "unit": "%",
+          "meaning": "第5段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 6",
+          "unit": "%",
+          "meaning": "第6段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.6",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW SECOND 7",
+          "unit": "%",
+          "meaning": "第7段移动速度降低百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         },
         {
-          "key": "historical_upgrades.slow_amount.7",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW STEP INTERVAL",
+          "unit": "ms",
+          "meaning": "各段移动减速持续时间",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；[50,50,40,30,20,10,10]"
-        },
-        {
-          "key": "historical_upgrades.slow_amount.8",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:36；Math.min(i,6)"
+          "source": "C6逐项AA/历史Wiki核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；C6历史Wiki/2023Valve机制对照；；https://liquipedia.net/dota2/Lifestealer/Changelogs；Valve2023 life_stealer_open_wounds MaxLevel1/IsGrantedByShard1"
         }
       ]
     },

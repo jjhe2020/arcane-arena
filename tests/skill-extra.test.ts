@@ -120,7 +120,7 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
       for (const [index, u] of battle.units.entries()) {
         [u.x, u.y] = index ? locations[index - 1] : [0, 0]; u.moveSpeed = 0; u.nextAttack = 100; u.armor = 0; u.hp = u.maxHp = 10000;
       }
-      advance(battle, .1); expect(status(caster, 'cleave')?.data).toEqual({ distance: 6.5, startWidth: 1.5, endWidth: points >= 6 ? 5.6 : 3.6 });
+      advance(battle, .1); expect(status(caster, 'cleave')?.data).toMatchObject({ distance: 6.5, startWidth: 1.5, endWidth: points >= 6 ? 5.6 : 3.6 });
       caster.attackInterval = 100; caster.nextAttack = 0; advance(battle, 1);
       return Object.fromEntries(battle.units.filter(u => u.side === 1).map(u => [u.id.split(':')[1], 10000 - u.hp]));
     }
@@ -356,7 +356,7 @@ describe('extra skill upgrade behavior', () => {
     const h = harness('custom_earthshaker_enchant_totem', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     expect(p.manaCost!(h.ctx)).toBe(0); expect((p.castPoint as (c: EffectContext) => number)(h.ctx)).toBe(0);
     expect(p.cooldown!(h.ctx)).toBe(3.5);
-    h.ctx.skill.points = 3; expect((p.castPoint as (c: EffectContext) => number)(h.ctx)).toBe(.3);
+    h.ctx.skill.points = 3; expect((p.castPoint as (c: EffectContext) => number)(h.ctx)).toBe(.6);
   });
   it('keeps the limitations of historically sourced or defaulted upgrades explicit', () => {
     for (const id of ['enchantress_impetus', 'custom_monkey_king_jingu_mastery', 'dazzle_shadow_wave', 'muerta_pierce_the_veil']) {

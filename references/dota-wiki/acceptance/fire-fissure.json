@@ -1,0 +1,1571 @@
+{
+  "schemaVersion": 1,
+  "group": "fire-fissure",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA custom clauses/numbers override native numeric balance. HistoricalWiki/KV provide compatible mechanisms. Current indexed primaryWiki supplements are version-labeled. Project interpretation tests do not become original-mechanism proof.",
+  "validation": {
+    "command": "npx vitest run tests/reference-fire-fissure.test.ts",
+    "passedTests": 61,
+    "configurationHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
+    "meaning": "61genuine result tests cover named release,channel,projectile,growth and gate behavior;all5skills remainpartial. Explicit source_pending and actual_missing items have no false whole-skill pass."
+  },
+  "skills": [
+    {
+      "id": "custom_bane_fiends_grip",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Flat-arena combat with AA custom final numbers. Passing named results do not certify the unresolved AA-specific clauses or unmodeled terrain/vision systems."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official complete base description,categories,differences,base values,Super and Gaben of Fiend's Grip were reviewed. The selected evidence retains those clauses.",
+          "versionContext": "Fresh official English HTTP200;full catalog SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA explicit custom values take priority.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane",
+          "accessedOn": "2026-10-30",
+          "observation": "FiendsGrip has200ms point/zero recovery,5/5.5/6s channels,pure immediate0.5s ticks,10/11/12instances;damage then source mana restore then victim loss. Strong dispel,TrueSight,hidden/invulnerable termination. Scepter creates two200%-incoming bodies;interruption destroys each and damage does not stack.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200;historical mechanisms and animation values;modern facet/innate redesigns excluded.",
+          "sha256": "c0794d990057fedd7494f76d80e22ea856eb7a9548cf437a42aa960ebb952fd8"
+        },
+        {
+          "id": "workshop15",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=15",
+          "accessedOn": "2026-10-30",
+          "observation": "AA range625to800;Super gets two channeling bodies and only stops when both are disabled or killed.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "d46b6fe97d49f6a470ad37e41c134d4f4514a5a3b9a9b3c7580cad147455f9f4"
+        },
+        {
+          "id": "workshop16",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-30",
+          "observation": "AA explicitly fixes target dispel failing to end the channel;Super frees the owner and Gaben uses50second reduction plus10per channel second.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3"
+        },
+        {
+          "id": "status-resistance",
+          "url": "https://liquipedia.net/dota2/Status_Resistance",
+          "accessedOn": "2026-10-30",
+          "observation": "FiendsGrip appears in dynamic tick intervals:duration changes alter cadence rather than total scheduled damage.",
+          "versionContext": "Current primary Wiki indexed body actually read2026-10-30;directHTTP403;compatible mechanical candidate,not a pinned2023 page."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned base cast points,ranges,intervals and upgrade numbers were read for these skills. AA numeric overrides remain authoritative.",
+          "versionContext": "2023-02 shipped Valve KV pinned by commit;not AA custom Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FG-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "releases200ms point zero recovery800range and debits400mana100second cooldown",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop15"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-01 releases200ms point zero recovery800range and debits400mana100second cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "applies immediate pure damage mana drain and continuous reveal before the first half-second delay",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-02 applies immediate pure damage mana drain and continuous reveal before the first half-second delay"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "base tiers schedule ten eleven and twelve ticks with no extra endpoint tick",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-03 base tiers schedule ten eleven and twelve ticks with no extra endpoint tick"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-04",
+          "kind": "combination",
+          "branch": "status_resistance",
+          "mechanism": "status resistance compresses tick times and disable while preserving scheduled total",
+          "sourceIds": [
+            "wiki2023",
+            "status-resistance"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-04 status resistance compresses tick times and disable while preserving scheduled total"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-05",
+          "kind": "combination",
+          "branch": "channel_interrupt",
+          "mechanism": "caster stun terminates the base channel and prevents future damage",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-05 caster stun terminates the base channel and prevents future damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-06",
+          "kind": "combination",
+          "branch": "strong_dispel",
+          "mechanism": "target Strong dispel removes the whole grip but basic dispel does not",
+          "sourceIds": [
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-06 target Strong dispel removes the whole grip but basic dispel does not"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-07",
+          "kind": "combination",
+          "branch": "immunity_hidden",
+          "mechanism": "spell immunity does not stop pure grip but hidden or invulnerable state ends it",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-07 spell immunity does not stop pure grip but hidden or invulnerable state ends it"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-08",
+          "kind": "super",
+          "branch": "independent_actors",
+          "mechanism": "Super creates two real independent channels and one interrupted body does not stop the other",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop15"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-08 Super creates two real independent channels and one interrupted body does not stop the other"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-09",
+          "kind": "super",
+          "branch": "both_interrupted",
+          "mechanism": "both Super bodies interrupted terminate every target disable component",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop15"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-09 both Super bodies interrupted terminate every target disable component"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-10",
+          "kind": "super",
+          "branch": "health_steal_interpretation",
+          "mechanism": "Super has one native damage stream attributed to its active body and additional configured health drain",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-10 Super has one native damage stream attributed to its active body and additional configured health drain"
+            }
+          ],
+          "status": "source_pending"
+        },
+        {
+          "id": "FG-11",
+          "kind": "gaben",
+          "branch": "cooldown",
+          "mechanism": "Gaben reduces its final50second cooldown by elapsed channel time once rather than twice for two actors",
+          "sourceIds": [
+            "aa",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-11 Gaben reduces its final50second cooldown by elapsed channel time once rather than twice for two actors"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-12",
+          "kind": "timing",
+          "branch": "configured_interval",
+          "mechanism": "edited channel interval and damage are consumed without old program constants",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-12 edited channel interval and damage are consumed without old program constants"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-13",
+          "kind": "super",
+          "branch": "owner_freedom",
+          "mechanism": "the Super owner can release another ability while both independent bodies continue channeling",
+          "sourceIds": [
+            "aa",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-13 the Super owner can release another ability while both independent bodies continue channeling"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-14",
+          "kind": "combination",
+          "branch": "illusion_incoming",
+          "mechanism": "illusion incoming damage is200percent and killing one body does not duplicate the native damage stream",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FG-14 illusion incoming damage is200percent and killing one body does not duplicate the native damage stream"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FG-P1",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA5%maximum-health stealing has no recovered definition of damage/removal category or beneficiary. Existing extra pure damage plus direct owner heal remains an explicit editable working interpretation;FG-10 is only a project behavior regression.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FG-P2",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Different-owner simultaneous grip priority,stolen debuff amplification extremes and exact engine frame endpoint ordering need additional combination cases;one-source status-resistance compression is covered.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FG-P3",
+          "kind": "mechanism",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA static catalogCannot-dispeled category conflicts with officialAA target-dispel bugfix and nativeStrong. TargetStrong is deliberately selected from more specific mechanics evidence;no unconditional whole-skill certification.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "2023BaneScepter two channeling illusions;AA adds6seconds instead of native talent5 and explicitly frees the owner.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop15",
+            "workshop16"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "AA bespoke50second reduction and10CDR per elapsed channel second;nativeScepter45reduction is not imported.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA5%maximum-health stealing has no recovered definition of damage/removal category or beneficiary. Existing extra pure damage plus direct owner heal remains an explicit editable working interpretation;FG-10 is only a project behavior regression.",
+        "Different-owner simultaneous grip priority,stolen debuff amplification extremes and exact engine frame endpoint ordering need additional combination cases;one-source status-resistance compression is covered.",
+        "AA static catalogCannot-dispeled category conflicts with officialAA target-dispel bugfix and nativeStrong. TargetStrong is deliberately selected from more specific mechanics evidence;no unconditional whole-skill certification."
+      ]
+    },
+    {
+      "id": "custom_lina_fiery_soul",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Flat-arena combat with AA custom final numbers. Passing named results do not certify the unresolved AA-specific clauses or unmodeled terrain/vision systems."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official complete base description,categories,differences,base values,Super and Gaben of Fiery Soul were reviewed. The selected evidence retains those clauses.",
+          "versionContext": "Fresh official English HTTP200;full catalog SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA explicit custom values take priority.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "wiki-old-cast",
+          "url": "https://web.archive.org/web/20211120070423id_/https://dota2.fandom.com/wiki/Lina",
+          "accessedOn": "2026-10-30",
+          "observation": "Pre-rework passive triggers qualifying casts,excludes items/zeroCD/no-oncast abilities,refreshes the whole stack. Break prevents new layers but preserves existing bonuses;modifier persists death.",
+          "versionContext": "Direct2021-11archivedDota2Wiki HTTP200;AA explicitly retains cast-based trigger while2023native is hit-based.",
+          "sha256": "160dbf61cba59409b1b4cd8d2897a9daf14a81de1b36615c114d378eaf88b8d9"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina",
+          "accessedOn": "2026-10-30",
+          "observation": "2023FierySoul is enemy-hit based with native7layers and18seconds. These reworked numeric and trigger rules are excluded because AA explicitly retains older cast behavior.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200;historical mechanisms and animation values;modern facet/innate redesigns excluded.",
+          "sha256": "79cb74e2f44066000cb6f6c648d4b3fdb2050c1438d15cb3f0f75edb64801605"
+        },
+        {
+          "id": "workshop15",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=15",
+          "accessedOn": "2026-10-30",
+          "observation": "AA sets base FierySoul attack speed20/30/50.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "d46b6fe97d49f6a470ad37e41c134d4f4514a5a3b9a9b3c7580cad147455f9f4"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned base cast points,ranges,intervals and upgrade numbers were read for these skills. AA numeric overrides remain authoritative.",
+          "versionContext": "2023-02 shipped Valve KV pinned by commit;not AA custom Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FS-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "a real completed cast adds one cast-based layer and refreshes every component to eight seconds",
+          "sourceIds": [
+            "aa",
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-01 a real completed cast adds one cast-based layer and refreshes every component to eight seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-02",
+          "kind": "timing",
+          "branch": "cancelled_release",
+          "mechanism": "interrupted windup spends no resource and adds no layer",
+          "sourceIds": [
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-02 interrupted windup spends no resource and adds no layer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-03",
+          "kind": "combination",
+          "branch": "blocked_release",
+          "mechanism": "paid spell block still counts one completed cast even when its primary effect is blocked",
+          "sourceIds": [
+            "aa",
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-03 paid spell block still counts one completed cast even when its primary effect is blocked"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-04",
+          "kind": "super",
+          "branch": "final_effective_values",
+          "mechanism": "Super consumes final70attack speed and9percent move speed once",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-04 Super consumes final70attack speed and9percent move speed once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-05",
+          "kind": "gaben",
+          "branch": "unlimited_double",
+          "mechanism": "Gaben adds two layers per cast and exceeds the old four layer cap",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-05 Gaben adds two layers per cast and exceeds the old four layer cap"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-06",
+          "kind": "combination",
+          "branch": "break",
+          "mechanism": "Break prevents new layers but preserves the existing attack and movement bonuses",
+          "sourceIds": [
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-06 Break prevents new layers but preserves the existing attack and movement bonuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-07",
+          "kind": "combination",
+          "branch": "strong_dispel",
+          "mechanism": "basic beneficial dispel preserves layers while Strong beneficial dispel clears all components",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-07 basic beneficial dispel preserves layers while Strong beneficial dispel clears all components"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-08",
+          "kind": "timing",
+          "branch": "natural_expiry",
+          "mechanism": "the refreshed buff naturally expires after eight seconds without hidden leftover bonuses",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-08 the refreshed buff naturally expires after eight seconds without hidden leftover bonuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-09",
+          "kind": "combination",
+          "branch": "zero_cooldown",
+          "mechanism": "zero configured cooldown does not produce a cast layer",
+          "sourceIds": [
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-09 zero configured cooldown does not produce a cast layer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-10",
+          "kind": "combination",
+          "branch": "no_oncast",
+          "mechanism": "no-oncast abilities pay costs and release without adding a Fiery Soul layer",
+          "sourceIds": [
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-10 no-oncast abilities pay costs and release without adding a Fiery Soul layer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-11",
+          "kind": "combination",
+          "branch": "queued_grant",
+          "mechanism": "an actually queued independent Open Wounds grant counts its paid completed release",
+          "sourceIds": [
+            "aa",
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-11 an actually queued independent Open Wounds grant counts its paid completed release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-12",
+          "kind": "combination",
+          "branch": "death_persistence",
+          "mechanism": "existing Fiery Soul components persist the holder death until their original expiry",
+          "sourceIds": [
+            "wiki-old-cast"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FS-12 existing Fiery Soul components persist the holder death until their original expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-P1",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Synthetic free c.castAbility child effects intentionally do not emit executed-ability events. OriginalAA eligibility for these synthetic children has not been recovered;actual queued independent grants are tested.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "base",
+          "prototype": "AA explicitly preserves the pre7.31cast-based native passive;2023hit-based redesign is not adopted.",
+          "sourceIds": [
+            "aa",
+            "wiki-old-cast",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "super",
+          "prototype": "AA custom70attack-speed/9%move-speed final per layer,similar to old native talent axes but AA numbers retained.",
+          "sourceIds": [
+            "aa",
+            "wiki-old-cast"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "AA custom2layers and unlimited cap;no separate native talent/item match proved.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Synthetic free c.castAbility child effects intentionally do not emit executed-ability events. OriginalAA eligibility for these synthetic children has not been recovered;actual queued independent grants are tested."
+      ]
+    },
+    {
+      "id": "custom_lion_finger_of_death",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Flat-arena combat with AA custom final numbers. Passing named results do not certify the unresolved AA-specific clauses or unmodeled terrain/vision systems."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official complete base description,categories,differences,base values,Super and Gaben of Finger of Death were reviewed. The selected evidence retains those clauses.",
+          "versionContext": "Fresh official English HTTP200;full catalog SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA explicit custom values take priority.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion",
+          "accessedOn": "2026-10-30",
+          "observation": "300ms point/500ms recovery/900range,250ms delayed damage and3second native kill grace. Hidden/invulnerable/spell immunity can avoid impact. Allied/denied/self kills and Reincarnation count;illusions/creep-heroes/TempestDouble do not. HP growth preserves percentage;talents retroactively affect counters. Scepter primary block cancels area and secondary block does not.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200;historical mechanisms and animation values;modern facet/innate redesigns excluded.",
+          "sha256": "f5420f38384ccda6bd22528def079c59e88b85ccb87791e3cf9b2b0340ace24c"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned base cast points,ranges,intervals and upgrade numbers were read for these skills. AA numeric overrides remain authoritative.",
+          "versionContext": "2023-02 shipped Valve KV pinned by commit;not AA custom Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FD-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "releases300ms point500ms recovery900range400mana40cooldown before250ms damage delay",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-01 releases300ms point500ms recovery900range400mana40cooldown before250ms damage delay"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-02",
+          "kind": "combination",
+          "branch": "delayed_avoidance",
+          "mechanism": "spell immunity invulnerability and hidden states during delay avoid damage and credit marks",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-02 spell immunity invulnerability and hidden states during delay avoid damage and credit marks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-03",
+          "kind": "super",
+          "branch": "kill_growth",
+          "mechanism": "an allied kill inside the editable native three second grace grants permanent Super60damage70HP",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-03 an allied kill inside the editable native three second grace grants permanent Super60damage70HP"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-04",
+          "kind": "timing",
+          "branch": "native_grace_candidate",
+          "mechanism": "an allied kill after the grace expires grants no permanent count",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-04 an allied kill after the grace expires grants no permanent count"
+            }
+          ],
+          "status": "source_pending"
+        },
+        {
+          "id": "FD-05",
+          "kind": "mechanism",
+          "branch": "hero_identity",
+          "mechanism": "illusions considered hero creeps and Tempest Doubles do not award kill stacks",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-05 illusions considered hero creeps and Tempest Doubles do not award kill stacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-06",
+          "kind": "mechanism",
+          "branch": "lethal_impact",
+          "mechanism": "lethal Finger impact itself awards exactly one mark before death hooks execute",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-06 lethal Finger impact itself awards exactly one mark before death hooks execute"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-07",
+          "kind": "gaben",
+          "branch": "aoe_final",
+          "mechanism": "Gaben consumes final950base20cooldown and325area including invisible secondary units",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-07 Gaben consumes final950base20cooldown and325area including invisible secondary units"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-08",
+          "kind": "combination",
+          "branch": "primary_block",
+          "mechanism": "primary spell block cancels the whole Gaben area but still debits resource and cooldown",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-08 primary spell block cancels the whole Gaben area but still debits resource and cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-09",
+          "kind": "super",
+          "branch": "edited_effective_growth",
+          "mechanism": "edited effective per kill value controls next cast growth and is not incremented again by Super",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-09 edited effective per kill value controls next cast growth and is not incremented again by Super"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-10",
+          "kind": "combination",
+          "branch": "dead_holder_reincarnation",
+          "mechanism": "death credit survives the holder death and target Reincarnation",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-10 death credit survives the holder death and target Reincarnation"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-11",
+          "kind": "combination",
+          "branch": "independent_marks",
+          "mechanism": "successive casts create independent death credit marks on the same hero",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FD-11 successive casts create independent death credit marks on the same hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FD-P1",
+          "kind": "timing",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA explicitly greatly increases the kill-credit grace but exact seconds remain unrecovered.3seconds is an editable native baseline candidate,not the claimed AA extended duration;FD-04 proves expiry only for that working value.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FD-P2",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Native one-count-per-cast Meepo-family deduplication needs family identity not represented by generic heroClone. Generic clones currently count independently;this is a known implementation gap.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        },
+        {
+          "id": "FD-P3",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Acquired-skill lifetime cleanup,upgrade-during250msdelay snapshots and exact retroactivity of old saved flat-growth records need separate proof. New count-based growth and anchored legacy amounts are not silently conflated.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Native Lion talents+20damage per kill and+70HP;AA combines them into Super and retains40/60final growth.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "Native Scepter+100base,325AOE and level3cooldown20;AA final20cooldown instead of native level progression.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA explicitly greatly increases the kill-credit grace but exact seconds remain unrecovered.3seconds is an editable native baseline candidate,not the claimed AA extended duration;FD-04 proves expiry only for that working value.",
+        "Native one-count-per-cast Meepo-family deduplication needs family identity not represented by generic heroClone. Generic clones currently count independently;this is a known implementation gap.",
+        "Acquired-skill lifetime cleanup,upgrade-during250msdelay snapshots and exact retroactivity of old saved flat-growth records need separate proof. New count-based growth and anchored legacy amounts are not silently conflated."
+      ]
+    },
+    {
+      "id": "custom_snapfire_firesnap_cookie",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Flat-arena combat with AA custom final numbers. Passing named results do not certify the unresolved AA-specific clauses or unmodeled terrain/vision systems.",
+        "KineticField and Pounce have no current main or granted implementation in this230skill catalog:their historical restrictions are N/A to current available combinations,not claimed implemented. Soulbind existing/new boundary cases,ordinaryroot,ordinaryFissurewall and earlyNetherSwap landing are tested. Arena-specific exception is not inferred."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official complete base description,categories,differences,base values,Super and Gaben of Firesnap Cookie were reviewed. The selected evidence retains those clauses.",
+          "versionContext": "Fresh official English HTTP200;full catalog SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA explicit custom values take priority.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire",
+          "accessedOn": "2026-10-30",
+          "observation": "Ally200ms/570ms versus self300ms/0animation,1100projectile;arrival rejects channel/hidden/invul/Chrono/BlackHole but accepts BKBally. Hop follows recipient forward facing,fully disabled/phased;loss of hop buff lands early. Heal precedes damage,stun,Kiss. NativeShard adds175range/.2s and one current-levelKiss. Puddle applies immediately/.5s and shares modifier with Kisses/SpitOut.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200;historical mechanisms and animation values;modern facet/innate redesigns excluded.",
+          "sha256": "5e27ec69554d71439ee67f16cfd5ca40a8eb5c69f59676da23b9e2a8c604b0b1"
+        },
+        {
+          "id": "aa-season2",
+          "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA changes Cookie cast range700to800.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "bf71a7db9e99ad4a5c3c9f970f3026480ed4f9c15f597aa92699a60e33641d70"
+        },
+        {
+          "id": "cookie-history",
+          "url": "https://liquipedia.net/dota2/Snapfire/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "2019-11-27 fixes allied disjoint of Cookie.2020-01-26 says Cookie cannot pass KineticField or break Pounce/Soulbind.",
+          "versionContext": "Primary Wiki indexed complete changelog body actually read2026-10-30;directHTTP403;dated historical entries,not modern spell balance."
+        },
+        {
+          "id": "aa-kiss",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA MortimerKisses max base glob300/burn30DPS/slow25%/pool3seconds/radius275.",
+          "versionContext": "Fresh official fullcatalog HTTP200,sameSHA 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;values establish the retained maximum-base working grant,not AA grant level.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned base cast points,ranges,intervals and upgrade numbers were read for these skills. AA numeric overrides remain authoritative.",
+          "versionContext": "2023-02 shipped Valve KV pinned by commit;not AA custom Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FC-01",
+          "kind": "timing",
+          "branch": "ally_release",
+          "mechanism": "allied Cookie uses200ms point570ms recovery800range and a1100speed projectile",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-season2"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-01 allied Cookie uses200ms point570ms recovery800range and a1100speed projectile"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-02",
+          "kind": "timing",
+          "branch": "self_hop",
+          "mechanism": "self Cookie uses300ms point zero recovery and hops425 over484ms before impact",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-02 self Cookie uses300ms point zero recovery and hops425 over484ms before impact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-03",
+          "kind": "combination",
+          "branch": "disjoint",
+          "mechanism": "Cookie ignores a real Chemical Rage projectile disjoint",
+          "sourceIds": [
+            "cookie-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-03 Cookie ignores a real Chemical Rage projectile disjoint"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-04",
+          "kind": "combination",
+          "branch": "arrival_eligibility",
+          "mechanism": "hidden invulnerable and channeling recipients at arrival consume the cookie without a hop",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-04 hidden invulnerable and channeling recipients at arrival consume the cookie without a hop"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-05",
+          "kind": "combination",
+          "branch": "spell_immune_ally",
+          "mechanism": "spell immune allies can hop through an enemy barrier while phased",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-05 spell immune allies can hop through an enemy barrier while phased"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-06",
+          "kind": "super",
+          "branch": "heal_and_kiss_candidate",
+          "mechanism": "Super heals before launch and consumes600hop followed by280impact300Kiss damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-kiss"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-06 Super heals before launch and consumes600hop followed by280impact300Kiss damage"
+            }
+          ],
+          "status": "source_pending"
+        },
+        {
+          "id": "FC-07",
+          "kind": "gaben",
+          "branch": "additional_projectiles",
+          "mechanism": "Gaben launches three additional independent cookies at one second intervals",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-07 Gaben launches three additional independent cookies at one second intervals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-08",
+          "kind": "combination",
+          "branch": "early_landing",
+          "mechanism": "real Nether Swap interruption lands Cookie once at its current airborne position before the warp",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-08 real Nether Swap interruption lands Cookie once at its current airborne position before the warp"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-09",
+          "kind": "combination",
+          "branch": "existing_soulbind_boundary",
+          "mechanism": "an already active real Soulbind permits Cookie but clips the hop to its linked partner boundary",
+          "sourceIds": [
+            "cookie-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-09 an already active real Soulbind permits Cookie but clips the hop to its linked partner boundary"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-10",
+          "kind": "combination",
+          "branch": "new_soulbind_boundary",
+          "mechanism": "a real Soulbind acquired during Cookie flight constrains later movement without cancelling the landing effect",
+          "sourceIds": [
+            "cookie-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-10 a real Soulbind acquired during Cookie flight constrains later movement without cancelling the landing effect"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-11",
+          "kind": "combination",
+          "branch": "ordinary_root",
+          "mechanism": "ordinary root does not forbid Cookie or cancel its forward hop",
+          "sourceIds": [
+            "cookie-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-11 ordinary root does not forbid Cookie or cancel its forward hop"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-12",
+          "kind": "combination",
+          "branch": "ordinary_fissure_wall",
+          "mechanism": "Cookie crosses a genuine enemy Fissure wall while the ordinary wall remains active",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-12 Cookie crosses a genuine enemy Fissure wall while the ordinary wall remains active"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-13",
+          "kind": "combination",
+          "branch": "chrono_black_hole_arrival",
+          "mechanism": "real Chronosphere or Black Hole acquired before Cookie arrival prevents the hop",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FC-13 real Chronosphere or Black Hole acquired before Cookie arrival prevents the hop"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FC-P1",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA200maximum-health recipient and duration are unspecified. Existing once-per-holder battle bonus remains an editable project interpretation,not a verified originalAA mechanism.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FC-P2",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA grantedKiss rank and interaction with draftedMortimerKisses levels are unspecified. Existing max-baseAA300impact/30DPS is preserved;FC-06 is regression evidence for that working candidate.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FC-P3",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Cookie-only puddles use first-source nonstacking burn. Native Cookie/MortimerKisses/SpitOut share a modifier across skills,but this implementation still lacks that unified registry. Dispelling/reapplying the burn also needs a shared-lifecycle result test.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "2023nativeShard extended hop and singleKiss plus heal talent,with AA200heal/200HP override. ExactAA HP recipient/duration and grantedKissrank unspecified.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-kiss"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "AA custom3additional cookies at1second intervals;no native item/talent equivalent proved.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA200maximum-health recipient and duration are unspecified. Existing once-per-holder battle bonus remains an editable project interpretation,not a verified originalAA mechanism.",
+        "AA grantedKiss rank and interaction with draftedMortimerKisses levels are unspecified. Existing max-baseAA300impact/30DPS is preserved;FC-06 is regression evidence for that working candidate.",
+        "Cookie-only puddles use first-source nonstacking burn. Native Cookie/MortimerKisses/SpitOut share a modifier across skills,but this implementation still lacks that unified registry. Dispelling/reapplying the burn also needs a shared-lifecycle result test."
+      ]
+    },
+    {
+      "id": "custom_earthshaker_fissure",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Flat-arena combat with AA custom final numbers. Passing named results do not certify the unresolved AA-specific clauses or unmodeled terrain/vision systems."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official complete base description,categories,differences,base values,Super and Gaben of Fissure were reviewed. The selected evidence retains those clauses.",
+          "versionContext": "Fresh official English HTTP200;full catalog SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA explicit custom values take priority.",
+          "localEvidence": "references/ability-arena/abilities-fire-fissure-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker",
+          "accessedOn": "2026-10-30",
+          "observation": "690ms point/zero recovery;instant stun before damage. Native collision is24radius segments at56.25spacing,actual1350/1687.5length with circular hit regions. Shard supplies150aura/1second linger and Aftershock along all segments,50%stun. AA explicitly gives allies free passage.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200;historical mechanisms and animation values;modern facet/innate redesigns excluded.",
+          "sha256": "368fa91088f04db9172852471b4356b529627680711cb210de982a9d71faa034"
+        },
+        {
+          "id": "AA4",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "OfficialAA reduces GabenAftershock stun0.75to0.4seconds.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "12d13065c67869c82c01bc71d20c018e0995de6b8ca958cd4ace07bcfc0a62d9"
+        },
+        {
+          "id": "workshop16",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-30",
+          "observation": "OfficialAA repeats the GabenAftershock0.4second correction.",
+          "versionContext": "Official AA update article/workshop changelog HTTP200;version-specific overrides,not permission to replace final AA values.",
+          "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned base cast points,ranges,intervals and upgrade numbers were read for these skills. AA numeric overrides remain authoritative.",
+          "versionContext": "2023-02 shipped Valve KV pinned by commit;not AA custom Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FI-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Fissure has690ms point zero recovery1400range170mana15second cooldown and instant260damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-01 Fissure has690ms point zero recovery1400range170mana15second cooldown and instant260damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-02",
+          "kind": "mechanism",
+          "branch": "effect_order",
+          "mechanism": "Fissure stun is applied before its damage and lasts the configured1.75seconds",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-02 Fissure stun is applied before its damage and lasts the configured1.75seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-03",
+          "kind": "combination",
+          "branch": "invisibility_immunity",
+          "mechanism": "invisible units are struck while spell immune and hidden units are excluded",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-03 invisible units are struck while spell immune and hidden units are excluded"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-04",
+          "kind": "super",
+          "branch": "final_effective",
+          "mechanism": "Super final340damage1720range is not increased a second time",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-04 Super final340damage1720range is not increased a second time"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-05",
+          "kind": "gaben",
+          "branch": "perpendicular_first",
+          "mechanism": "Gaben perpendicular ridge chooses the first enemy along the ray not unit array order",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-05 Gaben perpendicular ridge chooses the first enemy along the ray not unit array order"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-06",
+          "kind": "gaben",
+          "branch": "preexisting_ridge_gate",
+          "mechanism": "a first Fissure cannot trigger its own not-yet-created Aftershock",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-06 a first Fissure cannot trigger its own not-yet-created Aftershock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-07",
+          "kind": "gaben",
+          "branch": "conditional_aftershock",
+          "mechanism": "a subsequent spell while touching an old ridge triggers150Aftershock and official400ms stun before its own effect",
+          "sourceIds": [
+            "aa",
+            "AA4",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-07 a subsequent spell while touching an old ridge triggers150Aftershock and official400ms stun before its own effect"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-08",
+          "kind": "combination",
+          "branch": "off_ridge_break",
+          "mechanism": "off-ridge spells and Break do not trigger conditional Aftershock",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-08 off-ridge spells and Break do not trigger conditional Aftershock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-09",
+          "kind": "gaben",
+          "branch": "edited_final_fields",
+          "mechanism": "edited final damage range and Aftershock values control the real next release",
+          "sourceIds": [
+            "aa",
+            "AA4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-09 edited final damage range and Aftershock values control the real next release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-10",
+          "kind": "timing",
+          "branch": "natural_ridge_expiry",
+          "mechanism": "a spell cast on the ridge after its natural expiry produces no Aftershock",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-10 a spell cast on the ridge after its natural expiry produces no Aftershock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-11",
+          "kind": "combination",
+          "branch": "allied_enemy_wall_crossing",
+          "mechanism": "real allied walking crosses the ridge while enemy walking is constrained by the same wall",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fire-fissure.test.ts",
+              "test": "FI-11 real allied walking crosses the ridge while enemy walking is constrained by the same wall"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-P1",
+          "kind": "mechanism",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Continuous80wide/80start-offset ridge is retained legacy flat geometry,not native24radius/56.25segmented collision or exact damage scallops. Actual endpoint/behind-caster hits,push-aside,ward/building exceptions still differ.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        },
+        {
+          "id": "FI-P2",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "ExactAA conditionalAftershock propagation shape is unrecovered. Full-own-ridge300radius is a nativeShard-inspired working candidate,not provedAA Lua;FI-07/09 show configured result only.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FI-P3",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Secondary ridge extent/offset and stolenAftershock identity are unresolved. Cross-skill Totem landing-trigger versus release-trigger must be tested without assuming nativeShard and AAconditional rules are identical.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Native Earthshaker cast-range/damage talent axes;AA explicitly uses+320range/+80damage rather than native+90damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "NativeShard Aftershock-on-Fissure lineage;AA conditional on standing on own ridge and official400msstun override. Perpendicular extra ridge is AA custom.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "AA4",
+            "workshop16"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Continuous80wide/80start-offset ridge is retained legacy flat geometry,not native24radius/56.25segmented collision or exact damage scallops. Actual endpoint/behind-caster hits,push-aside,ward/building exceptions still differ.",
+        "ExactAA conditionalAftershock propagation shape is unrecovered. Full-own-ridge300radius is a nativeShard-inspired working candidate,not provedAA Lua;FI-07/09 show configured result only.",
+        "Secondary ridge extent/offset and stolenAftershock identity are unresolved. Cross-skill Totem landing-trigger versus release-trigger must be tested without assuming nativeShard and AAconditional rules are identical."
+      ]
+    }
+  ],
+  "extras": {
+    "configurationQA": "output/c6-config/qa-summary.json",
+    "semanticComparison": "output/c6-config/semantic-check.json",
+    "baselineHash": "38bd18f77137ae040d01bff0a47c46064c149537d03baba552ecc77d6610f75a"
+  }
+}

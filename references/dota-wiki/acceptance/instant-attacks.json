@@ -875,7 +875,7 @@
           "id": "SW-01",
           "kind": "mechanism",
           "branch": "base",
-          "mechanism": "Fixed attack strikes ignore ordinary attack stat, blind/evasion/disarm and flat block while preserving cleave.",
+          "mechanism": "Fixed attack strikes ignore ordinary attack stat, blind/evasion/disarm and flat block. A melee wielder can cleave; a ranged wielder retains ranged attack identity despite having no projectile and cannot use melee cleave.",
           "sourceIds": [
             "wiki",
             "archive"
@@ -884,6 +884,10 @@
             {
               "file": "tests/reference-instant-attacks.test.ts",
               "test": "Swash fixed strikes True Strike through blind, ignore flat block, and still trigger cleave"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash from a ranged wielder retains ranged attack identity and cannot trigger melee cleave"
             }
           ],
           "status": "passed"

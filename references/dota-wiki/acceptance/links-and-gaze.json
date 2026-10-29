@@ -641,6 +641,68 @@
               "test": "TE-11 prevents two mutually tethered Gaben units from recursively copying the same attack"
             }
           ]
+        },
+        {
+          "id": "TE-11",
+          "kind": "combination",
+          "branch": "base",
+          "status": "passed",
+          "mechanism": "Actual attack and spell lifesteal transfer their complete post-restoration intention before Io health capping. Multiple providers retain proportional effective self-healing statistics while Tether receives the complete sum exactly once. Real purge,range break,reconnection and recipient caps are covered; this does not certify the separately pending False Promise or regeneration-sampling interactions.",
+          "sourceIds": [
+            "te-wiki",
+            "te-history",
+            "te-aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-01 a full-health actual Vampiric Spirit attacker still transfers34lifesteal times1point2"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-02 two real providers split10effective self healing proportionally and transfer the complete114intent once"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-03 partially missing10health retains effective10self healing while the ally receives the full40point8"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-04 a real Gaben Arc Lightning at full health transfers its complete20percent spell lifesteal"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-05 partially missing5health preserves5effective spell-lifesteal statistics but transfers the complete72"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-06 source restoration reduction and lifesteal amplification apply before transfer then the ally applies its own heal amplification"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-07 Break does not disable the active Battle Trance lifesteal or active Tether transfer"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-08 exceeding the real1000break distance stops transfer without changing ordinary effective lifesteal"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-09 returning to range and actually recasting Tether restores the same original damage and uncapped transfer"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-10 an actual enemy Fortunes End purges the link and prevents a stale transfer"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-11 the tethered ally own10missinghealth cap records only10effective healing despite the40point8transfer intent"
+            },
+            {
+              "file": "tests/reference-tether-lifesteal.test.ts",
+              "test": "TL-12 complete source restoration prevention blocks the lifesteal intent before Tether can relay it"
+            }
+          ]
         }
       ],
       "unresolved": [
@@ -670,7 +732,13 @@
           "aaOverride": "AA full follow-up attack retained; modern 0.5 factor is not imported."
         }
       ],
-      "reviewedAllDescriptionClauses": false
+      "reviewedAllDescriptionClauses": false,
+      "followupValidationC6": {
+        "command": "npx vitest run tests/reference-tether-lifesteal.test.ts",
+        "passedTests": 12,
+        "configurationHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
+        "meaning": "Finite actual attack/spell lifesteal intention and effective-statistics results. Current source-fingerprint proof is generated separately."
+      }
     },
     {
       "id": "medusa_stone_gaze",

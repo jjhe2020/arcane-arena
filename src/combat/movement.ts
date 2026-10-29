@@ -10,6 +10,7 @@ export interface ContinuousMoveOptions {
   lockActions?: boolean;
   /** Only a skill's explicit motion exception may bypass a skill-created wall. */
   ignoreBarriers?: boolean;
+  respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }
@@ -23,6 +24,7 @@ export interface MotionController {
   priority: number;
   lockActions: boolean;
   ignoreBarriers: boolean;
+  respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }

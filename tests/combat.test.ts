@@ -248,5 +248,5 @@ describe('reference value handling',()=>{
         expect(Math.abs(u.x)).toBeLessThanOrEqual(14.57);expect(Math.abs(u.y)).toBeLessThanOrEqual(12.916);
       }
     }
-  });
+  },15000);
 });

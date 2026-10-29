@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { createBattle, restoreBattle, serializeBattle, stepBattle } from '../src/combat';
+import { applyDamage,createBattle, restoreBattle, serializeBattle, stepBattle } from '../src/combat';
 import { activeVisualWorldEffects, addVisualWorldEffect, type VisualWorldEffect } from '../src/combat/visual-state';
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import type { EffectContext, ZoneOptions } from '../src/skill-effects';
@@ -78,9 +78,10 @@ describe('real world effect metadata', () => {
     const later = activeVisualWorldEffects(battle).filter(effect => effect.id !== first.id);
     expect(later.length).toBeGreaterThan(0); expect(later[0].x).not.toBe(firstCenter.x); expect(later[0].radius!).toBeGreaterThan(first.radius!);
     expect({ x: first.x, y: first.y }).toEqual(firstCenter);
-    const count = battle.nextVisualWorldEffect; battle.units[0].dead = true; battle.units[0].hp = 0;
+    const count = battle.nextVisualWorldEffect; applyDamage(battle,battle.units.find(unit=>unit.side===1)!,battle.units[0],1e9,'pure');
     expect(activeVisualWorldEffects(battle).length).toBeGreaterThan(0);
-    stepBattle(battle, 1, definitions); expect(battle.nextVisualWorldEffect).toBe(count); expect(activeVisualWorldEffects(battle)).toEqual([]);
+    stepBattle(battle, 1, definitions); expect(Number(battle.nextVisualWorldEffect)).toBeGreaterThan(Number(count));
+    stepBattle(battle, 4, definitions); expect(activeVisualWorldEffects(battle)).toEqual([]);
   });
   it('Freezing Field records the exact already-sampled explosion even when it hits nobody', () => {
     const skill = 'custom_crystal_maiden_freezing_field', battle = create(skill, 3), caster = battle.units[0];
@@ -98,13 +99,17 @@ describe('real world effect metadata', () => {
   });
   it('Epicenter movement-triggered pulses appear only after the real distance threshold', () => {
     const battle = create('custom_sandking_epicenter', 6), caster = battle.units[0]; caster.cooldowns[0] = 120;
+    for(const unit of battle.units){unit.moveSpeed=0;unit.nextAttack=100;}
+    caster.x=-8;caster.y=0;caster.facing=0;caster.moveSpeed=5;caster.range=.1;caster.statuses.push({kind:'disarm',until:100});
+    const enemy=battle.units.find(unit=>unit.side===1)!;enemy.x=3;enemy.y=0;enemy.statuses.push({kind:'stun',until:100});
+    for(const unit of battle.units.filter(unit=>unit.side===1&&unit!==enemy)){unit.x=14;unit.y=12;unit.statuses.push({kind:'stun',until:100});}
     stepBattle(battle, .1, definitions); expect(activeVisualWorldEffects(battle)).toEqual([]);
-    caster.x += 6.5; stepBattle(battle, .1, definitions); expect(activeVisualWorldEffects(battle)).toEqual([]);
-    caster.x += 1; stepBattle(battle, .1, definitions);
+    stepBattle(battle, 1.2, definitions); expect(activeVisualWorldEffects(battle)).toEqual([]);
+    stepBattle(battle, .2, definitions);
     const [pulse] = activeVisualWorldEffects(battle);
     expect(activeVisualWorldEffects(battle)).toHaveLength(1); expect(pulse.layer).toBe('wave');
     expect(pulse.radius).toBe((numberAtMaxBase('custom_sandking_epicenter', 'RADIUS') + 100) / 100);
-    expect(pulse.x).toBeCloseTo(caster.x);
+    expect(caster.x+8).toBeCloseTo(7.5);expect(pulse.x).toBeCloseTo(-1);expect(pulse.y).toBeCloseTo(0);
   });
   it('interrupting Freezing Field prevents future samples while already-triggered bursts finish', () => {
     const battle = create('custom_crystal_maiden_freezing_field', 3); reachEffect(battle, 'custom_crystal_maiden_freezing_field');

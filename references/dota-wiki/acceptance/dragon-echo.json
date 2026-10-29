@@ -1,0 +1,1816 @@
+{
+  "schemaVersion": 1,
+  "group": "dragon-echo",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured English clauses and values first;dated2023native prototypes and transparent working choices;no Wayback429retry or whole-page HTML stored.",
+  "validation": {
+    "command": "npx vitest run tests/reference-dragon-echo.test.ts",
+    "configurationHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
+    "skillGroupTests": 67,
+    "passedTests": 67,
+    "typecheck": "npx tsc --noEmit passed after compiled6ccconfiguration and67group-result additions;final parent proof separate.",
+    "reportInput": "output/c6-dragon-echo/final-tests.json",
+    "regressionRuns": [
+      {
+        "command": "npx vitest run tests/reference-dragon-echo.test.ts tests/reference-links-and-gaze.test.ts tests/reference-instant-attacks.test.ts tests/reference-reflection-demon.test.ts tests/combat-clock-prd.test.ts tests/skill-extra.test.ts tests/combat-visual-origin.test.ts",
+        "tests": 275,
+        "passed": 273,
+        "failed": 2,
+        "context": "All new67group results passed. The two legacy extra harness failures were reported for parent migration:cleave metadata now includes owner/group fields,and base Totem cast point is the evidenced.6rather than old.3."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": "dragon_knight_elder_dragon_form",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "paraphrase": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "versionContext": "Previously captured official static JSON;original AA Lua/build unknown;no new HTTP200 claim. Captured catalog wins over conflicting dated announcements."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "paraphrase": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate;does not establish all hardcoded engine rules or exact AA patch.",
+          "localSha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "dragon-wiki",
+          "url": "https://dota2.fandom.com/wiki/Dragon_Knight",
+          "accessedOn": "2026-10-30",
+          "observation": "Retained page describes ranged form/projectile900,refresh/death,primary poison/frost before attack,secondary frost/splash/poison ordering,one-second poison clock unaffected by status resistance,physical nonspell-amplified/no-spell-lifesteal splash and building/ward restrictions. Fireball starts immediately at.5interval for21ticks including2linger. Illusions copy remaining form and enduring on-hit modifiers,excluding MR.",
+          "paraphrase": "Retained page describes ranged form/projectile900,refresh/death,primary poison/frost before attack,secondary frost/splash/poison ordering,one-second poison clock unaffected by status resistance,physical nonspell-amplified/no-spell-lifesteal splash and building/ward restrictions. Fireball starts immediately at.5interval for21ticks including2linger. Illusions copy remaining form and enduring on-hit modifiers,excluding MR.",
+          "versionContext": "Search-index retained approximately7.35d page read on2026-10-30;modern poison3seconds/slow30/MR20 are rejected in favor of captured AA5seconds/40/MR25. Exact2023 block/on-hit ordering dates remain pending."
+        },
+        {
+          "id": "dragon-history",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.22 added enhanced fourth Black Dragon;7.23 added unobstructed movement;7.30 changed Fireball to refreshing nonstacking aura with2second linger;7.31c set75DPS and7.31d350radius/8seconds.7.30c set Black Dragon25MR.",
+          "paraphrase": "7.22 added enhanced fourth Black Dragon;7.23 added unobstructed movement;7.30 changed Fireball to refreshing nonstacking aura with2second linger;7.31c set75DPS and7.31d350radius/8seconds.7.30c set Black Dragon25MR.",
+          "versionContext": "Dated native change log entries2019-2022. Later7.35d fixes illusion on-hit retention after reversion;that pre-fix candidate is kept separate from unknown AA version."
+        },
+        {
+          "id": "dragon-aa-season4",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "AA reduced base splash area350to250and added Super15percentage-point splash and100radius.",
+          "paraphrase": "AA reduced base splash area350to250and added Super15percentage-point splash and100radius.",
+          "versionContext": "Official Jan1,2023 AA Season4 announcement;catalog Gaben100versus inherited Super15remains an unresolved composition rule."
+        },
+        {
+          "id": "valve-720",
+          "url": "https://www.dota2.com/720/",
+          "accessedOn": "2026-10-30",
+          "observation": "Valve changed cleave to normal physical armor-reduced damage,rescaled Empower area to650distance/360end width,and fixed splash interacting with spell amplification/lifesteal.",
+          "paraphrase": "Valve changed cleave to normal physical armor-reduced damage,rescaled Empower area to650distance/360end width,and fixed splash interacting with spell amplification/lifesteal.",
+          "versionContext": "Official Valve7.20 patch2018-11-19;not a direct statement of2023 block ordering."
+        },
+        {
+          "id": "cleave-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ACleave",
+          "accessedOn": "2026-10-30",
+          "observation": "Independent cleave instances are physical,reduced by damage block,pre-primary-damage-based and carry no-spell-amplification/no-spell-lifesteal flags.",
+          "paraphrase": "Independent cleave instances are physical,reduced by damage block,pre-primary-damage-based and carry no-spell-amplification/no-spell-lifesteal flags.",
+          "versionContext": "Archived mechanics page read2026-10-30;explicit ability-specific rule adopted,exact2023 date not established."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ED-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks pay50mana,retain100cooldown and release at zero point with.5backswing",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-01 five AA ranks pay50mana,retain100cooldown and release at zero point with.5backswing"
+            }
+          ]
+        },
+        {
+          "id": "ED-02",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "a melee body really becomes ranged without adding the explicitly zero AA attack range",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-02 a melee body really becomes ranged without adding the explicitly zero AA attack range"
+            }
+          ]
+        },
+        {
+          "id": "ED-03",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "transformed normal attacks use the900speed projectile before landing",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-03 transformed normal attacks use the900speed projectile before landing"
+            }
+          ]
+        },
+        {
+          "id": "ED-04",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Green applies poison before the primary hit and ticks20only after one second for five ticks",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-04 Green applies poison before the primary hit and ticks20only after one second for five ticks"
+            }
+          ]
+        },
+        {
+          "id": "ED-05",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Red splash uses the critical modified attack before primary armor and not raw body attack",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-05 Red splash uses the critical modified attack before primary armor and not raw body attack"
+            }
+          ]
+        },
+        {
+          "id": "ED-06",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "Blue primary frost precedes attack while secondary frost precedes splash and poison follows it",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-06 Blue primary frost precedes attack while secondary frost precedes splash and poison follows it"
+            }
+          ]
+        },
+        {
+          "id": "ED-07",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "physical splash ignores source spell amplification and spell lifesteal while victim armor still reduces it",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-07 physical splash ignores source spell amplification and spell lifesteal while victim armor still reduces it"
+            }
+          ]
+        },
+        {
+          "id": "ED-08",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "misses apply neither primary poison nor collateral frost or splash",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-08 misses apply neither primary poison nor collateral frost or splash"
+            }
+          ]
+        },
+        {
+          "id": "ED-09",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "direct buildings receive Corrosive Breath but buildings and wards never receive splash or frost",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-09 direct buildings receive Corrosive Breath but buildings and wards never receive splash or frost"
+            }
+          ]
+        },
+        {
+          "id": "ED-10",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "spell immune secondary units take physical splash but no magical poison or frost",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-10 spell immune secondary units take physical splash but no magical poison or frost"
+            }
+          ]
+        },
+        {
+          "id": "ED-11",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "AA strong dispel preserves the form through Basic Dispel and removes all components with Strong Dispel",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-11 AA strong dispel preserves the form through Basic Dispel and removes all components with Strong Dispel"
+            }
+          ]
+        },
+        {
+          "id": "ED-12",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "recasting refreshes the current form and expiry restores body type and movement",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-12 recasting refreshes the current form and expiry restores body type and movement"
+            }
+          ]
+        },
+        {
+          "id": "ED-13",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super radius350and75percent splash and Gaben100percent,30poison,60slow,25MR use final fields",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki",
+            "dragon-aa-season4",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-13 Super radius350and75percent splash and Gaben100percent,30poison,60slow,25MR use final fields"
+            }
+          ]
+        },
+        {
+          "id": "ED-14",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "death ends the form and its future on-hit effects",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-14 death ends the form and its future on-hit effects"
+            }
+          ]
+        },
+        {
+          "id": "ED-15",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Corrosive Breath ignores status resistance and a new hit retains the original damage and tick phase",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-15 Corrosive Breath ignores status resistance and a new hit retains the original damage and tick phase"
+            }
+          ]
+        },
+        {
+          "id": "ED-16",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "splash physical-block opt-in reduces collateral damage without turning it into an attack event",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki",
+            "cleave-archive"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-16 splash physical-block opt-in reduces collateral damage without turning it into an attack event"
+            }
+          ]
+        },
+        {
+          "id": "ED-17",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "actual Disruption images inherit remaining dragon form and attack modifiers without copying Black Dragon resistance or Fireball",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki",
+            "dragon-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-17 actual Disruption images inherit remaining dragon form and attack modifiers without copying Black Dragon resistance or Fireball"
+            }
+          ]
+        },
+        {
+          "id": "FB-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Super grants its independent native100mana20cooldown .2point Fireball slot",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki",
+            "dragon-aa-season4",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-01 Super grants its independent native100mana20cooldown .2point Fireball slot"
+            }
+          ]
+        },
+        {
+          "id": "FB-02",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "the point cursor stays fixed when the original target moves during cast point",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-02 the point cursor stays fixed when the original target moves during cast point"
+            }
+          ]
+        },
+        {
+          "id": "FB-03",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "continuous exposure deals21half-second damage instances including the two-second linger",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-03 continuous exposure deals21half-second damage instances including the two-second linger"
+            }
+          ]
+        },
+        {
+          "id": "FB-04",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "leaving the field preserves two-second burn without repeatedly restarting the tick clock",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-04 leaving the field preserves two-second burn without repeatedly restarting the tick clock"
+            }
+          ]
+        },
+        {
+          "id": "FB-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "a field survives owner death and its same-source recast refreshes instead of doubling burn ticks",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-05 a field survives owner death and its same-source recast refreshes instead of doubling burn ticks"
+            }
+          ]
+        },
+        {
+          "id": "FB-06",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Fireball recovery uses.53on the original body and.6during actual dragon form",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "FB-06 Fireball recovery uses.53on the original body and.6during actual dragon form"
+            }
+          ]
+        },
+        {
+          "id": "ED-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA Gaben100percent splash versus inherited Super+15composition is not recovered.",
+          "sourceIds": [
+            "aa",
+            "dragon-aa-season4"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Retain100percent Gaben override,not115;ED-13 tests the explicit working interpretation."
+        },
+        {
+          "id": "ED-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Precise2023date of splash physical-block rule and original AA modifier rules remains unestablished.",
+          "sourceIds": [
+            "dragon-wiki",
+            "cleave-archive"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Adopt specific Wiki physical-block rule with explicit flag;ED-16 tests behavior,not the missing patch date."
+        },
+        {
+          "id": "ED-P03",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Different-caster overlapping Fireball auras and exact AA source ownership need a direct historical comparison.",
+          "sourceIds": [
+            "dragon-wiki",
+            "dragon-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Each owner/slot has its own burn stream;successive same-source fields refresh instead of doubling."
+        },
+        {
+          "id": "ED-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "AA snapshot may precede or follow7.35d illusion on-hit retention fix.",
+          "sourceIds": [
+            "dragon-wiki",
+            "dragon-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Copy remaining form and indefinite on-hit modifiers,exclude MR and Fireball;retain pre7.35d effects after reversion."
+        },
+        {
+          "id": "ED-P05",
+          "kind": "timing",
+          "branch": "timing",
+          "mechanism": "Released projectiles crossing form removal/expiry still need exact native on-hit snapshot evidence.",
+          "sourceIds": [
+            "dragon-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Retain impact-time form eligibility;critical damage has an independent attack record."
+        },
+        {
+          "id": "ED-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Black Dragon final100splash,30DPS,60slow,25MR and free-pathing status",
+          "sourceIds": [
+            "aa",
+            "dragon-wiki",
+            "dragon-aa-season4",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ED-13 Super radius350and75percent splash and Gaben100percent,30poison,60slow,25MR use final fields"
+            }
+          ]
+        },
+        {
+          "id": "ED-NA01",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "DragonTail is absent from the current230catalog and granted-child registry;do not grant an unrelated ability solely from native hero ownership.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "ED-P01: AA Gaben100percent splash versus inherited Super+15composition is not recovered.",
+        "ED-P02: Precise2023date of splash physical-block rule and original AA modifier rules remains unestablished.",
+        "ED-P03: Different-caster overlapping Fireball auras and exact AA source ownership need a direct historical comparison.",
+        "ED-P04: AA snapshot may precede or follow7.35d illusion on-hit retention fix.",
+        "ED-P05: Released projectiles crossing form removal/expiry still need exact native on-hit snapshot evidence."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "dragon-aa-season4",
+            "valve",
+            "dragon-history"
+          ],
+          "conclusion": "AA Super numerical change and granted native Shard Fireball,using pinned2023child75DPS/100mana/20CD,not modern lower mana."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "dragon-history"
+          ],
+          "conclusion": "Native7.22fourth Black Dragon with later7.23unobstructed movement and7.30c25MR;AA splash100and zero range retain priority."
+        }
+      ]
+    },
+    {
+      "id": "custom_magnataur_empower",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "paraphrase": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "versionContext": "Previously captured official static JSON;original AA Lua/build unknown;no new HTTP200 claim. Captured catalog wins over conflicting dated announcements."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "paraphrase": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate;does not establish all hardcoded engine rules or exact AA patch.",
+          "localSha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "magnus-wiki",
+          "url": "https://dota2.fandom.com/wiki/Magnus",
+          "accessedOn": "2026-10-30",
+          "observation": "Main-only Empower damage excludes green flat bonus;melee-only independent trapezoid cleave uses pre-victim-reduction attack damage,with no outgoing spell amplification or spell lifesteal;no allied/ward/building cleave. Lists800range and1.07backswing. Talents grant10damage/cleave and10duration.",
+          "paraphrase": "Main-only Empower damage excludes green flat bonus;melee-only independent trapezoid cleave uses pre-victim-reduction attack damage,with no outgoing spell amplification or spell lifesteal;no allied/ward/building cleave. Lists800range and1.07backswing. Talents grant10damage/cleave and10duration.",
+          "versionContext": "Search-index retained approximately7.35 page;modern50percent self bonus is rejected for AA75. Exact2023 block and cross-caster priority remain separately pending."
+        },
+        {
+          "id": "empower-aa-season2",
+          "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+          "accessedOn": "2026-10-30",
+          "observation": "The announcement replaces the OLD source-dependent Gaben aura with an infinite undispellable start-round cast and explains that the old aura was lost when its owner died.",
+          "paraphrase": "The announcement replaces the OLD source-dependent Gaben aura with an infinite undispellable start-round cast and explains that the old aura was lost when its owner died.",
+          "versionContext": "Official Nov2,2022 AA Season2 announcement CONFLICTS with the captured global-aura catalog;the new start-round cast is not silently substituted."
+        },
+        {
+          "id": "cleave-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ACleave",
+          "accessedOn": "2026-10-30",
+          "observation": "Independent cleave instances are physical,reduced by damage block,pre-primary-damage-based and carry no-spell-amplification/no-spell-lifesteal flags.",
+          "paraphrase": "Independent cleave instances are physical,reduced by damage block,pre-primary-damage-based and carry no-spell-amplification/no-spell-lifesteal flags.",
+          "versionContext": "Archived mechanics page read2026-10-30;explicit ability-specific rule adopted,exact2023 date not established."
+        },
+        {
+          "id": "valve-720",
+          "url": "https://www.dota2.com/720/",
+          "accessedOn": "2026-10-30",
+          "observation": "Valve changed cleave to normal physical armor-reduced damage,rescaled Empower area to650distance/360end width,and fixed splash interacting with spell amplification/lifesteal.",
+          "paraphrase": "Valve changed cleave to normal physical armor-reduced damage,rescaled Empower area to650distance/360end width,and fixed splash interacting with spell amplification/lifesteal.",
+          "versionContext": "Official Valve7.20 patch2018-11-19;not a direct statement of2023 block ordering."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "EM-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "basic ranks retain zero point,AA mana8CD and35second ally buff with1.07backswing",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-01 basic ranks retain zero point,AA mana8CD and35second ally buff with1.07backswing"
+            }
+          ]
+        },
+        {
+          "id": "EM-02",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "self fallback increases only the main-derived portion by75percent",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-02 self fallback increases only the main-derived portion by75percent"
+            }
+          ]
+        },
+        {
+          "id": "EM-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super one cast applies final46damage50cleave45duration to ally and75percent stronger self",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-03 Super one cast applies final46damage50cleave45duration to ally and75percent stronger self"
+            }
+          ]
+        },
+        {
+          "id": "EM-04",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "a ranged attack gains the damage bonus but does not cleave",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-04 a ranged attack gains the damage bonus but does not cleave"
+            }
+          ]
+        },
+        {
+          "id": "EM-05",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "melee cleave uses pre-armor main contact and still fires when a shield negates all primary HP damage",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-05 melee cleave uses pre-armor main contact and still fires when a shield negates all primary HP damage"
+            }
+          ]
+        },
+        {
+          "id": "EM-06",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "primary buildings and secondary wards or buildings cannot cleave",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-06 primary buildings and secondary wards or buildings cannot cleave"
+            }
+          ]
+        },
+        {
+          "id": "EM-07",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Basic Dispel removes damage and cleave and natural expiry restores the base attack",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-07 Basic Dispel removes damage and cleave and natural expiry restores the base attack"
+            }
+          ]
+        },
+        {
+          "id": "EM-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben is an immediate global aura with no cast,no mana and live-holder linger expiry",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki",
+            "empower-aa-season2"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-08 Gaben is an immediate global aura with no cast,no mana and live-holder linger expiry"
+            }
+          ]
+        },
+        {
+          "id": "EM-09",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "overlapping global Empower sources select the strongest bonus rather than adding copies",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-09 overlapping global Empower sources select the strongest bonus rather than adding copies"
+            }
+          ]
+        },
+        {
+          "id": "EM-10",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "real Empower and Totem add independent main-based bonuses without multiplying one another",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-10 real Empower and Totem add independent main-based bonuses without multiplying one another"
+            }
+          ]
+        },
+        {
+          "id": "EM-11",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "cleave retains its separate spell category and explicit physical block without source spell amplification or lifesteal",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki",
+            "cleave-archive"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EM-11 cleave retains its separate spell category and explicit physical block without source spell amplification or lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "EM-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Captured global-aura catalog conflicts with official Nov2,2022 replacement by infinite start-round buff.",
+          "sourceIds": [
+            "aa",
+            "empower-aa-season2"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Follow captured global aura;automatic/no-cost live source with.25refresh/.35linger;not the announcement replacement."
+        },
+        {
+          "id": "EM-P02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA+200cleave radius does not identify starting radius,ending radius or distance.",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Retain end-only+200geometry;no compensating increase to start/distance."
+        },
+        {
+          "id": "EM-P03",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Original AA cross-caster Empower priority and global-aura Break lifecycle are not recovered.",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki",
+            "empower-aa-season2"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Same-group strongest status rather than duplicate addition;active-form aura continues through Break;source death stops refreshing."
+        },
+        {
+          "id": "EM-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Exact2023date of cleave physical-block rule remains unestablished.",
+          "sourceIds": [
+            "magnus-wiki",
+            "cleave-archive",
+            "valve-720"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Adopt explicit Wiki cleave-block rule;EM-11 proves candidate behavior only."
+        }
+      ],
+      "unresolved": [
+        "EM-P01: Captured global-aura catalog conflicts with official Nov2,2022 replacement by infinite start-round buff.",
+        "EM-P02: AA+200cleave radius does not identify starting radius,ending radius or distance.",
+        "EM-P03: Original AA cross-caster Empower priority and global-aura Break lifecycle are not recovered.",
+        "EM-P04: Exact2023date of cleave physical-block rule remains unestablished."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "magnus-wiki"
+          ],
+          "conclusion": "Native damage/cleave and duration talents explain those Super numerical components;self co-cast and200radius remain AA clauses without invented native Scepter ranged splash."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "empower-aa-season2"
+          ],
+          "conclusion": "Captured global aura wins over conflicting Season2replacement;old aura source-death explanation supports adopted live-source candidate,not a proof of exact captured revision."
+        }
+      ]
+    },
+    {
+      "id": "custom_earthshaker_enchant_totem",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "paraphrase": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "versionContext": "Previously captured official static JSON;original AA Lua/build unknown;no new HTTP200 claim. Captured catalog wins over conflicting dated announcements."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "paraphrase": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate;does not establish all hardcoded engine rules or exact AA patch.",
+          "localSha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "totem-wiki",
+          "url": "https://dota2.fandom.com/wiki/Earthshaker",
+          "accessedOn": "2026-10-30",
+          "observation": "Fourteen-second main-only Totem buff,successful-hit-only consumption,miss retention,and cast-time rank value retention. Modern native Scepter leap/cleave and100range are not AA upgrades.",
+          "paraphrase": "Fourteen-second main-only Totem buff,successful-hit-only consumption,miss retention,and cast-time rank value retention. Modern native Scepter leap/cleave and100range are not AA upgrades.",
+          "versionContext": "Search-index retained approximately7.35 page;AA75range is corroborated by7.34change75to100 and pinned2023KV."
+        },
+        {
+          "id": "totem-history",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.27b",
+          "accessedOn": "2026-10-30",
+          "observation": "Enchant Totem default backswing reduced.57to.38.",
+          "paraphrase": "Enchant Totem default backswing reduced.57to.38.",
+          "versionContext": "Dated July15,2020 native patch;combined with pinned2023.6cast point and AA Super0point."
+        },
+        {
+          "id": "totem-aa-season45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "Totem Super stopped becoming passive,and gained zero mana/zero point;AA states the active change supports repeat casting with Fiery Soul. Damage changed75/150/300to100/200/400.",
+          "paraphrase": "Totem Super stopped becoming passive,and gained zero mana/zero point;AA states the active change supports repeat casting with Fiery Soul. Damage changed75/150/300to100/200/400.",
+          "versionContext": "Official AA Feb1,2023 Season4.5 announcement."
+        },
+        {
+          "id": "magnus-wiki",
+          "url": "https://dota2.fandom.com/wiki/Magnus",
+          "accessedOn": "2026-10-30",
+          "observation": "Main-only Empower damage excludes green flat bonus;melee-only independent trapezoid cleave uses pre-victim-reduction attack damage,with no outgoing spell amplification or spell lifesteal;no allied/ward/building cleave. Lists800range and1.07backswing. Talents grant10damage/cleave and10duration.",
+          "paraphrase": "Main-only Empower damage excludes green flat bonus;melee-only independent trapezoid cleave uses pre-victim-reduction attack damage,with no outgoing spell amplification or spell lifesteal;no allied/ward/building cleave. Lists800range and1.07backswing. Talents grant10damage/cleave and10duration.",
+          "versionContext": "Search-index retained approximately7.35 page;modern50percent self bonus is rejected for AA75. Exact2023 block and cross-caster priority remain separately pending."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ET-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all five AA ranks retain5or3.5CD and cast-point .6or0 without inventing missing mana",
+          "sourceIds": [
+            "aa",
+            "totem-wiki",
+            "valve",
+            "totem-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-01 all five AA ranks retain5or3.5CD and cast-point .6or0 without inventing missing mana"
+            }
+          ]
+        },
+        {
+          "id": "ET-02",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "the single-hit buff grants75range for14seconds and expires without an attack",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-02 the single-hit buff grants75range for14seconds and expires without an attack"
+            }
+          ]
+        },
+        {
+          "id": "ET-03",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "a miss retains both damage and range while the next successful hit consumes both",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-03 a miss retains both damage and range while the next successful hit consumes both"
+            }
+          ]
+        },
+        {
+          "id": "ET-04",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "main-only bonus does not multiply flat green attack damage",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-04 main-only bonus does not multiply flat green attack damage"
+            }
+          ]
+        },
+        {
+          "id": "ET-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "repeated active casts refresh instead of being forbidden while the buff is present",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-05 repeated active casts refresh instead of being forbidden while the buff is present"
+            }
+          ]
+        },
+        {
+          "id": "ET-06",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Super repeated casts actually grow Fiery Soul rather than silently becoming passive",
+          "sourceIds": [
+            "aa",
+            "totem-wiki",
+            "totem-aa-season45"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-06 Super repeated casts actually grow Fiery Soul rather than silently becoming passive"
+            }
+          ]
+        },
+        {
+          "id": "ET-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben adds60to the main attack and the resulting Totem hit scales that bonus",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-07 Gaben adds60to the main attack and the resulting Totem hit scales that bonus"
+            }
+          ]
+        },
+        {
+          "id": "ET-08",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "fixed-damage instant attacks consume the buff without gaining the main-damage bonus",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-08 fixed-damage instant attacks consume the buff without gaining the main-damage bonus"
+            }
+          ]
+        },
+        {
+          "id": "ET-09",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "leveling the learned ability does not change the cast-time percentage stored in an existing buff",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-09 leveling the learned ability does not change the cast-time percentage stored in an existing buff"
+            }
+          ]
+        },
+        {
+          "id": "ET-10",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Basic Dispel and death remove both correlated single-hit buff components",
+          "sourceIds": [
+            "aa",
+            "totem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "ET-10 Basic Dispel and death remove both correlated single-hit buff components"
+            }
+          ]
+        },
+        {
+          "id": "ET-P01",
+          "kind": "timing",
+          "branch": "timing",
+          "mechanism": "Captured empty mana array does not prove original AA intended cost versus omitted metadata.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Preserve current zero cost and expose it in table;do not silently import native35/40/45/50."
+        },
+        {
+          "id": "ET-P02",
+          "kind": "timing",
+          "branch": "timing",
+          "mechanism": "Ranged projectile launch/reservation,expiry midflight and multiple overlapping Totem attack records require historical evidence.",
+          "sourceIds": [
+            "totem-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Cast percentage is stored on the buff;successful contact consumes;the current main-damage modifier is evaluated on contact."
+        }
+      ],
+      "unresolved": [
+        "ET-P01: Captured empty mana array does not prove original AA intended cost versus omitted metadata.",
+        "ET-P02: Ranged projectile launch/reservation,expiry midflight and multiple overlapping Totem attack records require historical evidence."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "totem-aa-season45",
+            "totem-history"
+          ],
+          "conclusion": "AA active zero-point zero-mana revision explicitly supports FierySoul;native historical talent is the1.5CD reduction prototype. No native Scepter leap or cleave is imported."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "conclusion": "AA explicitly grants60base damage;no claim that a different native modern talent/facet supplies this exact package."
+        }
+      ]
+    },
+    {
+      "id": "custom_sandking_epicenter",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "paraphrase": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "versionContext": "Previously captured official static JSON;original AA Lua/build unknown;no new HTTP200 claim. Captured catalog wins over conflicting dated announcements."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "paraphrase": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate;does not establish all hardcoded engine rules or exact AA patch.",
+          "localSha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "epicenter-wiki",
+          "url": "https://dota2.fandom.com/wiki/Sand_King",
+          "accessedOn": "2026-10-30",
+          "observation": "Released pulses follow the caster,cannot be canceled even by death,run through3seconds beginning after one interval,and independently stack between casts. Damage precedes refreshing movement/attack slows.",
+          "paraphrase": "Released pulses follow the caster,cannot be canceled even by death,run through3seconds beginning after one interval,and independently stack between casts. Damage precedes refreshing movement/attack slows.",
+          "versionContext": "Search-index retained approximately7.35 page;modern periodic Shard3.5seconds is rejected for captured AA700movement. Native3seconds mapped to AA custom pulse count is an explicit candidate."
+        },
+        {
+          "id": "epicenter-history",
+          "url": "https://liquipedia.net/dota2/Sand_King/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.28 converted2second channel to cast point and added movement-based Shard pulses;teleport effects contribute at most700per warp,counter resets on pulse and is not disabled by Break.7.29 delays a ready passive pulse until an enemy enters.",
+          "paraphrase": "7.28 converted2second channel to cast point and added movement-based Shard pulses;teleport effects contribute at most700per warp,counter resets on pulse and is not disabled by Break.7.29 delays a ready passive pulse until an enemy enters.",
+          "versionContext": "Dated7.28/7.29 native mechanics prototype;AA explicit radius/count/damage overrides retained."
+        },
+        {
+          "id": "epicenter-shard-history",
+          "url": "https://dota2.fandom.com/wiki/Sand_King/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The7.28Shard notes explicitly state700distance,the counter resets only on pulse,teleports add at most700regardless of jump length,and Break does not disable the movement pulse.",
+          "paraphrase": "The7.28Shard notes explicitly state700distance,the counter resets only on pulse,teleports add at most700regardless of jump length,and Break does not disable the movement pulse.",
+          "versionContext": "Retained historical7.28entry,not the later modern periodic Shard."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "EC-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "every rank releases after point2or0 and pays AA resource clocks",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-01 every rank releases after point2or0 and pays AA resource clocks"
+            }
+          ]
+        },
+        {
+          "id": "EC-02",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all rank pulse sequences last3seconds,begin after one interval and consume final pulse counts and damage",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-02 all rank pulse sequences last3seconds,begin after one interval and consume final pulse counts and damage"
+            }
+          ]
+        },
+        {
+          "id": "EC-03",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "interrupting the two-second cast point prevents costs and all pulses",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-03 interrupting the two-second cast point prevents costs and all pulses"
+            }
+          ]
+        },
+        {
+          "id": "EC-04",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "after release death,stun and silence cannot cancel already scheduled corpse-centered pulses",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-04 after release death,stun and silence cannot cancel already scheduled corpse-centered pulses"
+            }
+          ]
+        },
+        {
+          "id": "EC-05",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "pulse radius grows15per pulse and follows the caster current position",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-05 pulse radius grows15per pulse and follows the caster current position"
+            }
+          ]
+        },
+        {
+          "id": "EC-06",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "damage precedes both AA strong-dispel slows and spell immunity blocks both",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-06 damage precedes both AA strong-dispel slows and spell immunity blocks both"
+            }
+          ]
+        },
+        {
+          "id": "EC-07",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "independent recasts overlap rather than replacing a released sequence",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-07 independent recasts overlap rather than replacing a released sequence"
+            }
+          ]
+        },
+        {
+          "id": "EC-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben double damage includes distance300but not301",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-08 Gaben double damage includes distance300but not301"
+            }
+          ]
+        },
+        {
+          "id": "EC-09",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "an actual long warp contributes at most700and releases one passive pulse",
+          "sourceIds": [
+            "aa",
+            "epicenter-history",
+            "epicenter-shard-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-09 an actual long warp contributes at most700and releases one passive pulse"
+            }
+          ]
+        },
+        {
+          "id": "EC-10",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "actual continuous forced motion contributes accumulated path length to a passive pulse",
+          "sourceIds": [
+            "aa",
+            "epicenter-history",
+            "epicenter-shard-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-10 actual continuous forced motion contributes accumulated path length to a passive pulse"
+            }
+          ]
+        },
+        {
+          "id": "EC-11",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "movement threshold waits for an enemy and remains active through Break",
+          "sourceIds": [
+            "aa",
+            "epicenter-history",
+            "epicenter-shard-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-11 movement threshold waits for an enemy and remains active through Break"
+            }
+          ]
+        },
+        {
+          "id": "EC-12",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "the final pulse refreshes a full three-second slow which expires after the independent pulse sequence",
+          "sourceIds": [
+            "aa",
+            "epicenter-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EC-12 the final pulse refreshes a full three-second slow which expires after the independent pulse sequence"
+            }
+          ]
+        },
+        {
+          "id": "EC-P01",
+          "kind": "timing",
+          "branch": "timing",
+          "mechanism": "Native3second sequence duration mapped to AA custom pulse counts lacks original AA Lua proof.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "epicenter-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Use3/Nspacing,first at3/Nand last at3seconds;all ranks explicitly tested."
+        },
+        {
+          "id": "EC-P02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Passive pulse sampling phase,collision-correction counting and AA passive radius versus native425are not explicit.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "epicenter-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Consume recorded paths once every30Hzstep;warp capped700;retain AA Super500base radius,wait until enemy present."
+        }
+      ],
+      "unresolved": [
+        "EC-P01: Native3second sequence duration mapped to AA custom pulse counts lacks original AA Lua proof.",
+        "EC-P02: Passive pulse sampling phase,collision-correction counting and AA passive radius versus native425are not explicit."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "epicenter-history",
+            "valve"
+          ],
+          "conclusion": "AA numerical additions are final table values;700distance is the dated old Shard prototype,not modern3.5second periodic Shard."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "conclusion": "Zero-point and close-range double damage are explicit AA custom clauses;no unsupported native Scepter/facet package is imported."
+        }
+      ]
+    },
+    {
+      "id": "custom_obsidian_destroyer_equilibrium",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "paraphrase": "Captured English catalog clauses,base values and Super/Gaben overrides were read from public/data/skills.json.catalog. Empty Totem mana array is preserved as the existing zero-cost working input.",
+          "versionContext": "Previously captured official static JSON;original AA Lua/build unknown;no new HTTP200 claim. Captured catalog wins over conflicting dated announcements."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "paraphrase": "Pinned native flags,timings and parameters were read from references/dota-20230216/npc_abilities.txt;AA explicit values override native numbers.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate;does not establish all hardcoded engine rules or exact AA patch.",
+          "localSha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "flux-wiki",
+          "url": "https://dota2.fandom.com/wiki/Outworld_Destroyer",
+          "accessedOn": "2026-10-30",
+          "observation": "Essence Flux restores after execution,uses PRD,and includes active toggles,subabilities and abilities excluded from ordinary on-cast effects;items are excluded.",
+          "paraphrase": "Essence Flux restores after execution,uses PRD,and includes active toggles,subabilities and abilities excluded from ordinary on-cast effects;items are excluded.",
+          "versionContext": "Search-index retained approximately7.35 page;no modern Scepter damage barrier is imported. Original AA free-synthetic cast eligibility is not proven."
+        },
+        {
+          "id": "flux-history",
+          "url": "https://dota2.fandom.com/wiki/Outworld_Destroyer/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.23 replaced Equilibrium with PRD Essence Flux;7.28 removed active slow;7.31restoration25/35/45/55matches native2023family,overridden by AA10/20/40.",
+          "paraphrase": "7.23 replaced Equilibrium with PRD Essence Flux;7.28 removed active slow;7.31restoration25/35/45/55matches native2023family,overridden by AA10/20/40.",
+          "versionContext": "Dated2019-2022 native changes;retired Essence Aura zero-cooldown exclusions are not applied to this different ability."
+        },
+        {
+          "id": "te-history",
+          "url": "https://liquipedia.net/dota2/Io/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.21 enabled over-restoration transfer; 7.22 made latch disable-interruptible. Old Shard contact effects had a seven-second victim cooldown.",
+          "paraphrase": "7.21 enabled over-restoration transfer; 7.22 made latch disable-interruptible. Old Shard contact effects had a seven-second victim cooldown.",
+          "versionContext": "Historical mechanics lineage predating the pinned snapshot.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "EF-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "successful execution restores AA maxmana10,20or40percent after costs",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-01 successful execution restores AA maxmana10,20or40percent after costs"
+            }
+          ]
+        },
+        {
+          "id": "EF-02",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "a no-oncast zero-cooldown subability still executes a Flux trial",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-02 a no-oncast zero-cooldown subability still executes a Flux trial"
+            }
+          ]
+        },
+        {
+          "id": "EF-03",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "interrupted and unaffordable casts produce no mana restoration event",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-03 interrupted and unaffordable casts produce no mana restoration event"
+            }
+          ]
+        },
+        {
+          "id": "EF-04",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Break suppresses mana restoration and the inherited range and spell amplification",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-04 Break suppresses mana restoration and the inherited range and spell amplification"
+            }
+          ]
+        },
+        {
+          "id": "EF-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super provides actual300attack and cast range without expiring after120seconds",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-05 Super provides actual300attack and cast range without expiring after120seconds"
+            }
+          ]
+        },
+        {
+          "id": "EF-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben reads full,half and empty mana exactly without waiting for a refresh timer",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-06 Gaben reads full,half and empty mana exactly without waiting for a refresh timer"
+            }
+          ]
+        },
+        {
+          "id": "EF-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "the first zero-point spell uses exact pre-proc current mana and subsequent restores affect the next spell",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-07 the first zero-point spell uses exact pre-proc current mana and subsequent restores affect the next spell"
+            }
+          ]
+        },
+        {
+          "id": "EF-08",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "a real persistent Return Chakram no-oncast slot restores mana through execution hook",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-08 a real persistent Return Chakram no-oncast slot restores mana through execution hook"
+            }
+          ]
+        },
+        {
+          "id": "EF-09",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "repeated actual executions use the dedicated per-slot PRD failure history rather than a uniform roll",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-09 repeated actual executions use the dedicated per-slot PRD failure history rather than a uniform roll"
+            }
+          ]
+        },
+        {
+          "id": "EF-10",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "an actually released spell blocked by an enemy still spends mana and produces one Flux trial",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-10 an actually released spell blocked by an enemy still spends mana and produces one Flux trial"
+            }
+          ]
+        },
+        {
+          "id": "EF-11",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "a full-mana restore from an actual Tether cast transfers the pre-cap amount to its ally",
+          "sourceIds": [
+            "aa",
+            "flux-wiki",
+            "flux-history",
+            "te-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-dragon-echo.test.ts",
+              "test": "EF-11 a full-mana restore from an actual Tether cast transfers the pre-cap amount to its ally"
+            }
+          ]
+        },
+        {
+          "id": "EF-P01",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Original AA qualification for free synthetic c.castAbility child effects is not recovered.",
+          "sourceIds": [
+            "aa",
+            "flux-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "Ordinary persistent ability slots emit executed events;free effect-only calls do not synthesize events."
+        },
+        {
+          "id": "EF-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Copied illusion ability ownership and a full inventory item-event system are outside covered results.",
+          "sourceIds": [
+            "flux-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [],
+          "workingBehavior": "No full item compatibility claim;known retained slots execute as their existing native ability category."
+        }
+      ],
+      "unresolved": [
+        "EF-P01: Original AA qualification for free synthetic c.castAbility child effects is not recovered.",
+        "EF-P02: Copied illusion ability ownership and a full inventory item-event system are outside covered results."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa"
+          ],
+          "conclusion": "AA explicit300attack/cast range;no unsupported full item/talent inheritance is invented."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "conclusion": "AA current-mana-fraction spell amplification;modern EssenceFlux barrier upgrade and old EssenceAura eligibility are separate abilities/versions and are not imported."
+        }
+      ]
+    }
+  ]
+}

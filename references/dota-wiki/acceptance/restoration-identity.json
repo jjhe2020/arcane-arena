@@ -1,0 +1,2123 @@
+{
+  "schemaVersion": 1,
+  "group": "restoration-identity",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Explicit AA values/custom clauses take precedence. Pinned 2023 Valve KV and dated primary Wiki changes bound native mechanisms. Current indexed Wiki compatibility candidates are labelled and do not overwrite historical conflicts. No new Wayback request was made during rate limiting.",
+  "validation": {
+    "command": "npx vitest run tests/reference-restoration-identity.test.ts",
+    "passedTests": 75,
+    "configurationHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
+    "regressionCommand": "npx vitest run tests/reference-restoration-identity.test.ts tests/reference-restoration.test.ts tests/reference-deferred-lifesteal.test.ts tests/reference-resolution-order.test.ts tests/combat-attribution.test.ts tests/combat-advanced.test.ts tests/combat.test.ts tests/skill-extra.test.ts tests/skill-more.test.ts tests/reference-attack-trigger.test.ts",
+    "regressionPassedTests": 344,
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "75 newly authored named engine results passed, including five original-input replay results. 344 affected new and old regression tests passed. Green working-policy tests are explicitly source_pending; they are not counted as original-reference verification. Existing central False Promise and Feast finite tests remain background rather than a claim of whole-skill acceptance."
+  },
+  "skills": [
+    {
+      "id": "custom_slark_essence_shift",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "descriptionClausesEnumerated": true,
+        "meaning": "All AA base/Super/Gaben English clauses are enumerated and have bounded mechanism/timing/combination requirements. Original-source completeness is not claimed while the explicit remaining questions below are open.",
+        "fixtures": "Results use the actual registered engine and catalog. Controlled HP, positions, disarm/cooldown locks and zero-point effect-isolation fixtures are explicit; dedicated real cast-point tests keep public timings/resources. Five replays restore original inputs and seed without injecting runtime ledgers.",
+        "notCovered": "This record does not certify all230 catalog entries, absent 3D/fog entity systems or unspecified infinite combinations."
+      },
+      "catalogClauses": {
+        "descriptionEn": "The hero steals the life essence of enemy heroes with their attacks, draining each of their attributes and converting them to bonus Agility.",
+        "superEn": "Super: Permanently gains +2 agility when a unit affected by Essence Shift dies.",
+        "gabenEn": "Gaben: Essence Shift can also proc with spells, each having a 1s cooldown to affect the same unit again.",
+        "values": [
+          "AGILITY GAIN: 3",
+          "ALL ATTRIBUTE LOSS: 1",
+          "STACK DURATION: 5 / 10 / 20"
+        ],
+        "cooldowns": [
+          0,
+          0,
+          0
+        ],
+        "categories": [
+          "ABILITY: Passive",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "observation": "The official English 230-ability catalog supplies the exact base, Super and Gaben clauses and AA-specific values copied into catalogClauses below.",
+          "versionContext": "Fresh HTTP200 full-catalog metadata and selected rows from output/c5-edge-earth/aa-all-fresh.json, reused without another request. Explicit AA numbers and custom clauses override native balance.",
+          "localEvidence": "public/data/skills.json",
+          "accessMethod": "priorDirectHTTP200Snapshot"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned shipped ability KV supplies native cast points, ranges, attack reduction, tick intervals, upgrade prototypes and the one-level Open Wounds native definition. It does not provide executable AA custom Lua.",
+          "versionContext": "Pinned 2023-02-10 Valve snapshot at 6abdd9d13de2f4330ca748082467b9ff6e6cd928. Native four-rank balance is not substituted for the AA three-rank values.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+          "accessMethod": "localPinnedSource"
+        },
+        {
+          "id": "slark",
+          "url": "https://liquipedia.net/dota2/Slark",
+          "accessedOn": "2026-10-30",
+          "observation": "Each temporary stack has its own duration; victim attribute loss precedes attack damage while caster agility is granted after the contact. Break prevents new temporary stacks without suppressing existing agility. The current page identifies clones and Spirit Bear separately from illusions and other creep-heroes.",
+          "versionContext": "Current indexed primary Wiki, not a direct HTTP200 body. The later innate/hero-level duration redesign is excluded. The exact 2023 clone/Spirit Bear list remains separately pending.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "slark-history",
+          "url": "https://liquipedia.net/dota2/Slark/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The 7.20 dated change permits permanent agility to be earned while Slark is dead. Native affected-death/kill-radius and +1 rules are a prototype; AA explicitly specifies +2 on an affected unit death.",
+          "versionContext": "Dated 2018-11-19 pre-2023 change. The modern innate redesign is not imported; AA custom death wording and values take precedence.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and battle seed reconstruct the same deterministic simulation and effective statistical ledger. This is a project serialization contract, not native Dota evidence.",
+          "versionContext": "C4 baseline serialization interface; these tests exercise the registered C6 programs and their current source-owned statuses using original inputs rather than injecting saved runtime ledgers.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ES-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ES-01 victim attributes fall before attack damage while caster agility rises after the contact",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-01 victim attributes fall before attack damage while caster agility rises after the contact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ES-02 independent timed stacks have no artificial100-entry cap and expire separately",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-02 independent timed stacks have no artificial100-entry cap and expire separately"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ES-03 Break preserves existing temporary agility but prevents new temporary stacks",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-03 Break preserves existing temporary agility but prevents new temporary stacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ES-04 a real strong dispel removes victim losses while the source keeps its independently timed agility",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-04 a real strong dispel removes victim losses while the source keeps its independently timed agility"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ES-05 a missed attack adds nothing and spell immunity does not prevent a successful transfer",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-05 a missed attack adds nothing and spell immunity does not prevent a successful transfer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ES-06 hero clones and Spirit Bear qualify while ordinary summons and illusions do not",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-06 hero clones and Spirit Bear qualify while ordinary summons and illusions do not"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The current Wiki explicitly lists clones/Spirit Bear, but the exact 2023 list and AA creep-hero qualification are not directly recovered.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "ES-07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ES-07 Super rewards the first lethal hit once despite its multiple affected attribute statuses",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-07 Super rewards the first lethal hit once despite its multiple affected attribute statuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ES-08 affected death rewards the original dead owner and is not suppressed by Break",
+          "sourceIds": [
+            "aa",
+            "slark-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-08 affected death rewards the original dead owner and is not suppressed by Break"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ES-09 Gaben uses independent actual-ability instances per victim rather than their common statistical root",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-09 Gaben uses independent actual-ability instances per victim rather than their common statistical root"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "AA says each spell has a per-victim one-second clock. Actual instance rather than ability-name identity is an explicit working policy; original custom Lua is unavailable.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "ES-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ES-10 an accepted fully shielded spell can transfer once while reflection and HP removal cannot trigger its Gaben lane",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-10 an accepted fully shielded spell can transfer once while reflection and HP removal cannot trigger its Gaben lane"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Whether an accepted fully absorbed zero-effective-damage spell procs AA Essence Shift is not established by the English clause. Reflection/health-removal exclusions are disclosed policies, not a recovered custom dispatch.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "ES-11-1",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ES-11 actual rank1 uses the authored5-second stack duration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-11 actual rank1 uses the authored5-second stack duration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-11-2",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ES-11 actual rank2 uses the authored10-second stack duration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-11 actual rank2 uses the authored10-second stack duration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-11-3",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ES-11 actual rank3 uses the authored20-second stack duration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-11 actual rank3 uses the authored20-second stack duration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-12",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ES-12 permanent agility earned while dead becomes active on actual reincarnation in the same battle",
+          "sourceIds": [
+            "aa",
+            "slark-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "ES-12 permanent agility earned while dead becomes active on actual reincarnation in the same battle"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY custom_slark_essence_shift reproduces registered base and upgrade state from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "REPLAY custom_slark_essence_shift reproduces registered base and upgrade state from original recorded inputs"
+            }
+          ],
+          "status": "passed",
+          "qualification": "Original recorded player inputs and seed, not runtime ledger injection. This verifies the project replay contract only."
+        },
+        {
+          "id": "ES-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "First lethal spell cannot currently establish a new affected marker before the post-resolution ability event. Whether AA requires that first-hit permanent reward needs original custom ordering evidence; if it does, a pre-damage accepted-spell hook is missing.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [],
+          "status": "mechanism_missing"
+        },
+        {
+          "id": "ES-P02",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Persistent agility ownership after Spell Steal, loss/regrant of the slot and subsequent permanent-state import needs a dedicated source and result matrix.",
+          "sourceIds": [
+            "aa",
+            "slark-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ES-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Attribute-underflow, dynamic max-health changes and death caused by the STR transfer itself need a bounded historical rule/result matrix; the attack-order test alone does not certify them.",
+          "sourceIds": [
+            "aa",
+            "slark"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "slark-history"
+          ],
+          "interpretation": "AA +2 on affected-unit death is explicit. Native 7.20 supplies dead-owner permanence as a mechanism prototype; native +1, killer/radius300 and later innate rules are not substituted."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA custom spell-triggered Essence Shift, one-second same-victim per-spell clock. No native talent/item prototype found; exact accepted-zero, first-lethal and instance identity remain open."
+        }
+      },
+      "unresolved": [
+        "ES-06: The current Wiki explicitly lists clones/Spirit Bear, but the exact 2023 list and AA creep-hero qualification are not directly recovered.",
+        "ES-09: AA says each spell has a per-victim one-second clock. Actual instance rather than ability-name identity is an explicit working policy; original custom Lua is unavailable.",
+        "ES-10: Whether an accepted fully absorbed zero-effective-damage spell procs AA Essence Shift is not established by the English clause. Reflection/health-removal exclusions are disclosed policies, not a recovered custom dispatch.",
+        "ES-P01: First lethal spell cannot currently establish a new affected marker before the post-resolution ability event. Whether AA requires that first-hit permanent reward needs original custom ordering evidence; if it does, a pre-damage accepted-spell hook is missing.",
+        "ES-P02: Persistent agility ownership after Spell Steal, loss/regrant of the slot and subsequent permanent-state import needs a dedicated source and result matrix.",
+        "ES-P03: Attribute-underflow, dynamic max-health changes and death caused by the STR transfer itself need a bounded historical rule/result matrix; the attack-order test alone does not certify them."
+      ]
+    },
+    {
+      "id": "custom_razor_eye_of_the_storm",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "descriptionClausesEnumerated": true,
+        "meaning": "All AA base/Super/Gaben English clauses are enumerated and have bounded mechanism/timing/combination requirements. Original-source completeness is not claimed while the explicit remaining questions below are open.",
+        "fixtures": "Results use the actual registered engine and catalog. Controlled HP, positions, disarm/cooldown locks and zero-point effect-isolation fixtures are explicit; dedicated real cast-point tests keep public timings/resources. Five replays restore original inputs and seed without injecting runtime ledgers.",
+        "notCovered": "This record does not certify all230 catalog entries, absent 3D/fog entity systems or unspecified infinite combinations."
+      },
+      "catalogClauses": {
+        "descriptionEn": "A powerful lightning storm strikes out at enemy units with the lowest health, dealing damage and reducing their armor.",
+        "superEn": "Super: +2 strike targets.",
+        "gabenEn": "Gaben: Grants Lightning Rod: Eye of the Storm hits the caster as well, granting the opposite effects (for 33% value). -0.2s strike interval.",
+        "values": [
+          "ARMOR REDUCTION: 1",
+          "DAMAGE: 60 / 75 / 90",
+          "DURATION: 30",
+          "RADIUS: 500",
+          "STRIKE INTERVAL: 0.7 / 0.6 / 0.5",
+          "TARGETS: 1"
+        ],
+        "cooldowns": [
+          80,
+          70,
+          60
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "observation": "The official English 230-ability catalog supplies the exact base, Super and Gaben clauses and AA-specific values copied into catalogClauses below.",
+          "versionContext": "Fresh HTTP200 full-catalog metadata and selected rows from output/c5-edge-earth/aa-all-fresh.json, reused without another request. Explicit AA numbers and custom clauses override native balance.",
+          "localEvidence": "public/data/skills.json",
+          "accessMethod": "priorDirectHTTP200Snapshot"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned shipped ability KV supplies native cast points, ranges, attack reduction, tick intervals, upgrade prototypes and the one-level Open Wounds native definition. It does not provide executable AA custom Lua.",
+          "versionContext": "Pinned 2023-02-10 Valve snapshot at 6abdd9d13de2f4330ca748082467b9ff6e6cd928. Native four-rank balance is not substituted for the AA three-rank values.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+          "accessMethod": "localPinnedSource"
+        },
+        {
+          "id": "razor-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ARazor",
+          "accessedOn": "2026-10-30",
+          "observation": "Eye of the Storm applies armor loss before damage, prioritizes an active Static Link target, otherwise selects a low-health enemy, does not strike unrevealed invisible or attack-immune bodies, supports independent storm instances and removes its armor losses on caster death.",
+          "versionContext": "Archived primary Wiki content read through indexed search. AA Super adds two targets, while native Scepter target/building rules are not silently substituted.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "razor-history",
+          "url": "https://liquipedia.net/dota2/Razor/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The dated 2019-08-08 change fixes first-strike armor order and the 2019-11-26 change excludes attack-immune targets.",
+          "versionContext": "Explicit pre-2023 dates support armor-before-damage and attack-immunity qualification rather than inferring them from modern numerical balance.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "razor-link-history",
+          "url": "https://liquipedia.net/dota2/Archive%3ARazor/Changelog",
+          "accessedOn": "2026-10-30",
+          "observation": "The 7.06 change gives Static Link target priority and removes the Eye of the Storm cast point.",
+          "versionContext": "Pre-2023 changelog; native zero cast point is compatible with AA and the pinned KV.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and battle seed reconstruct the same deterministic simulation and effective statistical ledger. This is a project serialization contract, not native Dota evidence.",
+          "versionContext": "C4 baseline serialization interface; these tests exercise the registered C6 programs and their current source-owned statuses using original inputs rather than injecting saved runtime ledgers.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "EY-01-1",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EY-01 base rank1 performs42 strikes on its full30-second clock",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-01 base rank1 performs42 strikes on its full30-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-01-2",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EY-01 base rank2 performs50 strikes on its full30-second clock",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-01 base rank2 performs50 strikes on its full30-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-01-3",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EY-01 base rank3 performs60 strikes on its full30-second clock",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-01 base rank3 performs60 strikes on its full30-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EY-02 even the first strike reduces armor before its physical damage",
+          "sourceIds": [
+            "aa",
+            "razor-archive",
+            "razor-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-02 even the first strike reduces armor before its physical damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-03 a real active Static Link prioritizes its healthier target over an unlinked low-health enemy",
+          "sourceIds": [
+            "aa",
+            "razor-archive",
+            "razor-link-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-03 a real active Static Link prioritizes its healthier target over an unlinked low-health enemy"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-04 invisible wards and attack-immune bodies do not consume a strike that can hit another eligible victim",
+          "sourceIds": [
+            "aa",
+            "razor-archive",
+            "razor-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-04 invisible wards and attack-immune bodies do not consume a strike that can hit another eligible victim"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-05 same-source armor counter refreshes as a group and only an actual strong dispel removes it",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-05 same-source armor counter refreshes as a group and only an actual strong dispel removes it"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-06 caster death immediately clears its armor losses and stops every following storm",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-06 caster death immediately clears its armor losses and stops every following storm"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-07",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EY-07 two real recasts retain independent strike deadlines instead of replacing the first storm",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-07 two real recasts retain independent strike deadlines instead of replacing the first storm"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "EY-08 Super hits three distinct victims once each and does not triple a lone victim",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-08 Super hits three distinct victims once each and does not triple a lone victim"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "EY-09 Gaben uses its final point-three interval and33percent direct healing and opposite armor",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-09 Gaben uses its final point-three interval and33percent direct healing and opposite armor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-10 True Sight restores an invisible victim eligibility while an unrevealed victim remains excluded",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-10 True Sight restores an invisible victim eligibility while an unrevealed victim remains excluded"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "EY-11 released armor cleanup preserves its owner identity even after the active spell slot is replaced",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "EY-11 released armor cleanup preserves its owner identity even after the active spell slot is replaced"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EY-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY custom_razor_eye_of_the_storm reproduces registered base and upgrade state from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "REPLAY custom_razor_eye_of_the_storm reproduces registered base and upgrade state from original recorded inputs"
+            }
+          ],
+          "status": "passed",
+          "qualification": "Original recorded player inputs and seed, not runtime ledger injection. This verifies the project replay contract only."
+        },
+        {
+          "id": "EY-P01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Different-caster Eye armor counters: direct native stacking evidence and a two-provider exact-armor result are still required. Same-owner independent storm clocks are separately tested.",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "EY-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA Strong Dispels Only may describe the armor debuff or also the storm owner buff. The implementation uses strong-purge armor and an undispellable storm; exact custom category scope is unresolved.",
+          "sourceIds": [
+            "aa",
+            "razor-archive"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "EY-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Full native fog, courier and Roshan entity interactions are not normal arena simulation entities; the existing status-filter tests do not certify those absent entity systems.",
+          "sourceIds": [
+            "razor-archive"
+          ],
+          "testEvidence": [],
+          "status": "unimplemented"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "interpretation": "Native Scepter multiple-target keyword is a prototype, but AA explicitly adds two targets to one; final three targets and no extra native building-target clause are used."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "Lightning Rod is AA-named custom behavior: 33% opposite self effect and -0.2 interval. No unsupported native Lightning Rod skill is invented."
+        }
+      },
+      "unresolved": [
+        "EY-P01: Different-caster Eye armor counters: direct native stacking evidence and a two-provider exact-armor result are still required. Same-owner independent storm clocks are separately tested.",
+        "EY-P02: AA Strong Dispels Only may describe the armor debuff or also the storm owner buff. The implementation uses strong-purge armor and an undispellable storm; exact custom category scope is unresolved.",
+        "EY-P03: Full native fog, courier and Roshan entity interactions are not normal arena simulation entities; the existing status-filter tests do not certify those absent entity systems."
+      ]
+    },
+    {
+      "id": "rubick_fade_bolt",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "descriptionClausesEnumerated": true,
+        "meaning": "All AA base/Super/Gaben English clauses are enumerated and have bounded mechanism/timing/combination requirements. Original-source completeness is not claimed while the explicit remaining questions below are open.",
+        "fixtures": "Results use the actual registered engine and catalog. Controlled HP, positions, disarm/cooldown locks and zero-point effect-isolation fixtures are explicit; dedicated real cast-point tests keep public timings/resources. Five replays restore original inputs and seed without injecting runtime ledgers.",
+        "notCovered": "This record does not certify all230 catalog entries, absent 3D/fog entity systems or unspecified infinite combinations."
+      },
+      "catalogClauses": {
+        "descriptionEn": "Rubick creates a powerful stream of arcane energy that travels between enemy units, dealing damage and reducing their attack damage. Each jump deals less damage.",
+        "superEn": "Super: Applies an instant attack on every unit hit.",
+        "gabenEn": "Gaben: Fade Bolt steals attack damage. -4s cooldown.",
+        "values": [
+          "DAMAGE REDUCTION: 14 / 21 / 35",
+          "DAMAGE: 100 / 175 / 325",
+          "DEBUFF DURATION: 10",
+          "JUMP REDUCTION: 6"
+        ],
+        "cooldowns": [
+          16,
+          14,
+          10
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "observation": "The official English 230-ability catalog supplies the exact base, Super and Gaben clauses and AA-specific values copied into catalogClauses below.",
+          "versionContext": "Fresh HTTP200 full-catalog metadata and selected rows from output/c5-edge-earth/aa-all-fresh.json, reused without another request. Explicit AA numbers and custom clauses override native balance.",
+          "localEvidence": "public/data/skills.json",
+          "accessMethod": "priorDirectHTTP200Snapshot"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned shipped ability KV supplies native cast points, ranges, attack reduction, tick intervals, upgrade prototypes and the one-level Open Wounds native definition. It does not provide executable AA custom Lua.",
+          "versionContext": "Pinned 2023-02-10 Valve snapshot at 6abdd9d13de2f4330ca748082467b9ff6e6cd928. Native four-rank balance is not substituted for the AA three-rank values.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+          "accessMethod": "localPinnedSource"
+        },
+        {
+          "id": "rubick",
+          "url": "https://liquipedia.net/dota2/Rubick",
+          "accessedOn": "2026-10-30",
+          "observation": "The current page describes fixed quarter-second random unique bounces from the affected unit within 440 range, no projectile disjoint and secondary Spell Block bypass. It lists cast point 0.1 and backswing 0.93.",
+          "versionContext": "Current indexed primary Wiki, not direct HTTP200. The 2023 KV explicitly corroborates 0.1 cast point, 440 radius and 0.25 jump delay; the primary-release instant and 0.93 backswing are compatible candidates, not a recovered historical body. The 2026 spell-reduction redesign is excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "rubick-history",
+          "url": "https://liquipedia.net/dota2/Rubick/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The 7.27b change makes the hero-damage-steal talent a caster buff derived from the reduction with the enemy debuff duration. The 7.26b talent supplies a historical minus-four-second cooldown prototype.",
+          "versionContext": "Dated 2020-07-15 and 2020-04-28 prototypes. AA omits the native hero-only qualifier and provides a custom instant-attack Super; neither qualification is invented from the talent.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and battle seed reconstruct the same deterministic simulation and effective statistical ledger. This is a project serialization contract, not native Dota evidence.",
+          "versionContext": "C4 baseline serialization interface; these tests exercise the registered C6 programs and their current source-owned statuses using original inputs rather than injecting saved runtime ledgers.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FB-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FB-01 primary effect occurs at release and remote hops retain fixed quarter-second timing from the previous victim",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-01 primary effect occurs at release and remote hops retain fixed quarter-second timing from the previous victim"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Quarter-second jump timing and radius are explicit 2023 KV. Instant primary release rather than an initial travel delay lacks a directly recovered historical text; current non-projectile description is a compatible candidate.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FB-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FB-02 each victim is hit once and the chain cannot jump beyond the440-unit boundary",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-02 each victim is hit once and the chain cannot jump beyond the440-unit boundary"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-03 secondary Spell Block remains unused while primary Spell Block stops the cast",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-03 secondary Spell Block remains unused while primary Spell Block stops the cast"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-04 attack reduction affects main damage but not a flat bonus and remains independently basic-dispellable",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-04 attack reduction affects main damage but not a flat bonus and remains independently basic-dispellable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-05",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FB-05 Super independently rolls its instant attack miss and preserves normal attack modifiers without an extra missile",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-05 Super independently rolls its instant attack miss and preserves normal attack modifiers without an extra missile"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-06 Gaben refreshes a per-victim stolen main-attack amount without multiplying repeated casts",
+          "sourceIds": [
+            "aa",
+            "rubick-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-06 Gaben refreshes a per-victim stolen main-attack amount without multiplying repeated casts"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The historical talent is hero-only whereas AA omits that qualifier. Per-victim refresh rather than repeat-cast accumulation and exact base-versus-current main-damage snapshot are not resolved by AA English.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FB-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-07 basic purge of the victim does not remove the caster independently timed stolen damage",
+          "sourceIds": [
+            "aa",
+            "rubick-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-07 basic purge of the victim does not remove the caster independently timed stolen damage"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Independent caster/victim purge lifetimes follow the historical talent prototype, but the AA Gaben per-victim refresh/snapshot policy remains unresolved.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FB-08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-08 a revealed invisible secondary body can be selected while an unrevealed invisible body cannot",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-08 a revealed invisible secondary body can be selected while an unrevealed invisible body cannot"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-09 actual Gaben uses its final six-second cooldown and150mana at the authored point-one release",
+          "sourceIds": [
+            "aa",
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FB-09 actual Gaben uses its final six-second cooldown and150mana at the authored point-one release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY rubick_fade_bolt reproduces registered base and upgrade state from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "REPLAY rubick_fade_bolt reproduces registered base and upgrade state from original recorded inputs"
+            }
+          ],
+          "status": "passed",
+          "qualification": "Original recorded player inputs and seed, not runtime ledger injection. This verifies the project replay contract only."
+        },
+        {
+          "id": "FB-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Historical backswing 0.93 is a current-page compatible value, not a directly recovered 2023 cast-animation body.",
+          "sourceIds": [
+            "rubick",
+            "valve2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FB-P02",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "AA modifier-enabled instant attack qualification after caster death, and its exact interaction with attack-start-only procs, needs original custom evidence and a dedicated caller matrix.",
+          "sourceIds": [
+            "aa",
+            "rubick-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "Instant attacks on each hit are explicitly AA custom. A matching native Rubick talent/item was not found; modifier/caster-death subclauses are not silently inferred."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "rubick-history"
+          ],
+          "interpretation": "The 2020 damage-steal talent and -4 cooldown talent provide keyword prototypes. AA omits hero-only qualification and independently specifies -4, so old native qualifiers/new -5 balance are not copied."
+        }
+      },
+      "unresolved": [
+        "FB-01: Quarter-second jump timing and radius are explicit 2023 KV. Instant primary release rather than an initial travel delay lacks a directly recovered historical text; current non-projectile description is a compatible candidate.",
+        "FB-06: The historical talent is hero-only whereas AA omits that qualifier. Per-victim refresh rather than repeat-cast accumulation and exact base-versus-current main-damage snapshot are not resolved by AA English.",
+        "FB-07: Independent caster/victim purge lifetimes follow the historical talent prototype, but the AA Gaben per-victim refresh/snapshot policy remains unresolved.",
+        "FB-P01: Historical backswing 0.93 is a current-page compatible value, not a directly recovered 2023 cast-animation body.",
+        "FB-P02: AA modifier-enabled instant attack qualification after caster death, and its exact interaction with attack-start-only procs, needs original custom evidence and a dedicated caller matrix."
+      ]
+    },
+    {
+      "id": "oracle_false_promise",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "descriptionClausesEnumerated": true,
+        "meaning": "All AA base/Super/Gaben English clauses are enumerated and have bounded mechanism/timing/combination requirements. Original-source completeness is not claimed while the explicit remaining questions below are open.",
+        "fixtures": "Results use the actual registered engine and catalog. Controlled HP, positions, disarm/cooldown locks and zero-point effect-isolation fixtures are explicit; dedicated real cast-point tests keep public timings/resources. Five replays restore original inputs and seed without injecting runtime ledgers.",
+        "notCovered": "This record does not certify all230 catalog entries, absent 3D/fog entity systems or unspecified infinite combinations."
+      },
+      "catalogClauses": {
+        "descriptionEn": "Temporarily alters an ally's destiny, delaying any healing or damage taken until False Promise ends. Any healing that is delayed by False Promise is amplified. Removes most negative status effects and disables on initial cast.\n\nDISPEL TYPE: Strong Dispel",
+        "superEn": "Super: +15 armor during False Promise, +1.5s duration, -30s cooldown.",
+        "gabenEn": "Gaben: Target gains 25% attack lifesteal and 25% spell lifesteal during False Promise.",
+        "values": [
+          "CAST RANGE: 700 / 850 / 1000",
+          "DELAYED HEAL AMPLIFICATION: 100",
+          "DURATION: 3 / 4 / 5"
+        ],
+        "cooldowns": [
+          110,
+          85,
+          60
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "observation": "The official English 230-ability catalog supplies the exact base, Super and Gaben clauses and AA-specific values copied into catalogClauses below.",
+          "versionContext": "Fresh HTTP200 full-catalog metadata and selected rows from output/c5-edge-earth/aa-all-fresh.json, reused without another request. Explicit AA numbers and custom clauses override native balance.",
+          "localEvidence": "public/data/skills.json",
+          "accessMethod": "priorDirectHTTP200Snapshot"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned shipped ability KV supplies native cast points, ranges, attack reduction, tick intervals, upgrade prototypes and the one-level Open Wounds native definition. It does not provide executable AA custom Lua.",
+          "versionContext": "Pinned 2023-02-10 Valve snapshot at 6abdd9d13de2f4330ca748082467b9ff6e6cd928. Native four-rank balance is not substituted for the AA three-rank values.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+          "accessMethod": "localPinnedSource"
+        },
+        {
+          "id": "oracle",
+          "url": "https://liquipedia.net/dota2/Oracle",
+          "accessedOn": "2026-10-30",
+          "observation": "The current page lists hero-type allied target eligibility and 0.3 plus 0.97 cast animation. Both net damage and net healing wait until the target can be affected after invulnerability.",
+          "versionContext": "Current indexed primary Wiki. Cast point 0.3 is explicitly corroborated by 2023 KV; backswing 0.97 is a compatible present-page candidate. Modern post-2023 Refraction/barrier reorder and later Scepter behavior are not backdated.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-history",
+          "url": "https://liquipedia.net/dota2/Oracle/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The 2014-11-19 change defers both damage and healing resolution until invulnerability ends. The 2014-11-20 fix stops ongoing invisibility and doubled healing during that wait. The 2015-12-16 change removes continuous dispelling after the initial cast. Talents in 7.29 and 7.26c supply armor and extra-duration prototypes.",
+          "versionContext": "Explicit pre-2023 dated rules. AA uses +15 armor, +1.5 seconds and -30 seconds cooldown, even where native talents or base duration differ.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-2023",
+          "url": "https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle",
+          "accessedOn": "2026-10-29",
+          "sha256": "5e830981cdafa1a3ded70e3b34fe44c56930cd32449409037827bb2d9630fd4d",
+          "observation": "The earlier directly read historical Oracle capture distinguishes False Promise damage prevention, its special Borrowed Time interaction, ordinary barriers and later health-removal settlement. Existing finite settlement tests are background evidence, not a substitute for this group clause review.",
+          "versionContext": "HTTP200 historical 2023-02-15 capture metadata reused from settlement-engine.json. No new Wayback request was issued while the service returned 429. Later barrier reorder and modern Scepter redesign are excluded.",
+          "accessMethod": "priorDirectCaptureMetadataReuse"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and battle seed reconstruct the same deterministic simulation and effective statistical ledger. This is a project serialization contract, not native Dota evidence.",
+          "versionContext": "C4 baseline serialization interface; these tests exercise the registered C6 programs and their current source-owned statuses using original inputs rather than injecting saved runtime ledgers.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FP-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FP-01 real cast strongly dispels the initial stun but does not continuously purge a later disable",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-01 real cast strongly dispels the initial stun but does not continuously purge a later disable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FP-02 only hero-type allies are eligible while ordinary summons cannot receive the protection",
+          "sourceIds": [
+            "aa",
+            "oracle",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-02 only hero-type allies are eligible while ordinary summons cannot receive the protection"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FP-03 damage settlement waits for vulnerability after the timer without extending protection",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-03 damage settlement waits for vulnerability after the timer without extending protection"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FP-04 a net-heal settlement also waits and does not double healing received after the old timer ends",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-04 a net-heal settlement also waits and does not double healing received after the old timer ends"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FP-05 lethal actual damage after protection ends clears the waiting settlement and cannot resurrect a dead target",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-05 lethal actual damage after protection ends clears the waiting settlement and cannot resurrect a dead target"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FP-06 Super uses its final6point5-second duration plus15armor without adding duration twice",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-06 Super uses its final6point5-second duration plus15armor without adding duration twice"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FP-07 Gaben attack and spell lifesteal are present only during the protected period",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-07 Gaben attack and spell lifesteal are present only during the protected period"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-08",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FP-08 cancelling the actual point-three cast before release spends no mana or cooldown",
+          "sourceIds": [
+            "aa",
+            "oracle",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-08 cancelling the actual point-three cast before release spends no mana or cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FP-09 actual Gaben attack and spell lifesteal feed the protected ledger and double only once at expiry",
+          "sourceIds": [
+            "aa",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-09 actual Gaben attack and spell lifesteal feed the protected ledger and double only once at expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FP-10 actual Super pays200mana and starts the final thirty-second cooldown at its real release",
+          "sourceIds": [
+            "aa",
+            "oracle",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FP-10 actual Super pays200mana and starts the final thirty-second cooldown at its real release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FP-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY oracle_false_promise reproduces registered base and upgrade state from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "REPLAY oracle_false_promise reproduces registered base and upgrade state from original recorded inputs"
+            }
+          ],
+          "status": "passed",
+          "qualification": "Original recorded player inputs and seed, not runtime ledger injection. This verifies the project replay contract only."
+        },
+        {
+          "id": "FP-P01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Multiple different-caster False Promise timers and reapplication: independent queues versus shared earliest/last timer are not settled by the recovered English/history. Existing single-ledger proofs must not certify this.",
+          "sourceIds": [
+            "aa",
+            "oracle-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FP-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA Strong Dispels Only category conflicts with the native undispellable timer. The current timer stays undispellable; making it purgeable without original AA evidence would change semantics.",
+          "sourceIds": [
+            "aa",
+            "oracle-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FP-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Net-heal settlement interaction with later healing manipulation and Tether transfer requires exact historical source-stage evidence; generic lifesteal-Tether tests do not establish this deferred-net-heal contract.",
+          "sourceIds": [
+            "oracle-history",
+            "oracle-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FP-P04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Backswing 0.97 is a current-page compatible value. The historical 0.3 point is explicit KV, but exact old backswing remains a separate source question.",
+          "sourceIds": [
+            "oracle",
+            "valve2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "oracle-history",
+            "valve2023"
+          ],
+          "interpretation": "Historical armor and +1.5 duration talents are compatible prototypes; AA explicitly uses +15 armor and -30 cooldown. Native longer base duration/other cooldown talent values remain overridden."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA custom 25% attack and 25% spell lifesteal. Later native Scepter invisibility/spell amplification/BAT changes are not part of this AA upgrade."
+        }
+      },
+      "unresolved": [
+        "FP-P01: Multiple different-caster False Promise timers and reapplication: independent queues versus shared earliest/last timer are not settled by the recovered English/history. Existing single-ledger proofs must not certify this.",
+        "FP-P02: AA Strong Dispels Only category conflicts with the native undispellable timer. The current timer stays undispellable; making it purgeable without original AA evidence would change semantics.",
+        "FP-P03: Net-heal settlement interaction with later healing manipulation and Tether transfer requires exact historical source-stage evidence; generic lifesteal-Tether tests do not establish this deferred-net-heal contract.",
+        "FP-P04: Backswing 0.97 is a current-page compatible value. The historical 0.3 point is explicit KV, but exact old backswing remains a separate source question."
+      ]
+    },
+    {
+      "id": "life_stealer_feast",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "descriptionClausesEnumerated": true,
+        "meaning": "All AA base/Super/Gaben English clauses are enumerated and have bounded mechanism/timing/combination requirements. Original-source completeness is not claimed while the explicit remaining questions below are open.",
+        "fixtures": "Results use the actual registered engine and catalog. Controlled HP, positions, disarm/cooldown locks and zero-point effect-isolation fixtures are explicit; dedicated real cast-point tests keep public timings/resources. Five replays restore original inputs and seed without injecting runtime ledgers.",
+        "notCovered": "This record does not certify all230 catalog entries, absent 3D/fog entity systems or unspecified infinite combinations."
+      },
+      "catalogClauses": {
+        "descriptionEn": "Lifestealer's attacks deal damage and provide heal for a percentage of his target's max health.",
+        "superEn": "Super: Grants Open Wounds: rends an enemy unit, granting 50% lifesteal to units attacking that target, and dealing 2% of the target's max health per attack from real heroes. After the target receives 500 damage, Open Wounds festers and spreads a random enemy in a 700 radius.",
+        "gabenEn": "Gaben: Becomes a global aura.",
+        "values": [
+          "MAX HEALTH DAMAGE: 1.6 / 2.2 / 3.4",
+          "MAX HEALTH LIFE STEAL: 1.6 / 2.2 / 3.4"
+        ],
+        "cooldowns": [
+          0,
+          0,
+          0
+        ],
+        "categories": [
+          "ABILITY: Passive",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "observation": "The official English 230-ability catalog supplies the exact base, Super and Gaben clauses and AA-specific values copied into catalogClauses below.",
+          "versionContext": "Fresh HTTP200 full-catalog metadata and selected rows from output/c5-edge-earth/aa-all-fresh.json, reused without another request. Explicit AA numbers and custom clauses override native balance.",
+          "localEvidence": "public/data/skills.json",
+          "accessMethod": "priorDirectHTTP200Snapshot"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned shipped ability KV supplies native cast points, ranges, attack reduction, tick intervals, upgrade prototypes and the one-level Open Wounds native definition. It does not provide executable AA custom Lua.",
+          "versionContext": "Pinned 2023-02-10 Valve snapshot at 6abdd9d13de2f4330ca748082467b9ff6e6cd928. Native four-rank balance is not substituted for the AA three-rank values.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+          "accessMethod": "localPinnedSource"
+        },
+        {
+          "id": "feast-684",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_6.84",
+          "accessedOn": "2026-10-30",
+          "observation": "The 6.84 change makes Feast ordinary attack bonus damage eligible for critical strike and cleave.",
+          "versionContext": "Dated 2015 pre-2023 attack-composition change. AA equal damage/heal percentages remain authoritative.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "feast-old",
+          "url": "https://liquipedia.net/dota2/Lifestealer/Old_Abilities",
+          "accessedOn": "2026-10-30",
+          "observation": "The old Feast description separates max-health restoration from actual damage and puts its bonus into the attack so ordinary lifesteal, critical strike and cleave can use it. It excludes allied, ward and building targets.",
+          "versionContext": "The page explicitly bounds this old ability to versions 6.49 through 7.22h. It supports an older mechanism prototype, not blanket certification of all 2023 branches. Its wording on percentage damage amplification conflicts with the current conditional-bonus page and is retained as an open version question.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "feast-current",
+          "url": "https://liquipedia.net/dota2/Lifestealer",
+          "accessedOn": "2026-10-30",
+          "observation": "The current conditional attack bonus participates in critical strike, cleave, physical block and ordinary attack lifesteal. Its own max-health restoration occurs before the attack independently of target damage or barriers. Percentage amplification of main damage excludes the conditional bonus.",
+          "versionContext": "Current indexed primary Wiki. Critical/cleave composition has explicit pre-2023 support; the percentage-amplification branch is still pending because the old version-bounded page differs. Modern innate kill-health behavior is excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "feast-history",
+          "url": "https://liquipedia.net/dota2/Lifestealer/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The dated 2019-12-09 change fixes Feast lifesteal amplification. June 2022 Open Wounds fixes identify special health-removal and return-damage interactions.",
+          "versionContext": "Pre-2023 dated primary changelog. The individual exceptional damage sources still require separate result qualification; it is not proof that every reflected/health-removal packet has one shared policy.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "illusions",
+          "url": "https://liquipedia.net/dota2/Illusions",
+          "accessedOn": "2026-10-30",
+          "observation": "The current attack-modifier list excludes intrinsic Feast from illusion copying.",
+          "versionContext": "Current primary indexed page; the exact historical list and AA custom global-aura illusion eligibility are not certified from this modern list.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and battle seed reconstruct the same deterministic simulation and effective statistical ledger. This is a project serialization contract, not native Dota evidence.",
+          "versionContext": "C4 baseline serialization interface; these tests exercise the registered C6 programs and their current source-owned statuses using original inputs rather than injecting saved runtime ledgers.",
+          "accessMethod": "localProjectContract"
+        },
+        {
+          "id": "oracle-history",
+          "url": "https://liquipedia.net/dota2/Oracle/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The 2014-11-19 change defers both damage and healing resolution until invulnerability ends. The 2014-11-20 fix stops ongoing invisibility and doubled healing during that wait. The 2015-12-16 change removes continuous dispelling after the initial cast. Talents in 7.29 and 7.26c supply armor and extra-duration prototypes.",
+          "versionContext": "Explicit pre-2023 dated rules. AA uses +15 armor, +1.5 seconds and -30 seconds cooldown, even where native talents or base duration differ.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-2023",
+          "url": "https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle",
+          "accessedOn": "2026-10-29",
+          "sha256": "5e830981cdafa1a3ded70e3b34fe44c56930cd32449409037827bb2d9630fd4d",
+          "observation": "The earlier directly read historical Oracle capture distinguishes False Promise damage prevention, its special Borrowed Time interaction, ordinary barriers and later health-removal settlement. Existing finite settlement tests are background evidence, not a substitute for this group clause review.",
+          "versionContext": "HTTP200 historical 2023-02-15 capture metadata reused from settlement-engine.json. No new Wayback request was issued while the service returned 429. Later barrier reorder and modern Scepter redesign are excluded.",
+          "accessMethod": "priorDirectCaptureMetadataReuse"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FE-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-01 Feast combines before critical and cleave without creating an independent spell-lifesteal packet",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current",
+            "feast-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-01 Feast combines before critical and cleave without creating an independent spell-lifesteal packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FE-02 Feast pays its independent max-health restoration before attack damage and before victim armor or block",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current",
+            "feast-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-02 Feast pays its independent max-health restoration before attack damage and before victim armor or block"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-03 percentage-based main damage bonuses do not amplify the conditional bonus but ordinary lifesteal includes it",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-03 percentage-based main damage bonuses do not amplify the conditional bonus but ordinary lifesteal includes it"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Current conditional-bonus wording excludes percentage main-damage amplification, while the older version-bounded description allows damage buffs. Exact 2023 behavior is not directly recovered.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FE-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-04 evasion prevents Feast while a physical-immune successful contact still grants the independent heal",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-04 evasion prevents Feast while a physical-immune successful contact still grants the independent heal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-05 ward building allied and illusion-owner attacks cannot trigger intrinsic Feast",
+          "sourceIds": [
+            "aa",
+            "feast-old",
+            "illusions"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-05 ward building allied and illusion-owner attacks cannot trigger intrinsic Feast"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Ward/building/allied exclusions have older direct support. Intrinsic illusion-owner exclusion uses the current modifier list; exact 2023 and AA custom aura illusion qualifications remain separate.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FE-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-06 Gaben aura heals the actual allied attacker using its amplification while crediting the original Feast provider",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current",
+            "feast-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-06 Gaben aura heals the actual allied attacker using its amplification while crediting the original Feast provider"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-07 an ally own equal Feast and an external Gaben aura select one provider rather than doubling",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-07 an ally own equal Feast and an external Gaben aura select one provider rather than doubling"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "AA gives a global Feast aura without specifying multiple-provider stacking. One strongest intrinsic/aura provider is a documented working choice, not a recovered native/AA rule.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FE-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-08 source Break stops its Gaben aura but receiver Break does not disable a different unbroken provider",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-08 source Break stops its Gaben aura but receiver Break does not disable a different unbroken provider"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Provider Break stopping the custom global aura and receiver Break retaining an external aura are explicit aura working policies; AA English alone does not settle these combinations.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FE-09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FE-09 independent Feast restoration is not capped to the last hit victim remaining health",
+          "sourceIds": [
+            "aa",
+            "feast-684",
+            "feast-current",
+            "feast-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-09 independent Feast restoration is not capped to the last hit victim remaining health"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-10-1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FE-10 actual rank1 independently grants160 max-health damage and restoration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-10 actual rank1 independently grants160 max-health damage and restoration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-10-2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FE-10 actual rank2 independently grants220 max-health damage and restoration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-10 actual rank2 independently grants220 max-health damage and restoration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-10-3",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FE-10 actual rank3 independently grants340 max-health damage and restoration",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "FE-10 actual rank3 independently grants340 max-health damage and restoration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-01",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-01 Super grants and pays the independent native75mana15-second cooldown point-two cast",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-01 Super grants and pays the independent native75mana15-second cooldown point-two cast"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-02 every slow stage is table-authored and actual basic dispel removes marker and slow immediately",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-02 every slow stage is table-authored and actual basic dispel removes marker and slow immediately"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-03 reapplication invalidates the old decay callbacks and restarts the first slow stage",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-03 reapplication invalidates the old decay callbacks and restarts the first slow stage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-04 actual spell damage grants its50percent restoration with provider attribution and attacker amplification",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-04 actual spell damage grants its50percent restoration with provider attribution and attacker amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-05",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-05 the ordinary attack and separate two-percent packet each heal once without duplicate50percent providers",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-05 the ordinary attack and separate two-percent packet each heal once without duplicate50percent providers"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-06 damage taken before application cannot satisfy the new500-point source-owned threshold",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-06 damage taken before application cannot satisfy the new500-point source-owned threshold"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-07 a spell crossing500 immediately spreads once and later attacks on the original wound cannot spread it again",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-07 a spell crossing500 immediately spreads once and later attacks on the original wound cannot spread it again"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-08 a released wound retains its source after the provider dies and still restores a living allied attacker",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current",
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-08 a released wound retains its source after the provider dies and still restores a living allied attacker"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Released source attribution after provider death is preserved by the project contract, but direct historical Open Wounds persistence evidence was not recovered in this audit.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "OW-09",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-09 generic spell lifesteal and the source-owned wound restoration remain two distinct contributions",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-09 generic spell lifesteal and the source-owned wound restoration remain two distinct contributions"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "OW-10 a real reapplication resets the source threshold so previous400damage cannot trigger an early second spread",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-10 a real reapplication resets the source threshold so previous400damage cannot trigger an early second spread"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-11",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "OW-11 a protected victim still receives both attack packets in its False Promise ledger while only independent Feast restoration occurs",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current",
+            "oracle-history",
+            "oracle-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-11 a protected victim still receives both attack packets in its False Promise ledger while only independent Feast restoration occurs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OW-12",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "OW-12 a successful zero-main-damage real-hero attack still emits its independent two-percent wound packet",
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "OW-12 a successful zero-main-damage real-hero attack still emits its independent two-percent wound packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY life_stealer_feast reproduces registered base and upgrade state from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-restoration-identity.test.ts",
+              "test": "REPLAY life_stealer_feast reproduces registered base and upgrade state from original recorded inputs"
+            }
+          ],
+          "status": "passed",
+          "qualification": "Original recorded player inputs and seed, not runtime ledger injection. This verifies the project replay contract only."
+        },
+        {
+          "id": "FE-P01",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Open Wounds two-percent real-hero attack eligibility for clones/Spirit Bear and other hero-class summons is not settled by AA text; the existing nonsummoned attacker gate is retained as a candidate.",
+          "sourceIds": [
+            "aa",
+            "valve2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FE-P02",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Each special HP-removal/return-damage source and Wraith Delay exception requires its own 2022-compatible source/result. A shared reflected/health-removal flag policy is not sufficient evidence.",
+          "sourceIds": [
+            "feast-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FE-P03",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "Open Wounds status-resistance scaling of the seven one-second slow stages is not directly recovered. Current duration is scaled once and each slow fragment is not scaled again; exact native rescheduling remains pending.",
+          "sourceIds": [
+            "valve2023",
+            "feast-current"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "FE-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA global aura target eligibility for ordinary summons, illusions, clones and dead/removed providers is not fully specified by the English upgrade. Only the actual allied-hero and Break working policies are tested here.",
+          "sourceIds": [
+            "aa",
+            "illusions"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve2023",
+            "feast-history"
+          ],
+          "interpretation": "AA grants the 2023 one-level Open Wounds Shard prototype: 50% restoration, 2% max-health real-hero attack packet and spread after500 actual post-application damage within700. The child remains a separate75mana/15CD cast; unreachable editable native ranks2/3/4 were removed."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "Global Feast aura is AA custom; no native Lifestealer global Feast aura was found. Provider selection, stacking and illusion eligibility remain explicit source questions."
+        }
+      },
+      "unresolved": [
+        "FE-03: Current conditional-bonus wording excludes percentage main-damage amplification, while the older version-bounded description allows damage buffs. Exact 2023 behavior is not directly recovered.",
+        "FE-05: Ward/building/allied exclusions have older direct support. Intrinsic illusion-owner exclusion uses the current modifier list; exact 2023 and AA custom aura illusion qualifications remain separate.",
+        "FE-07: AA gives a global Feast aura without specifying multiple-provider stacking. One strongest intrinsic/aura provider is a documented working choice, not a recovered native/AA rule.",
+        "FE-08: Provider Break stopping the custom global aura and receiver Break retaining an external aura are explicit aura working policies; AA English alone does not settle these combinations.",
+        "OW-08: Released source attribution after provider death is preserved by the project contract, but direct historical Open Wounds persistence evidence was not recovered in this audit.",
+        "FE-P01: Open Wounds two-percent real-hero attack eligibility for clones/Spirit Bear and other hero-class summons is not settled by AA text; the existing nonsummoned attacker gate is retained as a candidate.",
+        "FE-P02: Each special HP-removal/return-damage source and Wraith Delay exception requires its own 2022-compatible source/result. A shared reflected/health-removal flag policy is not sufficient evidence.",
+        "FE-P03: Open Wounds status-resistance scaling of the seven one-second slow stages is not directly recovered. Current duration is scaled once and each slow fragment is not scaled again; exact native rescheduling remains pending.",
+        "FE-P04: AA global aura target eligibility for ordinary summons, illusions, clones and dead/removed providers is not fully specified by the English upgrade. Only the actual allied-hero and Break working policies are tested here."
+      ]
+    }
+  ]
+}

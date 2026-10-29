@@ -44,6 +44,8 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   custom_axe_counter_helix:['helix'],
   // Native Time Lock enabled PRD in the November 2012 patch history.
   faceless_void_time_lock:['timeLock'],
+  // The 7.23 Essence Flux replacement explicitly uses PRD.
+  custom_obsidian_destroyer_equilibrium:['essenceFlux'],
   // Native Greater Bash switched to PRD in 6.85; AA grants this proc at Gaben.
   custom_spirit_breaker_charge_of_darkness:['greater_bash'],
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],

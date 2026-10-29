@@ -8,6 +8,9 @@ import {applyDeathDemonicAcceptance} from './combat/death-demonic-acceptance';
 import {applyAttackTriggerAcceptance} from './combat/attack-trigger-acceptance';
 import {applyReflectionDemonAcceptance} from './combat/reflection-demon-acceptance';
 import {applyEdgeEarthAcceptance} from './combat/edge-earth-acceptance';
+import {applyDragonEchoAcceptance} from './combat/dragon-echo-acceptance';
+import {applyRestorationIdentityAcceptance} from './combat/restoration-identity-acceptance';
+import {applyFireFissureAcceptance} from './combat/fire-fissure-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -99,10 +102,14 @@ export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
   beforeDamageResolution?:{inputAmount:number;damageAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;stage:'beforeTargetMitigation'};
   attackBatchKey?:string;
+  addAttackBonus?(amount:number):void;
+  executedAbility?:{id:string;cooldown:number;manaCost:number;procsOnCast:boolean;granted:boolean};
   attackInProgress?:boolean;
   launchAttack?(target:CombatUnit,multiplier?:number,triggerModifiers?:boolean,options?:InstantAttackOptions):boolean;
   interrupt?(target:CombatUnit):void;
-  lifestealHeal?(target:CombatUnit,amount:number):number;
+  lifestealHeal?(target:CombatUnit,amount:number,amplificationSource?:CombatUnit):number;
+  channelUnit?(target:CombatUnit,duration:number,onEnd:(reason:'complete'|'interrupted')=>void):boolean;
+  despawn?(target:CombatUnit):void;
   reduceCooldowns?(target:CombatUnit,seconds:number,options?:{includeUltimates?:boolean;excludeAbilityId?:string;onlyAbilityId?:string;includeChargeRecharge?:boolean;includeActiveEffect?:boolean}):void;
   attackRecord?:import('./model').AttackRecord;
   attackInstanceKey?:string;
@@ -119,7 +126,7 @@ export interface EffectContext {
   /** Successful attack snapshots before victim armor: baseline and modified. */
   baseAttackDamage?:number; attackDamage?:number;attackSourceSkill?:string;attackIsRanged?:boolean;
   /** An accepted ability damage instance, independent of effective HP loss. */
-  abilityDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
+  abilityDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;attribution?:import('./model').Attribution};
   incomingDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
   points?:number;visualSkill?:string;visualPoints?:number;
   random(): number;
@@ -127,6 +134,7 @@ export interface EffectContext {
   chance?(probability:number,key:string):boolean;
   enemies(): CombatUnit[]; allies(): CombatUnit[];
   damage(target: CombatUnit, amount: number, type?: DamageType, piercesImmunity?: boolean, options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}): number;
+  damageFrom?(source:CombatUnit,target:CombatUnit,amount:number,type?:DamageType,piercesImmunity?:boolean,options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}):number;
   heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal',options?:{lifestealAmplificationSource?:CombatUnit}): number;
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
@@ -169,6 +177,9 @@ export interface SkillProgram {
   /** This program handles the separately documented surviving effects itself. */
   handlesBreak?:boolean;
   onIncomingAttackStart?:(c:EffectContext)=>void;
+  onAllyBeforeAttackDamage?:(c:EffectContext)=>void;
+  onBeforeAbilityEffect?:(c:EffectContext)=>void;
+  onAbilityExecuted?:(c:EffectContext)=>void;
   /** Explicit per-ability targeting exception, including its ordinary checks. */
   targetEligibility?:(c:EffectContext,target:CombatUnit)=>boolean;
   reduceRecharge?:(c:EffectContext,seconds:number)=>void;
@@ -178,6 +189,9 @@ export interface SkillProgram {
   onCastStart?:(c:EffectContext)=>void;
   onSpellOrder?:(c:EffectContext)=>void;
   onAffectedUnitDeath?:(c:EffectContext,status:EffectStatus)=>void;
+  onAffectedUnitDamage?:(c:EffectContext,status:EffectStatus)=>void;
+  /** Explicit illusion-only state copy after inherited totals are restored. */
+  onIllusionCreated?:(c:EffectContext)=>void;
   cooldownStart?:'release'|'effectEnd';
   criticalAttack?:(c:EffectContext)=>{chance:number;multiplier:number;minMultiplier?:number;maxMultiplier?:number;lifesteal?:number;prdKey?:string}|undefined;
   /** A real attack-based projectile; instantaneous attacks without a projectile omit this. */
@@ -190,6 +204,7 @@ export interface SkillProgram {
   beforeAttackDamage?: (c:EffectContext)=>void;
   dynamicRange?:boolean;
   dynamicCastPoint?:boolean;
+  dynamicBackswing?:(c:EffectContext)=>number;
   /** Explicit native zero-point exception, preserving an existing channel. */
   canCastWhileChanneling?:boolean;
   attackCastPointFactor?:number|((c:EffectContext)=>number);
@@ -535,6 +550,9 @@ applyDeathDemonicAcceptance(registry);
 applyAttackTriggerAcceptance(registry);
 applyReflectionDemonAcceptance(registry);
 applyEdgeEarthAcceptance(registry);
+applyDragonEchoAcceptance(registry);
+applyRestorationIdentityAcceptance(registry);
+applyFireFissureAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));

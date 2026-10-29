@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-29T16:56:26.262Z",
-  "simulationRevision": "arena-2026-10-30-c5-r6",
+  "generatedAt": "2026-10-29T18:00:03.991Z",
+  "simulationRevision": "arena-2026-10-30-c6-r6",
   "targetSkillCount": 230,
   "referencePatch": "unknown",
   "referenceSnapshot": "2026-10-26",
-  "catalogSha256": "70b752b28734eb01d48849d2bf8397fb41621ed2ed9f657c4dd3f76889bbe045",
+  "catalogSha256": "d3a6ca3a4f1209b3ce2267db3512674175c77842c02398baf80a1bb790cb1a1d",
   "historicalCandidate": {
     "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
     "date": "2023-02-10",
@@ -5614,69 +5614,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "timed dragon transformation state",
-        "movement bonus",
-        "level-specific poison/splash/frost attacks",
-        "Super stronger wider splash",
-        "Gaben black-dragon numerical effects",
-        "Super independent Fireball: 100 mana/20s cooldown, form-sensitive range, 350-radius eight-second 75 DPS field with two-second linger",
-        "Gaben free pathing bypasses unit separation and arena barriers while respecting map bounds"
+        "AA zero attack-range bonus with actual ranged transformation and900projectile speed",
+        "Corrosive/frost primary-before-damage and secondary frost/splash/poison ordering;no miss effects",
+        "AA timed strong-dispel form,refresh,black MR/free-pathing and independent Fireball"
       ],
       "remaining": [
-        "AA reference execution and cross-skill verification",
-        "Historical Valve 2023-02-10 fallback; AA execution parity is unverified",
-        "AA unspecified details use EXTRA_WORKING_DEFAULTS; see evidence document, not reference-verified",
-        "Black-dragon/Fireball ordering, splash snapshot and zero source attack-range field remain reference-sensitive"
+        "Gaben100percent splash overrides inherited Super15in the retained working interpretation",
+        "Illusion on-hit retention after form expiry follows pre7.35d native behavior;exact AA patch and2023splash block date remain pending"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 13,
+          "referenceVerified": 12,
+          "resultTestPassed": 12,
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 10,
+          "referenceVerified": 6,
+          "resultTestPassed": 6,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/dragon-echo.json",
       "remainingDetails": [
         {
-          "category": "reference_validation",
-          "description": "AA reference execution and cross-skill verification"
-        },
-        {
           "category": "working_default",
-          "description": "Historical Valve 2023-02-10 fallback; AA execution parity is unverified"
-        },
-        {
-          "category": "working_default",
-          "description": "AA unspecified details use EXTRA_WORKING_DEFAULTS; see evidence document, not reference-verified"
+          "description": "Gaben100percent splash overrides inherited Super15in the retained working interpretation"
         },
         {
           "category": "reference_validation",
-          "description": "Black-dragon/Fireball ordering, splash snapshot and zero source attack-range field remain reference-sensitive"
+          "description": "Illusion on-hit retention after form expiry follows pre7.35d native behavior;exact AA patch and2023splash block date remain pending"
         }
       ],
       "configuration": {
@@ -5699,67 +5685,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "bonus attack damage",
-        "closest-other-ally targeting with self fallback",
-        "75% larger self bonus",
-        "Super self co-cast and numerical bonuses",
-        "Gaben global aura"
+        "AA nearest ally,zero point,75percent larger self bonus and Super self co-cast",
+        "Main-based damage and melee cleave with source-specific strongest status group",
+        "Captured Gaben global aura:automatic live-source refresh without mana/cooldown casts"
       ],
       "remaining": [
-        "AA reference execution/targeting/cast timings and cross-skill interactions require verification",
-        "Historical Valve 2023-02-10 fallback; AA execution parity is unverified",
-        "Directional cleave uses native 150 starting radius, 360 ending radius and 650 distance; target centers define inclusion",
-        "AA Super +200 cleave radius is interpreted as +200 ending radius only; AA geometry remains unverified"
+        "Captured global aura conflicts with Season2 replacement announcement;live-source/Break lifecycle remains a working historical choice",
+        "Super200radius is retained as ending-radius only;exact AA shape and2023block policy remain pending"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/dragon-echo.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "AA reference execution/targeting/cast timings and cross-skill interactions require verification"
-        },
-        {
-          "category": "working_default",
-          "description": "Historical Valve 2023-02-10 fallback; AA execution parity is unverified"
+          "description": "Captured global aura conflicts with Season2 replacement announcement;live-source/Break lifecycle remains a working historical choice"
         },
         {
           "category": "reference_validation",
-          "description": "Directional cleave uses native 150 starting radius, 360 ending radius and 650 distance; target centers define inclusion"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA Super +200 cleave radius is interpreted as +200 ending radius only; AA geometry remains unverified"
+          "description": "Super200radius is retained as ending-radius only;exact AA shape and2023block policy remain pending"
         }
       ],
       "configuration": {
@@ -5782,57 +5756,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "one empowered attack",
-        "temporary bonus range",
-        "Gaben +60 base attack damage",
-        "Super cooldown shortened by 1.5 seconds",
-        "Super zero mana cost and zero cast point"
+        "Fourteen-second dispellable single-successful-hit main-damage buff and75range",
+        "Miss retains buff,recast refreshes and preserves the cast-time rank value",
+        "AA active zero-point zero-mana Super,3.5cooldown and Gaben60base damage"
       ],
       "remaining": [
-        "AA reference execution/targeting/cast timings and cross-skill interactions require verification",
-        "Buff timeout absent from catalog"
+        "Captured empty mana array retained as zero;not silently replaced by native mana costs",
+        "Projectile reservation and inherited illusion cases remain pending;backswing.38 follows the dated7.27b change"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 7,
+          "referenceVerified": 5,
+          "resultTestPassed": 5,
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/dragon-echo.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "AA reference execution/targeting/cast timings and cross-skill interactions require verification"
+          "description": "Captured empty mana array retained as zero;not silently replaced by native mana costs"
         },
         {
-          "category": "parameter_source_missing",
-          "description": "Buff timeout absent from catalog"
+          "category": "reference_validation",
+          "description": "Projectile reservation and inherited illusion cases remain pending;backswing.38 follows the dated7.27b change"
         }
       ],
       "configuration": {
@@ -5855,61 +5827,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "expanding caster-following pulses",
-        "movement and attack slows",
-        "Super pulse count/radius/damage and movement pulse",
-        "Gaben immediate cast and close-range amplification"
+        "Three-second released sequence,first pulse after one interval,caster-following and death-persistent",
+        "AA strong-dispel damage-before-slow and Gaben close double damage",
+        "Historical700movement counter,teleport contribution capped once per warp,waiting for eligible enemy and not disabled by Break"
       ],
       "remaining": [
-        "Pulse interval .3s provisional",
-        "Teleports versus walked distance for passive pulses",
-        "AA reference targeting, geometry and timing verification"
+        "AA pulse count maps to native3second duration as an explicit historical candidate",
+        "Movement polling adds at most one simulation-tick latency;collision-correction contributions and passive radius AA-versus-native choice remain pending"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 5,
+          "resultTestPassed": 5,
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 4,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/dragon-echo.json",
       "remainingDetails": [
         {
           "category": "working_default",
-          "description": "Pulse interval .3s provisional"
+          "description": "AA pulse count maps to native3second duration as an explicit historical candidate"
         },
         {
           "category": "reference_validation",
-          "description": "Teleports versus walked distance for passive pulses"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA reference targeting, geometry and timing verification"
+          "description": "Movement polling adds at most one simulation-tick latency;collision-correction contributions and passive radius AA-versus-native choice remain pending"
         }
       ],
       "configuration": {
@@ -5932,55 +5898,54 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "seeded mana restore on cast",
-        "Super cast/attack range",
-        "Gaben remaining-mana spell amplification"
+        "Historical PRD after ability execution,including no-oncast subabilities and zero cooldown abilities",
+        "AA Super300attack/cast range and exact current-mana Gaben spell amplification without polling lag"
       ],
       "remaining": [
-        "Mana-ratio buff currently refreshed each 0.1s",
-        "Super retained at Gaben is an explicit working interpretation"
+        "No inventory item system is claimed;granted child execution eligibility uses an explicit engine working event policy",
+        "Native illusion ownership and original AA free-child cast eligibility need separate evidence"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/dragon-echo.json",
       "remainingDetails": [
         {
-          "category": "working_default",
-          "description": "Mana-ratio buff currently refreshed each 0.1s"
+          "category": "reference_validation",
+          "description": "No inventory item system is claimed;granted child execution eligibility uses an explicit engine working event policy"
         },
         {
-          "category": "working_default",
-          "description": "Super retained at Gaben is an explicit working interpretation"
+          "category": "reference_validation",
+          "description": "Native illusion ownership and original AA free-child cast eligibility need separate evidence"
         }
       ],
       "configuration": {
@@ -6003,55 +5968,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "per-attack timed attribute transfer",
-        "Super affected-kill persistent agility",
-        "Gaben per-spell per-victim one-second proc lock"
+        "Victim independent attribute-loss entries before attack and caster agility after contact;no arbitrary100-stack cap",
+        "Existing temporary agility survives Break;new gains suppressed while source-owned permanent affected-death rewards survive Break/deadowner",
+        "AA strong-dispellable victim loss,Super+2persistentagility and instance-isolated Gaben per-spell/per-victim one-second damage-event clock"
       ],
       "remaining": [
-        "Project attribute conversions and exact spell-proc eligibility need reference verification",
-        "Illusion/passive break/permanent reward eligibility requires reference"
+        "Gaben accepted-zero and first-lethal-spell ordering are explicit AA working choices,not recoveredcustomLua",
+        "Exact historical clone/SpiritBear and attribute-underflow interactions remain separately qualified"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 4,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
+          "reviewedRequirements": 3,
           "referenceVerified": 0,
           "resultTestPassed": 0,
-          "status": "unreviewed"
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 5,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/restoration-identity.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Project attribute conversions and exact spell-proc eligibility need reference verification"
+          "description": "Gaben accepted-zero and first-lethal-spell ordering are explicit AA working choices,not recoveredcustomLua"
         },
         {
           "category": "reference_validation",
-          "description": "Illusion/passive break/permanent reward eligibility requires reference"
+          "description": "Exact historical clone/SpiritBear and attribute-underflow interactions remain separately qualified"
         }
       ],
       "configuration": {
@@ -6074,62 +6039,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "lowest-health periodic targets",
-        "physical lightning",
-        "stacking armor reduction",
-        "Super additional targets",
-        "Gaben healing/armor and interval"
+        "Independent following storm clocks;StaticLink target priority then lowestHP with seeded randomties",
+        "Source-counter armor reduction before physical strike;AAstrongdispel and owner-death cleanup",
+        "FinalSuperthree targets;Gaben.3interval and33percent opposite selfhealing/armor"
       ],
       "remaining": [
-        "Armor debuff lifetime verification",
-        "Target priority tie behavior",
-        "AA reference targeting, geometry and timing verification"
+        "Different-owner armor stacking and AAstrong-dispel category scope on the storm itself require exactcustom qualification",
+        "Fog/couriers/Roshan are not normal autonomous arena units"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 4,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 9,
+          "referenceVerified": 7,
+          "resultTestPassed": 7,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/restoration-identity.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Armor debuff lifetime verification"
+          "description": "Different-owner armor stacking and AAstrong-dispel category scope on the storm itself require exactcustom qualification"
         },
         {
           "category": "reference_validation",
-          "description": "Target priority tie behavior"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA reference targeting, geometry and timing verification"
+          "description": "Fog/couriers/Roshan are not normal autonomous arena units"
         }
       ],
       "configuration": {
@@ -6152,61 +6110,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "unique-target damage-decaying chain",
-        "attack damage reduction",
-        "Super instant attacks",
-        "Gaben attack-damage theft and cooldown"
+        "Immediate primary effect and fixed.25-second random unique440-radius bounces",
+        "Damage decay,main attack reduction,secondaryspell-block bypass and independently purgable source buff/debuff",
+        "AA modifier-enabled Super instant attacks and Gaben per-victim attack-steal refresh with final6-secondcooldown"
       ],
       "remaining": [
-        "Bounce range and projectile speed provisional",
-        "Steal derived from target base attack; exact reference basis unresolved",
-        "AA reference targeting, geometry and timing verification"
+        "AA Gaben says attackdamage without the native old-talent hero qualifier;existing all-valid-victim policy is retained explicitly",
+        "ReleasedSuper instant attacks aftercasterdeath and exactcurrent-versus-base-mainattack steal snapshot remain source boundaries"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
+          "reviewedRequirements": 2,
           "referenceVerified": 0,
           "resultTestPassed": 0,
-          "status": "unreviewed"
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 5,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/restoration-identity.json",
       "remainingDetails": [
         {
-          "category": "working_default",
-          "description": "Bounce range and projectile speed provisional"
+          "category": "reference_validation",
+          "description": "AA Gaben says attackdamage without the native old-talent hero qualifier;existing all-valid-victim policy is retained explicitly"
         },
         {
           "category": "reference_validation",
-          "description": "Steal derived from target base attack; exact reference basis unresolved"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA reference targeting, geometry and timing verification"
+          "description": "ReleasedSuper instant attacks aftercasterdeath and exactcurrent-versus-base-mainattack steal snapshot remain source boundaries"
         }
       ],
       "configuration": {
@@ -6229,57 +6181,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "strong dispel on cast",
-        "damage and amplified healing settled on expiration",
-        "Super duration and armor",
-        "Gaben attack/spell lifesteal statuses",
-        "Super cooldown shortened by 30 seconds"
+        "Hero-type ally targeting and one initial strongdispel",
+        "Frozen net ledger waits through invulnerability after timer ends without continuing protection or doublehealing",
+        "AA finalSuperduration/armor/CD and Gaben attack/spell-lifesteal period"
       ],
       "remaining": [
-        "AA reference execution/targeting/cast timings and cross-skill interactions require verification",
-        "Settlement interactions with immunity, reductions and other death-prevention require reference comparison"
+        "Crosscaster reapplication and AAcategoryStrongDispelsOnly versus nativeundispellable timer remain explicit source conflicts",
+        "HistoricalTether/on-heal transfer timing and final netheal manipulation require separate native evidence"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
+          "reviewedRequirements": 1,
           "referenceVerified": 0,
           "resultTestPassed": 0,
-          "status": "unreviewed"
+          "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 8,
+          "referenceVerified": 6,
+          "resultTestPassed": 6,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/restoration-identity.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "AA reference execution/targeting/cast timings and cross-skill interactions require verification"
+          "description": "Crosscaster reapplication and AAcategoryStrongDispelsOnly versus nativeundispellable timer remain explicit source conflicts"
         },
         {
           "category": "reference_validation",
-          "description": "Settlement interactions with immunity, reductions and other death-prevention require reference comparison"
+          "description": "HistoricalTether/on-heal transfer timing and final netheal manipulation require separate native evidence"
         }
       ],
       "configuration": {
@@ -6302,51 +6252,55 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "target-max-health damage",
-        "self healing",
-        "Super independent Open Wounds with spreading threshold",
-        "Gaben global ally attacks gain Feast damage and healing"
+        "Conditional attack bonus before critical/armor/block,eligible for normal lifesteal/cleave but not spelllifesteal",
+        "Independent max-health selfrestoration before attack with provider-owned lifesteal statistics",
+        "AA global aura selects one strongest own/aura provider and uses actualattackerlifesteal amplification;Super independentOpenWounds retained"
       ],
       "remaining": [
-        "Feast aura bonus damage credits aura owner, not attacking ally; original attribution requires verification"
+        "Strongest-provider/no-double stacking and illusion eligibility of AAglobal aura remain disclosed custom working policies",
+        "Full source-specific HPRemoval and return-damage exceptions for OpenWounds need historical qualification"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 5,
+          "referenceVerified": 5,
+          "resultTestPassed": 5,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
+          "reviewedRequirements": 1,
           "referenceVerified": 0,
           "resultTestPassed": 0,
-          "status": "unreviewed"
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 10,
+          "referenceVerified": 9,
+          "resultTestPassed": 9,
+          "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 4,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 9,
+          "referenceVerified": 5,
+          "resultTestPassed": 5,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/restoration-identity.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Feast aura bonus damage credits aura owner, not attacking ally; original attribution requires verification"
+          "description": "Strongest-provider/no-double stacking and illusion eligibility of AAglobal aura remain disclosed custom working policies"
+        },
+        {
+          "category": "reference_validation",
+          "description": "Full source-specific HPRemoval and return-damage exceptions for OpenWounds need historical qualification"
         }
       ],
       "configuration": {
@@ -6513,57 +6467,62 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "interruptible single-target channel",
-        "pure damage",
-        "mana drain",
-        "Super two independently interruptible channeling illusion bodies free caster; +6duration/5%maxHP steal",
-        "Gaben -50cooldown and10seconds cooldown reduction per channel second"
+        "Immediate first pure tick/mana drain;native5/5.5/6seconds and AA+6Super duration",
+        "Continuous disable/reveal;status-resistance duration/tick compression preserves total scheduled damage and mana",
+        "Real independent channeling illusion bodies;Stop/disable/death destroys that body,remaining channel keeps one damage stream",
+        "OfficialAA800cast range;Strong target dispel stops grip despite stale websiteCannot category",
+        "Gaben final50second cooldown and10per elapsed channel second once for the owner"
       ],
       "remaining": [
-        "Two illusion beams share one damage stream to avoid duplicate Grip stacking; exact AA semantics require reference",
-        "Range break and maximum-health steal versus damage/heal wording still require matching AA implementation"
+        "AA5%maximum-health stealing beneficiary/category is unrecovered;existing extra pure damage and holder heal remain a working interpretation",
+        "Simultaneous different-source grips and status-resistance/debuff-amplification extreme stacking require deeper source cases",
+        "WebsiteCannot-dispel category conflicts with the more specific officialAA dispel bugfix and nativeStrong behavior"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 5,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 5,
+          "resultTestPassed": 5,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/fire-fissure.json",
       "remainingDetails": [
         {
-          "category": "reference_validation",
-          "description": "Two illusion beams share one damage stream to avoid duplicate Grip stacking; exact AA semantics require reference"
+          "category": "working_default",
+          "description": "AA5%maximum-health stealing beneficiary/category is unrecovered;existing extra pure damage and holder heal remain a working interpretation"
         },
         {
           "category": "reference_validation",
-          "description": "Range break and maximum-health steal versus damage/heal wording still require matching AA implementation"
+          "description": "Simultaneous different-source grips and status-resistance/debuff-amplification extreme stacking require deeper source cases"
+        },
+        {
+          "category": "reference_validation",
+          "description": "WebsiteCannot-dispel category conflicts with the more specific officialAA dispel bugfix and nativeStrong behavior"
         }
       ],
       "configuration": {
@@ -6586,50 +6545,51 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "cast-triggered attack/movement speed stacks",
-        "Super speed bonuses",
-        "Gaben uncapped double stacks"
+        "Explicit AA cast-based execution,not modernhit-based stacks",
+        "Only completed nonzero-cooldown/on-cast-qualified releases add stacks;blocked releases and actual queued grants qualify",
+        "All stacks refresh8seconds;Super final70AS/9%MS and Gaben unbounded2layers per spell",
+        "Break prevents new stacks but existing bonuses survive;AA Strong beneficial dispel clears every component"
       ],
       "remaining": [
-        "Granted casts, toggles and multi-cast eligibility require reference verification"
+        "Synthetic free castAbility child effects deliberately retain the engine no-execution-event policy pending originalAA eligibility evidence"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 8,
+          "referenceVerified": 7,
+          "resultTestPassed": 7,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/fire-fissure.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Granted casts, toggles and multi-cast eligibility require reference verification"
+          "description": "Synthetic free castAbility child effects deliberately retain the engine no-execution-event policy pending originalAA eligibility evidence"
         }
       ],
       "configuration": {
@@ -6652,50 +6612,61 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "magical burst",
-        "Persistent per-skill kill damage and Super +70 max HP / +20 damage reward",
-        "Gaben area 325 and +100 base damage / -20 cooldown"
+        "300ms cast point/500ms recovery/900native range;250ms delayed magical damage can be avoided by immunity/hidden/invulnerable state",
+        "Independent death-credit marks reward allied/denied/self kills,including Reincarnation,while illusions/creep-heroes/TempestDouble give no stack",
+        "New persistent kill count makes per-layer damage and SuperHP retroactive;HP bonus preserves current health percentage,not a direct heal",
+        "Gaben final950base/20CD and325AOE are consumed once;primarySpellBlock cancels the whole cast"
       ],
       "remaining": [
-        "Persistent reward follows the skill instance across heroes per official FAQ; immediate actual Finger kills are credited"
+        "AA explicitly greatly extends kill-credit duration but exact seconds are unrecovered;3second native baseline is an editable source-pending candidate",
+        "Meepo family deduplication and upgrade-during-delay snapshots require separate identity/version proof",
+        "Legacy saved flat damage/HP growth is preserved as anchored legacy amounts;only new kill counters support exact retroactive tier changes"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/fire-fissure.json",
       "remainingDetails": [
         {
+          "category": "working_default",
+          "description": "AA explicitly greatly extends kill-credit duration but exact seconds are unrecovered;3second native baseline is an editable source-pending candidate"
+        },
+        {
           "category": "reference_validation",
-          "description": "Persistent reward follows the skill instance across heroes per official FAQ; immediate actual Finger kills are credited"
+          "description": "Meepo family deduplication and upgrade-during-delay snapshots require separate identity/version proof"
+        },
+        {
+          "category": "reference_validation",
+          "description": "Legacy saved flat damage/HP growth is preserved as anchored legacy amounts;only new kill counters support exact retroactive tier changes"
         }
       ],
       "configuration": {
@@ -6718,18 +6689,17 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "ally hop toward enemies",
-        "landing damage and stun",
-        "Super extended hop/200 heal/single Mortimer Kiss and 200 caster max health",
-        "Gaben three additional cookies one second apart"
+        "Native nondisjointable1100speed allied projectile;self300ms/zero recovery versus ally200ms/570ms recovery",
+        "Arrival checks hidden/invulnerable/channel/Chrono/BlackHole;BKB allies remain eligible",
+        "Disabled phased forward425/.484hop or Super600/.684;interrupted motion lands exactly once at actual position",
+        "Soulbind boundary constrains each hop frame without banning the cast;ordinary root remains allowed;normal Fissure walls are traversed",
+        "AA200heal precedes damage/stun and one max-baseAA300impact/30DPS Mortimer glob;overlappingCookie puddles share one first-source burn",
+        "Gaben3additional independent cookie projectiles at one-second intervals"
       ],
       "remaining": [
-        "Reference hop trajectory and target priority",
-        "Super max health applies once to the skill holder for the battle; explicit semantic default, AA recipient/duration unspecified",
-        "Granted Mortimer Kiss uses AA max-base rank; AA grant rank unspecified",
-        "Historical Dota 2023-02-10 Cookie shard adds 175 range/0.2s flight; AA version match unverified",
-        "800 cast range follows official AA Season 2 notes, newer override not found",
-        "AA reference targeting, geometry and timing verification"
+        "AA200maxHP recipient/duration is unspecified;existing once-per-holder battle bonus is retained as editable working policy",
+        "AA grantedKiss level is unspecified;existing max-baseAA glob values are retained",
+        "Cookie burns share within this mechanism;cross-skill MortimerKisses/SpitOut shared-modifier unification remains unverified"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -6739,55 +6709,43 @@
           "status": "unreviewed"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
+          "reviewedRequirements": 3,
           "referenceVerified": 0,
           "resultTestPassed": 0,
-          "status": "unreviewed"
+          "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 10,
+          "referenceVerified": 9,
+          "resultTestPassed": 9,
+          "status": "partial"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/fire-fissure.json",
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Reference hop trajectory and target priority"
-        },
-        {
-          "category": "working_default",
-          "description": "Super max health applies once to the skill holder for the battle; explicit semantic default, AA recipient/duration unspecified"
+          "description": "AA200maxHP recipient/duration is unspecified;existing once-per-holder battle bonus is retained as editable working policy"
         },
         {
           "category": "reference_validation",
-          "description": "Granted Mortimer Kiss uses AA max-base rank; AA grant rank unspecified"
+          "description": "AA grantedKiss level is unspecified;existing max-baseAA glob values are retained"
         },
         {
           "category": "reference_validation",
-          "description": "Historical Dota 2023-02-10 Cookie shard adds 175 range/0.2s flight; AA version match unverified"
-        },
-        {
-          "category": "reference_validation",
-          "description": "800 cast range follows official AA Season 2 notes, newer override not found"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA reference targeting, geometry and timing verification"
+          "description": "Cookie burns share within this mechanism;cross-skill MortimerKisses/SpitOut shared-modifier unification remains unverified"
         }
       ],
       "configuration": {
@@ -6810,67 +6768,61 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "line damage and stun",
-        "persistent enemy-blocking ridge with endpoint pathfinding",
-        "AA ally/caster free passage on fissures",
-        "Super damage/range",
-        "Gaben perpendicular fissure and Aftershock for casts while physically touching a surviving own fissure"
+        "690ms point/zero recovery;instant line stun before damage and timed enemy-blocking ridge;AA allies pass freely",
+        "Super final340damage and1720range are consumed once",
+        "Gaben perpendicular ridge uses first victim along the ray,not unit-array order;overlap hits once",
+        "Pre-effect on-cast gate requires physical contact with an older active own ridge;officialAA400msAftershock stun precedes150damage"
       ],
       "remaining": [
-        "Historical Dota 2023-02-10 Fissure damage radius 225 and max Aftershock 150 damage/1.5s stun/300 radius",
-        "Physical ridge width 80 plus body radius 40 defines on-fissure contact; width remains explicit geometry assumption",
-        "Perpendicular ridge uses main range symmetrically; overlapping damage once per cast needs AA verification",
-        "AA reference targeting, geometry and timing verification"
+        "Continuous80-wide ridge/start offset are retained flat-arena geometry candidates,not a proof of native24radius/56.25segmentation",
+        "ExactAA conditionalAftershock propagation shape is unrecovered;nativeShard-inspired full-own-ridge300radius interpretation is explicit",
+        "Secondary ridge extent/offset and cross-tier stolenAftershock identity need originalAA proof"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 2,
+          "referenceVerified": 2,
+          "resultTestPassed": 2,
+          "status": "reviewed_clauses_verified"
         },
         "super": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 1,
+          "referenceVerified": 1,
+          "resultTestPassed": 1,
+          "status": "reviewed_clauses_verified"
         },
         "gaben": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 6,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
+          "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 0,
-          "referenceVerified": 0,
-          "resultTestPassed": 0,
-          "status": "unreviewed"
+          "reviewedRequirements": 3,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
+          "status": "reviewed_clauses_verified"
         }
       },
-      "acceptanceFile": null,
+      "acceptanceFile": "references/dota-wiki/acceptance/fire-fissure.json",
       "remainingDetails": [
         {
-          "category": "reference_validation",
-          "description": "Historical Dota 2023-02-10 Fissure damage radius 225 and max Aftershock 150 damage/1.5s stun/300 radius"
+          "category": "working_default",
+          "description": "Continuous80-wide ridge/start offset are retained flat-arena geometry candidates,not a proof of native24radius/56.25segmentation"
+        },
+        {
+          "category": "working_default",
+          "description": "ExactAA conditionalAftershock propagation shape is unrecovered;nativeShard-inspired full-own-ridge300radius interpretation is explicit"
         },
         {
           "category": "reference_validation",
-          "description": "Physical ridge width 80 plus body radius 40 defines on-fissure contact; width remains explicit geometry assumption"
-        },
-        {
-          "category": "reference_validation",
-          "description": "Perpendicular ridge uses main range symmetrically; overlapping damage once per cast needs AA verification"
-        },
-        {
-          "category": "reference_validation",
-          "description": "AA reference targeting, geometry and timing verification"
+          "description": "Secondary ridge extent/offset and cross-tier stolenAftershock identity need originalAA proof"
         }
       ],
       "configuration": {
@@ -16553,9 +16505,9 @@
           "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 4,
-          "referenceVerified": 2,
-          "resultTestPassed": 2,
+          "reviewedRequirements": 5,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
           "status": "partial"
         }
       },
@@ -18208,6 +18160,9 @@
       "faceless_void_time_lock": [
         "timeLock"
       ],
+      "custom_obsidian_destroyer_equilibrium": [
+        "essenceFlux"
+      ],
       "custom_spirit_breaker_charge_of_darkness": [
         "greater_bash"
       ],
@@ -18235,19 +18190,19 @@
   },
   "referenceAcceptance": {
     "catalog": 230,
-    "reviewStarted": 80,
-    "unreviewed": 150,
+    "reviewStarted": 95,
+    "unreviewed": 135,
     "fullyReferenceVerified": 7,
-    "requirements": 790,
-    "resultTestPassed": 667,
-    "referenceVerifiedRequirements": 667,
-    "pendingRequirements": 123,
+    "requirements": 1040,
+    "resultTestPassed": 858,
+    "referenceVerifiedRequirements": 858,
+    "pendingRequirements": 182,
     "engineRequirements": 56,
     "enginePending": 11,
     "proofCurrent": true,
     "report": "data/reference-acceptance.json"
   },
-  "configHash": "38bd18f77137ae040d01bff0a47c46064c149537d03baba552ecc77d6610f75a",
+  "configHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
   "configurationCoverage": {
     "mainSkills": 230,
     "grantedSkills": 74,

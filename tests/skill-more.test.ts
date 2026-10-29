@@ -302,6 +302,9 @@ describe('catalog-driven additional skills', () => {
     const state = battle('custom_earthshaker_fissure', 9); state.units[1].y = .5; advance(state, 1);
     const walls = (state.barriers ?? []) as { skill: string; from: { x: number; y: number }; to: { x: number; y: number } }[];
     expect(walls.filter(w => w.skill === 'custom_earthshaker_fissure')).toHaveLength(2);
+    expect(state.events.some(e=>e.type==='hit'&&e.skill==='custom_earthshaker_fissure'&&Math.abs(Number(e.amount)-150*.75)<1e-6)).toBe(false);
+    const caster=state.units[0];caster.x=walls[0].from.x;caster.y=walls[0].from.y;caster.nextAttack=100;
+    caster.skills.push({id:'custom_vengefulspirit_magic_missile',points:3});caster.cooldowns.push(0);advance(state,1);
     const hits = state.events.filter(e => e.type === 'hit' && e.skill === 'custom_earthshaker_fissure');
     expect(hits.some(e => Math.abs(Number(e.amount) - 150 * .75) < 1e-6)).toBe(true);
   });
@@ -361,7 +364,9 @@ describe('catalog-driven additional skills', () => {
     const a = player(0, 'custom_snapfire_firesnap_cookie', 9, 2), state = createBattle(a, player(1), 4, defs), [caster, ally] = state.units;
     expect(caster.maxHp).toBe(1200); expect(ally.maxHp).toBe(1000);
     ally.hp = 100; for (const u of state.units) { u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, 4.7);
+    caster.x=ally.x=0;caster.y=-10;ally.y=-11.5;ally.facing=Math.PI/2;
+    const enemy=state.units.find(unit=>unit.side!==caster.side)!;enemy.x=0;enemy.y=-8;enemy.hp=enemy.maxHp=100000;
+    advance(state, 6.5);
     const hops=state.events.filter(e=>e.type==='move'&&e.skill==='custom_snapfire_firesnap_cookie'&&e.source===ally.id);
     expect(hops.length).toBeGreaterThan(4);expect(hops.every(e=>e.teleport===false)).toBe(true);
     expect(hops.filter((e,i)=>i===0||e.time-hops[i-1].time>.1)).toHaveLength(4);

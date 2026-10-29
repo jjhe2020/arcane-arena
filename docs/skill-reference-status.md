@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 80 项；完整逐项通过 7 项。
-当前代码下，667 条具名结果测试要求通过，667 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 95 项；完整逐项通过 7 项。
+当前代码下，858 条具名结果测试要求通过，858 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -72,23 +72,23 @@
 | 决斗 (Duel) | 审查中 | 4 / 1 / 0 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
 | 裂地沟壑 (Earth Splitter) | 审查中 | 1 / 1 / 2 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
 | 震撼大地 (Earthshock) | 审查中 | 2 / 1 / 3 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
-| 古龙形态 (Elder Dragon Form) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 授予力量 (Empower) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 强化图腾 (Enchant Totem) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 地震 (Epicenter) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 精华变迁 (Essence Flux) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 能量转移 (Essence Shift) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 风暴之眼 (Eye of the Storm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 弱化能流 (Fade Bolt) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 虚妄之诺 (False Promise) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 盛宴 (Feast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 古龙形态 (Elder Dragon Form) | 审查中 | 3 / 12 / 2 / 1 / 6 | 5 | [审查记录](../references/dota-wiki/acceptance/dragon-echo.json) |
+| 授予力量 (Empower) | 审查中 | 3 / 2 / 1 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/dragon-echo.json) |
+| 强化图腾 (Enchant Totem) | 审查中 | 1 / 5 / 1 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/dragon-echo.json) |
+| 地震 (Epicenter) | 审查中 | 1 / 5 / 3 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/dragon-echo.json) |
+| 精华变迁 (Essence Flux) | 审查中 | 1 / 3 / 1 / 2 / 4 | 2 | [审查记录](../references/dota-wiki/acceptance/dragon-echo.json) |
+| 能量转移 (Essence Shift) | 审查中 | 2 / 4 / 3 / 0 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-identity.json) |
+| 风暴之眼 (Eye of the Storm) | 审查中 | 1 / 4 / 1 / 1 / 7 | 3 | [审查记录](../references/dota-wiki/acceptance/restoration-identity.json) |
+| 弱化能流 (Fade Bolt) | 审查中 | 1 / 0 / 1 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/restoration-identity.json) |
+| 虚妄之诺 (False Promise) | 审查中 | 0 / 1 / 2 / 2 / 6 | 4 | [审查记录](../references/dota-wiki/acceptance/restoration-identity.json) |
+| 盛宴 (Feast) | 审查中 | 5 / 0 / 9 / 1 / 5 | 9 | [审查记录](../references/dota-wiki/acceptance/restoration-identity.json) |
 | 野性驱使 (Feral Impulse) | 审查中 | 1 / 1 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
 | 热血战魂 (Fervor) | 审查中 | 2 / 1 / 1 / 1 / 0 | 5 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
-| 魔爪 (Fiend's Grip) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 炽魂 (Fiery Soul) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 死亡之指 (Finger of Death) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 龙炎饼干 (Firesnap Cookie) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 沟壑 (Fissure) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 魔爪 (Fiend's Grip) | 审查中 | 1 / 3 / 3 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 炽魂 (Fiery Soul) | 审查中 | 1 / 2 / 1 / 1 / 7 | 1 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 死亡之指 (Finger of Death) | 审查中 | 2 / 1 / 2 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 龙炎饼干 (Firesnap Cookie) | 审查中 | 0 / 2 / 0 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 沟壑 (Fissure) | 审查中 | 1 / 2 / 1 / 4 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 高射火炮 (Flak Cannon) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 烈火罩 (Flame Guard) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 血肉傀儡 (Flesh Golem) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -215,7 +215,7 @@
 | 虚张声势 (Swashbuckle) | 审查中 | 1 / 1 / 1 / 1 / 1 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 摔角行家 (Tag Team) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 瞄准 (Take Aim) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 羁绊 (Tether) | 审查中 | 1 / 2 / 1 / 2 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
+| 羁绊 (Tether) | 审查中 | 1 / 2 / 1 / 2 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
 | 潮汐使者 (Tidebringer) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 时间锁定 (Time Lock) | 审查中 | 3 / 2 / 0 / 1 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 时间漫游 (Time Walk) | 审查中 | 1 / 0 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |

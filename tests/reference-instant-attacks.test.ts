@@ -120,8 +120,12 @@ describe('Wiki acceptance: selected historical instant attacks',()=>{
     const list=hits(h.b,ids.swash);expect(list).toHaveLength(3);expect(list[1].time-list[0].time).toBeCloseTo(.1,6);expect(list[2].time-list[1].time).toBeCloseTo(.1,6);expect(h.c.y).toBeCloseTo(6);expect(h.b.events.some(e=>e.type==='move'&&e.source===h.c.id&&e.teleport)).toBe(false);
   });
   it('Swash fixed strikes True Strike through blind, ignore flat block, and still trigger cleave',()=>{
-    const h=setup(ids.swash,3,2);h.c.attack=1000;h.b.units[2].x=3;h.b.units[2].y=2;h.c.statuses.push({kind:'blind',until:100,value:1},{kind:'cleave',until:100,value:1,skill:'testCleave',data:{radius:20}} as EffectStatus);h.t.statuses.push({kind:'evasion',until:100,value:1},{kind:'block',until:100,value:100000},{kind:'attackDamageBlock',until:100,value:100000});h.advance(.8);
+    const h=setup(ids.swash,3,2);h.c.attackCapability='melee';h.c.attack=1000;h.b.units[2].x=3;h.b.units[2].y=2;h.c.statuses.push({kind:'blind',until:100,value:1},{kind:'cleave',until:100,value:1,skill:'testCleave',data:{radius:20}} as EffectStatus);h.t.statuses.push({kind:'evasion',until:100,value:1},{kind:'block',until:100,value:100000},{kind:'attackDamageBlock',until:100,value:100000});h.advance(.8);
     expect(hits(h.b,ids.swash).map(e=>e.amount)).toEqual([85,85,85]);expect(hits(h.b,'testCleave').map(e=>e.amount)).toEqual([85,85,85]);
+  });
+  it('Swash from a ranged wielder retains ranged attack identity and cannot trigger melee cleave',()=>{
+    const h=setup(ids.swash,3,2);h.c.attackCapability='ranged';h.c.statuses.push({kind:'cleave',until:100,value:1,skill:'testCleave',data:{radius:20}} as EffectStatus);h.b.units[2].x=3;h.b.units[2].y=2;h.advance(.8);
+    expect(hits(h.b,ids.swash).map(e=>e.amount)).toEqual([85,85,85]);expect(hits(h.b,'testCleave')).toHaveLength(0);
   });
   it('Swash Gaben final profile has six strikes and Super periodic half-count slashes remain breakable',()=>{
     const h=setup(ids.swash,9);h.advance(.8);expect(hits(h.b,ids.swash)).toHaveLength(6);h.c.cooldowns[0]=100;h.c.statuses.push({kind:'break',until:7});h.advance(5.7);expect(hits(h.b,ids.swash)).toHaveLength(6);
