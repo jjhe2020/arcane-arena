@@ -91,9 +91,9 @@ describe('real world effect metadata', () => {
       random: () => samples[draws++], status: () => {}, enemies: () => [], zone: (options: ZoneOptions) => zones.push(options) } as unknown as EffectContext;
     MORE_PROGRAMS[skill].cast!(context);
     expect(activeVisualWorldEffects(battle)).toEqual([]);
-    zones[0].effect(caster, 0);
-    const [burst] = activeVisualWorldEffects(battle), radius = numberAtMaxBase(skill, 'RADIUS') / 100;
-    expect(draws).toBe(2); expect(burst.x).toBeCloseTo(1); expect(burst.y).toBeCloseTo(2 + radius * .6);
+    zones.find(zone=>zone.radius===0)!.effect(caster, 0);
+    const [burst] = activeVisualWorldEffects(battle), radius = (195 + .36 * (785 - 195)) / 100,angle=.25*Math.PI/2;
+    expect(draws).toBe(2); expect(burst.x).toBeCloseTo(1 + Math.cos(angle)*radius); expect(burst.y).toBeCloseTo(2 + Math.sin(angle)*radius);
     expect(burst.radius).toBe(numberAtMaxBase(skill, 'EXPLOSION RADIUS') / 100);
     const atlas = assets.skills[skill].layers.ice_burst; expect(burst.until - burst.createdAt).toBeCloseTo(atlas.frames / atlas.fps);
   });

@@ -22,7 +22,7 @@ const BODY_RADIUS = BATTLE_CONFIG.bodyRadius;
  * contain their base attributes; these conversions apply only to changes. */
 export const ATTRIBUTE_CONVERSION = ATTRIBUTE_CONFIG;
 type Attribute = 'strength'|'agility'|'intelligence';
-interface AttributeState { base:Record<Attribute,number>; permanent:Record<Attribute,number>; primary:Attribute; hp:number;mana:number;attack:number;armor:number;attackSpeed:number;maxHpPct?:number;decayContributions?:Record<string,number>;maxOnlyFlat?:number;maxOnlyPct?:number }
+interface AttributeState { base:Record<Attribute,number>; permanent:Record<Attribute,number>; primary:Attribute; hp:number;mana:number;attack:number;armor:number;attackSpeed:number;maxHpPct?:number;decayContributions?:Record<string,number>;maxOnlyFlat?:number;maxOnlyPct?:number;glaivesManaContribution?:number }
 const ATTRIBUTE_STATUSES = new Set(['strength','agility','intelligence','strengthPct','agilityPct','intelligencePct','statBonus','statPercent','maxHpPct','break']);
 interface PendingAction { type: 'attack' | 'cast'; due: number; recoverUntil: number; target: string; slot?: number; token: number; range?:number; rangeBuffer?:number;attackPeriod?:number;attackReadyAt?:number;castPosition?:MotionPoint;attackRecord?:AttackRecord }
 interface UnitRuntime { pending?: PendingAction; token: number; channelUntil: number;channelEnd?:(reason:'complete'|'interrupted')=>void; lastTarget?: string;attackPeriod?:number;attackWindup?:number;castScale?:number;recoveringCast?:boolean;recoveringAttackCast?:boolean; motion?:MotionController }
@@ -30,11 +30,12 @@ interface UnitRuntime {cooldownLocks?:Record<string,{slot:number;skill:SkillStac
 interface Task { due: number; sequence: number; effect: () => void; source?: string; token?: number; cancelOnInterrupt?: boolean; stolenOrigin?:string }
 interface VisualOrigin {points?:number;visualSkill?:string;visualPoints?:number;attribution?:Attribution;category?:DamageCategory;flags?:DamageFlags;lifesteal?:boolean;healingKind?:'heal'|'regen'|'lifesteal';lifestealProviders?:EffectStatus[];lifestealVictimScale?:number;lifestealAmplificationSource?:string}
 interface Projectile extends VisualOrigin { id:string;createdAt:number;source: string; target: string; skill: string; x: number; y: number; speed: number; effect: (target: CombatUnit) => void;disjointable?:boolean;disjointOnInvisibility?:boolean;attackProjectile?:boolean;onMove?:(position:{x:number;y:number})=>void;line?:{angle:number;remaining:number;distance:number;width:number;endWidth?:number;stopOnHit:boolean;targets:'enemies'|'all';hit:string[];onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void} }
+interface Projectile {cancelled?:boolean;onDisjoint?:(position:{x:number;y:number})=>void}
 interface Zone extends VisualOrigin { id:string;createdAt:number;source: string; skill: string; x: number; y: number; until: number; next: number; interval: number; tick: number; token: number; options: ZoneOptions; stolenOrigin?:string;ended?:boolean }
 function endZone(zone:Zone):void {if(zone.ended)return;zone.ended=true;zone.options.onEnd?.();}
 function removeZones(b:BattleState,remove:(zone:Zone)=>boolean):void {const r=runtime(b),removed=[...new Set([...r.zones,...(r.updatingZones??[])])].filter(remove);r.zones=r.zones.filter(zone=>!removed.includes(zone));for(const zone of removed)endZone(zone);}
 interface Runtime { units: Map<string, UnitRuntime>; definitions: Map<string, SkillDefinition>; tasks: Task[]; projectiles: Projectile[]; zones: Zone[]; nextSequence: number; nextSummon: number;nextProjectile:number;nextZone:number; initializing: boolean; nestedCasts: number; stolen:Map<string,StolenRuntime>;nextStolen:number;initializedSkills:WeakSet<SkillStack> }
-interface Runtime {updatingZones?:Zone[];initialEffects:(()=>void)[]}
+interface Runtime {updatingZones?:Zone[];updatingProjectiles?:Set<Projectile>;initialEffects:(()=>void)[]}
 interface InitialBattle { a: Player; b: Player; seed: number; version: number; simulationRevision:string; configHash:string;round: number }
 interface StolenAbility {slot:number;id:string;until:number;stolenAt:number;spellAmp:number;debuffAmp:number;token:string}
 type RuntimeSkill=SkillStack&{stolenOrigin?:string;grantOwners?:string[];nativeGrant?:boolean;prdOrigin?:string;visualParentId?:string;visualParentPoints?:number;statParentId?:string;statRootId?:string};
@@ -152,11 +153,17 @@ function refreshAttributes(u:CombatUnit):void {
   const maxBeforeDecayRemoval=Math.max(1,(u.maxHp-a.hp+hpWithRemoved)*(1+hpPct));
   const currentHealthDifference=specialHealthChange?maxBeforeDecayRemoval-u.maxHp:hpDifference;
   const newMaxMana=Math.max(0,u.maxMana+mana-a.mana),manaDifference=newMaxMana-u.maxMana;
+  const glaivesManaContribution=effectiveStatusEffects(u,'intelligence').filter(status=>status.data?.attributeManaMode==='glaivesSource').reduce((sum,status)=>sum+(status.value??0),0),glaivesManaChange=(glaivesManaContribution-(a.glaivesManaContribution??0))*ATTRIBUTE_CONVERSION.intelligenceMana;
+  const oldMaxMana=u.maxMana,oldMana=u.mana;
   u.maxHp=newMaxHp;u.maxMana=newMaxMana;
   if(!u.dead)u.hp=Math.max(1,Math.min(newMaxHp,Math.abs((a.maxHpPct??0)-hpPct)>1e-9?u.hp*((specialHealthChange?maxBeforeDecayRemoval:newMaxHp)/(newMaxHp-hpDifference)):u.hp+currentHealthDifference));
-  u.mana=Math.max(0,Math.min(newMaxMana,u.mana+manaDifference));
+  // Glaives' source keeps its current mana percentage for only its own
+  // temporary intelligence changes. Other simultaneous changes retain their
+  // existing flat-current-mana behavior, including the victim's stolen INT.
+  const manaBeforeGlaives=Math.max(0,oldMaxMana+manaDifference-glaivesManaChange),currentBeforeGlaives=Math.max(0,Math.min(manaBeforeGlaives,oldMana+manaDifference-glaivesManaChange));
+  u.mana=Math.max(0,Math.min(newMaxMana,glaivesManaChange!==0?(manaBeforeGlaives>0?currentBeforeGlaives*newMaxMana/manaBeforeGlaives:0):oldMana+manaDifference));
   u.attack+=attack-a.attack;u.armor+=armor-a.armor;
-  Object.assign(a,{hp,mana,attack,armor,maxHpPct:hpPct,decayContributions,maxOnlyFlat,maxOnlyPct,attackSpeed:(Number(u.agility)-a.base.agility)*ATTRIBUTE_CONVERSION.agilityAttackSpeed});
+  Object.assign(a,{hp,mana,attack,armor,maxHpPct:hpPct,decayContributions,maxOnlyFlat,maxOnlyPct,glaivesManaContribution,attackSpeed:(Number(u.agility)-a.base.agility)*ATTRIBUTE_CONVERSION.agilityAttackSpeed});
 }
 function nextRandom(b: BattleState): number {
   let x = b.rng >>> 0; x ^= x << 13; x ^= x >>> 17; x ^= x << 5;
@@ -251,7 +258,7 @@ function addStatus(b: BattleState, source: CombatUnit, target: CombatUnit, skill
     const same = effects(target).filter(s => s.kind===kind && s.source===statusSource && s.skill===skill && s.stolenOrigin===options.stolenOrigin && s.data?.instanceKey===options.data?.instanceKey);
     if (same.length >= (options.maxStacks ?? 1)) existing = same.sort((a,b)=>a.until-b.until)[0]; else existing = undefined;
   }
-  const nextTick = options.interval ? b.time + options.interval : undefined;
+  const nextTick = options.interval ? b.time + options.interval : kind==='arcaneCurse'?b.time+Math.max(FIXED_STEP,Number(options.data?.damageInterval??1)):undefined;
   if(existing?.kind==='shield'&&existing.data?.burstRadius){target.statuses=target.statuses.filter(s=>s!==existing);burstShield(b,target,existing);existing=undefined;}
   const status: EffectStatus = { kind, until, value, source:source.id, skill, harmful, dispel:options.dispel ?? 'basic', ...options, nextTick, stolenDamageOrigin:originToken };
   if(kind==='ghostshipRum'&&existing?.data?.debtKey)status.data={...status.data,debtKey:existing.data.debtKey};
@@ -296,7 +303,7 @@ function removeStatuses(b: BattleState, target: CombatUnit, strong = false, harm
     if (!!s.harmful !== harmful || s.dispel==='none') return true;
     return s.dispel==='strong' && !strong;
   });
-  for(const s of previous)if(!target.statuses.includes(s)){if(s.kind==='ghostshipRum')beginRumPayback(target,s);if(s.kind==='shield')burstShield(b,target,s);notifyStatusRemoved(b,target,s,'dispel');}
+  for(const s of previous)if(!target.statuses.includes(s)){if(s.kind==='ghostshipRum')beginRumPayback(b,target,s);if(s.kind==='shield')burstShield(b,target,s);notifyStatusRemoved(b,target,s,'dispel');}
   refreshAttributes(target);
   emit(b,{type:'status',source:target.id,target:target.id,x:target.x,y:target.y,status:strong?'strongDispel':'basicDispel'});
 }
@@ -316,9 +323,13 @@ function changeMana(b:BattleState,u:CombatUnit,amount:number,transferred=false):
   if(amount>0&&!transferred){const tether=tetherPartner(b,u);if(tether)changeMana(b,tether.unit,amount*tether.multiplier,true);}return actual;
 }
 function restorationFactor(unit:CombatUnit,kind:'heal'|'regen'|'lifesteal',amplificationSource=unit):number {
-  const value=(name:string)=>effectiveStatusEffects(unit,name).filter(status=>kind==='heal'||!status.data?.healingOnly).reduce((sum,status)=>sum+(status.value??0),0);
-  const reduction=value('healReduction')+(kind==='lifesteal'?value('lifestealReduction'):0),amplification=kind==='lifesteal'?effectiveStatusEffects(amplificationSource,'lifestealAmplification').filter(status=>!status.data?.healingOnly).reduce((sum,status)=>sum+(status.value??0),0):value(kind==='heal'?'healAmplification':'regenAmplification');
-  return (1-Math.min(1,Math.max(0,reduction)))*(1+Math.max(-1,amplification));
+  const applicable=(name:string)=>effectiveStatusEffects(unit,name).filter(status=>kind==='heal'||!status.data?.healingOnly);
+  const value=(name:string)=>applicable(name).reduce((sum,status)=>sum+(status.value??0),0);
+  const reductions=[...applicable('healReduction'),...(kind==='lifesteal'?applicable('lifestealReduction'):[])];
+  const additive=reductions.filter(status=>status.data?.restorationStacking!=='multiplicative').reduce((sum,status)=>sum+(status.value??0),0);
+  const reductionFactor=reductions.filter(status=>status.data?.restorationStacking==='multiplicative').reduce((factor,status)=>factor*(1-Math.min(1,Math.max(0,status.value??0))),1-Math.min(1,Math.max(0,additive)));
+  const amplification=kind==='lifesteal'?effectiveStatusEffects(amplificationSource,'lifestealAmplification').filter(status=>!status.data?.healingOnly).reduce((sum,status)=>sum+(status.value??0),0):value(kind==='heal'?'healAmplification':'regenAmplification');
+  return reductionFactor*(1+Math.max(-1,amplification));
 }
 function heal(b: BattleState, source: CombatUnit, target: CombatUnit, amount: number, skill?: string,transferred=false,depth=0,visual:VisualOrigin={}): number {
   if (target.dead || amount<=0) return 0;
@@ -336,15 +347,17 @@ interface HealthContribution {source:string;amount:number;attribution:Attributio
 interface DeferredHealth { healing: number; healingEntries:HealthContribution[];damage: HealthContribution[] }
 interface PendingPromise {ledger:DeferredHealth;healMultiplier:number}
 interface RumLedger {total:number;entries:HealthContribution[]}
-interface RumPayback extends RumLedger {remaining:number;rate:number}
-function beginRumPayback(u:CombatUnit,s:EffectStatus):void{
+interface RumPayback extends RumLedger {remaining:number;rate:number;interval?:number;nextTick?:number}
+function beginRumPayback(b:BattleState,u:CombatUnit,s:EffectStatus):void{
   const debts=(u.rumDebts??{}) as Record<string,RumLedger>,key=String(s.data?.debtKey??''),ledger=debts[key];if(!ledger)return;delete debts[key];
-  const repayments=(u.rumPaybacks??[]) as RumPayback[];repayments.push({...ledger,remaining:ledger.total,rate:ledger.total/Math.max(FIXED_STEP,Number(s.data?.paybackDuration??10))});u.rumPaybacks=repayments;
+  const interval=Number(s.data?.paybackInterval??0),repayments=(u.rumPaybacks??[]) as RumPayback[];repayments.push({...ledger,remaining:ledger.total,rate:ledger.total/Math.max(FIXED_STEP,Number(s.data?.paybackDuration??10)),...(interval>0?{interval,nextTick:b.time+interval}:{})});u.rumPaybacks=repayments;
 }
 function repayRum(b:BattleState,u:CombatUnit):void{
   const repayments=(u.rumPaybacks??[]) as RumPayback[];
   for(const debt of repayments){
-    const scheduled=Math.min(debt.remaining,debt.rate*FIXED_STEP),actual=Math.min(scheduled,Math.max(0,u.hp-1));debt.remaining=Math.max(0,debt.remaining-scheduled);u.hp-=actual;
+    if(debt.interval&&Number(debt.nextTick)>b.time+1e-8)continue;
+    const scheduled=Math.min(debt.remaining,debt.rate*(debt.interval??FIXED_STEP)),actual=Math.min(scheduled,Math.max(0,u.hp-1));debt.remaining=Math.max(0,debt.remaining-scheduled);u.hp-=actual;
+    if(debt.interval)debt.nextTick=Number(debt.nextTick)+debt.interval;
     const portions=distributeEffective(actual,debt.entries.map(entry=>entry.amount));
     debt.entries.forEach((entry,index)=>{const value=portions[index],source=b.units.find(t=>t.id===entry.source)??u;if(value<=0)return;const type=entry.type??'pure',flags={...entry.flags,delayed:true,nonLethal:true};recordDamage(b,source,u,value,type,entry.attribution,flags);emit(b,{type:'hit',source:source.id,target:u.id,skill:entry.skill,x:u.x,y:u.y,amount:value,attribution:entry.attribution,flags,rumPayback:true,damageType:type,originDamageType:type,resolutionKind:'rumRepayment'});});
   }
@@ -462,7 +475,7 @@ function resolveDamage(b: BattleState, source: CombatUnit, target: CombatUnit, a
   if(type==='physical')damage*=1-Math.min(1,Math.max(0,statusValue(source,'physicalOutputReduction')));
   damage*=1-Math.min(1,Math.max(0,effectiveStatusEffects(source,'outgoingDamageReduction').filter(s=>s.data?.targetId===target.id).reduce((n,s)=>n+(s.value??0),0)));
   damage*=1+effectiveStatusEffects(target,'sourceDamageAmp').filter(s=>s.source===source.id||s.source===source.owner).reduce((n,s)=>n+(s.value??0),0);
-  if(attack)damage*=1-Math.min(1,Math.max(0,statusValue(target,'attackDamageReduction')));
+  if(attack){const heroAttacker=!source.building&&!source.ward&&!source.courier&&(!source.summoned||!!source.illusion||!!source.heroClone||!!source.extraSpiritBear);damage*=1-Math.min(1,Math.max(0,effectiveStatusEffects(target,'attackDamageReduction').filter(status=>!status.data?.heroAttackOnly||heroAttacker).reduce((sum,status)=>sum+(status.value??0),0)));}
   if((!attack||flags.convertedAttack)&&!flags.noAmplification&&!flags.reflection&&!flags.healthRemoval){const stolen=originToken?runtime(b).stolen.get(originToken)?.entry:undefined;damage*=1+Math.max(-.99,statusValue(source,'spellAmp')+(stolen?.spellAmp??0));}
   }
   if(!flags.noDamageHooks&&!flags.healthRemoval)runHooks(b,target,'onBeforeDamageResolution',source,damage,type,depth+1,skill,source.id,{beforeDamageResolution:{inputAmount:amount,damageAmount:damage,category,flags:{...flags},stage:'beforeTargetMitigation'}});
@@ -475,6 +488,14 @@ function resolveDamage(b: BattleState, source: CombatUnit, target: CombatUnit, a
   }
   if(type==='physical'&&!flags.bypassGenericMultipliers)damage*=1+statusValue(target,'physicalVulnerability');
   if(type==='magical') {
+    // Pre-7.33 magic barriers consume their raw incoming capacity before MR.
+    // Only explicitly authored historical shields use this stage.
+    for(const shield of [...effects(target)].filter(status=>status.kind==='magicShield'&&status.data?.damageStage==='beforeMagicResistance')){
+      const percentage=Math.max(0,Math.min(1,Number(shield.data?.absorbPercentage??1))),absorbed=Math.min(damage*percentage,Math.max(0,shield.remaining??shield.value??0));shield.remaining=Math.max(0,(shield.remaining??shield.value??0)-absorbed);damage-=absorbed;
+      recordAbsorption(b,b.units.find(unit=>unit.id===shield.source)??target,target,absorbed,{abilityId:shield.skill??'shield',...shield.attribution});
+      if(shield.remaining<=0)target.statuses=target.statuses.filter(status=>status!==shield);
+      if(damage<=0)return 0;
+    }
     const baseResist=target.magicResist*Math.max(0,1+statusValue(target,'baseMagicResistPct'));
     const resist=1-(1-baseResist)*(1-Math.min(.95,independentFraction(effectiveStatusEffects(target,'magicResist').map(s=>s.value??0),-2)));
     damage*=1-resist;if(!flags.bypassGenericMultipliers)damage*=1+statusValue(target,'magicVulnerability');
@@ -507,6 +528,7 @@ function resolveDamage(b: BattleState, source: CombatUnit, target: CombatUnit, a
   const manaShield=statusValue(target,'manaShield'),perMana=statusValue(target,'damagePerMana');
   if(manaShield>0&&perMana>0){const absorb=Math.min(damage*manaShield,target.mana*perMana),spent=absorb/perMana,shield=effects(target).find(s=>s.kind==='manaShield');target.mana-=spent;damage-=absorb;recordAbsorption(b,b.units.find(u=>u.id===shield?.source)??target,target,absorb,{abilityId:shield?.skill??'medusa_mana_shield',...shield?.attribution});if(spent>0)runHooks(b,target,'onManaShieldSpent',source,spent,type,depth+1,skill);}
   for(const shield of [...effects(target)]) {
+    if(shield.data?.damageStage==='beforeMagicResistance')continue;
     if(shield.kind!=='shield'&&(shield.kind!=='magicShield'||type!=='magical')&&(shield.kind!=='physicalShield'||type!=='physical'))continue;
     const absorbed=Math.min(damage,shield.remaining??shield.value??0);shield.remaining=(shield.remaining??shield.value??0)-absorbed;damage-=absorbed;
     recordAbsorption(b,b.units.find(u=>u.id===shield.source)??target,target,absorbed,{abilityId:shield.skill??'shield',...shield.attribution});
@@ -672,6 +694,8 @@ function context(b: BattleState, caster: CombatUnit, target: CombatUnit, skill: 
     cancelMotion:t=>{const target=unwrap(t),state=r.units.get(target.id);if(!state?.motion)return false;finishMotion(b,target,state.motion,'interrupted');return true;},
     interrupt:t=>{const target=unwrap(t);if(target.dead)return;interrupt(b,target);const state=r.units.get(target.id);if(state){state.recoveringCast=false;state.recoveringAttackCast=false;}target.castUntil=b.time;setAction(b,target,'idle');},
     channelUnit:(target,duration,onEnd)=>channelUnit(b,unwrap(target),duration,onEnd),
+    permanentAttribute:(target,attribute,amount)=>{const unit=unwrap(target),state=unit.attributes as AttributeState|undefined;if(!state||!Number.isFinite(amount))return 0;state.permanent[attribute]+=amount;const key=`permanent${attribute[0].toUpperCase()}${attribute.slice(1)}Gain`;unit[key]=Number(unit[key]??0)+amount;refreshAttributes(unit);return amount;},
+    inheritTemporaryAttributeMultiplier:(target,attribute,fraction)=>{const unit=unwrap(target),state=unit.attributes as AttributeState|undefined;if(!unit.illusion||!state||!Number.isFinite(fraction)||fraction<=-1)return false;const baseline=state.base[attribute]/(1+fraction),delta=state.base[attribute]-baseline;state.base[attribute]=baseline;if(attribute==='strength')state.hp+=delta*ATTRIBUTE_CONVERSION.strengthHp;if(attribute==='intelligence')state.mana+=delta*ATTRIBUTE_CONVERSION.intelligenceMana;if(attribute==='agility'){state.armor+=delta*ATTRIBUTE_CONVERSION.agilityArmor;state.attackSpeed+=delta*ATTRIBUTE_CONVERSION.agilityAttackSpeed;}if(state.primary===attribute)state.attack+=delta*ATTRIBUTE_CONVERSION.primaryAttack;return true;},
     despawn:target=>kill(b,unwrap(target)),
     startCooldown:seconds=>finishEffectCooldown(b,caster,skill,seconds),
     resetCooldown:()=>{const state=r.units.get(caster.id),key=chanceIdentity(caster,skill),lock=state?.cooldownLocks?.[key];if(lock)lock.active=false;const slot=caster.skills.indexOf(skill);if(slot>=0)caster.cooldowns[slot]=b.time;},
@@ -680,9 +704,9 @@ function context(b: BattleState, caster: CombatUnit, target: CombatUnit, skill: 
     mana:(t,n)=>changeMana(b,unwrap(t),n),
     status:(t,kind,seconds,value=0,options={})=>addStatus(b,caster,unwrap(t),skill.id,kind,seconds,value,{passive:!!getSkillProgram(skill.id)?.passive,piercesImmunity:referencePierces,...visual,...options,...((initializing||(hook&&seconds>=BATTLE_TIME_LIMIT))&&token?{stolenOrigin:token}:{})},token),
     dispel:(t,strong=false,harmful=true)=>removeStatuses(b,unwrap(t),strong,harmful),
-    projectile:(t,speed,effect,position,onMove)=>r.projectiles.push({id:`projectile:${r.nextProjectile++}`,createdAt:b.time,source:caster.id,target:t.id,skill:skill.id,...visual,x:position?.x??caster.x,y:position?.y??caster.y,speed,disjointable:getSkillProgram(skill.id)?.projectileDisjointable,disjointOnInvisibility:getSkillProgram(skill.id)?.projectileDisjointOnInvisibility,attackProjectile:getSkillProgram(skill.id)?.attackProjectile,effect:guard(effect),onMove:onMove&&guard(onMove)}),
+    projectile:(t,speed,effect,position,onMove,options)=>r.projectiles.push({id:`projectile:${r.nextProjectile++}`,createdAt:b.time,source:caster.id,target:t.id,skill:skill.id,...visual,x:position?.x??caster.x,y:position?.y??caster.y,speed,disjointable:getSkillProgram(skill.id)?.projectileDisjointable,disjointOnInvisibility:getSkillProgram(skill.id)?.projectileDisjointOnInvisibility,attackProjectile:getSkillProgram(skill.id)?.attackProjectile,effect:guard(effect),onMove:onMove&&guard(onMove),onDisjoint:options?.onDisjoint&&guard(options.onDisjoint)}),
     linearProjectile:o=>r.projectiles.push({id:`projectile:${r.nextProjectile++}`,createdAt:b.time,source:caster.id,target:'',skill:skill.id,...visual,x:o.origin?.x??caster.x,y:o.origin?.y??caster.y,speed:o.speed,attackProjectile:getSkillProgram(skill.id)?.attackProjectile,effect:guard(o.effect),line:{angle:o.angle,remaining:o.distance,distance:o.distance,width:o.width,endWidth:o.endWidth,stopOnHit:o.stopOnHit??false,targets:o.targets??'enemies',hit:[],onMove:o.onMove&&guard(o.onMove),onEnd:o.onEnd&&guard(o.onEnd)}}),
-    disjoint:t=>{r.projectiles=r.projectiles.filter(p=>p.target!==t.id||p.disjointable===false);b.projectiles=r.projectiles.map(p=>({id:p.id,createdAt:p.createdAt,source:p.source,target:p.target,skill:p.skill,points:p.points,visualSkill:p.visualSkill,visualPoints:p.visualPoints,x:p.x,y:p.y,angle:p.line?.angle}));emit(b,{type:'status',source:t.id,skill:skill.id,x:t.x,y:t.y,status:'projectileDisjoint',...visual});},
+    disjoint:t=>{const removed=[...new Set([...r.projectiles,...(r.updatingProjectiles??[])])].filter(p=>!p.cancelled&&p.target===t.id&&p.disjointable!==false);for(const p of removed){p.cancelled=true;r.updatingProjectiles?.delete(p);}r.projectiles=r.projectiles.filter(p=>!p.cancelled);for(const p of removed)p.onDisjoint?.({x:p.x,y:p.y});b.projectiles=r.projectiles.map(p=>({id:p.id,createdAt:p.createdAt,source:p.source,target:p.target,skill:p.skill,points:p.points,visualSkill:p.visualSkill,visualPoints:p.visualPoints,x:p.x,y:p.y,angle:p.line?.angle}));emit(b,{type:'status',source:t.id,skill:skill.id,x:t.x,y:t.y,status:'projectileDisjoint',...visual});},
     endChannel:()=>{const state=r.units.get(caster.id);if(!state)return;const onEnd=state.channelEnd;state.channelEnd=undefined;if(state.pending?.type==='cast')state.pending=undefined;state.token++;state.channelUntil=0;state.recoveringCast=false;caster.castUntil=b.time;removeZones(b,z=>z.source===caster.id&&!!z.options.channel);setAction(b,caster,'idle');emit(b,{type:'status',source:caster.id,skill:skill.id,x:caster.x,y:caster.y,status:'channelEnded',...visual});onEnd?.('interrupted');},
     movementSpeed,attackInterval,attackRange:effectiveAttackRange,isRangedAttack:isRangedAttackType,canTarget,
     reduceCooldowns:(target,seconds,options)=>reduceCooldowns(b,unwrap(target),seconds,options),
@@ -784,7 +808,8 @@ export function effectiveAttackRange(u:CombatUnit){return (effects(u).find(s=>s.
 const attackRange=effectiveAttackRange;
 export function isRangedAttackType(u:CombatUnit):boolean{const override=effects(u).find(s=>s.kind==='attackTypeOverride')?.value;return override===2||(override!==1&&(u.attackCapability?u.attackCapability==='ranged':u.range>2));}
 function newAttackRecord(b:BattleState,source:CombatUnit,target:CombatUnit,abilityId:string,options:InstantAttackOptions):AttackRecord {
-  return{id:`attack:${runtime(b).nextSequence++}`,source:source.id,target:target.id,abilityId,ranged:options.rangedAttackPoint??isRangedAttackType(source),data:{...(options.attackBatchKey?{attackBatchKey:options.attackBatchKey}:{})}};
+  const focus=effects(source).find(status=>status.kind==='focusFire'&&status.data?.targetId===target.id);
+  return{id:`attack:${runtime(b).nextSequence++}`,source:source.id,target:target.id,abilityId,ranged:options.rangedAttackPoint??isRangedAttackType(source),data:{focusMultiplier:Number(focus?.data?.damageMultiplier??1),...(options.attackBatchKey?{attackBatchKey:options.attackBatchKey}:{})}};
 }
 function prepareAttackOptions(b:BattleState,source:CombatUnit,target:CombatUnit,depth:number,abilityId:string,options:InstantAttackOptions):InstantAttackOptions{
   if(options.preparedAttack)return options;
@@ -833,7 +858,7 @@ function launchAttack(b:BattleState,source:CombatUnit,target:CombatUnit,multipli
   triggerModifiers=options.modifierPolicy==='none'?false:options.modifierPolicy==='all'?true:triggerModifiers;
   const abilityId=visual.attribution?.abilityId??BASIC_ATTACK_ID,prepared=triggerModifiers?prepareAttackOptions(b,source,target,depth,abilityId,options):options;
   const record=dispatchAttackPoint(b,source,target,depth,abilityId,!!options.suppressAllyAttackPoint,prepared,triggerModifiers),released={...prepared,attackPointEmitted:true,attackRecord:record};
-  if(record.ranged)runtime(b).projectiles.push({id:`projectile:${runtime(b).nextProjectile++}`,createdAt:b.time,source:source.id,target:target.id,skill:abilityId,...visual,x:source.x,y:source.y,speed:attackProjectileSpeed(source),attackProjectile:true,effect:t=>performAttack(b,source,t,multiplier,triggerModifiers,depth,undefined,true,visual,released)});
+  if(record.ranged)runtime(b).projectiles.push({id:`projectile:${runtime(b).nextProjectile++}`,createdAt:b.time,source:source.id,target:target.id,skill:abilityId,...visual,x:prepared.projectileOrigin?.x??source.x,y:prepared.projectileOrigin?.y??source.y,speed:Number.isFinite(prepared.projectileSpeed)?Math.max(.01,prepared.projectileSpeed!):attackProjectileSpeed(source),attackProjectile:true,effect:t=>performAttack(b,source,t,multiplier,triggerModifiers,depth,undefined,true,visual,released)});
   else performAttack(b,source,target,multiplier,triggerModifiers,depth,undefined,true,visual,released);
   return true;
 }
@@ -844,6 +869,7 @@ function performAttack(b: BattleState, source: CombatUnit, target: CombatUnit, m
   if(abilityId===BASIC_ATTACK_ID&&!attackTargetAllowed(source,target))return {landed:false,damage:0};
   if(triggerModifiers)options=prepareAttackOptions(b,source,target,depth,abilityId,options);
   const attackRecord=options.attackPointEmitted&&options.attackRecord?options.attackRecord:dispatchAttackPoint(b,source,target,depth,abilityId,!!options.suppressAllyAttackPoint,options,triggerModifiers);
+  if(!attackRecord.ranged&&options.meleeRangeBuffer!==undefined&&distance(source,target)>attackRange(source)+options.meleeRangeBuffer){emit(b,{type:'hit',source:source.id,target:target.id,x:target.x,y:target.y,amount:0,outcome:'miss'});return {landed:false,damage:0};}
   const marksmanship=noModifiers?undefined:effects(source).find(s=>s.kind==='marksmanship');
   const marksmanshipProc=!!marksmanship&&!hasStatus(source,'break')&&nextRandom(b)<(marksmanship.value??0);
   const fieldEvasion=effects(target).filter(s=>s.kind==='magneticField'&&Math.hypot(source.x-Number(s.data?.x??target.x),source.y-Number(s.data?.y??target.y))>Number(s.data?.radius??0)).reduce((n,s)=>Math.max(n,s.value??0),0);
@@ -861,21 +887,27 @@ function performAttack(b: BattleState, source: CombatUnit, target: CombatUnit, m
   if(triggerModifiers)for(const ally of live(b).filter(unit=>unit.side===source.side&&unit.id!==source.id))runHooks(b,ally,'onAllyBeforeAttackDamage',target,0,undefined,depth+1,abilityId,source.id,{attackSourceSkill:abilityId,attackIsRanged:attackRecord.ranged,attackRecord,attackBatchKey:options.attackBatchKey,addAttackBonus:amount=>{if(Number.isFinite(amount))allyBonus+=amount;}});
   attackRecord.data.allyAttackBonus=allyBonus;
   const baseline=baseDamage??Math.max(0,attackPower(source)+variance);
-  let damage=baseline+allyBonus+(marksmanshipProc?Number(marksmanship!.data?.bonus??0):0),postCriticalBonus=0,type:DamageType=hasStatus(source,'attackMagical')?'magical':'physical';
+  let damage=baseline+allyBonus+(marksmanshipProc?Number(marksmanship!.data?.bonus??0):0),postCriticalBonus=0,postCriticalSpellAmplifiedBonus=0,primaryAttackDamage=baseline,type:DamageType=hasStatus(source,'attackMagical')?'magical':'physical';
   const criticals:CriticalRoll[]=[];
-  const focus=effects(source).find(s=>s.kind==='focusFire'&&s.data?.targetId===target.id);if(focus)damage*=Number(focus.data?.damageMultiplier??1);
+  const focusMultiplier=Number(attackRecord.data.focusMultiplier??1);damage=baseline*focusMultiplier+allyBonus+(marksmanshipProc?Number(marksmanship!.data?.bonus??0):0);primaryAttackDamage*=focusMultiplier;
   if(triggerModifiers)for(const skill of source.skills){
     if(!skill)continue;const p=getSkillProgram(skill.id),d=runtime(b).definitions.get(skill.id);
     if(p?.attackModifier&&d&&!(p.passive&&!p.handlesBreak&&hasStatus(source,'break'))){
       const c=context(b,source,target,skill,d,depth,{attackSourceSkill:abilityId,attackRecord,attackIsRanged:attackRecord.ranged,attackBatchKey:options.attackBatchKey});
-      if(skill.id==='custom_phantom_assassin_coup_de_grace'){/* Its legacy candidate was already sampled at release. */}else{const mod=p.attackModifier(c);damage+=mod.bonus??0;postCriticalBonus+=mod.postCriticalBonus??0;type=mod.type??type;
-        if(baseDamage===undefined&&mod.baseMultiplier!==undefined)damage+=(source.attack+rawVariance)*mainOnlyMultiplier*(mod.baseMultiplier-1);
-        if(skill.id==='custom_dawnbreaker_luminosity')criticals.push({key:skill.id,multiplier:mod.multiplier??1,roll:()=>true});else damage*=mod.multiplier??1;
+      if(skill.id==='custom_phantom_assassin_coup_de_grace'){/* Its legacy candidate was already sampled at release. */}else{const mod=p.attackModifier(c);damage+=mod.bonus??0;postCriticalBonus+=mod.postCriticalBonus??0;postCriticalSpellAmplifiedBonus+=mod.postCriticalSpellAmplifiedBonus??0;type=mod.type??type;
+        if(baseDamage===undefined&&mod.baseMultiplier!==undefined){const extra=(source.attack+rawVariance)*mainOnlyMultiplier*(mod.baseMultiplier-1)*focusMultiplier;damage+=extra;primaryAttackDamage+=extra;}
+        if(skill.id==='custom_dawnbreaker_luminosity')criticals.push({key:skill.id,multiplier:mod.multiplier??1,roll:()=>true});else {damage*=mod.multiplier??1;primaryAttackDamage*=mod.multiplier??1;}
       }
     }
   }
   if(attackRecord.critical)criticals.push({...attackRecord.critical,key:attackRecord.critical.key??'snapshotCritical',roll:()=>true});
-  const critical=selectCritical(criticals);damage=(hasStatus(source,'bladeFury')&&!options.ignoreBladeFuryPenalty&&!target.ward&&!target.building?0:(damage*multiplier+(options.bonusDamage??0))*critical.multiplier)+postCriticalBonus;
+  const critical=selectCritical(criticals),suppressMain=hasStatus(source,'bladeFury')&&!options.ignoreBladeFuryPenalty&&!target.ward&&!target.building;
+  attackRecord.data.primaryAttackDamage=suppressMain?0:primaryAttackDamage*multiplier*critical.multiplier;
+  // Fury Swipes' conditional component is an attack bonus after crit, but
+  // independently accepts spell amplification. Converted attacks amp the whole
+  // packet later, so this component must not receive it a second time here.
+  const conditionalSpellAmp=hasStatus(source,'attackMagical')?1:1+Math.max(-.99,statusValue(source,'spellAmp'));
+  damage=(suppressMain?0:(damage*multiplier+(options.bonusDamage??0))*critical.multiplier)+postCriticalBonus+postCriticalSpellAmplifiedBonus*conditionalSpellAmp;
   attackRecord.critical=critical;const critLifesteal=critical.lifesteal;
   if(marksmanshipProc)emit(b,{type:'status',source:source.id,target:target.id,skill:marksmanship?.skill,x:target.x,y:target.y,status:'marksmanshipProc'});
   // Native attack conversion retains attack contacts and accounting while
@@ -939,7 +971,7 @@ function updateStatuses(b:BattleState,u:CombatUnit) {
   for(const s of [...effects(u)]) {
     if(u.dead)break;
     const source=b.units.find(t=>t.id===s.source)??u;
-    if(s.kind==='arcaneCurse'){const silenced=hasStatus(u,'silence');if(silenced)s.until+=FIXED_STEP;const multiplier=silenced?Number(s.data?.multiplier??1.5):1;s.nextTick??=b.time+1;if(s.nextTick<=b.time+1e-8){applyDamage(b,source,u,(s.value??0)*multiplier,'magical',s.skill,false,0,false,s.stolenDamageOrigin,{attribution:s.attribution,flags:{damageOverTime:true}});s.nextTick+=1;}addStatus(b,source,u,s.skill??'silencer_curse_of_the_silent','slow',.1,Number(s.data?.slow??.25)*multiplier,{harmful:true});}
+    if(s.kind==='arcaneCurse'){const silenced=hasStatus(u,'silence');if(silenced)s.until+=FIXED_STEP;const multiplier=silenced?Number(s.data?.multiplier??1.5):1,interval=Math.max(FIXED_STEP,Number(s.data?.damageInterval??1));s.nextTick??=b.time+interval;if(s.nextTick<=b.time+1e-8&&s.nextTick<=s.until+1e-8){applyDamage(b,source,u,(s.value??0)*interval*multiplier,'magical',s.skill,false,0,false,s.stolenDamageOrigin,{attribution:s.attribution,flags:{damageOverTime:true}});s.nextTick+=interval;}if(s.until>b.time+1e-8)addStatus(b,source,u,s.skill??'silencer_curse_of_the_silent','slow',s.until-b.time,Number(s.data?.slow??.25)*multiplier,{harmful:true,ignoreStatusResistance:true,piercesImmunity:s.piercesImmunity,affectsInvulnerable:s.affectsInvulnerable,dispel:s.dispel,data:{instanceKey:s.data?.instanceKey??'',arcaneCurseSlow:true,...(s.data?.slowStacking?{stacking:s.data.slowStacking}:{}),...(s.data?.slowUniqueGroup?{uniqueGroup:s.data.slowUniqueGroup}:{})}});}
     if(s.kind==='rupture'){const dx=u.x-Number(s.data?.lastX??u.x),dy=u.y-Number(s.data?.lastY??u.y),moved=Math.hypot(dx,dy);if(s.data){s.data.lastX=u.x;s.data.lastY=u.y;}if(moved>0&&moved<=Number(s.data?.damageCapDistance??2))applyDamage(b,source,u,moved*100*(s.value??0),'pure',s.skill,true,0,false,s.stolenDamageOrigin,{attribution:s.attribution,flags:{damageOverTime:true}});}
     if(s.interval&&s.nextTick!==undefined&&s.nextTick<=b.time+1e-8&&s.nextTick<=s.until+1e-8){
       if(s.kind==='dot')applyDamage(b,source,u,(s.value??0)*s.interval,s.damageType??'magical',s.skill,!!s.piercesImmunity,0,false,s.stolenDamageOrigin,{points:s.points,visualSkill:s.visualSkill,visualPoints:s.visualPoints,attribution:s.attribution,flags:{damageOverTime:true}});
@@ -948,7 +980,7 @@ function updateStatuses(b:BattleState,u:CombatUnit) {
     if(s.until<=b.time+1e-8){
       if(s.kind==='dot'&&s.interval&&s.nextTick!==undefined){const remainder=s.until-(s.nextTick-s.interval);if(remainder>1e-8&&remainder<s.interval-1e-8)applyDamage(b,source,u,(s.value??0)*remainder,s.damageType??'magical',s.skill,!!s.piercesImmunity,0,false,s.stolenDamageOrigin,{points:s.points,visualSkill:s.visualSkill,visualPoints:s.visualPoints,attribution:s.attribution,flags:{damageOverTime:true}});}
       if(!u.statuses.includes(s))continue;
-      u.statuses=u.statuses.filter(x=>x!==s);if(s.kind==='shield'&&(s.remaining??0)>0)burstShield(b,u,s);if(s.kind==='falsePromise')settleDeferredHealth(b,u,s);if(s.kind==='ghostshipRum')beginRumPayback(u,s);notifyStatusRemoved(b,u,s,'expire');
+      u.statuses=u.statuses.filter(x=>x!==s);if(s.kind==='shield'&&(s.remaining??0)>0)burstShield(b,u,s);if(s.kind==='falsePromise')settleDeferredHealth(b,u,s);if(s.kind==='ghostshipRum')beginRumPayback(b,u,s);notifyStatusRemoved(b,u,s,'expire');
     }
   }
   refreshAttributes(u);
@@ -966,13 +998,14 @@ function updateTasks(b:BattleState) {
   for(const task of due){if(task.cancelOnInterrupt&&task.source){const u=b.units.find(u=>u.id===task.source);if(!u||u.dead||r.units.get(task.source)?.token!==task.token)continue;}task.effect();}
 }
 function updateProjectiles(b:BattleState) {
-  const r=runtime(b),projectiles=r.projectiles;r.projectiles=[];
+  const r=runtime(b),projectiles=r.projectiles;r.projectiles=[];r.updatingProjectiles=new Set(projectiles);
   for(const p of projectiles){
+    r.updatingProjectiles.delete(p);if(p.cancelled)continue;
     if(p.line){const l=p.line,source=b.units.find(t=>t.id===p.source),travel=Math.min(l.remaining,p.speed*FIXED_STEP),dx=Math.cos(l.angle),dy=Math.sin(l.angle);if(p.attackProjectile&&source&&arenaBlocksAttack(b,source,p,{x:p.x+dx*travel,y:p.y+dy*travel})){emit(b,{type:'hit',source:p.source,skill:p.skill,x:p.x,y:p.y,amount:0,outcome:'arenaBlocked'});l.onEnd?.();continue;}const candidates=live(b).filter(t=>t.id!==p.source&&!l.hit.includes(t.id)&&canTarget(t,false)&&(l.targets==='all'||t.side!==source?.side)).map(t=>({t,along:(t.x-p.x)*dx+(t.y-p.y)*dy,across:Math.abs((t.x-p.x)*dy-(t.y-p.y)*dx)})).filter(t=>t.along>=-BODY_RADIUS&&t.along<=travel+BODY_RADIUS&&t.across<=l.width+((l.endWidth??l.width)-l.width)*Math.max(0,Math.min(1,(l.distance-l.remaining+t.along)/Math.max(1e-8,l.distance)))+BODY_RADIUS).sort((a,b)=>a.along-b.along||a.t.id.localeCompare(b.t.id));for(const item of candidates){l.hit.push(item.t.id);p.effect(item.t);if(l.stopOnHit){l.remaining=0;break;}}p.x+=dx*travel;p.y+=dy*travel;l.remaining-=travel;l.onMove?.({x:p.x,y:p.y});if(l.remaining>1e-8)r.projectiles.push(p);else l.onEnd?.();continue;}
     const target=b.units.find(u=>u.id===p.target);if(!target||target.dead)continue;
-    if(p.disjointOnInvisibility&&hasStatus(target,'invisible')&&!hasStatus(target,'revealed')){emit(b,{type:'status',source:target.id,target:p.source,skill:p.skill,x:p.x,y:p.y,status:'projectileDisjoint',projectileId:p.id});continue;}
+    if(p.disjointOnInvisibility&&hasStatus(target,'invisible')&&!hasStatus(target,'revealed')){p.cancelled=true;emit(b,{type:'status',source:target.id,target:p.source,skill:p.skill,x:p.x,y:p.y,status:'projectileDisjoint',projectileId:p.id});p.onDisjoint?.({x:p.x,y:p.y});continue;}
     const dx=target.x-p.x,dy=target.y-p.y,d=Math.hypot(dx,dy),travel=p.speed*FIXED_STEP;
-    const source=b.units.find(u=>u.id===p.source);if((p.skill==='basic_attack'||p.attackProjectile)&&source&&arenaBlocksAttack(b,source,p,{x:p.x+dx/(d||1)*Math.min(travel,d),y:p.y+dy/(d||1)*Math.min(travel,d)})){emit(b,{type:'hit',source:p.source,target:p.target,x:p.x,y:p.y,amount:0,outcome:'arenaBlocked'});continue;}
+    const source=b.units.find(u=>u.id===p.source);if((p.skill==='basic_attack'||p.attackProjectile)&&source&&arenaBlocksAttack(b,source,p,{x:p.x+dx/(d||1)*Math.min(travel,d),y:p.y+dy/(d||1)*Math.min(travel,d)})){emit(b,{type:'hit',source:p.source,target:p.target,skill:p.skill,points:p.points,visualSkill:p.visualSkill,visualPoints:p.visualPoints,attribution:p.attribution,x:p.x,y:p.y,amount:0,outcome:'arenaBlocked'});continue;}
     if(d<=travel+BODY_RADIUS){
       p.onMove?.({x:target.x,y:target.y});
       const block=getSkillProgram(p.skill)?.spellBlockTiming==='impact'?effects(target).find(s=>s.kind==='spellBlock'):undefined;
@@ -981,6 +1014,7 @@ function updateProjectiles(b:BattleState) {
     }
     p.x+=dx/d*travel;p.y+=dy/d*travel;p.onMove?.({x:p.x,y:p.y});r.projectiles.push(p);
   }
+  r.updatingProjectiles=undefined;
   b.projectiles=r.projectiles.map(p=>({id:p.id,createdAt:p.createdAt,source:p.source,target:p.target,skill:p.skill,points:p.points,visualSkill:p.visualSkill,visualPoints:p.visualPoints,x:p.x,y:p.y,angle:p.line?.angle}));
 }
 function updateZones(b:BattleState) {
@@ -1206,7 +1240,7 @@ export function battleStats(b:BattleState):UnitStats[] {
   return snapshotBattleStats(b);
 }
 export function battleGains(b:BattleState):{heroId:string;attack:number;strength?:number;agility?:number;intelligence?:number;skillState?:Record<string,number>}[] {
-  return b.units.filter(u=>!u.summoned&&['Attack','Strength','Agility','Intelligence'].some(a=>Number(u[`permanent${a}Gain`]??0)>0)||(!u.summoned&&Object.keys((u.permanentSkillGains??{}) as object).length>0)).map(u=>({heroId:String(u.heroId??u.id.slice(u.id.indexOf(':')+1)),attack:Number(u.permanentAttackGain??0),strength:Number(u.permanentStrengthGain??0),agility:Number(u.permanentAgilityGain??0),intelligence:Number(u.permanentIntelligenceGain??0),...(Object.keys((u.permanentSkillGains??{}) as object).length?{skillState:structuredClone((u.permanentSkillGains??{}) as Record<string,number>)}:{})}));
+  return b.units.filter(u=>!u.summoned&&['Attack','Strength','Agility','Intelligence'].some(a=>Number(u[`permanent${a}Gain`]??0)!==0)||(!u.summoned&&Object.keys((u.permanentSkillGains??{}) as object).length>0)).map(u=>({heroId:String(u.heroId??u.id.slice(u.id.indexOf(':')+1)),attack:Number(u.permanentAttackGain??0),strength:Number(u.permanentStrengthGain??0),agility:Number(u.permanentAgilityGain??0),intelligence:Number(u.permanentIntelligenceGain??0),...(Object.keys((u.permanentSkillGains??{}) as object).length?{skillState:structuredClone((u.permanentSkillGains??{}) as Record<string,number>)}:{})}));
 }
 export function serializeBattle(b:BattleState):string { return JSON.stringify(b); }
 /** Replaying the recorded deterministic input reconstructs in-flight closures, channels

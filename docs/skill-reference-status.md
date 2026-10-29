@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 95 项；完整逐项通过 7 项。
-当前代码下，858 条具名结果测试要求通过，858 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 110 项；完整逐项通过 7 项。
+当前代码下，1065 条具名结果测试要求通过，1065 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -89,21 +89,21 @@
 | 死亡之指 (Finger of Death) | 审查中 | 2 / 1 / 2 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 龙炎饼干 (Firesnap Cookie) | 审查中 | 0 / 2 / 0 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 沟壑 (Fissure) | 审查中 | 1 / 2 / 1 / 4 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
-| 高射火炮 (Flak Cannon) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 烈火罩 (Flame Guard) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 血肉傀儡 (Flesh Golem) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 腐肉堆积 (Flesh Heap) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 集中火力 (Focus Fire) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 气运之末 (Fortune's End) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 极寒领域 (Freezing Field) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 霜冻之箭 (Frost Arrows) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 冰霜魔盾 (Frost Shield) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 冰封禁制 (Frostbite) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 怒意狂击 (Fury Swipes) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| G 胖力量 (Gaben's Strength) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 幽灵船 (Ghostship) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 智慧之刃 (Glaives of Wisdom) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 全领域静默 (Global Silence) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 高射火炮 (Flak Cannon) | 审查中 | 6 / 1 / 2 / 0 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
+| 烈火罩 (Flame Guard) | 审查中 | 1 / 4 / 0 / 0 / 7 | 7 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
+| 血肉傀儡 (Flesh Golem) | 审查中 | 2 / 1 / 6 / 1 / 7 | 5 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
+| 腐肉堆积 (Flesh Heap) | 审查中 | 1 / 1 / 2 / 0 / 6 | 5 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
+| 集中火力 (Focus Fire) | 审查中 | 3 / 2 / 2 / 1 / 11 | 3 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
+| 气运之末 (Fortune's End) | 审查中 | 0 / 2 / 4 / 3 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/frost-control.json) |
+| 极寒领域 (Freezing Field) | 审查中 | 1 / 3 / 4 / 4 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/frost-control.json) |
+| 霜冻之箭 (Frost Arrows) | 审查中 | 3 / 0 / 1 / 4 / 9 | 8 | [审查记录](../references/dota-wiki/acceptance/frost-control.json) |
+| 冰霜魔盾 (Frost Shield) | 审查中 | 0 / 5 / 1 / 1 / 10 | 4 | [审查记录](../references/dota-wiki/acceptance/frost-control.json) |
+| 冰封禁制 (Frostbite) | 审查中 | 0 / 2 / 1 / 4 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/frost-control.json) |
+| 怒意狂击 (Fury Swipes) | 审查中 | 4 / 1 / 1 / 1 / 5 | 1 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
+| G 胖力量 (Gaben's Strength) | 审查中 | 1 / 3 / 1 / 1 / 2 | 1 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
+| 幽灵船 (Ghostship) | 审查中 | 2 / 4 / 1 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
+| 智慧之刃 (Glaives of Wisdom) | 审查中 | 1 / 3 / 1 / 3 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
+| 全领域静默 (Global Silence) | 审查中 | 1 / 3 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 神之谴戒 (God's Rebuke) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 黄泉颤抖 (Grave Chill) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 长大 (Grow) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

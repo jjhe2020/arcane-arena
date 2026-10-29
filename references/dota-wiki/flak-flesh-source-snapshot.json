@@ -1,0 +1,430 @@
+{
+  "checkedOn": "2026-10-30",
+  "method": "source metadata,local captured catalog fingerprints and selected native artifacts; no remote full-page HTML",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+      "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+      "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+      "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+      "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+    },
+    {
+      "id": "valve-items",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+      "paraphrase": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+      "versionContext": "2023-02-10 native item prototypes. AA grants/effects retain their custom differences; no inventory system is invented."
+    },
+    {
+      "id": "valve-units",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Native Undying Zombie has2HP,33to36attack,1.6BAT,.3attack point,128range,375movement and33percent magic resistance.",
+      "paraphrase": "Native Undying Zombie has2HP,33to36attack,1.6BAT,.3attack point,128range,375movement and33percent magic resistance.",
+      "versionContext": "2023-02-10 native unit candidate; the workbook labels turn-rate conversion and BAT-minus-point backswing as engineering candidates."
+    },
+    {
+      "id": "aa15",
+      "url": "https://news.abilityarena.com/1-5/",
+      "accessedOn": "2026-10-30",
+      "observation": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+      "paraphrase": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+      "versionContext": "2022-10-05 AA1.5; explicit captured values still have priority."
+    },
+    {
+      "id": "aa20",
+      "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+      "accessedOn": "2026-10-30",
+      "observation": "Focus Super removes its attack-damage penalty; Gaben costs no mana and replaces its former bounce behavior.",
+      "paraphrase": "Focus Super removes its attack-damage penalty; Gaben costs no mana and replaces its former bounce behavior.",
+      "versionContext": "2022-11-02 AASeason2; no later replacement of this captured upgrade is silently imported."
+    },
+    {
+      "id": "aa40",
+      "url": "https://news.abilityarena.com/ability-arena-season-4/",
+      "accessedOn": "2026-10-30",
+      "observation": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+      "paraphrase": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+      "versionContext": "2023-01-01 AASeason4."
+    },
+    {
+      "id": "aa45",
+      "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+      "accessedOn": "2026-10-30",
+      "observation": "Golem base amplification/strength were reduced to the captured values, while announced Super increments15/20 conflict with captured10/10.",
+      "paraphrase": "Golem base amplification/strength were reduced to the captured values, while announced Super increments15/20 conflict with captured10/10.",
+      "versionContext": "2023-02-01 AASeason4.5; captured Super increments10/10 remain authoritative."
+    },
+    {
+      "id": "aa55",
+      "url": "https://news.abilityarena.com/ability-arena-pantheon-update-season-5-5/",
+      "accessedOn": "2026-10-30",
+      "observation": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+      "paraphrase": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+      "versionContext": "2023-04-05 AA5.5; later item-upgrade replacement cannot overwrite the captured earlier item grants. Steam changelog fetch and official JS access failed this run; no new exact-rank proof claimed."
+    },
+    {
+      "id": "flak-wiki",
+      "url": "https://dota2.fandom.com/wiki/Gyrocopter",
+      "accessedOn": "2026-10-30",
+      "observation": "Flak fires independent800speed attacks at attack launch even when primary misses, excludes primary/wards/buildings/invisible units and does not apply modifiers. Side Gunner uses body projectile speed and modifiers, ignores disarm, stops for invisibility/hidden/Break; melee Side Gunner misses beyond body range+350.",
+      "paraphrase": "Flak fires independent800speed attacks at attack launch even when primary misses, excludes primary/wards/buildings/invisible units and does not apply modifiers. Side Gunner uses body projectile speed and modifiers, ignores disarm, stops for invisibility/hidden/Break; melee Side Gunner misses beyond body range+350.",
+      "versionContext": "Retained approximately7.35 page. The later two-target Side Gunner and1250radius are explicitly excluded; exact earlier dates of some edge notes remain qualified."
+    },
+    {
+      "id": "flak-history",
+      "url": "https://dota2.fandom.com/wiki/Gyrocopter/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "March2022 explicitly enabled learned Side Gunner on other bodies; 7.34 added its second active target and1250Flak radius.",
+      "paraphrase": "March2022 explicitly enabled learned Side Gunner on other bodies; 7.34 added its second active target and1250Flak radius.",
+      "versionContext": "2022-03-25 and2023-08-08 changes distinguish the selected2023candidate from later features."
+    },
+    {
+      "id": "flame-wiki",
+      "url": "https://dota2.fandom.com/wiki/Ember_Spirit",
+      "accessedOn": "2026-10-30",
+      "observation": "The active guard burns at.2second intervals, loses its burn with the barrier and is dispellable; its cast animation is0+.6.",
+      "paraphrase": "The active guard burns at.2second intervals, loses its burn with the barrier and is dispellable; its cast animation is0+.6.",
+      "versionContext": "Retained post2023page; AA custom cap/DPS and full absorption override newer native numbers."
+    },
+    {
+      "id": "flame-history",
+      "url": "https://dota2.fandom.com/wiki/Ember_Spirit/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "7.31 changed absorption100to70percent and cap110/240/370/500to85/190/295/400.7.29 reduced backswing to.6; old280capacity and50DPS talents are prototypes for AA Super.",
+      "paraphrase": "7.31 changed absorption100to70percent and cap110/240/370/500to85/190/295/400.7.29 reduced backswing to.6; old280capacity and50DPS talents are prototypes for AA Super.",
+      "versionContext": "2021-04-09 and2022-02-23 boundaries. AA English unharmed wording and old cap are retained rather than silently adopting70percent."
+    },
+    {
+      "id": "barrier733",
+      "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.33",
+      "accessedOn": "2026-10-30",
+      "observation": "Magic barriers moved after magic-resistance reduction in7.33. This supports a separate preMR stage for the selected older Flame Guard model.",
+      "paraphrase": "Magic barriers moved after magic-resistance reduction in7.33. This supports a separate preMR stage for the selected older Flame Guard model.",
+      "versionContext": "2023-04-20. This does not establish preMR barrier priority against False Promise,Borrowed Time or Refraction."
+    },
+    {
+      "id": "radiance-wiki",
+      "url": "https://dota2.fandom.com/wiki/Radiance",
+      "accessedOn": "2026-10-30",
+      "observation": "Burn first ticks after one second, lingers.5seconds and does not stack. Heroes take priority over weaker illusion Burn; the item effect also supports ordinary spell amplification/lifesteal.",
+      "paraphrase": "Burn first ticks after one second, lingers.5seconds and does not stack. Heroes take priority over weaker illusion Burn; the item effect also supports ordinary spell amplification/lifesteal.",
+      "versionContext": "Retained approximately7.35page; post7.34illusion-victim1.5multiplier excluded. AA120/15/70are a disclosed doubled-DPS working interpretation."
+    },
+    {
+      "id": "radiance-history",
+      "url": "https://dota2.fandom.com/wiki/Radiance/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "7.32 raised blind10to15percent; native illusion Burn35DPS predates2023. Later item stat changes and7.34illusion-victim multiplier are excluded.",
+      "paraphrase": "7.32 raised blind10to15percent; native illusion Burn35DPS predates2023. Later item stat changes and7.34illusion-victim multiplier are excluded.",
+      "versionContext": "2022-08-24 blind15candidate and older native illusion prototype."
+    },
+    {
+      "id": "break-item",
+      "url": "https://liquipedia.net/dota2/Break/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "The introduction of Break preserves item passives, explicitly including Radiance.",
+      "paraphrase": "The introduction of Break preserves item passives, explicitly including Radiance.",
+      "versionContext": "Native6.84item-passive rule predates2023. Whether the AA grant was internally an item or a custom ability remains a separate AA implementation boundary."
+    },
+    {
+      "id": "golem-wiki",
+      "url": "https://dota2.fandom.com/wiki/Undying",
+      "accessedOn": "2026-10-30",
+      "observation": "Golem increases total strength dynamically, applies generic incoming amplification before attack damage, refreshes rather than stacks and ends on owner death. Images copy remaining form but do not apply its debuff.",
+      "paraphrase": "Golem increases total strength dynamically, applies generic incoming amplification before attack damage, refreshes rather than stacks and ends on owner death. Images copy remaining form but do not apply its debuff.",
+      "versionContext": "Retained approximately7.35page. Its Ability Draft model-specific death bug is not silently applied to the four AA body classes; HPLOSS ordering and multiple attribute multipliers remain separate boundaries."
+    },
+    {
+      "id": "golem-history",
+      "url": "https://dota2.fandom.com/wiki/Undying/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "7.29 removed illusion Golem debuffs.7.30 Shard spawned a15second zombie per successful form attack with30second cooldown reduction. Native zombies need one hero or two basic hits to destroy.",
+      "paraphrase": "7.29 removed illusion Golem debuffs.7.30 Shard spawned a15second zombie per successful form attack with30second cooldown reduction. Native zombies need one hero or two basic hits to destroy.",
+      "versionContext": "2021-04-09/2021-08-18 upgrades; zombie hit-count change dates to6.84. Exact AA Zombie ability rank is not recovered."
+    },
+    {
+      "id": "zombie-wiki",
+      "url": "https://liquipedia.net/dota2/Undying_Zombie",
+      "accessedOn": "2026-10-30",
+      "observation": "Deathstrike applies independent2.5second slow entries and checks the linked victim HP in.5second intervals to apply Deathlust speed.",
+      "paraphrase": "Deathstrike applies independent2.5second slow entries and checks the linked victim HP in.5second intervals to apply Deathlust speed.",
+      "versionContext": "Current unit-mechanism page backed by pinned2023Deathstrike40percent/5slow/2.5duration/50to80AS/35to50move values. AA chosen max-rank zombie remains a candidate."
+    },
+    {
+      "id": "heap-wiki",
+      "url": "https://dota2.fandom.com/wiki/Pudge",
+      "accessedOn": "2026-10-30",
+      "observation": "Flesh Heap blocks after reductions, refreshes rather than stacks; living owners gain from hero deaths but not illusions,TempestDouble or Reincarnation. Native ranks update prior stacks. Shield-priority exceptions are listed.",
+      "paraphrase": "Flesh Heap blocks after reductions, refreshes rather than stacks; living owners gain from hero deaths but not illusions,TempestDouble or Reincarnation. Native ranks update prior stacks. Shield-priority exceptions are listed.",
+      "versionContext": "Retained approximately7.35page. AA Super explicit450radius and fixed2/4permanent increments override native values; broader enemy wording and retroactivity remain unresolved."
+    },
+    {
+      "id": "heap-history",
+      "url": "https://dota2.fandom.com/wiki/Pudge/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "7.31b made native active block undispellable. Captured AA explicitly requires Strong Dispels Only, so Basic Dispel preserves it while Strong Dispel removes it.",
+      "paraphrase": "7.31b made native active block undispellable. Captured AA explicitly requires Strong Dispels Only, so Basic Dispel preserves it while Strong Dispel removes it.",
+      "versionContext": "2022-03-01native change versus captured AA dispel override. Native2023KV also has immediate,ignore-channel and ignore-backswing flags."
+    },
+    {
+      "id": "focus-wiki",
+      "url": "https://dota2.fandom.com/wiki/Windranger",
+      "accessedOn": "2026-10-30",
+      "observation": "Focus uses body attack range and ignores spell range; attack speed/damage adapt at attack begin. Only main+bonus damage is reduced, not conditional bonuses. Most recent target wins; owner death ends the buff while target death does not.",
+      "paraphrase": "Focus uses body attack range and ignores spell range; attack speed/damage adapt at attack begin. Only main+bonus damage is reduced, not conditional bonuses. Most recent target wins; owner death ends the buff while target death does not.",
+      "versionContext": "Retained approximately7.35page; duration20is independently present in pinned2023KV. No manual-order UI is claimed for this autonomous arena."
+    },
+    {
+      "id": "focus-history",
+      "url": "https://dota2.fandom.com/wiki/Windranger/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "6.81Scepter reduced the main attack penalty to30/15/0without reducing conditional item modifiers.7.31changed native50/40/30to30but AA preserves older rank penalties; moving attacks date to7.07.",
+      "paraphrase": "6.81Scepter reduced the main attack penalty to30/15/0without reducing conditional item modifiers.7.31changed native50/40/30to30but AA preserves older rank penalties; moving attacks date to7.07.",
+      "versionContext": "Historical prototype only. AA Super removes all ranks penalty and grants Maelstrom; AA Gaben fully resets cooldown rather than importing the later native talent20second advance."
+    },
+    {
+      "id": "maelstrom-history",
+      "url": "https://liquipedia.net/dota2/Maelstrom/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "Proccing attacks gained True Strike in7.14; PRD predates2013,.2proc cooldown dates to7.00.7.32e140to135damage and later illusion multiplier are excluded.",
+      "paraphrase": "Proccing attacks gained True Strike in7.14; PRD predates2013,.2proc cooldown dates to7.00.7.32e140to135damage and later illusion multiplier are excluded.",
+      "versionContext": "Historical native item prototype matching pinned2023-02-10values,not modern Maelstrom balance."
+    },
+    {
+      "id": "spell-block",
+      "url": "https://dota2.fandom.com/wiki/Spell_Block",
+      "accessedOn": "2026-10-30",
+      "observation": "Focus Fire is listed among blockable targeted abilities. Maelstrom chain lightning is excluded after the6.82change.",
+      "paraphrase": "Focus Fire is listed among blockable targeted abilities. Maelstrom chain lightning is excluded after the6.82change.",
+      "versionContext": "Retained page plus the dated historical Spell Block changelog; the tested Focus cast is primary-only."
+    },
+    {
+      "id": "scion-item",
+      "url": "https://liquipedia.net/dota2/Damage_Instance",
+      "accessedOn": "2026-10-30",
+      "observation": "The Scion example excludes damage from items from its ability-damage stack event.",
+      "paraphrase": "The Scion example excludes damage from items from its ability-damage stack event.",
+      "versionContext": "Direct2026-10-30search observation of the old Scion example; original AA customanyability exception is distinguished from item-origin metadata. No global damage-hook suppression is used."
+    }
+  ],
+  "nativeArtifacts": [
+    {
+      "file": "items.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40"
+    },
+    {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+    },
+    {
+      "file": "npc_units.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592"
+    }
+  ],
+  "aaCatalogSnapshots": [
+    {
+      "id": "gyrocopter_flak_cannon",
+      "capturedEnglish": {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          18
+        ],
+        "description": "Gyrocopter's attacks hit all enemy units in an area around it for a limited number of attacks. Only the main target of attacks will receive attack bonuses such as Critical Strike. Lasts 10 seconds or until the attacks are used.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Side Gunner attacks becomes Flak Cannon attacks.",
+        "icon": "gyrocopter_flak_cannon",
+        "id": "gyrocopter_flak_cannon",
+        "manaCost": [
+          40,
+          50,
+          70
+        ],
+        "name": "Flak Cannon",
+        "superUpgrade": "Super: Grants Side Gunner: attacks enemy units within 700 units every 1.2 seconds, prioritizing furthest unit away within its range.",
+        "tags": [
+          "instantAttack"
+        ],
+        "values": [
+          "MAX ATTACKS: 3 / 4 / 6",
+          "RADIUS: 1000"
+        ]
+      },
+      "sha256": "665628ddcb0d02ed63bead0010d66c86884ddc2ac7aa2a9eb459ae3eaddbbdc0"
+    },
+    {
+      "id": "custom_ember_spirit_flame_guard",
+      "capturedEnglish": {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          35
+        ],
+        "description": "The caster surrounds themselves with a ring of fire that consumes incoming magic damage, leaving him unharmed. Flame Guard deals damage per second in an area around the caster while Flame Guard is active. If the shield is broken, the damage is also lost.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Passive: Twice as powerful Radiance effect.",
+        "icon": "ember_spirit_flame_guard",
+        "id": "custom_ember_spirit_flame_guard",
+        "manaCost": [
+          80,
+          90,
+          110
+        ],
+        "name": "Flame Guard",
+        "superUpgrade": "Super: +50 Damage Per Second, +280 Magic Damage Absorbed, and -28s cooldown.",
+        "tags": [
+          "magicDamage"
+        ],
+        "values": [
+          "DAMAGE PER SECOND: 25 / 35 / 55",
+          "DURATION: 11 / 14 / 20",
+          "MAGIC ABSORB: 110 / 240 / 500",
+          "RADIUS: 400"
+        ]
+      },
+      "sha256": "8e520d8db012788f0daa5d0f3b2ba508e907a85ce6398cd7d73f93d52afe6820"
+    },
+    {
+      "id": "undying_flesh_golem",
+      "capturedEnglish": {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          125
+        ],
+        "description": "Undying transforms into a horrifying flesh golem. Gains a percentage increase to strength and imbues attacks with a slow and damage amplification.",
+        "differences": "Caster becomes melee in Flesh Golem form.",
+        "gabenUpgrade": "Gaben: Gain a 10% chance to cast Soul Rip on the target on attack, and a 10% chance to cast Soul Rip on themselves when attacked.",
+        "icon": "undying_flesh_golem",
+        "id": "undying_flesh_golem",
+        "manaCost": [
+          100,
+          125,
+          150
+        ],
+        "name": "Flesh Golem",
+        "superUpgrade": "Super: +10% damage amplification, +10% extra strength, reduces Flesh Golem Cooldown by 30s and causes caster to spawn one zombie on each attack while transformed. Spawned zombies lasts 15s.",
+        "tags": [
+          "damageAmplification",
+          "stats",
+          "summons",
+          "ultimate"
+        ],
+        "values": [
+          "DAMAGE AMPLIFICATION: 5% / 10% / 15%",
+          "DURATION: 40",
+          "MOVEMENT BONUS: 30 / 40 / 50",
+          "SLOW DURATION: 6",
+          "SLOW: 40% / 45% / 50%",
+          "STRENGTH MULTIPLIER: 20% / 30% / 40%"
+        ]
+      },
+      "sha256": "280e3eab7996323bb4dab1c10b0af5a8cab7370d2889d8a7a75f3add0c83a4e1"
+    },
+    {
+      "id": "custom_pudge_flesh_heap",
+      "capturedEnglish": {
+        "categories": [
+          "ABILITY: No Target",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          20,
+          18,
+          14
+        ],
+        "description": "Gives the hero a guaranteed damage block against all types of damage. Passively grants bonus strength that increases each time this hero kills an enemy Hero or it dies in their vicinity.",
+        "differences": "Does not gain Strength permanently until Super.",
+        "gabenUpgrade": "Gaben: 2x damage block and 2x strength gain.",
+        "icon": "pudge_flesh_heap",
+        "id": "custom_pudge_flesh_heap",
+        "manaCost": [
+          35,
+          50,
+          80
+        ],
+        "name": "Flesh Heap",
+        "superUpgrade": "Super: Permanently gains +2 Strength per enemy that dies in 450 range.",
+        "tags": [
+          "stats"
+        ],
+        "values": [
+          "DAMAGE BLOCK: 8 / 14 / 26",
+          "DURATION: 5 / 6 / 8",
+          "RANGE: 450",
+          "STRENGTH BONUS: 0 / 0 / 0"
+        ]
+      },
+      "sha256": "ebc0db206d6c6b72328b1068255146168570295650d60199ba75ea3ce58d978b"
+    },
+    {
+      "id": "custom_windrunner_focusfire",
+      "capturedEnglish": {
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          70,
+          50,
+          30
+        ],
+        "description": "Channels the wind to gain 450 additional attack speed against a single enemy unit or structure, though with a reduction to her attack damage. Extra damage from secondary item effects is not reduced.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Focus Fire has no mana cost, and kills reset cooldown.",
+        "icon": "windrunner_focusfire",
+        "id": "custom_windrunner_focusfire",
+        "manaCost": [
+          75,
+          100,
+          125
+        ],
+        "name": "Focus Fire",
+        "superUpgrade": "Super: Removes damage reduction and Grants Maelstrom.",
+        "tags": [
+          "attackSpeed",
+          "ultimate"
+        ],
+        "values": [
+          "BONUS ATTACK SPEED: 450",
+          "DAMAGE REDUCTION: -50% / -40% / -30%"
+        ]
+      },
+      "sha256": "2469e8d614ae43cd76d5e2b602a19e8875fa37c176e187ee68e65a958076508a"
+    }
+  ]
+}

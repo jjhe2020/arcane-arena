@@ -10,8 +10,8 @@ function player(id: number, skill?: string, points = 3, count = 1): Player {
   return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 3, locked: false, reserve: [], shop: [],
     heroes: Array.from({ length: count }, (_, i) => ({ id: `hero${i}`, name: `hero${i}`, role: 'mage', skin: 'female', x: i * 1.5, y: -2, skills: skill && !i ? [{ id: skill, points }] : [] })) };
 }
-function battle(skill: string, points = 3, targets = 1): BattleState {
-  const state = createBattle(player(0, skill, points), player(1, undefined, 3, targets), 137, defs);
+function battle(skill: string, points = 3, targets = 1,definitions=defs): BattleState {
+  const state = createBattle(player(0, skill, points), player(1, undefined, 3, targets), 137, definitions);
   for (const u of state.units) {
     u.maxHp = 100000; u.hp = 100000; u.mana = 100000; u.maxMana = 100000;
     u.moveSpeed = 0;
@@ -488,7 +488,7 @@ describe('catalog-driven additional skills', () => {
     caster.skills.push({ id: 'custom_drow_ranger_frost_arrows', points: 3 }); caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;
     advance(state, 2.4);
     const hits = state.events.filter(e => e.type === 'hit' && e.source === caster.id && e.damageType === 'physical' && (e.amount ?? 0) > 0);
-    expect(hits).toHaveLength(3); expect(hits.every(e => Math.abs(Number(e.amount) - (65 + 30) * 1.6) < 1e-6)).toBe(true);
+    expect(hits).toHaveLength(3); expect(hits.every((e,index) => Math.abs(Number(e.amount) - (65 * 1.6 + 30 + 5 * (index+1))) < 1e-6)).toBe(true);
     expect(target.statuses.some(s => s.kind === 'hypothermia')).toBe(true);
   });
 
@@ -532,14 +532,18 @@ describe('catalog-driven additional skills', () => {
     expect(state.events.some(e => e.type === 'hit' && e.skill === 'marci_companion_run' && e.target === back.id)).toBe(true);
   });
 
-  it('Phantasm inherits functioning passive attack effects while excluding active casts and recursive summons', () => {
-    const state = battle('custom_chaos_knight_phantasm', 3), caster = state.units[0];
-    caster.skills.push({ id: 'custom_drow_ranger_frost_arrows', points: 3 }, { id: 'custom_vengefulspirit_magic_missile', points: 3 });
-    caster.statuses.push({ kind: 'disarm', until: 200 }); advance(state, 3);
+  it('Phantasm inherits native critical attacks while excluding active orbs and recursive summons', () => {
+    const definitions=structuredClone(defs),critical=definitions.find(d=>d.id==='custom_phantom_assassin_coup_de_grace')!;
+    for(const row of Object.values(critical.balanceLevels!))row.params['CRITICAL CHANCE']=100;
+    const state = battle('custom_chaos_knight_phantasm', 3,1,definitions), caster = state.units[0];
+    caster.skills.push({ id: 'custom_phantom_assassin_coup_de_grace', points: 3 }, { id: 'custom_drow_ranger_frost_arrows', points: 3 }, { id: 'custom_vengefulspirit_magic_missile', points: 3 });
+    // Use an authored guaranteed critical to isolate inheritance from PRD.
+    caster.statuses.push({ kind: 'disarm', until: 200 }); stepBattle(state, 3, definitions);
     const clones = state.units.filter(u => u.illusion);
     expect(clones).toHaveLength(3);
-    expect(clones.every(u => u.skills.some(s => s?.id === 'custom_drow_ranger_frost_arrows') && !u.skills.some(s => s?.id === 'custom_vengefulspirit_magic_missile'))).toBe(true);
-    expect(state.units[1].statuses.some(s => s.kind === 'hypothermia' && clones.some(u => u.id === s.source))).toBe(true);
+    expect(clones.every(u => u.skills.some(s => s?.id === 'custom_phantom_assassin_coup_de_grace') && !u.skills.some(s => s?.id === 'custom_drow_ranger_frost_arrows'||s?.id === 'custom_vengefulspirit_magic_missile'))).toBe(true);
+    expect(state.events.some(e=>e.type==='hit'&&e.flags?.critical&&clones.some(u=>u.id===e.source))).toBe(true);
+    expect(state.units[1].statuses.some(s => s.kind === 'hypothermia' && clones.some(u => u.id === s.source))).toBe(false);
     expect(state.events.filter(e => e.type === 'cast' && clones.some(u => u.id === e.source))).toHaveLength(0);
     expect(clones.every(u => u.attack === caster.attack && u.intelligence === caster.intelligence)).toBe(true);
   });

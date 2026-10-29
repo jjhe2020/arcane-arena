@@ -13,6 +13,7 @@ export function applyNativeUnitProfile(unit:CombatUnit,nativeTemplateId:string):
  unit.nativeTemplateId=nativeTemplateId;
  unit.sourceUnitType=nativeTemplateId;
  unit.nativeBaseAttackSpeed=profile.BaseAttackSpeed;
+ if(profile.Level!==undefined){if(!Number.isInteger(profile.Level)||profile.Level<1||profile.Level>100)throw new Error(`Invalid native unit level: ${nativeTemplateId}`);unit.nativeLevel=profile.Level;}
  unit.attackCapability=capability===0?'none':capability===1?'melee':'ranged';
  for(const key of ['attackPoint','attackBackswing','projectileSpeed','turnRate','attackRangeBuffer'] as const){
   const value=profile[key];

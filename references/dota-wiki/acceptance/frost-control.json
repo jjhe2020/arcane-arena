@@ -1,0 +1,2520 @@
+{
+  "schemaVersion": 1,
+  "group": "frost-control",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit values/custom clauses win. Named native talents/items/Shard/Scepter are traced to pinned2023KV and dated Wiki history. Indexed current/frozen pages are labelled rather than reported as direct2023HTTP captures. No Wayback request was made during rate limiting.",
+  "validation": {
+    "command": "npx vitest run tests/reference-frost-control.test.ts",
+    "passedTests": 88,
+    "configurationHash": "2e2760c9c65a5febc198cc2837a0f1973b82b6e0cdd6ea378560177d38e960a4",
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "88 newly authored engine results include original-input replays and actual casts, movement, native summons, delayed damage, restoration and projectile interception. Green working interpretations are explicitly source_pending. Earlier finite FP/Spire tests are background only, not complete skill acceptance. The final root full-suite report independently contains all88 exact current titles passing under the final table hash;1697 tests passed in total.",
+    "fullSuiteCommand": "npm test",
+    "fullSuitePassedTests": 1697,
+    "fullSuiteEvidence": "artifacts/r6-c7-unit-tests.json"
+  },
+  "skills": [
+    {
+      "id": "custom_oracle_fortunes_end",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete AA base/Super/Gaben English clauses were enumerated, with bounded named mechanism/timing/upgrade/combination requirements. Unresolved exact qualifications prevent a full-skill certification.",
+        "fixtures": "Actual registered engine; fixed positions, HP, disarm/cooldown locks and zero-point effect isolation are explicit. Dedicated CLOCK/cancel/movement/native-summon cases retain real public behavior. Five replays use original inputs/seed, not runtime ledger injection."
+      },
+      "catalogClauses": {
+        "base": "Gathers the hero's power into a bolt of scouring energy that, when released, damages, roots, and purges enemies of buffs in an area around the target. If target is an ally it will only purge debuffs.\n\nDISPEL TYPE: Basic Dispel",
+        "super": "Super: Applies Purifying Flames to all enemies and allies within the effect radius of the main target, dealing 360 magical damage. This applies before the dispel. Heals 44 health per second over 9 seconds.",
+        "gaben": "Gaben: Applies Rain of Destiny, centered on the main target. Heals/Damages allies/enemies for 60 health per second over 10 seconds. While inside Rain of Destiny, allies/enemies have their heal amplification increased/reduced by 25%.",
+        "values": [
+          "DAMAGE: 100 / 160 / 280",
+          "RADIUS: 150 / 200 / 300",
+          "ROOT DURATION: 2.75"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "The full base, Super and Gaben English clauses and custom values are retained in the selected official catalog. Fortune has no channel; Frost Arrows has default Hypothermia; Ice Age and opposite/self/custom effects remain AA-defined.",
+          "versionContext": "Prior fresh full230 HTTP200 metadata reused, not a new request; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA balance/custom clauses override native changes.",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/ability-arena/abilities-frost-control-20261030.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_abilities.txt",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "oracle-old",
+          "url": "https://dota2.fandom.com/wiki/Oracle",
+          "accessedOn": "2026-10-30",
+          "observation": "Only a targeted ally is defensively dispelled. Fortune uses primary-only impact block, offensive purge then root/True Sight then damage, and an instant-talent backswing0.3. Flames instances stack independently and heal in nine one-second intervals.",
+          "versionContext": "Indexed frozen older Wiki page contains7.35-era numeric changes; it is not called a direct2023capture. Pinned speed1000 and AA values supersede later native numbers. Direct access was robot-blocked.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-history",
+          "url": "https://liquipedia.net/dota2/Oracle/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.17 removes Fortune disjoint;7.32e changes1000speed to1200. Rain7.31 introduces650radius/10seconds/25%heal-only manipulation with0.5linger;7.32 raises both rates to60.",
+          "versionContext": "Explicit pre2023 changes support the selected native prototype. Later Rain20%/40 or15%/30 and changed Flames healing are excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle",
+          "url": "https://liquipedia.net/dota2/Oracle",
+          "accessedOn": "2026-10-30",
+          "observation": "Flames creates independent heal-over-time buffs and nonlethal allied damage. Rain healing manipulation is separate from damage/heal instances and nonstacking between overlapping areas.",
+          "versionContext": "Current indexed primary Wiki supplies compatible mechanics, not a blanket2023certificate. Asymmetric first/end rain tick counts are an explicit unresolved version branch.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-guide",
+          "url": "https://dota2.fandom.com/wiki/Oracle/Guide",
+          "accessedOn": "2026-10-30",
+          "observation": "The older guide explains that Flames contributes its full damage to a False Promise counter while remaining nonlethal at settlement, including examples of low-current-HP recipients.",
+          "versionContext": "Indexed historical guide, not a recovered2023HTTP body. It corroborates keeping the nonlethal flag instead of presuming a pre-mitigation raw-input HP clamp.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/23d84055aff0d0e07270229bbc0cf800d706d1e3/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and effective statistics without injecting runtime ledgers.",
+          "versionContext": "C6 baseline project contract, not native Dota evidence. Five current registered C7 replay results verify preservation.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FE-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FE-01 the full-power undisjointable bolt waits for actual flight before applying root and damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-01 the full-power undisjointable bolt waits for actual flight before applying root and damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FE-02 the bolt follows a displaced primary and uses its impact center for the area effect",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-02 the bolt follows a displaced primary and uses its impact center for the area effect"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-03 enemy defenses are purged and root plus True Sight are present before the damage event",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-03 enemy defenses are purged and root plus True Sight are present before the damage event"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-04 an enemy-primary cast does not cleanse an adjacent nonprimary ally",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-04 an enemy-primary cast does not cleanse an adjacent nonprimary ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-05 a unit-targeted ally receives the basic cleanse and nearby enemies still receive the offensive effect",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-05 a unit-targeted ally receives the basic cleanse and nearby enemies still receive the offensive effect"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-06 primary Spell Block is consumed at impact while secondary blockers remain unused",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-06 primary Spell Block is consumed at impact while secondary blockers remain unused"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-07 a released Fortune still impacts after its caster dies",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-07 a released Fortune still impacts after its caster dies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FE-08 Super Flames is applied before offensive purge and has a separate child attribution",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle",
+            "oracle-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-08 Super Flames is applied before offensive purge and has a separate child attribution"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-09",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FE-09 friendly Flames retains nonlethal flags through an actual False Promise ledger",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle",
+            "oracle-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-09 friendly Flames retains nonlethal flags through an actual False Promise ledger"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FE-10 friendly Flames heals in nine independently attributed one-second ticks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle",
+            "oracle-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-10 friendly Flames heals in nine independently attributed one-second ticks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-11",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FE-11 two real casts preserve two independent friendly Flames heal clocks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle",
+            "oracle-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-11 two real casts preserve two independent friendly Flames heal clocks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-12 Rain uses an independently attributed child and a heal-only amplification aura",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-12 Rain uses an independently attributed child and a heal-only amplification aura"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-CLOCK",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "CLOCK custom_oracle_fortunes_end uses its public point backswing cooldown and mana",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "CLOCK custom_oracle_fortunes_end uses its public point backswing cooldown and mana"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Fortune zero point/range are explicit native/AA.0.3backswing is the instant-channel-removal talent note on an indexed older page, not a directly captured2023animation body.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FE-13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-13 a zero-point Fortune still waits for the native facing turn budget",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-13 a zero-point Fortune still waits for the native facing turn budget"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-14",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-14 Rain manipulation lingers only half a second after a recipient leaves its fixed radius",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-14 Rain manipulation lingers only half a second after a recipient leaves its fixed radius"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-15",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FE-15 multiple Rain zones stack their own damage while their heal-only manipulation remains strongest-only",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history",
+            "oracle"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-15 multiple Rain zones stack their own damage while their heal-only manipulation remains strongest-only"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-16",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-16 an invulnerable primary remains a legal bolt target and nearby vulnerable enemies still receive the impact",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-16 an invulnerable primary remains a legal bolt target and nearby vulnerable enemies still receive the impact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-17",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FE-17 becoming invisible after release cannot disjoint the bolt and the root applies True Sight",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FE-17 becoming invisible after release cannot disjoint the bolt and the root applies True Sight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY custom_oracle_fortunes_end reproduces frost-control state and effective statistics from original inputs",
+          "sourceIds": [
+            "project"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "REPLAY custom_oracle_fortunes_end reproduces frost-control state and effective statistics from original inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-P01",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "Rain first/end damage and heal counts: current asymmetric11damage/9heal description is not dated to the selected prototype. Current1..10both-component schedule remains a disclosed candidate.",
+          "status": "source_pending",
+          "sourceIds": [
+            "oracle",
+            "oracle-history"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FE-P02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Primary hidden/invulnerable/courier edge exceptions and Fate's Edict special purge need direct version-qualified cases beyond the tested invulnerable AOE continuation.",
+          "status": "source_pending",
+          "sourceIds": [
+            "oracle-old",
+            "valve"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FE-P03",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Flames first/end immunity transitions and every special on-damage layer interaction require bounded additional results; the FP nonlethal snapshot does not certify all barriers.",
+          "status": "source_pending",
+          "sourceIds": [
+            "oracle-old",
+            "oracle-guide"
+          ],
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-old"
+          ],
+          "interpretation": "AA automatically invokes real native4Flames360/44/9 beforepurge; no active slot/cost is granted. Native independent healing/nonlethal damage are preserved."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "oracle-history"
+          ],
+          "interpretation": "Rain native1 prototype650/10seconds/60/25% is centered on the main impact target for free; the child retains independent statistics."
+        }
+      },
+      "unresolved": [
+        "FE-CLOCK: Fortune zero point/range are explicit native/AA.0.3backswing is the instant-channel-removal talent note on an indexed older page, not a directly captured2023animation body.",
+        "FE-P01: Rain first/end damage and heal counts: current asymmetric11damage/9heal description is not dated to the selected prototype. Current1..10both-component schedule remains a disclosed candidate.",
+        "FE-P02: Primary hidden/invulnerable/courier edge exceptions and Fate's Edict special purge need direct version-qualified cases beyond the tested invulnerable AOE continuation.",
+        "FE-P03: Flames first/end immunity transitions and every special on-damage layer interaction require bounded additional results; the FP nonlethal snapshot does not certify all barriers."
+      ]
+    },
+    {
+      "id": "custom_crystal_maiden_freezing_field",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete AA base/Super/Gaben English clauses were enumerated, with bounded named mechanism/timing/upgrade/combination requirements. Unresolved exact qualifications prevent a full-skill certification.",
+        "fixtures": "Actual registered engine; fixed positions, HP, disarm/cooldown locks and zero-point effect isolation are explicit. Dedicated CLOCK/cancel/movement/native-summon cases retain real public behavior. Five replays use original inputs/seed, not runtime ledger injection."
+      },
+      "catalogClauses": {
+        "base": "CHANNELED - Surrounds the caster with random icy explosions that slow enemies and deal massive damage. Grants bonus armor while channeling. Lasts 10 seconds.",
+        "super": "Super: +50 damage. Allows you to move, cast and attack during Freezing Field. Can still be interrupted by enemies. You move 75% slower during this. Decreases interval duration by 0.02.",
+        "gaben": "Gaben: Grants Linken's Sphere. Applies Frostbite to any unit that has been standing in the Freezing Field for over 1.75s.",
+        "values": [
+          "ATTACK SLOW: -60",
+          "BONUS ARMOR: 20",
+          "DAMAGE: 125 / 210 / 295",
+          "EXPLOSION INTERVAL: 0.18",
+          "EXPLOSION RADIUS: 300",
+          "MOVEMENT SLOW: -30%",
+          "RADIUS: 600"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "The full base, Super and Gaben English clauses and custom values are retained in the selected official catalog. Fortune has no channel; Frost Arrows has default Hypothermia; Ice Age and opposite/self/custom effects remain AA-defined.",
+          "versionContext": "Prior fresh full230 HTTP200 metadata reused, not a new request; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA balance/custom clauses override native changes.",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/ability-arena/abilities-frost-control-20261030.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_abilities.txt",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "cm-history",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.27b supplies1.75 exposure;7.29 grants free move/cast/attack at75%selfslow.7.30 improves spatial distribution.7.33 changes Frostbite0.25 to0.2;7.34 moves the free-action upgrade and increases exposure.",
+          "versionContext": "Dated native prototypes. AA0.18/0.16 explosion interval, custom damage and1.75 exposure remain authoritative; modern fixed-count/facet/creep4x redesigns are excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "cm-old",
+          "url": "https://dota2.fandom.com/wiki/Crystal_Maiden",
+          "accessedOn": "2026-10-30",
+          "observation": "The frozen older page separates the slow aura and sequential four explosion sectors, lists195/785 independent spawn bounds, and describes continuously exposed once-per-cast free Frostbite. It treats illusions, creep-heroes and ancient creeps as heroes for Frostbite.",
+          "versionContext": "Indexed frozen page contains7.33-7.35 numbers. Pinned2023 tick0.25 and AA values override later intervals/durations; AA600aura versus independent spawn geometry remains qualified.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "cm",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden",
+          "accessedOn": "2026-10-30",
+          "observation": "Freezing Field sector order begins northeast and proceeds counterclockwise. Its free Frostbite bypasses block/reflection/resources/on-cast effects. Frostbite itself binds and reveals immediately.",
+          "versionContext": "Current indexed primary Wiki, not direct historical capture. The no-armor and shorter-creep modern redesign is not imported.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "items",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/items.txt",
+          "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40"
+        },
+        {
+          "id": "linkens",
+          "url": "https://liquipedia.net/dota2/Linken%27s_Sphere/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.31d changes block recharge12to14;7.33 later reduces7HPregen and5manaregen. Pinned item KV supplies16allstats/7regen/5manaregen/14recharge.",
+          "versionContext": "Pre2023 item prototype. AA passive grant versus full Transfer Spellblock active scope remains an exact custom question.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/23d84055aff0d0e07270229bbc0cf800d706d1e3/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and effective statistics without injecting runtime ledgers.",
+          "versionContext": "C6 baseline project contract, not native Dota evidence. Five current registered C7 replay results verify preservation.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FF-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FF-01 the slow aura applies immediately even before any explosion can damage a victim",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-01 the slow aura applies immediately even before any explosion can damage a victim"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FF-02 a control applied before the first explosion removes armor and selfslow immediately",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-02 a control applied before the first explosion removes armor and selfslow immediately"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FF-03 field cleanup preserves an unrelated armor modifier",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-03 field cleanup preserves an unrelated armor modifier"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FF-04 Super keeps its field while a real other spell casts and still allows ordinary attacks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-04 Super keeps its field while a real other spell casts and still allows ordinary attacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FF-05 explosion sectors proceed northeast then counterclockwise with native independent spawn bounds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-05 explosion sectors proceed northeast then counterclockwise with native independent spawn bounds"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The sector order is directly described, but AA600slowradius mapping to independent native195/785spawn bounds and exact radial density are not recovered from custom Lua. Native bounds are a documented compatible candidate.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FF-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FF-06 Gaben Frostbite waits continuous exposure and applies once without spending another spell cost",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old",
+            "cm"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-06 Gaben Frostbite waits continuous exposure and applies once without spending another spell cost"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FF-07 leaving the tracker for more than its linger requires a new continuous exposure period",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old",
+            "cm"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-07 leaving the tracker for more than its linger requires a new continuous exposure period"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FF-08 the one-second aura slow lingers after a victim leaves the six-hundred radius",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-08 the one-second aura slow lingers after a victim leaves the six-hundred radius"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-CLOCK",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "CLOCK custom_crystal_maiden_freezing_field uses its public point backswing cooldown and mana",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "CLOCK custom_crystal_maiden_freezing_field uses its public point backswing cooldown and mana"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-09",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FF-09 Super permits ordinary movement while base remains fixed throughout its channel",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-09 Super permits ordinary movement while base remains fixed throughout its channel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FF-10 base channel prevents an ordinary attack even when an enemy is in melee range",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-10 base channel prevents an ordinary attack even when an enemy is in melee range"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-11",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FF-11 Linkens blocks an actual enemy unit spell and recharges fourteen seconds later independently of casting the field",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old",
+            "items",
+            "linkens"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-11 Linkens blocks an actual enemy unit spell and recharges fourteen seconds later independently of casting the field"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FF-12 triggered Frostbite bypasses a secondary spell blocker and does not emit on-cast Fiery Soul stacks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old",
+            "cm"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-12 triggered Frostbite bypasses a secondary spell blocker and does not emit on-cast Fiery Soul stacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-13-1",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FF-13 rank3 has exactly55 actual explosions on the authored ten-second clock",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-13 rank3 has exactly55 actual explosions on the authored ten-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-13-2",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FF-13 rank6 has exactly62 actual explosions on the authored ten-second clock",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FF-13 rank6 has exactly62 actual explosions on the authored ten-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY custom_crystal_maiden_freezing_field reproduces frost-control state and effective statistics from original inputs",
+          "sourceIds": [
+            "project"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "REPLAY custom_crystal_maiden_freezing_field reproduces frost-control state and effective statistics from original inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FF-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA Grants Linkens passive stats/block versus the native Transfer Spellblock active is not established. The current grant has no separate Transfer action.",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa",
+            "items",
+            "linkens"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FF-P02",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Freezing free Frostbite uses an owned basic rank when present, otherwise basic3; whether AA grants or inherits independent Frostbite Super/Gaben is unresolved.",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa",
+            "cm-old"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FF-P03",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "The exact native selective forced-displacement/taunt exceptions, fog and height geometry remain outside the tested planar root/control/action matrix.",
+          "status": "source_pending",
+          "sourceIds": [
+            "cm-old"
+          ],
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "cm-history"
+          ],
+          "interpretation": "Historical Shard free-action/75%slow and +50damage talent are prototypes. AA specifically changes interval by0.02 rather than copying native20%extra explosions."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "items",
+            "linkens",
+            "cm-history"
+          ],
+          "interpretation": "2023Linkens16/7/5/14 and historical1.75Scepter exposure are separate native prototypes. Free Frostbite rank/independent upgrades and Transfer active remain exact open clauses."
+        }
+      },
+      "unresolved": [
+        "FF-05: The sector order is directly described, but AA600slowradius mapping to independent native195/785spawn bounds and exact radial density are not recovered from custom Lua. Native bounds are a documented compatible candidate.",
+        "FF-P01: AA Grants Linkens passive stats/block versus the native Transfer Spellblock active is not established. The current grant has no separate Transfer action.",
+        "FF-P02: Freezing free Frostbite uses an owned basic rank when present, otherwise basic3; whether AA grants or inherits independent Frostbite Super/Gaben is unresolved.",
+        "FF-P03: The exact native selective forced-displacement/taunt exceptions, fog and height geometry remain outside the tested planar root/control/action matrix."
+      ]
+    },
+    {
+      "id": "custom_drow_ranger_frost_arrows",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete AA base/Super/Gaben English clauses were enumerated, with bounded named mechanism/timing/upgrade/combination requirements. Unresolved exact qualifications prevent a full-skill certification.",
+        "fixtures": "Actual registered engine; fixed positions, HP, disarm/cooldown locks and zero-point effect isolation are explicit. Dedicated CLOCK/cancel/movement/native-summon cases retain real public behavior. Five replays use original inputs/seed, not runtime ledger injection."
+      },
+      "catalogClauses": {
+        "base": "Adds a freezing effect to the hero's attacks, slowing enemy movement, dealing bonus damage and apply Hypothermia stacks. Slow lasts 1.5 seconds.",
+        "super": "Super: +20 bonus damage, -4% Hypothermia regen reduction per stack.",
+        "gaben": "Gaben: Hero attacks now splinter up to 2 enemies within 375 radius of the main target with 50% reduced damage.",
+        "values": [
+          "BONUS DAMAGE: 7.5 / 15 / 30",
+          "HYPOTHERMIA BURST DAMAGE: 30 / 40 / 60",
+          "HYPOTHERMIA REGEN REDUCTION: -2 / -3 / -5",
+          "MOVEMENT SLOW: -10% / -25% / -55%"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "The full base, Super and Gaben English clauses and custom values are retained in the selected official catalog. Fortune has no channel; Frost Arrows has default Hypothermia; Ice Age and opposite/self/custom effects remain AA-defined.",
+          "versionContext": "Prior fresh full230 HTTP200 metadata reused, not a new request; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA balance/custom clauses override native changes.",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/ability-arena/abilities-frost-control-20261030.json"
+        },
+        {
+          "id": "aa-shard",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?l=latam&p=15",
+          "accessedOn": "2026-10-30",
+          "observation": "The AA author2023-04-05 Season5.5 notes grant Hypothermia, identified as Aghanim's Shard, by default; only its burst30/40/60 and regeneration reduction2/3/5 are explicitly rescaled.",
+          "versionContext": "Official addon author primary changelog. The unchanged native Shard5damage per stack,7cap/7second duration and death projectile prototype therefore remain; they do not replace AA flat bonus values.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_abilities.txt",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "english",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/abilities_english.txt",
+          "sha256": "7099fb24b4e164a1f839a8404d20e0752927f06cccb49e29dfac15cf2411e5cc"
+        },
+        {
+          "id": "drow-history",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "6.86 grants two random375-radius50% splinter attacks carrying all modifiers.7.28 adds7stack/7second Hypothermia and650-radius death projectiles;7.29 affects creeps/40%burstslow;7.30 removes Frost mana cost from splits.",
+          "versionContext": "Explicit pre2023 prototypes. Later9stack/balance revisions are not silently substituted for the AA Shard-based custom version.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "critical-old",
+          "url": "https://dota2.fandom.com/wiki/Critical_Strike",
+          "accessedOn": "2026-10-30",
+          "observation": "The frozen older attack-modifier list excludes Frost Arrows conditional damage from critical multiplication.",
+          "versionContext": "Indexed older Wiki list, not an exact2023capture; corroborates the current conditional-bonus classification without importing universal critical-roll timing.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "drow",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger",
+          "accessedOn": "2026-10-30",
+          "observation": "Frost conditional damage is not critical-multiplied, while ordinary attack lifesteal/cleave/block interact with it. Hypothermia stacks add internally and multiply with other restoration reductions. Current order places Hypothermia before the conditional bonus and attack.",
+          "versionContext": "Current primary indexing.1300death-projectile speed and same-hit stack order are compatible candidates; exact AA order and split conditional-factor scope remain open.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "oracle-history",
+          "url": "https://liquipedia.net/dota2/Oracle/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.17 removes Fortune disjoint;7.32e changes1000speed to1200. Rain7.31 introduces650radius/10seconds/25%heal-only manipulation with0.5linger;7.32 raises both rates to60.",
+          "versionContext": "Explicit pre2023 changes support the selected native prototype. Later Rain20%/40 or15%/30 and changed Flames healing are excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "arena2023",
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Mars",
+          "accessedOn": "2026-10-29",
+          "observation": "Formation precedes the full duration. Inner-edge spears use a per-unit cooldown and non-disabling knockback. Attack projectiles are negated near the wall; melee attacks and spell projectiles pass. Regeneration is an in-arena aura with linger.",
+          "versionContext": "Direct historical capture 20230215191449; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191449",
+          "htmlSha256": "14803f6e56773f994f6bd7af3fb5e84b494b77c186abc2f1b4eff8e39fec08b9",
+          "originalUrl": "https://dota2.fandom.com/wiki/Mars",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained.",
+          "metadataReuse": "Prior direct2023capture reused;no additional Wayback request during429."
+        },
+        {
+          "id": "project",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/23d84055aff0d0e07270229bbc0cf800d706d1e3/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and effective statistics without injecting runtime ledgers.",
+          "versionContext": "C6 baseline project contract, not native Dota evidence. Five current registered C7 replay results verify preservation.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FA-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-01 the conditional arrow bonus is added after critical multiplication",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "critical-old",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-01 the conditional arrow bonus is added after critical multiplication"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-02 the first lethal attack installs its stack before death and releases a victim-origin burst",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-02 the first lethal attack installs its stack before death and releases a victim-origin burst"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-03 a released Hypothermia source still bursts after its original caster dies",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-03 a released Hypothermia source still bursts after its original caster dies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-04 the death search reaches650 rather than the old400 working radius",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-04 the death search reaches650 rather than the old400 working radius"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-05 misses do not apply Hypothermia and wards cannot receive the conditional bonus",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-05 misses do not apply Hypothermia and wards cannot receive the conditional bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FA-06 Gaben splinters are real victim-origin projectiles that apply other modifiers on secondary contact",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-06 Gaben splinters are real victim-origin projectiles that apply other modifiers on secondary contact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FA-07 a lethal primary contact still releases both Gaben splinters",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-07 a lethal primary contact still releases both Gaben splinters"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FA-08 Super uses final fifty bonus damage and nine percent restoration suppression per stack",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-08 Super uses final fifty bonus damage and nine percent restoration suppression per stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-09 repeated successful contacts cap Hypothermia at seven and refresh its seven-second lifetime",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-09 repeated successful contacts cap Hypothermia at seven and refresh its seven-second lifetime"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-10 native main attack reduction does not multiply the flat Frost conditional bonus",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "critical-old",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-10 native main attack reduction does not multiply the flat Frost conditional bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-11 native active-orb Break working policy preserves Frost while disabling its passive splinter prototype",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-11 native active-orb Break working policy preserves Frost while disabling its passive splinter prototype"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "AA grants an always-enabled active-orb plus a passive splinter prototype. Preserving the active orb under Break while disabling its passive splinter is a documented working interpretation, not recovered custom dispatch.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FA-12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FA-12 the documented local split-factor interpretation scales its own Frost bonus to yield75 damage",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-12 the documented local split-factor interpretation scales its own Frost bonus to yield75 damage"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The50% main-attack factor is explicit. Scaling Frost's own post-critical conditional component by the same factor is an AA working interpretation, not a certified rule for all conditional bonuses.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FA-13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FA-13 a real basic purge removes Hypothermia so a later death has no burst",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-13 a real basic purge removes Hypothermia so a later death has no burst"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-14",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FA-14 a spell-immune primary still permits Gaben ordinary attack splinters toward vulnerable secondary enemies",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-14 a spell-immune primary still permits Gaben ordinary attack splinters toward vulnerable secondary enemies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RESTORE-01",
+          "kind": "combination",
+          "branch": "base+FortuneGaben",
+          "rule": "RESTORE-01 real seven-stack Hypothermia and enemy Rain multiply against a real Death Pulse direct heal",
+          "sourceIds": [
+            "aa",
+            "english",
+            "drow",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "RESTORE-01 real seven-stack Hypothermia and enemy Rain multiply against a real Death Pulse direct heal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RESTORE-02",
+          "kind": "combination",
+          "branch": "base+FortuneGaben",
+          "rule": "RESTORE-02 the enemy Rain heal-only reduction excludes ordinary lifesteal and regeneration beside Hypothermia",
+          "sourceIds": [
+            "aa",
+            "english",
+            "drow",
+            "oracle-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "RESTORE-02 the enemy Rain heal-only reduction excludes ordinary lifesteal and regeneration beside Hypothermia"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-15",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FA-15 real splinter attack projectiles are intercepted by the enemy Arena wall before applying their modifiers",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "arena2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-15 real splinter attack projectiles are intercepted by the enemy Arena wall before applying their modifiers"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-16-1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-16 rank1 retains its AA flat bonus and the native Shard five-per-stack component",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-16 rank1 retains its AA flat bonus and the native Shard five-per-stack component"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FA-16-2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-16 rank2 retains its AA flat bonus and the native Shard five-per-stack component",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-16 rank2 retains its AA flat bonus and the native Shard five-per-stack component"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FA-16-3",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-16 rank3 retains its AA flat bonus and the native Shard five-per-stack component",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-16 rank3 retains its AA flat bonus and the native Shard five-per-stack component"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FA-17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "FA-17 the native per-stack component stops increasing at the authored seven-stack cap",
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve",
+            "english",
+            "drow-history",
+            "drow"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FA-17 the native per-stack component stops increasing at the authored seven-stack cap"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY custom_drow_ranger_frost_arrows reproduces frost-control state and effective statistics from original inputs",
+          "sourceIds": [
+            "project"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "REPLAY custom_drow_ranger_frost_arrows reproduces frost-control state and effective statistics from original inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FA-P01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Different-caster Hypothermia counter coverage/refresh and shared-source stacking need exact AA qualification. Same-owner seven-stack behavior is separately tested.",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa",
+            "drow"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FA-P02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Death-projectile1300speed is a current-page compatible candidate; an exact2023AA speed body was not recovered.",
+          "status": "source_pending",
+          "sourceIds": [
+            "drow",
+            "drow-history"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FA-P03",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Nested Time Lock/other secondary attack splinter eligibility and foreign post-critical damage factors require caller-specific proof; only direct Frost split recursion is suppressed.",
+          "status": "source_pending",
+          "sourceIds": [
+            "drow-history"
+          ],
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "aa-shard",
+            "valve"
+          ],
+          "interpretation": "AAflat+20and per-stack suppression+4points override those numeric components. Full named Shard keeps native5damage perstack,7cap/7seconds and deathburst; no AAflatbonus value is overwritten."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "drow-history"
+          ],
+          "interpretation": "Pre2023Marksmanship Scepter gives two random375radius50% full-modifier projectile attacks; no recursive direct split. Same-hit stack order and conditional split-factor remain disclosed working interpretations."
+        }
+      },
+      "unresolved": [
+        "FA-11: AA grants an always-enabled active-orb plus a passive splinter prototype. Preserving the active orb under Break while disabling its passive splinter is a documented working interpretation, not recovered custom dispatch.",
+        "FA-12: The50% main-attack factor is explicit. Scaling Frost's own post-critical conditional component by the same factor is an AA working interpretation, not a certified rule for all conditional bonuses.",
+        "FA-16-1: The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+        "FA-16-2: The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+        "FA-16-3: The native5-per-stack coefficient is directly justified by the named full Shard prototype. Counting this contact's newly added stack in the same attack follows current Wiki order; exact AA same-hit ordering remains open.",
+        "FA-P01: Different-caster Hypothermia counter coverage/refresh and shared-source stacking need exact AA qualification. Same-owner seven-stack behavior is separately tested.",
+        "FA-P02: Death-projectile1300speed is a current-page compatible candidate; an exact2023AA speed body was not recovered.",
+        "FA-P03: Nested Time Lock/other secondary attack splinter eligibility and foreign post-critical damage factors require caller-specific proof; only direct Frost split recursion is suppressed."
+      ]
+    },
+    {
+      "id": "lich_frost_shield",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete AA base/Super/Gaben English clauses were enumerated, with bounded named mechanism/timing/upgrade/combination requirements. Unresolved exact qualifications prevent a full-skill certification.",
+        "fixtures": "Actual registered engine; fixed positions, HP, disarm/cooldown locks and zero-point effect isolation are explicit. Dedicated CLOCK/cancel/movement/native-summon cases retain real public behavior. Five replays use original inputs/seed, not runtime ledger injection."
+      },
+      "catalogClauses": {
+        "base": "Applies a magical frost shield around the target, reducing damage from attacks against it. While the shield is active, ice magic will affect nearby enemy units every 1 seconds, dealing minor damage and slowing them.",
+        "super": "Super: +10% damage reduction and provides +50 HP Regen.",
+        "gaben": "Gaben: Additionally deals 6% of target hero's max HP in an AOE per pulse.",
+        "values": [
+          "BUFF DURATION: 3 / 4 / 6",
+          "DAMAGE REDUCTION: 30% / 40% / 60%",
+          "DAMAGE: 20 / 30 / 50",
+          "SLOW DURATION: 0.5",
+          "SLOW: 20% / 25% / 35%"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "The full base, Super and Gaben English clauses and custom values are retained in the selected official catalog. Fortune has no channel; Frost Arrows has default Hypothermia; Ice Age and opposite/self/custom effects remain AA-defined.",
+          "versionContext": "Prior fresh full230 HTTP200 metadata reused, not a new request; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA balance/custom clauses override native changes.",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/ability-arena/abilities-frost-control-20261030.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_abilities.txt",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "lich-history",
+          "url": "https://dota2.fandom.com/wiki/Lich/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.31 explicitly reduces Frost Shield initial pulse delay from1second to0.1seconds.",
+          "versionContext": "Dated2022-02-23 pre2023 rule. Indexed older Wiki changelog closes the first-pulse question beyond a modern-page inference.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "lich-old",
+          "url": "https://dota2.fandom.com/wiki/Lich",
+          "accessedOn": "2026-10-30",
+          "observation": "Shield reduces hero-based attacks of all damage types including instant attacks; clones/illusions/SpiritBear qualify, ordinary creeps/buildings/other creep-heroes do not. Recast refreshes/reset pulses, damage precedes slow, invis/fog are excluded, and each pulse restores one hero-hit to Spire.",
+          "versionContext": "Indexed frozen older page includes7.35d numbers, so exact2023 qualification is bounded. AA duration/damage and pinned native range/talent values remain authoritative.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/23d84055aff0d0e07270229bbc0cf800d706d1e3/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and effective statistics without injecting runtime ledgers.",
+          "versionContext": "C6 baseline project contract, not native Dota evidence. Five current registered C7 replay results verify preservation.",
+          "accessMethod": "localProjectContract"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FS-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FS-01 native first pulse waits one tenth rather than one second",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-01 native first pulse waits one tenth rather than one second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-02-1",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FS-02 rank1 emits exactly3 pulses at its authored lifetime",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-02 rank1 emits exactly3 pulses at its authored lifetime"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-02-2",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FS-02 rank2 emits exactly4 pulses at its authored lifetime",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-02 rank2 emits exactly4 pulses at its authored lifetime"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-02-3",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FS-02 rank3 emits exactly6 pulses at its authored lifetime",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-02 rank3 emits exactly6 pulses at its authored lifetime"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FS-03 same-source reapplication invalidates every old pulse deadline",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-03 same-source reapplication invalidates every old pulse deadline"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-04 hero attacks of physical magical and pure types receive the same sixty-percent reduction",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-04 hero attacks of physical magical and pure types receive the same sixty-percent reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-05 ordinary creeps and hero-tagged golems do not receive the hero-only mitigation privilege",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-05 ordinary creeps and hero-tagged golems do not receive the hero-only mitigation privilege"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-06 illusions hero clones and Spirit Bear still count as native hero-based attack sources",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-06 illusions hero clones and Spirit Bear still count as native hero-based attack sources"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FS-07 spell and cleave damage are unaffected while Super uses its final seventy-percent attack reduction",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-07 spell and cleave damage are unaffected while Super uses its final seventy-percent attack reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-08 unrevealed invisible victims are not pulsed while True Sight restores eligibility",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-08 unrevealed invisible victims are not pulsed while True Sight restores eligibility"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-09 released pulses survive source death while preserving child source statistics",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-09 released pulses survive source death while preserving child source statistics"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FS-10 Gaben adds six percent of the shielded body max health to each pulse",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-10 Gaben adds six percent of the shielded body max health to each pulse"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-CLOCK",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "CLOCK lich_frost_shield uses its public point backswing cooldown and mana",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "CLOCK lich_frost_shield uses its public point backswing cooldown and mana"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Shield point/range/pulse are independently established.0.93backswing uses archived content; current page0.4differs and exact change date was not recovered.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FS-11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-11 real offensive basic purge immediately removes shield regeneration reduction and future pulses",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-11 real offensive basic purge immediately removes shield regeneration reduction and future pulses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-12",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-12 a magic-immune shield recipient is legal but an enemy magic-immune body receives neither pulse damage nor slow",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-12 a magic-immune shield recipient is legal but an enemy magic-immune body receives neither pulse damage nor slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-13 an actual summoned Ice Spire receives one hero-hit restoration on each native pulse without requiring enemy damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-13 an actual summoned Ice Spire receives one hero-hit restoration on each native pulse without requiring enemy damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FS-14 an actual offered golem is an ancient creep-hero rather than a hero-based attack source",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "lich-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FS-14 an actual offered golem is an ancient creep-hero rather than a hero-based attack source"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY lich_frost_shield reproduces frost-control state and effective statistics from original inputs",
+          "sourceIds": [
+            "project"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "REPLAY lich_frost_shield reproduces frost-control state and effective statistics from original inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FS-P01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Different-caster Shield refresh/stacking policy and same-target suppression priority require direct historical ability-specific evidence. Current additive sources are retained rather than silently replaced.",
+          "status": "source_pending",
+          "sourceIds": [
+            "lich-old"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FS-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA6% target-hero maxHP qualification on nonhero recipients and dynamic maxHP versus cast snapshot remain custom questions; current behavior reads shielded body maxHP at each pulse.",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FS-P03",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Spire fixed hero-hit restoration versus ordinary direct-heal amplification/reduction and ward regen exceptions remain version-qualified;2025fixes are not backdated.",
+          "status": "source_pending",
+          "sourceIds": [
+            "lich-old"
+          ],
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-old"
+          ],
+          "interpretation": "Native +10percentagepoint Shield reduction and +50HPregen talents match AA explicit upgrade. Final70% is table-authored once."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AAcustom6% shielded target maxHP per pulse. Dynamic/snapshot and nonhero recipient semantics remain qualified rather than invented from a native talent."
+        }
+      },
+      "unresolved": [
+        "FS-CLOCK: Shield point/range/pulse are independently established.0.93backswing uses archived content; current page0.4differs and exact change date was not recovered.",
+        "FS-P01: Different-caster Shield refresh/stacking policy and same-target suppression priority require direct historical ability-specific evidence. Current additive sources are retained rather than silently replaced.",
+        "FS-P02: AA6% target-hero maxHP qualification on nonhero recipients and dynamic maxHP versus cast snapshot remain custom questions; current behavior reads shielded body maxHP at each pulse.",
+        "FS-P03: Spire fixed hero-hit restoration versus ordinary direct-heal amplification/reduction and ward regen exceptions remain version-qualified;2025fixes are not backdated."
+      ]
+    },
+    {
+      "id": "crystal_maiden_frostbite",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete AA base/Super/Gaben English clauses were enumerated, with bounded named mechanism/timing/upgrade/combination requirements. Unresolved exact qualifications prevent a full-skill certification.",
+        "fixtures": "Actual registered engine; fixed positions, HP, disarm/cooldown locks and zero-point effect isolation are explicit. Dedicated CLOCK/cancel/movement/native-summon cases retain real public behavior. Five replays use original inputs/seed, not runtime ledger injection."
+      },
+      "catalogClauses": {
+        "base": "Encases an enemy unit in ice, prohibiting movement and attack, while dealing damage over time. Lasts 10 seconds on creeps level 6 or lower.",
+        "super": "Super: Duration increased by 1.25 seconds, affected targets take 25% extra damage for the duration of the debuff.",
+        "gaben": "Gaben: Grants Ice Age: when target unit dies, they shatter, applying Frostbite to every unit globally. Frostbite DPS increased by 100.",
+        "values": [
+          "CAST RANGE: 700",
+          "CAST RANGE: 700",
+          "CREEP DURATION: 10",
+          "DAMAGE PER SECOND: 100",
+          "HERO DURATION: 1.5 / 2 / 3"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "The full base, Super and Gaben English clauses and custom values are retained in the selected official catalog. Fortune has no channel; Frost Arrows has default Hypothermia; Ice Age and opposite/self/custom effects remain AA-defined.",
+          "versionContext": "Prior fresh full230 HTTP200 metadata reused, not a new request; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA balance/custom clauses override native changes.",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/ability-arena/abilities-frost-control-20261030.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_abilities.txt",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "english",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/abilities_english.txt",
+          "sha256": "7099fb24b4e164a1f839a8404d20e0752927f06cccb49e29dfac15cf2411e5cc"
+        },
+        {
+          "id": "frostbite-2020",
+          "url": "https://liquipedia.net/dota2/December_17%2C_2020_Patch",
+          "accessedOn": "2026-10-30",
+          "observation": "Frostbite changes to25damage every0.25seconds with its first damage0.25after application. Duration-changing effects affect the operation.",
+          "versionContext": "Explicit7.28 dated change corroborated by pinned2023 tick_interval0.25. Exact status-resistance flexible-clock annotations conflict elsewhere and remain separately open.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "cm-old",
+          "url": "https://dota2.fandom.com/wiki/Crystal_Maiden",
+          "accessedOn": "2026-10-30",
+          "observation": "The frozen older page separates the slow aura and sequential four explosion sectors, lists195/785 independent spawn bounds, and describes continuously exposed once-per-cast free Frostbite. It treats illusions, creep-heroes and ancient creeps as heroes for Frostbite.",
+          "versionContext": "Indexed frozen page contains7.33-7.35 numbers. Pinned2023 tick0.25 and AA values override later intervals/durations; AA600aura versus independent spawn geometry remains qualified.",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "units",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Direct local pinned Valve KV/text supplies native interval, component values, target flags, real ranks, item profile or unit level. Its native four-rank values do not replace AA basic ranks.",
+          "versionContext": "Pinned2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Local folder name20230216 is not the source version.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-20230216/npc_units.txt",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592"
+        },
+        {
+          "id": "project",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/23d84055aff0d0e07270229bbc0cf800d706d1e3/src/combat.ts",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and effective statistics without injecting runtime ledgers.",
+          "versionContext": "C6 baseline project contract, not native Dota evidence. Five current registered C7 replay results verify preservation.",
+          "accessMethod": "localProjectContract"
+        },
+        {
+          "id": "cm-history",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.27b supplies1.75 exposure;7.29 grants free move/cast/attack at75%selfslow.7.30 improves spatial distribution.7.33 changes Frostbite0.25 to0.2;7.34 moves the free-action upgrade and increases exposure.",
+          "versionContext": "Dated native prototypes. AA0.18/0.16 explosion interval, custom damage and1.75 exposure remain authoritative; modern fixed-count/facet/creep4x redesigns are excluded.",
+          "accessMethod": "indexedPrimarySearch"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FB-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FB-01 native quarter-second ticks begin one quarter-second after release and total300 over three seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-01 native quarter-second ticks begin one quarter-second after release and total300 over three seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-02 root disarm and True Sight begin immediately and a real basic dispel removes the owned DOT",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-02 root disarm and True Sight begin immediately and a real basic dispel removes the owned DOT"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-03 hero clones and ancient or hero-tagged summons use hero duration rather than ten seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-03 hero clones and ancient or hero-tagged summons use hero duration rather than ten seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-04 only known ordinary creep levels up to six receive the long duration",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-04 only known ordinary creep levels up to six receive the long duration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-05",
+          "kind": "super",
+          "branch": "super",
+          "rule": "FB-05 Super uses final four-point-two-five seconds and amplifies its own quarter-second damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-05 Super uses final four-point-two-five seconds and amplifies its own quarter-second damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-06 Gaben uses final200DPS and a lethal affected tick globally freezes another enemy",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-06 Gaben uses final200DPS and a lethal affected tick globally freezes another enemy"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-07 an affected death after the caster dies retains the original Gaben source and grade",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-07 an affected death after the caster dies retains the original Gaben source and grade"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-08 a strong owner-slot replacement cannot erase a released Ice Age death callback",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-08 a strong owner-slot replacement cannot erase a released Ice Age death callback"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-CLOCK",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "CLOCK crystal_maiden_frostbite uses its public point backswing cooldown and mana",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "CLOCK crystal_maiden_frostbite uses its public point backswing cooldown and mana"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Frostbite0.3point and0.25damage clock are pinned2023.0.6backswing uses the frozen older page rather than a directly read2023capture.",
+          "workingResult": "passed",
+          "referenceClaim": false
+        },
+        {
+          "id": "FB-09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "FB-09 cancelling the real point-three Frostbite before release spends neither mana nor cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-09 cancelling the real point-three Frostbite before release spends neither mana nor cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "FB-10 an actual native level-four wolf receives ten seconds from its compiled template level",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old",
+            "units"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-10 an actual native level-four wolf receives ten seconds from its compiled template level"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-11",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "FB-11 a second affected death refreshes one global Frostbite instance without duplicating its owned DOT",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "english",
+            "frostbite-2020",
+            "cm-old"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-11 a second affected death refreshes one global Frostbite instance without duplicating its owned DOT"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "REPLAY crystal_maiden_frostbite reproduces frost-control state and effective statistics from original inputs",
+          "sourceIds": [
+            "project"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "REPLAY crystal_maiden_frostbite reproduces frost-control state and effective statistics from original inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FB-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Exact status-resistance/debuff-amplification DOT interval adaptation and total damage require resolving conflicting historical annotations; current quarter-second DPS scales with actual duration.",
+          "status": "source_pending",
+          "sourceIds": [
+            "frostbite-2020",
+            "cm-history"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FB-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA every unit globally may mean every eligible enemy or a literal friendly-inclusive custom effect. Current offensive eligibility keeps the global shatter enemy-only.",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": []
+        },
+        {
+          "id": "FB-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Some project-created ordinary summons lack nativeTemplateId/nativeLevel. Unknown-level bodies conservatively use hero duration; profile-less boars and similar summons need explicit level metadata before claiming the full level<=6 clause.",
+          "status": "mechanism_missing",
+          "sourceIds": [
+            "aa",
+            "units"
+          ],
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "interpretation": "Native +1.25duration talent matches AA increase;25%incoming vulnerability is AAcustom. Final durations4.25/11.25 are not increased again at runtime."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "Ice Age global affected-death shatter and +100DPS are explicit AAcustom. It is not Ancient Apparition Ice Blast; enemy-only wording and source-specific edge cases remain scoped."
+        }
+      },
+      "unresolved": [
+        "FB-CLOCK: Frostbite0.3point and0.25damage clock are pinned2023.0.6backswing uses the frozen older page rather than a directly read2023capture.",
+        "FB-P01: Exact status-resistance/debuff-amplification DOT interval adaptation and total damage require resolving conflicting historical annotations; current quarter-second DPS scales with actual duration.",
+        "FB-P02: AA every unit globally may mean every eligible enemy or a literal friendly-inclusive custom effect. Current offensive eligibility keeps the global shatter enemy-only.",
+        "FB-P03: Some project-created ordinary summons lack nativeTemplateId/nativeLevel. Unknown-level bodies conservatively use hero duration; profile-less boars and similar summons need explicit level metadata before claiming the full level<=6 clause."
+      ]
+    }
+  ]
+}

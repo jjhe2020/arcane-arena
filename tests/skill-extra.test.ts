@@ -5,7 +5,7 @@ import { EXTRA_PROGRAMS, EXTRA_CHILD_PROGRAMS, EXTRA_CHILD_DEFINITIONS, EXTRA_WO
 import { skillValue } from '../src/skill-effects';
 import {BATTLE_CONFIG} from '../src/config';
 import { activeVisualWorldEffects } from '../src/combat/visual-state';
-import type { EffectContext, EffectStatus, ZoneOptions } from '../src/skill-effects';
+import type { EffectContext, EffectStatus, ZoneOptions,SkillProgram } from '../src/skill-effects';
 import type { CombatUnit, Player, SkillDefinition, SkillStack } from '../src/model';
 
 const catalog = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
@@ -64,6 +64,11 @@ function harness(id: string, points = 9) {
   return { ctx, caster, target, ally, other, attacks, grants, timers, zones, until, tickZones };
 }
 const status = (unit: CombatUnit, kind: string) => unit.statuses.find(s => s.kind === kind) as EffectStatus | undefined;
+function preparedHarnessAttack(h:ReturnType<typeof harness>,program:SkillProgram){
+  const ordinal=Number(h.caster.harnessAttackSequence??0)+1;h.caster.harnessAttackSequence=ordinal;
+  h.ctx.attackRecord={id:`harness:${ordinal}`,source:h.caster.id,target:h.target.id,abilityId:'__basic_attack__',ranged:true,data:{}};
+  program.prepareAttack?.(h.ctx);program.onAttack?.(h.ctx);
+}
 
 describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction', () => {
   it('queues Moon Glaives one at a time from the last target and retains the original attack snapshot', () => {
@@ -165,9 +170,9 @@ describe('extra skill upgrade behavior', () => {
     for (const [id, key, amount] of [['custom_windrunner_focusfire', 'maelstrom', 140], ['ursa_overpower', 'bash', 120]] as const) {
       const h = harness(id), p = EXTRA_PROGRAMS[id], calls: string[] = []; let succeeds = false;
       h.ctx.chance = (_p, key) => { calls.push(key); return succeeds; };
-      const hp = h.target.hp; p.onAttack!(h.ctx); expect(h.target.hp).toBe(hp);
-      succeeds = true; p.onAttack!(h.ctx); expect(hp - h.target.hp).toBe(amount);
-      p.onAttack!(h.ctx); expect(calls).toEqual([key, key]); expect(hp - h.target.hp).toBe(amount);
+      const hp = h.target.hp; preparedHarnessAttack(h,p); expect(h.target.hp).toBe(hp);
+      succeeds = true; preparedHarnessAttack(h,p); expect(hp - h.target.hp).toBe(amount);
+      preparedHarnessAttack(h,p); expect(calls).toEqual([key, key]); expect(hp - h.target.hp).toBe(amount);
     }
     const h = harness('legion_commander_moment_of_courage'), p = EXTRA_PROGRAMS[h.ctx.skill.id], keys: string[] = [];
     h.ctx.attackInProgress=true;h.ctx.currentAttackTargetId=h.target.id;
@@ -367,7 +372,7 @@ describe('extra skill upgrade behavior', () => {
     const h = harness('custom_windrunner_focusfire', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     for (let n = 0; n < 3; n++) { const unit = structuredClone(h.other); unit.id = `chain${n}`; unit.x = n + 2; h.ctx.battle.units.push(unit); }
     for (const unit of h.ctx.battle.units) unit.hp = unit.maxHp = 10000;
-    p.init!(h.ctx); p.onAttack!(h.ctx); p.onAttack!(h.ctx);
+    p.init!(h.ctx); preparedHarnessAttack(h,p); preparedHarnessAttack(h,p);
     expect(h.target.hp).toBe(9860); expect(h.other.hp).toBe(10000);
     h.until(.25); expect(h.other.hp).toBe(9860);
     h.until(.75);
@@ -444,12 +449,14 @@ describe('extra skill upgrade behavior', () => {
     expect(h.target.hp).toBe(5000 - 234); // 13 wisps × 36 DPS × half-second pulse.
     expect(EXTRA_WORKING_DEFAULTS.evilWispCount).toBe(13);
   });
-  it('runs passive Radiance independently of Flame Guard and stops its refresh while broken', () => {
+  it('runs item-origin Radiance independently of Flame Guard through Break on its native one-second clock', () => {
     const h = harness('custom_ember_spirit_flame_guard'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     p.init!(h.ctx); const hp = h.target.hp; h.zones[0].effect(h.target, 0);
-    expect(h.target.hp).toBe(hp - 30); expect(status(h.target, 'blind')?.value).toBe(.15);
+    expect(h.target.hp).toBe(hp);expect(status(h.target,'blind')?.value).toBe(.15);
+    for(let n=1;n<=30;n++){h.until(n/30);h.zones[0].effect(h.target,n);}
+    expect(h.target.hp).toBe(hp - 120);
     expect(status(h.caster, 'magicShield')).toBeUndefined();
-    h.ctx.status(h.caster, 'break', 5); h.zones[0].effect(h.target, 1); expect(h.target.hp).toBe(hp - 30);
+    h.ctx.status(h.caster, 'break', 5);for(let n=1;n<=30;n++){h.until(1+n/30);h.zones[0].effect(h.target,n+30);}expect(h.target.hp).toBe(hp - 240);
   });
   it('slows allied attack and cast clocks multiplicatively inside Gaben Chronosphere', () => {
     const h = harness('custom_faceless_void_chronosphere'); EXTRA_PROGRAMS[h.ctx.skill.id].cast!(h.ctx);
@@ -796,10 +803,10 @@ describe('extra captured catalog differences', () => {
   });
   it('retains capped Hypothermia after the basic slow and bursts using the AA per-stack damage', () => {
     const h = harness('custom_drow_ranger_frost_arrows', 3), p = EXTRA_PROGRAMS[h.ctx.skill.id]; h.caster.mana = 0;
-    for (let n = 0; n < 9; n++) p.onAttack!(h.ctx);
+    for (let n = 0; n < 9; n++) p.beforeAttackDamage!(h.ctx);
     expect(status(h.target, 'hypothermia')?.value).toBe(7); expect(status(h.target, 'hypothermia')?.until).toBe(7);
     expect(status(h.target, 'slow')?.until).toBe(1.5); expect(h.caster.mana).toBe(0);
-    h.ctx.battle.time = 2; h.target.dead = true; const hp = h.other.hp; p.onUnitDeath!(h.ctx);
+    h.ctx.battle.time = 2; h.target.dead = true; const hp = h.other.hp; p.onAffectedUnitDeath!(h.ctx,status(h.target,'hypothermia')!);
     expect(hp - h.other.hp).toBe(420); expect(status(h.other, 'slow')?.value).toBe(.4);
   });
   it('keeps the Spirit Bear alive and fighting independently after its owner dies', () => {

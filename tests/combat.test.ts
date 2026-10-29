@@ -124,11 +124,11 @@ describe('damage, spells and interruption',()=>{
     advance(b,.5,[sap]);expect(b.units[0].healing).toBe(50);
     expect(b.events.find(e=>e.type==='heal')?.amount).toBe(50);
   });
-  it('settles fractional remaining DoT duration instead of dropping its last half-second',()=>{
-    const frost=definition('crystal_maiden_frostbite',['HERO DURATION: 1.5','DAMAGE PER SECOND: 100'],{cooldowns:[100],mana:[0]});
+  it('settles the fractional remainder after Frostbite quarter-second ticks',()=>{
+    const frost=definition('crystal_maiden_frostbite',['HERO DURATION: 1.6','DAMAGE PER SECOND: 100'],{cooldowns:[100],mana:[0]});
     const b=createBattle(player(0,[{id:frost.id,points:1}]),player(1,[],'tank'),4,[frost]);stepBattle(b,2,[frost]);
     const ticks=b.events.filter(e=>e.type==='hit'&&e.skill===frost.id).map(e=>e.amount??0);
-    expect(ticks).toHaveLength(2);expect(ticks[0]).toBeCloseTo(75);expect(ticks[1]).toBeCloseTo(37.5);
+    expect(ticks).toHaveLength(7);expect(ticks.slice(0,6).every(amount=>Math.abs(amount-18.75)<1e-8)).toBe(true);expect(ticks[6]).toBeCloseTo(7.5);expect(ticks.reduce((sum,amount)=>sum+amount,0)).toBeCloseTo(120);
   });
   it('settles deferred damage and doubled healing once when False Promise expires',()=>{
     const sap=definition('custom_bane_brain_sap',['HEAL/DAMAGE: 75 / 150 / 300']);
@@ -198,14 +198,15 @@ describe('project profession attributes',()=>{
     const glaives=definition('custom_silencer_glaives_of_wisdom',['INT TO DAMAGE: 100%','INT STEAL: 2','INT STEAL DURATION: 10'],{passive:true});
     const b=createBattle(player(0,[{id:glaives.id,points:3}]),player(1,[],'tank'),3,[glaives]),u=b.units[0];
     u.statuses.push({kind:'intelligence',value:10,until:20});stepBattle(b,1,[glaives]);
-    expect(b.events.filter(e=>e.type==='hit'&&e.skill===glaives.id).map(e=>e.amount)).toEqual([42]);
+    expect(b.events.filter(e=>e.type==='hit'&&e.skill===glaives.id).map(e=>e.amount)).toEqual([44]);
     expect(u.intelligence).toBe(44);expect(u.maxMana).toBe(1144);
   });
   it('records the last enemy death as persistent intelligence before battle completion',()=>{
     const glaives=definition('custom_silencer_glaives_of_wisdom',['INT TO DAMAGE: 100%','INT STEAL: 2','INT STEAL DURATION: 10'],{passive:false,mana:[15]});
-    const b=createBattle(player(0,[{id:glaives.id,points:6}]),player(1),3,[glaives]),[u,enemy]=b.units;
+    const opponent=player(1);opponent.heroes[0].id='h1';
+    const b=createBattle(player(0,[{id:glaives.id,points:6}]),opponent,3,[glaives]),[u,enemy]=b.units;
     applyDamage(b,u,enemy,10000,'pure','test_execution');expect(u.intelligence).toBe(34);
-    expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:0,agility:0,intelligence:0,skillState:{'custom_silencer_glaives_of_wisdom:intelligence':2}}]);
+    expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:0,agility:0,intelligence:2},{heroId:'h1',attack:0,strength:0,agility:0,intelligence:-2}]);
     stepBattle(b,FIXED_STEP,[glaives]);expect(b.finished).toBe(true);expect(b.winner).toBe(0);
   });
 });

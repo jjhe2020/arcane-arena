@@ -382,7 +382,7 @@ export function getBattlePlayers(state: GameState): Player[] { return copy(state
 
 function validReport(report: unknown): report is RoundReport {
   if (!record(report) || !integer(report.round, 1, 10000) || !integer(report.a, 0, 7) || !integer(report.b, 0, 7) || report.a === report.b || (report.winner !== null && report.winner !== report.a && report.winner !== report.b) || !integer(report.damage, 0, 10000) || !finite(report.duration, 0, 100000) || !integer(report.survivors, 0, 10000) || !Array.isArray(report.stats) || report.stats.length > 10000) return false;
-  if(report.gains!==undefined&&(!Array.isArray(report.gains)||report.gains.length>100||report.gains.some(g=>!record(g)||typeof g.heroId!=='string'||!finite(g.attack,0,1e7)||['strength','agility','intelligence'].some(k=>g[k]!==undefined&&!finite(g[k],0,1e7))||(g.skillState!==undefined&&!validSkillState(g.skillState)))))return false;
+  if(report.gains!==undefined&&(!Array.isArray(report.gains)||report.gains.length>100||report.gains.some(g=>!record(g)||typeof g.heroId!=='string'||!finite(g.attack,0,1e7)||['strength','agility','intelligence'].some(k=>g[k]!==undefined&&!finite(g[k],k==='intelligence'?-1e7:0,1e7))||(g.skillState!==undefined&&!validSkillState(g.skillState)))))return false;
   return report.stats.every(s => record(s) && typeof s.id === 'string' && typeof s.name === 'string' && integer(s.side, 0, 7) && finite(s.damage) && finite(s.taken) && finite(s.healing) && validateUnitStatistics(s));
 }
 
@@ -466,7 +466,7 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
       if (!p.heroes.every(h => {
         if (!record(h) || typeof h.id !== 'string' || h.id.length > 100 || heroIds.has(h.id) || typeof h.name !== 'string' || h.name.length > 100 || !Object.hasOwn(ROLES, String(h.role)) || !['male', 'female'].includes(String(h.skin)) || !finite(h.x, -14.57, 14.57) || !finite(h.y, -12.916, 0) || !Array.isArray(h.skills) || h.skills.length !== 4 || !h.skills.every(stackValid)) return false;
         if(h.persistentAttackBonus!==undefined&&!finite(h.persistentAttackBonus,0,1e7))return false;
-        if(['persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k],0,1e7)))return false;
+        if(['persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k],k==='persistentIntelligenceBonus'?-1e7:0,1e7)))return false;
         if(h.persistentSkillState!==undefined&&!validSkillState(h.persistentSkillState))return false;
         heroIds.add(h.id);
         return h.skills.filter(s => s && catalog.get(s.id)!.ultimate).length <= 1;

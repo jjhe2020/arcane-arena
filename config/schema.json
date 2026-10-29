@@ -8408,78 +8408,78 @@
           "key": "MAX ATTACKS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "最大 攻击S",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:998；buff(c, c.caster, 'flakCannon', 1, 10)"
-        },
-        {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1004；c.attack(target, 1, false)"
+          "meaning": "作用半径",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
         },
         {
-          "key": "skill_effects_extra.attack_multiplier.2",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1005；c.attack(other, 1, false)"
-        },
-        {
-          "key": "skill_effects_extra.attack_multiplier.3",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1008；c.attack(target, 1, false)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "DURATION",
           "unit": "ms",
+          "meaning": "持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1001；buff(c, c.caster, 'flakCannon', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), 10)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
+        },
+        {
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "侧面枪手弹道飞行速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
+        },
+        {
+          "key": "SIDE GUNNER INTERVAL",
+          "unit": "ms",
+          "meaning": "侧炮攻击间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
+        },
+        {
+          "key": "SIDE GUNNER RANGE",
+          "unit": "Dota单位",
+          "meaning": "侧面枪手自动攻击搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
+        },
+        {
+          "key": "SIDE GUNNER MELEE BUFFER",
+          "unit": "Dota单位",
+          "meaning": "近战侧炮搜索额外距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；2023 npc_abilities.txt:22286"
         }
       ]
     },
@@ -8498,12 +8498,12 @@
           "key": "DAMAGE PER SECOND",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每秒伤害",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
           "key": "DURATION",
@@ -8513,96 +8513,118 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
           "key": "MAGIC ABSORB",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MAGIC ABSORB",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "魔法伤害吸收容量",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:800；S(c) ? 280 : 0"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:801；interval: .2"
+          "meaning": "作用半径",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
-          "key": "skill_effects_extra.interval.2",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "每次伤害间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1156；interval: .25"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
-          "key": "skill_effects_extra.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1158；EXTRA_WORKING_DEFAULTS.radianceDamagePerSecond * .25"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ABSORB PERCENTAGE",
+          "unit": "%",
+          "meaning": "魔法伤害吸收比例",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1162；debuff(c, target, 'blind', EXTRA_WORKING_DEFAULTS.radianceBlind, .35)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         },
         {
-          "key": "skill_effects_extra.damage.2",
-          "kind": "program",
+          "key": "RADIANCE DAMAGE",
           "unit": "数值",
-          "min": -1000000000,
+          "meaning": "AA辉耀每秒本体伤害候选",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:808；(value(c, 'DAMAGE PER SECOND') + (S(c) ? balanceNumber(c,'skill_effects_extra.damage.1',50) : 0)) * balanceNumber(c,'skill_effects_extra.damage.2',0.2)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
+        },
+        {
+          "key": "RADIANCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "辉耀作用半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
+        },
+        {
+          "key": "RADIANCE BLIND",
+          "unit": "%",
+          "meaning": "辉耀致盲百分比候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
+        },
+        {
+          "key": "RADIANCE INTERVAL",
+          "unit": "ms",
+          "meaning": "辉耀每次伤害间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
+        },
+        {
+          "key": "RADIANCE LINGER",
+          "unit": "ms",
+          "meaning": "辉耀效果离开残留",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
+        },
+        {
+          "key": "RADIANCE ILLUSION DAMAGE",
+          "unit": "数值",
+          "meaning": "辉耀幻象每秒伤害候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA catalog；7.29 cast backswing；pre7.31 AA magic capacity/type；2023 item_radiance60/35/15/700; AA twice-powerful working interpretation"
         }
       ]
     },
@@ -8621,12 +8643,12 @@
           "key": "DAMAGE AMPLIFICATION",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 AMPLIFICATION",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "受到伤害增加的最终百分比",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
           "key": "DURATION",
@@ -8636,19 +8658,19 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
           "key": "MOVEMENT BONUS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "固定移动速度增加",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
           "key": "SLOW DURATION",
@@ -8657,295 +8679,141 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "减速持续时间",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
           "key": "SLOW",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "移动速度减缓百分比",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
           "key": "STRENGTH MULTIPLIER",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "力量 倍率",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:808；buff(c, c.caster, 'fleshGolem', 1, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:809；buff(c, c.caster, 'attackRangeOverride', 1.5, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:810；S(c) ? .1 : 0"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:816；debuff(c, c.target, 'slow', .05, 2.5, { maxStacks: 99, piercesImmunity: true })"
-        },
-        {
-          "key": "skill_effects_extra.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:816；maxStacks: 99"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:817；buff(c, c.caster, 'attackSpeed', 80, 2.5)"
+          "meaning": "最终力量百分比增益",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.buff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:817；buff(c, c.caster, 'haste', .5, 2.5)"
-        },
-        {
-          "key": "skill_effects_extra.trigger_chance.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1,
-          "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:820；c.random() < .1"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:823；S(c) ? .1 : 0"
-        },
-        {
-          "key": "skill_effects_extra.count.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "MELEE ATTACK RANGE",
+          "unit": "Dota单位",
+          "meaning": "变身最终近战攻击距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；count: 1"
-        },
-        {
-          "key": "skill_effects_extra.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
           "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；hp: 2"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.attack.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；attack: 34.5"
-        },
-        {
-          "key": "skill_effects_extra.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；range: 1.28"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
+          "key": "ZOMBIE DURATION",
           "unit": "ms",
+          "meaning": "生成僵尸持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；interval: 1.6"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；speed: 3.75"
-        },
-        {
-          "key": "skill_effects_extra.lifetime.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SOUL RIP ATTACK CHANCE",
+          "unit": "%",
+          "meaning": "攻击命中触发噬魂概率",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:825；lifetime: 15"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.buff_amount.6",
-          "kind": "program",
+          "key": "SOUL RIP DEFENCE CHANCE",
+          "unit": "%",
+          "meaning": "受到攻击触发噬魂概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
+        },
+        {
+          "key": "DEATHLUST HEALTH THRESHOLD",
+          "unit": "%",
+          "meaning": "触发死亡渴望的目标生命百分比门槛",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
+        },
+        {
+          "key": "DEATHLUST SLOW",
           "unit": "数值",
-          "min": -1000000000,
+          "meaning": "每层死亡渴望移速减缓百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:830；buff(c, zombie, 'attackTarget', 1, 15, { dispel: 'none', data: { targetId: c.target.id } })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.buff_amount.7",
-          "kind": "program",
+          "key": "DEATHLUST DURATION",
+          "unit": "ms",
+          "meaning": "死亡渴望每层持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
+        },
+        {
+          "key": "DEATHLUST INTERVAL",
+          "unit": "ms",
+          "meaning": "死亡渴望光环刷新间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
+        },
+        {
+          "key": "DEATHLUST ATTACK SPEED",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:831；buff(c, zombie, 'hitCountBody', 1, 15, { dispel: 'none', data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } })"
-        },
-        {
-          "key": "skill_effects_extra.trigger_chance.2",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1,
-          "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:834；c.random() < .1"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "meaning": "死亡渴望固定攻击速度",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:819；debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.05), 2.5, { maxStacks: balanceNumber(c,'skill_effects_extra.maxstacks.1',99), piercesImmunity: t"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         },
         {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "DEATHLUST MOVE SPEED",
+          "unit": "数值",
+          "meaning": "死亡渴望固定移动速度",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:820；buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.4',80), 2.5)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:820；buff(c, c.caster, 'haste', balanceNumber(c,'skill_effects_extra.buff_amount.5',0.5), 2.5)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:833；buff(c, zombie, 'attackTarget', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), 15, { dispel: 'none', data: { targetId: c.target.id } })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.4",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:834；buff(c, zombie, 'hitCountBody', balanceNumber(c,'skill_effects_extra.buff_amount.7',1), 15, { dispel: 'none', data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured +10/+10 overrides 4.5 announcement +15/+20；2023 native Golem and Deathstrike；AA1.5 actual melee；2021 native Shard prototype"
         }
       ]
     },
@@ -8964,12 +8832,12 @@
           "key": "DAMAGE BLOCK",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 BLOCK",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次伤害格挡量",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured custom block/growth；2023 immediate ignore-channel flags；hero qualification vs Super every-enemy unresolved"
         },
         {
           "key": "DURATION",
@@ -8979,30 +8847,30 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured custom block/growth；2023 immediate ignore-channel flags；hero qualification vs Super every-enemy unresolved"
         },
         {
           "key": "RANGE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用距离",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured custom block/growth；2023 immediate ignore-channel flags；hero qualification vs Super every-enemy unresolved"
         },
         {
           "key": "STRENGTH BONUS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "力量 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "合格敌人死亡的最终永久力量",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured custom block/growth；2023 immediate ignore-channel flags；hero qualification vs Super every-enemy unresolved"
         }
       ]
     },
@@ -9021,12 +8889,12 @@
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "固定攻击速度增益",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
         },
         {
           "key": "DAMAGE REDUCTION",
@@ -9035,20 +8903,97 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 降低",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "攻击伤害降低百分比（负值表示降低）",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "DURATION",
+          "unit": "ms",
+          "meaning": "持续时间",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1113；buff(c, c.caster, 'attackBonus', 24)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM ATTACK BONUS",
+          "unit": "数值",
+          "meaning": "大漩涡固定攻击加成",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM CHANCE",
+          "unit": "%",
+          "meaning": "大漩涡闪电触发概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM DAMAGE",
+          "unit": "数值",
+          "meaning": "每次闪电魔法伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM STRIKES",
+          "unit": "数值",
+          "meaning": "闪电总命中数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM RADIUS",
+          "unit": "Dota单位",
+          "meaning": "闪电弹跳搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM BOUNCE DELAY",
+          "unit": "ms",
+          "meaning": "闪电两目标间延迟",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
+        },
+        {
+          "key": "MAELSTROM COOLDOWN",
+          "unit": "ms",
+          "meaning": "闪电独立触发冷却",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；固定2023Valve/Wiki；AA captured；AA1.5/2.0/4.0；2023 items.txt:10010；2023 native duration20"
         }
       ]
     },
@@ -9097,158 +9042,15 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:557；buff(c, target, 'undying', 1, .01, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:558；c.damage(target, 360)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:560；buff(c, target, 'regen', 44, 9)"
-        },
-        {
-          "key": "skill_effects_extra.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:564；radius: 6.5"
-        },
-        {
-          "key": "skill_effects_extra.duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "BOLT SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "追踪净化弹速度",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:564；duration: 10"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:564；interval: 1"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:565；buff(c, target, 'healAmplification', .25, 1.1)"
-        },
-        {
-          "key": "skill_effects_extra.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:565；c.heal(target, 60)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:566；debuff(c, target, 'healReduction', .25, 1.1)"
-        },
-        {
-          "key": "skill_effects_extra.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:566；c.damage(target, 60)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:560；buff(c, target, 'undying', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), .01, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:563；buff(c, target, 'regen', balanceNumber(c,'skill_effects_extra.buff_amount.2',44), 9)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:568；buff(c, target, 'healAmplification', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), 1.1)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:569；debuff(c, target, 'healReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.25), 1.1)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3AOracle；固定2023KV；AA数值优先"
         }
       ]
     },
@@ -9303,9 +9105,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "EXPLOSION 间隔",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终爆炸间隔",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
           "key": "EXPLOSION RADIUS",
@@ -9341,202 +9143,114 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.armor_duration.1",
-          "kind": "program",
+          "key": "DURATION",
           "unit": "ms",
+          "meaning": "冰封领域持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:272；c.status(c.caster, 'armor', .25, v(c, 'BONUS ARMOR'))"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
+          "key": "SLOW LINGER",
           "unit": "ms",
+          "meaning": "领域减速残留时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:272；c.status(c.caster, 'slow', 10, .75)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:272；c.status(c.caster, 'slow', 10, .75)"
-        },
-        {
-          "key": "skill_effects_more.armor_duration.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SELF MOVEMENT SLOW",
+          "unit": "%",
+          "meaning": "自身移动减速",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:274；c.status(c.caster, 'armor', .25, v(c, 'BONUS ARMOR'))"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.slow_duration.2",
-          "kind": "program",
+          "key": "FROSTBITE EXPOSURE",
           "unit": "ms",
+          "meaning": "连续停留冰封触发时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:274；c.status(c.caster, 'slow', .25, .75)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.slow_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:274；c.status(c.caster, 'slow', .25, .75)"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.3",
-          "kind": "program",
-          "unit": "ms",
+          "key": "LINKENS ALL STATS",
+          "unit": "属性点",
+          "meaning": "林肯全属性",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:278；slow(c, t, v(c, 'MOVEMENT SLOW'), .3)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.attackspeed_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "LINKENS HP REGEN",
+          "unit": "HP/秒",
+          "meaning": "林肯生命恢复",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:278；c.status(t, 'attackSpeed', .3, v(c, 'ATTACK SLOW'), harmful)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.statbonus_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "LINKENS MANA REGEN",
+          "unit": "魔法/秒",
+          "meaning": "林肯魔法恢复",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 STAT加成 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'statBonus', 1e6, 16, { dispel: 'none' })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.statbonus_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 STAT加成 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'statBonus', 1e6, 16, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.regen_duration.1",
-          "kind": "program",
+          "key": "LINKENS BLOCK COOLDOWN",
           "unit": "ms",
+          "meaning": "林肯法术抵挡重充",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'regen', 1e6, 7, { dispel: 'none' })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'regen', 1e6, 7, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.manaregen_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "EXPLOSION MIN DIST",
+          "unit": "Dota单位",
+          "meaning": "爆炸最小生成距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 法力恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'manaRegen', 1e6, 5, { dispel: 'none' })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         },
         {
-          "key": "skill_effects_more.manaregen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 法力恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'manaRegen', 1e6, 5, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.spellblock_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "EXPLOSION MAX DIST",
+          "unit": "Dota单位",
+          "meaning": "爆炸最大生成距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 SPELLBLOCK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'spellBlock', 1e6, 1, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.spellblock_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 SPELLBLOCK AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:285；c.status(c.caster, 'spellBlock', 1e6, 1, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.spellblock_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 SPELLBLOCK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:287；c.status(c.caster, 'spellBlock', 1e6, 1, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_more.spellblock_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 SPELLBLOCK AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:287；c.status(c.caster, 'spellBlock', 1e6, 1, { dispel: 'none' })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；195/785 use pinned native independent geometry; exact AA600radius mapping remains source_pending. Native radius and AA aura are separate values.,Public cast point/back0 are pinned2023 and oldWiki, not prior fallback."
         }
       ]
     },
@@ -9576,13 +9290,13 @@
         {
           "key": "HYPOTHERMIA REGEN REDUCTION",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HYPOTHERMIA 恢复 降低",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终每层全恢复抑制",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
         },
         {
           "key": "MOVEMENT SLOW",
@@ -9596,92 +9310,125 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:209；Math.min(1, n * (P(value(c, 'HYPOTHERMIA REGEN REDUCTION')) + (S(c) ? .04 : 0)))"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:209；S(c) ? .04 : 0"
-        },
-        {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:210；c.attack(enemy, .5, false)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:216；debuff(c, enemy, 'slow', .4, 2, { piercesImmunity: false })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "SLOW DURATION",
           "unit": "ms",
+          "meaning": "冰箭减速持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:210；debuff(c, c.target, 'slow', P(value(c, 'MOVEMENT SLOW')), 1.5)"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
         },
         {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "HYPOTHERMIA MAX STACKS",
+          "unit": "层",
+          "meaning": "低温最大层数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:211；debuff(c, c.target, 'hypothermia', n, 7)"
+          "integer": true,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
         },
         {
-          "key": "skill_effects_extra.debuff_duration.3",
-          "kind": "program",
+          "key": "HYPOTHERMIA DURATION",
           "unit": "ms",
+          "meaning": "低温层持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:212；debuff(c, c.target, 'healReduction', Math.min(balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), n * (P(value(c, 'HYPOTHERMIA REGEN REDUCTION')) + (S(c) ? balanceNumber(c,'s"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
         },
         {
-          "key": "skill_effects_extra.debuff_duration.4",
-          "kind": "program",
-          "unit": "ms",
+          "key": "HYPOTHERMIA BURST RADIUS",
+          "unit": "Dota单位",
+          "meaning": "低温死亡爆裂搜索半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:219；debuff(c, enemy, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.3',0.4), 2, { piercesImmunity: false })"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "HYPOTHERMIA BURST SLOW",
+          "unit": "%",
+          "meaning": "低温爆裂减速",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "HYPOTHERMIA BURST SLOW DURATION",
+          "unit": "ms",
+          "meaning": "低温爆裂减速持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "HYPOTHERMIA PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "低温爆裂弹体速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "SPLINTER TARGETS",
+          "unit": "个",
+          "meaning": "分裂额外目标数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "SPLINTER RADIUS",
+          "unit": "Dota单位",
+          "meaning": "分裂搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "SPLINTER DAMAGE",
+          "unit": "%",
+          "meaning": "分裂攻击伤害倍率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Drow_Ranger；Hypothermia speed1300 currentWiki compatible candidate; dated2020 deathprojectile/range650 is explicit.,Do not add native5perstack extra damage: AA finalflat7.5/15/30/50/50 remains authoritative."
+        },
+        {
+          "key": "HYPOTHERMIA BONUS DAMAGE PER STACK",
+          "kind": "value",
+          "meaning": "低温每层附加攻击伤害",
+          "unit": "伤害/层",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "官方AA2023-04-05完整Hypothermia魔晶+固定2023Valve KV",
+          "note": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?l=latam&p=15；2023-04-05官方AA加入完整Hypothermia魔晶，仅覆盖死亡爆发与恢复抑制。固定2023Valve KV shard_bonus_damage_per_stack=5。先叠本次层的触发顺序候选见技能验收，不用表数值伪证顺序。"
         }
       ]
     },
@@ -9710,13 +9457,13 @@
         {
           "key": "DAMAGE REDUCTION",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 降低",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终英雄攻击伤害减免",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
         },
         {
           "key": "DAMAGE",
@@ -9752,59 +9499,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:457；buff(c, target, 'frostShield', 1, duration + .01)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:458；S(c) ? .1 : 0"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:459；buff(c, target, 'regen', 50, duration)"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:462；target.maxHp * .06"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PULSE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "魔盾脉冲半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:460；duration + .01"
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
+        },
+        {
+          "key": "PULSE INTERVAL",
+          "unit": "ms",
+          "meaning": "魔盾脉冲间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
+        },
+        {
+          "key": "FIRST PULSE DELAY",
+          "unit": "ms",
+          "meaning": "魔盾首跳延迟",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
+        },
+        {
+          "key": "HEALTH REGEN",
+          "unit": "HP/秒",
+          "meaning": "超神生命恢复",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
+        },
+        {
+          "key": "MAX HEALTH DAMAGE",
+          "unit": "%",
+          "meaning": "每跳目标最大生命附加伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Archive%3ALich；Firstpulse.1 explicitlydated7.31;back.93 oldArchive compatiblecandidate,current.4 notbackdated."
         }
       ]
     },
@@ -9837,20 +9584,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "CREEP 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终低等级普通单位冰封持续时间",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
         },
         {
           "key": "DAMAGE PER SECOND",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终冰封每秒伤害",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
         },
         {
           "key": "HERO DURATION",
@@ -9859,9 +9606,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HERO 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终英雄冰封持续时间",
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "冰封伤害间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
+        },
+        {
+          "key": "CREEP MAX LEVEL",
+          "unit": "级",
+          "meaning": "长冰封普通单位等级上限",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
+        },
+        {
+          "key": "INCOMING DAMAGE AMP",
+          "unit": "%",
+          "meaning": "超神全伤害加深",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Crystal_Maiden；Backswing.6 in frozen olderWiki (post7.33 numericpage);point.3 andtick.25 pinned2023.,AA Super/Gaben custom flags are not automatic full nativeitem/talent imports."
         }
       ]
     },
@@ -9880,23 +9660,12 @@
           "key": "DAMAGE PER ATTACK",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害 每 攻击",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "RESET TIME (ROSHAN)",
-          "kind": "value",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "RESET 时间 (ROSHAN)",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层条件攻击额外物理伤害",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA8/16/32与Strong驱散/S44优先；历史条件攻击伤害不暴击但吃吸血/分裂/法术增强。"
         },
         {
           "key": "RESET TIME",
@@ -9905,20 +9674,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "RESET 时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "自然消散时间（0表示持续至本轮结束，不是立即到期）",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA8/16/32与Strong驱散/S44优先；历史条件攻击伤害不暴击但吃吸血/分裂/法术增强。"
         },
         {
-          "key": "skill_effects.furyswipes_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "GABEN ATTACKS REQUIRED",
+          "unit": "次数",
+          "meaning": "对同一敌人多少次命中后传播层数",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 FURYSWIPES AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:276；stacks+1"
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA8/16/32与Strong驱散/S44优先；历史条件攻击伤害不暴击但吃吸血/分裂/法术增强。"
+        },
+        {
+          "key": "GABEN STACKS",
+          "unit": "次数",
+          "meaning": "每次传播给其他敌人的层数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA8/16/32与Strong驱散/S44优先；历史条件攻击伤害不暴击但吃吸血/分裂/法术增强。"
         }
       ]
     },
@@ -9936,13 +9716,13 @@
         {
           "key": "BONUS DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "基础与主属性攻击增加百分比",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
         },
         {
           "key": "DURATION",
@@ -9951,20 +9731,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "力量增益持续时间",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
         },
         {
-          "key": "main_upgrades.magicimmune_duration.1",
-          "kind": "program",
+          "key": "SPELL IMMUNITY DURATION",
           "unit": "ms",
+          "meaning": "Super独立法术免疫持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:59；c.status(c.caster,'magicImmune',4)"
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
+        },
+        {
+          "key": "BOLT DAMAGE THRESHOLD",
+          "unit": "数值",
+          "meaning": "Gaben触发风暴之拳需要累计的有效攻击伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
+        },
+        {
+          "key": "BOLT PROC COOLDOWN",
+          "unit": "ms",
+          "meaning": "两次自动风暴之拳的独立冷却",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
+        },
+        {
+          "key": "BOLT LEVEL",
+          "unit": "次数",
+          "meaning": "自动风暴之拳原生等级候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven；https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16；官方AA修复只增基础与主属性伤害，Super免疫4秒。"
         }
       ]
     },
@@ -9993,13 +9806,13 @@
         {
           "key": "DAMAGE DELAYED",
           "kind": "value",
-          "unit": "ms",
+          "unit": "%",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 延迟ED",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "朗姆酒推迟到醉后返还的伤害比例",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；https://news.abilityarena.com/ability-arena-season-4/；官方Workshop16只首船触发洪流并向己方推，静态AA页面方向文字冲突保留记录。RANGE2000是ghostship_distance，施法距离按KV1000。"
         },
         {
           "key": "IMPACT DELAY",
@@ -10068,37 +9881,48 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.ghostshiprum_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 GHOSTSHIPRUM AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:301；superLevel(c) ? .1 : 0"
-        },
-        {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
+          "key": "RUM HANGOVER DURATION",
           "unit": "ms",
+          "meaning": "醉后非致死生命偿还总时长",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:306；c.delay(3.5, launch)"
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；https://news.abilityarena.com/ability-arena-season-4/；官方Workshop16只首船触发洪流并向己方推，静态AA页面方向文字冲突保留记录。RANGE2000是ghostship_distance，施法距离按KV1000。"
         },
         {
-          "key": "skill_effects_more.delay.2",
-          "kind": "program",
+          "key": "RUM REPAY INTERVAL",
           "unit": "ms",
+          "meaning": "醉后每次生命偿还间隔（首跳延迟同间隔为工作候选）",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:306；c.delay(7, launch)"
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；https://news.abilityarena.com/ability-arena-season-4/；官方Workshop16只首船触发洪流并向己方推，静态AA页面方向文字冲突保留记录。RANGE2000是ghostship_distance，施法距离按KV1000。"
+        },
+        {
+          "key": "SHIP COUNT",
+          "unit": "次数",
+          "meaning": "每次施放的幽灵船总数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；https://news.abilityarena.com/ability-arena-season-4/；官方Workshop16只首船触发洪流并向己方推，静态AA页面方向文字冲突保留记录。RANGE2000是ghostship_distance，施法距离按KV1000。"
+        },
+        {
+          "key": "SHIP INTERVAL",
+          "unit": "ms",
+          "meaning": "连续幽灵船的发船间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；https://news.abilityarena.com/ability-arena-season-4/；官方Workshop16只首船触发洪流并向己方推，静态AA页面方向文字冲突保留记录。RANGE2000是ghostship_distance，施法距离按KV1000。"
         }
       ]
     },
@@ -10138,46 +9962,68 @@
         {
           "key": "INT TO DAMAGE",
           "kind": "value",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "当次智力转化纯粹伤害的最终比例",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
+        },
+        {
+          "key": "PERMANENT INTELLIGENCE",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "INT TO 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:319；maxStacks:100"
-        },
-        {
-          "key": "skill_effects.maxstacks.2",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:319；maxStacks:100"
-        },
-        {
-          "key": "skill_effects.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
+          "meaning": "Super每次合格死亡永久偷取智力",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:320；c.attack(target,.5,false)"
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
+        },
+        {
+          "key": "INT STEAL RADIUS",
+          "unit": "Dota单位",
+          "meaning": "永久偷智的英雄死亡搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
+        },
+        {
+          "key": "BOUNCE COUNT",
+          "unit": "次数",
+          "meaning": "攻击后额外弹跳总次数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
+        },
+        {
+          "key": "BOUNCE DAMAGE PERCENT",
+          "unit": "%",
+          "meaning": "弹跳物理分量占主攻击原始伤害的比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "弹跳选择下一名可见敌人的半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA只Super开放永久智力偷取，Gaben一跳50%及额外15个百分点优先。历史bounce600，精确AA范围未见覆盖。"
         }
       ]
     },
@@ -10199,20 +10045,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "全领域沉默每档最终持续时间",
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA缩短基础沉默并Gaben+2秒。旧ScepterCurse原型，不导入2024二次沉默Facet或现版诅咒等长规则。"
         },
         {
-          "key": "main_upgrades.silence_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "CURSE LEVEL",
+          "unit": "次数",
+          "meaning": "Super授予原生诅咒等级候选",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 沉默 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:56；duration(c)+2"
+          "integer": true,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；AA缩短基础沉默并Gaben+2秒。旧ScepterCurse原型，不导入2024二次沉默Facet或现版诅咒等长规则。"
         }
       ]
     },
@@ -27018,17 +26864,6 @@
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
         {
-          "key": "DURATION",
-          "kind": "value",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
           "key": "KNOCKBACK DISTANCE",
           "kind": "value",
           "unit": "Dota单位",
@@ -27038,6 +26873,28 @@
           "meaning": "KNOCKBACK 距离",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+        },
+        {
+          "key": "TRAVEL DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "洪流自身飞行总距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；官方AA洪流在船撞点向己方，仅首船触发；2300飞行距离与600击退/1.25秒分开。父免费触发跳过原生公共资源与动画。"
+        },
+        {
+          "key": "KNOCKBACK DURATION",
+          "unit": "ms",
+          "meaning": "每个被命中单位的固定击退持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka；官方AA洪流在船撞点向己方，仅首船触发；2300飞行距离与600击退/1.25秒分开。父免费触发跳过原生公共资源与动画。"
         }
       ]
     },
@@ -30027,6 +29884,17 @@
           "meaning": "UNDISPELLABLE",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "诅咒首次伤害及后续每次伤害间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定2023Wiki/KV逐项核验",
+          "note": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer；原生诅咒间隔1秒/独立多实例，Global免费父效果不重复扣费；精确AA授予版本与等级待证。"
         }
       ]
     },
@@ -33262,6 +33130,148 @@
           "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
         }
       ]
+    },
+    "native:oracle_purifying_flames": {
+      "id": "oracle_purifying_flames",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "params": [
+        {
+          "key": "DAMAGE",
+          "unit": "伤害",
+          "meaning": "先行造成的魔法伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native4rank frompinned2023exactKV;AAcallsrank4forfree,noactivegrantslot. Nativepubliccost/CDnotpaidbyfreecastAbility."
+        },
+        {
+          "key": "HEAL PER SECOND",
+          "unit": "HP/秒",
+          "meaning": "后续每秒普通治疗量",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native4rank frompinned2023exactKV;AAcallsrank4forfree,noactivegrantslot. Nativepubliccost/CDnotpaidbyfreecastAbility."
+        },
+        {
+          "key": "DURATION",
+          "unit": "ms",
+          "meaning": "持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native4rank frompinned2023exactKV;AAcallsrank4forfree,noactivegrantslot. Nativepubliccost/CDnotpaidbyfreecastAbility."
+        },
+        {
+          "key": "TICK INTERVAL",
+          "unit": "ms",
+          "meaning": "后续普通治疗结算间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native4rank frompinned2023exactKV;AAcallsrank4forfree,noactivegrantslot. Nativepubliccost/CDnotpaidbyfreecastAbility."
+        }
+      ]
+    },
+    "native:oracle_rain_of_destiny": {
+      "id": "oracle_rain_of_destiny",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": [
+        {
+          "key": "RADIUS",
+          "unit": "Dota单位",
+          "meaning": "作用半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "DURATION",
+          "unit": "ms",
+          "meaning": "持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "每秒伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "HEAL PER SECOND",
+          "unit": "HP/秒",
+          "meaning": "区域内友军每秒普通治疗量",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "HEAL AMP",
+          "unit": "%",
+          "meaning": "区域内直接治疗增幅（不含再生及吸血）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "TICK INTERVAL",
+          "unit": "ms",
+          "meaning": "区域伤害及普通治疗结算间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        },
+        {
+          "key": "AURA LINGER",
+          "unit": "ms",
+          "meaning": "离开区域后的治疗增幅残留时长",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C7 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
+        }
+      ]
     }
   },
   "economy": [
@@ -33617,7 +33627,8 @@
     "npc_dota_neutral_mud_golem",
     "npc_dota_neutral_mud_golem_split",
     "npc_dota_witch_doctor_death_ward",
-    "npc_dota_lich_ice_spire"
+    "npc_dota_lich_ice_spire",
+    "npc_dota_unit_undying_zombie"
   ],
   "roles": [
     "archer",

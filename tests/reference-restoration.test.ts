@@ -35,7 +35,7 @@ describe('historical restoration classes and ordinary creep spell lifesteal',()=
   const rain='custom_oracle_fortunes_end',sap='custom_bane_brain_sap',w=world([{id:rain,points:9},{id:sap,points:3}],catalog);w.source.mana=10000;w.source.maxMana=10000;w.source.cooldowns[1]=100;w.step(1.1);
   expect(w.source.statuses.some(s=>s.kind==='healAmplification'&&(s as EffectStatus).data?.healingOnly)).toBe(true);w.source.cooldowns[0]=100;w.source.hp=100;
   w.source.statuses=w.source.statuses.filter(s=>s.kind==='healAmplification'||s.kind==='disarm');w.source.statuses.push({kind:'regen',skill:'regeneration',source:w.source.id,value:30,until:w.b.time+.2},{kind:'spellLifesteal',skill:'provider',value:.5,until:100});
-  w.step(.1);expect(w.source.hp).toBeCloseTo(103);applyDamage(w.b,w.source,w.target,100,'pure','spell');expect(w.source.abilityStats?.find(s=>s.abilityId==='provider')?.healing).toBeCloseTo(50);
+  const firstEvent=w.b.events.length;w.step(.1);expect(w.b.events.slice(firstEvent).filter(e=>e.type==='heal'&&e.skill==='regeneration').reduce((sum,e)=>sum+Number(e.amount),0)).toBeCloseTo(3);const beforeLifesteal=w.source.abilityStats?.find(s=>s.abilityId==='provider')?.healing??0;applyDamage(w.b,w.source,w.target,100,'pure','spell');expect((w.source.abilityStats?.find(s=>s.abilityId==='provider')?.healing??0)-beforeLifesteal).toBeCloseTo(50);
   w.source.cooldowns[1]=w.b.time;w.step(.4);const direct=w.b.events.find(e=>e.type==='heal'&&e.skill===sap);expect(direct?.amount).toBe(375);expect(battleStats(w.b).every(validateUnitStatistics)).toBe(true);
  });
  it('a real Feast uses lifesteal amplification and ignores real Rain direct-heal amplification',()=>{

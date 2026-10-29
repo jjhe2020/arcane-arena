@@ -11,6 +11,9 @@ import {applyEdgeEarthAcceptance} from './combat/edge-earth-acceptance';
 import {applyDragonEchoAcceptance} from './combat/dragon-echo-acceptance';
 import {applyRestorationIdentityAcceptance} from './combat/restoration-identity-acceptance';
 import {applyFireFissureAcceptance} from './combat/fire-fissure-acceptance';
+import {applyFlakFleshAcceptance} from './combat/flak-flesh-acceptance';
+import {applyFuryGlobalAcceptance} from './combat/fury-global-acceptance';
+import {applyFrostControlAcceptance,FROST_CONTROL_CHILD_DEFINITIONS} from './combat/frost-control-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -74,6 +77,12 @@ export interface ZoneOptions {
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
+  /** Per-projectile speed in world units/second; leaves the body's ordinary speed intact. */
+  projectileSpeed?:number;
+  /** An attack can split from a hit position while retaining its actual source/owner. */
+  projectileOrigin?:{x:number;y:number};
+  /** A native melee extra attack can fail outside its explicit reach tolerance. */
+  meleeRangeBuffer?:number;
   modifierPolicy?:'all'|'none';
   attackBatchKey?:string;
   accuracy?:number;
@@ -103,6 +112,9 @@ export interface EffectContext {
   beforeDamageResolution?:{inputAmount:number;damageAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;stage:'beforeTargetMitigation'};
   attackBatchKey?:string;
   addAttackBonus?(amount:number):void;
+  permanentAttribute?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',amount:number):number;
+  /** Rebase an illusion's already-copied totals before adding a copied form multiplier. */
+  inheritTemporaryAttributeMultiplier?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',fraction:number):boolean;
   executedAbility?:{id:string;cooldown:number;manaCost:number;procsOnCast:boolean;granted:boolean};
   attackInProgress?:boolean;
   launchAttack?(target:CombatUnit,multiplier?:number,triggerModifiers?:boolean,options?:InstantAttackOptions):boolean;
@@ -139,7 +151,7 @@ export interface EffectContext {
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
-  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void): void;
+  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void}): void;
   linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';origin?:{x:number;y:number};onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
@@ -227,7 +239,7 @@ export interface SkillProgram {
   onAllyAttackPoint?: (c:EffectContext)=>void;
   onAttackPoint?: (c:EffectContext)=>void;
   onKill?: (c: EffectContext) => void;
-  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; postCriticalBonus?:number; type?: DamageType };
+  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; postCriticalBonus?:number; postCriticalSpellAmplifiedBonus?:number; type?: DamageType };
   implemented: string[]; remaining: string[];
   superImplemented?: boolean; gabenImplemented?: boolean;
 }
@@ -553,7 +565,10 @@ applyEdgeEarthAcceptance(registry);
 applyDragonEchoAcceptance(registry);
 applyRestorationIdentityAcceptance(registry);
 applyFireFissureAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS];
+applyFlakFleshAcceptance(registry);
+applyFuryGlobalAcceptance(registry);
+applyFrostControlAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

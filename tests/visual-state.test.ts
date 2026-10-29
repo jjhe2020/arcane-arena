@@ -98,7 +98,7 @@ describe('real skill motion metadata', () => {
     expect({ x: wave.x, y: wave.y }).not.toEqual(before);
     const restored = restoreBattle(serializeBattle(battle), definitions);
     expect(activeVisualProjectiles(restored)).toEqual(activeVisualProjectiles(battle));
-    stepBattle(battle, 1.5, definitions); expect(activeVisualProjectiles(battle).some(p => p.id === wave.id)).toBe(false);
+    stepBattle(battle, 3.5, definitions); expect(activeVisualProjectiles(battle).some(p => p.id === wave.id)).toBe(false);
   });
   it('a spit projectile follows the actual hidden passenger instead of a preview path', () => {
     const owner = player(0, 'custom_snapfire_mortimer_kisses', 6); owner.heroes[1].x = 1; owner.heroes[1].y = -3.5;

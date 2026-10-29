@@ -1,0 +1,2017 @@
+{
+  "schemaVersion": 1,
+  "group": "flak-flesh",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured English and explicit balance first; native mechanics use pinned2023KV and dated changes. Current retained Wiki notes are labelled candidates; results and historical-source completion are separate. No Wayback retry or whole-page HTML is stored.",
+  "validation": {
+    "command": "npx vitest run tests/reference-flak-flesh.test.ts",
+    "configurationHash": "2e2760c9c65a5febc198cc2837a0f1973b82b6e0cdd6ea378560177d38e960a4",
+    "skillGroupTests": 77,
+    "passedTests": 77,
+    "reportInput": "output/c7-flak-flesh/compiled-tests.json",
+    "typecheck": "Final parent npx tsc --noEmit and whole-repository1697/1697 passed with final2e2760configuration; native-reference proof is rebuilt separately.",
+    "additionalResult": "FFX-01 replays a mixed five-skill live battle through a serialized checkpoint; this is project determinism evidence,not a native skill rule.",
+    "regressionRuns": [
+      {
+        "command": "npx vitest run tests/reference-flak-flesh.test.ts tests/reference-dragon-echo.test.ts tests/reference-instant-attacks.test.ts tests/reference-tether-lifesteal.test.ts tests/reference-reflection-demon.test.ts",
+        "tests": 241,
+        "passed": 241,
+        "failed": 0
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": "gyrocopter_flak_cannon",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "paraphrase": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "versionContext": "2022-10-05 AA1.5; explicit captured values still have priority."
+        },
+        {
+          "id": "flak-wiki",
+          "url": "https://dota2.fandom.com/wiki/Gyrocopter",
+          "accessedOn": "2026-10-30",
+          "observation": "Flak fires independent800speed attacks at attack launch even when primary misses, excludes primary/wards/buildings/invisible units and does not apply modifiers. Side Gunner uses body projectile speed and modifiers, ignores disarm, stops for invisibility/hidden/Break; melee Side Gunner misses beyond body range+350.",
+          "paraphrase": "Flak fires independent800speed attacks at attack launch even when primary misses, excludes primary/wards/buildings/invisible units and does not apply modifiers. Side Gunner uses body projectile speed and modifiers, ignores disarm, stops for invisibility/hidden/Break; melee Side Gunner misses beyond body range+350.",
+          "versionContext": "Retained approximately7.35 page. The later two-target Side Gunner and1250radius are explicitly excluded; exact earlier dates of some edge notes remain qualified."
+        },
+        {
+          "id": "flak-history",
+          "url": "https://dota2.fandom.com/wiki/Gyrocopter/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "March2022 explicitly enabled learned Side Gunner on other bodies; 7.34 added its second active target and1250Flak radius.",
+          "paraphrase": "March2022 explicitly enabled learned Side Gunner on other bodies; 7.34 added its second active target and1250Flak radius.",
+          "versionContext": "2022-03-25 and2023-08-08 changes distinguish the selected2023candidate from later features."
+        },
+        {
+          "id": "break-item",
+          "url": "https://liquipedia.net/dota2/Break/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The introduction of Break preserves item passives, explicitly including Radiance.",
+          "paraphrase": "The introduction of Break preserves item passives, explicitly including Radiance.",
+          "versionContext": "Native6.84item-passive rule predates2023. Whether the AA grant was internally an item or a custom ability remains a separate AA implementation boundary."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FC-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks pay the declared mana and18cooldown with0point0backswing and10second charges",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "flak-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-01 five AA ranks pay the declared mana and18cooldown with0point0backswing and10second charges"
+            }
+          ]
+        },
+        {
+          "id": "FC-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "secondary800speed projectiles launch before a ranged primary lands",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-02 secondary800speed projectiles launch before a ranged primary lands"
+            }
+          ]
+        },
+        {
+          "id": "FC-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "an evaded primary still spends a charge and hits the independent secondary",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-03 an evaded primary still spends a charge and hits the independent secondary"
+            }
+          ]
+        },
+        {
+          "id": "FC-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "primary death after launch does not remove already released secondary projectiles",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-04 primary death after launch does not remove already released secondary projectiles"
+            }
+          ]
+        },
+        {
+          "id": "FC-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "primary is excluded and secondary attacks carry neither critical nor lifesteal nor Bash",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-05 primary is excluded and secondary attacks carry neither critical nor lifesteal nor Bash"
+            }
+          ]
+        },
+        {
+          "id": "FC-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Flak excludes wards buildings invisible and Shadow Realm while retaining spell immune ordinary units",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-06 Flak excludes wards buildings invisible and Shadow Realm while retaining spell immune ordinary units"
+            }
+          ]
+        },
+        {
+          "id": "FC-07",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "last charge expiry and strong dispel clear the charge marker while Basic Dispel preserves it",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-07 last charge expiry and strong dispel clear the charge marker while Basic Dispel preserves it"
+            }
+          ]
+        },
+        {
+          "id": "FC-08",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Side Gunner selects the furthest700target every1.2seconds and uses body projectile speed",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "flak-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-08 Side Gunner selects the furthest700target every1.2seconds and uses body projectile speed"
+            }
+          ]
+        },
+        {
+          "id": "FC-09",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "Side Gunner ignores disarm and stun but stops for Break invisibility and banishment",
+          "sourceIds": [
+            "flak-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-09 Side Gunner ignores disarm and stun but stops for Break invisibility and banishment"
+            }
+          ]
+        },
+        {
+          "id": "FC-10",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Side Gunner applies ordinary attack modifiers while Super does not fire an active Flak fan",
+          "sourceIds": [
+            "aa",
+            "flak-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-10 Side Gunner applies ordinary attack modifiers while Super does not fire an active Flak fan"
+            }
+          ]
+        },
+        {
+          "id": "FC-11",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Gaben fans each Side Gunner shot once without recursive extra fans or spending active charges",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-11 Gaben fans each Side Gunner shot once without recursive extra fans or spending active charges"
+            }
+          ]
+        },
+        {
+          "id": "FC-12",
+          "kind": "combination",
+          "branch": "Super-Gaben",
+          "mechanism": "a melee Side Gunner misses beyond attack range plus350 but Gaben still launches its ranged fan",
+          "sourceIds": [
+            "flak-wiki",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-12 a melee Side Gunner misses beyond attack range plus350 but Gaben still launches its ranged fan"
+            }
+          ]
+        },
+        {
+          "id": "FC-13",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "an existing native Side Gunner timer survives a real Fiends Grip channel without interrupting its clock",
+          "sourceIds": [
+            "flak-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FC-13 an existing native Side Gunner timer survives a real Fiends Grip channel without interrupting its clock"
+            }
+          ]
+        },
+        {
+          "id": "FC-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA Side Gunner becomes Flak does not establish whether it consumes active charges; the retained free-fan interpretation is tested without being claimed exact AA Lua.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FC-P02",
+          "kind": "timing",
+          "branch": "Super",
+          "mechanism": "Exact historical initial Side Gunner timer phase and silence/steal acquisition cadence remain native candidates;1.2interval itself is explicit AA and2023KV.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "flak-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "FC-11: Gaben fans each Side Gunner shot once without recursive extra fans or spending active charges",
+        "FC-P01: AA Side Gunner becomes Flak does not establish whether it consumes active charges; the retained free-fan interpretation is tested without being claimed exact AA Lua.",
+        "FC-P02: Exact historical initial Side Gunner timer phase and silence/steal acquisition cadence remain native candidates;1.2interval itself is explicit AA and2023KV."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "flak-wiki"
+          ],
+          "conclusion": "Native Scepter Side Gunner prototype with explicit AA700/1.2and no post7.34secondtarget."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "conclusion": "AA custom SideGunnerFlak fan; free-versus-charge exact interpretation remains pending."
+        }
+      ]
+    },
+    {
+      "id": "custom_ember_spirit_flame_guard",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+        },
+        {
+          "id": "valve-items",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+          "paraphrase": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+          "versionContext": "2023-02-10 native item prototypes. AA grants/effects retain their custom differences; no inventory system is invented."
+        },
+        {
+          "id": "aa40",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+          "paraphrase": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+          "versionContext": "2023-01-01 AASeason4."
+        },
+        {
+          "id": "flame-wiki",
+          "url": "https://dota2.fandom.com/wiki/Ember_Spirit",
+          "accessedOn": "2026-10-30",
+          "observation": "The active guard burns at.2second intervals, loses its burn with the barrier and is dispellable; its cast animation is0+.6.",
+          "paraphrase": "The active guard burns at.2second intervals, loses its burn with the barrier and is dispellable; its cast animation is0+.6.",
+          "versionContext": "Retained post2023page; AA custom cap/DPS and full absorption override newer native numbers."
+        },
+        {
+          "id": "flame-history",
+          "url": "https://dota2.fandom.com/wiki/Ember_Spirit/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.31 changed absorption100to70percent and cap110/240/370/500to85/190/295/400.7.29 reduced backswing to.6; old280capacity and50DPS talents are prototypes for AA Super.",
+          "paraphrase": "7.31 changed absorption100to70percent and cap110/240/370/500to85/190/295/400.7.29 reduced backswing to.6; old280capacity and50DPS talents are prototypes for AA Super.",
+          "versionContext": "2021-04-09 and2022-02-23 boundaries. AA English unharmed wording and old cap are retained rather than silently adopting70percent."
+        },
+        {
+          "id": "barrier733",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.33",
+          "accessedOn": "2026-10-30",
+          "observation": "Magic barriers moved after magic-resistance reduction in7.33. This supports a separate preMR stage for the selected older Flame Guard model.",
+          "paraphrase": "Magic barriers moved after magic-resistance reduction in7.33. This supports a separate preMR stage for the selected older Flame Guard model.",
+          "versionContext": "2023-04-20. This does not establish preMR barrier priority against False Promise,Borrowed Time or Refraction."
+        },
+        {
+          "id": "radiance-wiki",
+          "url": "https://dota2.fandom.com/wiki/Radiance",
+          "accessedOn": "2026-10-30",
+          "observation": "Burn first ticks after one second, lingers.5seconds and does not stack. Heroes take priority over weaker illusion Burn; the item effect also supports ordinary spell amplification/lifesteal.",
+          "paraphrase": "Burn first ticks after one second, lingers.5seconds and does not stack. Heroes take priority over weaker illusion Burn; the item effect also supports ordinary spell amplification/lifesteal.",
+          "versionContext": "Retained approximately7.35page; post7.34illusion-victim1.5multiplier excluded. AA120/15/70are a disclosed doubled-DPS working interpretation."
+        },
+        {
+          "id": "radiance-history",
+          "url": "https://dota2.fandom.com/wiki/Radiance/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.32 raised blind10to15percent; native illusion Burn35DPS predates2023. Later item stat changes and7.34illusion-victim multiplier are excluded.",
+          "paraphrase": "7.32 raised blind10to15percent; native illusion Burn35DPS predates2023. Later item stat changes and7.34illusion-victim multiplier are excluded.",
+          "versionContext": "2022-08-24 blind15candidate and older native illusion prototype."
+        },
+        {
+          "id": "break-item",
+          "url": "https://liquipedia.net/dota2/Break/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The introduction of Break preserves item passives, explicitly including Radiance.",
+          "paraphrase": "The introduction of Break preserves item passives, explicitly including Radiance.",
+          "versionContext": "Native6.84item-passive rule predates2023. Whether the AA grant was internally an item or a custom ability remains a separate AA implementation boundary."
+        },
+        {
+          "id": "scion-item",
+          "url": "https://liquipedia.net/dota2/Damage_Instance",
+          "accessedOn": "2026-10-30",
+          "observation": "The Scion example excludes damage from items from its ability-damage stack event.",
+          "paraphrase": "The Scion example excludes damage from items from its ability-damage stack event.",
+          "versionContext": "Direct2026-10-30search observation of the old Scion example; original AA customanyability exception is distinguished from item-origin metadata. No global damage-hook suppression is used."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FG-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all AA ranks have correct resources0point.6backswing and final Super780absorption105DPS",
+          "sourceIds": [
+            "aa",
+            "flame-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-01 all AA ranks have correct resources0point.6backswing and final Super780absorption105DPS"
+            }
+          ]
+        },
+        {
+          "id": "FG-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "full AA shield consumes100before25percent MR and absorption is credited to Flame Guard",
+          "sourceIds": [
+            "aa",
+            "flame-history",
+            "barrier733"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-02 full AA shield consumes100before25percent MR and absorption is credited to Flame Guard"
+            }
+          ]
+        },
+        {
+          "id": "FG-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "overflowing preMR damage passes to MR and a later shield exactly once",
+          "sourceIds": [
+            "barrier733",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-03 overflowing preMR damage passes to MR and a later shield exactly once"
+            }
+          ]
+        },
+        {
+          "id": "FG-04",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "active burn first ticks after.2seconds and stops on its own barrier depletion",
+          "sourceIds": [
+            "valve",
+            "flame-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-04 active burn first ticks after.2seconds and stops on its own barrier depletion"
+            }
+          ]
+        },
+        {
+          "id": "FG-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a different magic barrier cannot keep the depleted Flame Guard damage running",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-05 a different magic barrier cannot keep the depleted Flame Guard damage running"
+            }
+          ]
+        },
+        {
+          "id": "FG-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Basic Dispel followed by real recast never duplicates an old zone damage generation",
+          "sourceIds": [
+            "aa",
+            "flame-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-06 Basic Dispel followed by real recast never duplicates an old zone damage generation"
+            }
+          ]
+        },
+        {
+          "id": "FG-07",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "expiry and owner death end shield and future active burn",
+          "sourceIds": [
+            "aa",
+            "flame-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-07 expiry and owner death end shield and future active burn"
+            }
+          ]
+        },
+        {
+          "id": "FG-08",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Radiance first ticks after one second with120damage and15percent blind and no inventory stats",
+          "sourceIds": [
+            "aa",
+            "valve-items",
+            "radiance-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-08 Radiance first ticks after one second with120damage and15percent blind and no inventory stats"
+            }
+          ]
+        },
+        {
+          "id": "FG-09",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "two Gaben Radiance owners share one burn and one strongest blind per victim",
+          "sourceIds": [
+            "radiance-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-09 two Gaben Radiance owners share one burn and one strongest blind per victim"
+            }
+          ]
+        },
+        {
+          "id": "FG-10",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "the granted Radiance item effect remains active through Break and retains damage statistics",
+          "sourceIds": [
+            "break-item",
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-10 the granted Radiance item effect remains active through Break and retains damage statistics"
+            }
+          ]
+        },
+        {
+          "id": "FG-11",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "Radiance item damage does not grant Arcane Bolt Gaben Scion stacks but ordinary Flame Guard still does",
+          "sourceIds": [
+            "scion-item",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-11 Radiance item damage does not grant Arcane Bolt Gaben Scion stacks but ordinary Flame Guard still does"
+            }
+          ]
+        },
+        {
+          "id": "FG-12",
+          "kind": "mechanism",
+          "branch": "configuration",
+          "mechanism": "compiled absorption percentage is consumed at the preMR stage instead of being a dead table field",
+          "sourceIds": [
+            "aa",
+            "barrier733"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-12 compiled absorption percentage is consumed at the preMR stage instead of being a dead table field"
+            }
+          ]
+        },
+        {
+          "id": "FG-13",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "an inherited Radiance illusion burns70 without adding another120burn beside its living template",
+          "sourceIds": [
+            "radiance-wiki",
+            "valve-items",
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-13 an inherited Radiance illusion burns70 without adding another120burn beside its living template"
+            }
+          ]
+        },
+        {
+          "id": "FG-14",
+          "kind": "timing",
+          "branch": "Gaben",
+          "mechanism": "a victim retains Radiance blind for.5seconds after leaving the aura and does not keep taking fresh burn ticks",
+          "sourceIds": [
+            "radiance-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-14 a victim retains Radiance blind for.5seconds after leaving the aura and does not keep taking fresh burn ticks"
+            }
+          ]
+        },
+        {
+          "id": "FG-15",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "Radiance item burn retains normal spell amplification and spell lifesteal rather than suppressing all damage hooks",
+          "sourceIds": [
+            "radiance-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FG-15 Radiance item burn retains normal spell amplification and spell lifesteal rather than suppressing all damage hooks"
+            }
+          ]
+        },
+        {
+          "id": "FG-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Captured English unharmed wording and old cap support retained100percent absorption; Chinese percentage wording and native7.31seventypercent do not establish the original customLua fraction.",
+          "sourceIds": [
+            "aa",
+            "flame-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FG-P02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "PreMR Flame Guard versus FalsePromise BorrowedTime Refraction priority is not proven by the7.33MR-order change; the current early-stage policy is not declared complete historical priority.",
+          "sourceIds": [
+            "barrier733"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FG-P03",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Twice as powerful does not uniquely prove blind15versus30or illusion70; existing120/15plus doubled native illusion35is disclosed working interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve-items",
+            "radiance-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FG-P04",
+          "kind": "combination",
+          "branch": "Gaben",
+          "mechanism": "The explicit Radiance-effect transplant follows native item Break and Scion exclusion rules, but the original AA implementation as item versus customability is not recovered.",
+          "sourceIds": [
+            "aa",
+            "break-item",
+            "scion-item"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "FG-08: Radiance first ticks after one second with120damage and15percent blind and no inventory stats",
+        "FG-10: the granted Radiance item effect remains active through Break and retains damage statistics",
+        "FG-13: an inherited Radiance illusion burns70 without adding another120burn beside its living template",
+        "FG-P01: Captured English unharmed wording and old cap support retained100percent absorption; Chinese percentage wording and native7.31seventypercent do not establish the original customLua fraction.",
+        "FG-P02: PreMR Flame Guard versus FalsePromise BorrowedTime Refraction priority is not proven by the7.33MR-order change; the current early-stage policy is not declared complete historical priority.",
+        "FG-P03: Twice as powerful does not uniquely prove blind15versus30or illusion70; existing120/15plus doubled native illusion35is disclosed working interpretation.",
+        "FG-P04: The explicit Radiance-effect transplant follows native item Break and Scion exclusion rules, but the original AA implementation as item versus customability is not recovered."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "flame-history"
+          ],
+          "conclusion": "Old Ember50DPS/280capacity talent prototypes combined with custom minus28CD; final105DPS/780capacity/CD7."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "valve-items",
+            "radiance-wiki"
+          ],
+          "conclusion": "Native Radiance Burn transplanted as item-origin effect; no attack/evasion inventory stats. Exact AA doubled blind/illusion dimensions remain pending."
+        }
+      ]
+    },
+    {
+      "id": "undying_flesh_golem",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+        },
+        {
+          "id": "valve-units",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native Undying Zombie has2HP,33to36attack,1.6BAT,.3attack point,128range,375movement and33percent magic resistance.",
+          "paraphrase": "Native Undying Zombie has2HP,33to36attack,1.6BAT,.3attack point,128range,375movement and33percent magic resistance.",
+          "versionContext": "2023-02-10 native unit candidate; the workbook labels turn-rate conversion and BAT-minus-point backswing as engineering candidates."
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "paraphrase": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "versionContext": "2022-10-05 AA1.5; explicit captured values still have priority."
+        },
+        {
+          "id": "aa45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "Golem base amplification/strength were reduced to the captured values, while announced Super increments15/20 conflict with captured10/10.",
+          "paraphrase": "Golem base amplification/strength were reduced to the captured values, while announced Super increments15/20 conflict with captured10/10.",
+          "versionContext": "2023-02-01 AASeason4.5; captured Super increments10/10 remain authoritative."
+        },
+        {
+          "id": "aa55",
+          "url": "https://news.abilityarena.com/ability-arena-pantheon-update-season-5-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+          "paraphrase": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+          "versionContext": "2023-04-05 AA5.5; later item-upgrade replacement cannot overwrite the captured earlier item grants. Steam changelog fetch and official JS access failed this run; no new exact-rank proof claimed."
+        },
+        {
+          "id": "golem-wiki",
+          "url": "https://dota2.fandom.com/wiki/Undying",
+          "accessedOn": "2026-10-30",
+          "observation": "Golem increases total strength dynamically, applies generic incoming amplification before attack damage, refreshes rather than stacks and ends on owner death. Images copy remaining form but do not apply its debuff.",
+          "paraphrase": "Golem increases total strength dynamically, applies generic incoming amplification before attack damage, refreshes rather than stacks and ends on owner death. Images copy remaining form but do not apply its debuff.",
+          "versionContext": "Retained approximately7.35page. Its Ability Draft model-specific death bug is not silently applied to the four AA body classes; HPLOSS ordering and multiple attribute multipliers remain separate boundaries."
+        },
+        {
+          "id": "golem-history",
+          "url": "https://dota2.fandom.com/wiki/Undying/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.29 removed illusion Golem debuffs.7.30 Shard spawned a15second zombie per successful form attack with30second cooldown reduction. Native zombies need one hero or two basic hits to destroy.",
+          "paraphrase": "7.29 removed illusion Golem debuffs.7.30 Shard spawned a15second zombie per successful form attack with30second cooldown reduction. Native zombies need one hero or two basic hits to destroy.",
+          "versionContext": "2021-04-09/2021-08-18 upgrades; zombie hit-count change dates to6.84. Exact AA Zombie ability rank is not recovered."
+        },
+        {
+          "id": "zombie-wiki",
+          "url": "https://liquipedia.net/dota2/Undying_Zombie",
+          "accessedOn": "2026-10-30",
+          "observation": "Deathstrike applies independent2.5second slow entries and checks the linked victim HP in.5second intervals to apply Deathlust speed.",
+          "paraphrase": "Deathstrike applies independent2.5second slow entries and checks the linked victim HP in.5second intervals to apply Deathlust speed.",
+          "versionContext": "Current unit-mechanism page backed by pinned2023Deathstrike40percent/5slow/2.5duration/50to80AS/35to50move values. AA chosen max-rank zombie remains a candidate."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FGM-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all AA ranks release0point0backswing with40seconds final strength damage amp and Super95cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-01 all AA ranks release0point0backswing with40seconds final strength damage amp and Super95cooldown"
+            }
+          ]
+        },
+        {
+          "id": "FGM-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "a ranged AA body really becomes melee and expiry restores its type range and movement",
+          "sourceIds": [
+            "aa15",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-02 a ranged AA body really becomes melee and expiry restores its type range and movement"
+            }
+          ]
+        },
+        {
+          "id": "FGM-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "first contact amplification precedes its own primary damage and refreshes without stacking",
+          "sourceIds": [
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-03 first contact amplification precedes its own primary damage and refreshes without stacking"
+            }
+          ]
+        },
+        {
+          "id": "FGM-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Golem generic incoming amplification adds to a generic reduction instead of multiplying it",
+          "sourceIds": [
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-04 Golem generic incoming amplification adds to a generic reduction instead of multiplying it"
+            }
+          ]
+        },
+        {
+          "id": "FGM-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "misses spell immunity wards and buildings do not apply the Golem debuff",
+          "sourceIds": [
+            "golem-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-05 misses spell immunity wards and buildings do not apply the Golem debuff"
+            }
+          ]
+        },
+        {
+          "id": "FGM-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA strong-only form survives Basic Dispel and death or Strong Dispel removes all transformation components",
+          "sourceIds": [
+            "aa",
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-06 AA strong-only form survives Basic Dispel and death or Strong Dispel removes all transformation components"
+            }
+          ]
+        },
+        {
+          "id": "FGM-07",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Super creates one target-bound native zombie per successful attack with15second lifetime",
+          "sourceIds": [
+            "aa",
+            "golem-history",
+            "valve-units"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-07 Super creates one target-bound native zombie per successful attack with15second lifetime"
+            }
+          ]
+        },
+        {
+          "id": "FGM-08",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "a zombie ignores spell damage and dies to one hero attack",
+          "sourceIds": [
+            "golem-history",
+            "zombie-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-08 a zombie ignores spell damage and dies to one hero attack"
+            }
+          ]
+        },
+        {
+          "id": "FGM-09",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Deathlust responds within.5seconds when its target crosses40percent without another zombie attack",
+          "sourceIds": [
+            "zombie-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-09 Deathlust responds within.5seconds when its target crosses40percent without another zombie attack"
+            }
+          ]
+        },
+        {
+          "id": "FGM-10",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "target death expires its zombie instead of switching to another enemy",
+          "sourceIds": [
+            "golem-wiki",
+            "golem-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-10 target death expires its zombie instead of switching to another enemy"
+            }
+          ]
+        },
+        {
+          "id": "FGM-11",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Gaben attack and attacked Soul Rip use the real child even outside transformation without zombie recursion",
+          "sourceIds": [
+            "aa",
+            "aa55"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-11 Gaben attack and attacked Soul Rip use the real child even outside transformation without zombie recursion"
+            }
+          ]
+        },
+        {
+          "id": "FGM-12",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "real Disruption images inherit remaining form without double STR HP or attack and lose that bonus at expiry",
+          "sourceIds": [
+            "golem-wiki",
+            "golem-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-12 real Disruption images inherit remaining form without double STR HP or attack and lose that bonus at expiry"
+            }
+          ]
+        },
+        {
+          "id": "FGM-13",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Gaben self Soul Rip on attacked is real healing outside form and does not require an outgoing hit",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-13 Gaben self Soul Rip on attacked is real healing outside form and does not require an outgoing hit"
+            }
+          ]
+        },
+        {
+          "id": "FGM-14",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "active Golem debuffs scale to3seconds under50percent status resistance",
+          "sourceIds": [
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-14 active Golem debuffs scale to3seconds under50percent status resistance"
+            }
+          ]
+        },
+        {
+          "id": "FGM-15",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "two real Golem sources use the strongest debuff rather than multiplying their amplification",
+          "sourceIds": [
+            "golem-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-15 two real Golem sources use the strongest debuff rather than multiplying their amplification"
+            }
+          ]
+        },
+        {
+          "id": "FGM-16",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "the native zombie rolls its33to36main damage instead of treating the mean as a fixed attack",
+          "sourceIds": [
+            "valve-units"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-16 the native zombie rolls its33to36main damage instead of treating the mean as a fixed attack"
+            }
+          ]
+        },
+        {
+          "id": "FGM-17",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "two ordinary summon attack contacts are needed to destroy a native2HPzombie",
+          "sourceIds": [
+            "golem-history",
+            "valve-units"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-17 two ordinary summon attack contacts are needed to destroy a native2HPzombie"
+            }
+          ]
+        },
+        {
+          "id": "FGM-18",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Deathstrike slows are independent2.5second entries rather than a refreshed shared stack",
+          "sourceIds": [
+            "zombie-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FGM-18 Deathstrike slows are independent2.5second entries rather than a refreshed shared stack"
+            }
+          ]
+        },
+        {
+          "id": "FGM-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA captured10percent attack and attacked branches are implemented; exact original child rank,PRD/uniform choice,miss/zero-contact proc qualification remain unproven. Existing Standard3SoulRip mapping is preserved.",
+          "sourceIds": [
+            "aa",
+            "aa55"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FGM-P02",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Zombie native body and Deathlust are implemented using retained maximum native ability rank; AA Shard transplant does not specify the zombie ability rank or first HP-check phase.",
+          "sourceIds": [
+            "aa",
+            "valve-units",
+            "zombie-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FGM-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "The retained native page says generic amplification includes HPLOSS; exact2023HPLOSS flag ordering against this project explicit bypass path remains unverified.",
+          "sourceIds": [
+            "golem-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FGM-P04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Real Disruption single-form temporary-strength inheritance is tested; multiple simultaneous percent-attribute modifiers and the native AbilityDraft hero-model death bug are not claimed covered for AA custom bodies.",
+          "sourceIds": [
+            "golem-wiki",
+            "golem-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "FGM-11: Gaben attack and attacked Soul Rip use the real child even outside transformation without zombie recursion",
+        "FGM-P01: AA captured10percent attack and attacked branches are implemented; exact original child rank,PRD/uniform choice,miss/zero-contact proc qualification remain unproven. Existing Standard3SoulRip mapping is preserved.",
+        "FGM-P02: Zombie native body and Deathlust are implemented using retained maximum native ability rank; AA Shard transplant does not specify the zombie ability rank or first HP-check phase.",
+        "FGM-P03: The retained native page says generic amplification includes HPLOSS; exact2023HPLOSS flag ordering against this project explicit bypass path remains unverified.",
+        "FGM-P04: Real Disruption single-form temporary-strength inheritance is tested; multiple simultaneous percent-attribute modifiers and the native AbilityDraft hero-model death bug are not claimed covered for AA custom bodies."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "aa45",
+            "golem-history"
+          ],
+          "conclusion": "Native7.30Shard successful-hit zombie/CD30prototype plus captured10amp/10strength,not contradictory AA4.5announcement15/20."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "aa55"
+          ],
+          "conclusion": "AA custom10percent SoulRip target/self branches,retaining Standard3child; later5.5precise-rank claim is not used as complete proof for this capture."
+        }
+      ]
+    },
+    {
+      "id": "custom_pudge_flesh_heap",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "paraphrase": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "versionContext": "2022-10-05 AA1.5; explicit captured values still have priority."
+        },
+        {
+          "id": "heap-wiki",
+          "url": "https://dota2.fandom.com/wiki/Pudge",
+          "accessedOn": "2026-10-30",
+          "observation": "Flesh Heap blocks after reductions, refreshes rather than stacks; living owners gain from hero deaths but not illusions,TempestDouble or Reincarnation. Native ranks update prior stacks. Shield-priority exceptions are listed.",
+          "paraphrase": "Flesh Heap blocks after reductions, refreshes rather than stacks; living owners gain from hero deaths but not illusions,TempestDouble or Reincarnation. Native ranks update prior stacks. Shield-priority exceptions are listed.",
+          "versionContext": "Retained approximately7.35page. AA Super explicit450radius and fixed2/4permanent increments override native values; broader enemy wording and retroactivity remain unresolved."
+        },
+        {
+          "id": "heap-history",
+          "url": "https://dota2.fandom.com/wiki/Pudge/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.31b made native active block undispellable. Captured AA explicitly requires Strong Dispels Only, so Basic Dispel preserves it while Strong Dispel removes it.",
+          "paraphrase": "7.31b made native active block undispellable. Captured AA explicitly requires Strong Dispels Only, so Basic Dispel preserves it while Strong Dispel removes it.",
+          "versionContext": "2022-03-01native change versus captured AA dispel override. Native2023KV also has immediate,ignore-channel and ignore-backswing flags."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FH-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all AA ranks release0point0back with final block8 14 26 26 52 and public resources",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-01 all AA ranks release0point0back with final block8 14 26 26 52 and public resources"
+            }
+          ]
+        },
+        {
+          "id": "FH-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "block applies after armor and MR to physical magical and pure packets",
+          "sourceIds": [
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-02 block applies after armor and MR to physical magical and pure packets"
+            }
+          ]
+        },
+        {
+          "id": "FH-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "a fully blocked packet produces no effective damage statistics",
+          "sourceIds": [
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-03 a fully blocked packet produces no effective damage statistics"
+            }
+          ]
+        },
+        {
+          "id": "FH-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Basic Dispel preserves block Strong Dispel removes it and duration restores incoming damage",
+          "sourceIds": [
+            "aa",
+            "heap-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-04 Basic Dispel preserves block Strong Dispel removes it and duration restores incoming damage"
+            }
+          ]
+        },
+        {
+          "id": "FH-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a real Fiends Grip channel continues while immediate Flesh Heap pays resources and blocks damage",
+          "sourceIds": [
+            "valve",
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-05 a real Fiends Grip channel continues while immediate Flesh Heap pays resources and blocks damage"
+            }
+          ]
+        },
+        {
+          "id": "FH-06",
+          "kind": "super",
+          "branch": "Super-Gaben",
+          "mechanism": "no rank below Super gains permanent strength while Super gains2 and Gaben4 within450",
+          "sourceIds": [
+            "aa",
+            "aa15"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-06 no rank below Super gains permanent strength while Super gains2 and Gaben4 within450"
+            }
+          ]
+        },
+        {
+          "id": "FH-07",
+          "kind": "super",
+          "branch": "Super-Gaben",
+          "mechanism": "growth ignores outside450 dead owners summoned illusions and allies under the retained hero qualification",
+          "sourceIds": [
+            "aa",
+            "heap-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-07 growth ignores outside450 dead owners summoned illusions and allies under the retained hero qualification"
+            }
+          ]
+        },
+        {
+          "id": "FH-08",
+          "kind": "combination",
+          "branch": "Super-Gaben",
+          "mechanism": "each nearby owner independently receives its own reward with source attribution",
+          "sourceIds": [
+            "aa",
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-08 each nearby owner independently receives its own reward with source attribution"
+            }
+          ]
+        },
+        {
+          "id": "FH-09",
+          "kind": "super",
+          "branch": "Super-Gaben",
+          "mechanism": "saved owned strength is restored once in a new battle rather than becoming an extra permanent base bonus",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-09 saved owned strength is restored once in a new battle rather than becoming an extra permanent base bonus"
+            }
+          ]
+        },
+        {
+          "id": "FH-10",
+          "kind": "combination",
+          "branch": "Super-Gaben",
+          "mechanism": "death clears active block while saved growth remains owned by the learned skill",
+          "sourceIds": [
+            "aa",
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-10 death clears active block while saved growth remains owned by the learned skill"
+            }
+          ]
+        },
+        {
+          "id": "FH-11",
+          "kind": "combination",
+          "branch": "Super-Gaben",
+          "mechanism": "the explicit engine Reincarnation event is excluded from a nearby growth reward",
+          "sourceIds": [
+            "heap-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FH-11 the explicit engine Reincarnation event is excluded from a nearby growth reward"
+            }
+          ]
+        },
+        {
+          "id": "FH-P01",
+          "kind": "super",
+          "branch": "Super-Gaben",
+          "mechanism": "AA base says enemyHero but Super says every enemy within450; retained hero qualification is not proof of the custom creep/clone/creepHero eligibility.",
+          "sourceIds": [
+            "aa",
+            "heap-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FH-P02",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Native rank changes recompute old stacks; AA fixed permanent2/4gain and the existing saved numeric reward ledger do not establish retroactive conversion when reaching Gaben. Existing amounts are retained.",
+          "sourceIds": [
+            "aa",
+            "heap-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FH-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Exact pre2023Heap versus AphoticShield DefenseMatrix Refraction ResonantPulse priority and HPLOSS/illusion damage manipulation are not independently proven. Current generic allDamageBlock stage is retained.",
+          "sourceIds": [
+            "heap-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FH-P04",
+          "kind": "combination",
+          "branch": "Super-Gaben",
+          "mechanism": "Native Reincarnation engine flag is tested synthetically; no current learned Reincarnation skill integration is claimed. TempestDouble and special clone growth need distinct actual-catalog cases if added.",
+          "sourceIds": [
+            "heap-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "FH-07: growth ignores outside450 dead owners summoned illusions and allies under the retained hero qualification",
+        "FH-P01: AA base says enemyHero but Super says every enemy within450; retained hero qualification is not proof of the custom creep/clone/creepHero eligibility.",
+        "FH-P02: Native rank changes recompute old stacks; AA fixed permanent2/4gain and the existing saved numeric reward ledger do not establish retroactive conversion when reaching Gaben. Existing amounts are retained.",
+        "FH-P03: Exact pre2023Heap versus AphoticShield DefenseMatrix Refraction ResonantPulse priority and HPLOSS/illusion damage manipulation are not independently proven. Current generic allDamageBlock stage is retained.",
+        "FH-P04: Native Reincarnation engine flag is tested synthetically; no current learned Reincarnation skill integration is claimed. TempestDouble and special clone growth need distinct actual-catalog cases if added."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "aa15",
+            "heap-wiki"
+          ],
+          "conclusion": "Native permanent strength mechanism deliberately gated behind AA Super,with explicit450radius and2gain."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "conclusion": "AA2xblock/2xgain resembles combined native level25talent mechanism but uses explicit AA52block/4gain,not native1.5multiplier."
+        }
+      ]
+    },
+    {
+      "id": "custom_windrunner_focusfire",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "paraphrase": "Captured English catalog base/Super/Gaben clauses and five AA balance ranks were reread locally in public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; original AA Lua/build is unknown. This run does not claim a new HTTP200 for this URL. Captured English values win over conflicting announcements and modern native values."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "The pinned native ability flags, cast points, duration and numerical prototypes were read in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "2023-02-10 shipped Valve KV candidate; not proof that all captured AA skills ran on this native patch."
+        },
+        {
+          "id": "valve-items",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+          "paraphrase": "Native Maelstrom provides24attack,30percent proc,140damage,four strikes,650radius,.25bounce delay,.2proc cooldown; Radiance provides60/35DPS,15blind,700radius.",
+          "versionContext": "2023-02-10 native item prototypes. AA grants/effects retain their custom differences; no inventory system is invented."
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "paraphrase": "The official announcement adds Flesh Heap with strength only from Super, makes Flesh Golem melee, and gives Focus Super Maelstrom with target-sticking AI.",
+          "versionContext": "2022-10-05 AA1.5; explicit captured values still have priority."
+        },
+        {
+          "id": "aa20",
+          "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+          "accessedOn": "2026-10-30",
+          "observation": "Focus Super removes its attack-damage penalty; Gaben costs no mana and replaces its former bounce behavior.",
+          "paraphrase": "Focus Super removes its attack-damage penalty; Gaben costs no mana and replaces its former bounce behavior.",
+          "versionContext": "2022-11-02 AASeason2; no later replacement of this captured upgrade is silently imported."
+        },
+        {
+          "id": "aa40",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+          "paraphrase": "Focus cast range becomes attack range, and Flame Guard magic absorption is fixed without specifying its fraction or reduction stage.",
+          "versionContext": "2023-01-01 AASeason4."
+        },
+        {
+          "id": "aa55",
+          "url": "https://news.abilityarena.com/ability-arena-pantheon-update-season-5-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+          "paraphrase": "The announcement says many item-grant upgrades were replaced and directs precise spell changes to a separate changelog. It does not establish the captured Golem Soul Rip rank.",
+          "versionContext": "2023-04-05 AA5.5; later item-upgrade replacement cannot overwrite the captured earlier item grants. Steam changelog fetch and official JS access failed this run; no new exact-rank proof claimed."
+        },
+        {
+          "id": "focus-wiki",
+          "url": "https://dota2.fandom.com/wiki/Windranger",
+          "accessedOn": "2026-10-30",
+          "observation": "Focus uses body attack range and ignores spell range; attack speed/damage adapt at attack begin. Only main+bonus damage is reduced, not conditional bonuses. Most recent target wins; owner death ends the buff while target death does not.",
+          "paraphrase": "Focus uses body attack range and ignores spell range; attack speed/damage adapt at attack begin. Only main+bonus damage is reduced, not conditional bonuses. Most recent target wins; owner death ends the buff while target death does not.",
+          "versionContext": "Retained approximately7.35page; duration20is independently present in pinned2023KV. No manual-order UI is claimed for this autonomous arena."
+        },
+        {
+          "id": "focus-history",
+          "url": "https://dota2.fandom.com/wiki/Windranger/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "6.81Scepter reduced the main attack penalty to30/15/0without reducing conditional item modifiers.7.31changed native50/40/30to30but AA preserves older rank penalties; moving attacks date to7.07.",
+          "paraphrase": "6.81Scepter reduced the main attack penalty to30/15/0without reducing conditional item modifiers.7.31changed native50/40/30to30but AA preserves older rank penalties; moving attacks date to7.07.",
+          "versionContext": "Historical prototype only. AA Super removes all ranks penalty and grants Maelstrom; AA Gaben fully resets cooldown rather than importing the later native talent20second advance."
+        },
+        {
+          "id": "maelstrom-history",
+          "url": "https://liquipedia.net/dota2/Maelstrom/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Proccing attacks gained True Strike in7.14; PRD predates2013,.2proc cooldown dates to7.00.7.32e140to135damage and later illusion multiplier are excluded.",
+          "paraphrase": "Proccing attacks gained True Strike in7.14; PRD predates2013,.2proc cooldown dates to7.00.7.32e140to135damage and later illusion multiplier are excluded.",
+          "versionContext": "Historical native item prototype matching pinned2023-02-10values,not modern Maelstrom balance."
+        },
+        {
+          "id": "spell-block",
+          "url": "https://dota2.fandom.com/wiki/Spell_Block",
+          "accessedOn": "2026-10-30",
+          "observation": "Focus Fire is listed among blockable targeted abilities. Maelstrom chain lightning is excluded after the6.82change.",
+          "paraphrase": "Focus Fire is listed among blockable targeted abilities. Maelstrom chain lightning is excluded after the6.82change.",
+          "versionContext": "Retained page plus the dated historical Spell Block changelog; the tested Focus cast is primary-only."
+        },
+        {
+          "id": "scion-item",
+          "url": "https://liquipedia.net/dota2/Damage_Instance",
+          "accessedOn": "2026-10-30",
+          "observation": "The Scion example excludes damage from items from its ability-damage stack event.",
+          "paraphrase": "The Scion example excludes damage from items from its ability-damage stack event.",
+          "versionContext": "Direct2026-10-30search observation of the old Scion example; original AA customanyability exception is distinguished from item-origin metadata. No global damage-hook suppression is used."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FF-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all AA ranks use0point0backswing duration20 declared cooldown and zero Gaben mana",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-01 all AA ranks use0point0backswing duration20 declared cooldown and zero Gaben mana"
+            }
+          ]
+        },
+        {
+          "id": "FF-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "casting uses the body attack range and ignores spell cast range bonuses",
+          "sourceIds": [
+            "aa40",
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-02 casting uses the body attack range and ignores spell cast range bonuses"
+            }
+          ]
+        },
+        {
+          "id": "FF-03",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "rank1 2 3 main damage becomes50 60 70 and Super removes the penalty",
+          "sourceIds": [
+            "aa",
+            "aa20"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-03 rank1 2 3 main damage becomes50 60 70 and Super removes the penalty"
+            }
+          ]
+        },
+        {
+          "id": "FF-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "only the marked target receives the450AS and damage penalty",
+          "sourceIds": [
+            "aa",
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-04 only the marked target receives the450AS and damage penalty"
+            }
+          ]
+        },
+        {
+          "id": "FF-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "an in-flight attack retains its attack-begin reduction after a real recast changes the target",
+          "sourceIds": [
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-05 an in-flight attack retains its attack-begin reduction after a real recast changes the target"
+            }
+          ]
+        },
+        {
+          "id": "FF-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "target death preserves the owner buff but owner death expiry and strong dispel remove it",
+          "sourceIds": [
+            "aa",
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-06 target death preserves the owner buff but owner death expiry and strong dispel remove it"
+            }
+          ]
+        },
+        {
+          "id": "FF-07",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Super Maelstrom supplies24attack and its proc grants True Strike before100percent evasion",
+          "sourceIds": [
+            "aa15",
+            "valve-items",
+            "maelstrom-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-07 Super Maelstrom supplies24attack and its proc grants True Strike before100percent evasion"
+            }
+          ]
+        },
+        {
+          "id": "FF-08",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Maelstrom has four unique contacts separated by.25seconds and650range",
+          "sourceIds": [
+            "valve-items"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-08 Maelstrom has four unique contacts separated by.25seconds and650range"
+            }
+          ]
+        },
+        {
+          "id": "FF-09",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "Maelstrom excludes immune buildings wards and invisible bounce targets",
+          "sourceIds": [
+            "maelstrom-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-09 Maelstrom excludes immune buildings wards and invisible bounce targets"
+            }
+          ]
+        },
+        {
+          "id": "FF-10",
+          "kind": "timing",
+          "branch": "Super",
+          "mechanism": "distinct slow projectiles retain their own proc reservation and.2second proc cooldown",
+          "sourceIds": [
+            "valve-items"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-10 distinct slow projectiles retain their own proc reservation and.2second proc cooldown"
+            }
+          ]
+        },
+        {
+          "id": "FF-11",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "Maelstrom chain survives the primary attack killing its original target",
+          "sourceIds": [
+            "maelstrom-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-11 Maelstrom chain survives the primary attack killing its original target"
+            }
+          ]
+        },
+        {
+          "id": "FF-12",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "Maelstrom item packets have effective statistics and do not add Arcane Bolt Gaben Scion stacks",
+          "sourceIds": [
+            "scion-item",
+            "valve-items"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-12 Maelstrom item packets have effective statistics and do not add Arcane Bolt Gaben Scion stacks"
+            }
+          ]
+        },
+        {
+          "id": "FF-13",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "credited enemy kills reset Gaben cooldown fully while Super cooldown remains running",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-13 credited enemy kills reset Gaben cooldown fully while Super cooldown remains running"
+            }
+          ]
+        },
+        {
+          "id": "FF-14",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "native Totem main damage is reduced by Focus Fire while the totem buff is consumed on contact",
+          "sourceIds": [
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-14 native Totem main damage is reduced by Focus Fire while the totem buff is consumed on contact"
+            }
+          ]
+        },
+        {
+          "id": "FF-15",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "own and globally shared Feast conditional bonuses stay34 while Focus only halves the100main damage",
+          "sourceIds": [
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-15 own and globally shared Feast conditional bonuses stay34 while Focus only halves the100main damage"
+            }
+          ]
+        },
+        {
+          "id": "FF-16",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "spell block consumes the primary cast resources without creating a Focus Fire buff",
+          "sourceIds": [
+            "spell-block",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-16 spell block consumes the primary cast resources without creating a Focus Fire buff"
+            }
+          ]
+        },
+        {
+          "id": "FF-17",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "two hundred percent conditional Bash damage is preserved after Focus halves the main attack",
+          "sourceIds": [
+            "focus-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-17 two hundred percent conditional Bash damage is preserved after Focus halves the main attack"
+            }
+          ]
+        },
+        {
+          "id": "FF-18",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "Maelstrom item spell lifesteal remains effective after the ability-only Scion exclusion",
+          "sourceIds": [
+            "valve-items"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-18 Maelstrom item spell lifesteal remains effective after the ability-only Scion exclusion"
+            }
+          ]
+        },
+        {
+          "id": "FF-19",
+          "kind": "combination",
+          "branch": "Super",
+          "mechanism": "each delayed Maelstrom bounce excludes a secondary that became invisible during the preceding gap",
+          "sourceIds": [
+            "maelstrom-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-flak-flesh.test.ts",
+              "test": "FF-19 each delayed Maelstrom bounce excludes a secondary that became invisible during the preceding gap"
+            }
+          ]
+        },
+        {
+          "id": "FF-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Captured killsresetcooldown does not distinguish any credited kill from marked-target death by anykiller. Retained full reset on credited enemy kills is tested; native fixed20second talent advance is not imported.",
+          "sourceIds": [
+            "aa",
+            "focus-wiki",
+            "focus-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FF-P02",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "Native2023Maelstrom supplies the disclosed item prototype; the original AA custom modifier implementation and mixed captured patch chronology are not recovered.",
+          "sourceIds": [
+            "aa",
+            "aa15",
+            "aa55",
+            "valve-items"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FF-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Focus native manual move/stop/attack order controls have no corresponding user-order UI in this autonomous arena. The implementation does not claim a manual controller or a full native order-state machine.",
+          "sourceIds": [
+            "focus-wiki",
+            "focus-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "FF-P01: Captured killsresetcooldown does not distinguish any credited kill from marked-target death by anykiller. Retained full reset on credited enemy kills is tested; native fixed20second talent advance is not imported.",
+        "FF-P02: Native2023Maelstrom supplies the disclosed item prototype; the original AA custom modifier implementation and mixed captured patch chronology are not recovered.",
+        "FF-P03: Focus native manual move/stop/attack order controls have no corresponding user-order UI in this autonomous arena. The implementation does not claim a manual controller or a full native order-state machine."
+      ],
+      "upgradeProvenance": [
+        {
+          "upgrade": "Super",
+          "sourceIds": [
+            "aa",
+            "aa15",
+            "aa20",
+            "focus-history",
+            "valve-items"
+          ],
+          "conclusion": "Old Focus Scepter penalty-removal prototype plus explicit AA2023Maelstrom item grant."
+        },
+        {
+          "upgrade": "Gaben",
+          "sourceIds": [
+            "aa",
+            "aa20",
+            "focus-history"
+          ],
+          "conclusion": "AA zero-mana/fullkillreset custom behavior; native marked-target fixedcooldownadvance is only a provenance comparison."
+        }
+      ]
+    }
+  ]
+}

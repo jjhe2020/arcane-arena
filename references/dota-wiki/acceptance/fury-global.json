@@ -1,0 +1,1536 @@
+{
+  "schemaVersion": 1,
+  "group": "fury-global",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit custom clauses/final numbers take priority. Direct archived2023Wiki/KV supply compatible mechanics; official specific AA patch corrections resolve declared static-text conflicts. Passing policy candidates never imply whole-skill original-engine acceptance.",
+  "validation": {
+    "command": "npx vitest run tests/reference-fury-global.test.ts",
+    "passedTests": 58,
+    "configurationHash": "2e2760c9c65a5febc198cc2837a0f1973b82b6e0cdd6ea378560177d38e960a4",
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "58named actual-engine results. Allfive skills remain partial because exact AA policy/version boundaries and the known native attack-begin snapshot gap are explicitly retained."
+  },
+  "skills": [
+    {
+      "id": "ursa_fury_swipes",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Complete AA base/Super/Gaben descriptions were compared with final active overrides and historical mechanics. Named passing clauses are bounded to the tests below; unresolved items prevent a whole-skill pass.",
+        "Flat arena: no fog-of-war/vertical terrain/courier factory is claimed by target filtering or radius tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Complete official base descriptions, categories, AA differences, numeric arrays, Super and Gaben clauses were reviewed for these five skills.",
+          "versionContext": "Fresh official HTTP200 English catalog; AA explicit custom final numbers and differences override native numeric balance.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-fury-global-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa",
+          "sha256": "fdc8fdbb748f2c0ecf6ab3e45356d1361a69ecbba48ab55315654c4813f73b8f",
+          "observation": "Fury is conditional attack damage: add before the hit, no critical scaling, normal lifesteal and cleave, flat damage block, selective spell amplification; misses add no stack. Break refuses new stacks but preserves old stack damage. Native debuff undispellable differs from AA Strong override.",
+          "versionContext": "Previously captured2023-02direct archived Wiki HTTP200, actually reread this round; AA custom values take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned cast points, ranges, native abilities and localization mapping were read. In particular Ghostship RANGE is ghostship_distance, while AbilityCastRange is1000.",
+          "versionContext": "2023shipped Valve KV pinned by commit; no AA custom Lua is claimed.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "muerta2023",
+          "url": "https://web.archive.org/web/20230315233726id_/https://dota2.fandom.com/wiki/Muerta",
+          "accessedOn": "2026-10-29",
+          "observation": "Early Pierce the Veil converts conditional attack damage together with the main hit. Converted damage uses spell amplification and spell lifesteal, excluding ordinary lifesteal. Separate damage instances and Mana Break are excluded.",
+          "versionContext": "Direct HTTP2007.32e snapshot, after Muerta release2023-03-06; used only for this AA cross-skill conversion, not modern Muerta mechanics.",
+          "sha256": "66c00da92023cd12943ea11d6ba0204738328d928ba9f5688d1d408ef0bb2f84"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ursa-fury-swipes-01",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury first landed hit adds its stack before one132physical attack packet",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury first landed hit adds its stack before one132physical attack packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-02",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury miss adds no stack and does not refresh a previous stack",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury miss adds no stack and does not refresh a previous stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-03",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury old stacks still deal damage under Break while new stacks are refused",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury old stacks still deal damage under Break while new stacks are refused"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury shares flat block once and normal lifesteal includes its conditional damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury shares flat block once and normal lifesteal includes its conditional damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-05",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury conditional damage is not critical-scaled but accepts selective spell amplification",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury conditional damage is not critical-scaled but accepts selective spell amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury conditional damage is included in melee cleave and is not duplicated as spell lifesteal",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury conditional damage is included in melee cleave and is not duplicated as spell lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-07",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury converted magical attack amplifies the packet once including the conditional component",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "muerta2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury converted magical attack amplifies the packet once including the conditional component"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-08",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury pierces spell immunity and basic dispel preserves stacks while Strong dispel removes them",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury pierces spell immunity and basic dispel preserves stacks while Strong dispel removes them"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-09",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Fury edited reset expires naturally while Super zero sentinel survives the old120second policy",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury edited reset expires naturally while Super zero sentinel survives the old120second policy"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Fury Gaben every second hit spreads one stack globally without dealing remote damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury Gaben every second hit spreads one stack globally without dealing remote damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-11",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Fury illusion attacker cannot create or spread stacks",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury illusion attacker cannot create or spread stacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-12",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Fury edited final conditional damage controls every subsequent stack without hidden Super addition",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Fury edited final conditional damage controls every subsequent stack without hidden Super addition"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ursa-fury-swipes-P1",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "The official AA clause does not resolve whether the every-two-attacks spread counter is global or per victim. Existing per-victim policy is retained; same-victim results do not certify the alternative.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ursa-fury-swipes-P2",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Roshan is absent from the current selectable/summon catalog. Native10second Roshan reset remains source-only, not a fake tested unit.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "not_applicable"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Native Fury+12damage talent is the numerical prototype; AA explicitly adds round-long duration and Strong dispel.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "AA-specific remote stacks every two attacks; no proven native/item implementation prototype was found.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        }
+      ],
+      "unresolved": [
+        "The official AA clause does not resolve whether the every-two-attacks spread counter is global or per victim. Existing per-victim policy is retained; same-victim results do not certify the alternative."
+      ]
+    },
+    {
+      "id": "custom_sven_gods_strength",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Complete AA base/Super/Gaben descriptions were compared with final active overrides and historical mechanics. Named passing clauses are bounded to the tests below; unresolved items prevent a whole-skill pass.",
+        "Flat arena: no fog-of-war/vertical terrain/courier factory is claimed by target filtering or radius tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Complete official base descriptions, categories, AA differences, numeric arrays, Super and Gaben clauses were reviewed for these five skills.",
+          "versionContext": "Fresh official HTTP200 English catalog; AA explicit custom final numbers and differences override native numeric balance.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-fury-global-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven",
+          "accessedOn": "2026-10-30",
+          "sha256": "52deace762b3cdcdac7f2e42241f1cbd88d78626c8beafc03cdf4e520ed660ba",
+          "observation": "Gods Strength has 0.3+0 animation and a35second main-damage-only bonus. Native Storm Hammer has impact-target SpellBlock, a255radius explosion,1000speed and disjoint explosion at its current position; native levels stay separate from AA points.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned cast points, ranges, native abilities and localization mapping were read. In particular Ghostship RANGE is ghostship_distance, while AbilityCastRange is1000.",
+          "versionContext": "2023shipped Valve KV pinned by commit; no AA custom Lua is claimed.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "AA4",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "Official dated update renames Gods Strength to Gabens Strength, moves AA damage to75/100/125and Super immunity to4seconds. Ghostship Super wave correction is toward the owners side.",
+          "versionContext": "Official AA Season4update HTTP200 captured earlier and actually reread; version-specific AA override.",
+          "sha256": "12d13065c67869c82c01bc71d20c018e0995de6b8ca958cd4ace07bcfc0a62d9"
+        },
+        {
+          "id": "workshop16",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-30",
+          "observation": "Official fixes limit Gabens Strength to base damage and prevent additional Ghostships from triggering extra Tidal Waves; the wave moves enemies toward the owner side.",
+          "versionContext": "Official AA Workshop changelog HTTP200 captured earlier and actually reread. More specific patch behavior is selected over conflicting static Ghostship enemy-team wording.",
+          "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "custom-sven-gods-strength-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Strength releases300ms point zero recovery and pays200mana95second cooldown",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength releases300ms point zero recovery and pays200mana95second cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-02",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Strength125percent multiplies base and primary damage while flat bonus remains unmultiplied",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength125percent multiplies base and primary damage while flat bonus remains unmultiplied"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-03",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Strength interrupted windup pays no resource or cooldown and creates no buff",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength interrupted windup pays no resource or cooldown and creates no buff"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Strength Super main buff needs Strong dispel and separate four second immunity survives it",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength Super main buff needs Strong dispel and separate four second immunity survives it"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Strength Gaben threshold uses actual attack damage and free Bolt has an independent three second lock",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength Gaben threshold uses actual attack damage and free Bolt has an independent three second lock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Storm Bolt primary impact SpellBlock leaves secondary explosion damage and stun intact",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Storm Bolt primary impact SpellBlock leaves secondary explosion damage and stun intact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-07",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Storm Bolt a real Chemical Rage disjoint explodes once at the frozen projectile coordinate",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Storm Bolt a real Chemical Rage disjoint explodes once at the frozen projectile coordinate"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-08",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Strength naturally expires with no surviving attack percentage bonus",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Strength naturally expires with no surviving attack percentage bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-sven-gods-strength-P1",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Exact original AA granted StormBolt level is unspecified; retained level4 is a working candidate. Counter overflow/carry between activations and proc cooldown reduction behavior require original AA implementation evidence.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Four-second old spell-immunity/BKB-like protection is explicit AA, not proof of a BKB item basic dispel.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "Same-hero Storm Hammer is the named native child; AA thresholds500/3seconds are authoritative.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Exact original AA granted StormBolt level is unspecified; retained level4 is a working candidate. Counter overflow/carry between activations and proc cooldown reduction behavior require original AA implementation evidence."
+      ]
+    },
+    {
+      "id": "kunkka_ghostship",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Complete AA base/Super/Gaben descriptions were compared with final active overrides and historical mechanics. Named passing clauses are bounded to the tests below; unresolved items prevent a whole-skill pass.",
+        "Flat arena: no fog-of-war/vertical terrain/courier factory is claimed by target filtering or radius tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Complete official base descriptions, categories, AA differences, numeric arrays, Super and Gaben clauses were reviewed for these five skills.",
+          "versionContext": "Fresh official HTTP200 English catalog; AA explicit custom final numbers and differences override native numeric balance.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-fury-global-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+          "accessedOn": "2026-10-30",
+          "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+          "observation": "Ghostship has0.3+0 animation,1000cast range versus2000travel,450sweep and real-hero/clone Rum eligibility. Rum defers post-mitigation damage and repays in ten nonlethal one-second health changes. Tidal Wave travels2300at700 independently from600knockback over1.25seconds, disarms without interrupting channels and is dispellable.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned cast points, ranges, native abilities and localization mapping were read. In particular Ghostship RANGE is ghostship_distance, while AbilityCastRange is1000.",
+          "versionContext": "2023shipped Valve KV pinned by commit; no AA custom Lua is claimed.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "AA4",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-30",
+          "observation": "Official dated update renames Gods Strength to Gabens Strength, moves AA damage to75/100/125and Super immunity to4seconds. Ghostship Super wave correction is toward the owners side.",
+          "versionContext": "Official AA Season4update HTTP200 captured earlier and actually reread; version-specific AA override.",
+          "sha256": "12d13065c67869c82c01bc71d20c018e0995de6b8ca958cd4ace07bcfc0a62d9"
+        },
+        {
+          "id": "workshop16",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-30",
+          "observation": "Official fixes limit Gabens Strength to base damage and prevent additional Ghostships from triggering extra Tidal Waves; the wave moves enemies toward the owner side.",
+          "versionContext": "Official AA Workshop changelog HTTP200 captured earlier and actually reread. More specific patch behavior is selected over conflicting static Ghostship enemy-team wording.",
+          "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "kunkka-ghostship-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship releases300ms point zero recovery pays225mana60cooldown and hits only after3point1seconds",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship releases300ms point zero recovery pays225mana60cooldown and hits only after3point1seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-02",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship public cast range and independent travel distance are editable without changing each other",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship public cast range and independent travel distance are editable without changing each other"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-03",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship fixed crash position damages invisible enemies and ignores spell immune or invulnerable enemies",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship fixed crash position damages invisible enemies and ignores spell immune or invulnerable enemies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship swept Rum affects spell immune allied heroes and clones but excludes illusions and creep heroes",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship swept Rum affects spell immune allied heroes and clones but excludes illusions and creep heroes"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-05",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship Rum defers only post mitigation ordinary damage and excludes HPRemoval",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship Rum defers only post mitigation ordinary damage and excludes HPRemoval"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-06",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship Rum survives beneficial Strong dispel and refreshes rather than stacking its delay fraction",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship Rum survives beneficial Strong dispel and refreshes rather than stacking its delay fraction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-07",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship Hangover repays ten nonlethal one second installments with a serialized next tick",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship Hangover repays ten nonlethal one second installments with a serialized next tick"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Ghostship Gaben launches three fixed ships3point5seconds apart but only the first crash creates a wave",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship Gaben launches three fixed ships3point5seconds apart but only the first crash creates a wave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-09",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Tidal Wave knocks toward owner side continuously while allowing a new spell to complete",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Tidal Wave knocks toward owner side continuously while allowing a new spell to complete"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-10",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Tidal Wave basic dispel ends its disarm and forced motion together",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Tidal Wave basic dispel ends its disarm and forced motion together"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-11",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Ghostship hangover cannot kill and does not trigger another lifesteal or damage amplification pass",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Ghostship hangover cannot kill and does not trigger another lifesteal or damage amplification pass"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-12",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Tidal Wave full2300travel reaches a late victim beyond knockback lifetime in an edited100radius probe",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Tidal Wave full2300travel reaches a late victim beyond knockback lifetime in an edited100radius probe"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "kunkka-ghostship-P1",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Static AA enemy-team wave direction conflicts with official dated owner-side fix. Owner-side is the declared version decision; exact original custom script was not recovered.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "kunkka-ghostship-P2",
+          "kind": "mechanism",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Rum different-source priority/refresh authority, invulnerable ally sweep eligibility and Hangover interaction with FalsePromise/direct setting-health immunities are not specifically established by the archived interval statement. Core existing priority is retained.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "kunkka-ghostship-P3",
+          "kind": "timing",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Historical Hangover says one-second installments over ten seconds but does not explicitly distinguish first installment at0or+1second. This implementation chooses+1second then+10second final installment.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "kunkka-ghostship-P4",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA free Tidal Wave uses pinned native2300travel/750radius/600distance/1.25second displacement as candidates. Full vertical/terrain vision behavior is outside the flat arena.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Same-hero old AghanimShard Tidal Wave. Official dated AA correction selects crash-point spawn toward owner side.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "Native Ghostship Fleet Scepter three ships3.5seconds apart; official AA explicitly suppresses additional waves.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Static AA enemy-team wave direction conflicts with official dated owner-side fix. Owner-side is the declared version decision; exact original custom script was not recovered.",
+        "Rum different-source priority/refresh authority, invulnerable ally sweep eligibility and Hangover interaction with FalsePromise/direct setting-health immunities are not specifically established by the archived interval statement. Core existing priority is retained.",
+        "Historical Hangover says one-second installments over ten seconds but does not explicitly distinguish first installment at0or+1second. This implementation chooses+1second then+10second final installment.",
+        "AA free Tidal Wave uses pinned native2300travel/750radius/600distance/1.25second displacement as candidates. Full vertical/terrain vision behavior is outside the flat arena."
+      ]
+    },
+    {
+      "id": "custom_silencer_glaives_of_wisdom",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Complete AA base/Super/Gaben descriptions were compared with final active overrides and historical mechanics. Named passing clauses are bounded to the tests below; unresolved items prevent a whole-skill pass.",
+        "Flat arena: no fog-of-war/vertical terrain/courier factory is claimed by target filtering or radius tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Complete official base descriptions, categories, AA differences, numeric arrays, Super and Gaben clauses were reviewed for these five skills.",
+          "versionContext": "Fresh official HTTP200 English catalog; AA explicit custom final numbers and differences override native numeric balance.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-fury-global-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer",
+          "accessedOn": "2026-10-30",
+          "sha256": "9cddc40233a693eae6c0b9efb030656ff726c347ce6f267f0134d703168bc6e7",
+          "observation": "Glaives steals before pure damage before the physical attack; independent temporary timers, source proportional mana and victim flat mana, floor0temporary/floor1permanent, living-owner/death-category rules. Bounce is a separate50%-lineage physical spell packet with no amplification/lifesteal/onhit and leading attack-begin damage basis. Global has0.3+0.37animation and affects invisible, spell-immune and invulnerable enemies. Arcane Curse has initial damage, independent1secondDOT, silence pause/multiplier and cast penalty.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned cast points, ranges, native abilities and localization mapping were read. In particular Ghostship RANGE is ghostship_distance, while AbilityCastRange is1000.",
+          "versionContext": "2023shipped Valve KV pinned by commit; no AA custom Lua is claimed.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "silencer-changes",
+          "url": "https://liquipedia.net/dota2/Silencer/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Old2013Scepter Global+Curse lineage and its fixes for invulnerability/sleep/creeps were reviewed;2024facet/reverberating Global changes are excluded. The precise AA granted Curse version is not thereby recovered.",
+          "versionContext": "Primary Wiki indexed body actually read this round; direct HTTP403. Used only for dated lineage, not claiming a current mechanic is pinned2023."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "custom-silencer-glaives-of-wisdom-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives spends15mana at attack point even when the leading attack misses",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives spends15mana at attack point even when the leading attack misses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-02",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives silence and insufficient mana retain a normal attack without orb cost or steal",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives silence and insufficient mana retain a normal attack without orb cost or steal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-03",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives steals before pure damage and pure damage precedes the ordinary attack packet",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives steals before pure damage and pure damage precedes the ordinary attack packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives target zero floor still awards the full temporary intelligence to its source",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives target zero floor still awards the full temporary intelligence to its source"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-05",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives temporary source mana preserves its ratio on gain and natural expiry",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives temporary source mana preserves its ratio on gain and natural expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives victim loses and regains flat12mana per stolen intelligence",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives victim loses and regains flat12mana per stolen intelligence"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-07",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives successive hits keep independent expiry and can exceed the old100stack cap",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives successive hits keep independent expiry and can exceed the old100stack cap"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-08",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives victim death clears its temporary loss but source keeps its remaining positive timer",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives victim death clears its temporary loss but source keeps its remaining positive timer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-09",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives source death clears its own temporary gain without clearing the living victims loss",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives source death clears its own temporary gain without clearing the living victims loss"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-10",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Glaives base has no permanent transfer while Super transfers two with a base floor of one",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives base has no permanent transfer while Super transfers two with a base floor of one"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-11",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives permanent transfer excludes reincarnation Tempest Double illusion and distant deaths",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives permanent transfer excludes reincarnation Tempest Double illusion and distant deaths"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Glaives Gaben bounce is one physical spell projectile plus its own steal and pure damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives Gaben bounce is one physical spell projectile plus its own steal and pure damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-13",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Glaives bounce physical component ignores spell amplification and accepts flat attack block",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives bounce physical component ignores spell amplification and accepts flat attack block"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-14",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives permanent negative intelligence survives finishRound save restore and the next battle exactly once",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives permanent negative intelligence survives finishRound save restore and the next battle exactly once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-15",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives remains an active attack modifier under Break and its pure component supports spell lifesteal",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives remains an active attack modifier under Break and its pure component supports spell lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-16",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Glaives permanent transfer is not blocked by a previously exhausted reincarnation marker",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives permanent transfer is not blocked by a previously exhausted reincarnation marker"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-17",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Glaives real ranged primary disjoint spends mana but produces no steal pure hit or bounce",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Glaives real ranged primary disjoint spends mana but produces no steal pure hit or bounce"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-P1",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "The native leading attack value is sampled at attack begin. Current common attack record supplies a before-mitigation, post-critical impact snapshot, excluding conditional components. Damage changes during flight therefore remain a known implementation difference.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-P2",
+          "kind": "gaben",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA explicitly says one50percent bounce and+15intelligence conversion points.600search radius and oldShard packet details are the compatible historical lineage; exact custom script is not recovered.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-P3",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Meepo family Prime-only permanent-death deduplication and temporary steal exclusions need a concrete clone-family identity model; current heroClone flag alone is insufficient. Current catalog has no Meepo Prime/DividedWeStand factory.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        },
+        {
+          "id": "custom-silencer-glaives-of-wisdom-P4",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Native own-kill credit beyond925radius is not explicitly given by AA. The implementation follows AA925radius; acquired-skill temporary-state lifetime and original orb autocast/manual behavior still need exact AA/old generic reference.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "AA explicitly enables permanent intelligence stealing only at Super, transferring2with925range; native qualification/floor rules are compatible candidates.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "Old7.28Shard50percent single-bounce lineage, plus AA+15percentage-point pure damage scaling. Native2023two-bounce talent is not imported.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        }
+      ],
+      "unresolved": [
+        "The native leading attack value is sampled at attack begin. Current common attack record supplies a before-mitigation, post-critical impact snapshot, excluding conditional components. Damage changes during flight therefore remain a known implementation difference.",
+        "AA explicitly says one50percent bounce and+15intelligence conversion points.600search radius and oldShard packet details are the compatible historical lineage; exact custom script is not recovered.",
+        "Meepo family Prime-only permanent-death deduplication and temporary steal exclusions need a concrete clone-family identity model; current heroClone flag alone is insufficient. Current catalog has no Meepo Prime/DividedWeStand factory.",
+        "Native own-kill credit beyond925radius is not explicitly given by AA. The implementation follows AA925radius; acquired-skill temporary-state lifetime and original orb autocast/manual behavior still need exact AA/old generic reference."
+      ]
+    },
+    {
+      "id": "custom_silencer_global_silence",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Complete AA base/Super/Gaben descriptions were compared with final active overrides and historical mechanics. Named passing clauses are bounded to the tests below; unresolved items prevent a whole-skill pass.",
+        "Flat arena: no fog-of-war/vertical terrain/courier factory is claimed by target filtering or radius tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Complete official base descriptions, categories, AA differences, numeric arrays, Super and Gaben clauses were reviewed for these five skills.",
+          "versionContext": "Fresh official HTTP200 English catalog; AA explicit custom final numbers and differences override native numeric balance.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-fury-global-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer",
+          "accessedOn": "2026-10-30",
+          "sha256": "9cddc40233a693eae6c0b9efb030656ff726c347ce6f267f0134d703168bc6e7",
+          "observation": "Glaives steals before pure damage before the physical attack; independent temporary timers, source proportional mana and victim flat mana, floor0temporary/floor1permanent, living-owner/death-category rules. Bounce is a separate50%-lineage physical spell packet with no amplification/lifesteal/onhit and leading attack-begin damage basis. Global has0.3+0.37animation and affects invisible, spell-immune and invulnerable enemies. Arcane Curse has initial damage, independent1secondDOT, silence pause/multiplier and cast penalty.",
+          "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned cast points, ranges, native abilities and localization mapping were read. In particular Ghostship RANGE is ghostship_distance, while AbilityCastRange is1000.",
+          "versionContext": "2023shipped Valve KV pinned by commit; no AA custom Lua is claimed.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "silencer-changes",
+          "url": "https://liquipedia.net/dota2/Silencer/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Old2013Scepter Global+Curse lineage and its fixes for invulnerability/sleep/creeps were reviewed;2024facet/reverberating Global changes are excluded. The precise AA granted Curse version is not thereby recovered.",
+          "versionContext": "Primary Wiki indexed body actually read this round; direct HTTP403. Used only for dated lineage, not claiming a current mechanic is pinned2023."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "custom-silencer-global-silence-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Global releases300ms point370ms recovery and pays600mana100second cooldown",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global releases300ms point370ms recovery and pays600mana100second cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-02",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "Global affects distant invisible spell immune and invulnerable enemies but excludes hidden units",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global affects distant invisible spell immune and invulnerable enemies but excludes hidden units"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-03",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Global basic dispel removes silence permanently without modern facet reapplication",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global basic dispel removes silence permanently without modern facet reapplication"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Global Gaben final3point5second duration is not increased a second time",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global Gaben final3point5second duration is not increased a second time"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Global Super applies native Curse4 initial100damage and immediate25percent slow times silence multiplier",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global Super applies native Curse4 initial100damage and immediate25percent slow times silence multiplier"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Curse periodic damage begins one second after application and uses60damage while silenced",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Curse periodic damage begins one second after application and uses60damage while silenced"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-07",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "Curse silence pauses its six second timer while a qualified completed spell adds two seconds",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Curse silence pauses its six second timer while a qualified completed spell adds two seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-08",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Curse edited interval and slow are consumed and dispel removes only its matching slow components",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Curse edited interval and slow are consumed and dispel removes only its matching slow components"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-09",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "Global interrupted windup neither pays mana nor applies silence or curse",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-fury-global.test.ts",
+              "test": "Global interrupted windup neither pays mana nor applies silence or curse"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "custom-silencer-global-silence-P1",
+          "kind": "super",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "AA names CurseofSilent but exact original child rank and pre-rework versus ArcaneCurse version are unresolved.2023max-rank4,100initial/40DPS/6seconds is explicitly retained candidate.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "custom-silencer-global-silence-P2",
+          "kind": "combination",
+          "branch": "source_or_implementation_boundary",
+          "mechanism": "Global delivery applies the curse modifier to spell-immune/invulnerable units, following the oldGlobal+Curse lineage; exact AA initial/periodic damage eligibility there remains version-specific and is not certified by marker delivery.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "prototype": "Old2013Scepter Global+Curse, including its invulnerability/sleep fixes. Exact AA chosen child version remains candidate.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "prototype": "AA+2second final duration is authoritative; no2024double-silence/reapplication facet is imported.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA names CurseofSilent but exact original child rank and pre-rework versus ArcaneCurse version are unresolved.2023max-rank4,100initial/40DPS/6seconds is explicitly retained candidate.",
+        "Global delivery applies the curse modifier to spell-immune/invulnerable units, following the oldGlobal+Curse lineage; exact AA initial/periodic damage eligibility there remains version-specific and is not certified by marker delivery."
+      ]
+    }
+  ],
+  "extras": {
+    "configurationQA": "output/c7-config/qa-summary.json",
+    "semanticComparison": "output/c7-config/semantic-check.json",
+    "baselineHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
+    "evidenceManifest": "references/dota-wiki/fury-global-20261030.json"
+  }
+}

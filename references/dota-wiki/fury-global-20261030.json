@@ -1,0 +1,340 @@
+{
+  "accessedOn": "2026-10-30",
+  "policy": "Paraphrased factual selections with full-page hashes; original raw capture bodies remain ignored output, not a full copyrighted Wiki mirror.",
+  "sources": [
+    {
+      "id": "wiki2023",
+      "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven",
+      "accessedOn": "2026-10-30",
+      "sha256": "52deace762b3cdcdac7f2e42241f1cbd88d78626c8beafc03cdf4e520ed660ba",
+      "observation": "Gods Strength has 0.3+0 animation and a35second main-damage-only bonus. Native Storm Hammer has impact-target SpellBlock, a255radius explosion,1000speed and disjoint explosion at its current position; native levels stay separate from AA points.",
+      "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+    },
+    {
+      "id": "wiki2023",
+      "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+      "accessedOn": "2026-10-30",
+      "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+      "observation": "Ghostship has0.3+0 animation,1000cast range versus2000travel,450sweep and real-hero/clone Rum eligibility. Rum defers post-mitigation damage and repays in ten nonlethal one-second health changes. Tidal Wave travels2300at700 independently from600knockback over1.25seconds, disarms without interrupting channels and is dispellable.",
+      "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+    },
+    {
+      "id": "wiki2023",
+      "url": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer",
+      "accessedOn": "2026-10-30",
+      "sha256": "9cddc40233a693eae6c0b9efb030656ff726c347ce6f267f0134d703168bc6e7",
+      "observation": "Glaives steals before pure damage before the physical attack; independent temporary timers, source proportional mana and victim flat mana, floor0temporary/floor1permanent, living-owner/death-category rules. Bounce is a separate50%-lineage physical spell packet with no amplification/lifesteal/onhit and leading attack-begin damage basis. Global has0.3+0.37animation and affects invisible, spell-immune and invulnerable enemies. Arcane Curse has initial damage, independent1secondDOT, silence pause/multiplier and cast penalty.",
+      "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
+    },
+    {
+      "id": "wiki2023",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa",
+      "sha256": "fdc8fdbb748f2c0ecf6ab3e45356d1361a69ecbba48ab55315654c4813f73b8f",
+      "observation": "Fury is conditional attack damage: add before the hit, no critical scaling, normal lifesteal and cleave, flat damage block, selective spell amplification; misses add no stack. Break refuses new stacks but preserves old stack damage. Native debuff undispellable differs from AA Strong override.",
+      "versionContext": "Previously captured2023-02direct archived Wiki HTTP200, actually reread this round; AA custom values take priority."
+    },
+    {
+      "id": "AA4",
+      "url": "https://news.abilityarena.com/ability-arena-season-4/",
+      "accessedOn": "2026-10-30",
+      "observation": "Official dated update renames Gods Strength to Gabens Strength, moves AA damage to75/100/125and Super immunity to4seconds. Ghostship Super wave correction is toward the owners side.",
+      "versionContext": "Official AA Season4update HTTP200 captured earlier and actually reread; version-specific AA override.",
+      "sha256": "12d13065c67869c82c01bc71d20c018e0995de6b8ca958cd4ace07bcfc0a62d9"
+    },
+    {
+      "id": "workshop16",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+      "accessedOn": "2026-10-30",
+      "observation": "Official fixes limit Gabens Strength to base damage and prevent additional Ghostships from triggering extra Tidal Waves; the wave moves enemies toward the owner side.",
+      "versionContext": "Official AA Workshop changelog HTTP200 captured earlier and actually reread. More specific patch behavior is selected over conflicting static Ghostship enemy-team wording.",
+      "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3"
+    },
+    {
+      "id": "silencer-changes",
+      "url": "https://liquipedia.net/dota2/Silencer/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "Old2013Scepter Global+Curse lineage and its fixes for invulnerability/sleep/creeps were reviewed;2024facet/reverberating Global changes are excluded. The precise AA granted Curse version is not thereby recovered.",
+      "versionContext": "Primary Wiki indexed body actually read this round; direct HTTP403. Used only for dated lineage, not claiming a current mechanic is pinned2023."
+    }
+  ],
+  "valveSelections": {
+    "ursa_fury_swipes": {
+      "ID": "5359",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilityValues": {
+        "bonus_reset_time": {
+          "value": "8 12 16 20",
+          "special_bonus_unique_ursa_4": "+20"
+        },
+        "bonus_reset_time_roshan": "10",
+        "damage_per_stack": {
+          "value": "10 19 28 37",
+          "LinkedSpecialBonus": "special_bonus_unique_ursa"
+        },
+        "stun_stack_count": {
+          "value": "0",
+          "special_bonus_unique_ursa_furyswipes_stun": "+5"
+        },
+        "stun_duration": {
+          "value": "0",
+          "special_bonus_unique_ursa_furyswipes_stun": "+1.5"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "sven_gods_strength": {
+      "ID": "5097",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Sven.GodsStrength",
+      "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_4",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityCooldown": "105 100 95",
+      "AbilityDuration": "35.0",
+      "AbilityManaCost": "100 150 200",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "gods_strength_damage": "120 160 200",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_2"
+        }
+      }
+    },
+    "sven_storm_bolt": {
+      "ID": "5094",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Sven.StormBoltImpact",
+      "HasScepterUpgrade": "1",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.2 0.2 0.2 0.2",
+      "AbilityCooldown": "18 16 14 12",
+      "AbilityDamage": "95 170 245 320",
+      "AbilityManaCost": "110 115 120 125",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bolt_speed": "1000"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "bolt_stun_duration": "1.4 1.6 1.8 2.0",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_4"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "bolt_aoe": "255"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "vision_radius": "225"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "cast_range_bonus_scepter": "350",
+          "RequiresScepter": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "kunkka_ghostship": {
+      "ID": "5035",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Ability.Ghostship",
+      "AbilityDraftUltShardAbility": "kunkka_tidal_wave",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_GHOST_SHIP",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCastRange": "1000",
+      "AbilityCastPoint": "0.3",
+      "AbilityDamage": "400 500 600",
+      "AbilityManaCost": "125 175 225",
+      "AbilityValues": {
+        "tooltip_delay": "3.1",
+        "ghostship_distance": "2000",
+        "ghostship_width": "450",
+        "movespeed_bonus": "15",
+        "buff_duration": "10",
+        "stun_duration": "1.4 1.4 1.4",
+        "ghostship_speed": "650",
+        "ghostship_absorb": "40",
+        "AbilityCooldown": {
+          "value": "80 70 60",
+          "special_bonus_unique_kunkka_ghostship_cooldown": "-15"
+        }
+      }
+    },
+    "kunkka_tidal_wave": {
+      "ID": "605",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "1400",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "12",
+      "AbilityManaCost": "75",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "speed": "700"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "750"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "250"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "1.25"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "knockback_distance": "600"
+        }
+      }
+    },
+    "silencer_glaives_of_wisdom": {
+      "ID": "5378",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "AbilitySound": "Hero_Silencer.GlaivesOfWisdom",
+      "HasShardUpgrade": "1",
+      "AbilityDuration": "0.0 0.0 0.0 0.0",
+      "AbilityCastRange": "600",
+      "AbilityCooldown": "0",
+      "AbilityManaCost": "15",
+      "AbilityValues": {
+        "intellect_damage_pct": {
+          "value": "15 35 55 75",
+          "special_bonus_unique_silencer_3": "+10"
+        },
+        "int_steal": {
+          "value": "1 1 2 3",
+          "special_bonus_shard": "+2"
+        },
+        "int_steal_duration": "20 25 30 35",
+        "bounce_range": {
+          "value": "0",
+          "special_bonus_unique_silencer_glaives_bounces": "+600"
+        },
+        "bounce_count": {
+          "value": "0",
+          "special_bonus_unique_silencer_glaives_bounces": "+2"
+        },
+        "permanent_int_steal_range": "925",
+        "permanent_int_steal_amount": {
+          "value": "2",
+          "special_bonus_shard": "+2"
+        },
+        "stacks_for_silence": {
+          "value": "0",
+          "special_bonus_shard": "+4"
+        },
+        "silence_duration": {
+          "value": "0",
+          "special_bonus_shard": "+1.75"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "silencer_global_silence": {
+      "ID": "5380",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Hero_Silencer.GlobalSilence.Cast",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "130 115 100",
+      "AbilityDuration": "4.5 5.25 6.0",
+      "AbilityManaCost": "300 450 600",
+      "AbilityModifierSupportValue": "0.5",
+      "AbilitySpecial": {}
+    },
+    "silencer_curse_of_the_silent": {
+      "ID": "5377",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Silencer.Curse.Cast",
+      "AbilityCastRange": "1000",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "20 18 16 14",
+      "AbilityManaCost": "130 135 140 145",
+      "AbilityModifierSupportValue": "0.5",
+      "AbilityValues": {
+        "damage": {
+          "value": "16 24 32 40",
+          "special_bonus_unique_silencer": "+12"
+        },
+        "application_damage": "40 60 80 100",
+        "radius": "340 360 380 400",
+        "duration": "6",
+        "penalty_duration": "2",
+        "movespeed": "-10 -15 -20 -25",
+        "penalty_multiplier": "1.5",
+        "undispellable": {
+          "value": "0",
+          "special_bonus_unique_silencer_arcane_curse_undispellable": "+1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    }
+  },
+  "versionDecisions": [
+    {
+      "skill": "kunkka_ghostship",
+      "choice": "Official dated owner-side Tidal Wave and only first ship triggers it.",
+      "conflict": "Fresh static AA English says toward enemy team. No original AA Lua recovered."
+    },
+    {
+      "skill": "kunkka_ghostship",
+      "choice": "Public cast range1000; AA RANGE2000maps to independent travel distance.",
+      "evidence": "Pinned AbilityCastRange versus ghostship_distance localization."
+    },
+    {
+      "skill": "ursa_fury_swipes",
+      "choice": "AA Strong dispel and RESET TIME0round-long sentinel override native undispellable/timed debuff.",
+      "evidence": "Official AA categories/Super; no natural-expiry interpretation for zero."
+    },
+    {
+      "skill": "custom_silencer_global_silence",
+      "choice": "AA short final duration with oldScepter-inspired independent2023Curse4 candidate; no2024Facet recurrence.",
+      "conflict": "Exact AA CurseofSilent version/rank not recovered."
+    }
+  ]
+}

@@ -10,6 +10,8 @@ export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; refle
 /** Typed HPLOSS retains armor/MR; direct healthRemoval follows its older path. */
 export interface DamageFlags {healthLoss?:boolean}
 export interface DamageFlags {physicalAttackBlock?:boolean}
+/** Semantic origin, independent of spell damage, its statistics owner or inventory. */
+export interface DamageFlags {itemEffect?:boolean}
 export interface Attribution { abilityId:string; rootAbilityId?:string; parentAbilityId?:string; sourceUnitId?:string; ownerUnitId?:string; sourceName?:string; summonAbilityId?:string; skillInstanceId?:string }
 export type DamageAmounts = Record<DamageType,number>;
 export interface AbilityStats { key:string; abilityId:string; rootAbilityId:string; sourceUnitId:string; sourceName:string; damage:number; taken:number; healing:number; absorbed?:number; damageTypes:DamageAmounts; takenTypes:DamageAmounts }
