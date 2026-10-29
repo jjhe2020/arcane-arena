@@ -1,21 +1,21 @@
 # 原作验收接续点
 
-完整目标不变：完成230主技能及其授予效果的机制、动作时序、Super/Gaben和相关组合逐项原作验收。C7源码检查点已开始110项，120项未开始，当前战场范围整项通过7项；准确计数见`public/data/reference-acceptance.json`。不以检查点代替全部目标。
+完整目标不变：完成230主技能及其授予效果的机制、动作时序、Super/Gaben和相关组合逐项原作验收。C8源码检查点已开始125项，105项未开始，当前战场范围整项通过7项；准确计数见`public/data/reference-acceptance.json`。不以检查点代替全部目标。
 
 ## 已明确的后续实现
 
 1. C6基础/共享Feast恢复归属与同击攻击组成已具名核验，C7与Focus的条件伤害组合、Hypothermia/Rain独立来源乘法减疗也有有限结果。其它恢复调用方及延期/HPLOSS例外继续独立审查，不把有限结果当全部迁移完成。
 2. 56条共用要求仍有11条未闭合。C7另补Golem临时属性幻象复制、真正弹体躲避与回调队列重入、源独立减疗；其它召唤继承、转身加速度、初始化优先级、恢复/延期/HP移除仍需核验。有限结果不扩为全引擎通过。
-3. 已审110项剩余242条具名要求逐条闭合。C7具体边界见三组账本及`docs/r6-c7-progress.md`；Glaives攻击开始快照、部分已知机制缺失与仅来源待核验必须分开，不把有证但未实现的例外搁为source_pending。
-4. C8第一组：God's Rebuke、Grave Chill、Grow、Guardian Angel、Gust。重点技能攻击组成/几何、吸取双向生命周期、单位攻击动画、免疫/驱散受体、沉默击退与条件真视；先读最终注册函数并做实际诊断。
-5. C8第二组：Hand of Gaben（Hand of God）、Heavenly Grace、Hex、Icarus Dive、Ice Blast。重点治疗类别、强驱散与属性变更、变形状态、连续运动/路径DOT、斩杀与持续伤害来源、授予子效果及施法者死亡。
-6. C8第三组：Ice Path、Ice Shards、Infernal Blade、Ink Swell、Inner Beast。重点延迟区域/屏障和碰撞、真实HP型DOT与攻击触发、驱散/提前爆炸、光环继承。Ice Path已有官方Workshop公告与锁定AA数值差异；按1A保留当前AA明确数值，公告记录历史沿革，不把Ghost非数值方向修复扩大为公告覆盖全部AA数值的规则。
+3. 已审125项的具名未闭合要求继续逐条处理，实际数量见生成报告。C8边界见三组账本及`docs/r6-c8-progress.md`。优先修复Glaives已证实的攻击开始快照缺口：飞行期间主伤变化及主击自身偷智均不能回改弹射基数，固定伤害技能攻击也不能误取持有者面板攻击。尚未实施的已证例外与来源待证必须分开。
+4. C9第一组：Inner Fire、Insatiable Hunger、Jingu Mastery、Kraken Shell、Laser。重点击退/驱散与魔免、治疗和基础攻击加成、攻击计数/条件附伤/吸血、伤害阈值清除、失明与弹射、Super/Gaben实际原型。先读最终注册函数并做真实当前诊断。
+5. C9第二组：Leech Seed、Life Break、Life Drain、Lightning Bolt、Lil' Shredder。重点治疗弹体/受体资格、跳跃与百分比伤害、引导双向恢复/魔法与授予子效果、真视和环境范围边界、攻击次数与修饰资格。
+6. C9第三组：Living Armor、Lucent Beam、Lunar Blessing、Magic Missile、Magnetic Field。重点历史分层护盾/恢复、免费升级原型、光环继承、弹道与控制顺序、内外攻击判定和独立攻击修饰。旧AA数值、当前Wiki与历史版本分开，不能套用统一2023-02版本假设。
 
 ## 已有工作入口
 
 - `src/skill-effects.ts`最终注册会叠加多个`src/combat/main-*`覆写；必须检查最终执行函数。C2新攻击形态最终覆写在`src/combat/attack-modes.ts`。
 - `src/combat.ts`显式点目标、状态移除/区域结束生命周期、运动查询、攻击准备/命中前/攻击点钩子以及独立伤害实例事件，均与统计ID和有效结算账本分离。
-- `npm run reference:verify`执行具名结果并核对代码、配置、逐组来源与实际技能目录/配置编译脚本指纹。文件收集还包含账本引用的非`reference-`测试。C7全量1697项与专项1209项、构建和生产检查已通过，详情见`docs/r6-validation.md`。修改后需要重建证据，不沿用旧绿灯。
+- `npm run reference:verify`执行具名结果并核对代码、配置、逐组来源与实际技能目录/配置编译脚本指纹。文件收集还包含账本引用的非`reference-`测试。C8全量1926项及其后来源专项、构建和生产检查的实际结果见`docs/r6-validation.md`。修改后需要重建证据，不沿用旧绿灯。
 - Excel仍是平衡数值唯一编辑入口；同批由一位编辑者集中写入并手动编译，避免相互覆盖。删除的无效旧参数不要重新作为可编辑列加回。配置完整性与来源缺口分别记录。
 
-C7是进行中的源码检查点，尚未创建r6 Release。C8当前只在忽略目录取证，待本批源码提交后再开始运行代码修改。后续改变重放行为时更新模拟修订；全部目标或明确完成的开发版本仍须按AGENTS.md完成发布及附件核验。
+C8是进行中的源码检查点，尚未创建r6 Release。C9可在忽略目录独立取证，本批源码提交前不继续修改运行代码。后续改变重放行为时更新模拟修订；全部目标或明确完成的开发版本仍须按AGENTS.md完成发布及附件核验。

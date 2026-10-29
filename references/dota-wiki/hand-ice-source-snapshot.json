@@ -1,0 +1,829 @@
+{
+  "schemaVersion": 1,
+  "accessedOn": "2026-10-30",
+  "officialAA": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "accessedOn": "2026-10-30",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "selection": [
+      {
+        "name": "Hand of Gaben",
+        "id": "chen_hand_of_god",
+        "icon": "chen_hand_of_god",
+        "tags": [
+          "buff",
+          "dispel",
+          "healing",
+          "ultimate"
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Heals all allied heroes on the map as well as all units under Chen's control. A large heal is applied at first and a slow heal over time is applied for 8 seconds afterwards.",
+        "differences": "",
+        "values": [
+          "HEAL PER SECOND: 20 / 30 / 40",
+          "INITIAL HEAL: 200 / 300 / 400"
+        ],
+        "cooldowns": [
+          150,
+          130,
+          110
+        ],
+        "manaCost": [
+          200,
+          300,
+          400
+        ],
+        "superUpgrade": "Super: Reduces cooldown by 40s, increases heal by 280 and grants +6 armor to all units affected.",
+        "gabenUpgrade": "Gaben: Hard dispels globally. When Hand of Gaben is cast, all summons gain the Martydom ability (unit suicides to cast a 50% value single target Hand of Gaben on low HP heroes)."
+      },
+      {
+        "name": "Heavenly Grace",
+        "id": "custom_omniknight_repel",
+        "icon": "omniknight_repel",
+        "tags": [
+          "buff",
+          "healing",
+          "stats"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Creates a divine barrier around an ally which grants them increased Strength and Health Regeneration. Always apply effects on self.\n\nDISPEL TYPE: Strong Dispel",
+        "differences": "When casted on an ally, also applies the effects on self.",
+        "values": [
+          "BONUS STRENGTH: 8 / 16 / 32",
+          "DURATION: 10",
+          "HP REGEN: 8 / 12 / 20",
+          "STATUS RESISTANCE: 0%"
+        ],
+        "cooldowns": [
+          26,
+          22,
+          14
+        ],
+        "manaCost": [
+          80,
+          90,
+          110
+        ],
+        "superUpgrade": "Super: Provides 50% status resistance. Plus 20 health regen bonus, -2s cooldown.",
+        "gabenUpgrade": "Gaben: Plus 50 strength bonus, undispellable."
+      },
+      {
+        "name": "Hex",
+        "id": "custom_shadow_shaman_voodoo",
+        "icon": "shadow_shaman_voodoo",
+        "tags": [
+          "break",
+          "stun"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Cannot be dispelled"
+        ],
+        "description": "Transforms an enemy unit into a harmless creature, disabling their attacks and abilities.",
+        "differences": "",
+        "values": [
+          "DURATION: 2 / 3 / 5"
+        ],
+        "cooldowns": [
+          13
+        ],
+        "manaCost": [
+          70,
+          110,
+          190
+        ],
+        "superUpgrade": "Super: -3 second cooldown, and applies a Break.",
+        "gabenUpgrade": "Gaben: Becomes 400 AoE ability."
+      },
+      {
+        "name": "Icarus Dive",
+        "id": "phoenix_icarus_dive",
+        "icon": "phoenix_icarus_dive",
+        "tags": [
+          "magicDamage",
+          "magicImmunity",
+          "mobility",
+          "stun"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Phoenix dives forward in an arc with a fixed distance in the targeted direction, dealing damage over time and slowing the movement speed of any units it comes into contact with, and then orbiting back to its original position. If Phoenix casts Supernova, the dive ends.",
+        "differences": "Doesn't cost health to cast, and has increased damage. Also slows attack speed.",
+        "values": [
+          "ATTACK SPEED SLOW: 10 / 20 / 40",
+          "BURN DURATION: 4",
+          "DAMAGE PER SECOND: 25 / 50 / 100",
+          "DIVE LENGTH: 1100 / 1200 / 1400",
+          "HP COST: 0%",
+          "MOVE SLOW: 16% / 19% / 25%"
+        ],
+        "cooldowns": [
+          36,
+          34,
+          30
+        ],
+        "manaCost": [
+          0
+        ],
+        "superUpgrade": "Super: Applies max level Fire Spirits debuff on each unit hit and grants the caster magic immunity during Dive.",
+        "gabenUpgrade": "Gaben: Drops multiple Meteor Hammer at 0.3s interval during the Dive."
+      },
+      {
+        "name": "Ice Blast",
+        "id": "custom_ancient_apparition_ice_blast",
+        "icon": "ancient_apparition_ice_blast",
+        "tags": [
+          "magicDamage",
+          "ultimate"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "Launches a tracer toward any location on the battlefield, which must be triggered again to mark the area to be blasted by a damaging explosion of hail. The further the tracer travels, the larger the explosion will be. Enemies caught in the explosion, or who touch the icy ball of hail as it travels, are Frostbitten, taking damage and prevented from regenerating or healing. If a Frostbitten unit's health drops below a certain percentage, they will instantly shatter.",
+        "differences": "Debuff is shorter, but damage over time is increased.",
+        "values": [
+          "FROSTBITTEN DAMAGE PER SECOND: 10 / 20 / 30",
+          "FROSTBITTEN DURATION: 5 / 7 / 9",
+          "IMPACT DAMAGE: 100 / 150 / 200",
+          "SHATTER HEALTH THRESHOLD: 12% / 13% / 14%"
+        ],
+        "cooldowns": [
+          60,
+          50,
+          40
+        ],
+        "manaCost": [
+          175
+        ],
+        "superUpgrade": "Super: Forms an Ice Vortex at its destination just before Ice Blast deals damage. +4% kill threshold.",
+        "gabenUpgrade": "Gaben: Grants Second Ice Age: Casts Cold Feet on all enemies in the arena, dealing 90 damage per second and stuns for 3.5 seconds if the enemy doesn't move away from the initial cast point."
+      }
+    ]
+  },
+  "pinnedValve": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "abilities": {
+      "chen_hand_of_god": {
+        "ID": "5331",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Chen.HandOfGodHealHero",
+        "AbilityCastPoint": "0.3 0.3 0.3",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "150 130 110",
+        "AbilityManaCost": "200 300 400",
+        "AbilityValues": {
+          "heal_amount": {
+            "value": "200 300 400",
+            "special_bonus_unique_chen_2": "+200"
+          },
+          "hot_duration": "8",
+          "heal_per_second": {
+            "value": "20 30 40",
+            "special_bonus_unique_chen_2": "+10"
+          },
+          "ancient_creeps_scepter": {
+            "value": "1 2 3",
+            "RequiresShard": "1"
+          },
+          "does_purge": {
+            "value": "0",
+            "special_bonus_unique_chen_12": "+1"
+          }
+        }
+      },
+      "chen_martyrdom": {
+        "ID": "951",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Chen.HandOfGodHealHero",
+        "MaxLevel": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "8",
+        "AbilityCastRange": "99999",
+        "AbilityManaCost": "0",
+        "AbilityValues": {}
+      },
+      "omniknight_repel": {
+        "ID": "5264",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Omniknight.Repel",
+        "AbilityCastRange": "500",
+        "AbilityCastPoint": "0.25",
+        "AbilityCooldown": "26 22 18 14",
+        "AbilityManaCost": "95 105 115 125",
+        "AbilityModifierSupportValue": "3.0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "10"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "status_resistance": "50"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_str": "8 18 28 38"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "hp_regen": "8 12 16 20"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "omniknight_martyr": {
+        "ID": "895",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilityCastRange": "700",
+        "AbilityCastPoint": "0.3",
+        "AbilityCooldown": "26 22 18 14",
+        "AbilityManaCost": "95 105 115 125",
+        "AbilityValues": {
+          "base_strength": "8 16 24 32",
+          "base_hpregen": "8 12 16 20",
+          "strength_bonus": {
+            "value": "3 4 5 6",
+            "LinkedSpecialBonus": "special_bonus_unique_omniknight_2"
+          },
+          "duration": {
+            "value": "10",
+            "LinkedSpecialBonus": "special_bonus_unique_omniknight_5"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "shadow_shaman_voodoo": {
+        "ID": "5079",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_ShadowShaman.Hex.Target",
+        "AbilityCastRange": "500",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityCooldown": "13",
+        "AbilityManaCost": "70 110 150 190",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "movespeed": "100"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "1.25 2.0 2.75 3.5"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "phoenix_icarus_dive": {
+        "ID": "5623",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Phoenix.IcarusDive.Cast",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "36 34 32 30",
+        "AbilityManaCost": "0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "hp_cost_perc": "15"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "dash_length": "1100 1200 1300 1400",
+            "LinkedSpecialBonus": "special_bonus_unique_phoenix_4"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "dash_width": "500"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "hit_radius": "200"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "burn_duration": "4"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "damage_per_second": "15 35 55 75"
+          },
+          "07": {
+            "var_type": "FIELD_FLOAT",
+            "burn_tick_interval": "1.0"
+          },
+          "08": {
+            "var_type": "FIELD_INTEGER",
+            "slow_movement_speed_pct": "16 19 22 25",
+            "LinkedSpecialBonus": "special_bonus_unique_phoenix_6"
+          },
+          "09": {
+            "var_type": "FIELD_FLOAT",
+            "dive_duration": "2.0"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "phoenix_icarus_dive_stop": {
+        "ID": "5624",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityCastAnimation": "ACT_INVALID"
+      },
+      "phoenix_fire_spirits": {
+        "ID": "5625",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Phoenix.FireSpirits.Cast",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "1400",
+        "AbilityCooldown": "50 40 30 20",
+        "AbilityManaCost": "100",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "hp_cost_perc": "20"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "spirit_duration": "20"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "spirit_speed": "900 900 900 900"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "200"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "4.0"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "attackspeed_slow": "-80 -100 -120 -140"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "damage_per_second": "20 40 60 80",
+            "LinkedSpecialBonus": "special_bonus_unique_phoenix_3"
+          },
+          "08": {
+            "var_type": "FIELD_INTEGER",
+            "spirit_count": "5"
+          },
+          "09": {
+            "var_type": "FIELD_FLOAT",
+            "tick_interval": "1.0"
+          }
+        }
+      },
+      "ancient_apparition_ice_blast": {
+        "ID": "5348",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Ancient_Apparition.IceBlast.Target",
+        "AbilityCastPoint": "0.01 0.01 0.01",
+        "AbilityCastRange": "0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "60.0 50.0 40.0",
+        "AbilityManaCost": "175",
+        "AbilityDamage": "250 325 400",
+        "AbilityValues": {
+          "radius_min": "275",
+          "radius_grow": "50.0",
+          "radius_max": "1000",
+          "path_radius": "275",
+          "frostbite_duration": "10 11 12",
+          "dot_damage": {
+            "value": "12.5 20.0 32.0",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "speed": "1500 1500 1500 1500",
+          "kill_pct": {
+            "value": "12 13 14",
+            "special_bonus_unique_ancient_apparition_5": "+4"
+          },
+          "target_sight_radius": "500 500 500"
+        }
+      },
+      "ancient_apparition_ice_blast_release": {
+        "ID": "5349",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "MaxLevel": "1",
+        "AbilityCastPoint": "0 0 0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "1.0 1.0 1.0"
+      },
+      "ancient_apparition_ice_vortex": {
+        "ID": "5346",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySound": "Hero_Ancient_Apparition.IceVortexCast",
+        "HasShardUpgrade": "1",
+        "AbilityCastAnimation": "ACT_DOTA_ICE_VORTEX",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "1500 1500 1500 1500",
+        "AbilityCastPoint": "0.01 0.01 0.01 0.01",
+        "AbilityDuration": "16",
+        "AbilityManaCost": "40 50 60 70",
+        "AbilityValues": {
+          "AbilityCooldown": {
+            "value": "7 6 5 4",
+            "special_bonus_unique_ancient_apparition_3": "-2"
+          },
+          "radius": "300",
+          "drag_speed": "40 50 60 70",
+          "movement_speed_pct": {
+            "value": "-16 -19 -22 -25",
+            "special_bonus_unique_ancient_apparition_4": "-5"
+          },
+          "spell_resist_pct": {
+            "value": "-16 -19 -22 -25",
+            "special_bonus_unique_ancient_apparition_4": "-5",
+            "DamageTypeTooltip": "DAMAGE_TYPE_MAGICAL"
+          },
+          "vision_aoe": "200 200 200 200",
+          "vortex_duration": "14",
+          "shard_dps": {
+            "value": "40",
+            "RequiresShard": "1",
+            "DamageTypeTooltip": "DAMAGE_TYPE_MAGICAL",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "shard_attack_speed_reduction": {
+            "value": "20",
+            "RequiresShard": "1"
+          }
+        }
+      },
+      "ancient_apparition_cold_feet": {
+        "ID": "5345",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Ancient_Apparition.ColdFeetCast",
+        "AbilityCastAnimation": "ACT_DOTA_COLD_FEET",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "700 800 900 1000",
+        "AbilityCastPoint": "0.01 0.01 0.01 0.01",
+        "AbilityCooldown": "12 11 10 9",
+        "AbilityDuration": "4.0 4.0 4.0 4.0",
+        "AbilityManaCost": "125",
+        "AbilityModifierSupportValue": "0.5",
+        "AbilityValues": {
+          "damage": {
+            "value": "30 50 70 90",
+            "special_bonus_unique_ancient_apparition_8": "+40",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "break_distance": {
+            "value": "715",
+            "special_bonus_unique_ancient_apparition_1": "+200"
+          },
+          "stun_duration": "2.0 2.5 3.0 3.5",
+          "area_of_effect": {
+            "value": "0",
+            "special_bonus_unique_ancient_apparition_6": "+450"
+          }
+        }
+      }
+    }
+  },
+  "notes": {
+    "abilities_english": {
+      "source": {
+        "file": "abilities_english.txt",
+        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+        "commitDate": "2023-02-10T01:16:45Z",
+        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt",
+        "sha256": "7099fb24b4e164a1f839a8404d20e0752927f06cccb49e29dfac15cf2411e5cc",
+        "gitBlobSha": "4c7939d76ea6bc733b3926dc0e8e186ad66a9dcb",
+        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+      },
+      "selection": {
+        "DOTA_Tooltip_ability_shadow_shaman_voodoo_Note0": "Instantly destroys illusions.",
+        "DOTA_Tooltip_ability_shadow_shaman_voodoo_Note1": "The target will have a base movement speed of %movespeed%, but buffs granting maximum movement speed won't be disabled.",
+        "DOTA_Tooltip_ability_omniknight_martyr_Description": "Applies a strong dispel on himself and the target ally and grants both of them bonus Strength and HP Regen based on the amount of Debuffs dispelled.",
+        "DOTA_Tooltip_ability_chen_hand_of_god_Note0": "Can heal invulnerable and hidden/banished allies.",
+        "DOTA_Tooltip_ability_chen_martyrdom_Description": "Sacrifice the life of this unit to heal any ally with the current level of Hand of God.",
+        "DOTA_Tooltip_ability_ancient_apparition_ice_blast_Note1": "The area of effect is %radius_min% + %radius_grow%*TimeTraveled, capped at %radius_max%.  The freeze area along the path is %path_radius%.",
+        "DOTA_Tooltip_ability_ancient_apparition_ice_blast_Note2": "Kill will be granted to the source of the damage that triggers the shatter.",
+        "DOTA_Tooltip_ability_ancient_apparition_ice_blast_Note3": "The shatter effect doesn't work on illusions.",
+        "DOTA_Tooltip_ability_ancient_apparition_ice_blast_Note4": "The HP Freeze prevents most kinds of healing, including the fountain, except Sunder, Time Lapse and Supernova.",
+        "DOTA_Tooltip_ability_phoenix_icarus_dive_Note0": "Icarus Dive has a %dive_duration% second travel duration, and can be cancelled by casting the ability again while in flight."
+      }
+    },
+    "npc_heroes": {
+      "source": {
+        "file": "npc_heroes.txt",
+        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+        "commitDate": "2023-02-10T01:16:45Z",
+        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_heroes.txt",
+        "sha256": "16e5c90893fd32835f471696899b8b1004637bc14e5f4e95761d445849a3f17c",
+        "gitBlobSha": "2d5227eadf09b29b62494cdffcc9c8b2ed33a9e6",
+        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+      },
+      "selection": {
+        "npc_dota_hero_omniknight": {
+          "Ability1": "omniknight_purification",
+          "Ability2": "omniknight_martyr",
+          "Ability3": "omniknight_hammer_of_purity",
+          "Ability4": "omniknight_degen_aura",
+          "Ability5": "generic_hidden",
+          "Ability6": "omniknight_guardian_angel",
+          "Ability10": "special_bonus_unique_omniknight_5",
+          "Ability11": "special_bonus_attack_base_damage_50",
+          "Ability12": "special_bonus_unique_omniknight_6",
+          "Ability13": "special_bonus_unique_omniknight_7",
+          "Ability14": "special_bonus_unique_omniknight_2",
+          "Ability15": "special_bonus_unique_omniknight_3",
+          "Ability16": "special_bonus_unique_omniknight_1",
+          "Ability17": "special_bonus_unique_omniknight_4"
+        }
+      }
+    },
+    "items": {
+      "source": {
+        "file": "items.txt",
+        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+        "commitDate": "2023-02-10T01:16:45Z",
+        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+        "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+        "gitBlobSha": "9e257199f59aa8290f336fe3e61543e10cf0d50b",
+        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+      },
+      "selection": {
+        "item_meteor_hammer": {
+          "ID": "223",
+          "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+          "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+          "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+          "FightRecapLevel": "1",
+          "AbilityChannelTime": "2.5",
+          "AbilityCastRange": "600",
+          "AbilityCooldown": "24",
+          "AbilityManaCost": "100",
+          "ItemCost": "2350",
+          "ItemQuality": "epic",
+          "ItemAliases": "mh;meteor hammer",
+          "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS",
+          "ShouldBeSuggested": "1",
+          "AbilityValues": {
+            "bonus_all_stats": "8",
+            "bonus_health_regen": "6.5",
+            "bonus_mana_regen": "2.5",
+            "burn_dps_buildings": "60",
+            "burn_dps_units": "60",
+            "burn_duration": "6",
+            "stun_duration": "1.25",
+            "burn_interval": "1.0",
+            "land_time": ".5",
+            "impact_radius": "400",
+            "max_duration": "2.5",
+            "impact_damage_buildings": "75",
+            "impact_damage_units": "150",
+            "enemy_particles_visible": "0"
+          }
+        }
+      }
+    }
+  },
+  "versionPolicy": "AA custom clauses and values take priority. Local20230216 files are pinned2023-02-10. Indexed frozen/current primary pages are not direct2023captures. No new Wayback request during429.",
+  "webObservations": [
+    {
+      "id": "chen-current",
+      "url": "https://liquipedia.net/dota2/Chen",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Hand has global hero/controlled-body healing, immediate first heal plus one-second healing component, refreshable HoT,0.3+0.93 animation and strong-purge talent. Current page also contains modern10-second/channel upgrades which are not imported.",
+      "versionContext": "Current indexed7.41f text; its first-heal wording conflicts with frozen older Wiki. AA8seconds and pinnedKV override modern durations.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "chen-old",
+      "url": "https://dota2.fandom.com/wiki/Chen",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Frozen older page distinguishes hero/controlled-unit qualification, nonstacking one-second HoT, shared Martyrdom cooldown and uncredited sacrifice. Its later1200-range/enemy-damage Martyrdom variant is excluded.",
+      "versionContext": "Indexed older page contains7.34/7.35 changes, not directFebruary2023. One paragraph delays initial heal to the first tick; currentLP and AA description support the implemented immediate-first interpretation.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "chen-history",
+      "url": "https://liquipedia.net/dota2/Chen/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.32 introduces Martyrdom;7.32b reduces Hand duration10→8.7.34 later reduces Martyrdom global range→1200 and adds enemy damage. These boundaries support the pre7.34 ally/global profile.",
+      "versionContext": "Dated history separates2022/February2023 candidate from later variants. Native2023initial200/300/400 and8seconds are independently pinned.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "grace-old",
+      "url": "https://liquipedia.net/dota2/Omniknight/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Legacy Grace has50% status resistance,0.25 point, old-range500 and buff-before-strong-dispel notes. AA changes base/S/G and self application; the newer per-dispel branch is not silently imported.",
+      "versionContext": "Pre7.31 historical ability entry; AA combines older and custom features. Public .25/.2 remains a qualified working timing profile.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "grace-history",
+      "url": "https://liquipedia.net/dota2/Omniknight/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.30c makes Grace dispellable and changes its cooldown talent−3→−2;7.31 replaces it with self+ally per-dispel scaling.2023heroKV uses omniknight_martyr, not legacy omniknight_repel.",
+      "versionContext": "Dated2021/2022 changes explain the AA hybrid and why native ID stripping is unsafe.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "hex-old",
+      "url": "https://dota2.fandom.com/wiki/Shadow_Shaman",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Hex destroys illusions, substitutes100 base movement while allowing movement modifiers, and disables attacks/spells. Older native strong-dispel eligibility is overridden by AA explicitly undispellable.",
+      "versionContext": "Indexed frozen older page; numeric duration/cost are AA. Current matched animation is0+1.13, with pinned2023zero point.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "hex-current",
+      "url": "https://liquipedia.net/dota2/Shadow_Shaman",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Current Hex lists0+1.13 animation,100 movement substitution and instant illusion destruction. Modern duration/cooldown/mana and innate features are excluded.",
+      "versionContext": "Current indexed page used for stable mechanism candidate, with pinned2023movement100 and point0 corroboration.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "hex-history",
+      "url": "https://liquipedia.net/dota2/Shadow_Shaman/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.33 changes native−3 Hex cooldown talent to−2.7.37 moves the existing break talent to level15. AA Super preserves−3 and break.",
+      "versionContext": "Dated historical talent chain, corroborated by2023special_bonus_unique_shadow_shaman_5/_7.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "lion-hex",
+      "url": "https://liquipedia.net/dota2/Lion",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "A same-named Hex talent uses area-point targeting, providing a related transformation prototype. Its250 radius is not substituted for AA400.",
+      "versionContext": "Related hero talent is a compatibility prototype, not proof of the modified AA Shaman targeting implementation.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "phoenix-old",
+      "url": "https://dota2.fandom.com/wiki/Phoenix",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Dive allows attacks/casts/channels, no spell turn, fixed500-width ellipse and200 contact. Stun/hex/sleep/cyclone/foreign motion stop it; roots/taunts do not. Supernova stops it and Sun Ray is unavailable.",
+      "versionContext": "Indexed frozen older page includes post7.34DOT0.2; pinned2023and dated history require1-second intervals instead. Geometry and precise easing remain separately qualified.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "phoenix-history",
+      "url": "https://liquipedia.net/dota2/Phoenix/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "6.72 removes native Dive immunity and makes stun cancel Dive.7.34 later changes Dive/FireSpirits/Supernova intervals1→0.2. AA Super restores immunity and invokes real FireSpirits4.",
+      "versionContext": "Dated history prevents importing the August2023interval change into the February candidate.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "phoenix-guide",
+      "url": "https://dota2.fandom.com/wiki/Phoenix/Guide",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Root prevents initial Dive but does not cancel an ongoing Dive. Silence prevents stopping it. Casting targeted spells during Dive does not require turning.",
+      "versionContext": "Indexed older primary Wiki guide is scoped to these operational notes; it does not prove Stop/channel or helper theft behavior.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-archive",
+      "url": "https://liquipedia.net/dota2/Archive:Ancient_Apparition",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Two-stage tracer1500 then hail minimum750 with maximum1.75-second flight; radius depends on tracer time. No illusion shatter, actual damage-source credit and non-healing health-setting exceptions are described.",
+      "versionContext": "Archive page is itself version-mixed; pinned2023geometry/damage and dated7.28travel boundary take priority. ModernShard/BoneChill/DeathRime excluded.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-history",
+      "url": "https://liquipedia.net/dota2/Ancient_Apparition/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "6.66 stops bypassing Shallow Grave;7.23 makes impact pierce spell immunity;2013-08-23 explicitly blocks STR/maxHP health gain. These dated rules support the implemented protection, piercing and health-freeze stages.",
+      "versionContext": "Dated changes precede the2023candidate. Modern2026radius275→300 is not imported.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-archive-history",
+      "url": "https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.28 improves the second projectile maximum travel time2→1.75;7.23 changes spell-immunity interaction.",
+      "versionContext": "Direct dated patch history corroborates the historical1.75profile instead of currentLP1.7.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-old",
+      "url": "https://dota2.fandom.com/wiki/Ancient_Apparition",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Frostbite damage ticks once per second, credited threshold crossings use the actual damage source, self-damage credits AA, and min-health/invulnerability prevent shatter. Projectile contact refreshes duration.",
+      "versionContext": "Frozen older indexed page is not exactFebruary2023. AAstrong-only dispel explicitly overrides native undispellability. Status resistance and zero-effective damage edges remain scoped.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-current",
+      "url": "https://liquipedia.net/dota2/Ancient_Apparition",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Current Release maps Spell Steal to Ice Blast. Modern release silence exception,1.7flight and300radius do not automatically become2023rules.",
+      "versionContext": "Current indexed primary source supplies a related helper-mapping candidate only; parent-removal eligibility is an explicit engine snapshot policy.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "oracle-guide",
+      "url": "https://dota2.fandom.com/wiki/Oracle/Guide",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "The guide warns that Ice Blast instant-kill behavior can bypass False Promise delay.",
+      "versionContext": "Older indexed primary Wiki guide conflicts in context with AA Counters; used to document the conflict, not to certify the whole native combination.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    },
+    {
+      "id": "aa-counters",
+      "url": "https://dota2.fandom.com/wiki/Ancient_Apparition/Counters",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Counter notes say False Promise can save a unit near shatter and delay healing until frostbite ends.",
+      "versionContext": "Indexed primary Wiki counter article conflicts with the Oracle guide. AA itself makes frostbite strong-dispellable, so Promise-first versus frostbite-first must be separated.",
+      "accessMethod": "indexedPrimarySearch",
+      "directHTTP200Claim": false
+    }
+  ]
+}

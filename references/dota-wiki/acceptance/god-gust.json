@@ -1,0 +1,1768 @@
+{
+  "schemaVersion": 1,
+  "group": "god-gust",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured English/custom values first; dated KV/history distinguish2023candidate from modern Wiki. Result closure and exact AA/version provenance are separate. No Wayback request or remote full-page HTML is stored.",
+  "validation": {
+    "command": "npm test -- --reporter=json --outputFile=artifacts/r6-c8-unit-tests.json",
+    "configurationHash": "084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34",
+    "skillGroupTests": 59,
+    "passedTests": 59,
+    "reportInput": "artifacts/r6-c8-unit-tests.json",
+    "typecheck": "npx tsc --noEmit passed after this group compilation; whole-repository validation is owned by parent.",
+    "regressionRuns": [
+      {
+        "command": "npx vitest run tests/reference-god-gust.test.ts tests/reference-flak-flesh.test.ts tests/reference-dragon-echo.test.ts tests/reference-instant-attacks.test.ts tests/reference-proc-acceptance.test.ts tests/reference-reflection-demon.test.ts tests/reference-tether-lifesteal.test.ts",
+        "tests": 350,
+        "passed": 350,
+        "failed": 0
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": "mars_gods_rebuke",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "paraphrase": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; no new HTTP200 claim. Original AA Lua/build is unknown; explicit AA values/custom clauses win."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "paraphrase": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "versionContext": "Shipped2023-02-10 candidate, not proof of the captured AA native patch."
+        },
+        {
+          "id": "rebuke-wiki",
+          "url": "https://dota2.fandom.com/wiki/Mars",
+          "accessedOn": "2026-10-30",
+          "observation": "Ensured strongest critical, conditional hero bonus, True Strike/no cleave, locked facing and non-disabling radial knockback; basic-dispellable knockback. Text conflicts on effect order.",
+          "paraphrase": "Ensured strongest critical, conditional hero bonus, True Strike/no cleave, locked facing and non-disabling radial knockback; basic-dispellable knockback. Text conflicts on effect order.",
+          "versionContext": "Retained approximately7.35 page, reread as indexed Wiki text; exact2023 edge-note dates are not inferred from the modern page."
+        },
+        {
+          "id": "rebuke-current",
+          "url": "https://liquipedia.net/dota2/Mars",
+          "accessedOn": "2026-10-30",
+          "observation": "Current notes explicitly order attack before surviving-target knockback/slow; conditional damage does not accept percentage attack modifiers.",
+          "paraphrase": "Current notes explicitly order attack before surviving-target knockback/slow; conditional damage does not accept percentage attack modifiers.",
+          "versionContext": "Current7.41 Wiki page; only corroborating unchanged semantics. Modern numerical/facet/rework behavior is excluded."
+        },
+        {
+          "id": "rebuke-history",
+          "url": "https://liquipedia.net/dota2/Mars/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Old talents supply65critical,1.5slow duration and cooldown prototypes;7.41d changed Bulwark-facing cast behavior.",
+          "paraphrase": "Old talents supply65critical,1.5slow duration and cooldown prototypes;7.41d changed Bulwark-facing cast behavior.",
+          "versionContext": "Dated7.22-7.32 prototypes; modern7.41d targeting change is excluded."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "GR-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks spend90mana with.2point1.07backswing and final crit slow cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-01 five AA ranks spend90mana with.2point1.07backswing and final crit slow cooldown"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a stronger450critical replaces270 instead of multiplying the two",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-02 a stronger450critical replaces270 instead of multiplying the two"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "ensured270critical wins a weaker200critical and conditional hero20remains unmultiplied",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-03 ensured270critical wins a weaker200critical and conditional hero20remains unmultiplied"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "area attacks hit invisible evading units despite disarm but never cleave outside the140sector",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-04 area attacks hit invisible evading units despite disarm but never cleave outside the140sector"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "the cone uses current locked facing instead of the off-axis selected point",
+          "sourceIds": [
+            "rebuke-wiki",
+            "rebuke-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-05 the cone uses current locked facing instead of the off-axis selected point"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "base knockback moves150continuously over.3seconds without stun or action lock",
+          "sourceIds": [
+            "valve",
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-06 base knockback moves150continuously over.3seconds without stun or action lock"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-07",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "lethal attacks do not leave a later slow or knockback on the corpse",
+          "sourceIds": [
+            "rebuke-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-07 lethal attacks do not leave a later slow or knockback on the corpse"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben applies separate one-second strong stun and basic Break with status resistance",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-08 Gaben applies separate one-second strong stun and basic Break with status resistance"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "hero illusions receive the conditional bonus but ordinary summons do not",
+          "sourceIds": [
+            "rebuke-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-09 hero illusions receive the conditional bonus but ordinary summons do not"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-10",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "physical immunity prevents health loss while its nonpiercing slow is rejected by spell immunity",
+          "sourceIds": [
+            "aa",
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-10 physical immunity prevents health loss while its nonpiercing slow is rejected by spell immunity"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-11",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "native basic knockback modifier can be dispelled and gained immunity ends only its own controller",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-11 native basic knockback modifier can be dispelled and gained immunity ends only its own controller"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-12",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "actual Spear wall impale allows Rebuke damage but prevents its additional knockback",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-12 actual Spear wall impale allows Rebuke damage but prevents its additional knockback"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-13",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "an actual Fiends Grip channel survives base Rebuke knockback with its original end clock",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-13 an actual Fiends Grip channel survives base Rebuke knockback with its original end clock"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-14",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "conditional hero damage shares flat block and lifesteal while area attacks leave Spell Block intact",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-14 conditional hero damage shares flat block and lifesteal while area attacks leave Spell Block intact"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-15",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "percentage main attack bonuses do not scale the conditional hero20",
+          "sourceIds": [
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-15 percentage main attack bonuses do not scale the conditional hero20"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-16",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "the140degree sector includes60degrees and excludes80degrees at the same distance",
+          "sourceIds": [
+            "valve",
+            "rebuke-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-16 the140degree sector includes60degrees and excludes80degrees at the same distance"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GR-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA final Super crit335/slow4/CD6.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-01 five AA ranks spend90mana with.2point1.07backswing and final crit slow cooldown"
+            }
+          ]
+        },
+        {
+          "id": "GR-P01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Exact2023 attack/knockback/slow sequence conflicts in retained Wiki prose; adopt current documented attack-first candidate.",
+          "sourceIds": [
+            "rebuke-wiki",
+            "rebuke-current"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-07 lethal attacks do not leave a later slow or knockback on the corpse"
+            }
+          ]
+        },
+        {
+          "id": "GR-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA stun/Break are explicit; their original native talent/item provenance and precise old dispel qualification are not recovered.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-08 Gaben applies separate one-second strong stun and basic Break with status resistance"
+            }
+          ]
+        },
+        {
+          "id": "GR-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Forced-movement collision exceptions for each skill-created barrier and exact historical SR scaling remain qualified.",
+          "sourceIds": [
+            "rebuke-wiki",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "GR-P04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Conditional hero classification for all creep-hero families is not inferred from the Spirit Bear example.",
+          "sourceIds": [
+            "rebuke-current"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GR-09 hero illusions receive the conditional bonus but ordinary summons do not"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "GR-P01",
+        "GR-P02",
+        "GR-P03",
+        "GR-P04"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "rebuke-history"
+          ],
+          "observation": "65critical/+1.5slow/-4cooldown use old native talent prototypes with AA final values."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "observation": "Stun1+Break1 are authoritative custom AA clauses; no invented native upgrade source."
+        }
+      ]
+    },
+    {
+      "id": "custom_visage_grave_chill",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "paraphrase": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; no new HTTP200 claim. Original AA Lua/build is unknown; explicit AA values/custom clauses win."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "paraphrase": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "versionContext": "Shipped2023-02-10 candidate, not proof of the captured AA native patch."
+        },
+        {
+          "id": "chill-wiki",
+          "url": "https://liquipedia.net/dota2/Visage",
+          "accessedOn": "2026-10-30",
+          "observation": "Independent recipient buffs use900Familiar snapshot, include invulnerable bodies and exclude hidden units; AA expands controlled-body types.",
+          "paraphrase": "Independent recipient buffs use900Familiar snapshot, include invulnerable bodies and exclude hidden units; AA expands controlled-body types.",
+          "versionContext": "Current7.41 Wiki page; only corroborating unchanged semantics. Modern numerical/facet/rework behavior is excluded."
+        },
+        {
+          "id": "chill-history",
+          "url": "https://liquipedia.net/dota2/Visage/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Familiar sharing was added7.07;2018fix enables invulnerable Familiars;7.29gives the-3cooldown talent.",
+          "paraphrase": "Familiar sharing was added7.07;2018fix enables invulnerable Familiars;7.29gives the-3cooldown talent.",
+          "versionContext": "2017/2018/2021 history; current changed drain/duration/mana values are excluded."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "GC-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks keep six-second25or50or100drain with mana90and final Super cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-01 five AA ranks keep six-second25or50or100drain with mana90and final Super cooldown"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "target Spell Block consumes the cast but prevents the drain and every positive buff",
+          "sourceIds": [
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-02 target Spell Block consumes the cast but prevents the drain and every positive buff"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "all controlled summon types within900receive a snapshot while a distant summon and unrelated ally do not",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chill-wiki",
+            "chill-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-03 all controlled summon types within900receive a snapshot while a distant summon and unrelated ally do not"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "newly created controlled bodies do not inherit the earlier cast snapshot",
+          "sourceIds": [
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-04 newly created controlled bodies do not inherit the earlier cast snapshot"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "purging the victim leaves the caster buff and purging caster leaves another recipient buff",
+          "sourceIds": [
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-05 purging the victim leaves the caster buff and purging caster leaves another recipient buff"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "status resistance shortens only the victim modifiers not the independent six-second buffs",
+          "sourceIds": [
+            "aa",
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-06 status resistance shortens only the victim modifiers not the independent six-second buffs"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben includes ordinary allies within500but not beyond500or hidden recipients",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-07 Gaben includes ordinary allies within500but not beyond500or hidden recipients"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "buff expiry and recipient death remove every positive component",
+          "sourceIds": [
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-08 buff expiry and recipient death remove every positive component"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "source death does not revoke an independently granted living ally buff",
+          "sourceIds": [
+            "chill-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-09 source death does not revoke an independently granted living ally buff"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GC-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA says nearby controlled summons without a radius; native900is adopted but original AA radius is not recovered.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chill-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GC-03 all controlled summon types within900receive a snapshot while a distant summon and unrelated ally do not"
+            }
+          ]
+        },
+        {
+          "id": "GC-P02",
+          "kind": "combination",
+          "branch": "base-gaben",
+          "mechanism": "Different-caster same-level drain stacking and Gaben invulnerable-allied qualification require a precise AA/native source.",
+          "sourceIds": [
+            "aa",
+            "chill-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "GC-P01",
+        "GC-P02"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "chill-history"
+          ],
+          "observation": "Old cooldown talent is a prototype; added disarm is AA custom."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "observation": "Allied500snapshot is explicit AA, not imported modern facet AoE enemy drain."
+        }
+      ]
+    },
+    {
+      "id": "tiny_grow",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "paraphrase": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; no new HTTP200 claim. Original AA Lua/build is unknown; explicit AA values/custom clauses win."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "paraphrase": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "versionContext": "Shipped2023-02-10 candidate, not proof of the captured AA native patch."
+        },
+        {
+          "id": "grow-wiki",
+          "url": "https://liquipedia.net/dota2/Tiny",
+          "accessedOn": "2026-10-30",
+          "observation": "Grow adds base attack damage, armor and Toss damage; its loss multiplies total attack speed.",
+          "paraphrase": "Grow adds base attack damage, armor and Toss damage; its loss multiplies total attack speed.",
+          "versionContext": "Current7.41 Wiki page; only corroborating unchanged semantics. Modern numerical/facet/rework behavior is excluded."
+        },
+        {
+          "id": "grow-history",
+          "url": "https://dota2.fandom.com/wiki/Tiny/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.32 replaces flat attack-speed loss with30percent;7.31 removes Toss actor30percent while adding Grow damage.2013illusion fix is linguistically ambiguous.",
+          "paraphrase": "7.32 replaces flat attack-speed loss with30percent;7.31 removes Toss actor30percent while adding Grow damage.2013illusion fix is linguistically ambiguous.",
+          "versionContext": "Dated7.31/7.32 are before the2023candidate.7.33tree removal/later slow resistance are excluded."
+        },
+        {
+          "id": "grow-old",
+          "url": "https://liquipedia.net/dota2/Tiny%2FOld_Abilities",
+          "accessedOn": "2026-10-30",
+          "observation": "Old Craggy procs on landed regular/instant attacks and allied denies; native melee qualification differs from AA any-unit wording.",
+          "paraphrase": "Old Craggy procs on landed regular/instant attacks and allied denies; native melee qualification differs from AA any-unit wording.",
+          "versionContext": "Removed pre7.07 and7.28Shard prototypes, not a new ability silently granted to AA."
+        },
+        {
+          "id": "break",
+          "url": "https://liquipedia.net/dota2/Break",
+          "accessedOn": "2026-10-30",
+          "observation": "Grow is listed among abilities not disabled by Break.",
+          "paraphrase": "Grow is listed among abilities not disabled by Break.",
+          "versionContext": "Current mechanics cross-check; exact pre2023 date remains separately qualified."
+        },
+        {
+          "id": "prd",
+          "url": "https://liquipedia.net/dota2/Pseudo_Random_Distribution",
+          "accessedOn": "2026-10-30",
+          "observation": "Craggy Exterior switched to PRD in7.00.",
+          "paraphrase": "Craggy Exterior switched to PRD in7.00.",
+          "versionContext": "Dated2016-12-12 native prototype; AA retains its explicit30percent probability."
+        },
+        {
+          "id": "aa45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA4.5sets Grow damage33/66/99and adds51at Super; Totem uses100/200/400with free zero-point Super.",
+          "paraphrase": "Official AA4.5sets Grow damage33/66/99and adds51at Super; Totem uses100/200/400with free zero-point Super.",
+          "versionContext": "2023-02-01 official announcement corroborates captured Grow finals and the real Totem combination."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "GW-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five passive ranks expose AA base damage armor percentage loss and final Super removal",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grow-wiki",
+            "grow-history",
+            "aa45"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-01 five passive ranks expose AA base damage armor percentage loss and final Super removal"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "total attack-speed factor scales added300speed instead of subtracting flat30",
+          "sourceIds": [
+            "aa",
+            "grow-history",
+            "grow-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-02 total attack-speed factor scales added300speed instead of subtracting flat30"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "base damage armor and percentage speed reduction survive Break and Basic Dispel",
+          "sourceIds": [
+            "break",
+            "grow-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-03 base damage armor and percentage speed reduction survive Break and Basic Dispel"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "actual Totem multiplies the increased Grow base rather than treating Grow as green bonus",
+          "sourceIds": [
+            "grow-wiki",
+            "aa45"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-04 actual Totem multiplies the increased Grow base rather than treating Grow as green bonus"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "real Toss landing includes Grow300in one combined packet and retained AA actor1.3candidate",
+          "sourceIds": [
+            "aa",
+            "grow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-05 real Toss landing includes Grow300in one combined packet and retained AA actor1.3candidate"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super150damage removes the percentage penalty while retaining20armor and300Tossbonus",
+          "sourceIds": [
+            "aa",
+            "aa45"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-06 Super150damage removes the percentage penalty while retaining20armor and300Tossbonus"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben30status resistance multiplicatively shortens an actual incoming stun",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-07 Gaben30status resistance multiplicatively shortens an actual incoming stun"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben landed ordinary summon attacks can retaliate for2seconds but missed attacks cannot",
+          "sourceIds": [
+            "aa",
+            "grow-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-08 Gaben landed ordinary summon attacks can retaliate for2seconds but missed attacks cannot"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a real Disruption image inherits Grow base once without a second direct bonus",
+          "sourceIds": [
+            "grow-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-09 a real Disruption image inherits Grow base once without a second direct bonus"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-10",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Belch uses an independent PRD trial only on eligible landed contacts not misses or Break-suppressed hooks",
+          "sourceIds": [
+            "aa",
+            "grow-old",
+            "prd"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-10 Belch uses an independent PRD trial only on eligible landed contacts not misses or Break-suppressed hooks"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GW-P01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA retained Toss actor1.3combined with post7.31Grow bonus has no original ordering proof; bonus-before1.3is the explicit candidate.",
+          "sourceIds": [
+            "aa",
+            "grow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-05 real Toss landing includes Grow300in one combined packet and retained AA actor1.3candidate"
+            }
+          ]
+        },
+        {
+          "id": "GW-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Native7.00PRD prototype is adopted for AA Belch; AA internal PRD and its exact Break/status-resistance policy are not recovered.",
+          "sourceIds": [
+            "aa",
+            "grow-old",
+            "prd"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-10 Belch uses an independent PRD trial only on eligible landed contacts not misses or Break-suppressed hooks"
+            }
+          ]
+        },
+        {
+          "id": "GW-P03",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "2013Fixed Craggy Exterior working on illusions of Tiny does not unambiguously prove either illusion policy. Existing AA image-trigger behavior is retained.",
+          "sourceIds": [
+            "aa",
+            "grow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "GW-P04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Exact2023date of base Grow Break immunity is not independently pinned by the current mechanics list.",
+          "sourceIds": [
+            "break",
+            "grow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GW-03 base damage armor and percentage speed reduction survive Break and Basic Dispel"
+            }
+          ]
+        },
+        {
+          "id": "GW-N01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Tree Grab/Volley are absent from the captured current catalog; listed tree multiplier has no runtime consumer and no tree mechanic is invented.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grow-history"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "GW-05",
+        "GW-P01",
+        "GW-P02",
+        "GW-P03",
+        "GW-P04"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "aa45"
+          ],
+          "observation": "Official AA4.5corroborates33/66/99and extra51. Captured AA also removes AS penalty; rank3Super final150."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "grow-old",
+            "grow-history",
+            "prd"
+          ],
+          "observation": "Belch combines old Grow status resistance/Craggy landed proc prototypes, retaining AA30percent/2seconds/any-unit wording."
+        }
+      ]
+    },
+    {
+      "id": "custom_omniknight_guardian_angel",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "paraphrase": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; no new HTTP200 claim. Original AA Lua/build is unknown; explicit AA values/custom clauses win."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "paraphrase": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "versionContext": "Shipped2023-02-10 candidate, not proof of the captured AA native patch."
+        },
+        {
+          "id": "angel-old",
+          "url": "https://dota2.fandom.com/wiki/Omniknight/Old_Abilities",
+          "accessedOn": "2026-10-30",
+          "observation": "Old NoTarget Angel gives physical immunity, excludes wards/couriers/invulnerable/hidden; full native Scepter separately adds buildings/hidden.",
+          "paraphrase": "Old NoTarget Angel gives physical immunity, excludes wards/couriers/invulnerable/hidden; full native Scepter separately adds buildings/hidden.",
+          "versionContext": "Explicit5.50-7.34e archive;2023candidate uses NoTarget, not7.35unit-target charges."
+        },
+        {
+          "id": "angel-history",
+          "url": "https://liquipedia.net/dota2/Omniknight/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Old Guardian regen was removed6.82c;7.31introduces the modern pure Hammer prototype;7.35reworks Angel targeting.",
+          "paraphrase": "Old Guardian regen was removed6.82c;7.31introduces the modern pure Hammer prototype;7.35reworks Angel targeting.",
+          "versionContext": "AA40regen/+1duration/global remain custom;2023Hammer4 does not inherit post7.33healing."
+        },
+        {
+          "id": "aa55",
+          "url": "https://news.abilityarena.com/ability-arena-pantheon-update-season-5-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA5.5introduces Guardian Angel as physical-burst protection.",
+          "paraphrase": "Official AA5.5introduces Guardian Angel as physical-burst protection.",
+          "versionContext": "2023-04-05 announcement; confirms later catalog addition,not all captured upgrades or a unified February native build."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "GA-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks have.4point1.07backswing resources and final duration radius regeneration",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "angel-old",
+            "aa55"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-01 five AA ranks have.4point1.07backswing resources and final duration radius regeneration"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "physical attacks and physical spells are immune but magical and pure damage remain effective",
+          "sourceIds": [
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-02 physical attacks and physical spells are immune but magical and pure damage remain effective"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "base700radius and global Super use a cast-time snapshot rather than a following aura",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-03 base700radius and global Super use a cast-time snapshot rather than a following aura"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "wards buildings invulnerable hidden and courier recipients are excluded",
+          "sourceIds": [
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-04 wards buildings invulnerable hidden and courier recipients are excluded"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super actually regenerates40per second and records effective regeneration under Guardian Angel",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-05 Super actually regenerates40per second and records effective regeneration under Guardian Angel"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Basic Dispel expiry and recipient death clean immunity regeneration and retaliation together",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-06 Basic Dispel expiry and recipient death clean immunity regeneration and retaliation together"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-07",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Gaben protected allied actor casts real pure Hammer4and keeps Guardian parent attribution",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-07 Gaben protected allied actor casts real pure Hammer4and keeps Guardian parent attribution"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "zero-health-loss physical contacts can retaliate while evaded attacks and spells cannot",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-08 zero-health-loss physical contacts can retaliate while evaded attacks and spells cannot"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Basic Dispel stops further Hammer procs and caster death does not remove another living recipient buff",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-09 Basic Dispel stops further Hammer procs and caster death does not remove another living recipient buff"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-10",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "a protected real Flesh Golem zombie retaliates as actor while4Aroots the Hammer to its summon skill",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-10 a protected real Flesh Golem zombie retaliates as actor while4Aroots the Hammer to its summon skill"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GA-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA global does not explicitly promise native full-Scepter hidden/building eligibility or40status resistance; base eligibility is retained.",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-04 wards buildings invulnerable hidden and courier recipients are excluded"
+            }
+          ]
+        },
+        {
+          "id": "GA-P02",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Exact AA retaliation free-cast Spell Block and modifier-suppressed attack qualification remain unproven; current effect-only cast retained.",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-07 Gaben protected allied actor casts real pure Hammer4and keeps Guardian parent attribution"
+            },
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GA-08 zero-health-loss physical contacts can retaliate while evaded attacks and spells cannot"
+            }
+          ]
+        },
+        {
+          "id": "GA-P03",
+          "kind": "combination",
+          "branch": "base-gaben",
+          "mechanism": "Multiple Guardian providers regeneration/proc stacking and native physical-immunity damage-event hook suppression require separate evidence.",
+          "sourceIds": [
+            "aa",
+            "angel-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "GA-P01",
+        "GA-P02",
+        "GA-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "angel-old",
+            "angel-history"
+          ],
+          "observation": "Global is a native Scepter prototype;40regen and+1duration are explicit AA values, not native40statusResist."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "observation": "AA15percent protection retaliation uses actual2023level4Hammer pure120+125percent base and38slow; no post7.33self-heal."
+        }
+      ]
+    },
+    {
+      "id": "custom_drow_ranger_wave_of_silence",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "paraphrase": "Captured English base/Super/Gaben and balance were reread from public/data/skills.json.catalog.",
+          "versionContext": "Previously captured official static JSON; no new HTTP200 claim. Original AA Lua/build is unknown; explicit AA values/custom clauses win."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "paraphrase": "Pinned local KV supplies native cast points and prototype parameters, including Hammer4.",
+          "versionContext": "Shipped2023-02-10 candidate, not proof of the captured AA native patch."
+        },
+        {
+          "id": "gust-wiki",
+          "url": "https://dota2.fandom.com/wiki/Drow_Ranger",
+          "accessedOn": "2026-10-30",
+          "observation": "Gust travels2000, extends to1150, has non-disabling basic-dispellable knockback and.25+.6animation;450distance falls by.5per unit.",
+          "paraphrase": "Gust travels2000, extends to1150, has non-disabling basic-dispellable knockback and.25+.6animation;450distance falls by.5per unit.",
+          "versionContext": "Retained approximately7.35 page, reread as indexed Wiki text; exact2023 edge-note dates are not inferred from the modern page."
+        },
+        {
+          "id": "gust-history",
+          "url": "https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "6.80introduced non-interrupting distance-based Gust;6.81b gave.6/.7/.8/.9duration.7.35adds baseline True Sight.",
+          "paraphrase": "6.80introduced non-interrupting distance-based Gust;6.81b gave.6/.7/.8/.9duration.7.35adds baseline True Sight.",
+          "versionContext": "Dated old mechanics and pinned2023KV; no7.35TrueSight or7.41variable-duration import."
+        },
+        {
+          "id": "gust-talents",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.31adds self10percent movement;7.32replaces50blind/+250radius talents;7.41introduces distance-scaled duration.",
+          "paraphrase": "7.31adds self10percent movement;7.32replaces50blind/+250radius talents;7.41introduces distance-scaled duration.",
+          "versionContext": "2022native upgrade prototypes; captured AA100blind and+250radius win,2026duration change excluded."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "GU-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five ranks pay70mana with.25point.6backswing and final silence cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-01 five ranks pay70mana with.25point.6backswing and final silence cooldown"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "the2000speed wave hits a distant body after travel rather than at release",
+          "sourceIds": [
+            "valve",
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-02 the2000speed wave hits a distant body after travel rather than at release"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "the wave endpoint radius reaches a body at1050while excluding a body outside the250width",
+          "sourceIds": [
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-03 the wave endpoint radius reaches a body at1050while excluding a body outside the250width"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "fixed AA knockback duration differs by rank while total silence lasts longer",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "gust-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-04 fixed AA knockback duration differs by rank while total silence lasts longer"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "closer bodies move farther with450maximum and Gaben doubles maximum under the declared falloff candidate",
+          "sourceIds": [
+            "aa",
+            "gust-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-05 closer bodies move farther with450maximum and Gaben doubles maximum under the declared falloff candidate"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Gust does not stun or disarm and an already released ordinary attack remains usable during motion",
+          "sourceIds": [
+            "gust-wiki",
+            "gust-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-06 Gust does not stun or disarm and an already released ordinary attack remains usable during motion"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Basic Dispel cancels owned knockback and silence without leaving later forced movement",
+          "sourceIds": [
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-07 Basic Dispel cancels owned knockback and silence without leaving later forced movement"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-08",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "gained spell immunity stops this displacement but an unrelated later controller survives Gust dispel",
+          "sourceIds": [
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-08 gained spell immunity stops this displacement but an unrelated later controller survives Gust dispel"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "invisible units are silenced without importing7.35TrueSight while wards hidden and immune bodies are excluded",
+          "sourceIds": [
+            "gust-wiki",
+            "gust-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-09 invisible units are silenced without importing7.35TrueSight while wards hidden and immune bodies are excluded"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Super radius500reaches a lateral body outside the old250wave and Gaben blind expires with silence",
+          "sourceIds": [
+            "aa",
+            "gust-talents"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-10 Super radius500reaches a lateral body outside the old250wave and Gaben blind expires with silence"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-11",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "the native2023self10percent movement candidate refreshes for silence-level duration and is dispellable",
+          "sourceIds": [
+            "valve",
+            "gust-talents"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-11 the native2023self10percent movement candidate refreshes for silence-level duration and is dispellable"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-12",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a released wave still silences once per body after the source dies",
+          "sourceIds": [
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-12 a released wave still silences once per body after the source dies"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-13",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "real Fissure terrain does not truncate the native impassable-terrain Gust displacement",
+          "sourceIds": [
+            "gust-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-13 real Fissure terrain does not truncate the native impassable-terrain Gust displacement"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-14",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "the narrow terrain bypass still respects a real Arena wall without granting unit free pathing",
+          "sourceIds": [
+            "aa",
+            "gust-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-14 the narrow terrain bypass still respects a real Arena wall without granting unit free pathing"
+            }
+          ],
+          "resultEvidenceStatus": "passed"
+        },
+        {
+          "id": "GU-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA Super adds250to the250wave radius and reduces cooldown by3.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-10 Super radius500reaches a lateral body outside the old250wave and Gaben blind expires with silence"
+            }
+          ]
+        },
+        {
+          "id": "GU-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA omits native2023self10percent movement buff; dated7.31prototype retained, not AA source closure.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "gust-talents"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-11 the native2023self10percent movement candidate refreshes for silence-level duration and is dispellable"
+            }
+          ]
+        },
+        {
+          "id": "GU-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA doubles maximum distance; combining this with native.5per-unit falloff lacks the original custom formula.",
+          "sourceIds": [
+            "aa",
+            "gust-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-05 closer bodies move farther with450maximum and Gaben doubles maximum under the declared falloff candidate"
+            }
+          ]
+        },
+        {
+          "id": "GU-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Frozen launch-origin radial direction, special spell barriers beyond terrain and precise pre2023SR interaction remain qualified. Fissure terrain bypass is separately verified.",
+          "sourceIds": [
+            "gust-wiki",
+            "gust-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-04 fixed AA knockback duration differs by rank while total silence lasts longer"
+            },
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-08 gained spell immunity stops this displacement but an unrelated later controller survives Gust dispel"
+            },
+            {
+              "file": "tests/reference-god-gust.test.ts",
+              "test": "GU-14 the narrow terrain bypass still respects a real Arena wall without granting unit free pathing"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "GU-05",
+        "GU-11",
+        "GU-14",
+        "GU-P01",
+        "GU-P02",
+        "GU-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "gust-history",
+            "gust-talents"
+          ],
+          "observation": "The+250radius talent existed before7.32; captured AA+250radius/-3CDremain authoritative."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "gust-history",
+            "gust-talents"
+          ],
+          "observation": "The50blind talent before7.32and older distance talents are prototypes; AA100blind/doubled max remain custom,not7.35TrueSight."
+        }
+      ]
+    }
+  ]
+}

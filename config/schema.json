@@ -10077,34 +10077,34 @@
           "key": "BONUS DAMAGE VS HEROES",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害 VS 英雄",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "对英雄的额外条件攻击伤害",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
           "key": "CRITICAL DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "暴击 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终总暴击伤害倍率百分比",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
           "key": "DISTANCE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "攻击扇形作用距离",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
           "key": "KNOCKBACK SLOW DURATION",
@@ -10113,64 +10113,75 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "KNOCKBACK 减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终击退后减速持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
           "key": "KNOCKBACK SLOW",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "KNOCKBACK 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_more.phased_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 PHASED 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:314；c.status(t, 'phased', .3, 0, { dispel: 'none' })"
+          "meaning": "击退后降低移速百分比",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
-          "key": "skill_effects_more.selfstun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ANGLE",
+          "unit": "度",
+          "meaning": "攻击扇形总夹角",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 SELF眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:314；c.status(t, 'selfStun', .3, 0, { harmful: true, dispel: 'none' })"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
-          "key": "skill_effects_more.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "KNOCKBACK DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "固定击退距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:317；stun(c, t, 1)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         },
         {
-          "key": "skill_effects_more.break_duration.1",
-          "kind": "program",
+          "key": "KNOCKBACK DURATION",
           "unit": "ms",
+          "meaning": "击退持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BREAK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:317；c.status(t, 'break', 1, 0, harmful)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
+        },
+        {
+          "key": "GABEN STUN",
+          "unit": "ms",
+          "meaning": "Gaben额外眩晕持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
+        },
+        {
+          "key": "GABEN BREAK",
+          "unit": "ms",
+          "meaning": "Gaben额外破坏持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Mars；https://liquipedia.net/dota2/Mars/Changelogs；AA crit/slow/CD final; geometry and knockback native2023 candidate; no modern Bulwark turning."
         }
       ]
     },
@@ -10188,13 +10199,13 @@
         {
           "key": "ATTACK SPEED DRAIN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 速度 汲取",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "偷取的固定攻击速度",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Visage；https://liquipedia.net/dota2/Visage/Changelogs；AA all summon types; nearby radius900 native candidate; AA G allied500."
         },
         {
           "key": "DURATION",
@@ -10203,20 +10214,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Visage；https://liquipedia.net/dota2/Visage/Changelogs；AA all summon types; nearby radius900 native candidate; AA G allied500."
         },
         {
           "key": "MOVE SPEED DRAIN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MOVE 速度 汲取",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "偷取的移动速度百分比",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Visage；https://liquipedia.net/dota2/Visage/Changelogs；AA all summon types; nearby radius900 native candidate; AA G allied500."
+        },
+        {
+          "key": "SUMMON RADIUS",
+          "unit": "Dota单位",
+          "meaning": "受控召唤单位共享增益搜索半径候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Visage；https://liquipedia.net/dota2/Visage/Changelogs；AA all summon types; nearby radius900 native candidate; AA G allied500."
+        },
+        {
+          "key": "ALLY RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben友军共享增益搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Visage；https://liquipedia.net/dota2/Visage/Changelogs；AA all summon types; nearby radius900 native candidate; AA G allied500."
         }
       ]
     },
@@ -10234,79 +10267,79 @@
         {
           "key": "ATTACK SPEED REDUCTION",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 速度 降低",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "总攻击速度降低百分比（负值降低）",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
           "key": "BONUS ARMOR",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 护甲",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "固定护甲增益",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
           "key": "BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终基础攻击伤害增益",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
           "key": "TOSS BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TOSS 加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "投掷落地额外伤害",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
-          "key": "TREE BONUS DAMAGE MULTIPLIER BONUS",
+          "key": "BELCH STATUS RESIST",
+          "unit": "%",
+          "meaning": "Gaben状态抗性百分比",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TREE 加成 伤害 倍率 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
-          "key": "skill_effects.trigger_chance.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "BELCH CHANCE",
+          "unit": "%",
+          "meaning": "Gaben被攻击时反击眩晕概率",
+          "kind": "value",
           "min": 0,
-          "max": 1,
+          "max": 1000000000,
           "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:290；c.random()<.3"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         },
         {
-          "key": "skill_effects.stun_duration.1",
-          "kind": "program",
+          "key": "BELCH STUN",
           "unit": "ms",
+          "meaning": "Gaben反击眩晕持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:290；c.status(c.target,'stun',2,0,{harmful:true,dispel:'strong'})"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://liquipedia.net/dota2/Tiny；https://liquipedia.net/dota2/Tiny/Changelogs；https://liquipedia.net/dota2/Tiny%2FOld_Abilities；https://news.abilityarena.com/ability-arena-season-4-5/；AA retains old tree metadata but no runtime Tree Grab/Volley branch; remove unconsumed TREE BONUS MULTIPLIER from balance params with descriptive boundary retained in ledger. Belch AA30percent uses dated native7.00PRD prototype; original custom eligibility remains source_pending.；AA4.5(2023-02-01)明确基础33/66/99及Super+51；Belch采用具名7.00旧Craggy伪随机原型，AA精确资格仍待证"
         }
       ]
     },
@@ -10328,42 +10361,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Omniknight/Old_Abilities；10000 global proxy for finite flat arena; AA regen40 and+1s not native Scepter40SR; native child Hammer stays level4."
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Omniknight/Old_Abilities；10000 global proxy for finite flat arena; AA regen40 and+1s not native Scepter40SR; native child Hammer stays level4."
         },
         {
-          "key": "main_upgrades_advanced.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "HEALTH REGEN",
+          "unit": "HP/秒",
+          "meaning": "每秒生命再生",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:28；c.status(t,'regen',seconds,40)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Omniknight/Old_Abilities；10000 global proxy for finite flat arena; AA regen40 and+1s not native Scepter40SR; native child Hammer stays level4."
         },
         {
-          "key": "main_upgrades_advanced.guardianretaliation_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "RETALIATION CHANCE",
+          "unit": "%",
+          "meaning": "Gaben受保护单位触发免费纯洁之锤概率",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 GUARDIANRETALIATION AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:28；c.status(t,'guardianRetaliation',seconds,.15)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Omniknight/Old_Abilities；10000 global proxy for finite flat arena; AA regen40 and+1s not native Scepter40SR; native child Hammer stays level4."
         }
       ]
     },
@@ -10382,12 +10415,12 @@
           "key": "CAST RANGE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "波形投射物最大飞行距离（公共施法距离另控制AI施放门槛）",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         },
         {
           "key": "KNOCKBACK DURATION",
@@ -10396,20 +10429,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "KNOCKBACK 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "击退持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         },
         {
           "key": "KNOCKBACK MAX",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "KNOCKBACK 最大",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最大击退距离（再按与起点距离衰减）",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         },
         {
           "key": "SILENCE DURATION",
@@ -10418,31 +10451,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "沉默 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "沉默持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         },
         {
           "key": "WIDTH",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "宽度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "波形投射物作用半径",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "WAVE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "波形投射物飞行速度",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:600；debuff(c, target, 'blind', 1, value(c, 'SILENCE DURATION'))"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
+        },
+        {
+          "key": "SELF MOVE SPEED",
+          "unit": "%",
+          "meaning": "施法者自身移动速度增益候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
+        },
+        {
+          "key": "BLIND",
+          "unit": "%",
+          "meaning": "致盲百分比",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://dota2.fandom.com/wiki/Drow_Ranger；https://dota2.fandom.com/wiki/Drow_Ranger/Changelogs；AA S radius+250 and G maxdouble/blind finals; self10%2023prototype omitted AA prose remains source_pending; no7.35 TrueSight or7.41 variable duration."
         }
       ]
     },
@@ -10460,145 +10515,57 @@
         {
           "key": "HEAL PER SECOND",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "HP/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "治疗 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每秒普通治疗量",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "INITIAL HEAL",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "INITIAL 治疗",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.regen_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:228；c.status(t,'regen',8,v(c,'HEAL PER SECOND'))"
+          "meaning": "最终瞬间普通治疗量",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
-          "key": "main_upgrades_advanced.regen_duration.1",
-          "kind": "program",
+          "key": "HOT DURATION",
           "unit": "ms",
+          "meaning": "缓慢治疗持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(t,'regen',8,regen)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
-          "key": "main_upgrades_advanced.armor_duration.1",
-          "kind": "program",
+          "key": "HEAL INTERVAL",
           "unit": "ms",
+          "meaning": "独立治疗跳间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(t,'armor',8,6)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
-          "key": "main_upgrades_advanced.armor_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(t,'armor',8,6)"
-        },
-        {
-          "key": "main_upgrades_advanced.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；amount*.5"
-        },
-        {
-          "key": "main_upgrades_advanced.regen_duration.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ARMOR BONUS",
+          "unit": "护甲",
+          "meaning": "超神附加护甲",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(target,'regen',8,regen*.5)"
-        },
-        {
-          "key": "main_upgrades_advanced.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；regen*.5"
-        },
-        {
-          "key": "main_upgrades_advanced.armor_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(target,'armor',8,6)"
-        },
-        {
-          "key": "main_upgrades_advanced.armor_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.status(target,'armor',8,6)"
-        },
-        {
-          "key": "main_upgrades_advanced.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.delay(.1,watch)"
-        },
-        {
-          "key": "main_upgrades_advanced.delay.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:39；c.delay(.1,watch)"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         }
       ]
     },
@@ -10617,12 +10584,12 @@
           "key": "BONUS STRENGTH",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 力量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终固定力量增益",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "DURATION",
@@ -10631,64 +10598,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "HP REGEN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "HP/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HP 恢复",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终每秒生命再生",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "STATUS RESISTANCE",
           "kind": "value",
           "unit": "%",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "STATUS 抗性",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "main_upgrades.strength_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 力量 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:22；G(c)?50:0"
-        },
-        {
-          "key": "main_upgrades.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:22；S(c)?20:0"
-        },
-        {
-          "key": "main_upgrades.statusresistance_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 STATUS抗性 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:22；S(c)?.5:p(v(c,'STATUS RESISTANCE'))"
+          "meaning": "状态抗性（最终百分比）",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         }
       ]
     },
@@ -10710,9 +10644,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "BASE MOVE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "妖术基础移速（再结算加减速）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "AREA RADIUS",
+          "unit": "Dota单位",
+          "meaning": "G胖范围，0为单目标",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         }
       ]
     },
@@ -10730,13 +10686,13 @@
         {
           "key": "ATTACK SPEED SLOW",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 速度 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "降低的固定攻击速度",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         },
         {
           "key": "BURN DURATION",
@@ -10745,64 +10701,108 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "燃烧 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "燃烧持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         },
         {
           "key": "DAMAGE PER SECOND",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终每秒伤害",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         },
         {
           "key": "DIVE LENGTH",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "Dota单位",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "DIVE LENGTH",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "俯冲椭圆最远前进距离",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         },
         {
           "key": "HP COST",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HP COST",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "自身当前生命消耗百分比",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         },
         {
           "key": "MOVE SLOW",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "MOVE 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "unit": "%",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:712；interval: 1"
+          "meaning": "降低的移动速度百分比",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
+        },
+        {
+          "key": "DIVE DURATION",
+          "unit": "ms",
+          "meaning": "完整椭圆飞行时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
+        },
+        {
+          "key": "DIVE WIDTH",
+          "unit": "Dota单位",
+          "meaning": "椭圆短轴全宽",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
+        },
+        {
+          "key": "HIT RADIUS",
+          "unit": "Dota单位",
+          "meaning": "冲刺接触范围",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
+        },
+        {
+          "key": "BURN INTERVAL",
+          "unit": "ms",
+          "meaning": "历史2023烧伤跳间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
+        },
+        {
+          "key": "METEOR INTERVAL",
+          "unit": "ms",
+          "meaning": "G胖陨石生成间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本；公共施法距离黄格是项目AI可接触目标搜索阈值1100/1200/1400，实际参与施放门槛；原生方向施法本身为全图。DIVE LENGTH是独立飞行几何唯一权威，不能把两者混同。"
         }
       ]
     },
@@ -10821,12 +10821,12 @@
           "key": "FROSTBITTEN DAMAGE PER SECOND",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "FROSTBITTEN 伤害 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "霜冻每秒持续伤害",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "FROSTBITTEN DURATION",
@@ -10835,53 +10835,119 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "FROSTBITTEN 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "霜冻持续时间",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "IMPACT DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "IMPACT 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "冰球爆炸魔法伤害",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
           "key": "SHATTER HEALTH THRESHOLD",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SHATTER 生命 THRESHOLD",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "斩杀生命值百分比门槛",
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
-          "key": "skill_effects_more.healreduction_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "TRACER SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "第一阶段示踪弹速度",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 治疗降低 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:328；c.status(target, 'healReduction', duration, 1, { harmful: true, dispel: 'strong', piercesImmunity: true })"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         },
         {
-          "key": "skill_effects_more.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "HAIL MIN SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "第二阶段冰球最低速度",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:342；speed: 15"
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "HAIL MAX TRAVEL TIME",
+          "unit": "ms",
+          "meaning": "第二阶段最长到达时间（7.28）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "PATH RADIUS",
+          "unit": "Dota单位",
+          "meaning": "冰球路径冻伤范围",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "MIN IMPACT RADIUS",
+          "unit": "Dota单位",
+          "meaning": "爆炸起始半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "MAX IMPACT RADIUS",
+          "unit": "Dota单位",
+          "meaning": "爆炸最大半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "RADIUS GROW PER SECOND",
+          "unit": "Dota单位/秒",
+          "meaning": "每秒示踪飞行增加爆炸范围",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
+        },
+        {
+          "key": "FROSTBITE INTERVAL",
+          "unit": "ms",
+          "meaning": "冻伤伤害跳间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；锁定AA数值优先；原生机制及版本边界详C8来源账本"
         }
       ]
     },
@@ -10899,13 +10965,13 @@
         {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "历史KV与Wiki同名字段冲突裁决",
-          "note": "AA目录包含DAMAGE:0与DAMAGE:50。通用AbilityDamage=0不代表效果伤害；采用AbilityValues.damage.value=50（历史npc_abilities.txt:19791-19794），与https://liquipedia.net/dota2/Archive%3AJakiro一致。原始两字段保留在reference，配置仅一项DAMAGE=50。"
+          "meaning": "首次接触的魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "FORMATION DELAY",
@@ -10914,9 +10980,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "FORMATION 延迟",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "释放后形成冰路的延迟",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MAX STUN DURATION",
@@ -10925,9 +10991,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终最大眩晕时间（同时受冰路剩余时间限制）",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": "Super沿现有对路径和眩晕均加0.5秒的天赋原型解释；不再运行时重复加值。"
         },
         {
           "key": "PATH DURATION",
@@ -10936,75 +11002,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "PATH 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终冰路持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_more.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:354；distance(start, end) / 2"
-        },
-        {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:354；interval: .1"
+          "meaning": "冰路线段作用半径",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "START OFFSET",
+          "unit": "Dota单位",
+          "meaning": "固定释放起点向前偏移",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:355；superLevel(c) ? .5 : 0"
-        },
-        {
-          "key": "skill_effects_more.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:358；12 + (superLevel(c) ? 10 : 0)"
-        },
-        {
-          "key": "skill_effects_more.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:358；superLevel(c) ? 10 : 0"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         }
       ]
     },
@@ -11023,23 +11045,23 @@
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "弹道伤害半径",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "SHARD DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SHARD 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "冰晶弹道魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "SHARD DURATION",
@@ -11048,86 +11070,141 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SHARD 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "冰晶阻挡持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:362；speed: 12"
-        },
-        {
-          "key": "skill_effects_more.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；gabenLevel(c) ? 100 : 5"
-        },
-        {
-          "key": "skill_effects_more.radius.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；gabenLevel(c) ? 100 : 5"
-        },
-        {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "冰晶弹道飞行速度",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；interval: .2"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SHARD COUNT",
+          "unit": "个",
+          "meaning": "基础冰晶碰撞单元数量",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；slow(c, t, 40, .3)"
+          "integer": true,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SHARD SPAWN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "基础冰晶圆周半径及中心向目标后退距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；slow(c, t, 40, .3)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SHARD ANGLE",
+          "unit": "度",
+          "meaning": "相邻基础冰晶的角度间隔",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:368；c.damage(t, 12)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "SHARD COLLISION RADIUS",
+          "unit": "Dota单位",
+          "meaning": "单个冰晶碰撞半径候选（平面单元近似）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "EXTRA DEPTH",
+          "unit": "Dota单位",
+          "meaning": "Super额外冰墙深度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "AURA RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Super两个减速伤害光环各自的半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "AURA CENTER DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "两个光环中心之间的后移距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "AURA LINGER",
+          "unit": "ms",
+          "meaning": "离开光环后的减速及燃烧残留",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "首跳及后续整次燃烧伤害间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "Super及Gaben燃烧每秒魔法伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "MOVE SLOW",
+          "unit": "%",
+          "meaning": "Super及Gaben降低移动速度百分比",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         }
       ]
     },
@@ -11257,13 +11334,13 @@
         {
           "key": "BASE BURN DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "基础 燃烧 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "燃烧每秒固定魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "BURN DURATION",
@@ -11272,20 +11349,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "燃烧 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每个独立燃烧实例持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MAX HP AS DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 HP AS 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终按目标施加时最大生命值计算的每秒伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "STUN DURATION",
@@ -11294,75 +11371,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终眩晕时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:271；c.attack(c.target, 1, false)"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:276；c.damage(target, 150, 'magical', false)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:277；S(c) ? .021 : 0"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
+          "key": "BREAK DURATION",
           "unit": "ms",
+          "meaning": "AA默认破坏持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:277；interval: 1"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "BONUS DAMAGE",
+          "unit": "伤害",
+          "meaning": "Super额外魔法伤害候选",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:276；S(c) ? 1.2 : 0"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": "原生Shard150已取证；AA泛称bonus damage未给等级倍数条件，保留现有对所有合格目标150的解释。"
         },
         {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "燃烧首跳及后续整次结算间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:278；debuff(c, target, 'break', 0, 2)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben附加效果搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         }
       ]
     },
@@ -11378,48 +11433,37 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "BUFF DURATION",
           "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "BUFF 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "墨涌增益持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "INK TENDRILS DPS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "INK TENDRILS 每秒伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终墨须每秒魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MAX DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终最大爆发魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MAX STUN DURATION",
@@ -11428,9 +11472,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最大爆发眩晕时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MAX THRESHOLD DURATION",
@@ -11439,152 +11483,64 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 THRESHOLD 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "单个敌方英雄累计接触达到上限所需时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "MOVEMENT SPEED BONUS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 速度 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终移动速度增益",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:469；buff(c, target, 'inkSwell', 1, seconds + .01)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:469；S(c) ? .16 : 0"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:474；value(c, 'INK TENDRILS DPS') * .2"
-        },
-        {
-          "key": "skill_effects_extra.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:474；S(c) ? 1.4 : 1"
-        },
-        {
-          "key": "skill_effects_extra.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:474；S(c) ? 1.4 : 1"
-        },
-        {
-          "key": "skill_effects_extra.visuallink_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 VISUALLINK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:475；c.status(enemy, 'visualLink', .21, 0, { source: target.id, dispel: 'none', ignoreStatusResistance: true, data: { layer: 'tendril', beneficiaryId: target.id } })"
+          "meaning": "每档最终墨须及爆发半径",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:477；damage * .4"
-        },
-        {
-          "key": "skill_effects_extra.damage.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:485；S(c) ? 1.4 : 1"
-        },
-        {
-          "key": "skill_effects_extra.damage.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:485；S(c) ? 1.4 : 1"
-        },
-        {
-          "key": "skill_effects_extra.heal.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:485；damage * .4"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "TENDRIL INTERVAL",
           "unit": "ms",
+          "meaning": "墨须固定伤害间隔（首次立即）",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:472；seconds + .01"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "DAMAGE AS HEAL",
+          "unit": "%",
+          "meaning": "Super按未受减免及伤害增幅的原始伤害治疗宿主比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "SELF BACKSWING",
+          "unit": "ms",
+          "meaning": "对自身施放时的专用后摇",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         }
       ]
     },
@@ -11602,222 +11558,178 @@
         {
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终固定攻击速度增益",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:164；buff(c, ally, 'lifesteal', .2, .35)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:164；buff(c, ally, 'attackPct', .15, .35)"
-        },
-        {
-          "key": "skill_effects_extra.count.1",
-          "kind": "program",
-          "unit": "次数",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1067；count: 1"
-        },
-        {
-          "key": "skill_effects_extra.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
           "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1067；hp: 8"
+          "meaning": "友方野性之心光环半径",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
+          "key": "AURA LINGER",
           "unit": "ms",
+          "meaning": "离开友方光环后的增益残留",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1067；interval: 1"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1067；speed: 1.5"
-        },
-        {
-          "key": "skill_effects_extra.lifetime.1",
-          "kind": "program",
+          "key": "AURA INTERVAL",
           "unit": "ms",
+          "meaning": "友方光环刷新间隔（固定步频工作值）",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1067；lifetime: 25"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "LIFESTEAL",
+          "unit": "%",
+          "meaning": "Super普通攻击吸血比例",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1069；buff(c, totem, 'disarm', 1, 25, { dispel: 'none', passive: false })"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_amount.6",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BONUS DAMAGE",
+          "unit": "%",
+          "meaning": "Super基础及主属性攻击增加百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1070；buff(c, totem, 'hitCountBody', 1, 25, { dispel: 'none', passive: false, data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } })"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.delay.1",
-          "kind": "program",
+          "key": "TOTEM DURATION",
           "unit": "ms",
+          "meaning": "Gaben怨灵图腾独立存续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1077；tick * .25"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "TOTEM RADIUS",
+          "unit": "Dota单位",
+          "meaning": "怨灵图腾伤害及压制光环半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1080；debuff(c, enemy, 'physicalOutputReduction', .3, .35, { passive: false })"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "DAMAGE REDUCTION",
+          "unit": "%",
+          "meaning": "怨灵图腾降低敌方物理输出百分比",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1080；c.damage(enemy, 7.5, 'magical', false)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "怨灵图腾每秒魔法伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
+        },
+        {
+          "key": "TOTEM DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "怨灵图腾首跳及后续伤害间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:166；buff(c, ally, 'attackSpeed', (configuredValue(c,'EFFECTIVE_BONUS_ATTACK_SPEED_1')??(value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',15)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
+          "key": "TOTEM AURA LINGER",
           "unit": "ms",
+          "meaning": "离开怨灵图腾后物理输出压制残留",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:167；buff(c, ally, 'lifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.2), .35)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
+          "key": "TOTEM AURA INTERVAL",
           "unit": "ms",
+          "meaning": "怨灵图腾光环及自主移动刷新间隔（固定步频工作值）",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:167；buff(c, ally, 'attackPct', balanceNumber(c,'skill_effects_extra.buff_amount.4',0.15), .35)"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_duration.4",
-          "kind": "program",
-          "unit": "ms",
+          "key": "TOTEM SPAWN RANGE",
+          "unit": "Dota单位",
+          "meaning": "图腾初始摆位距施法者的最大距离",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1072；buff(c, totem, 'disarm', balanceNumber(c,'skill_effects_extra.buff_amount.5',1), 25, { dispel: 'none', passive: false })"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.buff_duration.5",
-          "kind": "program",
-          "unit": "ms",
+          "key": "TOTEM HERO HIT DAMAGE",
+          "unit": "计数生命",
+          "meaning": "英雄攻击扣除图腾计数生命",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1073；buff(c, totem, 'hitCountBody', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), 25, { dispel: 'none', passive: false, data: { heroDamage: 2, basicDamage: 1, immuneSpells: tr"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "TOTEM CREEP HIT DAMAGE",
+          "unit": "计数生命",
+          "meaning": "非英雄攻击扣除图腾计数生命",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1083；debuff(c, enemy, 'physicalOutputReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.3), .35, { passive: false })"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         }
       ]
     },
@@ -25889,35 +25801,35 @@
         {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "原生三等级烈焰每秒魔法伤害",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "RANGE",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "独立原生施放的烈焰终点距离",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": "IcePath Gaben按父级固定路径长度覆盖此值；AA全长覆盖沿现有工程解释保留，不声称原作已证。"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "烈焰作用半径",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "DURATION",
@@ -25926,9 +25838,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "烈焰地面区域持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "BURN INTERVAL",
@@ -25937,9 +25849,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "燃烧 间隔",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "燃烧附加及整次伤害间隔",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
           "key": "LINGER DURATION",
@@ -25948,31 +25860,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "LINGER 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "离开烈焰后燃烧持续时间",
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": ""
         },
         {
-          "key": "skill_effects_more_children.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:66；length / 2"
-        },
-        {
-          "key": "skill_effects_more_children.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "START OFFSET",
+          "unit": "Dota单位",
+          "meaning": "独立原生施放的起点向前偏移",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:66；interval: .1"
+          "source": "C8固定2023Wiki/KV；锁定AA数值优先",
+          "note": "由IcePath调用时使用父级冻结线段，不重复加原生偏移。"
         }
       ]
     },
@@ -33272,6 +33173,53 @@
           "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Oracle；Native1rank;AAfreeparentproc,noactiveslot. First/endpulseasymmetrypendinghistoricalqualification."
         }
       ]
+    },
+    "native:chen_martyrdom": {
+      "id": "chen_martyrdom",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": [
+        {
+          "key": "HEAL FACTOR",
+          "unit": "%",
+          "meaning": "AA单目标上帝之手治疗倍率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；2023 chen_martyrdom .3/8/global; AA50%effect; AI40% working policy"
+        },
+        {
+          "key": "AI LOW HEALTH THRESHOLD",
+          "unit": "%",
+          "meaning": "项目自动殉道目标血量阈值（非原作数值）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C8 AA与固定历史Wiki/KV逐项核验",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://liquipedia.net/dota2/Chen/Changelogs；https://liquipedia.net/dota2/Omniknight/Old_Abilities；https://liquipedia.net/dota2/Shadow_Shaman；https://liquipedia.net/dota2/Phoenix；https://liquipedia.net/dota2/Phoenix/Changelogs；https://liquipedia.net/dota2/Archive:Ancient_Apparition；https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog；https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt；2023 chen_martyrdom .3/8/global; AA50%effect; AI40% working policy"
+        }
+      ]
+    },
+    "native:phoenix_icarus_dive_stop": {
+      "id": "phoenix_icarus_dive_stop",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": []
+    },
+    "native:ancient_apparition_ice_blast_release": {
+      "id": "ancient_apparition_ice_blast_release",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": []
     }
   },
   "economy": [
@@ -33628,7 +33576,8 @@
     "npc_dota_neutral_mud_golem_split",
     "npc_dota_witch_doctor_death_ward",
     "npc_dota_lich_ice_spire",
-    "npc_dota_unit_undying_zombie"
+    "npc_dota_unit_undying_zombie",
+    "npc_dota_item_wraith_pact_totem"
   ],
   "roles": [
     "archer",

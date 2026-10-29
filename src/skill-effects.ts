@@ -14,6 +14,9 @@ import {applyFireFissureAcceptance} from './combat/fire-fissure-acceptance';
 import {applyFlakFleshAcceptance} from './combat/flak-flesh-acceptance';
 import {applyFuryGlobalAcceptance} from './combat/fury-global-acceptance';
 import {applyFrostControlAcceptance,FROST_CONTROL_CHILD_DEFINITIONS} from './combat/frost-control-acceptance';
+import {applyHandIceAcceptance,HAND_ICE_CHILD_DEFINITIONS} from './combat/hand-ice-acceptance';
+import {applyGodGustAcceptance} from './combat/god-gust-acceptance';
+import {applyIceInnerAcceptance} from './combat/ice-inner-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -98,6 +101,8 @@ export interface InstantAttackOptions {
   criticalMultiplier?:number;
   /** Fixed attack damage after the attack fraction, before its selected critical. */
   bonusDamage?:number;
+  /** Conditional non-critical attack bonus; remains inside the attack packet. */
+  postCriticalBonus?:number;
   noCleave?:boolean;
   ignoreDamageBlock?:boolean;
   /** Internal: a normal attack already emitted its launch event before projectile flight. */
@@ -152,9 +157,10 @@ export interface EffectContext {
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
   projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void}): void;
-  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';origin?:{x:number;y:number};onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
+  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
+  executeFrom?(source:CombatUnit,target:CombatUnit):void;
   trySpellBlock?(target:CombatUnit):boolean;
   cancelMotion?(target:CombatUnit):boolean;
   startCooldown?(seconds?:number):void;
@@ -181,9 +187,13 @@ export interface EffectContext {
   castAbility(id: string, points: number, target: CombatUnit, valueOverrides?: Record<string, number>): boolean;
   /** Combat-only ownership, initialization and cleanup are managed by the engine. */
   grantAbility?(id: string, points: number): void;
+  /** A released grant creates a real ability on the recipient body. */
+  grantAbilityTo?(target:CombatUnit,id:string,points:number):void;
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  /** A native secondary action may report its parent as the last stealable spell. */
+  spellStealAs?:string;
   onBeforeDamageResolution?:(c:EffectContext)=>void;
   unitTarget?:boolean|((c:EffectContext)=>boolean);
   /** This program handles the separately documented surviving effects itself. */
@@ -211,7 +221,7 @@ export interface SkillProgram {
   /** Fired once when an individual status is dispelled or naturally expires. */
   onStatusRemoved?:(c:EffectContext,status:EffectStatus,reason:'dispel'|'expire')=>void;
   /** Ground cursor remains fixed if the AI's original candidate moves or dies. */
-  pointTarget?:boolean;
+  pointTarget?:boolean|((c:EffectContext)=>boolean);
   prepareAttack?: (c:EffectContext)=>InstantAttackOptions|undefined;
   beforeAttackDamage?: (c:EffectContext)=>void;
   dynamicRange?:boolean;
@@ -568,7 +578,10 @@ applyFireFissureAcceptance(registry);
 applyFlakFleshAcceptance(registry);
 applyFuryGlobalAcceptance(registry);
 applyFrostControlAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS];
+applyHandIceAcceptance(registry);
+applyGodGustAcceptance(registry);
+applyIceInnerAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

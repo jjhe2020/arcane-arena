@@ -46,6 +46,8 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   faceless_void_time_lock:['timeLock'],
   // The 7.23 Essence Flux replacement explicitly uses PRD.
   custom_obsidian_destroyer_equilibrium:['essenceFlux'],
+  // The7.00 Craggy Exterior lineage explicitly switched to PRD; AA Belch keeps its own probability.
+  tiny_grow:['belchExterior'],
   // Native Greater Bash switched to PRD in 6.85; AA grants this proc at Gaben.
   custom_spirit_breaker_charge_of_darkness:['greater_bash'],
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],

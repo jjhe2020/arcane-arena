@@ -141,7 +141,7 @@ describe('extra skill upgrade behavior', () => {
     h.ctx.target = h.ally; h.caster.x = -6; h.caster.y = 0; h.ally.x = 3; h.ally.y = 0;
     h.target.x = 3; h.target.y = 1; h.other.x = 13; h.other.y = 0;
     p.cast!(h.ctx);
-    expect(activeVisualWorldEffects(h.ctx.battle)).toEqual([]); expect(status(h.target, 'visualLink')).toBeUndefined();
+    expect(activeVisualWorldEffects(h.ctx.battle)).toEqual([]);expect(status(h.target,'visualLink')?.source).toBe(h.ally.id);
     h.until(.2);
     expect(status(h.target, 'visualLink')?.source).toBe(h.ally.id);
     expect(status(h.target, 'visualLink')?.data?.layer).toBe('tendril');
@@ -151,20 +151,24 @@ describe('extra skill upgrade behavior', () => {
     h.until(seconds); const bursts = activeVisualWorldEffects(h.ctx.battle);
     expect(bursts).toHaveLength(1);
     expect(bursts[0]).toMatchObject({ source: h.caster.id, skill: id, points: 6, layer: 'burst', x: 5, y: 2,
-      radius: skillValue(h.ctx, 'RADIUS') / 100 + 1.5, kind: 'burst', loop: false, createdAt: seconds });
+      radius: skillValue(h.ctx, 'RADIUS') / 100, kind: 'burst', loop: false });
+    expect(bursts[0].createdAt).toBeCloseTo(seconds,8);
     expect(bursts[0].until - bursts[0].createdAt).toBeCloseTo(16 / 24);
     expect(activeVisualWorldEffects(h.ctx.battle, bursts[0].until)).toEqual([]);
   });
-  it.each(['dispel', 'death', 'zeroDamage'])('does not invent Ink Swell contact or a cancelled burst after %s', reason => {
+  it.each(['dispel', 'death', 'zeroDamage'])('keeps Ink Swell actual contact and early explosion semantics after %s', reason => {
     const id = 'custom_grimstroke_ink_swell', h = harness(id, 3), p = EXTRA_PROGRAMS[id];
     h.ctx.target = h.ally; h.ally.x = h.target.x; h.ally.y = h.target.y;
     if (reason === 'zeroDamage') h.ctx.damage = () => 0;
     p.cast!(h.ctx);
-    if (reason === 'dispel') h.ally.statuses = [];
-    if (reason === 'death') h.ally.dead = true;
-    h.until(.2); expect(status(h.target, 'visualLink')).toBeUndefined();
-    h.until(skillValue(h.ctx, 'BUFF DURATION'));
-    if (reason !== 'zeroDamage') expect(activeVisualWorldEffects(h.ctx.battle)).toEqual([]);
+    const marker=status(h.ally,'inkSwell')!;
+    expect(!!status(h.target,'visualLink')).toBe(reason!=='zeroDamage');
+    if(reason==='dispel'){h.ally.statuses=[];p.onStatusRemoved!(h.ctx,marker,'dispel');}
+    if(reason==='death')h.ally.dead=true;
+    h.until(.3);expect((status(h.target,'visualLink')?.until??0)<=h.ctx.battle.time).toBe(true);
+    expect(activeVisualWorldEffects(h.ctx.battle).length).toBe(reason==='dispel'?1:0);
+    h.until(skillValue(h.ctx,'BUFF DURATION'));
+    if(reason!=='zeroDamage')expect(activeVisualWorldEffects(h.ctx.battle)).toEqual([]);
   });
   it('uses independent PRD hooks for the selected attack procs without consuming rolls during cooldown', () => {
     for (const [id, key, amount] of [['custom_windrunner_focusfire', 'maelstrom', 140], ['ursa_overpower', 'bash', 120]] as const) {
@@ -287,7 +291,7 @@ describe('extra skill upgrade behavior', () => {
     expect(status(h.target, 'slow')?.until).toBe(.8);
   });
   it('applies the AA 4.5 two-second Infernal Blade break to every Gaben target', () => {
-    const h = harness('doom_bringer_infernal_blade'); EXTRA_PROGRAMS[h.ctx.skill.id].cast!(h.ctx);
+    const h = harness('doom_bringer_infernal_blade'); EXTRA_PROGRAMS[h.ctx.skill.id].beforeAttackDamage!({...h.ctx,attackSourceSkill:h.ctx.skill.id});
     expect(status(h.target, 'break')?.until).toBe(2);
     expect(status(h.other, 'break')?.until).toBe(2);
     expect(status(h.target, 'dot')?.until).toBe(4);
@@ -607,7 +611,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     expect(applyDamage(battle, enemy, totem, 9999, 'physical')).toBe(2); expect(totem.hp).toBe(6);
     applyDamage(battle, enemy, caster, 99999, 'pure'); const hp = enemy.hp;
     expect(battle.finished).toBe(false); // A real ally keeps the team in play; ordinary summons do not.
-    advance(battle, .3); expect(enemy.hp).toBeLessThan(hp); expect(status(enemy, 'physicalOutputReduction')?.value).toBe(.3);
+    advance(battle, 1.1); expect(enemy.hp).toBeLessThan(hp); expect(status(enemy, 'physicalOutputReduction')?.value).toBe(.3);
     applyDamage(battle, enemy, totem, 9999, 'physical'); applyDamage(battle, enemy, totem, 9999, 'physical'); applyDamage(battle, enemy, totem, 9999, 'physical');
     expect(totem.dead).toBe(true);
   });

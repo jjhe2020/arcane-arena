@@ -1,0 +1,3047 @@
+{
+  "schemaVersion": 1,
+  "group": "hand-ice",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA custom clauses and values take priority. Local20230216 files are pinned2023-02-10. Indexed frozen/current primary pages are not direct2023captures. No new Wayback request during429.",
+  "validation": {
+    "command": "npx vitest run tests/reference-hand-ice.test.ts",
+    "passedTests": 99,
+    "configurationHash": "084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34",
+    "typecheck": "npx tsc --noEmit",
+    "typecheckPassed": true,
+    "localReport": "output/c8-hand-ice/final-tests.json",
+    "meaning": "Actual cast/helper/recipient grant/continuous movement/projectile/restore/execute outcomes are bound by exact current titles. Green snapshot/AA eligibility interpretations remain source_pending. Earlier finite IceBlast/Trance/FP tests are background, not a full skill certification. The final root1926-test report contains all99 exact current titles passing under configuration084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34.",
+    "fullSuiteCommand": "npm test",
+    "fullSuitePassedTests": 1926,
+    "fullSuiteEvidence": "artifacts/r6-c8-unit-tests.json",
+    "fullSuiteExactTitleBindings": 99
+  },
+  "skills": [
+    {
+      "id": "chen_hand_of_god",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All selected AA base/Super/Gaben clauses are enumerated with bounded mechanism/timing/upgrade/combination requirements. A passing working interpretation is not promoted to native acceptance.",
+        "fixtures": "Actual registered combat engine and real transferred/helper slots. Fixed HP/positions/disarm/cooldown locks and isolated zero-point casts are explicit preconditions; public windup/cancellation/helper and original-input replay cases retain real clocks. Explicit early-helper request flags are runtime-only diagnostic/order requests; the original-input replay case covers default autonomous policies, not a new persisted player-order UI."
+      },
+      "catalogClauses": {
+        "base": "Heals all allied heroes on the map as well as all units under Chen's control. A large heal is applied at first and a slow heal over time is applied for 8 seconds afterwards.",
+        "differences": "",
+        "super": "Super: Reduces cooldown by 40s, increases heal by 280 and grants +6 armor to all units affected.",
+        "gaben": "Gaben: Hard dispels globally. When Hand of Gaben is cast, all summons gain the Martydom ability (unit suicides to cast a 50% value single target Hand of Gaben on low HP heroes).",
+        "values": [
+          "HEAL PER SECOND: 20 / 30 / 40",
+          "INITIAL HEAL: 200 / 300 / 400"
+        ],
+        "cooldowns": [
+          150,
+          130,
+          110
+        ],
+        "mana": [
+          200,
+          300,
+          400
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Full five selected official base/Super/Gaben descriptions, custom differences, values, cooldowns and mana are preserved verbatim as source data. They outrank native balance and explicit custom differences.",
+          "versionContext": "Prior fresh230-row HTTP200 response metadata reused; not a new request. Whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned Valve ability KV supplies independent native helper ranks/points/cooldowns, geometry, talent links and item component values; English notes directly state illusion/shatter/health-setting exceptions. HeroKV identifies active Grace as martyr.",
+          "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928, not the folder-name date20230216. AA values override these native arrays.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "chen-current",
+          "url": "https://liquipedia.net/dota2/Chen",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Hand has global hero/controlled-body healing, immediate first heal plus one-second healing component, refreshable HoT,0.3+0.93 animation and strong-purge talent. Current page also contains modern10-second/channel upgrades which are not imported.",
+          "versionContext": "Current indexed7.41f text; its first-heal wording conflicts with frozen older Wiki. AA8seconds and pinnedKV override modern durations.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Hand has global hero/controlled-body healing, immediate first heal plus one-second healing component, refreshable HoT,0.3+0.93 animation and strong-purge talent. Current page also contains modern10-second/channel upgrades which are not imported.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "chen-old",
+          "url": "https://dota2.fandom.com/wiki/Chen",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Frozen older page distinguishes hero/controlled-unit qualification, nonstacking one-second HoT, shared Martyrdom cooldown and uncredited sacrifice. Its later1200-range/enemy-damage Martyrdom variant is excluded.",
+          "versionContext": "Indexed older page contains7.34/7.35 changes, not directFebruary2023. One paragraph delays initial heal to the first tick; currentLP and AA description support the implemented immediate-first interpretation.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Frozen older page distinguishes hero/controlled-unit qualification, nonstacking one-second HoT, shared Martyrdom cooldown and uncredited sacrifice. Its later1200-range/enemy-damage Martyrdom variant is excluded.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "chen-history",
+          "url": "https://liquipedia.net/dota2/Chen/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "7.32 introduces Martyrdom;7.32b reduces Hand duration10→8.7.34 later reduces Martyrdom global range→1200 and adds enemy damage. These boundaries support the pre7.34 ally/global profile.",
+          "versionContext": "Dated history separates2022/February2023 candidate from later variants. Native2023initial200/300/400 and8seconds are independently pinned.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "7.32 introduces Martyrdom;7.32b reduces Hand duration10→8.7.34 later reduces Martyrdom global range→1200 and adds enemy damage. These boundaries support the pre7.34 ally/global profile.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-history"
+          ],
+          "interpretation": "AAexplicit−40/+280/+6armor are custom final values. Native2023talents use different+200/−30 values, so these are traced as related Hand talents without replacing AA."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-history",
+            "chen-old"
+          ],
+          "interpretation": "AAcombines globalstrongpurge with on-cast grants to summons and50%single-target Hand.2023Martyrdom gives native.3/shared8/global; later enemy-damage/range1200 excluded. Armor/duration halving and exact recipient classes remain qualified."
+        }
+      },
+      "requirements": [
+        {
+          "id": "HG-VALUES-1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-VALUES 1 actual parent uses the AA final initial heal and periodic value",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-VALUES 1 actual parent uses the AA final initial heal and periodic value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-VALUES-2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-VALUES 2 actual parent uses the AA final initial heal and periodic value",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-VALUES 2 actual parent uses the AA final initial heal and periodic value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-VALUES-3",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-VALUES 3 actual parent uses the AA final initial heal and periodic value",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-VALUES 3 actual parent uses the AA final initial heal and periodic value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-VALUES-6",
+          "kind": "super",
+          "branch": "super",
+          "rule": "HG-VALUES 6 actual parent uses the AA final initial heal and periodic value",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-VALUES 6 actual parent uses the AA final initial heal and periodic value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-VALUES-9",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "HG-VALUES 9 actual parent uses the AA final initial heal and periodic value",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-VALUES 9 actual parent uses the AA final initial heal and periodic value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HG-01 AA applies400 immediately and eight subsequent40-point heal instances at one-second intervals",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-01 AA applies400 immediately and eight subsequent40-point heal instances at one-second intervals"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "AA says large heal first then8seconds of slow heal. Immediate initial+eight subsequent ticks is supported by currentLP but conflicts with one frozen older initial-at-first-tick paragraph; original modified AA Lua not recovered."
+        },
+        {
+          "id": "HG-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-02 only allied real heroes and this caster controlled bodies receive the global base heal",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-02 only allied real heroes and this caster controlled bodies receive the global base heal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-03 invulnerable and banished allied heroes receive the immediate heal and the continuing HoT",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-03 invulnerable and banished allied heroes receive the immediate heal and the continuing HoT"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HG-04 a same-caster recast heals immediately again and replaces the previous periodic clock",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-04 a same-caster recast heals immediately again and replaces the previous periodic clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-05",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "HG-05 Super final680 heal and6 armor are applied once and expire after eight seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-05 Super final680 heal and6 armor are applied once and expire after eight seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "HG-06 Gaben strong dispel follows the initial heal without removing its own beneficial components",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-06 Gaben strong dispel follows the initial heal without removing its own beneficial components"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "HG-07 Gaben adds real Martyrdom slots to existing summons and does not pregrant future summons",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-07 Gaben adds real Martyrdom slots to existing summons and does not pregrant future summons"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "HG-08 stun and silence prevent actual summoned-body Martyrdom until the disables expire",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-08 stun and silence prevent actual summoned-body Martyrdom until the disables expire"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-09",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "HG-09 Martyrdom uses its real0.3-second windup and only one simultaneous sibling sacrifices on shared cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-09 Martyrdom uses its real0.3-second windup and only one simultaneous sibling sacrifices on shared cooldown"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "AA50% value is implemented as half initial/HoT healing, with unchanged armor/duration/strongdispel. Exact scope of halving nonhealing components is unresolved despite real native.3/shared8 mechanics."
+        },
+        {
+          "id": "HG-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "HG-10 a transferred Martyrdom survives its Hand provider death and heals a different living allied hero",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-10 a transferred Martyrdom survives its Hand provider death and heals a different living allied hero"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Independent released grant survives provider death as a documented engine lifecycle policy; exact AA removal when provider loses Hand/upgrade is not recovered."
+        },
+        {
+          "id": "HG-11",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "HG-11 Martyrdom sacrifice is uncredited and its already-released HoT keeps the child and parent attribution",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-11 Martyrdom sacrifice is uncredited and its already-released HoT keeps the child and parent attribution"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-12",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-12 the base released HoT survives caster death and retains effective healing statistics",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-12 the base released HoT survives caster death and retains effective healing statistics"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-13",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HG-13 an actual Demonic Purge removes the basic-dispellable Hand HoT and prevents later ticks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-13 an actual Demonic Purge removes the basic-dispellable Hand HoT and prevents later ticks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-14",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HG-14 public Hand timing reserves no mana before the0.3 point and spends400 only at release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-14 public Hand timing reserves no mana before the0.3 point and spends400 only at release"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Point.3/CD/mana are explicit pinned/AA; backswing.93 agrees current and older Wiki candidates but is not an exactAA animation capture."
+        },
+        {
+          "id": "HG-15",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HG-15 cancelling the public Hand windup preserves mana and leaves cooldown unspent",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-15 cancelling the public Hand windup preserves mana and leaves cooldown unspent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-16",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-16 a heal-only25% suppression reduces both the initial Hand and its separate HoT heals",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-16 a heal-only25% suppression reduces both the initial Hand and its separate HoT heals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HG-17",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "HG-17 AA all-summons grant includes an actual Phantasm illusion and that body can execute its own granted sacrifice",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-17 AA all-summons grant includes an actual Phantasm illusion and that body can execute its own granted sacrifice"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Literal AA all-summons currently includes actual Phantasm illusions. AA terminology distinguishing illusions from summons is not independently recovered; this is a green eligibility interpretation, not native illusion-active proof."
+        },
+        {
+          "id": "HG-18",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HG-18 AA all-summons grant includes an actual stationary Plague Ward without assuming an ordinary-attack profile",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HG-18 AA all-summons grant includes an actual stationary Plague Ward without assuming an ordinary-attack profile"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "AA all-summons currently includes the actual PlagueWard body. Its unreviewed underlying ward taxonomy is not upgraded into a native unit-profile certification by this test."
+        },
+        {
+          "id": "HG-SCOPE-HOT",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Exact different-caster HoT replacement, nonancient creep-hero/foreignSpiritBear qualification and the losing-ability cleanup of an already-granted Martyrdom need originalAA-specific evidence.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "HG-SCOPE-SHARED",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Two different Hand providers refreshing one recipient Martyrdom currently retain the existing child identity while the latest provider snapshot supplies values/shared cooldown. Exact source-priority and newly-created-creep cooldown semantics are not certified.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chen-current",
+            "chen-old",
+            "chen-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "HG-01: AA says large heal first then8seconds of slow heal. Immediate initial+eight subsequent ticks is supported by currentLP but conflicts with one frozen older initial-at-first-tick paragraph; original modified AA Lua not recovered.",
+        "HG-09: AA50% value is implemented as half initial/HoT healing, with unchanged armor/duration/strongdispel. Exact scope of halving nonhealing components is unresolved despite real native.3/shared8 mechanics.",
+        "HG-10: Independent released grant survives provider death as a documented engine lifecycle policy; exact AA removal when provider loses Hand/upgrade is not recovered.",
+        "HG-14: Point.3/CD/mana are explicit pinned/AA; backswing.93 agrees current and older Wiki candidates but is not an exactAA animation capture.",
+        "HG-17: Literal AA all-summons currently includes actual Phantasm illusions. AA terminology distinguishing illusions from summons is not independently recovered; this is a green eligibility interpretation, not native illusion-active proof.",
+        "HG-18: AA all-summons currently includes the actual PlagueWard body. Its unreviewed underlying ward taxonomy is not upgraded into a native unit-profile certification by this test.",
+        "HG-SCOPE-HOT: Exact different-caster HoT replacement, nonancient creep-hero/foreignSpiritBear qualification and the losing-ability cleanup of an already-granted Martyrdom need originalAA-specific evidence.",
+        "HG-SCOPE-SHARED: Two different Hand providers refreshing one recipient Martyrdom currently retain the existing child identity while the latest provider snapshot supplies values/shared cooldown. Exact source-priority and newly-created-creep cooldown semantics are not certified."
+      ]
+    },
+    {
+      "id": "custom_omniknight_repel",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All selected AA base/Super/Gaben clauses are enumerated with bounded mechanism/timing/upgrade/combination requirements. A passing working interpretation is not promoted to native acceptance.",
+        "fixtures": "Actual registered combat engine and real transferred/helper slots. Fixed HP/positions/disarm/cooldown locks and isolated zero-point casts are explicit preconditions; public windup/cancellation/helper and original-input replay cases retain real clocks. Explicit early-helper request flags are runtime-only diagnostic/order requests; the original-input replay case covers default autonomous policies, not a new persisted player-order UI."
+      },
+      "catalogClauses": {
+        "base": "Creates a divine barrier around an ally which grants them increased Strength and Health Regeneration. Always apply effects on self.\n\nDISPEL TYPE: Strong Dispel",
+        "differences": "When casted on an ally, also applies the effects on self.",
+        "super": "Super: Provides 50% status resistance. Plus 20 health regen bonus, -2s cooldown.",
+        "gaben": "Gaben: Plus 50 strength bonus, undispellable.",
+        "values": [
+          "BONUS STRENGTH: 8 / 16 / 32",
+          "DURATION: 10",
+          "HP REGEN: 8 / 12 / 20",
+          "STATUS RESISTANCE: 0%"
+        ],
+        "cooldowns": [
+          26,
+          22,
+          14
+        ],
+        "mana": [
+          80,
+          90,
+          110
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Full five selected official base/Super/Gaben descriptions, custom differences, values, cooldowns and mana are preserved verbatim as source data. They outrank native balance and explicit custom differences.",
+          "versionContext": "Prior fresh230-row HTTP200 response metadata reused; not a new request. Whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned Valve ability KV supplies independent native helper ranks/points/cooldowns, geometry, talent links and item component values; English notes directly state illusion/shatter/health-setting exceptions. HeroKV identifies active Grace as martyr.",
+          "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928, not the folder-name date20230216. AA values override these native arrays.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "grace-old",
+          "url": "https://liquipedia.net/dota2/Omniknight/Old_Abilities",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Legacy Grace has50% status resistance,0.25 point, old-range500 and buff-before-strong-dispel notes. AA changes base/S/G and self application; the newer per-dispel branch is not silently imported.",
+          "versionContext": "Pre7.31 historical ability entry; AA combines older and custom features. Public .25/.2 remains a qualified working timing profile.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Legacy Grace has50% status resistance,0.25 point, old-range500 and buff-before-strong-dispel notes. AA changes base/S/G and self application; the newer per-dispel branch is not silently imported.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "grace-history",
+          "url": "https://liquipedia.net/dota2/Omniknight/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "7.30c makes Grace dispellable and changes its cooldown talent−3→−2;7.31 replaces it with self+ally per-dispel scaling.2023heroKV uses omniknight_martyr, not legacy omniknight_repel.",
+          "versionContext": "Dated2021/2022 changes explain the AA hybrid and why native ID stripping is unsafe.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "7.30c makes Grace dispellable and changes its cooldown talent−3→−2;7.31 replaces it with self+ally per-dispel scaling.2023heroKV uses omniknight_martyr, not legacy omniknight_repel.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "interpretation": "50%SR restores legacy Grace effect;−2cooldown resembles pre7.31talent. AA+20regen is retained without treating the hybrid as full2023martyr per-debuff scaling."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "grace-history"
+          ],
+          "interpretation": "AAexplicit+50strength/undispellable supersede native dispellableGrace. This is a custom restoration of an earlier unpurgeable pattern, not generic spell immunity."
+        }
+      },
+      "requirements": [
+        {
+          "id": "GR-VALUES-1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "GR-VALUES 1 actual ally and self buffs consume each AA final rank once",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-VALUES 1 actual ally and self buffs consume each AA final rank once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-VALUES-2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "GR-VALUES 2 actual ally and self buffs consume each AA final rank once",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-VALUES 2 actual ally and self buffs consume each AA final rank once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-VALUES-3",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "GR-VALUES 3 actual ally and self buffs consume each AA final rank once",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-VALUES 3 actual ally and self buffs consume each AA final rank once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-VALUES-6",
+          "kind": "super",
+          "branch": "super",
+          "rule": "GR-VALUES 6 actual ally and self buffs consume each AA final rank once",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-VALUES 6 actual ally and self buffs consume each AA final rank once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-VALUES-9",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "GR-VALUES 9 actual ally and self buffs consume each AA final rank once",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-VALUES 9 actual ally and self buffs consume each AA final rank once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "GR-01 an ally-targeted Grace strongly dispels both the ally and caster then grants independent base buffs",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-01 an ally-targeted Grace strongly dispels both the ally and caster then grants independent base buffs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "GR-02 a self-target Grace applies its strength once rather than duplicating the self-always branch",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-02 a self-target Grace applies its strength once rather than duplicating the self-always branch"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-03",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "GR-03 Super grants50% status resistance and40 regen while Gaben final82 strength is undispellable",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-03 Super grants50% status resistance and40 regen while Gaben final82 strength is undispellable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "GR-04 a repeated same-caster Grace refreshes its components without stacking strength",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "GR-04 a repeated same-caster Grace refreshes its components without stacking strength"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "GR-LEGACY-ORDER",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AAcustom_repel aligns a legacy/custom hybrid. Legacybuff-before-dispel versus currentdispel-before-buff and the2023martyr per-dispel bonus are distinguished; omitted newer scaling is not imported, and exactAAorder is unresolved.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "GR-ANIMATION",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "AA does not provide backswing. Public .25point/.2backswing is retained as a working hybrid candidate, not falsely attributed to the active2023martyr.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "GR-CROSSCAST",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Different-caster Grace buff priority and target eligibility for invulnerability/banishment lack a scoped originalAA/native-hybrid resolution.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "grace-old",
+            "grace-history"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "GR-LEGACY-ORDER: AAcustom_repel aligns a legacy/custom hybrid. Legacybuff-before-dispel versus currentdispel-before-buff and the2023martyr per-dispel bonus are distinguished; omitted newer scaling is not imported, and exactAAorder is unresolved.",
+        "GR-ANIMATION: AA does not provide backswing. Public .25point/.2backswing is retained as a working hybrid candidate, not falsely attributed to the active2023martyr.",
+        "GR-CROSSCAST: Different-caster Grace buff priority and target eligibility for invulnerability/banishment lack a scoped originalAA/native-hybrid resolution."
+      ]
+    },
+    {
+      "id": "custom_shadow_shaman_voodoo",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All selected AA base/Super/Gaben clauses are enumerated with bounded mechanism/timing/upgrade/combination requirements. A passing working interpretation is not promoted to native acceptance.",
+        "fixtures": "Actual registered combat engine and real transferred/helper slots. Fixed HP/positions/disarm/cooldown locks and isolated zero-point casts are explicit preconditions; public windup/cancellation/helper and original-input replay cases retain real clocks. Explicit early-helper request flags are runtime-only diagnostic/order requests; the original-input replay case covers default autonomous policies, not a new persisted player-order UI."
+      },
+      "catalogClauses": {
+        "base": "Transforms an enemy unit into a harmless creature, disabling their attacks and abilities.",
+        "differences": "",
+        "super": "Super: -3 second cooldown, and applies a Break.",
+        "gaben": "Gaben: Becomes 400 AoE ability.",
+        "values": [
+          "DURATION: 2 / 3 / 5"
+        ],
+        "cooldowns": [
+          13
+        ],
+        "mana": [
+          70,
+          110,
+          190
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Full five selected official base/Super/Gaben descriptions, custom differences, values, cooldowns and mana are preserved verbatim as source data. They outrank native balance and explicit custom differences.",
+          "versionContext": "Prior fresh230-row HTTP200 response metadata reused; not a new request. Whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned Valve ability KV supplies independent native helper ranks/points/cooldowns, geometry, talent links and item component values; English notes directly state illusion/shatter/health-setting exceptions. HeroKV identifies active Grace as martyr.",
+          "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928, not the folder-name date20230216. AA values override these native arrays.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "hex-old",
+          "url": "https://dota2.fandom.com/wiki/Shadow_Shaman",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Hex destroys illusions, substitutes100 base movement while allowing movement modifiers, and disables attacks/spells. Older native strong-dispel eligibility is overridden by AA explicitly undispellable.",
+          "versionContext": "Indexed frozen older page; numeric duration/cost are AA. Current matched animation is0+1.13, with pinned2023zero point.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Hex destroys illusions, substitutes100 base movement while allowing movement modifiers, and disables attacks/spells. Older native strong-dispel eligibility is overridden by AA explicitly undispellable.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "hex-current",
+          "url": "https://liquipedia.net/dota2/Shadow_Shaman",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Current Hex lists0+1.13 animation,100 movement substitution and instant illusion destruction. Modern duration/cooldown/mana and innate features are excluded.",
+          "versionContext": "Current indexed page used for stable mechanism candidate, with pinned2023movement100 and point0 corroboration.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Current Hex lists0+1.13 animation,100 movement substitution and instant illusion destruction. Modern duration/cooldown/mana and innate features are excluded.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "hex-history",
+          "url": "https://liquipedia.net/dota2/Shadow_Shaman/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "7.33 changes native−3 Hex cooldown talent to−2.7.37 moves the existing break talent to level15. AA Super preserves−3 and break.",
+          "versionContext": "Dated historical talent chain, corroborated by2023special_bonus_unique_shadow_shaman_5/_7.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "7.33 changes native−3 Hex cooldown talent to−2.7.37 moves the existing break talent to level15. AA Super preserves−3 and break.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "lion-hex",
+          "url": "https://liquipedia.net/dota2/Lion",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "A same-named Hex talent uses area-point targeting, providing a related transformation prototype. Its250 radius is not substituted for AA400.",
+          "versionContext": "Related hero talent is a compatibility prototype, not proof of the modified AA Shaman targeting implementation.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "A same-named Hex talent uses area-point targeting, providing a related transformation prototype. Its250 radius is not substituted for AA400.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-history"
+          ],
+          "interpretation": "−3CD andBreak map to the historical Shaman Hex talent family, with AA5-second duration retained."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "lion-hex"
+          ],
+          "interpretation": "AA400AoE is explicit; related Lion areaHex supplies a candidate ground-target prototype. It does not prove exact Shaman spell-block/reflection policy."
+        }
+      },
+      "requirements": [
+        {
+          "id": "HX-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "HX-01 native zero-point Hex immediately destroys an ordinary illusion",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-01 native zero-point Hex immediately destroys an ordinary illusion"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-02",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "HX-02 AA Hex and its Super break are explicitly undispellable",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-02 AA Hex and its Super break are explicitly undispellable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HX-03 Hex replaces base movement with100 then permits positive flat and percentage movement modifiers",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-03 Hex replaces base movement with100 then permits positive flat and percentage movement modifiers"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HX-04 Hex stops both attacking and spell orders without disabling an unbroken passive at base rank",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-04 Hex stops both attacking and spell orders without disabling an unbroken passive at base rank"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "HX-05 a single-target Hex consumes the primary Spell Block and applies no disable",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-05 a single-target Hex consumes the primary Spell Block and applies no disable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "HX-06 Gaben400 ground-area Hex affects secondary enemies without consuming their unit Spell Blocks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-06 Gaben400 ground-area Hex affects secondary enemies without consuming their unit Spell Blocks"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Ground-area SpellBlock behavior is the declared AA compatibility interpretation; the400radius is explicit but original modified targeting/reflection code is not recovered."
+        },
+        {
+          "id": "HX-07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HX-07 AA duration5 shortens to2.5 against50% status resistance",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-07 AA duration5 shortens to2.5 against50% status resistance"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "HX-08 an actual allied Gaben Hand strong cleanse cannot remove AA-undispellable Hex or break",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-08 an actual allied Gaben Hand strong cleanse cannot remove AA-undispellable Hex or break"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "HX-09 Hex checks Spell Block before its native illusion-destruction component",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-09 Hex checks Spell Block before its native illusion-destruction component"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "HX-10 base unit-target Hex skips an immune primary rather than spending the order on an ineligible enemy",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "HX-10 base unit-target Hex skips an immune primary rather than spending the order on an ineligible enemy"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "HX-G-TARGET",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA400AoE is implemented as a frozen ground area which bypasses unit SpellBlock. Lion areaHex is a related prototype, not direct proof of modified Shaman order/reflection semantics.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "HX-CROSSCAST",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Priority of overlapping different-caster Hex transformations and their individual breaks needs a scoped native/AA source.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "hex-old",
+            "hex-current",
+            "hex-history",
+            "lion-hex"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "HX-06: Ground-area SpellBlock behavior is the declared AA compatibility interpretation; the400radius is explicit but original modified targeting/reflection code is not recovered.",
+        "HX-G-TARGET: AA400AoE is implemented as a frozen ground area which bypasses unit SpellBlock. Lion areaHex is a related prototype, not direct proof of modified Shaman order/reflection semantics.",
+        "HX-CROSSCAST: Priority of overlapping different-caster Hex transformations and their individual breaks needs a scoped native/AA source."
+      ]
+    },
+    {
+      "id": "phoenix_icarus_dive",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All selected AA base/Super/Gaben clauses are enumerated with bounded mechanism/timing/upgrade/combination requirements. A passing working interpretation is not promoted to native acceptance.",
+        "fixtures": "Actual registered combat engine and real transferred/helper slots. Fixed HP/positions/disarm/cooldown locks and isolated zero-point casts are explicit preconditions; public windup/cancellation/helper and original-input replay cases retain real clocks. Explicit early-helper request flags are runtime-only diagnostic/order requests; the original-input replay case covers default autonomous policies, not a new persisted player-order UI."
+      },
+      "catalogClauses": {
+        "base": "Phoenix dives forward in an arc with a fixed distance in the targeted direction, dealing damage over time and slowing the movement speed of any units it comes into contact with, and then orbiting back to its original position. If Phoenix casts Supernova, the dive ends.",
+        "differences": "Doesn't cost health to cast, and has increased damage. Also slows attack speed.",
+        "super": "Super: Applies max level Fire Spirits debuff on each unit hit and grants the caster magic immunity during Dive.",
+        "gaben": "Gaben: Drops multiple Meteor Hammer at 0.3s interval during the Dive.",
+        "values": [
+          "ATTACK SPEED SLOW: 10 / 20 / 40",
+          "BURN DURATION: 4",
+          "DAMAGE PER SECOND: 25 / 50 / 100",
+          "DIVE LENGTH: 1100 / 1200 / 1400",
+          "HP COST: 0%",
+          "MOVE SLOW: 16% / 19% / 25%"
+        ],
+        "cooldowns": [
+          36,
+          34,
+          30
+        ],
+        "mana": [
+          0
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Full five selected official base/Super/Gaben descriptions, custom differences, values, cooldowns and mana are preserved verbatim as source data. They outrank native balance and explicit custom differences.",
+          "versionContext": "Prior fresh230-row HTTP200 response metadata reused; not a new request. Whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned Valve ability KV supplies independent native helper ranks/points/cooldowns, geometry, talent links and item component values; English notes directly state illusion/shatter/health-setting exceptions. HeroKV identifies active Grace as martyr.",
+          "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928, not the folder-name date20230216. AA values override these native arrays.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "phoenix-old",
+          "url": "https://dota2.fandom.com/wiki/Phoenix",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Dive allows attacks/casts/channels, no spell turn, fixed500-width ellipse and200 contact. Stun/hex/sleep/cyclone/foreign motion stop it; roots/taunts do not. Supernova stops it and Sun Ray is unavailable.",
+          "versionContext": "Indexed frozen older page includes post7.34DOT0.2; pinned2023and dated history require1-second intervals instead. Geometry and precise easing remain separately qualified.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Dive allows attacks/casts/channels, no spell turn, fixed500-width ellipse and200 contact. Stun/hex/sleep/cyclone/foreign motion stop it; roots/taunts do not. Supernova stops it and Sun Ray is unavailable.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "phoenix-history",
+          "url": "https://liquipedia.net/dota2/Phoenix/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "6.72 removes native Dive immunity and makes stun cancel Dive.7.34 later changes Dive/FireSpirits/Supernova intervals1→0.2. AA Super restores immunity and invokes real FireSpirits4.",
+          "versionContext": "Dated history prevents importing the August2023interval change into the February candidate.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "6.72 removes native Dive immunity and makes stun cancel Dive.7.34 later changes Dive/FireSpirits/Supernova intervals1→0.2. AA Super restores immunity and invokes real FireSpirits4.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "phoenix-guide",
+          "url": "https://dota2.fandom.com/wiki/Phoenix/Guide",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Root prevents initial Dive but does not cancel an ongoing Dive. Silence prevents stopping it. Casting targeted spells during Dive does not require turning.",
+          "versionContext": "Indexed older primary Wiki guide is scoped to these operational notes; it does not prove Stop/channel or helper theft behavior.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Root prevents initial Dive but does not cancel an ongoing Dive. Silence prevents stopping it. Casting targeted spells during Dive does not require turning.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-history"
+          ],
+          "interpretation": "Max FireSpirits means real native4,80DPS/−140AS. Magic immunity resembles oldDive removed6.72, retained only for AA Super. AA own attack-speed slow/cost0/customDPS persist."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "interpretation": "AAfreeMeteorHammer every.3sec uses a separate historical item effect. It omits standalone item channel/cost and retains released impact after Dive stops; no parent duplicate balance values."
+        }
+      },
+      "requirements": [
+        {
+          "id": "ID-VALUES-1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-VALUES 1 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-VALUES 1 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-VALUES-2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-VALUES 2 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-VALUES 2 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-VALUES-3",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-VALUES 3 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-VALUES 3 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-VALUES-6",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ID-VALUES 6 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-VALUES 6 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-VALUES-9",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ID-VALUES 9 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-VALUES 9 actual parent burn consumes the AA rank DPS independently of granted Fire Spirits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ID-01 the native two-second ellipse has fixed500 full width and returns to its starting point",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-01 the native two-second ellipse has fixed500 full width and returns to its starting point"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Native500-width/two-second ellipse/AA length are sourced. Uniform angular progress/quarter-time phase is an explicit working trajectory; exact native easing is not directly recovered."
+        },
+        {
+          "id": "ID-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ID-02 a real stun stops Dive at the interruption position and removes only its travel components",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-02 a real stun stops Dive at the interruption position and removes only its travel components"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ID-03 roots and silence applied after release preserve native flight",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-03 roots and silence applied after release preserve native flight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ID-04 the native200 contact radius reaches a victim outside the former150 radius",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-04 the native200 contact radius reaches a victim outside the former150 radius"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-05 AA zero health cost remains zero despite the historical native15% cost",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-05 AA zero health cost remains zero despite the historical native15% cost"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-06",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ID-06 Dive permits actual ordinary attacks during flight rather than applying a disarm lock",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-06 Dive permits actual ordinary attacks during flight rather than applying a disarm lock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-07 a different spell can release during Dive without turning the body toward its new target",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-07 a different spell can release during Dive without turning the body toward its new target"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-08 Sun Ray is unavailable while diving and its slot does not interrupt the ongoing movement",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-08 Sun Ray is unavailable while diving and its slot does not interrupt the ongoing movement"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-09",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ID-09 Super immunity ends with an early hex interruption rather than lasting the original full Dive",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-09 Super immunity ends with an early hex interruption rather than lasting the original full Dive"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ID-10 Super applies a separately attributed real fourth-level Fire Spirits debuff",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-10 Super applies a separately attributed real fourth-level Fire Spirits debuff"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-11",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "ID-11 Gaben releases six independent meteors at0.3 through1.8 seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-11 Gaben releases six independent meteors at0.3 through1.8 seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-12",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "ID-12 interruption cancels future meteors but a meteor already released still lands after caster death",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-12 interruption cancels future meteors but a meteor already released still lands after caster death"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-13",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ID-13 AA applies its own40 attack-speed slow as well as the Super native140 Fire Spirits slow",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-13 AA applies its own40 attack-speed slow as well as the Super native140 Fire Spirits slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-14",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ID-14 public Dive has a0.2 cast point and an interrupted windup starts neither movement nor cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-14 public Dive has a0.2 cast point and an interrupted windup starts neither movement nor cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-15",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ID-15 losing the actual Dive ability ends its released controller and clears temporary immunity",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-15 losing the actual Dive ability ends its released controller and clears temporary immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-16",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ID-16 the real Stop helper ends flight immediately without spending mana or restarting parent cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-16 the real Stop helper ends flight immediately without spending mana or restarting parent cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-17",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ID-17 silence blocks the actual Stop action while the original Dive keeps moving",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "ID-17 silence blocks the actual Stop action while the original Dive keeps moving"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ID-HELPER-CHANNEL",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Stop behavior during a simultaneously channeled ability and its SpellSteal/ArcaneCurse qualification are not inferred from IMMEDIATE.2023KVdoes not containDONT_CANCEL_CHANNEL.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ID-NOVA",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "AA explicitly says transforming Supernova ends Dive. Catalog has no standalone transforming Supernova; SunRayG independent egg is not substituted. Handler recognizes future nativephoenix_supernova, but no actual catalog outcome is claimed.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [],
+          "status": "environment_boundary"
+        },
+        {
+          "id": "ID-3D",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Trees/elevation and exact native ellipse easing are not modeled as full three-dimensional or tree interactions.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [],
+          "status": "environment_boundary"
+        },
+        {
+          "id": "ID-AI-RANGE",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Public1100/1200/1400 trigger range is an explicit AI search threshold; native directional cast range isGlobal. Default AI full-flight and explicit stop request are engine policies.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phoenix-old",
+            "phoenix-history",
+            "phoenix-guide"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "ID-01: Native500-width/two-second ellipse/AA length are sourced. Uniform angular progress/quarter-time phase is an explicit working trajectory; exact native easing is not directly recovered.",
+        "ID-HELPER-CHANNEL: Stop behavior during a simultaneously channeled ability and its SpellSteal/ArcaneCurse qualification are not inferred from IMMEDIATE.2023KVdoes not containDONT_CANCEL_CHANNEL.",
+        "ID-NOVA: AA explicitly says transforming Supernova ends Dive. Catalog has no standalone transforming Supernova; SunRayG independent egg is not substituted. Handler recognizes future nativephoenix_supernova, but no actual catalog outcome is claimed.",
+        "ID-3D: Trees/elevation and exact native ellipse easing are not modeled as full three-dimensional or tree interactions.",
+        "ID-AI-RANGE: Public1100/1200/1400 trigger range is an explicit AI search threshold; native directional cast range isGlobal. Default AI full-flight and explicit stop request are engine policies."
+      ]
+    },
+    {
+      "id": "custom_ancient_apparition_ice_blast",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All selected AA base/Super/Gaben clauses are enumerated with bounded mechanism/timing/upgrade/combination requirements. A passing working interpretation is not promoted to native acceptance.",
+        "fixtures": "Actual registered combat engine and real transferred/helper slots. Fixed HP/positions/disarm/cooldown locks and isolated zero-point casts are explicit preconditions; public windup/cancellation/helper and original-input replay cases retain real clocks. Explicit early-helper request flags are runtime-only diagnostic/order requests; the original-input replay case covers default autonomous policies, not a new persisted player-order UI."
+      },
+      "catalogClauses": {
+        "base": "Launches a tracer toward any location on the battlefield, which must be triggered again to mark the area to be blasted by a damaging explosion of hail. The further the tracer travels, the larger the explosion will be. Enemies caught in the explosion, or who touch the icy ball of hail as it travels, are Frostbitten, taking damage and prevented from regenerating or healing. If a Frostbitten unit's health drops below a certain percentage, they will instantly shatter.",
+        "differences": "Debuff is shorter, but damage over time is increased.",
+        "super": "Super: Forms an Ice Vortex at its destination just before Ice Blast deals damage. +4% kill threshold.",
+        "gaben": "Gaben: Grants Second Ice Age: Casts Cold Feet on all enemies in the arena, dealing 90 damage per second and stuns for 3.5 seconds if the enemy doesn't move away from the initial cast point.",
+        "values": [
+          "FROSTBITTEN DAMAGE PER SECOND: 10 / 20 / 30",
+          "FROSTBITTEN DURATION: 5 / 7 / 9",
+          "IMPACT DAMAGE: 100 / 150 / 200",
+          "SHATTER HEALTH THRESHOLD: 12% / 13% / 14%"
+        ],
+        "cooldowns": [
+          60,
+          50,
+          40
+        ],
+        "mana": [
+          175
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Full five selected official base/Super/Gaben descriptions, custom differences, values, cooldowns and mana are preserved verbatim as source data. They outrank native balance and explicit custom differences.",
+          "versionContext": "Prior fresh230-row HTTP200 response metadata reused; not a new request. Whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessMethod": "priorDirectHTTP200Snapshot",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned Valve ability KV supplies independent native helper ranks/points/cooldowns, geometry, talent links and item component values; English notes directly state illusion/shatter/health-setting exceptions. HeroKV identifies active Grace as martyr.",
+          "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928, not the folder-name date20230216. AA values override these native arrays.",
+          "accessMethod": "localPinnedSource",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+        },
+        {
+          "id": "aa-archive",
+          "url": "https://liquipedia.net/dota2/Archive:Ancient_Apparition",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Two-stage tracer1500 then hail minimum750 with maximum1.75-second flight; radius depends on tracer time. No illusion shatter, actual damage-source credit and non-healing health-setting exceptions are described.",
+          "versionContext": "Archive page is itself version-mixed; pinned2023geometry/damage and dated7.28travel boundary take priority. ModernShard/BoneChill/DeathRime excluded.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Two-stage tracer1500 then hail minimum750 with maximum1.75-second flight; radius depends on tracer time. No illusion shatter, actual damage-source credit and non-healing health-setting exceptions are described.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "aa-history",
+          "url": "https://liquipedia.net/dota2/Ancient_Apparition/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "6.66 stops bypassing Shallow Grave;7.23 makes impact pierce spell immunity;2013-08-23 explicitly blocks STR/maxHP health gain. These dated rules support the implemented protection, piercing and health-freeze stages.",
+          "versionContext": "Dated changes precede the2023candidate. Modern2026radius275→300 is not imported.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "6.66 stops bypassing Shallow Grave;7.23 makes impact pierce spell immunity;2013-08-23 explicitly blocks STR/maxHP health gain. These dated rules support the implemented protection, piercing and health-freeze stages.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "aa-archive-history",
+          "url": "https://liquipedia.net/dota2/Archive:Ancient_Apparition/Changelog",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "7.28 improves the second projectile maximum travel time2→1.75;7.23 changes spell-immunity interaction.",
+          "versionContext": "Direct dated patch history corroborates the historical1.75profile instead of currentLP1.7.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "7.28 improves the second projectile maximum travel time2→1.75;7.23 changes spell-immunity interaction.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "aa-old",
+          "url": "https://dota2.fandom.com/wiki/Ancient_Apparition",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Frostbite damage ticks once per second, credited threshold crossings use the actual damage source, self-damage credits AA, and min-health/invulnerability prevent shatter. Projectile contact refreshes duration.",
+          "versionContext": "Frozen older indexed page is not exactFebruary2023. AAstrong-only dispel explicitly overrides native undispellability. Status resistance and zero-effective damage edges remain scoped.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Frostbite damage ticks once per second, credited threshold crossings use the actual damage source, self-damage credits AA, and min-health/invulnerability prevent shatter. Projectile contact refreshes duration.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "aa-current",
+          "url": "https://liquipedia.net/dota2/Ancient_Apparition",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Current Release maps Spell Steal to Ice Blast. Modern release silence exception,1.7flight and300radius do not automatically become2023rules.",
+          "versionContext": "Current indexed primary source supplies a related helper-mapping candidate only; parent-removal eligibility is an explicit engine snapshot policy.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Current Release maps Spell Steal to Ice Blast. Modern release silence exception,1.7flight and300radius do not automatically become2023rules.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "oracle-guide",
+          "url": "https://dota2.fandom.com/wiki/Oracle/Guide",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "The guide warns that Ice Blast instant-kill behavior can bypass False Promise delay.",
+          "versionContext": "Older indexed primary Wiki guide conflicts in context with AA Counters; used to document the conflict, not to certify the whole native combination.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "The guide warns that Ice Blast instant-kill behavior can bypass False Promise delay.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        },
+        {
+          "id": "aa-counters",
+          "url": "https://dota2.fandom.com/wiki/Ancient_Apparition/Counters",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Counter notes say False Promise can save a unit near shatter and delay healing until frostbite ends.",
+          "versionContext": "Indexed primary Wiki counter article conflicts with the Oracle guide. AA itself makes frostbite strong-dispellable, so Promise-first versus frostbite-first must be separated.",
+          "accessMethod": "indexedPrimarySearch",
+          "directHTTP200Claim": false,
+          "observation": "Counter notes say False Promise can save a unit near shatter and delay healing until frostbite ends.",
+          "localEvidence": "references/dota-wiki/hand-ice-source-snapshot.json"
+        }
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive"
+          ],
+          "interpretation": "AAexplicit vortex-before-impact and+4threshold; +4 matches native level25talent. FreeVortex uses native4 candidate, whose exact AA invocation rank is not explicit."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "interpretation": "AASecondIceAge invokes globalColdFeet with explicit90DPS/3.5stun, matching native4. Uses independent child statistics and anchored escape clock, not later nativeShard reduced stun."
+        }
+      },
+      "requirements": [
+        {
+          "id": "IB-VALUES-1",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-VALUES 1 parent impact and threshold retain the correct AA rank after native helper release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-VALUES 1 parent impact and threshold retain the correct AA rank after native helper release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-VALUES-2",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-VALUES 2 parent impact and threshold retain the correct AA rank after native helper release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-VALUES 2 parent impact and threshold retain the correct AA rank after native helper release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-VALUES-3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-VALUES 3 parent impact and threshold retain the correct AA rank after native helper release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-VALUES 3 parent impact and threshold retain the correct AA rank after native helper release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-VALUES-6",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "IB-VALUES 6 parent impact and threshold retain the correct AA rank after native helper release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-VALUES 6 parent impact and threshold retain the correct AA rank after native helper release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-VALUES-9",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "IB-VALUES 9 parent impact and threshold retain the correct AA rank after native helper release",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-VALUES 9 parent impact and threshold retain the correct AA rank after native helper release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-01 the tracer does no damage before the independently launched hail completes its second flight",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-01 the tracer does no damage before the independently launched hail completes its second flight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-02 the frozen point does not follow the AI target after the initial cast order",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-02 the frozen point does not follow the AI target after the initial cast order"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-03 frostbite and healing freeze are applied before the impact damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-03 frostbite and healing freeze are applied before the impact damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-04 piercing impact and freeze affect magic-immune enemies without importing later debuff-immunity rules",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-04 piercing impact and freeze affect magic-immune enemies without importing later debuff-immunity rules"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-05",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-05 historical one-second frostbite ticks deal30 each rather than0.2-second fragments",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-05 historical one-second frostbite ticks deal30 each rather than0.2-second fragments"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-06 touching only the released projectile applies frostbite without receiving explosion damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-06 touching only the released projectile applies frostbite without receiving explosion damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-07 a real allied heal and strength-based current-health increase are blocked by frozen health",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-07 a real allied heal and strength-based current-health increase are blocked by frozen health"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-08 non-healing Sunder still changes the frozen target current health",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-08 non-healing Sunder still changes the frozen target current health"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-09 a different actual damage source gets immediate shatter kill credit and preserves Ice Blast attribution",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-09 a different actual damage source gets immediate shatter kill credit and preserves Ice Blast attribution"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-10 self-inflicted threshold-crossing damage awards the shatter to Ancient Apparition",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-10 self-inflicted threshold-crossing damage awards the shatter to Ancient Apparition"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-11 Ice Blast does not shatter an illusion merely because another damage instance puts it below14%",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-11 Ice Blast does not shatter an illusion merely because another damage instance puts it below14%"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-12",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-12 Shallow Grave minimum health and Battle Trance remain protected below the kill threshold",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-12 Shallow Grave minimum health and Battle Trance remain protected below the kill threshold"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Dated6.66 proves Grave minimum-health protection; BattleTrance half reuses a finite earlier source/working policy and does not certify every pre2023minimum-health exception."
+        },
+        {
+          "id": "IB-13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-13 health-removal damage is excluded from native threshold-trigger checks",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-13 health-removal damage is excluded from native threshold-trigger checks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-14",
+          "kind": "super",
+          "branch": "super",
+          "rule": "IB-14 Super creates its negative-resistance Ice Vortex before resolving impact damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-14 Super creates its negative-resistance Ice Vortex before resolving impact damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-15",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "IB-15 Gaben globally applies fourth-level Cold Feet at cast even before the tracer finishes",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-15 Gaben globally applies fourth-level Cold Feet at cast even before the tracer finishes"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-16",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "IB-16 Cold Feet escapes cancel their own timer while an anchored Gaben target takes360 then receives3.5-second stun",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-16 Cold Feet escapes cancel their own timer while an anchored Gaben target takes360 then receives3.5-second stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-17 caster death releases the current tracer location and the already-released hail survives the death",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-17 caster death releases the current tracer location and the already-released hail survives the death"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-18",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-18 real full-catalog battles replay the new motion and projectile clocks without changing effective totals",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-18 real full-catalog battles replay the new motion and projectile clocks without changing effective totals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-19",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-19 an actual Grace strong cleanse removes every linked AA frostbite component before granting health",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-19 an actual Grace strong cleanse removes every linked AA frostbite component before granting health"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-20",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "IB-20 a real Blade Fury basic cleanse leaves AA strong-only frostbite active and its DOT still pierces immunity",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-20 a real Blade Fury basic cleanse leaves AA strong-only frostbite active and its DOT still pierces immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-21",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "IB-21 Super final18% shatter threshold kills a17%-health victim which the14% base threshold preserves",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-21 Super final18% shatter threshold kills a17%-health victim which the14% base threshold preserves"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-22",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-22 the ice ball refreshes a contacted victim duration through the final impact rather than expiring from first contact",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-22 the ice ball refreshes a contacted victim duration through the final impact rather than expiring from first contact"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-23",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-23 the explosion radius grows from275 by50 per tracer second and does not grow during hail flight",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-23 the explosion radius grows from275 by50 per tracer second and does not grow during hail flight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-24",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-24 real False Promise strong-cleanse removes preexisting AA frostbite before delaying new healing",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-24 real False Promise strong-cleanse removes preexisting AA frostbite before delaying new healing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-25",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "IB-25 an already-low-health False Promise victim still receives the independent periodic shatter check after a zero-effective DOT",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-25 an already-low-health False Promise victim still receives the independent periodic shatter check after a zero-effective DOT"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Independent periodic shatter is preserved despite zero effective DOT under already-active Promise. OracleGuide versus AACounters conflict remains; this engine outcome does not certify the complete historicalFP precedence."
+        },
+        {
+          "id": "IB-26",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-26 a full shield blocks the next DOT damage but does not negate that tick independent shatter check",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-26 a full shield blocks the next DOT damage but does not negate that tick independent shatter check"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Full shield does not suppress the periodic threshold check in this working profile. Exact native accepted-zero/postbarrier trigger source is not directly recovered."
+        },
+        {
+          "id": "IB-27",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-27 the real early Release stops the old tracer and launches hail toward that current point",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-27 the real early Release stops the old tracer and launches hail toward that current point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "IB-28",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "IB-28 Release uses its native1-second cooldown without paying the175 mana or changing the parent cooldown again",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-28 Release uses its native1-second cooldown without paying the175 mana or changing the parent cooldown again"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "Zero point/CD1 are pinned; Release1.1backswing is an indexed historical candidate, not directAA capture."
+        },
+        {
+          "id": "IB-29",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "IB-29 a real Rubick steal after Release acquires the level-six parent Ice Blast rather than the level-one helper",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-29 a real Rubick steal after Release acquires the level-six parent Ice Blast rather than the level-one helper"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "CurrentLP explicitly maps Release theft to IceBlast. Applied as a narrow compatibility candidate; exact pre2023theft chronology is not independently captured."
+        },
+        {
+          "id": "IB-30",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "IB-30 released parent rank remains in the steal event snapshot after the original main slot is removed",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-hand-ice.test.ts",
+              "test": "IB-30 released parent rank remains in the steal event snapshot after the original main slot is removed"
+            }
+          ],
+          "status": "source_pending",
+          "workingResult": "passed",
+          "referenceClaim": false,
+          "qualification": "The original parent rank survives in the emitted release snapshot after main-slot loss. This is an engine snapshot policy, not proof of originalAA parent-removal theft eligibility."
+        },
+        {
+          "id": "IB-SR-CROSSCAST",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Different-caster frostbite priority, same-cast refresh timing under changing status resistance and native final fractional ticks remain unverified; stored effective duration avoids accidentally resetting SR reduction to full length.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "IB-HELPER-SILENCE",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Modern Release silence exemption and simultaneous channel handling are not assumed pre2023. Helpers currently use ordinary action eligibility; explicit request flag is a deterministic AI/order bridge, without newbattleUI.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "IB-EXECUTION-PRIORITY",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "WinterCurse/ReaperScythe exclusive kill-credit priority and real damage-conversion/deferred-settlement crossings need a shared precise execution-event protocol; ordinary actual actor credit is separately tested.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [],
+          "status": "mechanism_missing"
+        },
+        {
+          "id": "IB-FREEZE-EXCEPTIONS",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "General new STR/maxHP gain and realSunder are tested. Decay/WhirlingDeath restoration, Supernova/TimeLapse and every direct HP-setting path are not collectively certified.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "IB-AI-RELEASE",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Default AI releases upon its frozen cursor while explicit early-release requests use a real native helper. Finite arena boundary/fog vision and hidden-slot replacement UI are not a reproduction of the full map command surface.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "aa-archive",
+            "aa-history",
+            "aa-archive-history",
+            "aa-old",
+            "aa-current",
+            "oracle-guide",
+            "aa-counters"
+          ],
+          "testEvidence": [],
+          "status": "environment_boundary"
+        }
+      ],
+      "unresolved": [
+        "IB-12: Dated6.66 proves Grave minimum-health protection; BattleTrance half reuses a finite earlier source/working policy and does not certify every pre2023minimum-health exception.",
+        "IB-25: Independent periodic shatter is preserved despite zero effective DOT under already-active Promise. OracleGuide versus AACounters conflict remains; this engine outcome does not certify the complete historicalFP precedence.",
+        "IB-26: Full shield does not suppress the periodic threshold check in this working profile. Exact native accepted-zero/postbarrier trigger source is not directly recovered.",
+        "IB-28: Zero point/CD1 are pinned; Release1.1backswing is an indexed historical candidate, not directAA capture.",
+        "IB-29: CurrentLP explicitly maps Release theft to IceBlast. Applied as a narrow compatibility candidate; exact pre2023theft chronology is not independently captured.",
+        "IB-30: The original parent rank survives in the emitted release snapshot after main-slot loss. This is an engine snapshot policy, not proof of originalAA parent-removal theft eligibility.",
+        "IB-SR-CROSSCAST: Different-caster frostbite priority, same-cast refresh timing under changing status resistance and native final fractional ticks remain unverified; stored effective duration avoids accidentally resetting SR reduction to full length.",
+        "IB-HELPER-SILENCE: Modern Release silence exemption and simultaneous channel handling are not assumed pre2023. Helpers currently use ordinary action eligibility; explicit request flag is a deterministic AI/order bridge, without newbattleUI.",
+        "IB-EXECUTION-PRIORITY: WinterCurse/ReaperScythe exclusive kill-credit priority and real damage-conversion/deferred-settlement crossings need a shared precise execution-event protocol; ordinary actual actor credit is separately tested.",
+        "IB-FREEZE-EXCEPTIONS: General new STR/maxHP gain and realSunder are tested. Decay/WhirlingDeath restoration, Supernova/TimeLapse and every direct HP-setting path are not collectively certified.",
+        "IB-AI-RELEASE: Default AI releases upon its frozen cursor while explicit early-release requests use a real native helper. Finite arena boundary/fog vision and hidden-slot replacement UI are not a reproduction of the full map command surface."
+      ]
+    }
+  ]
+}

@@ -62,24 +62,27 @@ export function routeAroundBarriers(b:BattleState,u:CombatUnit,target:Point):Poi
   }
   if(previous[1]<0)return {x:u.x,y:u.y};let next=1;while(previous[next]>0)next=previous[next];return points[next];
 }
-export function constrainBarrierMotion(b:BattleState,u:CombatUnit,to:Point):Point{
+function blocksMotion(u:CombatUnit,wall:BattleBarrier,ignoreTerrainBarriers:boolean):boolean{
+  return barrierBlocksUnit(u,wall)&&!(ignoreTerrainBarriers&&['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(wall.skill));
+}
+export function constrainBarrierMotion(b:BattleState,u:CombatUnit,to:Point,ignoreTerrainBarriers=false):Point{
   if(phased(u))return clamp(to);
-  const walls=barriers(b).filter(w=>barrierBlocksUnit(u,w)),target=clamp(to);
+  const walls=barriers(b).filter(w=>blocksMotion(u,w,ignoreTerrainBarriers)),target=clamp(to);
   if(!walls.length||clearSegment(u,target,walls,true))return target;
   let low=0,high=1;
   for(let i=0;i<28;i++){const mid=(low+high)/2,p={x:u.x+(target.x-u.x)*mid,y:u.y+(target.y-u.y)*mid};if(clearSegment(u,p,walls,true))low=mid;else high=mid;}
   return {x:u.x+(target.x-u.x)*low,y:u.y+(target.y-u.y)*low};
 }
 
-export function resolveBarrierOverlap(b:BattleState,u:CombatUnit,maxDistance=0):void{
+export function resolveBarrierOverlap(b:BattleState,u:CombatUnit,maxDistance=0,ignoreTerrainBarriers=false):void{
   if(phased(u)||maxDistance<=0)return;
   let remaining=maxDistance;
-  for(const wall of barriers(b).filter(w=>barrierBlocksUnit(u,w))){
+  for(const wall of barriers(b).filter(w=>blocksMotion(u,w,ignoreTerrainBarriers))){
     const foot=closest(u,wall.from,wall.to),gap=distance(u,foot),clearance=wall.width/2+RADIUS;if(gap>=clearance-1e-8)continue;
     let dx=u.x-foot.x,dy=u.y-foot.y;
     if(gap<1e-8){dx=wall.to.y-wall.from.y;dy=wall.from.x-wall.to.x;if(!dx&&!dy)dx=1;const sign=u.id.charCodeAt(u.id.length-1)%2?1:-1;dx*=sign;dy*=sign;}
     const length=Math.hypot(dx,dy)||1,step=Math.min(remaining,clearance-gap+.001);
-    const point=constrainBarrierMotion(b,u,{x:u.x+dx/length*step,y:u.y+dy/length*step});
+    const point=constrainBarrierMotion(b,u,{x:u.x+dx/length*step,y:u.y+dy/length*step},ignoreTerrainBarriers);
     remaining-=recordMovement(u,b.time,point,'collision');if(remaining<=1e-9)break;
   }
 }

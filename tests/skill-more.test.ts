@@ -310,8 +310,8 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Ice Shards Super extends both sides of one visual barrier group and Gaben burns distant enemies', () => {
-    for (const [points, count] of [[3, 6], [6, 8], [9, 8]]) {
-      const state = battle('custom_tusk_ice_shards', points, 2); state.units[2].x = 11; state.units[2].y = 11; advance(state, 1);
+    for (const [points, count] of [[3, 7], [6, 11], [9, 11]]) {
+      const state = battle('custom_tusk_ice_shards', points, 2); state.units[2].x = 11; state.units[2].y = 11; advance(state, 2);
       const walls = (state.barriers ?? []) as { skill: string; visual?: { group: string } }[];
       const shards = walls.filter(w => w.skill === 'custom_tusk_ice_shards');
       expect(shards).toHaveLength(count); expect(new Set(shards.map(w => w.visual?.group)).size).toBe(1);
@@ -643,9 +643,9 @@ describe('catalog-driven additional skills', () => {
     const state = createBattle(a, player(1, undefined, 3, 2), 5, defs), [caster, , destination, crossing] = state.units;
     destination.x = 0; destination.y = 6; crossing.x = 12; crossing.y = 1;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .1); crossing.x = 1; advance(state, .3);
+    advance(state, .6);expect(crossing.statuses.some(s=>s.kind==='iceBlastFrostbite')).toBe(false);crossing.x = 1; advance(state, .6);
     expect(crossing.statuses.some(s => s.kind === 'iceBlastFrostbite')).toBe(true);
-    const before = crossing.taken; caster.hp = 0; caster.dead = true; advance(state, 1);
+    const before = crossing.taken;applyDamage(state,destination,caster,1e6,'pure','fixture');advance(state,1.2);
     expect(crossing.taken).toBeGreaterThan(before);
     expect(state.events.some(e => e.type === 'hit' && e.skill === 'custom_ancient_apparition_ice_blast' && e.target === destination.id && Number(e.amount) >= 150)).toBe(true);
   });
@@ -654,9 +654,9 @@ describe('catalog-driven additional skills', () => {
     for (const dispelled of [false, true]) {
       const state = battle('custom_ancient_apparition_ice_blast', 3, 2), target = state.units[1];
       state.units[0].statuses.push({ kind: 'disarm', until: 200 }); state.units[2].x = 8;
-      advance(state, .6); expect(target.statuses.some(s => s.kind === 'iceBlastFrostbite')).toBe(true);
+      advance(state, 1.2); expect(target.statuses.some(s => s.kind === 'iceBlastFrostbite')).toBe(true);
       if (dispelled) target.statuses = target.statuses.filter(s => s.skill !== 'custom_ancient_apparition_ice_blast');
-      target.hp = 10000; target.statuses.push({ kind: 'falsePromise', until: 100 }); advance(state, .1);
+      target.hp = 10000; target.statuses.push({ kind: 'falsePromise', until: 100 }); advance(state, 1.2);
       expect(target.dead).toBe(!dispelled);
       expect(state.events.some(e => e.type === 'hit' && e.executed === true && e.target === target.id)).toBe(!dispelled);
     }

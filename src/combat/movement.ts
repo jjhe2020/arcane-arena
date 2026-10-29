@@ -10,6 +10,8 @@ export interface ContinuousMoveOptions {
   lockActions?: boolean;
   /** Only a skill's explicit motion exception may bypass a skill-created wall. */
   ignoreBarriers?: boolean;
+  /** Terrain walls only (Fissure / Ice Shards); Arena and other spell walls still block. */
+  ignoreTerrainBarriers?: boolean;
   respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;
@@ -24,6 +26,7 @@ export interface MotionController {
   priority: number;
   lockActions: boolean;
   ignoreBarriers: boolean;
+  ignoreTerrainBarriers?: boolean;
   respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;

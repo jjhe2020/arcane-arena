@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 110 项；完整逐项通过 7 项。
-当前代码下，1065 条具名结果测试要求通过，1065 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 125 项；完整逐项通过 7 项。
+当前代码下，1271 条具名结果测试要求通过，1271 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -104,22 +104,22 @@
 | 幽灵船 (Ghostship) | 审查中 | 2 / 4 / 1 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 智慧之刃 (Glaives of Wisdom) | 审查中 | 1 / 3 / 1 / 3 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 全领域静默 (Global Silence) | 审查中 | 1 / 3 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
-| 神之谴戒 (God's Rebuke) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 黄泉颤抖 (Grave Chill) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 长大 (Grow) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 守护天使 (Guardian Angel) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 狂风 (Gust) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| G 胖之手:  (Hand of Gaben) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 天国恩赐 (Heavenly Grace) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 妖术 (Hex) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 凤凰冲击 (Icarus Dive) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 冰晶爆轰 (Ice Blast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 冰封路径 (Ice Path) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 冰晶 (Ice Shards) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 神之谴戒 (God's Rebuke) | 审查中 | 4 / 1 / 1 / 1 / 10 | 4 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
+| 黄泉颤抖 (Grave Chill) | 审查中 | 3 / 1 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
+| 长大 (Grow) | 审查中 | 1 / 1 / 1 / 2 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
+| 守护天使 (Guardian Angel) | 审查中 | 1 / 1 / 2 / 0 / 6 | 3 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
+| 狂风 (Gust) | 审查中 | 3 / 1 / 1 / 1 / 6 | 6 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
+| G 胖之手:  (Hand of Gaben) | 审查中 | 7 / 4 / 1 / 3 / 2 | 8 | [审查记录](../references/dota-wiki/acceptance/hand-ice.json) |
+| 天国恩赐 (Heavenly Grace) | 审查中 | 5 / 0 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/hand-ice.json) |
+| 妖术 (Hex) | 审查中 | 4 / 1 / 0 / 0 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/hand-ice.json) |
+| 凤凰冲击 (Icarus Dive) | 审查中 | 7 / 5 / 4 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/hand-ice.json) |
+| 冰晶爆轰 (Ice Blast) | 审查中 | 6 / 6 / 1 / 1 / 15 | 11 | [审查记录](../references/dota-wiki/acceptance/hand-ice.json) |
+| 冰封路径 (Ice Path) | 审查中 | 3 / 3 / 0 / 4 / 2 | 7 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
+| 冰晶 (Ice Shards) | 审查中 | 1 / 3 / 1 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
 | 推进 (Impetus) | 审查中 | 2 / 1 / 0 / 0 / 4 | 2 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
-| 阎刃 (Infernal Blade) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 墨涌 (Ink Swell) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 野性之心 (Inner Beast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 阎刃 (Infernal Blade) | 审查中 | 2 / 5 / 0 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
+| 墨涌 (Ink Swell) | 审查中 | 2 / 5 / 3 / 1 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
+| 野性之心 (Inner Beast) | 审查中 | 4 / 3 / 1 / 1 / 7 | 3 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
 | 心炎 (Inner Fire) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 极度饥渴 (Insatiable Hunger) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 如意棒法 (Jingu Mastery) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
