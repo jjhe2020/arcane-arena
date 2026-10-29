@@ -67,7 +67,11 @@ const status = (unit: CombatUnit, kind: string) => unit.statuses.find(s => s.kin
 function preparedHarnessAttack(h:ReturnType<typeof harness>,program:SkillProgram){
   const ordinal=Number(h.caster.harnessAttackSequence??0)+1;h.caster.harnessAttackSequence=ordinal;
   h.ctx.attackRecord={id:`harness:${ordinal}`,source:h.caster.id,target:h.target.id,abilityId:'__basic_attack__',ranged:true,data:{}};
-  program.prepareAttack?.(h.ctx);program.onAttack?.(h.ctx);
+  program.prepareAttack?.(h.ctx);program.beforeAttackDamage?.(h.ctx);
+  // The direct harness applies returned conditional components only; the real
+  // engine tests separately prove crit/block/lifesteal/cleave composition.
+  for(const component of program.attackModifier?.(h.ctx).typedPostCriticalComponents??[])if(component.amount>0)h.ctx.damage(h.target,component.amount,component.type);
+  program.onAttack?.(h.ctx);
 }
 
 describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction', () => {
@@ -173,7 +177,7 @@ describe('extra skill upgrade behavior', () => {
     if(reason!=='zeroDamage')expect(activeVisualWorldEffects(h.ctx.battle)).toEqual([]);
   });
   it('uses independent PRD hooks for the selected attack procs without consuming rolls during cooldown', () => {
-    for (const [id, key, amount] of [['custom_windrunner_focusfire', 'maelstrom', 140], ['ursa_overpower', 'bash', 120]] as const) {
+    for (const [id, key, amount] of [['custom_windrunner_focusfire', 'maelstrom', 140], ['ursa_overpower', 'overpowerBasher', 120]] as const) {
       const h = harness(id), p = EXTRA_PROGRAMS[id], calls: string[] = []; let succeeds = false;
       h.ctx.chance = (_p, key) => { calls.push(key); return succeeds; };
       const hp = h.target.hp; preparedHarnessAttack(h,p); expect(h.target.hp).toBe(hp);
@@ -271,24 +275,29 @@ describe('extra skill upgrade behavior', () => {
   });
   it('only grants Overload charges for nearby allied casts and then consumes all charges', () => {
     const h = harness('custom_storm_spirit_overload', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];
+    h.ctx.executedAbility={id:'custom_luna_lucent_beam',cooldown:6,manaCost:0,procsOnCast:true,granted:false};
     h.ally.x = 7.6; h.ally.y = h.caster.y; p.onAllyCast!({ ...h.ctx, target: h.ally });
-    const before = h.target.hp; p.onAttack!(h.ctx); expect(h.target.hp).toBe(before);
-    h.ally.x = 7.5; p.onAllyCast!({ ...h.ctx, target: h.ally }); p.onCast!(h.ctx); p.onAttack!(h.ctx);
+    const before = h.target.hp; p.beforeAttackDamage!(h.ctx); expect(h.target.hp).toBe(before);
+    h.ally.x = 7.5; p.onAllyCast!({ ...h.ctx, target: h.ally }); p.onAbilityExecuted!(h.ctx); p.beforeAttackDamage!(h.ctx);
     expect(before - h.target.hp).toBe(200);
-    const after = h.target.hp; p.onAttack!(h.ctx); expect(h.target.hp).toBe(after);
+    const after = h.target.hp; p.beforeAttackDamage!(h.ctx); expect(h.target.hp).toBe(after);
   });
   it('limits Gaben Overload to two unique bounces without recursive charge generation', () => {
     const h = harness('custom_storm_spirit_overload'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     for (let n = 0; n < 3; n++) { const unit = structuredClone(h.other); unit.id = `bounce${n}`; unit.x += n + 2; h.ctx.battle.units.push(unit); }
-    p.onCast!(h.ctx); p.onAttack!(h.ctx); h.until(1);
-    expect(h.attacks).toHaveLength(2); expect(new Set(h.attacks).size).toBe(2);
-    expect(h.attacks).not.toContain(h.target.id);
+    const bounces:{id:string;amount:number}[]=[],damage=h.ctx.damage;
+    h.ctx.damage=(t,amount,type,...rest)=>{if(type==='physical')bounces.push({id:t.id,amount});return damage(t,amount,type,...rest);};
+    h.ctx.executedAbility={id:'custom_luna_lucent_beam',cooldown:6,manaCost:0,procsOnCast:true,granted:false};
+    p.onAbilityExecuted!(h.ctx);p.beforeAttackDamage!(h.ctx);h.until(1);
+    expect(bounces).toHaveLength(2);expect(new Set(bounces.map(b=>b.id)).size).toBe(2);
+    expect(bounces.every(b=>b.id!==h.target.id&&b.amount===h.caster.attack*.75)).toBe(true);expect(h.attacks).toHaveLength(0);
     expect(h.caster[`${h.ctx.skill.id}:charges`]).toBe(0);
     expect(p.remaining.length).toBeGreaterThan(0); // Working range is explicit, not reference parity.
   });
   it('combines AA 4.5 attack slow with the separately sourced historical movement slow duration', () => {
     const h = harness('custom_storm_spirit_overload', 3), p = EXTRA_PROGRAMS[h.ctx.skill.id];
-    p.onCast!(h.ctx); p.onAttack!(h.ctx);
+    h.ctx.executedAbility={id:'custom_luna_lucent_beam',cooldown:6,manaCost:0,procsOnCast:true,granted:false};
+    p.onAbilityExecuted!(h.ctx);p.beforeAttackDamage!(h.ctx);
     expect(status(h.target, 'attackSpeed')?.until).toBe(1.2);
     expect(status(h.target, 'slow')?.until).toBe(.8);
   });
@@ -445,9 +454,10 @@ describe('extra skill upgrade behavior', () => {
     const h = harness('muerta_pierce_the_veil'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     h.target.x = h.caster.x + 1; h.target.y = h.caster.y; h.other.x = h.caster.x + 2; h.other.y = h.caster.y;
     const targets: string[] = [];
-    h.ctx.attack = unit => { targets.push(unit.id); p.onAttack!({ ...h.ctx, target: unit });return {landed:true,damage:0}; };
-    p.onAttack!(h.ctx); expect(targets).toEqual([h.other.id]);
-    h.other.dead = true; p.onAttack!(h.ctx); expect(targets).toEqual([h.other.id, h.target.id]);
+    h.ctx.chance=()=>true;h.ctx.attackIsInstant=false;h.ctx.attackRecord={id:'ordinary',source:h.caster.id,target:h.target.id,abilityId:'__basic_attack__',ranged:true,data:{isInstant:false}};
+    h.ctx.attack = unit => { targets.push(unit.id); p.onAttackPoint!({ ...h.ctx, target: unit,attackIsInstant:true });return {landed:true,damage:0}; };
+    p.onAttackPoint!(h.ctx); expect(targets).toEqual([h.other.id]);
+    h.other.dead = true; p.onAttackPoint!(h.ctx); expect(targets).toEqual([h.other.id, h.target.id]);
   });
   it('makes evil attendants do the documented working damage independently of injured allies', () => {
     const h = harness('custom_enchantress_natures_attendants'), p = EXTRA_PROGRAMS[h.ctx.skill.id];

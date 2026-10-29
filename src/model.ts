@@ -31,5 +31,9 @@ export interface CombatEvent { time: number; type: 'attack'|'cast'|'hit'|'heal'|
 export interface BattleState { time: number; round?: number; units: CombatUnit[]; events: CombatEvent[]; finished: boolean; winner: number | null; rng: number; [key: string]: unknown }
 export interface CombatUnit { absorbed?:number }
 export interface CombatUnit {nativeTemplateId?:string;nativeBaseAttackSpeed?:number;attackCapability?:'none'|'melee'|'ranged';attackTargetCategory?:'heroes';heroClone?:boolean}
+/** Opt-in native attack class; other bodies retain their existing damage rules. */
+export interface CombatUnit {piercingAttackClass?:{hero:number;creep:number;reinforced:number};reinforced?:boolean}
+/** Pure launch presentation; it never changes an attack's statistical source. */
+export interface AttackRecord {projectileVisual?:{skill:string;points:number}}
 export interface AnimationClip { image: string; frames: number; columns: number; frameWidth: number; frameHeight: number; fps: number; pivot?: [number, number]; loop?: boolean; [key:string]: unknown }
 export interface AssetManifest { characters: Record<string, Record<string, AnimationClip>>; skills: Record<string, unknown>; arenas: { name: string; image: string; [key: string]: unknown }[]; projectiles?:Record<string,AnimationClip>; mobileAtlases?:Record<string,Partial<AnimationClip>&{image:string;frameWidth:number;frameHeight:number}>; [key:string]: unknown }

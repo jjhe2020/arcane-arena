@@ -14873,20 +14873,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "过载最终持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
           "key": "MAX HEALTH REGEN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 生命 恢复",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每秒按受益者最大生命值恢复比例",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
           "key": "SPELL AMPLIFICATION",
@@ -14900,15 +14900,15 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "main_upgrades.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "UPDATE INTERVAL",
+          "unit": "ms",
+          "meaning": "过载与实时羁绊受益资格刷新间隔",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:32；G(c)?.02:0"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收；工程采样候选，不声称原生精确更新频率"
         }
       ]
     },
@@ -14941,141 +14941,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "疯狂生长最终控制持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "main_upgrades_remaining.interval.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；interval:1"
+          "meaning": "疯狂生长最终作用半径",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收；AA锁定value500优先于其它公告沿革"
         },
         {
-          "key": "main_upgrades_remaining.delay.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "完整持续伤害跳间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；.3+i*.1"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "main_upgrades_remaining.delay.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "RADIAL GRASPS",
+          "unit": "个",
+          "meaning": "Gaben径向自然之握条数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；i*.1"
+          "integer": true,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "main_upgrades_remaining.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；radius:1.35"
-        },
-        {
-          "key": "main_upgrades_remaining.duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GRASP LEVEL",
+          "unit": "等级",
+          "meaning": "Gaben自然之握的真实原生等级",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；duration:12"
-        },
-        {
-          "key": "main_upgrades_remaining.interval.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；interval:1"
-        },
-        {
-          "key": "main_upgrades_remaining.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；60*(t.summoned?.5:1)"
-        },
-        {
-          "key": "main_upgrades_remaining.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；t.summoned?.5:1"
-        },
-        {
-          "key": "main_upgrades_remaining.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；t.summoned?.5:1"
-        },
-        {
-          "key": "main_upgrades_remaining.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；c.status(t,'slow',1.1,.35,{harmful:true})"
-        },
-        {
-          "key": "main_upgrades_remaining.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:33；c.status(t,'slow',1.1,.35,{harmful:true})"
+          "integer": true,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         }
       ]
     },
@@ -15135,37 +15047,70 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "SLOW DURATION",
+          "unit": "ms",
+          "meaning": "残影命中减速持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:359；c.attack(next, 1, false)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "ALLY CAST RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Super友军释放技能获得充能的距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben下一弹射目标搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BOUNCE DAMAGE PERCENT",
+          "unit": "%",
+          "meaning": "Gaben弹射采用首击主攻击伤害比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收；2023原生天赋75%，不倒灌现代50%"
+        },
+        {
+          "key": "BOUNCES",
+          "unit": "次数",
+          "meaning": "Gaben额外弹射次数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "ATTACK SLOW DURATION",
+          "kind": "value",
+          "meaning": "超负荷降低攻击速度的持续时间（独立于移动减速）",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:350；debuff(c, target, 'slow', P(value(c, 'MOVEMENT SLOW')), .8)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:352；debuff(c, target, 'attackSpeed', value(c, 'ATTACK SLOW'), 1.2)"
+          "source": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "note": "官方2023-02-01具名条款把攻击减速时长由0.8秒提高到1.2秒；不改变移动减速0.8秒"
         }
       ]
     },
@@ -15183,13 +15128,13 @@
         {
           "key": "ATTACKS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击S",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "每次施放最终可执行攻击次数",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
           "key": "BONUS ATTACK SPEED",
@@ -15203,26 +15148,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:645；c.damage(c.target, 120, 'physical')"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "BUFF DURATION",
           "unit": "ms",
+          "meaning": "超强力量增益最长保留时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:648；debuff(c, c.target, 'stun', 0, 1.5, { dispel: 'strong' })"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BASH CHANCE",
+          "unit": "%",
+          "meaning": "Gaben碎颅攻击触发概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BASH DAMAGE",
+          "unit": "伤害",
+          "meaning": "Gaben碎颅非暴击附加物理伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BASH DURATION",
+          "unit": "ms",
+          "meaning": "Gaben碎颅眩晕持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BASH COOLDOWN",
+          "unit": "ms",
+          "meaning": "Gaben碎颅独立触发冷却",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         }
       ]
     },
@@ -15262,13 +15240,13 @@
         {
           "key": "BOUNCES",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "BOUNCES",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "首次命中之后的额外弹跳次数",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
           "key": "STUN DURATION",
@@ -15282,59 +15260,70 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:198；c.projectile(t, 10, target => { c.damage(target, v(c, 'BASE DAMAGE') + v(c, 'BONUS DAMAGE PER BOUNCE') * i); stun(c,target); if (i < v(c, 'BOUNCES')) { const next=c.enemies().filte"
-        },
-        {
-          "key": "main_upgrades_advanced.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:20；c.projectile(t,10,u=>{c.damage(u,(v(c,'BASE DAMAGE')+v(c,'BONUS DAMAGE PER BOUNCE')*i)*(u.summoned?2:1));c.status(u,'stun',v(c,'STUN DURATION'),0,{harmful:true,dispel:'strong'});if"
-        },
-        {
-          "key": "main_upgrades_advanced.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:20；u.summoned?2:1"
-        },
-        {
-          "key": "main_upgrades_advanced.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:20；u.summoned?2:1"
-        },
-        {
-          "key": "main_upgrades_advanced.delay.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "FIRST PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "首次弹药弹道飞行速度",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:20；c.delay(.25,()=>bounce(others[0],i+1))"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BOUNCE PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "后续弹药弹道飞行速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "下一目标搜索半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BOUNCE DELAY",
+          "unit": "ms",
+          "meaning": "命中后下一跳发射延迟",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "CREEP DAMAGE PERCENT",
+          "unit": "%",
+          "meaning": "普通非英雄单位承受伤害比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "MALEDICT LEVEL",
+          "unit": "等级",
+          "meaning": "Gaben诅咒的真实原生等级候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         }
       ]
     },
@@ -15353,34 +15342,34 @@
           "key": "NUMBER OF ILLUSIONS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "NUMBER OF ILLUSIONS",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "幻象数量",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "PHANTASM DAMAGE TAKEN",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "PHANTASM 承伤",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "幻象承受伤害的比例",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "PHANTASM DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "PHANTASM 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "幻象造成伤害的比例",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "PHANTASM DURATION",
@@ -15390,52 +15379,41 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "PHANTASM 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.visualform_duration.1",
-          "kind": "program",
+          "key": "SPLIT TIME",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "幻象分裂隐藏时长",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 VISUALFORM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:525；c.status(c.caster, 'visualForm', .55, 0, { dispel: 'none', data: { form: 'phantasm', hidden: true } })"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.lifetime.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "FORMATION DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "自身幻象十字阵型相邻距离",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:526；superLevel(c) ? 120 : v(c, 'PHANTASM DURATION')"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.damagetaken.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "ALLY FORMATION DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "盟友幻象相邻距离",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "承伤倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:526；damageTaken: 3.25"
-        },
-        {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:527；c.delay(.5, () => { if (c.caster.dead) return; releaseTravel(c, c.caster); make(c.caster, v(c, 'NUMBER OF ILLUSIONS') + (superLevel(c) ? 1 : 0)); if (gabenLevel(c)) for (const ally"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15451,26 +15429,15 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DURATION",
@@ -15479,53 +15446,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "LIFESTEAL",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "吸血",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "main_upgrades_remaining.attackspeed_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GABEN RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "G胖窒息之刃索敌半径",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:17；v(c,'DURATION')+3"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "main_upgrades_remaining.lifesteal_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "LANDING DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "幻影突袭落点距目标间隔（工程候选）",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 吸血 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:17；v(c,'DURATION')+3"
-        },
-        {
-          "key": "main_upgrades_remaining.lifesteal_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 吸血 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:17；p(v(c,'LIFESTEAL'))+.25"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15547,9 +15503,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "BONUS ATTACK RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "相位转移额外攻击搜索距离",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "GABEN ATTACK INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "G胖相位攻击间隔",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "MELEE RANGE BUFFER",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "相位近战额外攻击命中容差",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15568,12 +15557,12 @@
           "key": "BONUS ATTACK DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "加成 攻击 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DURATION",
@@ -15582,9 +15571,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "TRANSFORM DURATION",
@@ -15594,52 +15583,63 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "TRANSFORM 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:878；buff(c, c.caster, 'physicalImmune', 1, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:878；buff(c, c.caster, 'attackMagical', 1, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:880；buff(c, c.caster, 'range', 2, seconds)"
-        },
-        {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "SUPER ATTACK RANGE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "超级越界增加攻击距离",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1167；c.attack(target, 1, true)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "GUNSLINGER CHANCE",
+          "kind": "value",
+          "unit": "%",
+          "meaning": "神枪在手触发概率",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "GUNSLINGER BONUS RANGE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "神枪在手搜索半径超出攻击距离的部分",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "GUNSLINGER MELEE BUFFER",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "神枪在手近战额外攻击命中容差",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "MODEL SCALE",
+          "kind": "value",
+          "unit": "倍率",
+          "meaning": "越界模型尺寸倍率（不改碰撞）",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15661,196 +15661,75 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "WARD COUNT",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "WARD 数量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "WARD DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "WARD 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "WARD HP",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "WARD HP",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "守卫最大生命值",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "ATTACK RANGE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "守卫攻击距离",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:263；range:6"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "BASE ATTACK TIME",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "守卫基础攻击间隔",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:263；interval:1.5"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "main_upgrades.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:69；S(c)?2:v(c,'WARD COUNT')"
-        },
-        {
-          "key": "main_upgrades.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:69；S(c)?2.5:1"
-        },
-        {
-          "key": "main_upgrades.hp.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:69；S(c)?2.5:1"
-        },
-        {
-          "key": "main_upgrades.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:69；range:6"
-        },
-        {
-          "key": "main_upgrades.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "HEALTH REGEN",
+          "kind": "value",
+          "unit": "生命/秒",
+          "meaning": "守卫每秒生命恢复",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:69；interval:1.5"
-        },
-        {
-          "key": "main_upgrades_remaining.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:23；S(c)?2:v(c,'WARD COUNT')"
-        },
-        {
-          "key": "main_upgrades_remaining.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:23；S(c)?2.5:1"
-        },
-        {
-          "key": "main_upgrades_remaining.hp.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:23；S(c)?2.5:1"
-        },
-        {
-          "key": "main_upgrades_remaining.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:23；range:6"
-        },
-        {
-          "key": "main_upgrades_remaining.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:23；interval:1.5"
-        },
-        {
-          "key": "main_engine_gaps.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-engine-gaps.ts:9；interval:1.4"
-        },
-        {
-          "key": "main_engine_gaps.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-engine-gaps.ts:9；range:6"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15869,34 +15748,34 @@
           "key": "DAMAGE MAX",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 最大",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最大伤害",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DAMAGE MIN",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 最小",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最小伤害",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "SLOW DURATION",
@@ -15905,31 +15784,86 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "减速持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "SLOW MAX",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%/百分比点",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 最大",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最大移动减速",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "SLOW MIN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%/百分比点",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 最小",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最小移动减速",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "WAVE SPEED",
+          "kind": "value",
+          "unit": "Dota单位/秒",
+          "meaning": "波环径向扩张和收缩速度",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "START OFFSET",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "伤害环起始半径偏移",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "DAMAGE WIDTH",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "伤害环宽度",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "OUTWARD PUSH MAX FRACTION",
+          "kind": "value",
+          "unit": "%",
+          "meaning": "Gaben外推最大半径比例",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "PUSH DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "Gaben连续外推时长（原AA未载明，工作候选）",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -15947,24 +15881,24 @@
         {
           "key": "ARMOR REDUCTION PER STACK",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "护甲点",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "护甲 降低 每 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层护甲降低",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DAMAGE PER SECOND",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层每秒伤害",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DURATION",
@@ -15974,85 +15908,63 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "MAGIC RESISTANCE PER STACK",
           "kind": "value",
-          "unit": "%",
-          "min": -1000000000,
+          "unit": "%/百分比点",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MAGIC 抗性 每 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层魔法抗性降低",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "MAX STACKS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "层",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最大毒素层数",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "MOVE SLOW PER STACK",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "MOVE 减速 每 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:223；buff(c, c.caster, 'range', 1.5, FOREVER, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:229；Math.min(.99, n * P(value(c, 'MOVE SLOW PER STACK')))"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:230；S(c) ? .1 : 0"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "unit": "%/百分比点",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:231；interval: 1"
+          "meaning": "每层移动减速",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "BONUS ATTACK RANGE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "被动攻击距离加成",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "毒素伤害间隔",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -16071,12 +15983,12 @@
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "攻击速度加成",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DURATION",
@@ -16086,30 +15998,41 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "HP REGEN",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "HP 恢复",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "main_upgrades.magicimmune_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:26；c.status(t,'magicImmune',2)"
+          "meaning": "每秒生命恢复",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "SUPER RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "Super目标周围半径",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
+        },
+        {
+          "key": "SPELL IMMUNITY DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "Gaben技能免疫持续时间",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -16127,46 +16050,46 @@
         {
           "key": "ATTACK SLOW",
           "kind": "value",
-          "unit": "数值",
+          "unit": "攻速点",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "咆哮沿途单位降低的固定攻击速度点数",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次伤害",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "MOVEMENT SLOW",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%/百分比点",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "次要目标移动速度降低",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "SHOUT WIDTH",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SHOUT 宽度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "战吼路径宽度",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "SLOW DURATION",
@@ -16175,9 +16098,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "减速持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "STUN DURATION",
@@ -16186,64 +16109,64 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "主目标及Gaben眩晕持续时间",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PUSH DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "次要目标侧推距离",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:722；superLevel(c) ? 1 : 0"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.haste_duration.1",
-          "kind": "program",
+          "key": "PUSH DURATION",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "连续推移持续时间",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 HASTE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:725；c.status(ally, 'haste', 3, .4)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.haste_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "OWNED MOVE SPEED RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "自有单位加速半径",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 HASTE AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:725；c.status(ally, 'haste', 3, .4)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "MOVE SPEED BONUS",
+          "kind": "value",
+          "unit": "%/百分比点",
+          "meaning": "自有单位移动速度加成",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:726；6 + (superLevel(c) ? 2 : 0)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects_more.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "MOVE SPEED DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "自有单位加速持续时间",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:726；superLevel(c) ? 2 : 0"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -16262,100 +16185,67 @@
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次伤害",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "MANA/SEC",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "法力/SEC",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每秒魔法消耗",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.pulsenova_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 PULSENOVA 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:209；c.status(c.caster,'pulseNova',30)"
+          "meaning": "作用半径",
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects.duration.1",
-          "kind": "program",
+          "key": "PULSE INTERVAL",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "伤害和耗蓝间隔，开启瞬间先伤害",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:209；duration:30"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "OFF COOLDOWN",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "关闭后固定冷却，不受百分比冷却缩减",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:209；interval:1"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         },
         {
-          "key": "main_upgrades_advanced.pulsenova_duration.1",
-          "kind": "program",
+          "key": "EDICT RENEW INTERVAL",
+          "kind": "value",
           "unit": "ms",
+          "meaning": "Super恶魔赦令重放间隔（AA未载明，工作候选）",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 PULSENOVA 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:40；c.status(c.caster,'pulseNova',120)"
-        },
-        {
-          "key": "main_upgrades_advanced.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:40；c.delay(1,pulse)"
-        },
-        {
-          "key": "main_upgrades_advanced.delay.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:40；c.delay(1,pulse)"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor；https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac；Public times seconds; parameter ranges raw Dota units divided by100 at runtime; all five rows final, no compiled S/G additions.；Root approved: Phantasm raw AA value labels reversed against explicit prose; normalize DAMAGE100/TAKEN325 and preserve source conflict.；LANDING DISTANCE80 prior working candidate; precise native body separation source_pending.；Gunslinger BONUS RANGE150 derived725-575 historical Muerta; body-independent nativeformula candidate.；Phase radius200 AA override historicalShard750; G repeat1sec AA custom.；Veil Model1.3 historical native, not collision.；C11固定历史Wiki/KV与AA有效完整档；公共范围唯一权威"
         }
       ]
     },
@@ -27498,92 +27388,70 @@
       ],
       "params": [
         {
-          "key": "ABILITYDURATION",
-          "kind": "value",
+          "key": "DURATION",
           "unit": "ms",
+          "meaning": "诅咒持续时间；刷新保留原伤害快照与跳相位",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "ABILITY持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "ABILITYDAMAGE",
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "诅咒每秒基础魔法伤害",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "ABILITY伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "RADIUS",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "BONUS_DAMAGE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "加成 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "BONUS_DAMAGE_THRESHOLD",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "加成 伤害 THRESHOLD",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "TICKS",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "TICKS",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "LINKEDSPECIALBONUSFIELD",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "LINKEDSPECIAL加成FIELD",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "historical_upgrades.maledict_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MALEDICT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:19；time+.01"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "LOST HEALTH DAMAGE",
+          "unit": "%",
+          "meaning": "相对首次施加生命快照的损失生命爆发比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "基础伤害完整结算间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "FIRST BURST DELAY",
+          "unit": "ms",
+          "meaning": "首次损失生命爆发延迟",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "BURST INTERVAL",
+          "unit": "ms",
+          "meaning": "后续损失生命爆发间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         }
       ]
     },
@@ -29507,17 +29375,6 @@
           "meaning": "攻击 FACTOR TOOLTIP",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "historical_upgrades.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:42；c.attack(t,1,true,n(c,'base_damage')+c.caster.attack*n(c,'attack_factor_tooltip')/100)"
         }
       ]
     },
@@ -31419,92 +31276,125 @@
       ],
       "params": [
         {
-          "key": "DAMAGE_PER_SECOND",
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "自然之握每秒魔法伤害",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害 每 秒",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "MOVEMENT_SLOW",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动 减速",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "VINES_DURATION",
-          "kind": "value",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "VINES 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "CREATION_INTERVAL",
+          "key": "MOVEMENT SLOW",
+          "unit": "%",
+          "meaning": "自然之握移速降低比例",
           "kind": "value",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "CREATION 间隔",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收；2023KV与现有max4的35优先保留；归档Wiki25/30/35/40冲突待证"
         },
         {
-          "key": "INITIAL_LATCH_DELAY",
-          "kind": "value",
+          "key": "DURATION",
           "unit": "ms",
+          "meaning": "每片藤蔓存在时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "INITIAL LATCH 延迟",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "VINE_SPAWN_INTERVAL",
-          "kind": "value",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "VINE SPAWN 间隔",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "LATCH_RANGE",
-          "kind": "value",
+          "key": "RADIUS",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "meaning": "每片藤蔓影响半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "LATCH 距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         },
         {
-          "key": "LATCH_VISION",
+          "key": "NODE SPACING",
+          "unit": "Dota单位",
+          "meaning": "相邻藤蔓中心间距",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "LATCH VISION",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "INITIAL DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "第一片藤蔓距冻结起点的距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "CREATION INTERVAL",
+          "unit": "ms",
+          "meaning": "逐片藤蔓生成间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "ACTIVATION DELAY",
+          "unit": "ms",
+          "meaning": "每片藤蔓生成后的生效延迟候选",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "藤蔓持续伤害完整跳间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "AURA LINGER",
+          "unit": "ms",
+          "meaning": "离开藤蔓后的效果残留时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
+        },
+        {
+          "key": "CREEP DAMAGE PERCENT",
+          "unit": "%",
+          "meaning": "普通非英雄单位持续伤害比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C11固定历史Wiki/KV与AA完整有效档",
+          "note": "https://www.abilityarena.com/data/abilities.json；2023固定Valve与英雄Wiki，AA锁定数值优先；版本/几何候选见overcharge-cask验收"
         }
       ]
     },
@@ -33465,7 +33355,8 @@
     "npc_dota_item_wraith_pact_totem",
     "npc_dota_zeus_cloud",
     "npc_dota_furion_treant_1",
-    "npc_dota_furion_treant_2"
+    "npc_dota_furion_treant_2",
+    "npc_dota_venomancer_plague_ward_1"
   ],
   "roles": [
     "archer",

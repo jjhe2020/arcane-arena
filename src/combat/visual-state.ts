@@ -65,6 +65,8 @@ export function visualProjectilePosition(visual: VisualProjectile, time: number)
 export interface VisualWorldEffect extends VisualPoint {
   id: string;
   source: string;
+  /** A following occurrence shares its body's interpolated display transform. */
+  followUnit?:string;
   skill: string;
   artSkill?: string;
   points: number;

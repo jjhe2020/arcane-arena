@@ -123,6 +123,15 @@
 - 最终配置下真实开发模块20个桌面/手机场景通过：Hook拉拽链、Mirror隐藏/成形、Kisses、Toxin飞弹/场域、Greater树人、Omni、Multishot和Spit实际乘客。只聚合持续伤害，普通命中保独立。截图已检查，实际引擎、观察夹具、固定账本及生产证据分开。汇总见`artifacts/r6-c10-validation.json`。首次并行构建/浏览器检查遇Windows文件占用，改为顺序执行后构建通过；大代码块提示仍在，未做真机性能终验。
 - 明确保留AA metadata与Wiki驱散冲突、Fragment与其它授予技能耦合、法力分配策略、AA多重射击分类/压缩时钟/扇形、共享光环资格、模型/继承边界及其余具名未闭合项。没有把496条开放项改写成通过；无r6发布tag或Release。
 
+2026-10-30第十一源码检查点（C11）实际通过：
+
+- `npm test`：84文件、2643项通过；`reference:verify`：48文件、2152项通过，最终来源/配置/代码指纹一致。170技能已开始、60未审；2378条技能要求中1815条具备来源及当前结果、563条未闭合；67条共用要求中11条未闭合。整项通过仍为7，新15项均partial。
+- 完成Overcharge/Overgrowth/Overload/Overpower/Cask、Phantasm/PhantomStrike/PhaseShift/Veil/Ward、PlasmaField/PoisonAttack/PressTheAttack/PrimalRoar/PulseNova三组及Grasp/Maledict/Dagger/Edict授予链。充能按真实施法信息获取，超负荷AA攻击减速1.2秒与历史移动减速0.8秒分开；Cask首发与后续弹跳分计。Dagger明确排除Tidebringer，原生Ward穿刺英雄/普通/强化倍率以2023最终表为据，未将原KV重甲罚值误当最终强化倍率。细节与边界见`docs/r6-c11-progress.md`及三个具名账本。
+- 新共用协议覆盖条件附伤独立分裂资格/攻击比例、明确瞬时攻击记录、创建前强幻象身份与AA复制点数上限、变身动作锁、保持其它动作的独立Off与固定冷却实例校验。30项窄协议与实际技能调用分别记证，未因此关闭普通暴击试验起点、全量继承、反射/地图等既有开放项。
+- `config:compile`、`config:check`和类型/生产构建通过。最终hash`b966e893e1934468983d5e38aee9c7d341333053753f8ac997581fd85608ee1c`：230主、84授予、20原生参考、1389档、2631参数、19单位、四职业。Grasp复用原4级从reference提升为granted；真实消费者QA修正占位元信息回流，删除8死别名。81旧字段清理、1389既有档全表白名单、12表旧样式/行高/冻结保留；Ward模板新3倍率列，其余18模板保持空白。证据见`artifacts/r6-c11-config-validation.json`。
+- 生产4183资源验证（2899图片引用/1330移动图集）、浏览器购买/费用/快照/暂停/恢复/布局、真实引擎统计、固定账本展示、UI完整性8例和旧档恢复均通过，共7份报告。新44个实际开发模块桌面/横屏场景通过；Grasp每真实节点绑定、Overload发射时弹体显示快照与消费后ready消失已修。实际引擎、开发观察、固定账本与生产证据分开。源配置、统计及代表截图已检查；大代码块提示与真机性能边界保留。
+- 汇总`artifacts/r6-c11-validation.json`，全仓报告`artifacts/r6-c11-unit-tests.json`。明确保留AA原始Lua/类别冲突、Off钩子/禁令政策、Edict续放、幻象完整继承、Ward确切自定义队形、药剂失效弹道及各具名组合缺口。未把563条开放项描述为通过；没有r6 tag或Release。
+
 后续变化后的实际状态以[逐项状态](skill-reference-status.md)、`public/data/reference-acceptance.json`和`artifacts/reference-acceptance-proof.json`为准。指纹过期时，分项结果不会沿用为当前通过。
 
 ## 发布边界

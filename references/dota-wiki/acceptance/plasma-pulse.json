@@ -1,0 +1,2776 @@
+{
+  "schemaVersion": 1,
+  "group": "plasma-pulse",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Third-party full HTML remains ignored locally; only source metadata,hashes,short independent paraphrases and selected officialAA/Valve data are committed. AA explicit numbers/custom clauses preserved; nonnumeric Wiki mechanisms take priority over metadata category conflicts. Current Wiki and later patch history are provenance,not a silent2023backport.",
+  "validation": {
+    "command": "npx vitest run tests/reference-plasma-pulse.test.ts",
+    "passedTests": 90,
+    "configurationHash": "b966e893e1934468983d5e38aee9c7d341333053753f8ac997581fd85608ee1c",
+    "typecheck": "npx tsc --noEmit",
+    "typecheckPassed": true,
+    "localReport": "output/c11-plasma-pulse/final-tests.json",
+    "renderCommand": "node scripts/c11-plasma-render-smoke.mjs",
+    "renderReport": "artifacts/r6-c11-plasma-render/report.json",
+    "renderScenarios": 10,
+    "meaning": "Final-registry true normal/child casts,ordinary attacks,finite controlled status/position probes,real Frostbite and BlackHole combinations and original-input replay. Pure render metadata adds no damage,RNG or timing. Parent separately runs full-suite/reference/build/production."
+  },
+  "preOverrideDiagnostic": {
+    "checkpoint": "C10 in-flight read-only capture before the final c6feb271b2e2aa6bdc576c5c6b10e40654756f32 checkpoint",
+    "configurationHash": "2117e86f214b2462b64b102c3125aece3215a1c89e55d088cf657c16f449f320",
+    "localPath": "output/c11-plasma-pulse/actual-diagnostics.json",
+    "sha256": "cd7e4e71dc4b8c3f5e7583a2b7211adf69cd215b3a5d458219f25e52db8f11ea",
+    "observations": [
+      {
+        "name": "PF01 invisible target incorrectly included",
+        "hits": [
+          {
+            "time": 0.7333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 146.42857142857144,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.4,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 146.42857142857144,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PF02 two directional slows replace rather than independently stack",
+        "hits": [
+          {
+            "time": 0.9,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 165.71428571428572,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 165.71428571428572,
+            "damageType": "magical"
+          }
+        ],
+        "slowValue": 0.35
+      },
+      {
+        "name": "PF03 manual movement probe shows frozen origin instead of following caster",
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 69.28571428571428,
+            "damageType": "magical"
+          },
+          {
+            "time": 2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 69.28571428571428,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PF04 Gaben slow is forced to maximum though AA only says maximum damage",
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 215,
+            "damageType": "magical"
+          }
+        ],
+        "slowValue": 0.4,
+        "position": [
+          5.4,
+          0
+        ]
+      },
+      {
+        "name": "PA01 magic-converted ordinary attack applies Poison after primary damage",
+        "hits": [
+          {
+            "time": 0.06666666666666667,
+            "amount": 75,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PA02 Super leeches resistance from spell-immune targets despite applying no stack",
+        "sourceResistance": 0.24000000000000002
+      },
+      {
+        "name": "PA03 a ward receives Poison modifiers without native eligibility filtering",
+        "hits": 1
+      },
+      {
+        "name": "PTA01 full-health team consumes active immediately despite explicit below80AI clause"
+      },
+      {
+        "name": "PTA02 current lowest-HP selection differs from the closest eligible ally"
+      },
+      {
+        "name": "ROAR01 secondary spell-immune body receives native-forbidden damage and slows",
+        "hits": [
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 500,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 500,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "ROAR02 aligned secondary is shoved rather than only disabled in place",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "NOVA01 no activation damage and simultaneous first upkeep",
+        "early": [],
+        "manaAfterActivation": 9930.600000000002,
+        "manaAfterFirstSecond": 9868.300000000012,
+        "hits": [
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 180,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "NOVA02 Super Edict begins1.25seconds after Nova instead of immediate native activation"
+      },
+      {
+        "name": "NOVA03 Strong positive purge clears active marker despite native Death-only flag",
+        "hits": []
+      }
+    ],
+    "meaning": "Real engine diagnostic evidence under controlled position/status/body preconditions,not an independent native source. Full ignored output and red-tests retain details.",
+    "sourceHashes": {
+      "src/combat.ts": "b5875bff399e98879fbc812db7021aae709bd5c7e14196007939074bb0304042",
+      "src/skill-effects-more.ts": "7fca120b81f1c5dfa47fd632fff3319835a1a8e95740b0d7b16a8726995b6062",
+      "src/skill-effects-extra.ts": "428ce3879c1b091241db917417345482dcdacb9ab742312b6f6253a5408da2ee",
+      "src/combat/main-upgrades.ts": "bc3fe619e00cc0ebaae91b2b231d29b534b1a6123214776115bf456fa560da9e",
+      "src/combat/main-upgrades-advanced.ts": "d672356bb8fa4d5ed03b31ccdfbc05b0a3df36674e5eed7ffa3390b680e448bb"
+    },
+    "workingStateWarning": "The four old program files match c6feb271,while the shared combat.ts snapshot predates its final C10 changes. Per-file hashes identify the actual diagnostic state; no false exact-commit equivalence is claimed."
+  },
+  "skills": [
+    {
+      "id": "razor_plasma_field",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All finite base,explicit differences,Super/Gaben catalog clauses and upgrade keyword families were read. Qualified named policies and exact remaining results prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry; normal release helper alters only cloned public castPoint and locks recast. Separate public clocks/cancel/resource cases preserve actual compiled timing. Controlled flags/position probes are explicit and do not certify a full other-skill combination. Real Frostbite/BlackHole and original-input replay are separately named."
+      },
+      "catalogClauses": {
+        "base": "Releases a wave of energetic plasma that grows in power as it expands, but also zaps on contraction, slowing and dealing damage to enemy units caught in its path. Damage and slow increases with distance from Razor. The Plasma Field hits each unit twice, once each direction.",
+        "differences": "",
+        "super": "Super: Increases radius by 400 and damage min/max by 30.",
+        "gaben": "Gaben: Always deals maximum damage and pushes enemies outward up to 40% of the maximum distance when expanding.",
+        "values": [
+          "DAMAGE MAX: 80 / 115 / 185",
+          "DAMAGE MIN: 35 / 40 / 50",
+          "RADIUS: 700",
+          "SLOW DURATION: 1.5",
+          "SLOW MAX: 25% / 30% / 40%",
+          "SLOW MIN: 5%"
+        ],
+        "cooldowns": [
+          13,
+          12,
+          10
+        ],
+        "mana": [
+          125,
+          125,
+          125
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Official selected AA base,explicit differences,Super,Gaben,values,mana and cooldown arrays are locked; metadata categories alone do not prove custom nonnumeric behavior.",
+          "versionContext": "Selected230-row AA source,HTTP200 fresh on2026-10-30. Later official changes are provenance only."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned2023-02-10Valve behavior,immunity,dispel,animation and native Edict four-rank values corroborate direct historical Wiki.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder date20230216 is not source date,AA exact engine version unproven."
+        },
+        {
+          "id": "razor-2023",
+          "url": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "44acfa7f20e152ab28ad737af84843096a7c4253aebc00ec717d1cb90b813519",
+          "capture": "20230215191830",
+          "paraphrase": "Expanding and retracting caster-following annulus,636speed,105offset,100width,independent directional slows,no invisible hits,damage-before-slow and range scaling.",
+          "versionContext": "Direct historical2023-02-15Wiki capture; not a claim that AA used this exact patch.",
+          "accessMethod": "HTTP200 raw Wayback HTML; gzip decoded where required; metadata/hash only is committed."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PF-R01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-01 the wave excludes unrevealed invisibility but still affects a revealed invisible body",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-01 the wave excludes unrevealed invisibility but still affects a revealed invisible body"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-02 outward and inward slows have independent additive instances and independent expiry",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-02 outward and inward slows have independent additive instances and independent expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-03 the released ring follows its moving caster instead of hitting the old center",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-03 the released ring follows its moving caster instead of hitting the old center"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PF-04 Gaben maximum damage retains distance-scaled slow rather than maximum slow",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-04 Gaben maximum damage retains distance-scaled slow rather than maximum slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-VALUES rank1 uses final minimum35 maximum80 extension700 without duplicate upgrade arithmetic",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-VALUES rank1 uses final minimum35 maximum80 extension700 without duplicate upgrade arithmetic"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-VALUES rank2 uses final minimum40 maximum115 extension700 without duplicate upgrade arithmetic",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-VALUES rank2 uses final minimum40 maximum115 extension700 without duplicate upgrade arithmetic"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-VALUES rank3 uses final minimum50 maximum185 extension700 without duplicate upgrade arithmetic",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-VALUES rank3 uses final minimum50 maximum185 extension700 without duplicate upgrade arithmetic"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R08",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PF-VALUES rank6 uses final minimum80 maximum215 extension1100 without duplicate upgrade arithmetic",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-VALUES rank6 uses final minimum80 maximum215 extension1100 without duplicate upgrade arithmetic"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PF-VALUES rank9 uses final minimum80 maximum215 extension1100 without duplicate upgrade arithmetic",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-VALUES rank9 uses final minimum80 maximum215 extension1100 without duplicate upgrade arithmetic"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PF-05 Super1100 extension keeps636 speed and therefore takes more than3.4seconds for a complete sweep",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-05 Super1100 extension keeps636 speed and therefore takes more than3.4seconds for a complete sweep"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R11",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PF-06 each direction hits only once despite remaining within several collision frames",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-06 each direction hits only once despite remaining within several collision frames"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R12",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "PF-07 damage precedes each independent slow and basic purge removes both directional slows",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-07 damage precedes each independent slow and basic purge removes both directional slows"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "PF-08 magic immunity rejects damage and slow in both directions",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-08 magic immunity rejects damage and slow in both directions"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-R14",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PF-09 Gaben pushes through the continuous motion pipeline without creating a warp",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-09 Gaben pushes through the continuous motion pipeline without creating a warp"
+            }
+          ],
+          "status": "source_pending",
+          "resultStatus": "passed_working_policy",
+          "qualification": "Finite engine result passed; exact custom push/disabled-Off policy remains source pending,not whole-native certification."
+        },
+        {
+          "id": "PF-R15",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PF-10 public zero windup and zero recovery consume125mana and the AA cooldown",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PF-10 public zero windup and zero recovery consume125mana and the AA cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PF-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "The105offset/700or1100extension/100outer annulus is implemented with the shared body-radius and per-frame sweep. Exact native hull/width convention and teleport-center crossings need a directly resolved geometric source,not a guessed half-width.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PF-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA specifies outward push up to40percent of maximum extension,not its time or distance function. Full40percent over editable.3seconds is retained working policy; native terrain/Arena and unit-collision termination are not certified by the free-space movement result.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PF-P03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "After caster death the released damage timer currently continues at the corpse,while expiresWithSource retains old immediate visual hiding. No direct read source establishes either death boundary for this AA effect; these separate working policies are not claimed consistent native proof.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PF-P04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Historical flying vision,fog/trailing vision and tree/world occlusion have no current arena environment model.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PF-P01",
+          "status": "source_pending",
+          "description": "The105offset/700or1100extension/100outer annulus is implemented with the shared body-radius and per-frame sweep. Exact native hull/width convention and teleport-center crossings need a directly resolved geometric source,not a guessed half-width."
+        },
+        {
+          "id": "PF-P02",
+          "status": "source_pending",
+          "description": "AA specifies outward push up to40percent of maximum extension,not its time or distance function. Full40percent over editable.3seconds is retained working policy; native terrain/Arena and unit-collision termination are not certified by the free-space movement result."
+        },
+        {
+          "id": "PF-P03",
+          "status": "source_pending",
+          "description": "After caster death the released damage timer currently continues at the corpse,while expiresWithSource retains old immediate visual hiding. No direct read source establishes either death boundary for this AA effect; these separate working policies are not claimed consistent native proof."
+        },
+        {
+          "id": "PF-P04",
+          "status": "out_of_scope",
+          "description": "Historical flying vision,fog/trailing vision and tree/world occlusion have no current arena environment model."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Native Razor damage_min/damage_max special_bonus_unique_razor_4+30 supplies the same talent family; AA additionally specifies+400radius and final80/215/1100.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "razor-2023"
+          ],
+          "status": "aa_explicit_native_family"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Always maximum damage and outward up-to40percent push are explicit AA clauses; no native original was identified in the read Razor talents/Scepter/Shard. Duration/trajectory remains separately pending.",
+          "sourceIds": [
+            "aa",
+            "razor-2023"
+          ],
+          "status": "aa_custom_with_qualified_execution"
+        }
+      ]
+    },
+    {
+      "id": "custom_viper_poison_attack",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All finite base,explicit differences,Super/Gaben catalog clauses and upgrade keyword families were read. Qualified named policies and exact remaining results prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry; normal release helper alters only cloned public castPoint and locks recast. Separate public clocks/cancel/resource cases preserve actual compiled timing. Controlled flags/position probes are explicit and do not certify a full other-skill combination. Real Frostbite/BlackHole and original-input replay are separately named."
+      },
+      "catalogClauses": {
+        "base": "The hero adds an intense venomous effect to their normal attack that applies a stacking movement speed slow and magic resistance deduction while dealing damage over time. Stacks up to 5 times.",
+        "differences": "Has no mana cost, and more magic resist reduction.",
+        "super": "Super: Whenever the hero adds a stack of Poison Attack, the magic resistance is leeched from the enemy, giving the hero a stacking magic resistance buff that stacks infinitely. +10% magic resistance reduction per stack. Passively grants +150 attack range.",
+        "gaben": "Gaben: +3 max debuff stacks, Poison Attack now also reduces target's armor by 1 per stack.",
+        "values": [
+          "ARMOR REDUCTION PER STACK: 0",
+          "DAMAGE PER SECOND: 4 / 8 / 16",
+          "DURATION: 4",
+          "MAGIC RESISTANCE PER STACK: 5% / 8% / 14%",
+          "MAX STACKS: 5",
+          "MOVE SLOW PER STACK: 3% / 6% / 12%"
+        ],
+        "cooldowns": [],
+        "mana": [
+          0,
+          0,
+          0
+        ],
+        "categories": [
+          "ABILITY: Auto-Cast",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Official selected AA base,explicit differences,Super,Gaben,values,mana and cooldown arrays are locked; metadata categories alone do not prove custom nonnumeric behavior.",
+          "versionContext": "Selected230-row AA source,HTTP200 fresh on2026-10-30. Later official changes are provenance only."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned2023-02-10Valve behavior,immunity,dispel,animation and native Edict four-rank values corroborate direct historical Wiki.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder date20230216 is not source date,AA exact engine version unproven."
+        },
+        {
+          "id": "viper-2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "8ae178621101ed1befedb41a7066f9a04efcccb90d790d7ac04414b99a9cadd2",
+          "paraphrase": "A successful attack places poison before its main packet,one refreshed stack,one-second ticks,ward/allied exclusion,additive own MR and multiplicative other providers. NativeShard details explain AA8stack/armor family without importing unlisted building effect.",
+          "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+        },
+        {
+          "id": "items-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+          "paraphrase": "Both carry150ranged attack-range-family coefficients. AA explicitly grants passive150attack range but does not identify either item or adopt their ranged-only restriction; family resemblance is provenance,not an identity claim.",
+          "versionContext": "Same pinned2023-02-10source. Item-family resemblance is not AA qualification proof."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PA-R01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "PA-01 poison resistance deduction precedes the first magic-converted ordinary main attack",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-01 poison resistance deduction precedes the first magic-converted ordinary main attack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R02",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "PA-02 Super cannot steal resistance when immunity prevents application of any poison stack",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-02 Super cannot steal resistance when immunity prevents application of any poison stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-03 wards receive a main attack without Poison Attack modifiers",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-03 wards receive a main attack without Poison Attack modifiers"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-VALUES rank1 uses DPS4 MR5 cap5 armor0 from final editable fields",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-VALUES rank1 uses DPS4 MR5 cap5 armor0 from final editable fields"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-VALUES rank2 uses DPS8 MR8 cap5 armor0 from final editable fields",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-VALUES rank2 uses DPS8 MR8 cap5 armor0 from final editable fields"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-VALUES rank3 uses DPS16 MR14 cap5 armor0 from final editable fields",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-VALUES rank3 uses DPS16 MR14 cap5 armor0 from final editable fields"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PA-VALUES rank6 uses DPS16 MR24 cap5 armor0 from final editable fields",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-VALUES rank6 uses DPS16 MR24 cap5 armor0 from final editable fields"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PA-VALUES rank9 uses DPS16 MR24 cap8 armor1 from final editable fields",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-VALUES rank9 uses DPS16 MR24 cap8 armor1 from final editable fields"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PA-04 the first damage tick waits one second and successive attacks preserve its existing timer",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-04 the first damage tick waits one second and successive attacks preserve its existing timer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R10",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-05 successive hits refresh the duration of the whole stack rather than expiring an old stack separately",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-05 successive hits refresh the duration of the whole stack rather than expiring an old stack separately"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "PA-06 basic dispel removes every poison component and stops future damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-06 basic dispel removes every poison component and stops future damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PA-07 Gaben armor reduction precedes its own main physical attack",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-07 Gaben armor reduction precedes its own main physical attack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-08 independent magic resistance sources multiply after Poison adds its own stack coefficients",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-08 independent magic resistance sources multiply after Poison adds its own stack coefficients"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R14",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PA-09 a missed ordinary attack never applies poison or grants Super resistance",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-09 a missed ordinary attack never applies poison or grants Super resistance"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R15",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-10 active zero-cost orb works under Break while the infinite-leech policy is kept explicit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-10 active zero-cost orb works under Break while the infinite-leech policy is kept explicit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R16",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PA-11 Super150 passive attack range is final once and ignores cast-range bonuses",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-11 Super150 passive attack range is final once and ignores cast-range bonuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-R17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PA-12 released DOT damage retains its source instance after that source dies",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PA-12 released DOT damage retains its source instance after that source dies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PA-P01",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Original AA Lua was not recovered: leech uses nominal per-stack MR coefficient,not measured enemy resistance loss; at-cap refresh currently still grants the coefficient. The no-stack-immunity exclusion is independently verified and does not prove these coefficient policies.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PA-P02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Infinite leech currently persists without a timed expiry but is basic-purgeable and removed on death. Source passive range/leech break qualification and global95percent MR clamp need original custom evidence; infinite stacking is not claimed infinite effective resistance.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PA-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "The selected AA zero-mana automatic attack modifier and native active-orb family do not settle every illusion/heroClone/inherited-mode eligibility. Exact per-body results remain bounded.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PA-P04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Poison components are aligned to the marker status-resistance-adjusted expiry; the existing full/partial DOT clock policy under status resistance is not a direct native duration-versus-total-damage proof.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PA-P05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "The native Shard also affects buildings at40percent damage,but AA explicitly names only+3max and armor1,without granting the whole Shard. Building exclusion is retained and its custom qualification is unresolved,not silently imported.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PA-P07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "The code grants cumulative positive nominal resistance on successful applications,but this C11 suite has no separately asserted positive-source-counter outcome; its named leech result proves only no empty theft against immunity. Original coefficient/cap/lifecycle policies remain separately pending.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "result_missing"
+        },
+        {
+          "id": "PA-P06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Successful ordinary hits/misses are exercised; a named actual TimeLock full-modifier versus SpecialistArray none caller matrix for this poison provider has not been added in this group. Shared protocol existence is not an individual combination result.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "testEvidence": [],
+          "status": "result_missing"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PA-P01",
+          "status": "source_pending",
+          "description": "Original AA Lua was not recovered: leech uses nominal per-stack MR coefficient,not measured enemy resistance loss; at-cap refresh currently still grants the coefficient. The no-stack-immunity exclusion is independently verified and does not prove these coefficient policies."
+        },
+        {
+          "id": "PA-P02",
+          "status": "source_pending",
+          "description": "Infinite leech currently persists without a timed expiry but is basic-purgeable and removed on death. Source passive range/leech break qualification and global95percent MR clamp need original custom evidence; infinite stacking is not claimed infinite effective resistance."
+        },
+        {
+          "id": "PA-P03",
+          "status": "source_pending",
+          "description": "The selected AA zero-mana automatic attack modifier and native active-orb family do not settle every illusion/heroClone/inherited-mode eligibility. Exact per-body results remain bounded."
+        },
+        {
+          "id": "PA-P04",
+          "status": "source_pending",
+          "description": "Poison components are aligned to the marker status-resistance-adjusted expiry; the existing full/partial DOT clock policy under status resistance is not a direct native duration-versus-total-damage proof."
+        },
+        {
+          "id": "PA-P05",
+          "status": "source_pending",
+          "description": "The native Shard also affects buildings at40percent damage,but AA explicitly names only+3max and armor1,without granting the whole Shard. Building exclusion is retained and its custom qualification is unresolved,not silently imported."
+        },
+        {
+          "id": "PA-P07",
+          "status": "result_missing",
+          "description": "The code grants cumulative positive nominal resistance on successful applications,but this C11 suite has no separately asserted positive-source-counter outcome; its named leech result proves only no empty theft against immunity. Original coefficient/cap/lifecycle policies remain separately pending."
+        },
+        {
+          "id": "PA-P06",
+          "status": "result_missing",
+          "description": "Successful ordinary hits/misses are exercised; a named actual TimeLock full-modifier versus SpecialistArray none caller matrix for this poison provider has not been added in this group. Shared protocol existence is not an individual combination result."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Native Poison MR talent adds5 whereas AA explicitly adds10over stronger base14; infinite resistance leech is custom.150range resembles pinned DragonLance/Pike base_attack_range150 but AA does not adopt ranged-only item qualification.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023",
+            "items-2023"
+          ],
+          "status": "aa_explicit_custom_and_item_family_only"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Native Shard cap8and armor1match AA specific clauses; native40percent building component is not silently imported.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "viper-2023"
+          ],
+          "status": "aa_partial_shard_family"
+        }
+      ]
+    },
+    {
+      "id": "legion_commander_press_the_attack",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All finite base,explicit differences,Super/Gaben catalog clauses and upgrade keyword families were read. Qualified named policies and exact remaining results prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry; normal release helper alters only cloned public castPoint and locks recast. Separate public clocks/cancel/resource cases preserve actual compiled timing. Controlled flags/position probes are explicit and do not certify a full other-skill combination. Real Frostbite/BlackHole and original-input replay are separately named."
+      },
+      "catalogClauses": {
+        "base": "Removes debuffs and disables from the target friendly unit, and grants bonus attack speed and health regen for a short time.\n\nDISPEL TYPE: Strong Dispel",
+        "differences": "Reduced cooldown and increased health regeneration.\nAI: casts on closest ally that falls below 80% HP.",
+        "super": "Super: Also applies to all allies within a 400 unit radius from the target. The caster also gains the buff if not affected.",
+        "gaben": "Gaben: Also applies spell immunity for 2 seconds.",
+        "values": [
+          "BONUS ATTACK SPEED: 65 / 90 / 140",
+          "DURATION: 5",
+          "HP REGEN: 40 / 50 / 70"
+        ],
+        "cooldowns": [
+          11,
+          10,
+          8
+        ],
+        "mana": [
+          110
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Official selected AA base,explicit differences,Super,Gaben,values,mana and cooldown arrays are locked; metadata categories alone do not prove custom nonnumeric behavior.",
+          "versionContext": "Selected230-row AA source,HTTP200 fresh on2026-10-30. Later official changes are provenance only."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned2023-02-10Valve behavior,immunity,dispel,animation and native Edict four-rank values corroborate direct historical Wiki.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder date20230216 is not source date,AA exact engine version unproven."
+        },
+        {
+          "id": "legion-2023",
+          "url": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "b1c233ccaed16d92c9fd31d796d4b7654af32dbe5850f2794669dd3ef16f886a",
+          "paraphrase": "Press0.2+0.93; buff then strong purge then immunity; immunity does not itself apply another basic purge. Native talent aim type differs from AA unit-centered400area plus caster.",
+          "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+        },
+        {
+          "id": "legion-history",
+          "url": "https://liquipedia.net/dota2/July_15%2C_2020_Patch",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "7.27b raises the older Press AoE talent275to400. Earlier spell-immunity Shard family explains the keyword,not the AA2second value.",
+          "versionContext": "Historical upgrade provenance; selected2023page and AA numeric overrides retained."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PTA-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PTA-01 AA AI preserves mana and cooldown when every friendly is at least80percent HP",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-01 AA AI preserves mana and cooldown when every friendly is at least80percent HP"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-02 AA AI selects the nearest injured ally rather than the least healthy distant ally",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-02 AA AI selects the nearest injured ally rather than the least healthy distant ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-VALUES rank1 grants final65 attack speed and40 regeneration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-VALUES rank1 grants final65 attack speed and40 regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-VALUES rank2 grants final90 attack speed and50 regeneration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-VALUES rank2 grants final90 attack speed and50 regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-VALUES rank3 grants final140 attack speed and70 regeneration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-VALUES rank3 grants final140 attack speed and70 regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PTA-VALUES rank6 grants final140 attack speed and70 regeneration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-VALUES rank6 grants final140 attack speed and70 regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PTA-VALUES rank9 grants final140 attack speed and70 regeneration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-VALUES rank9 grants final140 attack speed and70 regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-03 the80percent eligibility boundary is exclusive",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-03 the80percent eligibility boundary is exclusive"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R09",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "PTA-04 actual buff events precede strong purge which precedes Gaben immunity",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-04 actual buff events precede strong purge which precedes Gaben immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PTA-05 Super target-centered400 area includes the distant caster and excludes an ally beyond the target radius",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-05 Super target-centered400 area includes the distant caster and excludes an ally beyond the target radius"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R11",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "PTA-06 Gaben immunity lasts exactly2seconds and survives positive strong purge while the ordinary buff does not",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-06 Gaben immunity lasts exactly2seconds and survives positive strong purge while the ordinary buff does not"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R12",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "PTA-07 a silenced caster cannot spend resources to save a disabled injured ally",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-07 a silenced caster cannot spend resources to save a disabled injured ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R13",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PTA-08 public0.2windup0.93recovery consume110mana and8second rank3cooldown",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-08 public0.2windup0.93recovery consume110mana and8second rank3cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "PTA-09 a real enemy Frostbite root is removed by the ally strong dispel and receives the attack-speed buff",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "PTA-09 a real enemy Frostbite root is removed by the ally strong dispel and receives the attack-speed buff"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-R15",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "C11-CANCEL legion_commander_press_the_attack a real stun before the public attack point cancels without mana or cooldown debit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "C11-CANCEL legion_commander_press_the_attack a real stun before the public attack point cancels without mana or cooldown debit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PTA-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA nearest friendly below80percent is proven; inclusion of the caster itself as nearest eligible friendly is the disclosed AI policy because the AA wording does not say other ally and original Lua is unrecovered.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PTA-P02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA unit-centered400area plus guaranteed caster differs from the native2023point-target250talent. Exact allied invulnerable/hidden area dispatch and double-cast provider refresh require individual direct AA evidence; no native point-target conversion is imported.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "PTA-P03",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Gaben immunity duration,none-dispel status and no-extra-immunity-purge order pass. A separate real enemy spell during that two-second immunity window is not a new named result in this group.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "legion-2023"
+          ],
+          "testEvidence": [],
+          "status": "result_missing"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PTA-P01",
+          "status": "source_pending",
+          "description": "AA nearest friendly below80percent is proven; inclusion of the caster itself as nearest eligible friendly is the disclosed AI policy because the AA wording does not say other ally and original Lua is unrecovered."
+        },
+        {
+          "id": "PTA-P02",
+          "status": "source_pending",
+          "description": "AA unit-centered400area plus guaranteed caster differs from the native2023point-target250talent. Exact allied invulnerable/hidden area dispatch and double-cast provider refresh require individual direct AA evidence; no native point-target conversion is imported."
+        },
+        {
+          "id": "PTA-P03",
+          "status": "result_missing",
+          "description": "Gaben immunity duration,none-dispel status and no-extra-immunity-purge order pass. A separate real enemy spell during that two-second immunity window is not a new named result in this group."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Older7.27b400AoE talent family corroborates AA radius; selected AA target-unit plus guaranteed caster overrides native2023point-target250 and later500Scepter forms.",
+          "sourceIds": [
+            "aa",
+            "legion-2023",
+            "legion-history"
+          ],
+          "status": "aa_explicit_composition"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Historical spell-immunity Shard/talent family is established; AA2seconds overrides old1.75or2023native1.5numbers without adding another immunity basic purge.",
+          "sourceIds": [
+            "aa",
+            "legion-2023",
+            "legion-history"
+          ],
+          "status": "aa_numeric_override_native_mechanism"
+        }
+      ]
+    },
+    {
+      "id": "beastmaster_primal_roar",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All finite base,explicit differences,Super/Gaben catalog clauses and upgrade keyword families were read. Qualified named policies and exact remaining results prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry; normal release helper alters only cloned public castPoint and locks recast. Separate public clocks/cancel/resource cases preserve actual compiled timing. Controlled flags/position probes are explicit and do not certify a full other-skill combination. Real Frostbite/BlackHole and original-input replay are separately named."
+      },
+      "catalogClauses": {
+        "base": "Beastmaster lets loose a deafening roar that stuns, and shoves open a path to its target. All units in the path of the roar are damaged, while units shoved aside by the roar have their movement and attack speed slowed. Additionally, Beastmaster and his units gain 40% movement speed for 3 seconds.",
+        "differences": "",
+        "super": "Super: -40s cooldown, +200 damage, +200 cast range, +1 stun duration.",
+        "gaben": "Gaben: Secondary targets are also stunned.",
+        "values": [
+          "ATTACK SLOW: -60",
+          "DAMAGE: 300 / 400 / 500",
+          "MOVEMENT SLOW: -60%",
+          "SHOUT WIDTH: 300",
+          "SLOW DURATION: 3 / 3.5 / 4",
+          "STUN DURATION: 2 / 3 / 4"
+        ],
+        "cooldowns": [
+          100,
+          80,
+          60
+        ],
+        "mana": [
+          150,
+          175,
+          200
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Cannot be dispelled"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Official selected AA base,explicit differences,Super,Gaben,values,mana and cooldown arrays are locked; metadata categories alone do not prove custom nonnumeric behavior.",
+          "versionContext": "Selected230-row AA source,HTTP200 fresh on2026-10-30. Later official changes are provenance only."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned2023-02-10Valve behavior,immunity,dispel,animation and native Edict four-rank values corroborate direct historical Wiki.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder date20230216 is not source date,AA exact engine version unproven."
+        },
+        {
+          "id": "beastmaster-2023",
+          "url": "https://web.archive.org/web/20230215191303id_/https://dota2.fandom.com/wiki/Beastmaster",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "d74eb6cc83afb3bb35e6282245d875c055f6dc1084f601631c22a7c485490d53",
+          "paraphrase": "Roar0.5+0.63,primary full immunity piercing/Strong stun before damage,secondary immunity exclusion/damage before debuffs,450/1second side push,aligned disable with no displacement and owned-unit haste. Adjacent courier statements conflict.",
+          "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+        },
+        {
+          "id": "beastmaster-history",
+          "url": "https://dota2.fandom.com/wiki/Beastmaster/Changelogs",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Older pre7.22Scepter range/CD improvement and7.29haste-duration changes identify families; they do not replace AA custom numbers.",
+          "versionContext": "Historical provenance only."
+        },
+        {
+          "id": "aa-later",
+          "url": "https://www.abilityarena.com/changelog",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Official laterMay2023changes Roar Gaben to Drums. This is a different version from the selected secondary-stun clause.",
+          "versionContext": "Explicitly not backported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ROAR-R01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ROAR-01 the primary pierces immunity while a secondary immune body takes no damage or control",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-01 the primary pierces immunity while a secondary immune body takes no damage or control"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-02 a perfectly collinear secondary is disabled for one second without side displacement",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-02 a perfectly collinear secondary is disabled for one second without side displacement"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROAR-VALUES rank1 deals final300 damage with2 primary stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-VALUES rank1 deals final300 damage with2 primary stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROAR-VALUES rank2 deals final400 damage with3 primary stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-VALUES rank2 deals final400 damage with3 primary stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROAR-VALUES rank3 deals final500 damage with4 primary stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-VALUES rank3 deals final500 damage with4 primary stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROAR-VALUES rank6 deals final700 damage with5 primary stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-VALUES rank6 deals final700 damage with5 primary stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ROAR-VALUES rank9 deals final700 damage with5 primary stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-VALUES rank9 deals final700 damage with5 primary stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R08",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-03 primary stun precedes damage and secondary damage precedes its push control",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-03 primary stun precedes damage and secondary damage precedes its push control"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROAR-04 a primary spell block prevents the complete roar including path effects and caster haste",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-04 a primary spell block prevents the complete roar including path effects and caster haste"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R10",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-05 secondary spell block is not consumed and does not prevent path damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-05 secondary spell block is not consumed and does not prevent path damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R11",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-06 a side target moves450continuously over1second and is made to face its push direction",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-06 a side target moves450continuously over1second and is made to face its push direction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ROAR-07 Gaben adds the full5second secondary stun without making that secondary spell-immune eligible",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-07 Gaben adds the full5second secondary stun without making that secondary spell-immune eligible"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ROAR-08 native primary stun needs a strong dispel despite AA CannotBeDispelled metadata",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-08 native primary stun needs a strong dispel despite AA CannotBeDispelled metadata"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R14",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-09 AA40percent3second haste affects caster and owned unit within900 but not another friendly hero",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-09 AA40percent3second haste affects caster and owned unit within900 but not another friendly hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R15",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROAR-10 dynamic path reaches a secondary body behind the primary and a secondary behind the caster",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-10 dynamic path reaches a secondary body behind the primary and a secondary behind the caster"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R16",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROAR-11 public0.5windup0.63recovery consume200mana60CD with final Super range8",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-11 public0.5windup0.63recovery consume200mana60CD with final Super range8"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R17",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ROAR-12 a real basic purge removes the native push modifier and immediately ends only that displacement",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-12 a real basic purge removes the native push modifier and immediately ends only that displacement"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R18",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "C11-CANCEL beastmaster_primal_roar a real stun before the public attack point cancels without mana or cooldown debit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "C11-CANCEL beastmaster_primal_roar a real stun before the public attack point cancels without mana or cooldown debit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-R19",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROAR-13 Super final800 cast range and20second cooldown accept a target at750 without another program range or cooldown bonus",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "ROAR-13 Super final800 cast range and20second cooldown accept a target at750 without another program range or cooldown bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROAR-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Historical fixed300width with distance/2endpoint extension is a bounded stadium candidate using shared body-radius. Exact capsule-width/radius and very-short-distance cap convention remains unresolved. Interior and behind-endpoint results do not certify every boundary.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROAR-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "The same direct historical page says both courier secondary knockback is excluded and included. Current arena courier/boss/tree behavior is not certified; Roshan knockback qualification needs a represented native boss body.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROAR-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Historical primary-target spell reflection has no general reflected-spell execution contract in this engine. Spell Block primary/secondary is tested,reflection is an actual shared-mechanism gap and is not relabelled source pending.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "mechanism_missing"
+        },
+        {
+          "id": "ROAR-P04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Native push status is Any and removes its matching controller on purge. Exact status-resistance scaling of the one-second controller versus travel distance and competing motion identities remains to be established.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROAR-P05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Free-space450over1second and no warp pass. Native impassable terrain,trees,Arena and unit-body collision policies are not inferred from that free-space result; shared motion may truncate the path.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROAR-P06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA CannotBeDispelled category conflicts with direct historical Strong primary stun and Valve YES_STRONG. Per nonnumeric Wiki priority,Strong is implemented; original AA runtime qualification remains unrecovered and is not called a confirmed custom override.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "beastmaster-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "ROAR-P01",
+          "status": "source_pending",
+          "description": "Historical fixed300width with distance/2endpoint extension is a bounded stadium candidate using shared body-radius. Exact capsule-width/radius and very-short-distance cap convention remains unresolved. Interior and behind-endpoint results do not certify every boundary."
+        },
+        {
+          "id": "ROAR-P02",
+          "status": "source_pending",
+          "description": "The same direct historical page says both courier secondary knockback is excluded and included. Current arena courier/boss/tree behavior is not certified; Roshan knockback qualification needs a represented native boss body."
+        },
+        {
+          "id": "ROAR-P03",
+          "status": "mechanism_missing",
+          "description": "Historical primary-target spell reflection has no general reflected-spell execution contract in this engine. Spell Block primary/secondary is tested,reflection is an actual shared-mechanism gap and is not relabelled source pending."
+        },
+        {
+          "id": "ROAR-P04",
+          "status": "source_pending",
+          "description": "Native push status is Any and removes its matching controller on purge. Exact status-resistance scaling of the one-second controller versus travel distance and competing motion identities remains to be established."
+        },
+        {
+          "id": "ROAR-P05",
+          "status": "source_pending",
+          "description": "Free-space450over1second and no warp pass. Native impassable terrain,trees,Arena and unit-body collision policies are not inferred from that free-space result; shared motion may truncate the path."
+        },
+        {
+          "id": "ROAR-P06",
+          "status": "source_pending",
+          "description": "AA CannotBeDispelled category conflicts with direct historical Strong primary stun and Valve YES_STRONG. Per nonnumeric Wiki priority,Strong is implemented; original AA runtime qualification remains unrecovered and is not called a confirmed custom override."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Older Scepter cast-range/CD and later talents provide improvement families,not the locked AA-40CD,+200damage,+200range,+1stun. Final700damage,800range,5stun,20CD are unique authoritative fields.",
+          "sourceIds": [
+            "aa",
+            "beastmaster-2023",
+            "beastmaster-history"
+          ],
+          "status": "aa_explicit_numbers"
+        },
+        {
+          "branch": "gaben",
+          "rule": "AA explicitly stuns secondary targets; it does not state secondary immunity piercing. Later official May2023Drums Gaben is a different AA version and is not imported.",
+          "sourceIds": [
+            "aa",
+            "beastmaster-2023",
+            "aa-later"
+          ],
+          "status": "aa_explicit_custom"
+        }
+      ]
+    },
+    {
+      "id": "leshrac_pulse_nova",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All finite base,explicit differences,Super/Gaben catalog clauses and upgrade keyword families were read. Qualified named policies and exact remaining results prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry; normal release helper alters only cloned public castPoint and locks recast. Separate public clocks/cancel/resource cases preserve actual compiled timing. Controlled flags/position probes are explicit and do not certify a full other-skill combination. Real Frostbite/BlackHole and original-input replay are separately named."
+      },
+      "catalogClauses": {
+        "base": "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units. Drains Leshrac's mana with each pulse.",
+        "differences": "",
+        "super": "Super: Casts level 4 Diabolic Edict while active.",
+        "gaben": "Gaben: Diabolic Edict now hits everything in AOE.",
+        "values": [
+          "DAMAGE: 60 / 120 / 180",
+          "MANA/SEC: 25 / 45 / 65",
+          "RADIUS: 525"
+        ],
+        "cooldowns": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "mana": [
+          70
+        ],
+        "categories": [
+          "ABILITY: Toggle",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Official selected AA base,explicit differences,Super,Gaben,values,mana and cooldown arrays are locked; metadata categories alone do not prove custom nonnumeric behavior.",
+          "versionContext": "Selected230-row AA source,HTTP200 fresh on2026-10-30. Later official changes are provenance only."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned2023-02-10Valve behavior,immunity,dispel,animation and native Edict four-rank values corroborate direct historical Wiki.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder date20230216 is not source date,AA exact engine version unproven."
+        },
+        {
+          "id": "leshrac-2023",
+          "url": "https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "b816d894d140e6270f21eb13758b84d7a4e76913804f3d51a6d562ed8b1088e5",
+          "capture": "20230215191900",
+          "paraphrase": "Nova0+0,immediate damage and delayed1second upkeep,channel-safe On/Off,fixed resettable1second Off cooldown,Death-only modifier; Edict40 immediate0.25second pure explosions,random target,caster-following independent instances and corpse persistence.",
+          "versionContext": "Direct2023-02-15capture includes7.32/7.32d history distinguishing delayed upkeep and Off cooldown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "NOVA-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-01 activation immediately deals damage without charging the first one-second upkeep",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-01 activation immediately deals damage without charging the first one-second upkeep"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "NOVA-02 Super starts native level4 Edict and its first explosion at activation",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-02 Super starts native level4 Edict and its first explosion at activation"
+            }
+          ],
+          "status": "source_pending",
+          "resultStatus": "passed_working_policy",
+          "qualification": "Finite engine result passed; exact custom push/disabled-Off policy remains source pending,not whole-native certification."
+        },
+        {
+          "id": "NOVA-R03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "NOVA-03 a strong positive purge does not stop the native death-only toggle modifier",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-03 a strong positive purge does not stop the native death-only toggle modifier"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-VALUES rank1 deals60 activation damage and25 upkeep per second",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-VALUES rank1 deals60 activation damage and25 upkeep per second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R05",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-VALUES rank2 deals120 activation damage and45 upkeep per second",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-VALUES rank2 deals120 activation damage and45 upkeep per second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R06",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-VALUES rank3 deals180 activation damage and65 upkeep per second",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-VALUES rank3 deals180 activation damage and65 upkeep per second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "NOVA-VALUES rank6 deals180 activation damage and65 upkeep per second",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-VALUES rank6 deals180 activation damage and65 upkeep per second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "NOVA-VALUES rank9 deals180 activation damage and65 upkeep per second",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-VALUES rank9 deals180 activation damage and65 upkeep per second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-04 exact available upkeep pays once and insufficient next upkeep shuts down without an extra damage pulse",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-04 exact available upkeep pays once and insufficient next upkeep shuts down without an extra damage pulse"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R10",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-05 real manual Off spends zero mana and imposes a fixed1second cooldown despite50percent CDR",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-05 real manual Off spends zero mana and imposes a fixed1second cooldown despite50percent CDR"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R11",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "NOVA-06 an active toggle continues pulsing through silence and stun while a requested Off waits for hard disables to end",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-06 an active toggle continues pulsing through silence and stun while a requested Off waits for hard disables to end"
+            }
+          ],
+          "status": "source_pending",
+          "resultStatus": "passed_working_policy",
+          "qualification": "Finite engine result passed; exact custom push/disabled-Off policy remains source pending,not whole-native certification."
+        },
+        {
+          "id": "NOVA-R12",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "NOVA-07 invisible enemies take each pulse while immune and invulnerable bodies do not",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-07 invisible enemies take each pulse while immune and invulnerable bodies do not"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "NOVA-08 death stops Nova but the released native Edict continues at the corpse",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-08 death stops Nova but the released native Edict continues at the corpse"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R14",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "NOVA-09 Gaben Edict explosions copy full28pure damage to each target without damage splitting",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-09 Gaben Edict explosions copy full28pure damage to each target without damage splitting"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R15",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "NOVA-10 child pure damage is counted once beneath its Nova parent and keeps exact unit totals",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-10 child pure damage is counted once beneath its Nova parent and keeps exact unit totals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R16",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EDICT-01 native rank4 emits40explosions at0 through9.75seconds with no10second extra hit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-01 native rank4 emits40explosions at0 through9.75seconds with no10second extra hit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EDICT-VALUES native rank1 uses7 pure damage independently of AA point mapping",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-VALUES native rank1 uses7 pure damage independently of AA point mapping"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R18",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EDICT-VALUES native rank2 uses14 pure damage independently of AA point mapping",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-VALUES native rank2 uses14 pure damage independently of AA point mapping"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R19",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EDICT-VALUES native rank3 uses21 pure damage independently of AA point mapping",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-VALUES native rank3 uses21 pure damage independently of AA point mapping"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R20",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EDICT-VALUES native rank4 uses28 pure damage independently of AA point mapping",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-VALUES native rank4 uses28 pure damage independently of AA point mapping"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R21",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "EDICT-02 separate casts stack as independent clocks rather than refreshing one damage timer",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-02 separate casts stack as independent clocks rather than refreshing one damage timer"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R22",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "EDICT-03 native random explosions can target invisible buildings with full pure damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "EDICT-03 native random explosions can target invisible buildings with full pure damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R23",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "NOVA-11 original-input replay reconstructs finite toggle and child clocks with equal source statistics",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-11 original-input replay reconstructs finite toggle and child clocks with equal source statistics"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-R24",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "NOVA-12 toggling On and Off during a real Black Hole channel preserves the channel deadline and its affected control",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-plasma-pulse.test.ts",
+              "test": "NOVA-12 toggling On and Off during a real Black Hole channel preserves the channel deadline and its affected control"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "NOVA-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Historical fixed Off cooldown/channel continuity is implemented. Off cast event procsOnCast:false,omitted ArcaneCurse/LastSpell/onExecuted hooks and exact disabled/action-lock input gates are explicit shared engine policies lacking direct original-AA hook evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "NOVA-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "No-target AI requests Off when no eligible enemy remains and a real per-body toggle request can exercise Off. These policies do not claim a persisted manual-order UI or native AI command history.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "NOVA-P03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA says level4Edict while active but gives no renewal cadence. Immediate first child plus editable10second renewal is the disclosed working policy; it is not native Scepter Nihilism and does not create an active grant slot.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "NOVA-P04",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Released Edict corpse/independent-instance behavior is proven. Nova active toggle/Off lock when a stolen parent expires or loses its slot is not a directly established original-AA lifecycle rule.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "NOVA-P05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA StrongOnly category conflicts with the direct2023Death-only PulseNova modifier. Wiki nonnumeric priority implements none-dispel marker; original AA Lua qualification is unresolved.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "NOVA-P06",
+          "kind": "mechanism",
+          "branch": "super",
+          "rule": "Native empty-space Edict visual explosions and dedicated Edict explosion art are not delivered. Actual child packets use parent target_hit fallback; no unique Edict art or empty-space native visual is claimed.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "NOVA-P01",
+          "status": "source_pending",
+          "description": "Historical fixed Off cooldown/channel continuity is implemented. Off cast event procsOnCast:false,omitted ArcaneCurse/LastSpell/onExecuted hooks and exact disabled/action-lock input gates are explicit shared engine policies lacking direct original-AA hook evidence."
+        },
+        {
+          "id": "NOVA-P02",
+          "status": "source_pending",
+          "description": "No-target AI requests Off when no eligible enemy remains and a real per-body toggle request can exercise Off. These policies do not claim a persisted manual-order UI or native AI command history."
+        },
+        {
+          "id": "NOVA-P03",
+          "status": "source_pending",
+          "description": "AA says level4Edict while active but gives no renewal cadence. Immediate first child plus editable10second renewal is the disclosed working policy; it is not native Scepter Nihilism and does not create an active grant slot."
+        },
+        {
+          "id": "NOVA-P04",
+          "status": "source_pending",
+          "description": "Released Edict corpse/independent-instance behavior is proven. Nova active toggle/Off lock when a stolen parent expires or loses its slot is not a directly established original-AA lifecycle rule."
+        },
+        {
+          "id": "NOVA-P05",
+          "status": "source_pending",
+          "description": "AA StrongOnly category conflicts with the direct2023Death-only PulseNova modifier. Wiki nonnumeric priority implements none-dispel marker; original AA Lua qualification is unresolved."
+        },
+        {
+          "id": "NOVA-P06",
+          "status": "out_of_scope",
+          "description": "Native empty-space Edict visual explosions and dedicated Edict explosion art are not delivered. Actual child packets use parent target_hit fallback; no unique Edict art or empty-space native visual is claimed."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "AA grants effect-only native4DiabolicEdict while active. Native pure28,40explosions/10seconds/radius500 remain independently editable on the existing four-rank child. AA is not the2023Scepter Nihilism upgrade.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "leshrac-2023"
+          ],
+          "status": "aa_child_native_level4"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Each Edict explosion hits every eligible target at the full native4amount rather than dividing the packet. Exact10second renewal policy is separately pending.",
+          "sourceIds": [
+            "aa",
+            "leshrac-2023"
+          ],
+          "status": "aa_explicit_custom"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "skills": 5,
+    "namedActualResults": 90,
+    "requirements": 116,
+    "passedRequirements": 87,
+    "qualifiedGreenRequirements": 3,
+    "openRequirements": 29
+  }
+}

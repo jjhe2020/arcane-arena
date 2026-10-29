@@ -1,0 +1,1611 @@
+{
+  "schemaVersion": 1,
+  "group": "phantom-ward",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Captured AA explicit values/custom rules first; dated historical Wiki nonnumeric mechanics next. No automatic override from category tags; unknown AA native patch recorded separately.",
+  "validation": {
+    "command": "npx vitest run tests/reference-phantom-ward.test.ts tests/reference-attack-main-snapshot.test.ts --reporter=json --outputFile=output/c11-phantom-ward/combined-tests.json",
+    "configurationHash": "b966e893e1934468983d5e38aee9c7d341333053753f8ac997581fd85608ee1c",
+    "skillGroupTests": 55,
+    "passedTests": 55,
+    "combinedTests": 77,
+    "combinedPassedTests": 77,
+    "reportInput": "output/c11-phantom-ward/combined-tests.json",
+    "typecheck": "npx tsc --noEmit passed; parent owns whole-repository proof/build.",
+    "render": {
+      "script": "scripts/c11-phantom-render-smoke.mjs",
+      "report": "artifacts/r6-c11-phantom-render/report.json",
+      "status": "passed",
+      "scenarios": 16,
+      "configurationHash": "b966e893e1934468983d5e38aee9c7d341333053753f8ac997581fd85608ee1c",
+      "scope": "Actual desktop/mobile engine fixtures; not a claim of native source completeness."
+    }
+  },
+  "skills": [
+    {
+      "id": "custom_chaos_knight_phantasm",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben descriptions and all five effective balance rows reread locally; no claim of a new AA HTTP request or recovered Lua.",
+          "paraphrase": "Explicit AA balance and custom upgrades take priority over the dated native candidate.",
+          "versionContext": "Captured AA patch/Lua unavailable; category metadata alone does not prove custom engine behavior."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned2023-02-10 Valve KV supplies historical ability values, flags and talent links; the directory20230216 is not the source commit date.",
+          "paraphrase": "Native ability and summoned ward body identity are historical candidates, not proof of AA patch.",
+          "versionContext": "2023-02-10 native KV, before Muerta release; AA numerical overrides remain authoritative."
+        },
+        {
+          "id": "chaos-knight-2023",
+          "hero": "Chaos_Knight",
+          "url": "https://web.archive.org/web/20230215191324id_/https://dota2.fandom.com/wiki/Chaos_Knight",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5",
+          "observation": "Phantasm basic dispels/disjoints, splits hidden/invulnerable/spellimmune for.5, uses randomized cardinal formation, replaces old strong images. Scepter globally copies eligible allied heroes/clones, dispelling them without disjoint/order interruption.",
+          "paraphrase": "Phantasm basic dispels/disjoints, splits hidden/invulnerable/spellimmune for.5, uses randomized cardinal formation, replaces old strong images. Scepter globally copies eligible allied heroes/clones, dispelling them without disjoint/order interruption.",
+          "archiveTimestamp": "20230215191324",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki page read2026-10-30;7.32d-compatible historical candidate, not unknown AA Lua version."
+        },
+        {
+          "id": "illusions-2023",
+          "url": "https://web.archive.org/web/20230215191946id_/https://dota2.fandom.com/wiki/Illusions",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "0cdd765e2269ccefb1647fda36d69c1540cb9bdf4ef31c36532071915411d124",
+          "archiveTimestamp": "20230215191946",
+          "observation": "Creation-time illusion snapshots include health, mana and regeneration; base attack/armor/motion identities are copied, raw attack/MR/armor bonuses are excluded. Strong Phantasm images resist instant-illusion kills, including ManaDrain.",
+          "paraphrase": "Supports Phantasm resource snapshots and strong-image ManaDrain behavior; does not prove every AA inherited-modifier combination.",
+          "versionContext": "ActualHTTP2002023-02-15 historical Wiki, accessed2026-10-30; predates Muerta and cannot settle Gunslinger illusion eligibility."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PH-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all five AA ranks release at.4 with75cooldown and correct mana counts and lifetime",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-01 all five AA ranks release at.4 with75cooldown and correct mana counts and lifetime"
+            }
+          ]
+        },
+        {
+          "id": "PH-02",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "a cast dispels and disjoints while split is hidden invulnerable and spell immune",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-02 a cast dispels and disjoints while split is hidden invulnerable and spell immune"
+            }
+          ]
+        },
+        {
+          "id": "PH-03",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "split completion clears controls and produces one center plus cardinal reappearances",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-03 split completion clears controls and produces one center plus cardinal reappearances"
+            }
+          ]
+        },
+        {
+          "id": "PH-04",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "subsequent real casts replace the previous family without accumulating illusions",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-04 subsequent real casts replace the previous family without accumulating illusions"
+            }
+          ]
+        },
+        {
+          "id": "PH-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben dispels eligible allied heroes and copies them without interrupting their actions",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-05 Gaben dispels eligible allied heroes and copies them without interrupting their actions"
+            }
+          ]
+        },
+        {
+          "id": "PH-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "round-long Super images survive the base30second expiry",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-06 round-long Super images survive the base30second expiry"
+            }
+          ]
+        },
+        {
+          "id": "PH-07",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "explicit configuration retains100percent damage and325percent incoming physical damage",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-07 explicit configuration retains100percent damage and325percent incoming physical damage"
+            }
+          ]
+        },
+        {
+          "id": "PH-08",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "basic images expire naturally after30seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-08 basic images expire naturally after30seconds"
+            }
+          ]
+        },
+        {
+          "id": "PH-09",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "actual incoming Storm Bolt is disjointed during the half-second split",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-09 actual incoming Storm Bolt is disjointed during the half-second split"
+            }
+          ]
+        },
+        {
+          "id": "PH-10",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "creation snapshots current HP and mana and genuine Mana Drain cannot instantly kill a strong image",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023",
+            "illusions-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PH-10 creation snapshots current HP and mana and genuine Mana Drain cannot instantly kill a strong image"
+            }
+          ]
+        },
+        {
+          "id": "PH-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA all allies exact nonhero/clone scope",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "source_pending",
+          "detail": "AA says all allies, native Scepter says heroes/clones. Existing hero-body eligibility retained; AA-specific broader unit rule has no recovered Lua.",
+          "testEvidence": []
+        },
+        {
+          "id": "PH-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Remaining illusion modifier matrix",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "source_pending",
+          "detail": "HP/mana creation snapshots and strong-image ManaDrain are tested. Regeneration-derived bonuses, all passive inheritance exceptions and every on-created form pairing remain individually unproved.",
+          "testEvidence": []
+        },
+        {
+          "id": "PH-P03",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "mechanism": "Alternate native hull formation",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "source_pending",
+          "detail": "135/81 offsets implement hero24hull candidate. Four role bodies have no size8 body variant; ally random formation details retain working east offset.",
+          "testEvidence": []
+        },
+        {
+          "id": "PH-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Native fog, vision, minimap, bounty and player-issued command UI are outside the confirmed flat visible arena scope.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PH-P01",
+          "reason": "AA says all allies, native Scepter says heroes/clones. Existing hero-body eligibility retained; AA-specific broader unit rule has no recovered Lua."
+        },
+        {
+          "id": "PH-P02",
+          "reason": "HP/mana creation snapshots and strong-image ManaDrain are tested. Regeneration-derived bonuses, all passive inheritance exceptions and every on-created form pairing remain individually unproved."
+        },
+        {
+          "id": "PH-P03",
+          "reason": "135/81 offsets implement hero24hull candidate. Four role bodies have no size8 body variant; ally random formation details retain working east offset."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA +1/round-end custom; nativeScepter+1 prototype and duration talent do not prove exact permanent round behavior.",
+        "gaben": "Dated native Scepter global allied hero illusion prototype; exact AA all-allies scope pending."
+      }
+    },
+    {
+      "id": "phantom_assassin_phantom_strike",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben descriptions and all five effective balance rows reread locally; no claim of a new AA HTTP request or recovered Lua.",
+          "paraphrase": "Explicit AA balance and custom upgrades take priority over the dated native candidate.",
+          "versionContext": "Captured AA patch/Lua unavailable; category metadata alone does not prove custom engine behavior."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned2023-02-10 Valve KV supplies historical ability values, flags and talent links; the directory20230216 is not the source commit date.",
+          "paraphrase": "Native ability and summoned ward body identity are historical candidates, not proof of AA patch.",
+          "versionContext": "2023-02-10 native KV, before Muerta release; AA numerical overrides remain authoritative."
+        },
+        {
+          "id": "phantom-assassin-2023",
+          "hero": "Phantom_Assassin",
+          "url": "https://web.archive.org/web/20230215191832id_/https://dota2.fandom.com/wiki/Phantom_Assassin",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "287e6a8296f5e71f943fbd9e239447e7bc3fd416b0e9def0be72a5d03b0d4b84",
+          "observation": "PhantomStrike allies receive no buff, enemies grant AS/lifesteal; lands toward caster origin without disjoint and cancels enemy backswing. Dagger is impact blocked/disjointable1200speed, trueStrike disarm-ignoring total attack fraction plus65 before crit and LS.",
+          "paraphrase": "PhantomStrike allies receive no buff, enemies grant AS/lifesteal; lands toward caster origin without disjoint and cancels enemy backswing. Dagger is impact blocked/disjointable1200speed, trueStrike disarm-ignoring total attack fraction plus65 before crit and LS.",
+          "archiveTimestamp": "20230215191832",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki page read2026-10-30;7.32d-compatible historical candidate, not unknown AA Lua version."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PS-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks spend native resources and gain final enemy-only buff values",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-01 five AA ranks spend native resources and gain final enemy-only buff values"
+            }
+          ]
+        },
+        {
+          "id": "PS-02",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "backline AI blinks toward the original caster side of the farthest enemy",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "scope": "Result confirms adopted explicit work choices alongside proved native mechanics; see named unresolved policy. Does not certify omitted AA Lua scope.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-02 backline AI blinks toward the original caster side of the farthest enemy"
+            }
+          ]
+        },
+        {
+          "id": "PS-03",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "ally blink grants no enemy buff and retains.8backswing",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-03 ally blink grants no enemy buff and retains.8backswing"
+            }
+          ]
+        },
+        {
+          "id": "PS-04",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "spell block prevents the blink while consuming resources",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-04 spell block prevents the blink while consuming resources"
+            }
+          ]
+        },
+        {
+          "id": "PS-05",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "actual enemy attacks lifesteal and a basic dispel removes both temporary buffs",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-05 actual enemy attacks lifesteal and a basic dispel removes both temporary buffs"
+            }
+          ]
+        },
+        {
+          "id": "PS-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben releases one max native dagger at every visible eligible enemy after landing",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "scope": "Result confirms adopted explicit work choices alongside proved native mechanics; see named unresolved policy. Does not certify omitted AA Lua scope.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-06 Gaben releases one max native dagger at every visible eligible enemy after landing"
+            }
+          ]
+        },
+        {
+          "id": "PS-07",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "the actual native dagger includes flat attack bonuses before critical despite disarm and evasion",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-07 the actual native dagger includes flat attack bonuses before critical despite disarm and evasion"
+            }
+          ]
+        },
+        {
+          "id": "PS-08",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "native dagger spell block at impact cancels both attack and slow",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-08 native dagger spell block at impact cancels both attack and slow"
+            }
+          ]
+        },
+        {
+          "id": "PS-09",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "buff expiration removes speed and lifesteal on the final configured clock",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-09 buff expiration removes speed and lifesteal on the final configured clock"
+            }
+          ]
+        },
+        {
+          "id": "PS-10",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "magic immune enemies remain valid blink and physical dagger recipients without a slow",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-10 magic immune enemies remain valid blink and physical dagger recipients without a slow"
+            }
+          ]
+        },
+        {
+          "id": "PS-11",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "an actual granted dagger can be disjointed without its attack or slow",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-11 an actual granted dagger can be disjointed without its attack or slow"
+            }
+          ]
+        },
+        {
+          "id": "PS-12",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "native Dagger cannot use or spend actual Tidebringer and the following ordinary attack still cleaves",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-12 native Dagger cannot use or spend actual Tidebringer and the following ordinary attack still cleaves"
+            }
+          ]
+        },
+        {
+          "id": "PS-13",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "native Dagger cannot acquire a courier ward or building even through its free grant entry",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "phantom-assassin-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PS-13 native Dagger cannot acquire a courier ward or building even through its free grant entry"
+            }
+          ]
+        },
+        {
+          "id": "PS-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA Gaben dagger level and center",
+          "sourceIds": [
+            "aa",
+            "phantom-assassin-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Historical maxlevel4 and radius measured after landing are explicit existing work choices; AA text omits level and center.",
+          "testEvidence": []
+        },
+        {
+          "id": "PS-P02",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "mechanism": "Native exact blink separation and queued orders",
+          "sourceIds": [
+            "aa",
+            "phantom-assassin-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Landing80rawdistance preserves prior project value while correcting direction; native article only says adjacent. Full attack command queues are not modeled.",
+          "testEvidence": []
+        },
+        {
+          "id": "PS-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Native fog, vision, minimap, bounty and player-issued command UI are outside the confirmed flat visible arena scope.",
+          "sourceIds": [
+            "phantom-assassin-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PS-P01",
+          "reason": "Historical maxlevel4 and radius measured after landing are explicit existing work choices; AA text omits level and center."
+        },
+        {
+          "id": "PS-P02",
+          "reason": "Landing80rawdistance preserves prior project value while correcting direction; native article only says adjacent. Full attack command queues are not modeled."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA exact +3s/+25LS custom; native duration/lifesteal are weaker prototypes.",
+        "gaben": "AA every enemy1150dagger custom, granted native StiflingDagger mechanics audited at explicit maxlevel4candidate."
+      }
+    },
+    {
+      "id": "puck_phase_shift",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben descriptions and all five effective balance rows reread locally; no claim of a new AA HTTP request or recovered Lua.",
+          "paraphrase": "Explicit AA balance and custom upgrades take priority over the dated native candidate.",
+          "versionContext": "Captured AA patch/Lua unavailable; category metadata alone does not prove custom engine behavior."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned2023-02-10 Valve KV supplies historical ability values, flags and talent links; the directory20230216 is not the source commit date.",
+          "paraphrase": "Native ability and summoned ward body identity are historical candidates, not proof of AA patch.",
+          "versionContext": "2023-02-10 native KV, before Muerta release; AA numerical overrides remain authoritative."
+        },
+        {
+          "id": "puck-2023",
+          "hero": "Puck",
+          "url": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Puck",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "3a3baa6c88d1ed385c17fa53ac5f764ccb6d6ff1fe3fce230f2aac1a0ccdcc5c",
+          "observation": "PhaseShift hides and makes caster invulnerable without phasing, disjoints, and leaves a server-tick tail after completion/interruption. OldShard instant attacks ignore disarm, respect evasion, exclude wards/zombies and use melee350buffer. AA radius200 differs from native750.",
+          "paraphrase": "PhaseShift hides and makes caster invulnerable without phasing, disjoints, and leaves a server-tick tail after completion/interruption. OldShard instant attacks ignore disarm, respect evasion, exclude wards/zombies and use melee350buffer. AA radius200 differs from native750.",
+          "archiveTimestamp": "20230215191615",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki page read2026-10-30;7.32d-compatible historical candidate, not unknown AA Lua version."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PQ-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "all five AA ranks use zero point zero recovery and exact duration cooldown",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-01 all five AA ranks use zero point zero recovery and exact duration cooldown"
+            }
+          ]
+        },
+        {
+          "id": "PQ-02",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "an actual interrupt retains protection for one tick rather than the original3.25seconds",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-02 an actual interrupt retains protection for one tick rather than the original3.25seconds"
+            }
+          ]
+        },
+        {
+          "id": "PQ-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super instant attacks ignore disarm but respect evasion and exclude wards",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-03 Super instant attacks ignore disarm but respect evasion and exclude wards"
+            }
+          ]
+        },
+        {
+          "id": "PQ-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben repeats only at1 2and3seconds while its own channel is alive",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-04 Gaben repeats only at1 2and3seconds while its own channel is alive"
+            }
+          ]
+        },
+        {
+          "id": "PQ-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "interrupted Gaben cannot borrow another source of invulnerability to continue attacking",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-05 interrupted Gaben cannot borrow another source of invulnerability to continue attacking"
+            }
+          ]
+        },
+        {
+          "id": "PQ-06",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "extra attack range expands the AA attack search radius",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-06 extra attack range expands the AA attack search radius"
+            }
+          ]
+        },
+        {
+          "id": "PQ-07",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "a melee Super attack beyond native350buffer misses while a ranged body hits",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-07 a melee Super attack beyond native350buffer misses while a ranged body hits"
+            }
+          ]
+        },
+        {
+          "id": "PQ-08",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "a hidden channel body still physically obstructs another unit",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "puck-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PQ-08 a hidden channel body still physically obstructs another unit"
+            }
+          ]
+        },
+        {
+          "id": "PQ-P01",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Special item action cancellations",
+          "sourceIds": [
+            "aa",
+            "puck-2023"
+          ],
+          "status": "source_pending",
+          "detail": "No general item-action subsystem; exact PhaseShift exceptions to otherwise channel-preserving items/abilities are not claimed.",
+          "testEvidence": []
+        },
+        {
+          "id": "PQ-P02",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "mechanism": "Steal channel lifetime and auto-dodge",
+          "sourceIds": [
+            "aa",
+            "puck-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Historical losing stolen skill preserves channel; automated dodge uses existing arena health threshold and is not native human-input proof.",
+          "testEvidence": []
+        },
+        {
+          "id": "PQ-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Native fog, vision, minimap, bounty and player-issued command UI are outside the confirmed flat visible arena scope.",
+          "sourceIds": [
+            "puck-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PQ-P01",
+          "reason": "No general item-action subsystem; exact PhaseShift exceptions to otherwise channel-preserving items/abilities are not claimed."
+        },
+        {
+          "id": "PQ-P02",
+          "reason": "Historical losing stolen skill preserves channel; automated dodge uses existing arena health threshold and is not native human-input proof."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "Native PhaseShard immediate attacks, AA200distance supersedes native750.",
+        "gaben": "AA1sec repeat custom; DreamCoil rapid-fire is related native instant-attack prototype, not proof of this Phase upgrade."
+      }
+    },
+    {
+      "id": "muerta_pierce_the_veil",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben descriptions and all five effective balance rows reread locally; no claim of a new AA HTTP request or recovered Lua.",
+          "paraphrase": "Explicit AA balance and custom upgrades take priority over the dated native candidate.",
+          "versionContext": "Captured AA patch/Lua unavailable; category metadata alone does not prove custom engine behavior."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned2023-02-10 Valve KV supplies historical ability values, flags and talent links; the directory20230216 is not the source commit date.",
+          "paraphrase": "Native ability and summoned ward body identity are historical candidates, not proof of AA patch.",
+          "versionContext": "2023-02-10 native KV, before Muerta release; AA numerical overrides remain authoritative."
+        },
+        {
+          "id": "muerta-2023",
+          "url": "https://web.archive.org/web/20230315233726id_/https://dota2.fandom.com/wiki/Muerta",
+          "accessedOn": "2026-10-29",
+          "reusedOn": "2026-10-30",
+          "status": 200,
+          "sha256": "66c00da92023cd12943ea11d6ba0204738328d928ba9f5688d1d408ef0bb2f84",
+          "archiveTimestamp": "20230315233726",
+          "observation": "Reused retained HTTP200 page: zero-animation Veil dispels/disjoints, locks.35 transformation included in total duration, grants phased physical resistance and spell-like converted attacks, enlarges model30percent and copies form to illusions except flat bonus. Undispellable buff; Gunslinger at normal attack point uses PRD, ignores instant attacks, random hero-prioritized secondary noCleave.",
+          "paraphrase": "Historical7.32e Muerta conversion and Gunslinger rules; AA30/60/90 bonus and upgrades override native values.",
+          "versionContext": "Actual March15post-release2023Muerta page, reused local body without another fetch; absent from February pinned KV."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PV-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks use zero public animation with transform included in duration",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-01 five AA ranks use zero public animation with transform included in duration"
+            }
+          ]
+        },
+        {
+          "id": "PV-02",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "transformation basic dispels at release and the completed form survives strong dispel",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-02 transformation basic dispels at release and the completed form survives strong dispel"
+            }
+          ]
+        },
+        {
+          "id": "PV-03",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "transformed attacks use magical resistance spell amp and spell lifesteal without attack lifesteal",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-03 transformed attacks use magical resistance spell amp and spell lifesteal without attack lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "PV-04",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "actual physical damage is prevented but pure damage still hurts during form",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-04 actual physical damage is prevented but pure damage still hurts during form"
+            }
+          ]
+        },
+        {
+          "id": "PV-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "form and Super range expire on the original total-duration endpoint",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-05 form and Super range expire on the original total-duration endpoint"
+            }
+          ]
+        },
+        {
+          "id": "PV-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben instant attacks cannot recursively or independently trigger Gunslinger",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-06 Gaben instant attacks cannot recursively or independently trigger Gunslinger"
+            }
+          ]
+        },
+        {
+          "id": "PV-07",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "normal attack point triggers an instant secondary despite primary projectile disjoint",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-07 normal attack point triggers an instant secondary despite primary projectile disjoint"
+            }
+          ]
+        },
+        {
+          "id": "PV-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "normal Gunslinger excludes wards and prioritizes a hero over a closer ordinary summon",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-08 normal Gunslinger excludes wards and prioritizes a hero over a closer ordinary summon"
+            }
+          ]
+        },
+        {
+          "id": "PV-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Break prevents new Gunslinger procs while retaining the active cast form",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-09 Break prevents new Gunslinger procs while retaining the active cast form"
+            }
+          ]
+        },
+        {
+          "id": "PV-10",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "actual Disruption images inherit remaining ethereal conversion but never flat bonus damage",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-10 actual Disruption images inherit remaining ethereal conversion but never flat bonus damage"
+            }
+          ]
+        },
+        {
+          "id": "PV-11",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "action lock blocks new attacks and casts without making the transform interruptible",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-11 action lock blocks new attacks and casts without making the transform interruptible"
+            }
+          ]
+        },
+        {
+          "id": "PV-12",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "conversion cannot damage a magic immune unit and cannot start an attack on a building",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-12 conversion cannot damage a magic immune unit and cannot start an attack on a building"
+            }
+          ]
+        },
+        {
+          "id": "PV-13",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gunslinger does not cleave from a real Empower aura on a melee role body",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PV-13 Gunslinger does not cleave from a real Empower aura on a melee role body"
+            }
+          ]
+        },
+        {
+          "id": "PV-P01",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "mechanism": "AA dispel tag contradiction",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Historical form is undispellable; AA categoryStrongOnly is insufficient to prove engine override. BasicDispel prose refers to purge on cast.",
+          "testEvidence": []
+        },
+        {
+          "id": "PV-P02",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Gunslinger illusion source qualification",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Preserves existing illusion exclusion; source page does not independently settle original AA-granted illusion qualification.",
+          "testEvidence": []
+        },
+        {
+          "id": "PV-P03",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Cross-body Gunslinger radius",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Attack range+150 derives native725-575; arbitrary role body formula is a compatibility candidate, not recovered AA Lua.",
+          "testEvidence": []
+        },
+        {
+          "id": "PV-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Conversion inflight transitions and courier exceptions",
+          "sourceIds": [
+            "aa",
+            "muerta-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Converted attack impact/begin form changes and courier no-damage exception are not certified. No complete courier subsystem is built.",
+          "testEvidence": []
+        },
+        {
+          "id": "PV-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Native fog, vision, minimap, bounty and player-issued command UI are outside the confirmed flat visible arena scope.",
+          "sourceIds": [
+            "muerta-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PV-P01",
+          "reason": "Historical form is undispellable; AA categoryStrongOnly is insufficient to prove engine override. BasicDispel prose refers to purge on cast."
+        },
+        {
+          "id": "PV-P02",
+          "reason": "Preserves existing illusion exclusion; source page does not independently settle original AA-granted illusion qualification."
+        },
+        {
+          "id": "PV-P03",
+          "reason": "Attack range+150 derives native725-575; arbitrary role body formula is a compatibility candidate, not recovered AA Lua."
+        },
+        {
+          "id": "PV-P04",
+          "reason": "Converted attack impact/begin form changes and courier no-damage exception are not certified. No complete courier subsystem is built."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA+100damage/+200range custom; baseAA bonus reduced from Marchnative.",
+        "gaben": "Explicit nativeGunslinger grant; March2023 mechanics adopted with separately named source gaps."
+      }
+    },
+    {
+      "id": "custom_venomancer_plague_ward",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured English base/Super/Gaben descriptions and all five effective balance rows reread locally; no claim of a new AA HTTP request or recovered Lua.",
+          "paraphrase": "Explicit AA balance and custom upgrades take priority over the dated native candidate.",
+          "versionContext": "Captured AA patch/Lua unavailable; category metadata alone does not prove custom engine behavior."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned2023-02-10 Valve KV supplies historical ability values, flags and talent links; the directory20230216 is not the source commit date.",
+          "paraphrase": "Native ability and summoned ward body identity are historical candidates, not proof of AA patch.",
+          "versionContext": "2023-02-10 native KV, before Muerta release; AA numerical overrides remain authoritative."
+        },
+        {
+          "id": "venomancer-2023",
+          "hero": "Venomancer",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Venomancer",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "614a7d61d5bba8260b1d7a17c45b8b99cd4e0eb63d1499d929a43e1a4793260c",
+          "observation": "PlagueWard stationary ranged body attacks units/buildings and ignores damage block, has spellimmunity and native BAT1.4/range600/projectile1900. PoisonSting requires drafting the ability in AD; Ward S derives2.5HP/damage and minus1cooldown talent prototypes.",
+          "paraphrase": "PlagueWard stationary ranged body attacks units/buildings and ignores damage block, has spellimmunity and native BAT1.4/range600/projectile1900. PoisonSting requires drafting the ability in AD; Ward S derives2.5HP/damage and minus1cooldown talent prototypes.",
+          "archiveTimestamp": "20230215191945",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki page read2026-10-30;7.32d-compatible historical candidate, not unknown AA Lua version."
+        },
+        {
+          "id": "valve-units",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Ward1 native profile has ranged12–14attack, BAT1.4, point.3, projectile1900, range600, HP120, regen.25, movement0 and innate creep_piercing.",
+          "paraphrase": "Supplies native PlagueWard identity while AA overrides health, mean damage, duration and count.",
+          "versionContext": "Pinned2023-02-10 shipped native candidate; no floating master."
+        },
+        {
+          "id": "attack-class-2023",
+          "url": "https://web.archive.org/web/20230215192111id_/https://dota2.fandom.com/wiki/Attack_damage",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "43790bbd67d5f626436142f9e299f724e830b39091c2fc9449ce46b7a0f50127",
+          "archiveTimestamp": "20230215192111",
+          "observation": "Piercing table gives final hero.5, nonhero1.5 and reinforced.35 multipliers. Illusions/creepHeroes count as heroes; Roshan is a creep. Reinforced includes Siege and buildings, and piercing does not additionally multiply generic nonhero.7.",
+          "paraphrase": "Dated complete Piercing factors apply to the physical attack packet before victim mitigation. They do not alter separate spell packets.",
+          "versionContext": "ActualHTTP2002023-02-15 page, accessed2026-10-30; final.35 differs from the intermediate heavy-.5 field in native KV."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PW-01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "five AA ranks consume resources and create final HP damage count stationary ward profiles",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-01 five AA ranks consume resources and create final HP damage count stationary ward profiles"
+            }
+          ]
+        },
+        {
+          "id": "PW-02",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "point birth uses frozen enemy position without a teleport history entry",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-02 point birth uses frozen enemy position without a teleport history entry"
+            }
+          ]
+        },
+        {
+          "id": "PW-03",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "native ward attacks ignore physical damage block and have a real projectile",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-03 native ward attacks ignore physical damage block and have a real projectile"
+            }
+          ]
+        },
+        {
+          "id": "PW-04",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "magic immunity blocks an ordinary magical spell and lifetime expiry removes the ward",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-04 magic immunity blocks an ordinary magical spell and lifetime expiry removes the ward"
+            }
+          ]
+        },
+        {
+          "id": "PW-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben initializes only base AA passive ranks and never recursively casts copied spells",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "scope": "Result confirms adopted explicit work choices alongside proved native mechanics; see named unresolved policy. Does not certify omitted AA Lua scope.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-05 Gaben initializes only base AA passive ranks and never recursively casts copied spells"
+            }
+          ]
+        },
+        {
+          "id": "PW-06",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "ordinary ranks do not gain the casters critical passive",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-06 ordinary ranks do not gain the casters critical passive"
+            }
+          ]
+        },
+        {
+          "id": "PW-07",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "wards regenerate native health while alive and do not acquire an unlearned Poison Sting",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-07 wards regenerate native health while alive and do not acquire an unlearned Poison Sting"
+            }
+          ]
+        },
+        {
+          "id": "PW-08",
+          "kind": "combination",
+          "branch": "base-super-gaben",
+          "mechanism": "actual Kraken Shell cannot block the wards native physical attack",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-08 actual Kraken Shell cannot block the wards native physical attack"
+            }
+          ]
+        },
+        {
+          "id": "PW-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben wards really critical strike using the copied base passive without its Gaben Fan",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-09 Gaben wards really critical strike using the copied base passive without its Gaben Fan"
+            }
+          ]
+        },
+        {
+          "id": "PW-10",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "two wards use a declared body-radius birth separation centered on the frozen cursor without warp",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "scope": "No original AA formation is recovered. Initial births use body-radius separation with center at cursor, not a native-offset claim.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-10 two wards use a declared body-radius birth separation centered on the frozen cursor without warp"
+            }
+          ]
+        },
+        {
+          "id": "PW-11",
+          "kind": "mechanism",
+          "branch": "base-super-gaben",
+          "mechanism": "native Piercing deals20toheroes60tocreeps14toreinforced from the same40raw attack",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "venomancer-2023",
+            "valve-units",
+            "attack-class-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-phantom-ward.test.ts",
+              "test": "PW-11 native Piercing deals20toheroes60tocreeps14toreinforced from the same40raw attack"
+            }
+          ]
+        },
+        {
+          "id": "PW-P01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA exact base passive compatibility",
+          "sourceIds": [
+            "aa",
+            "venomancer-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Registered passive programs capped at AA rank3 implement working allowlist. Passive portions of active spells and exact exclusions require Lua or direct AA evidence.",
+          "testEvidence": []
+        },
+        {
+          "id": "PW-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "mechanism": "Remaining native ward exception matrix",
+          "sourceIds": [
+            "aa",
+            "venomancer-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Physical Piercing factors and real KrakenShell/Coup combinations are tested. Source-specific piercing-spell target exceptions and manually ordered targets remain outside tested profile.",
+          "testEvidence": []
+        },
+        {
+          "id": "PW-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Native fog, vision, minimap, bounty and player-issued command UI are outside the confirmed flat visible arena scope.",
+          "sourceIds": [
+            "venomancer-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "PW-P01",
+          "reason": "Registered passive programs capped at AA rank3 implement working allowlist. Passive portions of active spells and exact exclusions require Lua or direct AA evidence."
+        },
+        {
+          "id": "PW-P02",
+          "reason": "Physical Piercing factors and real KrakenShell/Coup combinations are tested. Source-specific piercing-spell target exceptions and manually ordered targets remain outside tested profile."
+        },
+        {
+          "id": "PW-10",
+          "reason": "Original AA dual-ward formation is unrecovered; tested birth separation uses existing project body radius, with no warp and no invented model-size change."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "Dated level25 2.5wardHP/damage and level15 minus1CD talent prototypes; AA2wards custom.",
+        "gaben": "AA base passive inheritance custom; no blanket nativeward modifier eligibility inferred."
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 155 项；完整逐项通过 7 项。
-当前代码下，1647 条具名结果测试要求通过，1647 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 170 项；完整逐项通过 7 项。
+当前代码下，1815 条具名结果测试要求通过，1815 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -152,21 +152,21 @@
 | 移形换位 (Nether Swap) | 审查中 | 3 / 1 / 1 / 2 / 6 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 幽冥剧毒 (Nethertoxin) | 审查中 | 3 / 3 / 2 / 2 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 无敌斩 (Omnislash) | 审查中 | 3 / 2 / 2 / 1 / 8 | 9 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
-| 过载 (Overcharge) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 疯狂生长 (Overgrowth) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 超负荷 (Overload) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 超强力量 (Overpower) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 麻痹药剂 (Paralyzing Cask) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 魅影之袭 (Phantasm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 幻影突袭 (Phantom Strike) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 相位转移 (Phase Shift) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 越界 (Pierce the Veil) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 瘟疫守卫 (Plague Ward) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 等离子场 (Plasma Field) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 毒性攻击 (Poison Attack) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 强攻 (Press The Attack) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 原始咆哮 (Primal Roar) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 脉冲新星 (Pulse Nova) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 过载 (Overcharge) | 审查中 | 1 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
+| 疯狂生长 (Overgrowth) | 审查中 | 2 / 1 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
+| 超负荷 (Overload) | 审查中 | 1 / 2 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
+| 超强力量 (Overpower) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
+| 麻痹药剂 (Paralyzing Cask) | 审查中 | 1 / 1 / 1 / 2 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
+| 魅影之袭 (Phantasm) | 审查中 | 4 / 1 / 1 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/phantom-ward.json) |
+| 幻影突袭 (Phantom Strike) | 审查中 | 3 / 1 / 0 / 0 / 7 | 2 | [审查记录](../references/dota-wiki/acceptance/phantom-ward.json) |
+| 相位转移 (Phase Shift) | 审查中 | 2 / 1 / 2 / 2 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/phantom-ward.json) |
+| 越界 (Pierce the Veil) | 审查中 | 2 / 1 / 1 / 4 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/phantom-ward.json) |
+| 瘟疫守卫 (Plague Ward) | 审查中 | 5 / 1 / 0 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/phantom-ward.json) |
+| 等离子场 (Plasma Field) | 审查中 | 7 / 1 / 2 / 2 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
+| 毒性攻击 (Poison Attack) | 审查中 | 8 / 1 / 3 / 2 / 3 | 7 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
+| 强攻 (Press The Attack) | 审查中 | 6 / 3 / 2 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
+| 原始咆哮 (Primal Roar) | 审查中 | 4 / 7 / 3 / 2 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
+| 脉冲新星 (Pulse Nova) | 审查中 | 7 / 9 / 1 / 2 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
 | 捶 (Pulverize) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 洗礼 (Purification) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 刺针扫射 (Quill Spray) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

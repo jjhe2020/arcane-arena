@@ -1,0 +1,713 @@
+{
+  "schemaVersion": 1,
+  "group": "plasma-pulse",
+  "accessedOn": "2026-10-30",
+  "officialAA": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "status": 200,
+    "accessedOn": "2026-10-30",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "totalRows": 230,
+    "selection": [
+      {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          13,
+          12,
+          10
+        ],
+        "description": "Releases a wave of energetic plasma that grows in power as it expands, but also zaps on contraction, slowing and dealing damage to enemy units caught in its path. Damage and slow increases with distance from Razor. The Plasma Field hits each unit twice, once each direction.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Always deals maximum damage and pushes enemies outward up to 40% of the maximum distance when expanding.",
+        "icon": "razor_plasma_field",
+        "id": "razor_plasma_field",
+        "manaCost": [
+          125,
+          125,
+          125
+        ],
+        "name": "Plasma Field",
+        "superUpgrade": "Super: Increases radius by 400 and damage min/max by 30.",
+        "tags": [
+          "displacement",
+          "magicDamage"
+        ],
+        "values": [
+          "DAMAGE MAX: 80 / 115 / 185",
+          "DAMAGE MIN: 35 / 40 / 50",
+          "RADIUS: 700",
+          "SLOW DURATION: 1.5",
+          "SLOW MAX: 25% / 30% / 40%",
+          "SLOW MIN: 5%"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Auto-Cast",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [],
+        "description": "The hero adds an intense venomous effect to their normal attack that applies a stacking movement speed slow and magic resistance deduction while dealing damage over time. Stacks up to 5 times.",
+        "differences": "Has no mana cost, and more magic resist reduction.",
+        "gabenUpgrade": "Gaben: +3 max debuff stacks, Poison Attack now also reduces target's armor by 1 per stack.",
+        "icon": "viper_poison_attack",
+        "id": "custom_viper_poison_attack",
+        "manaCost": [
+          0,
+          0,
+          0
+        ],
+        "name": "Poison Attack",
+        "superUpgrade": "Super: Whenever the hero adds a stack of Poison Attack, the magic resistance is leeched from the enemy, giving the hero a stacking magic resistance buff that stacks infinitely. +10% magic resistance reduction per stack. Passively grants +150 attack range.",
+        "tags": [
+          "attackModifier",
+          "attackRange",
+          "damageAmplification"
+        ],
+        "values": [
+          "ARMOR REDUCTION PER STACK: 0",
+          "DAMAGE PER SECOND: 4 / 8 / 16",
+          "DURATION: 4",
+          "MAGIC RESISTANCE PER STACK: 5% / 8% / 14%",
+          "MAX STACKS: 5",
+          "MOVE SLOW PER STACK: 3% / 6% / 12%"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          11,
+          10,
+          8
+        ],
+        "description": "Removes debuffs and disables from the target friendly unit, and grants bonus attack speed and health regen for a short time.\n\nDISPEL TYPE: Strong Dispel",
+        "differences": "Reduced cooldown and increased health regeneration.\nAI: casts on closest ally that falls below 80% HP.",
+        "gabenUpgrade": "Gaben: Also applies spell immunity for 2 seconds.",
+        "icon": "legion_commander_press_the_attack",
+        "id": "legion_commander_press_the_attack",
+        "manaCost": [
+          110
+        ],
+        "name": "Press The Attack",
+        "superUpgrade": "Super: Also applies to all allies within a 400 unit radius from the target. The caster also gains the buff if not affected.",
+        "tags": [
+          "attackSpeed",
+          "buff",
+          "dispel",
+          "healing",
+          "magicImmunity"
+        ],
+        "values": [
+          "BONUS ATTACK SPEED: 65 / 90 / 140",
+          "DURATION: 5",
+          "HP REGEN: 40 / 50 / 70"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Cannot be dispelled"
+        ],
+        "cooldowns": [
+          100,
+          80,
+          60
+        ],
+        "description": "Beastmaster lets loose a deafening roar that stuns, and shoves open a path to its target. All units in the path of the roar are damaged, while units shoved aside by the roar have their movement and attack speed slowed. Additionally, Beastmaster and his units gain 40% movement speed for 3 seconds.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Secondary targets are also stunned.",
+        "icon": "beastmaster_primal_roar",
+        "id": "beastmaster_primal_roar",
+        "manaCost": [
+          150,
+          175,
+          200
+        ],
+        "name": "Primal Roar",
+        "superUpgrade": "Super: -40s cooldown, +200 damage, +200 cast range, +1 stun duration.",
+        "tags": [
+          "ultimate"
+        ],
+        "values": [
+          "ATTACK SLOW: -60",
+          "DAMAGE: 300 / 400 / 500",
+          "MOVEMENT SLOW: -60%",
+          "SHOUT WIDTH: 300",
+          "SLOW DURATION: 3 / 3.5 / 4",
+          "STUN DURATION: 2 / 3 / 4"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Toggle",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "description": "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units. Drains Leshrac's mana with each pulse.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Diabolic Edict now hits everything in AOE.",
+        "icon": "leshrac_pulse_nova",
+        "id": "leshrac_pulse_nova",
+        "manaCost": [
+          70
+        ],
+        "name": "Pulse Nova",
+        "superUpgrade": "Super: Casts level 4 Diabolic Edict while active.",
+        "tags": [
+          "magicDamage",
+          "ultimate"
+        ],
+        "values": [
+          "DAMAGE: 60 / 120 / 180",
+          "MANA/SEC: 25 / 45 / 65",
+          "RADIUS: 525"
+        ]
+      }
+    ]
+  },
+  "historicalSources": [
+    {
+      "id": "razor-2023",
+      "url": "https://web.archive.org/web/20230215191830id_/https://dota2.fandom.com/wiki/Razor",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "44acfa7f20e152ab28ad737af84843096a7c4253aebc00ec717d1cb90b813519",
+      "capture": "20230215191830",
+      "paraphrase": "Expanding and retracting caster-following annulus,636speed,105offset,100width,independent directional slows,no invisible hits,damage-before-slow and range scaling.",
+      "versionContext": "Direct historical2023-02-15Wiki capture; not a claim that AA used this exact patch.",
+      "accessMethod": "HTTP200 raw Wayback HTML; gzip decoded where required; metadata/hash only is committed."
+    },
+    {
+      "id": "leshrac-2023",
+      "url": "https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Leshrac",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "b816d894d140e6270f21eb13758b84d7a4e76913804f3d51a6d562ed8b1088e5",
+      "capture": "20230215191900",
+      "paraphrase": "Nova0+0,immediate damage and delayed1second upkeep,channel-safe On/Off,fixed resettable1second Off cooldown,Death-only modifier; Edict40 immediate0.25second pure explosions,random target,caster-following independent instances and corpse persistence.",
+      "versionContext": "Direct2023-02-15capture includes7.32/7.32d history distinguishing delayed upkeep and Off cooldown."
+    },
+    {
+      "id": "viper-2023",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "8ae178621101ed1befedb41a7066f9a04efcccb90d790d7ac04414b99a9cadd2",
+      "paraphrase": "A successful attack places poison before its main packet,one refreshed stack,one-second ticks,ward/allied exclusion,additive own MR and multiplicative other providers. NativeShard details explain AA8stack/armor family without importing unlisted building effect.",
+      "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+    },
+    {
+      "id": "legion-2023",
+      "url": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "b1c233ccaed16d92c9fd31d796d4b7654af32dbe5850f2794669dd3ef16f886a",
+      "paraphrase": "Press0.2+0.93; buff then strong purge then immunity; immunity does not itself apply another basic purge. Native talent aim type differs from AA unit-centered400area plus caster.",
+      "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+    },
+    {
+      "id": "beastmaster-2023",
+      "url": "https://web.archive.org/web/20230215191303id_/https://dota2.fandom.com/wiki/Beastmaster",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "d74eb6cc83afb3bb35e6282245d875c055f6dc1084f601631c22a7c485490d53",
+      "paraphrase": "Roar0.5+0.63,primary full immunity piercing/Strong stun before damage,secondary immunity exclusion/damage before debuffs,450/1second side push,aligned disable with no displacement and owned-unit haste. Adjacent courier statements conflict.",
+      "versionContext": "Previously fetched direct2023-02-15capture locally reread for this group; no redundant HTTP request or retry."
+    }
+  ],
+  "valveKV": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "selectedAbilities": {
+      "razor_plasma_field": {
+        "ID": "5082",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Ability.PlasmaField",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityCooldown": "13 12 11 10",
+        "AbilityManaCost": "125 125 125 125",
+        "AbilityValues": {
+          "damage_min": {
+            "value": "35 40 45 50",
+            "special_bonus_unique_razor_4": "+30"
+          },
+          "damage_max": {
+            "value": "80 115 150 185",
+            "special_bonus_unique_razor_4": "+30"
+          },
+          "radius": "700",
+          "speed": "636",
+          "slow_min": "5",
+          "slow_max": "25 30 35 40",
+          "slow_duration": "1.5",
+          "second_ring_delay": {
+            "value": "0",
+            "special_bonus_unique_razor_plasmafield_second_ring": "+0.8"
+          }
+        }
+      },
+      "viper_poison_attack": {
+        "ID": "5218",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "hero_viper.poisonAttack.Cast",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "600 640 680 720",
+        "AbilityCastPoint": "0",
+        "AbilityCooldown": "0.0",
+        "AbilityDamage": "0 0 0 0",
+        "AbilityManaCost": "24",
+        "AbilityValues": {
+          "duration": "4",
+          "damage": {
+            "value": "4 8 12 16",
+            "special_bonus_unique_viper_7": "+25%"
+          },
+          "movement_speed": {
+            "value": "3 6 9 12",
+            "special_bonus_unique_viper_7": "+25%"
+          },
+          "magic_resistance": {
+            "value": "4 6 8 10",
+            "special_bonus_unique_viper_4": "+5"
+          },
+          "max_stacks": "5",
+          "bonus_range": "25 65 105 145",
+          "shard_armor_reduction": {
+            "value": "1",
+            "RequiresShard": "1"
+          },
+          "shard_building_dmg_pct": {
+            "value": "40",
+            "RequiresShard": "1"
+          },
+          "shard_bonus_max_stacks": {
+            "value": "3",
+            "RequiresShard": "1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "legion_commander_press_the_attack": {
+        "ID": "5596",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Hero_LegionCommander.PressTheAttack",
+        "AbilityCastRange": "700",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "16.0 15.0 14.0 13.0",
+        "AbilityManaCost": "110",
+        "AbilityModifierSupportValue": "3.0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "5.0"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "attack_speed": "65 90 115 140"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "hp_regen": "30 40 50 60",
+            "LinkedSpecialBonus": "special_bonus_unique_legion_commander_6"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "beastmaster_primal_roar": {
+        "ID": "5177",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Beastmaster.Primal_Roar",
+        "AbilityDraftUltScepterAbility": "beastmaster_drums_of_slom",
+        "AbilityCastPoint": "0.5 0.5 0.5",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityManaCost": "150 175 200",
+        "AbilityCastRange": "600",
+        "AbilityModifierSupportValue": "0.6",
+        "AbilityValues": {
+          "duration": "3.0 3.5 4.0",
+          "damage": {
+            "value": "150 225 300",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "side_damage": {
+            "value": "150 225 300",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "damage_radius": {
+            "value": "300",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "slow_movement_speed_pct": "-60",
+          "slow_attack_speed_pct": "-60",
+          "push_distance": "450",
+          "push_duration": "1.0",
+          "slow_duration": "3 3.5 4",
+          "movement_speed": "40",
+          "movement_speed_duration": "3.0 3.5 4",
+          "AbilityCooldown": {
+            "value": "100.0 80.0 60.0",
+            "special_bonus_unique_beastmaster_7": "-30"
+          }
+        }
+      },
+      "leshrac_pulse_nova": {
+        "ID": "5244",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "1",
+        "AbilityDraftUltScepterAbility": "leshrac_greater_lightning_storm",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityCooldown": "1.0 1.0 1.0 1.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityManaCost": "70",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "mana_cost_per_second": "25 45 65"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "525",
+            "LinkedSpecialBonus": "special_bonus_unique_leshrac_4"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "90 140 190",
+            "LinkedSpecialBonus": "special_bonus_unique_leshrac_3"
+          }
+        }
+      },
+      "leshrac_diabolic_edict": {
+        "ID": "5242",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Leshrac.Diabolic_Edict",
+        "AbilityCastPoint": "0.5",
+        "AbilityCooldown": "22",
+        "AbilityManaCost": "95 120 135 155",
+        "AbilityDamage": "7 14 21 28",
+        "AbilityDuration": "10",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "num_explosions": "40",
+            "LinkedSpecialBonus": "special_bonus_unique_leshrac_1"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "500"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "tower_bonus": "0"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      }
+    }
+  },
+  "policy": "Third-party full HTML remains ignored locally; only source metadata,hashes,short independent paraphrases and selected officialAA/Valve data are committed. AA explicit numbers/custom clauses preserved; nonnumeric Wiki mechanisms take priority over metadata category conflicts. Current Wiki and later patch history are provenance,not a silent2023backport.",
+  "preOverrideDiagnostic": {
+    "checkpoint": "C10 in-flight read-only capture before the final c6feb271b2e2aa6bdc576c5c6b10e40654756f32 checkpoint",
+    "configurationHash": "2117e86f214b2462b64b102c3125aece3215a1c89e55d088cf657c16f449f320",
+    "localPath": "output/c11-plasma-pulse/actual-diagnostics.json",
+    "sha256": "cd7e4e71dc4b8c3f5e7583a2b7211adf69cd215b3a5d458219f25e52db8f11ea",
+    "observations": [
+      {
+        "name": "PF01 invisible target incorrectly included",
+        "hits": [
+          {
+            "time": 0.7333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 146.42857142857144,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.4,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 146.42857142857144,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PF02 two directional slows replace rather than independently stack",
+        "hits": [
+          {
+            "time": 0.9,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 165.71428571428572,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 165.71428571428572,
+            "damageType": "magical"
+          }
+        ],
+        "slowValue": 0.35
+      },
+      {
+        "name": "PF03 manual movement probe shows frozen origin instead of following caster",
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 69.28571428571428,
+            "damageType": "magical"
+          },
+          {
+            "time": 2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 69.28571428571428,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PF04 Gaben slow is forced to maximum though AA only says maximum damage",
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 215,
+            "damageType": "magical"
+          }
+        ],
+        "slowValue": 0.4,
+        "position": [
+          5.4,
+          0
+        ]
+      },
+      {
+        "name": "PA01 magic-converted ordinary attack applies Poison after primary damage",
+        "hits": [
+          {
+            "time": 0.06666666666666667,
+            "amount": 75,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "PA02 Super leeches resistance from spell-immune targets despite applying no stack",
+        "sourceResistance": 0.24000000000000002
+      },
+      {
+        "name": "PA03 a ward receives Poison modifiers without native eligibility filtering",
+        "hits": 1
+      },
+      {
+        "name": "PTA01 full-health team consumes active immediately despite explicit below80AI clause"
+      },
+      {
+        "name": "PTA02 current lowest-HP selection differs from the closest eligible ally"
+      },
+      {
+        "name": "ROAR01 secondary spell-immune body receives native-forbidden damage and slows",
+        "hits": [
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 500,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 500,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "ROAR02 aligned secondary is shoved rather than only disabled in place",
+        "position": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "NOVA01 no activation damage and simultaneous first upkeep",
+        "early": [],
+        "manaAfterActivation": 9930.600000000002,
+        "manaAfterFirstSecond": 9868.300000000012,
+        "hits": [
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 180,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "NOVA02 Super Edict begins1.25seconds after Nova instead of immediate native activation"
+      },
+      {
+        "name": "NOVA03 Strong positive purge clears active marker despite native Death-only flag",
+        "hits": []
+      }
+    ],
+    "meaning": "Real engine diagnostic evidence under controlled position/status/body preconditions,not an independent native source. Full ignored output and red-tests retain details.",
+    "sourceHashes": {
+      "src/combat.ts": "b5875bff399e98879fbc812db7021aae709bd5c7e14196007939074bb0304042",
+      "src/skill-effects-more.ts": "7fca120b81f1c5dfa47fd632fff3319835a1a8e95740b0d7b16a8726995b6062",
+      "src/skill-effects-extra.ts": "428ce3879c1b091241db917417345482dcdacb9ab742312b6f6253a5408da2ee",
+      "src/combat/main-upgrades.ts": "bc3fe619e00cc0ebaae91b2b231d29b534b1a6123214776115bf456fa560da9e",
+      "src/combat/main-upgrades-advanced.ts": "d672356bb8fa4d5ed03b31ccdfbc05b0a3df36674e5eed7ffa3390b680e448bb"
+    },
+    "workingStateWarning": "The four old program files match c6feb271,while the shared combat.ts snapshot predates its final C10 changes. Per-file hashes identify the actual diagnostic state; no false exact-commit equivalence is claimed."
+  },
+  "upgradeItems": {
+    "source": {
+      "file": "items.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+      "gitBlobSha": "9e257199f59aa8290f336fe3e61543e10cf0d50b",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "selected": {
+      "item_dragon_lance": {
+        "ID": "236",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "ItemCost": "1900",
+        "ItemShopTags": "damage",
+        "ItemQuality": "artifact",
+        "ItemAliases": "dragon lance",
+        "ItemDisassembleRule": "DOTA_ITEM_DISASSEMBLE_ALWAYS",
+        "ShouldBeSuggested": "1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_agility": "15"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_strength": "12"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "base_attack_range": "150"
+          }
+        }
+      },
+      "item_hurricane_pike": {
+        "ID": "263",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH | DOTA_UNIT_TARGET_TEAM_CUSTOM",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CUSTOM",
+        "FightRecapLevel": "1",
+        "AbilityCastRange": "650",
+        "AbilityCastPoint": "0.0",
+        "AbilityCooldown": "19.0",
+        "AbilitySharedCooldown": "force",
+        "AbilityManaCost": "100",
+        "ItemCost": "4450",
+        "ItemShopTags": "int;damage;attack_speed;hard_to_tag",
+        "ItemQuality": "epic",
+        "ItemAliases": "fs;force staff",
+        "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS",
+        "ShouldBeSuggested": "1",
+        "AbilityValues": {
+          "bonus_intellect": "15",
+          "bonus_health": "200",
+          "bonus_agility": "20",
+          "bonus_strength": "15",
+          "base_attack_range": "150",
+          "push_length": "600",
+          "enemy_length": "450",
+          "range_duration": "6",
+          "cast_range_enemy": "450",
+          "max_attacks": "5",
+          "bonus_attack_speed": "100"
+        }
+      }
+    },
+    "meaning": "Both carry150ranged attack-range-family coefficients. AA explicitly grants passive150attack range but does not identify either item or adopt their ranged-only restriction; family resemblance is provenance,not an identity claim."
+  }
+}

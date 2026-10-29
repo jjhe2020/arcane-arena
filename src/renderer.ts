@@ -148,7 +148,7 @@ export class ArenaRenderer {
       for(const p of (battle.projectiles??[]) as (VisualSource&{id?:string;createdAt?:number;angle?:number;source:string;target:string;x:number;y:number})[]){
         const source=battle.units.find(u=>u.id===p.source),target=battle.units.find(u=>u.id===p.target);
         const angle=(p.angle??Math.atan2((target?.y??p.y)-p.y,(target?.x??p.x)-p.x))+Math.PI/2;
-        if(p.skill==='basic_attack'){const clip=source?basicAttackClip(this.assets,source,time):undefined;if(clip)paint(`p:${p.id??p.source}:basic`,clip,p.x,p.y,time-(p.createdAt??0),Number(clip.worldSize??.6),angle,.8);continue;}
+        if(p.skill==='basic_attack'){const declared=p.visualSkill?resolveVisualArt(this.assets,p,p.visualPoints??1):undefined,clip=declared?selectVisualLayers(declared.art,declared.points,'projectile')[0]?.clip:source?basicAttackClip(this.assets,source,time):undefined;if(clip)paint(`p:${p.id??p.source}:basic`,clip,p.x,p.y,time-(p.createdAt??0),Number(clip.worldSize??.6),angle,.8);continue;}
         const resolved=resolveVisualArt(this.assets,p,source?.skills.find(s=>s?.id===p.skill)?.points??1);if(!resolved)continue;
         for(const layer of selectVisualLayers(resolved.art,resolved.points,'projectile').slice(0,2))paint(`p:${p.id??`${p.source}:${p.target}:${p.skill}`}:${layer.id}`,layer.clip,p.x,p.y,time-(p.createdAt??0),Number(layer.clip.worldSize??3.6),angle,.8);
       }

@@ -15,6 +15,7 @@ export function resolveVisualArt(assets:AssetManifest,source:VisualSource,fallba
 }
 function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,skillId:string){
  const role=layer.role,kind=status.kind.toLowerCase(),self=status.source===unit.id;
+ if(skillId==='custom_storm_spirit_overload'&&layer.id==='ready')return self&&kind==='overloadcharges'&&(status.value??0)>0;
  if(skillId==='custom_sven_gods_strength')return layer.id==='immune'?kind==='magicimmune':layer.id==='strength'?kind==='attackpct':false;
  if(skillId==='dragon_knight_elder_dragon_form')return status.skill===skillId&&(layer.id==='poison'?kind==='dot':layer.id==='frost_slow'?kind==='slow':false);
  if(skillId==='templar_assassin_refraction'&&layer.id==='shield')return kind==='refraction'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
@@ -100,6 +101,8 @@ export function worldVisuals(assets:AssetManifest,battle:BattleState,time:number
  const measurements=radialCalibration as Record<string,{meanRadius:number[];outerRadius95:number[]}>;
  const effects=battle.finished?((battle.visualWorldEffects??[]) as VisualWorldEffect[]).filter(e=>e.skill==='custom_legion_commander_duel'&&e.layer==='victory'&&e.kind==='proc'&&e.createdAt<=battle.time&&e.until>time):activeVisualWorldEffects(battle,time);
  for(const effect of effects){
+  const followed=effect.followUnit?battle.units.find(unit=>unit.id===effect.followUnit):undefined;
+  if(effect.followUnit&&!followed)continue;
   const resolved=resolveVisualArt(assets,effect,effect.points);if(!resolved)continue;
   const ids=[effect.layer,...(resolved.id==='custom_tidehunter_ravage'&&effect.layer==='eruption'?['crest']:[])];
   for(const layer of tierVisualLayers(resolved.art,resolved.points).filter(l=>ids.includes(l.id))){
@@ -114,7 +117,7 @@ export function worldVisuals(assets:AssetManifest,battle:BattleState,time:number
     const measured=calibration.meanRadius[index];if(!measured)continue;
     age=index/clip.fps;size=effect.radius!/measured;
    }else if(effect.radius!==undefined&&calibration){const outer=Math.max(...calibration.outerRadius95);if(outer>0)size=effect.radius/outer;}
-   result.push({key:`world:${effect.id}:${layer.id}`,clip,x:effect.x,y:effect.y,age,size,angle:effect.angle===undefined?0:effect.angle+Math.PI/2,z:effect.kind==='proc'?.65:.15,loop:effect.loop??false});
+   result.push({key:`world:${effect.id}:${layer.id}`,clip,x:followed?.x??effect.x,y:followed?.y??effect.y,age,size,angle:effect.angle===undefined?0:effect.angle+Math.PI/2,z:effect.kind==='proc'?.65:.15,loop:effect.loop??false});
   }
  }
  return result;
@@ -123,6 +126,7 @@ export function worldVisuals(assets:AssetManifest,battle:BattleState,time:number
 /** Captured events supply positions and provenance. Casts do not stand in for
  * later area explosions, proc successes or a buff which never took effect. */
 export function eventVisuals(assets:AssetManifest,event:CombatEvent,units:CombatUnit[]):PlacedVisual[]{
+ if(event.toggleOff===true)return[];
  if(!event.skill||!['cast','hit','heal','status'].includes(event.type))return[];
  if(event.type==='hit'&&(Number(event.amount??0)<=0||event.outcome))return[];
  const caster=units.find(u=>u.id===event.source),points=Number(event.points??caster?.skills.find(s=>s?.id===event.skill)?.points??(event.visualSkill===event.skill?event.visualPoints:undefined)??1);

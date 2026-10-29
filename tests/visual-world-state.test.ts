@@ -1,10 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyDamage,createBattle, restoreBattle, serializeBattle, stepBattle } from '../src/combat';
+import { applyDamage,createBattle,dispelBattleStatuses, restoreBattle, serializeBattle, stepBattle } from '../src/combat';
 import { activeVisualWorldEffects, addVisualWorldEffect, type VisualWorldEffect } from '../src/combat/visual-state';
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import type { EffectContext, ZoneOptions } from '../src/skill-effects';
 import { MORE_PROGRAMS } from '../src/skill-effects-more';
+import {statusVisuals,worldVisuals} from '../src/visual-bindings';
+import {BASIC_ATTACK_ID} from '../src/combat/statistics';
 
 const definitions = JSON.parse(readFileSync('public/data/skills.json', 'utf8')) as SkillDefinition[];
 const assets = JSON.parse(readFileSync('public/data/assets.json', 'utf8'));
@@ -13,6 +15,33 @@ function player(id: number, skill?: string, points = 9): Player {
   return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 5, locked: false, reserve: [], shop: [], heroes: [0, 1].map(i => ({ id: `h${i}`, name: `H${i}`, role: 'archer', skin: 'female', x: i ? 12 : 0, y: i ? -10 : -2, persistentStrengthBonus: 100, skills: skill && !i ? [{ id: skill, points }] : [] })) };
 }
 const create = (skill: string, points = 9) => createBattle(player(0, skill, points), player(1), 1781, definitions);
+describe('C11 actual charge presentation',()=>{
+ it('Overload freezes the charged projectile art at launch without changing ordinary attack attribution',()=>{
+  const id='custom_storm_spirit_overload',b=create(id),u=b.units[0];
+  for(const unit of b.units){unit.nextAttack=99999;unit.moveSpeed=0;}
+  u.skills.push({id:'custom_luna_lucent_beam',points:3});u.cooldowns.push(0);stepBattle(b,1,definitions);
+  u.range=10;u.projectileSpeed=1;u.nextAttack=0;stepBattle(b,.5,definitions);u.nextAttack=99999;
+  const projectile=(b.projectiles as {skill:string;source:string;visualSkill?:string;visualPoints?:number}[]).find(p=>p.source===u.id)!;
+  expect(projectile).toMatchObject({skill:'basic_attack',visualSkill:id,visualPoints:9});
+  dispelBattleStatuses(b,u,false,false);stepBattle(b,.2,definitions);
+  expect(u.statuses.some(s=>s.kind==='overloadCharges')).toBe(false);
+  expect((b.projectiles as typeof projectile[]).find(p=>p.source===u.id)?.visualSkill).toBe(id);
+  stepBattle(b,5,definitions);
+  expect(b.events.some(e=>e.type==='hit'&&e.source===u.id&&e.attribution?.abilityId===BASIC_ATTACK_ID)).toBe(true);
+  expect(b.events.some(e=>e.type==='hit'&&e.skill===id)).toBe(false);
+ });
+ it('Overload ready art requires a real earned charge and disappears after its attack release',()=>{
+  const id='custom_storm_spirit_overload',b=create(id),u=b.units[0];
+  for(const unit of b.units){unit.nextAttack=99999;unit.moveSpeed=0;}
+  expect(statusVisuals(assets,b.units,b.time).some(v=>v.key.endsWith(`${id}:ready`))).toBe(false);
+  u.skills.push({id:'custom_luna_lucent_beam',points:3});u.cooldowns.push(0);stepBattle(b,1,definitions);
+  expect(u.statuses.some(s=>s.kind==='overloadCharges'&&(s.value??0)>0)).toBe(true);
+  expect(statusVisuals(assets,b.units,b.time).filter(v=>v.key.endsWith(`${id}:ready`))).toHaveLength(1);
+  u.range=10;u.nextAttack=0;stepBattle(b,1,definitions);
+  expect(b.events.some(e=>e.type==='hit'&&e.skill===id&&Number(e.amount)>0)).toBe(true);
+  expect(statusVisuals(assets,b.units,b.time).some(v=>v.key.endsWith(`${id}:ready`))).toBe(false);
+ });
+});
 function reachEffect(battle: BattleState, skill: string) {
   for (let i = 0; i < 180 && !activeVisualWorldEffects(battle).some(p => p.skill === skill); i++) stepBattle(battle, 1 / 30, definitions);
   const effects = activeVisualWorldEffects(battle).filter(p => p.skill === skill);
@@ -59,11 +88,14 @@ describe('real world effect metadata', () => {
     const radius = inward!.radius!; stepBattle(battle, .2, definitions); expect(inward!.radius!).toBeLessThan(radius);
     stepBattle(battle, 4, definitions); expect(activeVisualWorldEffects(battle)).toEqual([]);
   });
-  it('Plasma Field uses the actual fixed origin and switches IDs when the physical wave contracts', () => {
+  it('Plasma Field follows the actual caster and switches IDs when the physical wave contracts', () => {
     const battle = create('razor_plasma_field'), [outward] = reachEffect(battle, 'razor_plasma_field'), origin = { x: outward.x, y: outward.y };
     stepBattle(battle, .3, definitions); const previous = outward.radius!;
     battle.units[0].x += 2; stepBattle(battle, .3, definitions);
-    expect(outward.radius!).toBeGreaterThan(previous); expect({ x: outward.x, y: outward.y }).toEqual(origin);
+    expect(outward.radius!).toBeGreaterThan(previous);expect(outward.x).not.toBe(origin.x);
+    expect(outward.followUnit).toBe(battle.units[0].id);
+    const wave=worldVisuals(assets,battle,battle.time).find(effect=>effect.key.includes(outward.id))!;
+    expect({x:wave.x,y:wave.y}).toEqual({x:battle.units[0].x,y:battle.units[0].y});
     let inward: VisualWorldEffect | undefined;
     for (let i = 0; i < 60 && !inward; i++) { stepBattle(battle, 1 / 30, definitions); inward = activeVisualWorldEffects(battle).find(effect => effect.phase === 'inward'); }
     expect(inward).toBeDefined(); expect(inward!.id).not.toBe(outward.id); expect(inward!.layer).toBe('wave');

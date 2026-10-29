@@ -52,7 +52,7 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   custom_spirit_breaker_charge_of_darkness:['greater_bash'],
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],
   custom_windrunner_focusfire:['maelstrom'],
-  ursa_overpower:['bash'],
+  ursa_overpower:['bash','overpowerBasher'],
   // Wiki PRD history dates Tusk's attack-proc talent to 7.22 (2019-05-24).
   // AA's custom 20% probability is retained independently of the old 12% talent.
   custom_tusk_walrus_punch:['walrusPunch'],
@@ -60,4 +60,6 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   tidehunter_anchor_smash:['anchorSmash'],
   // The dated 2023 Marksmanship notes explicitly name PRD.
   drow_ranger_marksmanship:['marksmanship'],
+  // The dated 2023 Gunslinger notes explicitly name PRD.
+  muerta_pierce_the_veil:['gunslinger'],
 };

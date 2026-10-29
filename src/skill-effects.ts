@@ -23,6 +23,9 @@ import {applyLeechShredderAcceptance} from './combat/leech-shredder-acceptance';
 import {applyManaMirrorAcceptance,MANA_MIRROR_CHILD_DEFINITIONS} from './combat/mana-mirror-acceptance';
 import {applyMistFlareAcceptance,MIST_FLARE_CHILD_DEFINITIONS} from './combat/mist-flare-acceptance';
 import {applyNatureOmniAcceptance} from './combat/nature-omni-acceptance';
+import {applyPlasmaPulseAcceptance} from './combat/plasma-pulse-acceptance';
+import {applyPhantomWardAcceptance} from './combat/phantom-ward-acceptance';
+import {applyOverchargeCaskAcceptance,OVERCHARGE_CASK_CHILD_DEFINITIONS} from './combat/overcharge-cask-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -67,6 +70,11 @@ export interface EffectStatus extends Status {
 }
 export interface SummonOptions {
   name: string; count: number; hp: number; attack: number; armor?: number;
+  /** Initial spawn placement, rather than a spatial jump of an existing body. */
+  position?:{x:number;y:number};
+  strongIllusion?:boolean;
+  /** Cap copied AA points only; native ability ranks remain in their own domain. */
+  inheritedPointsCap?:number;
   nativeTemplateId?:string;
   range?: number; interval?: number; speed?: number; lifetime: number;
   illusion?: boolean; damageTaken?: number; inheritsSkills?: boolean; initializeInherited?:boolean; inheritedMode?:'passives'|'attackEffects'; attackSnapshotIncludesBonuses?:boolean; visualBody?: string; template?:CombatUnit;
@@ -98,6 +106,8 @@ export interface InstantAttackOptions {
   attackBatchKey?:string;
   accuracy?:number;
   attackRecord?:import('./model').AttackRecord;
+  /** Internal ordinary windup record; direct effect attacks default to instant. */
+  isInstant?:boolean;
   /** Internal: launch already applied attack replacements. */
   preparedAttack?:boolean;
   trueStrike?:boolean;
@@ -111,6 +121,8 @@ export interface InstantAttackOptions {
   bonusDamage?:number;
   /** Conditional non-critical attack bonus; remains inside the attack packet. */
   postCriticalBonus?:number;
+  /** A native attack fraction can also scale conditional bonuses. */
+  scaleConditionalBonuses?:boolean;
   noCleave?:boolean;
   ignoreDamageBlock?:boolean;
   /** Internal: a normal attack already emitted its launch event before projectile flight. */
@@ -128,7 +140,7 @@ export interface EffectContext {
   permanentAttribute?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',amount:number):number;
   /** Rebase an illusion's already-copied totals before adding a copied form multiplier. */
   inheritTemporaryAttributeMultiplier?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',fraction:number):boolean;
-  executedAbility?:{id:string;cooldown:number;manaCost:number;procsOnCast:boolean;granted:boolean};
+  executedAbility?:{id:string;cooldown:number;manaCost:number;procsOnCast:boolean;granted:boolean;itemActive?:boolean};
   attackInProgress?:boolean;
   launchAttack?(target:CombatUnit,multiplier?:number,triggerModifiers?:boolean,options?:InstantAttackOptions):boolean;
   interrupt?(target:CombatUnit):void;
@@ -137,6 +149,7 @@ export interface EffectContext {
   despawn?(target:CombatUnit):void;
   reduceCooldowns?(target:CombatUnit,seconds:number,options?:{includeUltimates?:boolean;excludeAbilityId?:string;onlyAbilityId?:string;includeChargeRecharge?:boolean;includeActiveEffect?:boolean}):void;
   attackRecord?:import('./model').AttackRecord;
+  attackIsInstant?:boolean;
   attackInstanceKey?:string;
   attackCritical?:boolean;
   criticalSourceKey?:string;
@@ -171,7 +184,7 @@ export interface EffectContext {
   executeFrom?(source:CombatUnit,target:CombatUnit):void;
   trySpellBlock?(target:CombatUnit):boolean;
   cancelMotion?(target:CombatUnit):boolean;
-  startCooldown?(seconds?:number):void;
+  startCooldown?(seconds?:number,options?:{force?:boolean}):void;
   resetCooldown?():void;
   endChannel():void;
   movementSpeed(target:CombatUnit):number;
@@ -203,6 +216,10 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  /** Active toggle Off is an independent order, preserving another pending action. */
+  toggleActive?:(c:EffectContext)=>boolean;
+  canToggleOff?:(c:EffectContext)=>boolean;
+  toggleOff?:(c:EffectContext)=>void;
   /** Item actions obey mute and ordinary disables, while ignoring spell silence. */
   itemActive?:boolean;
   /** A specific zero-point action may be issued under explicitly qualified controls. */
@@ -268,7 +285,7 @@ export interface SkillProgram {
   onAllyAttackPoint?: (c:EffectContext)=>void;
   onAttackPoint?: (c:EffectContext)=>void;
   onKill?: (c: EffectContext) => void;
-  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; postCriticalBonus?:number; postCriticalSpellAmplifiedBonus?:number; typedPostCriticalComponents?:{amount:number;type:DamageType;convertWithAttack?:boolean}[]; type?: DamageType };
+  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; postCriticalBonus?:number; postCriticalSpellAmplifiedBonus?:number; typedPostCriticalComponents?:{amount:number;type:DamageType;convertWithAttack?:boolean;countsForCleave?:boolean}[]; type?: DamageType };
   implemented: string[]; remaining: string[];
   superImplemented?: boolean; gabenImplemented?: boolean;
 }
@@ -606,7 +623,10 @@ applyLeechShredderAcceptance(registry);
 applyManaMirrorAcceptance(registry);
 applyMistFlareAcceptance(registry);
 applyNatureOmniAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS];
+applyPhantomWardAcceptance(registry);
+applyPlasmaPulseAcceptance(registry);
+applyOverchargeCaskAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;
