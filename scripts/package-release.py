@@ -14,7 +14,8 @@ coverage = json.loads((dist / 'data/mechanics-coverage.json').read_text(encoding
 version = json.loads((root / 'package.json').read_text(encoding='utf-8'))['version']
 revision = coverage['simulationRevision']
 revision_tag = revision.rsplit('-', 1)[-1]
-archive = out / f'秘境竞技场-{version}-{revision_tag}-开发构建.zip'
+# GitHub normalizes non-ASCII asset names; keep the downloadable filename stable.
+archive = out / f'ArcaneArena-{version}-{revision_tag}-dev.zip'
 prefix = 'ArcaneArena'
 notice = '''秘境竞技场 · 0.1 开发构建
 

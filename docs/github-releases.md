@@ -4,8 +4,8 @@
 
 ## 版本命名
 
-- 正式版本：`v<package.json 的 version>`，例如 `v0.1.0`。
-- 开发修订：`v<version>-<SIMULATION_REVISION 最后一个后缀>`，当前为 `v0.1.0-r4`。这类 Release 标记为预发布。
+- 正式版本：`v<package.json 的 version>`，例如 `v0.1.1`。
+- 开发修订：`v<version>-<SIMULATION_REVISION 最后一个后缀>`，当前为 `v0.1.1-r4`。这类 Release 标记为预发布。
 - 发布 tag 必须与该提交中的版本信息匹配。已发布 tag 不移动，每个完成版本使用新的版本号或修订号。
 
 开发修订在 `docs/<修订号>-validation.md` 中记录内容和验证边界，例如 `docs/r4-validation.md`；正式版也必须具备适用的版本说明。
@@ -33,15 +33,15 @@ python scripts/package-release.py
 
 ```powershell
 git add .
-git commit -m "Release v0.1.0-r4"
+git commit -m "Release v0.1.1-r4"
 git push origin HEAD
-git tag -a v0.1.0-r4 -m "技能小乱斗 0.1.0 r4 开发构建"
-git push origin v0.1.0-r4
+git tag -a v0.1.1-r4 -m "技能小乱斗 0.1.1 r4 开发构建"
+git push origin v0.1.1-r4
 ```
 
 ## 自动发布
 
-`.github/workflows/release.yml` 监听 `v*` tag。它会验证版本、安装依赖、运行测试和生产浏览器检查，再重新打包并发布 GitHub Release。ZIP 和 `release-report.json` 一同上传，报告记录包大小、文件数量、SHA-256、CRC 检查结果及模拟修订。
+`.github/workflows/release.yml` 监听 `v*` tag。它会验证版本、安装依赖、运行测试和生产浏览器检查，再重新打包并发布 GitHub Release。ZIP 和 `release-report.json` 一同上传，报告记录包大小、文件数量、SHA-256、CRC 检查结果及模拟修订。下载包使用 `ArcaneArena-<version>-<修订号>-dev.zip` 英文文件名，避免 GitHub 简化中文附件名；包内保留中文启动器与说明。
 
 工作流使用仓库自带的 `GITHUB_TOKEN`，需要 Actions 可运行以及 `contents: write` 权限；不需要另存个人访问令牌。开发版本自动标记为预发布。发行说明保留对应验证文档中的实际能力与未完成范围。
 
@@ -52,7 +52,7 @@ git push origin v0.1.0-r4
 本地通过同等验证并打包后，用 GitHub CLI 发布。以当前开发版本为例：
 
 ```powershell
-gh release create v0.1.0-r4 "output/秘境竞技场-0.1.0-r4-开发构建.zip" output/release-report.json --verify-tag --prerelease --title "技能小乱斗 0.1.0 r4 开发构建" --notes-file docs/r4-validation.md
+gh release create v0.1.1-r4 "output/ArcaneArena-0.1.1-r4-dev.zip" output/release-report.json --verify-tag --prerelease --title "技能小乱斗 0.1.1 r4 开发构建" --notes-file docs/r4-validation.md
 ```
 
 正式版本不使用 `--prerelease`。执行前确认该 tag 没有现存 Release；失败后应先检查远程实际状态，再决定继续上传或修复，避免重复发布和覆盖已发布包。
