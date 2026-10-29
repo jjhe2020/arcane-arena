@@ -17,8 +17,9 @@ const P = (value: number) => Math.abs(value) / 100;
 const S = (c: C) => c.skill.points >= 6;
 const G = (c: C) => c.skill.points >= 9;
 const distance = (a: CombatUnit, b: CombatUnit) => Math.hypot(a.x - b.x, a.y - b.y);
-const effectiveRange = (c: C) => c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ??
-  c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0);
+const effectiveRange = (c: C) => c.attackRange?.(c.caster) ?? ((c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ??
+  c.caster.range) + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0));
+const rangedAttack = (c:C) => c.isRangedAttack?.(c.caster) ?? (c.caster.statuses.find(s=>s.kind==='attackTypeOverride'&&s.until>c.battle.time)?.value===2 || (c.caster.statuses.find(s=>s.kind==='attackTypeOverride'&&s.until>c.battle.time)?.value!==1 && c.caster.range>2));
 function value(c: C, key: string, fallback = 0): number {
   const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row = c.definition.values.find(row => row.slice(0, row.indexOf(':')).trim().toUpperCase() === key.toUpperCase());
@@ -150,20 +151,21 @@ programs.crystal_maiden_brilliance_aura = passive({
 }, ['continuous global ally mana-regeneration aura rather than one-second restoration pulses', 'cast-triggered mana burst', 'Super final burst and healing', 'Gaben strongest-provider cooldown-reduction aura'],
 ['Close/self mana regen fields conflict in AA; explicit SELF MANA REGEN and MANA REGEN retained rather than importing modern values', 'AA burst healing uses nominal restored amount; missing original Lua prevents certifying full-mana target behavior']);
 
-programs.bloodseeker_bloodrage = active(c => {
-  const duration = value(c, 'DURATION');
-  const targets = [c.caster, ...(S(c) ? ordered(c.allies().filter(t => t.id !== c.caster.id && !t.summoned && distance(t, c.caster) <= 8), c.caster).slice(0, 1) : [])];
-  for (const ally of targets) {
-    buff(c, ally, 'bloodrage', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), duration + balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01));
-    buff(c, ally, 'attackSpeed', (value(c, 'ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',25) : 0)) * (ally.id === c.caster.id ? balanceNumber(c,'skill_effects_extra.buff_amount.3',1) : balanceNumber(c,'skill_effects_extra.buff_amount.4',0.5)), duration);
-    buff(c, ally, 'spellAmp', P(value(c, 'SPELL AMPLIFICATION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.5',0.08) : 0), duration);
-    if (G(c)) buff(c, ally, 'maxHpAttackLifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.6',0.018), duration);
-    for (let time = 1; time <= duration; time++) c.delay(time, () => {
-      if (!ally.dead && has(c, ally, 'bloodrage')) ally.hp = Math.max(1, ally.hp - ally.maxHp * P(value(c, 'MAX HEALTH DAMAGE PER SECOND')));
-    });
+interface BloodrageRun{until:number;start:number;tick:number;interval:number}
+programs.bloodseeker_bloodrage=active(c=>{
+  const seconds=value(c,'DURATION'),compiled=!!skillBalance(c.definition,c.skill.points),targets=[c.caster,...(S(c)?ordered(c.allies().filter(t=>t.id!==c.caster.id&&(!t.summoned||t.consideredHero)&&!t.ward&&!t.illusion&&!t.statuses.some(s=>s.kind==='banished')&&distance(t,c.caster)<=U(value(c,'ALLY SEARCH RADIUS',800))),c.caster).slice(0,1):[])];
+  for(const ally of targets){
+    const previous=ally.statuses.find(s=>s.kind==='bloodrage'&&s.skill===c.skill.id&&s.until>c.battle.time),oldRun=ally.bloodrageRun as BloodrageRun|undefined;
+    if(previous&&oldRun){oldRun.until=c.battle.time+seconds;for(const status of ally.statuses.filter(s=>s.skill===c.skill.id&&s.source===previous.source))status.until=oldRun.until;continue;}
+    ally.statuses=ally.statuses.filter(s=>s.skill!==c.skill.id||!['bloodrage','attackSpeed','spellAmp','maxHpAttackLifesteal'].includes(s.kind));
+    buff(c,ally,'bloodrage',1,seconds);
+    buff(c,ally,'attackSpeed',(value(c,'ATTACK SPEED')+(!compiled&&S(c)?25:0))*(ally.id===c.caster.id?1:value(c,'ALLY ATTACK SPEED FACTOR',.5)),seconds);
+    buff(c,ally,'spellAmp',P(value(c,'SPELL AMPLIFICATION'))+(!compiled&&S(c)?.08:0),seconds);
+    if(G(c))buff(c,ally,'maxHpAttackLifesteal',P(value(c,'MAX HEALTH ATTACK DAMAGE',1.8)),seconds);
+    const marker=ally.statuses.find(s=>s.kind==='bloodrage'&&s.skill===c.skill.id&&s.source===c.caster.id),run:BloodrageRun={until:c.battle.time+seconds,start:c.battle.time,tick:1,interval:Math.max(1/30,value(c,'SELF DAMAGE INTERVAL',.75))};ally.bloodrageRun=run;
+    const drain=()=>{if(ally.dead||ally.bloodrageRun!==run||!ally.statuses.includes(marker!)||c.battle.time>run.until+1e-8)return;c.damage(ally,ally.maxHp*P(value(c,'MAX HEALTH DAMAGE PER SECOND'))*run.interval,'pure',true,{category:'hpRemoval',flags:{healthRemoval:true,noDamageHooks:true,noAmplification:true,noSpellLifesteal:true,noReflection:true,nonLethal:true}});run.tick++;c.delay(Math.max(0,run.start+run.tick*run.interval-c.battle.time),drain);};c.delay(run.interval,drain);
   }
-}, ['self attack-speed/spell amplification', 'nonlethal max-health cost per second', 'Super nearest ally buff with half attack speed'],
-['Health-cost timing and allied half-attack-speed interaction need reference verification'], { target: 'self' });
+},['Historical immediate no-facing self cast','Snapshot attack-speed/spell-amplification buffs; refresh extends duration without duplicating health clock','0.75-second nonlethal max-health removal; invulnerability and dispels stop drain','Super closest ally hero within800 with half final attack speed and full amplification','Gaben historical1.8% max-health attack damage/lifesteal on all affected heroes'],['Historical Shard enemy-side spell-immunity behavior is not independently proven by the allied-buff immunity flag','Different-caster tier/snapshot/source priority on refresh requires original AA dispatch evidence'],{target:'self',castPoint:0,requiresFacing:false,backswing:.4,superImplemented:true,gabenImplemented:true});
 
 programs.custom_beastmaster_inner_beast = passive({ init: c => periodic(c, FOREVER, .25, () => {
   for (const ally of friendlies(c, c.caster, U(value(c, 'RADIUS')))) {
@@ -578,8 +580,8 @@ programs.custom_oracle_fortunes_end = active(c => {
     if (target.side === c.caster.side) c.dispel(target); else { c.dispel(target, false, false); c.damage(target, value(c, 'DAMAGE')); debuff(c, target, 'root', 0, value(c, 'ROOT DURATION')); }
   }
   if (G(c)) c.zone({ x: center.x, y: center.y, radius: balanceNumber(c,'skill_effects_extra.radius.1',6.5), duration: balanceNumber(c,'skill_effects_extra.duration.1',10), interval: balanceNumber(c,'skill_effects_extra.interval.1',1), targets: 'all', effect: target => {
-    if (target.side === c.caster.side) { buff(c, target, 'healAmplification', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), balanceNumber(c,'skill_effects_extra.buff_duration.3',1.1)); c.heal(target, balanceNumber(c,'skill_effects_extra.heal.1',60)); }
-    else { debuff(c, target, 'healReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.25), balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.1)); c.damage(target, balanceNumber(c,'skill_effects_extra.damage.2',60)); }
+    if (target.side === c.caster.side) { buff(c, target, 'healAmplification', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), balanceNumber(c,'skill_effects_extra.buff_duration.3',1.1),{data:{healingOnly:true}}); c.heal(target, balanceNumber(c,'skill_effects_extra.heal.1',60)); }
+    else { debuff(c, target, 'healReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.25), balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.1),{data:{healingOnly:true}}); c.damage(target, balanceNumber(c,'skill_effects_extra.damage.2',60)); }
   } });
 }, ['instant area damage/root/enemy purge', 'ally debuff purge', 'Super pre-purge Purifying Flames', 'Gaben healing/damage rain'],
 [HISTORICAL, 'Healing-buff dispel interaction and False Promise nonlethal settlement require reference check'], { castPoint: 0 });
@@ -1128,7 +1130,7 @@ programs.custom_luna_moon_glaive.remaining = programs.custom_luna_moon_glaive.re
 
 appendInit('custom_windrunner_focusfire', c => { if (S(c)) buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.1',24)); });
 appendAttack('custom_windrunner_focusfire', c => { if (S(c)) maelstrom(c); });
-programs.custom_windrunner_focusfire.range = c => c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ?? c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0);
+programs.custom_windrunner_focusfire.range = effectiveRange;
 programs.custom_windrunner_focusfire.implemented.push('Super Maelstrom +24 damage and 30% four-target 140 magic-damage chain; .2s proc cooldown and .25s jumps', 'AA 4.0 cast range equals attack range');
 programs.custom_windrunner_focusfire.remaining = programs.custom_windrunner_focusfire.remaining.filter(s => s !== 'Super Maelstrom').concat(HISTORICAL, 'Maelstrom uses independent project PRD state; exact AA distribution and proc eligibility remain unverified');
 
@@ -1139,8 +1141,8 @@ appendInit('custom_monkey_king_jingu_mastery', c => {
 });
 appendAttack('custom_monkey_king_jingu_mastery', c => {
   // Boundless applies Echo's slow but cannot trigger its extra regular attack.
-  if(S(c)&&effectiveRange(c)<=2&&c.attackSourceSkill===BOUNDLESS_ID){debuff(c,c.target,'slow',balanceNumber(c,'skill_effects_extra.debuff_amount.1',1),balanceNumber(c,'skill_effects_extra.debuff_duration.1',.8));return;}
-  if (!S(c) || effectiveRange(c) > 2 || c.battle.time < readState(c, 'echoReady')) return;
+  if(S(c)&&!rangedAttack(c)&&c.attackSourceSkill===BOUNDLESS_ID){debuff(c,c.target,'slow',balanceNumber(c,'skill_effects_extra.debuff_amount.1',1),balanceNumber(c,'skill_effects_extra.debuff_duration.1',.8));return;}
+  if (!S(c) || rangedAttack(c) || c.battle.time < readState(c, 'echoReady')) return;
   setState(c, 'echoReady', c.battle.time + 6);
   debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.8));
   // Item native scripts are not in KV: second strike is explicit and bounded,
@@ -1180,7 +1182,7 @@ appendInit('custom_ember_spirit_flame_guard', c => {
 });
 appendAttack('muerta_pierce_the_veil', c => {
   if (!G(c) || readState(c, 'gunslingerSecondary') || c.caster.illusion || c.caster.statuses.some(s => s.kind === 'break' && s.until > c.battle.time) || c.random() >= EXTRA_WORKING_DEFAULTS.gunslingerChance) return;
-  const range = c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ?? c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((n, s) => n + (s.value ?? 0), 0);
+  const range = effectiveRange(c);
   const alternatives = ordered(nearby(c, c.caster, range).filter(t => t.id !== c.target.id && !t.statuses.some(s => ['undetectable', 'shadowRealm'].includes(s.kind) && s.until > c.battle.time)), c.caster);
   const target = alternatives[0] ?? c.target;
   setState(c, 'gunslingerSecondary', 1); try { c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), true); } finally { setState(c, 'gunslingerSecondary', 0); }
@@ -1190,7 +1192,7 @@ appendInit('enchantress_impetus', c => {
   if (!S(c)) return; buff(c, c.caster, 'statBonus', balanceNumber(c,'skill_effects_extra.buff_amount.1',5)); buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.2',10));
 });
 appendAttack('enchantress_impetus', c => {
-  if (!S(c) || effectiveRange(c) <= 2 || c.battle.time < readState(c, 'arrayReady')) return;
+  if (!S(c) || !rangedAttack(c) || c.battle.time < readState(c, 'arrayReady')) return;
   const targets = ordered(c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= effectiveRange(c)), c.caster).slice(0, 2);
   if (!targets.length) return;
   setState(c, 'arrayReady', c.battle.time + 12);
@@ -1339,7 +1341,7 @@ child('enchantress_bunny_hop', ['HOP DISTANCE: 500', 'HOP DURATION: .4', 'ATTACK
   canCast: c => nearby(c, c.caster, effectiveRange(c) + 2).length > 0,
   cast: c => {
     c.disjoint(c.caster);
-    const range = c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ?? c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((n, s) => n + (s.value ?? 0), 0);
+    const range = effectiveRange(c);
     const targets = nearby(c, c.caster, range + 2).filter(t => !t.statuses.some(s => ['undetectable', 'shadowRealm', 'magicImmune'].includes(s.kind) && s.until > c.battle.time))
       .sort((a, b) => distance(b, c.caster) - distance(a, c.caster) || a.id.localeCompare(b.id)).slice(0, 3);
     for (const target of targets) {

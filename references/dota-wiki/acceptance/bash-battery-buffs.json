@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": 1,
+  "group": "bash-battery-buffs",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit values and custom clauses remain authoritative. Direct2023Wiki snapshots and pinned Valve KV supply compatible nonnumeric behavior; modern redesigns are excluded. Named result tests do not certify unresolved combinations.",
+  "validation": {
+    "command": "npx vitest run tests/reference-bash-battery-buffs.test.ts",
+    "passedTests": 40,
+    "configurationHash": "09ec035954e38243f379679d235887275497817e3be4c5b5fb6454495731fb88",
+    "meaning": "Three skills have complete reviewed clauses within the declared hero/summon arena surface; Bloodrage and Brain Sap retain precise unresolved source requirements. This is five of230 skills, not full-catalog acceptance."
+  },
+  "skills": [
+    {
+      "id": "custom_slardar_bash_of_the_deep",
+      "status": "verified_within_arena_scope",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "Hero/summon arena: couriers, buildings and item purchases such as Skull Basher are absent. Native hero-identity restrictions on Basher are not generalized into a prohibition on AA skill combinations."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Four successful melee/ranged contacts;50/100/200 physical bonus and1/1.1/1.3 stun; creep double. Super+150 and creep execution; Gaben reduces required contacts by one. The passive has no mana cost or cast cooldown.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29; full response SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Retained AA values take precedence over native balance.",
+          "localEvidence": "references/ability-arena/abilities-bash-battery-buffs-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Slardar",
+          "accessedOn": "2026-10-29",
+          "observation": "Successful enemy-hero/creep contacts build an indefinite tally; miss/Break do not consume it. Bash debuff precedes the triggering attack. Conditional bonus is excluded from crit and percentage attack changes, included in attack lifesteal, cleave and one flat block. Illusions/creep-heroes take doubled bonus.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot before7.33; modern debuff-immunity/facets are not silently imported.",
+          "readMethod": "Direct archived HTML read, not a current-page description attributed to an old date.",
+          "sha256": "7b39dde38d392220171e608cb6c66ee2812f3762bdaf4a5b0863ada18d20c55f"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "slardar_bash: physical, enemy spell-immunity piercing, strong-dispellable bash; attack_count3 is the preceding contacts, not total required hits. Native+50 talent is related but does not replace AA+150.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10, commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Historical compatibility candidate rather than proof of the custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "muerta2023",
+          "url": "https://web.archive.org/web/20230315233726id_/https://dota2.fandom.com/wiki/Muerta",
+          "accessedOn": "2026-10-29",
+          "observation": "Early Pierce the Veil converts conditional attack damage together with the main hit. Converted damage uses spell amplification and spell lifesteal, excluding ordinary lifesteal. Separate damage instances and Mana Break are excluded.",
+          "versionContext": "Direct HTTP2007.32e snapshot, after Muerta release2023-03-06; used only for this AA cross-skill conversion, not modern Muerta mechanics.",
+          "sha256": "66c00da92023cd12943ea11d6ba0204738328d928ba9f5688d1d408ef0bb2f84"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BA-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Only successful contacts increase the persistent melee/ranged tally; wards and failed attacks do not count.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash counts successful contacts only and applies its stun before the fourth attack damage"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash doubles its ordinary-creep and illusion bonus but ignores wards in the tally"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash uses distinct configured melee and ranged hit counts and Gaben final three-hit threshold"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Bash stun is applied before the same attack damage, without spawning a second spell-damage hit.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash counts successful contacts only and applies its stun before the fourth attack damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final350 bonus at6 points; ordinary creeps/illusions/creep-heroes are explicitly executed rather than dealt an arbitrary large nuke.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash Super explicitly executes a creep through large shields without inventing a million damage"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash treats a creep-hero as a creep and respects an explicit melee attack-type override"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Final three-contact threshold; separate configured melee/ranged counters remain editable.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash uses distinct configured melee and ranged hit counts and Gaben final three-hit threshold"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-05",
+          "kind": "combination",
+          "branch": "crit-block-lifesteal-cleave",
+          "mechanism": "Conditional bonus is added after crit, shares flat block once, contributes to historical attack lifesteal and cleave; spell amplification does not affect the unconverted physical hit.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash same-hit bonus is not multiplied by crit or spell amplification but participates in lifesteal, historical cleave and one block"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-06",
+          "kind": "combination",
+          "branch": "break-immunity",
+          "mechanism": "Break preserves accumulated contacts, disables new contacts/proc; physical bash and its strong-dispellable stun pierce immunity.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash Break preserves existing tally and prevents a ready bash until Break ends"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash pierces spell immunity with its physical attack and strong-dispellable stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-07",
+          "kind": "combination",
+          "branch": "attack-type",
+          "mechanism": "An explicit melee attack type selects the melee threshold even with a long attack range; creep-hero bonus is doubled.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash treats a creep-hero as a creep and respects an explicit melee attack-type override"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-08",
+          "kind": "combination",
+          "branch": "muerta",
+          "mechanism": "Actual Pierce the Veil converts the full conditional hit to magical while preserving attack attribution; spell amplification and spell lifesteal replace ordinary lifesteal.",
+          "sourceIds": [
+            "wiki2023",
+            "muerta2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash conditional damage converts with real Pierce the Veil and uses spell amplification and spell lifesteal instead of ordinary lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BA-09",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "AA base stun1/1.1/1.3s remains authoritative; actual point3 stun lasts1.3s, status resistance halves it, and expiry removes the stun. As a passive it spends no mana and starts no spell cooldown.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bash stun retains its configured duration and expires after status resistance without spending mana or starting a spell cooldown"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "unresolved": [],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "AA explicit custom upgrade; native Slardar talent is only a related flat-bonus precedent",
+          "decision": "Retain AA+150 and explicit creep execution; do not substitute the native+50 talent or a fixed million-damage workaround."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "classification": "AA explicit contact-count reduction",
+          "decision": "Store final3 at point9; preceding-hit native KV3 is not another reduction."
+        }
+      ]
+    },
+    {
+      "id": "custom_clockwerk_battery_assault",
+      "status": "verified_within_arena_scope",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "The arena has no fog-of-war system; no artificial visibility radius was added. The working autocast policy waits for an eligible nearby target although native manual cast can be used while empty."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "20/45/95 magical pulses for10.5s in275; Super-0.25s interval in official English (Chinese has the wrong sign); Gaben+275 radius and hits every eligible target. AA mana90; cooldown24/22/18s.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29; full response SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Retained AA values take precedence over native balance.",
+          "localEvidence": "references/ability-arena/abilities-bash-battery-buffs-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191332id_/https://dota2.fandom.com/wiki/Clockwerk",
+          "accessedOn": "2026-10-29",
+          "observation": "0+0 animation; immediate first pulse, inclusive endpoint gives16 normal or24 reduced-interval pulses. Damage precedes0.1s stun. Double ordinary-creep damage, hero values for illusions/creep-heroes. Source disables do not stop it; death does. Recast refreshes duration without resnapshotting interval; damage updates dynamically. Invisible/hidden/invulnerable bodies are excluded.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot before7.33; modern debuff-immunity/facets are not silently imported.",
+          "readMethod": "Direct archived HTML read, not a current-page description attributed to an old date.",
+          "sha256": "dd1e4920f2a05a19b73889c078d914ce1960a042249cef4c6ad1a81130817005"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "rattletrap_battery_assault: NO_TARGET/IGNORE_BACKSWING/IMMEDIATE, no immunity piercing; interval0.7 with talent-0.25, radius275,duration10.5,creep_multiplier2. Native Overclocking all-target effect is the mechanical predecessor for AA Gaben, with AA radius retained.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10, commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Historical compatibility candidate rather than proof of the custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BT-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Choose one random visible eligible enemy per pulse; ignore immunity/invisibility and use double damage only for ordinary creeps.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery Gaben applies each pulse to all eligible targets within final550 radius and excludes invisible or immune bodies"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery doubles ordinary creep damage but not illusion or creep-hero damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Immediate first pulse plus inclusive10.5s endpoint yields16 pulses on an absolute clock.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery Assault starts immediately and includes all sixteen historical base pulses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final0.45s interval yields24 pulses without cumulative server-step drift.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery Super final .45 interval produces twenty-four pulses without accumulating server-tick drift"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Final550 search radius; each pulse hits all eligible targets, not one randomly chosen enemy.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery Gaben applies each pulse to all eligible targets within final550 radius and excludes invisible or immune bodies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-05",
+          "kind": "combination",
+          "branch": "disable-refresh-death",
+          "mechanism": "Source stun/silence and enemy basic dispel do not cancel ongoing pulses; recast extends one clock; death cancels.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery continues through source disables, refreshes without duplicate pulses and stops on death"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "An actual enemy basic dispel removes Bloodlust while Battery Assault survives the same purge and silence"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-06",
+          "kind": "combination",
+          "branch": "level-change-refresh",
+          "mechanism": "Refreshing a current instance preserves its initial interval but updated tier damage is consumed by subsequent pulses.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery refresh preserves its original interval while a changed skill tier updates current pulse damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-07",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Each successful shrapnel applies a0.1s ministun which expires before the next0.7s pulse.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery ministun lasts one tenth of a second and expires before the next shrapnel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BT-08",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "The immediate base cast spends90mana at release and starts the point3 AA18s cooldown once; periodic damage does not spend additional mana or restart cooldown.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Battery release spends its configured ninety mana and starts its eighteen second cooldown exactly once"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "unresolved": [],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "Historical Clockwerk interval-reduction talent",
+          "decision": "Use English-0.25s and final450ms rows; Chinese plus-sign is a documented mistranslation."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "classification": "Historical Overclocking all-target mechanic plus explicit AA+275 radius",
+          "decision": "All-target operation is unconditional at Gaben, without requiring a separate Overclocking cast."
+        }
+      ]
+    },
+    {
+      "id": "ogre_magi_bloodlust",
+      "status": "verified_within_arena_scope",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "The approved arena has no tower/courier placement or manual spell-targeting UI. Native manual-target and model-scale cosmetic clauses are reviewed as outside that supported surface; no collision-size change is introduced."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Ally movement/attack speed; stronger self attack speed. Super+25 AS and self-copy on ally cast. Gaben buffs the team. Base duration30s; mana50/55/65 and cooldown20/18/14s.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29; full response SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Retained AA values take precedence over native balance.",
+          "localEvidence": "references/ability-arena/abilities-bash-battery-buffs-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Ogre_Magi",
+          "accessedOn": "2026-10-29",
+          "observation": "0.45+0.67 animation and600 range; buff applies at release despite a cosmetic projectile. Closest unbuffed hero autocast includes self/clones/eligible creep-heroes, excludes illusions/summons and immune creep-heroes. Manual cast can affect invulnerable allies/buildings except wards. Model scaling does not change collision.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot before7.33; modern debuff-immunity/facets are not silently imported.",
+          "readMethod": "Direct archived HTML read, not a current-page description attributed to an old date.",
+          "sha256": "50a2bdefb945587c3c909cc016b0f93ee04ad5241e7be0a0cb68ba7567eb70ab"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "ogre_magi_bloodlust permits allied heroes/basic/buildings, targets invulnerable allies, pierces allied spell immunity, basic-dispellable;600 range,.45 point; self/ally bonus arrays and linked+25 talent agree with retained AA1/2/4 rank mapping.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10, commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Historical compatibility candidate rather than proof of the custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BL-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Closest eligible unbuffed hero autocast, including self; no injured-unit priority.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust chooses the closest unbuffed hero rather than the most wounded distant ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Historical.45 cast point,.67 backswing and600 range are public configuration; buffs apply at release without travel delay.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust historical .45 cast point, .67 recovery and600 range are table-driven"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust autocast excludes illusions and immune creep-heroes but applies instantly to an invulnerable ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final ally85/self115 AS; a targeted ally also grants the caster the self variant.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust Super uses final ally85 and self115 speed and adds the caster when an ally is selected"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "All-team buff includes controlled bodies and spell-immune allies; wards excluded.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust Gaben buffs the team including controlled bodies but excludes wards and keeps basic dispel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-05",
+          "kind": "combination",
+          "branch": "target-eligibility",
+          "mechanism": "Autocast skips illusions and immune creep-heroes but a valid invulnerable hero receives the buff.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust autocast excludes illusions and immune creep-heroes but applies instantly to an invulnerable ally"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-06",
+          "kind": "combination",
+          "branch": "refresh-dispel",
+          "mechanism": "Repeat casts refresh instead of adding AS/movement twice; an actual enemy basic dispel removes all buff components.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust repeat casts refresh the same buff without stacking attack or movement speed"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "An actual enemy basic dispel removes Bloodlust while Battery Assault survives the same purge and silence"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-07",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Base marker, attack-speed and movement-speed components all have30s duration and expire together, leaving no residual bonus.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust marker attack speed and movement speed all last thirty seconds and expire together"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BL-08",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Point3 AA65mana and14s cooldown are committed at successful release; the0.45s cast-point phase spends neither.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodlust spends its configured mana and begins cooldown at release rather than during its cast point"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "unresolved": [],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "Historical+25 Bloodlust AS talent plus AA additional-self rule",
+          "decision": "Both stronger self and ordinary ally values include the flat25 once."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "classification": "AA explicit whole-team custom targeting",
+          "decision": "Do not restrict the team-wide result to native autocast-eligible heroes."
+        }
+      ]
+    },
+    {
+      "id": "bloodseeker_bloodrage",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Self AS/spell amplification with2% maxHP/s cost; Super closest ally hero within800, half AS, +25AS/+8pp amp. Gaben all affected heroes gain1.8% target-maxHP pure damage and fixed same-amount healing.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29; full response SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Retained AA values take precedence over native balance.",
+          "localEvidence": "references/ability-arena/abilities-bash-battery-buffs-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Bloodseeker",
+          "accessedOn": "2026-10-29",
+          "observation": "Actual instant no-facing cast despite.2+.4 animation. Ten .75s health-removal samples,1.5% each, nonlethal and inactive during invulnerability. Recast preserves AS/amp and refreshes duration. Historical Shard fixed lifesteal happens before pure conditional damage, excluded from crit/cleave/ordinary lifesteal/amp/block, and affected by lifesteal manipulation.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot before7.33; modern debuff-immunity/facets are not silently imported.",
+          "readMethod": "Direct archived HTML read, not a current-page description attributed to an old date.",
+          "sha256": "ebed1f2dbf59bb86b6dc861b2c7506895ebc0499c8d7e762fb589cc414839b30"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "bloodseeker_bloodrage: IMMEDIATE, ally-target HERO, allied immunity permitted, basic dispel;800 range,8s,2%HP/s,1.8Shard. Linked2023 talents supply+25AS/+8spellamp. The allied-immunity field alone does not independently prove the Shard enemy-damage immunity behavior.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10, commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Historical compatibility candidate rather than proof of the custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BR-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Snapshot AS/amp; closest hero Super target receives half final AS and full amplification. Ordinary summons excluded.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage Super selects the closest hero in800 range with half final attack speed and full amplification"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage refresh preserves snapshot values and one original .75-second damage clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Immediate no-facing cast; visual recovery.4s. Cost samples start.75s after release and use the original absolute clock.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage is an immediate no-facing self cast and retains its .4 visual recovery"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage health cost starts at .75 seconds and removes fifteen percent max health across ten pulses"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage refresh preserves snapshot values and one original .75-second damage clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "175 final self AS,87.5 ally AS and38% amp without adding the upgrade twice.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage Super selects the closest hero in800 range with half final attack speed and full amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Successful zero-main-damage contact still triggers1.8% maxHP pure attack damage and fixed lifesteal.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage Gaben pure attack bonus triggers on a successful zero-main-damage hit and ignores spell amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-05",
+          "kind": "combination",
+          "branch": "health-removal",
+          "mechanism": "Cost bypasses ordinary shields/reduction/reflection hooks but is nonlethal; invulnerability and buff dispel suppress future samples.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage health removal ignores shields, mitigation and on-damage reactions but remains nonlethal"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage does not drain an invulnerable body and a dispelled marker cancels the remaining health clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-06",
+          "kind": "combination",
+          "branch": "damage-lifesteal",
+          "mechanism": "Fixed lifesteal precedes the independent pure hit; ordinary heal amplification, crit, spell amplification, spell lifesteal and cleave do not multiply that fixed component.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage Gaben heals its fixed amount before its separate pure damage and does not crit or cleave that amount"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Bloodrage Gaben pure attack bonus triggers on a successful zero-main-damage hit and ignores spell amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BR-P1",
+          "kind": "combination",
+          "branch": "unresolved",
+          "mechanism": "Whether historical Shard pure conditional enemy damage pierces spell immunity needs direct enemy-side evidence; the allied-buff icon/category is insufficient.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        },
+        {
+          "id": "BR-P2",
+          "kind": "combination",
+          "branch": "unresolved",
+          "mechanism": "Same-target refresh is verified; exact priority of values and source attribution when distinct AA casters supply different Bloodrage tiers is not explicitly described by the recovered page.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Historical enemy-side immunity behavior of the1.8% extra damage remains pending; no change is inferred solely from allied-buff immunity.",
+        "Distinct-source different-tier refresh priority/attribution is not proven. Current implementation maintains one buff/health clock and preserves its original snapshot."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "Historical+25AS/+8amp talents plus AA closest-ally copy",
+          "decision": "Store effective175AS/38amp; only ally AS is halved."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "Historical1.8% Shard, explicitly generalized by AA from Bloodseeker-only to all heroes with Bloodrage",
+          "decision": "Use fixed pre-damage lifesteal and an independent pure attack component. Exclude modern1.5%/crit/cleave redesign."
+        }
+      ]
+    },
+    {
+      "id": "custom_bane_brain_sap",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "AA explicitly declares no enemy spell-immunity piercing, confirmed by pinned KV. Ambiguous historical reflected-primary notes and modern7.33+ behavior do not override that AA rule."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "75/150/300 heal/damage; Super+150, round-only maxHP from amount sapped and maximum-level Enfeeble. Gaben also casts the sap on enemies within550 of the primary.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29; full response SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Retained AA values take precedence over native balance.",
+          "localEvidence": "references/ability-arena/abilities-bash-battery-buffs-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Bane",
+          "accessedOn": "2026-10-29",
+          "observation": "Historical.2+.5 animation and625 range. Immediate damage precedes healing; heal follows damage reductions and then healing manipulation. Native Shard secondary healing25% differs from AA also-cast text; primary spell block cancels the cast, secondary shields reduce effective damage.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot before7.33; modern debuff-immunity/facets are not silently imported.",
+          "readMethod": "Direct archived HTML read, not a current-page description attributed to an old date.",
+          "sha256": "c0794d990057fedd7494f76d80e22ea856eb7a9548cf437a42aa960ebb952fd8"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "bane_brain_sap: pure, ENEMIES_NO immunity, point.2/range625;75/150/225/300 base. Native Shard550 and25% secondary heal are kept distinct from AA full independent casts. Maximum Enfeeble reduces total ordinary attack damage60%, healing60%,cast range30% for11s.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10, commit6abdd9d13de2f4330ca748082467b9ff6e6cd928. Historical compatibility candidate rather than proof of the custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BS-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Immediate pure damage then damage-based healing, with no projectile travel; primary spell block cancels the entire cast.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap uses its historical .2 point and .5 recovery and heals after its immediate pure damage"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap primary spell block cancels the whole Gaben cast and secondary shields reduce the copied healing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BS-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Historical200ms point and500ms recovery.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap uses its historical .2 point and .5 recovery and heals after its immediate pure damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BS-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "450 final damage; effective sapped damage adds maxHP for this battle only, with max historical Enfeeble; no persistent reward.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap Super grants round-only max health and historical max Enfeeble reductions without doubling its upgrade"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BS-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA full secondary sap in550 rather than native25% healing; hidden bodies can be affected, immunity/out-of-radius bodies excluded.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap Gaben repeats the AA full sap on nearby invisible enemies but skips immunity and out-of-radius bodies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BS-05",
+          "kind": "combination",
+          "branch": "mitigation-healing-block",
+          "mechanism": "Ordinary damage reduction, independent heal reduction and secondary shields determine the ordinary effective-heal result.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap healing follows ordinary damage reduction and separate healing reduction"
+            },
+            {
+              "file": "tests/reference-bash-battery-buffs.test.ts",
+              "test": "Brain Sap primary spell block cancels the whole Gaben cast and secondary shields reduce the copied healing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BS-P1",
+          "kind": "gaben",
+          "branch": "unresolved",
+          "mechanism": "AA also-cast wording proves the secondary sap but does not recover original Lua dispatch of Super maxHP and Enfeeble for every copy; current full-copy composition is a transparent interpretation.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        },
+        {
+          "id": "BS-P2",
+          "kind": "combination",
+          "branch": "unresolved",
+          "mechanism": "Exact original-engine heal/maxHP basis for overkill and damage delayed by False Promise or other deferments remains unproven beyond ordinary post-reduction/shield cases.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Original AA Gaben→Super maxHP/Enfeeble copy dispatch has not been recovered; tests verify the declared current composition, not its unavailable Lua.",
+        "Overkill and damage-delay interaction with sapped-amount healing/growth needs original-engine evidence; ordinary mitigation/heal-reduction/shields are verified."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "AA+150/round-only maxHP plus full Enfeeble; native+200 Brain Sap talent is only related, not the AA numeric source",
+          "decision": "Retain AA450 top damage and historical maximum Enfeeble. Do not silently add persistent HP growth."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "classification": "AA explicit also-cast in native Shard550 radius; native secondary25% healing is overridden",
+          "decision": "Full ordinary sap healing per copy is implemented. Super-copy dispatch remains explicitly pending rather than falsely source-verified."
+        }
+      ]
+    }
+  ]
+}

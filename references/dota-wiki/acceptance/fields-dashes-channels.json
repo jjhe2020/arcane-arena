@@ -1,0 +1,1590 @@
+{
+  "schemaVersion": 1,
+  "group": "fields-dashes-channels",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit custom clauses/values first. Nonnumeric mechanisms use directly read historical Wiki, pinned Valve and version-scoped current Wiki. Passing named results never means the entire230-skill goal or AA executable equivalence is complete.",
+  "validation": {
+    "command": "npx vitest run tests/reference-fields-dashes-channels.test.ts",
+    "passedTests": 50,
+    "regressionCommand": "npx vitest run tests/reference-fields-dashes-channels.test.ts tests/combat-engine-gaps.test.ts",
+    "regressionPassedTests": 62,
+    "meaning": "Real engine orders and registered ability combinations; the three incoming disable cases use controlled status preconditions. Replay cases use unmodified initial-player scenarios. Only named assertions certify behavior."
+  },
+  "implementationNotes": [
+    "Status removal hooks cover engine dispel/natural-expiry paths once per instance, preserving released damage/points/attribution; they do not intercept arbitrary manual array consumption.",
+    "Zone onEnd covers expiry, missing/dead maintained source, token/control cancellation, explicit endChannel and maintained stolen-zone removal. Callback-created zones are preserved.",
+    "Arena interception snapshots real attack-projectile identity; attack damage category alone is not a projectile."
+  ],
+  "skills": [
+    {
+      "id": "mars_arena_of_blood",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base/Super/Gaben descriptions and custom numbers are authoritative. The independently re-fetched230-entry catalog matches the captured baseline.",
+          "versionContext": "Exact Workshop patch unknown; no live AA executable-equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Mars",
+          "accessedOn": "2026-10-29",
+          "observation": "Formation precedes the full duration. Inner-edge spears use a per-unit cooldown and non-disabling knockback. Attack projectiles are negated near the wall; melee attacks and spell projectiles pass. Regeneration is an in-arena aura with linger.",
+          "versionContext": "Direct historical capture 20230215191449; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191449",
+          "htmlSha256": "14803f6e56773f994f6bd7af3fb5e84b494b77c186abc2f1b4eff8e39fec08b9",
+          "originalUrl": "https://dota2.fandom.com/wiki/Mars",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": ".2 cast point, range400, formation .3, radius550, width100, trigger160, interval1, warrior count14. AA duration3/4/5 is retained.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d; folder20230216 does not identify its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Mars",
+          "accessedOn": "2026-10-29",
+          "observation": "Mechanisms cross-checked against the direct archived page. Modern values, facets and unrelated Scepter/Shard replacements are excluded.",
+          "versionContext": "Current Wiki accessed2026-10-29; current prose is not backdated."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FIELD-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "formation precedes the complete AA arena duration at the frozen ground cursor",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-01 formation precedes the complete AA arena duration at the frozen ground cursor"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "a hero near the inner wall takes one spear and moves continuously inward without a stun",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-02 a hero near the inner wall takes one spear and moves continuously inward without a stun"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "the same hero cannot take a second spear during its independent one-second cooldown",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-03 the same hero cannot take a second spear during its independent one-second cooldown"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super regeneration begins after formation, only covers allies inside, and lingers for half a second",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-04 Super regeneration begins after formation, only covers allies inside, and lingers for half a second"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben lava deals fifty magical pulses totaling 1500 over the five-second arena",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-05 Gaben lava deals fifty magical pulses totaling 1500 over the five-second arena"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "enemy ranged attack projectiles are negated while melee attacks can cross the same wall",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-06 enemy ranged attack projectiles are negated while melee attacks can cross the same wall"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Acorn attack projectiles are blocked but an actual Arcane Bolt projectile crosses the arena",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-07 Acorn attack projectiles are blocked but an actual Arcane Bolt projectile crosses the arena"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "flight and spell immunity bypass only the explicitly exempted arena movement wall",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-08 flight and spell immunity bypass only the explicitly exempted arena movement wall"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-R09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "an already released arena forms and keeps dealing damage after its caster dies",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-09 an already released arena forms and keeps dealing damage after its caster dies"
+            }
+          ]
+        },
+        {
+          "id": "FIELD-P1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Native direction-dependent wall slowing and its .5-second post-field movement linger are approximated by segmented barriers.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FIELD-P2",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "The native selective forced-motion crossing list is not completely represented.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Historical level25 regeneration-aura talent with the explicit AA180 value.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA custom300magical-DPS lava; no modern native facet is grafted on.",
+          "sourceIds": [
+            "aa",
+            "archive"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "Every captured AA base/Super/Gaben clause and the finite listed arena timing/interaction matrix was reviewed. This is not binary-AA-engine equivalence.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Map fog, trees, buildings and couriers are absent from the arena.",
+          "Native hero-only innate abilities and modern facets are not silently granted.",
+          "Animation art and3D elevation are outside this flat simulation's validated contract."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Hero spear eligibility follows the AA hero clause; ordinary summons are excluded. Creephero/illusion qualification remains an explicit hero-category compatibility choice.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Walking uses fourteen enemy-only capsule segments; attack projectiles use the documented100-unit annulus.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Native direction-dependent wall slowing and its .5-second post-field movement linger are approximated by segmented barriers.",
+        "The native selective forced-motion crossing list is not completely represented."
+      ]
+    },
+    {
+      "id": "custom_elder_titan_ancestral_spirit",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base/Super/Gaben descriptions and custom numbers are authoritative. The independently re-fetched230-entry catalog matches the captured baseline.",
+          "versionContext": "Exact Workshop patch unknown; no live AA executable-equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan",
+          "accessedOn": "2026-10-29",
+          "observation": "The point-created spirit returns at900 and joins within100. Unique qualified contacts determine returned damage/armor/speed, capped40% speed. Illusions do not count and creepheroes count as creeps. A no-contact return does not refresh buffs. Repeated immunity extends and return applies a basic dispel.",
+          "versionContext": "Direct historical capture 20230215191426; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191426",
+          "htmlSha256": "5ac9829689a3e22dee84a8e0c00e2e603a1b512baa069db4c83f499c49c3bebb",
+          "originalUrl": "https://dota2.fandom.com/wiki/Elder_Titan",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": ".4 cast point, range1200, radius275, return900 and cap40. Both KV and AA explicitly indicate immunity piercing, conflicting with an archived Wiki note.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d; folder20230216 does not identify its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Elder_Titan",
+          "accessedOn": "2026-10-29",
+          "observation": "Mechanisms cross-checked against the direct archived page. Modern values, facets and unrelated Scepter/Shard replacements are excluded.",
+          "versionContext": "Current Wiki accessed2026-10-29; current prose is not backdated."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SPIRIT-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "the spirit contacts the selected point immediately and grants bonuses only on its return",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-01 the spirit contacts the selected point immediately and grants bonuses only on its return"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "contact along the homing return path hits each body once rather than once per frame",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-02 contact along the homing return path hits each body once rather than once per frame"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super adds forty per hero and five per creep exactly once to the final return values",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-03 Super adds forty per hero and five per creep exactly once to the final return values"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "actual Mirror Image illusions take contact damage without adding hero or creep bonuses",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-04 actual Mirror Image illusions take contact damage without adding hero or creep bonuses"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "an actual Spirit Bear counts as a creep rather than a hero for damage, armor and Gaben duration",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-05 an actual Spirit Bear counts as a creep rather than a hero for damage, armor and Gaben duration"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R06",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "a no-contact return does not place or refresh a previous bonus",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-06 a no-contact return does not place or refresh a previous bonus"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben return applies a basic dispel and adds its duration to the previous immunity",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-07 Gaben return applies a basic dispel and adds its duration to the previous immunity"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "caster death prevents return buffs and further return-path contacts",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-08 caster death prevents return buffs and further return-path contacts"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "actual Demonic Purge removes all three dispellable returned bonuses",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-09 actual Demonic Purge removes all three dispellable returned bonuses"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-R10",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "movement bonuses cap at forty percent while hero damage and armor remain uncapped",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "SPIRIT-10 movement bonuses cap at forty percent while hero damage and armor remain uncapped"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT-P1",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Direct AA executable evidence for autonomous steering/hold and return-order policy is absent; immediate Return is the explicit project AI choice.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Native contact-bonus pattern with explicit AA+40 hero/+5 creep, not the native2023+25 hero talent value.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Native Scepter return-immunity/basic-dispel pattern; AA1.5s replaces native2s per hero.",
+          "sourceIds": [
+            "aa",
+            "archive"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "Every captured AA base/Super/Gaben clause and the finite listed arena timing/interaction matrix was reviewed. This is not binary-AA-engine equivalence.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Map fog, trees, buildings and couriers are absent from the arena.",
+          "Native hero-only innate abilities and modern facets are not silently granted.",
+          "Animation art and3D elevation are outside this flat simulation's validated contract."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "The spirit is created at the frozen point and the arena AI immediately orders Return. After joining, any remaining cosmetic projectile tail cannot contact more units or grant another buff.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Captured AA and pinned KV immunity-piercing flags take priority over the contradictory historical Wiki note.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Echo Stomp and Natural Order are absent from the230-skill AA catalog and are not implicitly granted. Native mid-battle talent acquisition and manual spirit steering are outside the implemented player model.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Direct AA executable evidence for autonomous steering/hold and return-order policy is absent; immediate Return is the explicit project AI choice."
+      ]
+    },
+    {
+      "id": "void_spirit_astral_step",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base/Super/Gaben descriptions and custom numbers are authoritative. The independently re-fetched230-entry catalog matches the captured baseline.",
+          "versionContext": "Exact Workshop patch unknown; no live AA executable-equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Void_Spirit",
+          "accessedOn": "2026-10-29",
+          "observation": "Teleport does not disjoint. Path attacks have True Strike, ignore disarm and proc attack modifiers except cleave. Marks stack independently and damage upon any loss, including dispel. The talent is an ensured critical competing with higher criticals.",
+          "versionContext": "Direct historical capture 20230215192213; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215192213",
+          "htmlSha256": "a5c0442c711c789d63fd86f18a3e581730f74749460ef6b5ed3bc1ca08f083c5",
+          "originalUrl": "https://dota2.fandom.com/wiki/Void_Spirit",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": ".2 cast point, min200, width170, max800/900/1000, mark1.25, two charges and recharge28/23/18 with-4 talent. AA mana50 and critical200 replace native values.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d; folder20230216 does not identify its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Void_Spirit",
+          "accessedOn": "2026-10-29",
+          "observation": "Mechanisms cross-checked against the direct archived page. Modern values, facets and unrelated Scepter/Shard replacements are excluded.",
+          "versionContext": "Current Wiki accessed2026-10-29; current prose is not backdated."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "STEP-R01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "the minimum jump is two world units and the path radius is 170 reference units",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-01 the minimum jump is two world units and the path radius is 170 reference units"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "path attacks have true strike, ignore disarm and invisibility, and exclude cleave",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-02 path attacks have true strike, ignore disarm and invisibility, and exclude cleave"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "a void mark explodes on resistance-scaled expiry with the released damage snapshot",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-03 a void mark explodes on resistance-scaled expiry with the released damage snapshot"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a real Dark Pact strong dispel detonates the mark early and exactly once",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-04 a real Dark Pact strong dispel detonates the mark early and exactly once"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "repeated casts keep two independent marks and both explode once",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-05 repeated casts keep two independent marks and both explode once"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a mark survives source death and retains its source ability statistics",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-06 a mark survives source death and retains its source ability statistics"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super critical competes with stronger criticals instead of multiplying into them",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-07 Super critical competes with stronger criticals instead of multiplying into them"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "normal and Gaben charges are finite and restore sequentially at the final charge time",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-08 normal and Gaben charges are finite and restore sequentially at the final charge time"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "root blocks a new step order without spending mana or charges",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-09 root blocks a new step order without spending mana or charges"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a real allied Chakra basic dispel detonates the mark without waiting for natural expiry",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "STEP-10 a real allied Chakra basic dispel detonates the mark without waiting for natural expiry"
+            }
+          ]
+        },
+        {
+          "id": "STEP-R11",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "channel pulses and delayed mark callbacks reconstruct from the recorded initial setup",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-REPLAY-01 channel pulses and delayed mark callbacks reconstruct from the recorded initial setup"
+            }
+          ]
+        },
+        {
+          "id": "STEP-P1",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Direct AA executable evidence distinguishing200% versus300% total critical damage for the shorthand+200% crit is absent.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "STEP-P2",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The precise teleport-versus-attack origin used by same-frame range-sensitive modifiers remains inconsistent in historical/current prose.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Native ensured-critical and recharge-talent patterns with captured AA200%/-4 custom values.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA+2 maximum charges; no unrelated Resonant Pulse Scepter is imported.",
+          "sourceIds": [
+            "aa",
+            "archive"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "Every captured AA base/Super/Gaben clause and the finite listed arena timing/interaction matrix was reviewed. This is not binary-AA-engine equivalence.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Map fog, trees, buildings and couriers are absent from the arena.",
+          "Native hero-only innate abilities and modern facets are not silently granted.",
+          "Animation art and3D elevation are outside this flat simulation's validated contract."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Working critical is200% total, following ensured-critical terminology; the Chinese200% proc-chance translation is not used.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Historical prose says immediate teleport upon cast, so current attacks resolve after the warp. Current Wiki numbered prose gives a conflicting order; origin-sensitive modifiers remain pending.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Removal notification covers engine dispel/natural expiry. It does not claim to intercept all unrelated programs' manual status-array consumption.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Direct AA executable evidence distinguishing200% versus300% total critical damage for the shorthand+200% crit is absent.",
+        "The precise teleport-versus-attack origin used by same-frame range-sensitive modifiers remains inconsistent in historical/current prose."
+      ]
+    },
+    {
+      "id": "enigma_black_hole",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base/Super/Gaben descriptions and custom numbers are authoritative. The independently re-fetched230-entry catalog matches the captured baseline.",
+          "versionContext": "Exact Workshop patch unknown; no live AA executable-equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230205103458id_/https://dota2.fandom.com/wiki/Enigma",
+          "accessedOn": "2026-10-29",
+          "observation": "Immediate disable and spiral pull linger .5s outside the field but stop when channeling ends. Pure damage occurs at1/2/3/4s. The pull can cross terrain; selected forced movement cannot rescue a victim. Wards and buildings are excluded.",
+          "versionContext": "Direct historical capture 20230205103458; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230205103458",
+          "htmlSha256": "00287018a4273c4be400d2bc5d81e3967dd42ff350761fb1039d5e273d3498b5",
+          "originalUrl": "https://dota2.fandom.com/wiki/Enigma",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": ".3 cast point, range275, channel4, control tick .1, pull30 and rotation .25. Control tick_rate is not misread as the damage period; AA radius350 and DPS20/60/100 are retained.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d; folder20230216 does not identify its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Enigma",
+          "accessedOn": "2026-10-29",
+          "observation": "Mechanisms cross-checked against the direct archived page. Modern values, facets and unrelated Scepter/Shard replacements are excluded.",
+          "versionContext": "Current Wiki accessed2026-10-29; current prose is not backdated."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "HOLE-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "disables immediately but deals exactly four pure pulses at one through four seconds",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-01 disables immediately but deals exactly four pure pulses at one through four seconds"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super adds its final DPS once and disable ignores immunity, status resistance and dispel",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-02 Super adds its final DPS once and disable ignores immunity, status resistance and dispel"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a real Lucent Beam interrupt removes only this channel control and prevents later pulses",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-03 a real Lucent Beam interrupt removes only this channel control and prevents later pulses"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "a late entrant is disabled on contact but shares the original global damage clock",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-04 a late entrant is disabled on contact but shares the original global damage clock"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben refresh includes its own slot once while leaving the channel running",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-05 Gaben refresh includes its own slot once while leaving the channel running"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "caster death ends its channel and removes its disable without clearing another caster Black Hole",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "HOLE-06 caster death ends its channel and removes its disable without clearing another caster Black Hole"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-R07",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "channel pulses and delayed mark callbacks reconstruct from the recorded initial setup",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-REPLAY-01 channel pulses and delayed mark callbacks reconstruct from the recorded initial setup"
+            }
+          ]
+        },
+        {
+          "id": "HOLE-P1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Current pull is linear30 units/s inward plus.25rad/s rotation; native radius-dependent spiral and selective external-rescue priority list remain unclosed.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "HOLE-P2",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben resets ordinary slot cooldowns, but does not yet reset every independent charge-state implementation.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Native damage-talent pattern with explicit AA+100 DPS replacing native+50.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA once-per-round all-ability refresh, not native Enigma Scepter. Ordinary cooldown slots, including Black Hole, refresh at release.",
+          "sourceIds": [
+            "aa",
+            "archive"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "Every captured AA base/Super/Gaben clause and the finite listed arena timing/interaction matrix was reviewed. This is not binary-AA-engine equivalence.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Map fog, trees, buildings and couriers are absent from the arena.",
+          "Native hero-only innate abilities and modern facets are not silently granted.",
+          "Animation art and3D elevation are outside this flat simulation's validated contract."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Per-cast control references prevent cleanup from deleting another caster's control. The onEnd lifecycle ends source-owned motion and removes its own stun.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "No native outer-pull/max-HP Scepter effect is inferred from AA's different upgrades.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Current pull is linear30 units/s inward plus.25rad/s rotation; native radius-dependent spiral and selective external-rescue priority list remain unclosed.",
+        "Gaben resets ordinary slot cooldowns, but does not yet reset every independent charge-state implementation."
+      ]
+    },
+    {
+      "id": "techies_suicide",
+      "status": "passed",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base/Super/Gaben descriptions and custom numbers are authoritative. The independently re-fetched230-entry catalog matches the captured baseline.",
+          "versionContext": "Exact Workshop patch unknown; no live AA executable-equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Techies",
+          "accessedOn": "2026-10-29",
+          "observation": "Blast Off uses1s windup and fixed.75s leap. Historical landing order is silence, area damage, self damage, then Shard stun. Self damage is nonlethal and not HP Removal; barriers absorb it. Forced movement interrupts the leap; other disables do not.",
+          "versionContext": "Direct historical capture 20230215192147; compared with Valve2023-02-10, not assumed to be the exact AA patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215192147",
+          "htmlSha256": "3797c0e6de4a5587502b949f7b1c5daa6eb9c6d4a828e3d77a5845e6f8b0104c",
+          "originalUrl": "https://dota2.fandom.com/wiki/Techies",
+          "readMethod": "Public urllib HTTPS GET; decompress gzip magic if present; inert HTMLParser text/image-alt/title inspection. No downloaded scripts executed; only metadata/paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "techies_suicide is Blast Off, not removed Suicide Squad. Range1000, cast point1, leap.75 and Shard stun1.75; captured AA three-rank values remain authoritative.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d; folder20230216 does not identify its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Techies",
+          "accessedOn": "2026-10-29",
+          "observation": "Mechanisms cross-checked against the direct archived page. Modern values, facets and unrelated Scepter/Shard replacements are excluded.",
+          "versionContext": "Current Wiki accessed2026-10-29; current prose is not backdated."
+        },
+        {
+          "id": "flags",
+          "url": "https://liquipedia.net/dota2/Damage_Type",
+          "accessedOn": "2026-10-29",
+          "observation": "The no-damage-multipliers source list includes Blast Off current-health cost, distinct from HP Removal and nonlethal flags.",
+          "versionContext": "Current flag reference paired with historical Techies exceptions."
+        },
+        {
+          "id": "types",
+          "url": "https://liquipedia.net/dota2/Damage_types",
+          "accessedOn": "2026-10-29",
+          "observation": "Generic damage manipulation excludes changes to armor and magic resistance; magical self damage retains type-specific resistance.",
+          "versionContext": "Damage-type table footnote2 accessed2026-10-29."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/7.41",
+          "accessedOn": "2026-10-29",
+          "observation": "Patch7.41 explicitly moves self damage before area damage and changes leap control states, documenting a modern/historical divergence.",
+          "versionContext": "2026 patch is not imported into the2023 candidate."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BLAST-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "uses the historical one-second windup and a continuous fixed three-quarter-second leap",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-01 uses the historical one-second windup and a continuous fixed three-quarter-second leap"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "landing order is silence then enemy damage then self damage then the Super stun",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-02 landing order is silence then enemy damage then self damage then the Super stun"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "self damage retains magic resistance but ignores generic amplifiers and reductions",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "flags",
+            "types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-03 self damage retains magic resistance but ignores generic amplifiers and reductions"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "an actual allied Aphotic Shield absorbs the real self-damage event",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "flags",
+            "types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-04 an actual allied Aphotic Shield absorbs the real self-damage event"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "actual hostile Inner Fire movement cancels the leap and every landing effect",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-06 actual hostile Inner Fire movement cancels the leap and every landing effect"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben invulnerability starts on release, covers flight and expires three seconds after release",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-07 Gaben invulnerability starts on release, covers flight and expires three seconds after release"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben adds two world units to explosion radius without importing the modern silence-to-stun replacement",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-08 Gaben adds two world units to explosion radius without importing the modern silence-to-stun replacement"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "the self cost uses current health instead of maximum health and remains nonlethal at one HP",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "flags",
+            "types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-09 the self cost uses current health instead of maximum health and remains nonlethal at one HP"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "immune enemies take no explosion damage, silence or Super stun while self cost still occurs",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-10 immune enemies take no explosion damage, silence or Super stun while self cost still occurs"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a real Nether Swap during the last leap frames cancels rather than impersonating a natural motion end",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-11 a real Nether Swap during the last leap frames cancels rather than impersonating a natural motion end"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R11",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "channel pulses and delayed mark callbacks reconstruct from the recorded initial setup",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "FIELD-REPLAY-01 channel pulses and delayed mark callbacks reconstruct from the recorded initial setup"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R12",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a stun received during the already released leap does not cancel landing",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-05 a stun received during the already released leap does not cancel landing"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R13",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a silence received during the already released leap does not cancel landing",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-05 a silence received during the already released leap does not cancel landing"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-R14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "a root received during the already released leap does not cancel landing",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-05 a root received during the already released leap does not cancel landing"
+            }
+          ]
+        },
+        {
+          "id": "BLAST-RANGE-CD",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super adds300 cast range and reduces final cooldown by15 seconds: normal range10 cannot order the target at13, Super can and commits15s cooldown.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-fields-dashes-channels.test.ts",
+              "test": "BLAST-12 Super enables the thirteen-unit ground order and commits a fifteen-second cooldown"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Historical Shard+300 range/1.75 stun and cooldown-talent pattern, retaining explicit AA-15s.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA cast-time removal, radius+200 and3s all-damage invulnerability; no modern Scepter/facet graft.",
+          "sourceIds": [
+            "aa",
+            "archive"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "Every captured AA base/Super/Gaben clause and the finite listed arena timing/interaction matrix was reviewed. This is not binary-AA-engine equivalence.",
+        "complete": true,
+        "clausesReviewed": true,
+        "excluded": [
+          "Map fog, trees, buildings and couriers are absent from the arena.",
+          "Native hero-only innate abilities and modern facets are not silently granted.",
+          "Animation art and3D elevation are outside this flat simulation's validated contract."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Use historical silence→area→self→stun ordering. Patch7.41 explicitly moves self before area, so the modern order is excluded.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Self damage keeps type-specific magic resistance but skips generic multipliers, still interacting with barriers/negation. It is not HP Removal.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "AA all-damage invulnerability also prevents the caster's own self damage while active; no hidden cost exception is invented.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Leap interruption compares read-only controller identity and subsequent forced/warp movement history; final-frame swaps cannot impersonate natural expiry.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": []
+    }
+  ]
+}

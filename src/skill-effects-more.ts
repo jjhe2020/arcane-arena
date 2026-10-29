@@ -45,7 +45,7 @@ function endpoint(c: EffectContext, length: number) {
 function instantAttack(c: EffectContext, target: CombatUnit, multiplier = 1, bonus = 0, trueStrike = false, options:InstantAttackOptions = {}) {
   return c.attack(target, multiplier, true, undefined, false, {trueStrike,bonusDamage:bonus,...options});
 }
-const effectiveAttackRange = (c:EffectContext) => c.caster.statuses.find(s=>s.kind==='attackRangeOverride'&&s.until>c.battle.time)?.value ?? c.caster.range+c.caster.statuses.filter(s=>s.kind==='range'&&s.until>c.battle.time).reduce((n,s)=>n+(s.value??0),0);
+const effectiveAttackRange = (c:EffectContext) => c.attackRange?.(c.caster) ?? ((c.caster.statuses.find(s=>s.kind==='attackRangeOverride'&&s.until>c.battle.time)?.value ?? c.caster.range)+c.caster.statuses.filter(s=>s.kind==='range'&&s.until>c.battle.time).reduce((n,s)=>n+(s.value??0),0));
 function clock(c: EffectContext, duration: number, interval: number, effect: (tick: number) => void, channel = false) {
   c.zone({ follow: true, radius: 0, targets: 'all', duration, interval, channel, effect: (t, tick) => { if (t.id === c.caster.id) effect(tick); } });
 }
@@ -79,7 +79,7 @@ put('hoodwink_acorn_shot', active(c => {
     });
   },origin); bounce(c.target,0);
 }, ['one attack combines attack fraction and fixed bonus before critical/lifesteal', 'independent slow even on miss', '2200-speed initial projectile; delayed half-attack-projectile-speed bounces from previous impact', 'Super final damage/bounce parameters', 'Gaben historical Stygian Desolator corrosion before the current successful attack'], ['Point-target trees/fog/disjoint continuation absent from arena', 'Nearest eligible bounce selection is deterministic project AI; native random selection not certified', 'Multiple corruption providers sharing one native item debuff group unverified'], {
-  dynamicRange:true,range:c=>effectiveAttackRange(c)+U(v(c,'BONUS ATTACK RANGE')),
+  attackProjectile:true,dynamicRange:true,range:c=>effectiveAttackRange(c)+U(v(c,'BONUS ATTACK RANGE')),
   init: c => { if (gabenLevel(c)) c.caster.attack += 60; },
   beforeAttackDamage:c=>{if(gabenLevel(c))c.status(c.target,'armor',balanceNumber(c,'skill_effects_more.armor_duration.1',7),balanceNumber(c,'skill_effects_more.armor_amount.1',-10),harmful);},superImplemented:true,gabenImplemented:true,
 }));
@@ -113,22 +113,40 @@ put('custom_skywrath_mage_arcane_bolt', active(c => {
 }));
 
 put('void_spirit_astral_step', active(c => {
-  const start = { x: c.caster.x, y: c.caster.y }, end = endpoint(c, Math.min(distance(c.caster, c.target) + .5, U(v(c, 'RANGE'))));
-  const hit = lineTargets(c, start, end, 1.1); c.warp(c.caster,end.x,end.y);
-  for (const target of hit) { instantAttack(c, target, superLevel(c) ? 2 : 1); slow(c, target, v(c, 'MOVEMENT SLOW'), balanceNumber(c,'skill_effects_more.slow_duration.1',1.25)); c.delay(balanceNumber(c,'skill_effects_more.delay.1',1.25), () => c.damage(target, v(c, 'VOID MARK DAMAGE'))); }
-}, ['dash path attacks', 'void mark slow', 'delayed mark damage', 'Super two-times attack critical and four-second faster charge restoration'], ['Base and Gaben charge/recharge system', 'AA +200% crit interpreted as 200% total critical damage, not 300% additive or proc chance; explicit working semantic default', 'Swept path width and cleave exclusion'], { range: c => U(v(c, 'RANGE')), cooldown: c => v(c, 'BASE CHARGE RESTORE TIME') - (superLevel(c) ? 4 : 0), superImplemented: true }));
+  const start={x:c.caster.x,y:c.caster.y},point=c.castPosition??c.target,dx=point.x-start.x,dy=point.y-start.y,d=Math.hypot(dx,dy),angle=d?Math.atan2(dy,dx):c.caster.facing;
+  const extraRange=c.caster.statuses.filter(s=>s.kind==='castRange'&&s.until>c.battle.time).reduce((n,s)=>n+(s.value??0),0),rangeFactor=1+c.caster.statuses.filter(s=>s.kind==='castRangePct'&&s.until>c.battle.time).reduce((n,s)=>n+(s.value??0),0),length=Math.max(U(v(c,'MIN TRAVEL DISTANCE',200)),Math.min(d,U(v(c,'RANGE'))*rangeFactor+extraRange)),end={x:start.x+Math.cos(angle)*length,y:start.y+Math.sin(angle)*length};
+  const targets=lineTargets(c,start,end,U(v(c,'PATH WIDTH',170))).filter(t=>!t.ward);
+  c.warp(c.caster,end.x,end.y);
+  for(const target of targets){
+    instantAttack(c,target,1,0,true,{criticalMultiplier:P(v(c,'CRITICAL DAMAGE',superLevel(c)?200:100)),noCleave:true,allowInvisibleTarget:true});
+    c.status(target,'slow',balanceNumber(c,'skill_effects_more.slow_duration.1',1.25),P(v(c,'MOVEMENT SLOW')),{harmful:true,piercesImmunity:true,maxStacks:1000,data:{astralStepMark:true,damage:v(c,'VOID MARK DAMAGE')}});
+  }
+}, ['instant ground-cursor teleport with minimum/maximum distance and no disjoint', 'true-strike path attacks ignore disarm and never cleave', 'independent resistance-scaled void marks detonate on expiry or dispel', 'Super ensured critical and faster sequential charge restoration'], ['AA +200% crit uses 200% total critical candidate; native talent has a different numerical value'], {pointTarget:true,range:c=>U(v(c,'RANGE')),cooldown:c=>v(c,'BASE CHARGE RESTORE TIME')-(!skillBalance(c.definition,c.skill.points)&&superLevel(c)?4:0),onStatusRemoved:(c,status)=>{if(status.kind==='slow'&&status.data?.astralStepMark)c.damage(c.target,Number(status.data.damage),'magical',true);},superImplemented:true}));
 
 put('techies_suicide', active(c => {
-  const destination = { x: c.target.x, y: c.target.y };
-  const flight=balanceNumber(c,'skill_effects_more.delay.1',0.6);
-  c.moveContinuous(c.caster,destination.x,destination.y,{duration:flight,ignoreBarriers:true});
-  c.delay(flight, () => {
-    if (c.caster.dead) return;
-    c.caster.hp = Math.max(1, c.caster.hp * (1 - P(v(c, 'CURRENT HP SELF DAMAGE'))));
-    for (const t of near(c, U(v(c, 'RADIUS') + (gabenLevel(c) ? 200 : 0)))) { c.damage(t, v(c, 'FULL DAMAGE')); c.status(t, 'silence', v(c, 'SILENCE DURATION'), 0, harmful); if (superLevel(c)) stun(c, t, balanceNumber(c,'skill_effects_more.stun_duration.1',1.75)); }
-    if (gabenLevel(c)) c.status(c.caster, 'invulnerable', balanceNumber(c,'skill_effects_more.invulnerable_duration.1',3));
-  }, true);
-}, ['delayed leap', 'area explosion and silence', 'nonlethal current-health cost', 'Super stun/range/cooldown', 'Gaben immediate cast/radius/invulnerability'], ['Reference leap and base cast times', 'Health-cost event accounting'], { castPoint: c => gabenLevel(c) ? 0 : .3, range: c => balanceNumber(c,'skill_effects_more.range.1',7) + (superLevel(c) ? balanceNumber(c,'skill_effects_more.range.2',3) : 0), cooldown: c => cooldown(c, superLevel(c) ? 15 : 0), superImplemented: true, gabenImplemented: true }));
+  const destination=c.castPosition??{x:c.target.x,y:c.target.y},flight=balanceNumber(c,'skill_effects_more.delay.1',.75),started=c.battle.time,priorMoves=new Set((c.caster.moveHistory??[]) as object[]);
+  if(gabenLevel(c))c.status(c.caster,'invulnerable',balanceNumber(c,'skill_effects_more.invulnerable_duration.1',3),0,{dispel:'none'});
+  if(!c.moveContinuous(c.caster,destination.x,destination.y,{duration:flight,priority:-1,ignoreBarriers:true}))return;
+  const identity=c.motionActive?.(c.caster);let cancelled=false;
+  c.status(c.caster,'selfStun',flight,0,{dispel:'none'});
+  const leap=c.caster.statuses.find(s=>s.kind==='selfStun'&&s.skill===c.skill.id&&s.source===c.caster.id);
+  const check=()=>{
+    if(cancelled)return;
+    const current=c.motionActive?.(c.caster),elapsed=c.battle.time-started,foreignMove=((c.caster.moveHistory??[]) as {kind?:string;skill?:string}[]).some(move=>!priorMoves.has(move)&&(move.kind==='warp'||move.kind==='forced'&&move.skill!==c.skill.id));
+    if(c.caster.dead||foreignMove||(identity&&current&&(identity.owner!==current.owner||identity.startedAt!==current.startedAt))||(identity&&!current&&elapsed<flight-MOTION_STEP-1e-8)){
+      cancelled=true;c.caster.statuses=c.caster.statuses.filter(s=>s!==leap);return;
+    }
+    if(elapsed<flight-1e-8)c.delay(MOTION_STEP,check);
+  };c.delay(MOTION_STEP,check);
+  c.delay(flight,()=>{
+    check();if(cancelled||c.caster.dead)return;
+    const targets=near(c,U(v(c,'RADIUS')+(gabenLevel(c)?200:0))).filter(t=>!t.ward&&!t.statuses.some(s=>s.kind==='magicImmune'));
+    for(const target of targets)c.status(target,'silence',v(c,'SILENCE DURATION'),0,harmful);
+    for(const target of targets)c.damage(target,v(c,'FULL DAMAGE'));
+    c.damage(c.caster,c.caster.hp*P(v(c,'CURRENT HP SELF DAMAGE')),'magical',true,{flags:{nonLethal:true,noAmplification:true,noSpellLifesteal:true,noReflection:true,bypassGenericMultipliers:true}});
+    if(superLevel(c))for(const target of targets)stun(c,target,balanceNumber(c,'skill_effects_more.stun_duration.1',1.75));
+  });
+}, ['fixed-duration continuous leap; other forced movement cancels but ordinary disables do not', 'historical landing order: silence, area damage, nonlethal current-HP self damage, Super stun', 'self damage retains magic resistance and barriers but bypasses generic multipliers', 'Super historical shard range/stun and talent cooldown', 'Gaben instant cast, increased radius and invulnerability beginning at release'], [], {pointTarget:true,castPoint:c=>gabenLevel(c)?0:1,backswing:.9,range:c=>balanceNumber(c,'skill_effects_more.range.1',10)+(superLevel(c)?balanceNumber(c,'skill_effects_more.range.2',3):0),cooldown:c=>cooldown(c,superLevel(c)?15:0),superImplemented:true,gabenImplemented:true}));
 
 put('custom_monkey_king_boundless_strike', active(c => {
   const compiled=!!skillBalance(c.definition,c.skill.points),start={x:c.caster.x,y:c.caster.y},end=endpoint(c,U(v(c,'DISTANCE'))),width=U(v(c,'STRIKE RADIUS',150));
@@ -357,7 +375,7 @@ put('custom_ancient_apparition_ice_blast', active(c => {
       if ((current && current.data?.token !== token) || (!current && c.battle.time < expires - 1e-8)) return;
       accumulated += Math.max(0, Math.min(expires, c.battle.time) - previous); previous = Math.min(expires, c.battle.time);
       if (accumulated >= .2 - 1e-8 || c.battle.time >= expires - 1e-8) { c.damage(target, v(c, 'FROSTBITTEN DAMAGE PER SECOND') * accumulated, 'magical', true); accumulated = 0; }
-      if (!target.dead && target.hp / target.maxHp < threshold) c.execute(target);
+      if (!target.dead && !target.statuses.some(s=>s.kind==='berserk') && target.hp / target.maxHp < threshold) c.execute(target);
       if (!target.dead && c.battle.time < expires - 1e-8) c.delay(1 / 30, check);
     };
     check();
@@ -990,7 +1008,7 @@ function withCharges(id: string, maximum: (c: EffectContext) => number, replenis
   };
   p.implemented.push('finite ability charges with sequential simulation-time replenishment');
 }
-withCharges('void_spirit_astral_step', c => gabenLevel(c) ? 4 : 2, c => v(c, 'BASE CHARGE RESTORE TIME') - (superLevel(c) ? 4 : 0));
+withCharges('void_spirit_astral_step',c=>v(c,'MAX CHARGES')+(!skillBalance(c.definition,c.skill.points)&&gabenLevel(c)?2:0),c=>v(c,'BASE CHARGE RESTORE TIME')-(!skillBalance(c.definition,c.skill.points)&&superLevel(c)?4:0));
 programs.void_spirit_astral_step.gabenImplemented = true;
 programs.void_spirit_astral_step.remaining = programs.void_spirit_astral_step.remaining.filter(s => !s.includes('charge/recharge'));
 withCharges('clinkz_strafe', c => gabenLevel(c) ? 2 : 1, c => cooldown(c));

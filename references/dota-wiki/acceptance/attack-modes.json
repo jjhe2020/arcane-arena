@@ -1,0 +1,1214 @@
+{
+  "schemaVersion": 1,
+  "group": "attack-modes",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit values/custom clauses first;mechanisms checked against2023Wiki capture and pinnedValve. Current-only evidence is labeled. No extraWayback requests after429.",
+  "validation": {
+    "command": "npx vitest run tests/reference-attack-modes.test.ts",
+    "passedTests": 44,
+    "meaning": "Named result examples only;pending requirements and unmodeled branches prevent whole-skill reference_verified.",
+    "regressionCommand": "npx vitest run tests/reference-attack-modes.test.ts tests/reference-links-and-gaze.test.ts tests/reference-lightning-bolt-edges.test.ts tests/reference-resolution-order.test.ts",
+    "regressionPassedTests": 101,
+    "typecheck": "npx tsc --noEmit passed"
+  },
+  "skills": [
+    {
+      "id": "winter_wyvern_arctic_burn",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "paraphrase": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "versionContext": "HTTPS200 direct static JSON, sha256 verified 2026-10-29; public site does not identify exact workshop Lua patch.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "paraphrase": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "versionContext": "Pinned native2023-02-10, local references/dota-20230216/npc_abilities.txt"
+        },
+        {
+          "id": "wyvern-2023",
+          "url": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Winter_Wyvern",
+          "accessedOn": "2026-10-29",
+          "observation": "Native .1 point,+500 projectile,one-debuff-per-target,1-second delayed burn. Scepter removes per-target limit.",
+          "paraphrase": "Native .1 point,+500 projectile,one-debuff-per-target,1-second delayed burn. Scepter removes per-target limit.",
+          "versionContext": "Historical Fandom capture 20230215192255; read before the later429 rate limit. Only metadata retained, no fullHTML.",
+          "archiveTimestamp": "20230215192255",
+          "sha256": "a395b0cdd5f162b54270ff9f9401e74d79ce8dfab26c870fddfcc4ae5fa3c468"
+        },
+        {
+          "id": "wyvern-current",
+          "url": "https://liquipedia.net/dota2/Winter_Wyvern",
+          "accessedOn": "2026-10-29",
+          "observation": "Arctic Burn debuff requires an attack projectile; melee bodies cannot apply it. Current interval/duration values differ from2023 and are not copied.",
+          "paraphrase": "Arctic Burn debuff requires an attack projectile; melee bodies cannot apply it. Current interval/duration values differ from2023 and are not copied.",
+          "versionContext": "Current Wiki indexed text, read 2026-10-29; modern numerical changes are not imported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AB-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Flight and additive attack range; set attack point and projectile-speed bonus.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "valve",
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-02 fixes native attack point and projectile speed without converting a melee unit to ranged"
+            }
+          ]
+        },
+        {
+          "id": "AB-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Debuff precedes attack damage; first burn at1s,including fifth boundary tick.",
+          "timing": null,
+          "sourceIds": [
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-01 applies the burn before physical attack damage and ticks once per second through its endpoint"
+            }
+          ]
+        },
+        {
+          "id": "AB-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Each enemy once per base cast; ward and spell-immunity exclusions.",
+          "timing": null,
+          "sourceIds": [
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-03 permits each target once per cast while Gaben refreshes and Super extends the AA debuff"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-04 excludes spell-immune enemies and wards from Arctic Burn"
+            }
+          ]
+        },
+        {
+          "id": "AB-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA final slow52 and burn duration7 atSuper.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-03 permits each target once per cast while Gaben refreshes and Super extends the AA debuff"
+            }
+          ]
+        },
+        {
+          "id": "AB-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Permanent AA flight,25percent movement and repeat refresh.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-03 permits each target once per cast while Gaben refreshes and Super extends the AA debuff"
+            }
+          ]
+        },
+        {
+          "id": "AB-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Independent caster damage clocks; actual strong dispel cancels its source clock.",
+          "timing": null,
+          "sourceIds": [
+            "wyvern-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-05 a real strong dispel stops the burn clock; only Gaben can reapply to that same target in one cast"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-06 independent Arctic Burn casters retain separate target ledgers and damage clocks"
+            }
+          ]
+        },
+        {
+          "id": "AB-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "CurrentWiki projectile-dependent eligibility:melee no burn;released ranged projectile stays eligible after actualRage form change.",
+          "timing": null,
+          "sourceIds": [
+            "wyvern-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "AB-07 Arctic Burn cannot debuff through a melee attack but keeps an already released ranged projectile eligible after Rage"
+            }
+          ]
+        },
+        {
+          "id": "AB-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Exact2023 status-resistance partial interval behavior remains unverified.",
+          "timing": null,
+          "sourceIds": [
+            "wyvern-2023"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "AB-C03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Exact2023 melee/projectile clause must be independently recovered;currentWiki behavior is explicitly adopted meanwhile.",
+          "sourceIds": [
+            "wyvern-current",
+            "wyvern-2023"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "CurrentWiki melee/projectile restriction implemented and tested;exact2023 qualification remains source-version pending.",
+        "2023 shortened-duration fractional burn and refresh clock semantics need precise source verification.",
+        "Nightvision/tree destruction are outside the explicitly flat fully-visible arena scope,not newly simulated rules."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "2023+12slow and+2duration talents",
+          "sourceIds": [
+            "aa",
+            "wyvern-2023",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "NativeScepter repeat-application/flying/movement; AA permanent replaces toggle and mana drain",
+          "sourceIds": [
+            "aa",
+            "wyvern-2023"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_juggernaut_blade_fury",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "paraphrase": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "versionContext": "HTTPS200 direct static JSON, sha256 verified 2026-10-29; public site does not identify exact workshop Lua patch.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "paraphrase": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "versionContext": "Pinned native2023-02-10, local references/dota-20230216/npc_abilities.txt"
+        },
+        {
+          "id": "juggernaut-2023",
+          "url": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut",
+          "accessedOn": "2026-10-29",
+          "observation": "Native .2-second pulses; regular main attacks suppressed,conditional modifiers remain. No channel interruption; reciprocal Omnislash exclusion. Old Shard single random instant attack starts .2seconds aftercast.",
+          "paraphrase": "Native .2-second pulses; regular main attacks suppressed,conditional modifiers remain. No channel interruption; reciprocal Omnislash exclusion. Old Shard single random instant attack starts .2seconds aftercast.",
+          "versionContext": "Historical Fandom capture 20230215191730; read before the later429 rate limit. Only metadata retained, no fullHTML.",
+          "archiveTimestamp": "20230215191730",
+          "sha256": "5ae2f06519f1708a59ac19c5f1034d422f6cc6ab1f2ac343e18c2043d8b2f797"
+        },
+        {
+          "id": "juggernaut-current",
+          "url": "https://liquipedia.net/dota2/Juggernaut",
+          "accessedOn": "2026-10-29",
+          "observation": "Conditional bonus attack damage is exempt from the main attack penalty. Modern debuff immunity/ending strongdispel are excluded from the historical branch.",
+          "paraphrase": "Conditional bonus attack damage is exempt from the main attack penalty. Modern debuff immunity/ending strongdispel are excluded from the historical branch.",
+          "versionContext": "Current Wiki indexed text, read 2026-10-29; modern numerical changes are not imported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BF-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Basic selfdispel and AA partial/full spell-immunity durations.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "juggernaut-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-01 deals twenty-five .2-second magical pulses, preserving AA partial and Super full immunity"
+            }
+          ]
+        },
+        {
+          "id": "BF-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Twenty-five .2-second pulses,with the endpoint included.",
+          "timing": null,
+          "sourceIds": [
+            "juggernaut-2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-01 deals twenty-five .2-second magical pulses, preserving AA partial and Super full immunity"
+            }
+          ]
+        },
+        {
+          "id": "BF-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Only main critical-scaled attack damage is suppressed;independent conditional damage remains.",
+          "timing": null,
+          "sourceIds": [
+            "juggernaut-2023",
+            "juggernaut-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-02 suppresses ordinary main attack damage while retaining independent attack modifiers"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-05 Blade Fury preserves Bash post-critical conditional damage while removing the main attack"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-06 Fury allows ordinary spells while spinning and does not exempt ranged attacks against ordinary units"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-09 ordinary attacks on wards and buildings retain their main damage during Fury"
+            }
+          ]
+        },
+        {
+          "id": "BF-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA+80DPS,+75radius,full-spin immunity compiled as final values.",
+          "timing": null,
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-01 deals twenty-five .2-second magical pulses, preserving AA partial and Super full immunity"
+            }
+          ]
+        },
+        {
+          "id": "BF-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA100percent single random instant attack every1s,starting.2s;disarm does not prevent it.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "juggernaut-2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-03 Gaben independently attacks one victim from .2 seconds and every second despite disarm"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-10 Gaben scheduled attacks continue through stun but do not have True Strike"
+            }
+          ]
+        },
+        {
+          "id": "BF-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Zero-point Fury preserves active channel and pays own mana/cooldown.",
+          "timing": null,
+          "sourceIds": [
+            "juggernaut-2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-04 cannot cast Omnislash during Fury, and Fury can release during an existing channel"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-07 zero-point Fury during a channel still pays mana and starts its own cooldown"
+            }
+          ]
+        },
+        {
+          "id": "BF-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Ordinary spellcasts allowed duringFury;Omnislash cast exclusions in both directions.",
+          "timing": null,
+          "sourceIds": [
+            "juggernaut-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-04 cannot cast Omnislash during Fury, and Fury can release during an existing channel"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-06 Fury allows ordinary spells while spinning and does not exempt ranged attacks against ordinary units"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BF-08 Fury cannot start while a real Omnislash sequence is active"
+            }
+          ]
+        },
+        {
+          "id": "BF-C03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA Gaben mini-Omnislash automatic proc interaction is not explicit in native cast-order prohibition.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "juggernaut-2023"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Native cast exclusions are tested;AA mini-Omnislash on-attack automatic proc ordering remains unresolved."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA customizedDPS/radius/full-immunity upgrade",
+          "sourceIds": [
+            "aa"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Native oldShard random instant attack;AA replaces75percent/interval/movement/CD values",
+          "sourceIds": [
+            "aa",
+            "juggernaut-2023",
+            "valve"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "troll_warlord_battle_trance",
+      "status": "reviewed",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "paraphrase": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "versionContext": "HTTPS200 direct static JSON, sha256 verified 2026-10-29; public site does not identify exact workshop Lua patch.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "paraphrase": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "versionContext": "Pinned native2023-02-10, local references/dota-20230216/npc_abilities.txt"
+        },
+        {
+          "id": "troll-2023",
+          "url": "https://web.archive.org/web/20230215191901id_/https://dota2.fandom.com/wiki/Troll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Native900 hero-prioritized lock,minimumHP,cast exceptions; stance root decided at attackpoint. Axes fan/orbit mechanics and Scepter dispels. Rampage is separately granted.",
+          "paraphrase": "Native900 hero-prioritized lock,minimumHP,cast exceptions; stance root decided at attackpoint. Axes fan/orbit mechanics and Scepter dispels. Rampage is separately granted.",
+          "versionContext": "Historical Fandom capture 20230215191901; read before the later429 rate limit. Only metadata retained, no fullHTML.",
+          "archiveTimestamp": "20230215191901",
+          "sha256": "1bb2dcde851da193fbc953b9680f3a4f561ed52c6097e2a1488b915d96327021"
+        },
+        {
+          "id": "aa45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "Rampage grants both70attack speed and25percent status resistance to every ally,regardless of form.",
+          "paraphrase": "Rampage grants both70attack speed and25percent status resistance to every ally,regardless of form.",
+          "versionContext": "Official AA4.5 developer post,2023-02-01."
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "Gaben replaced with granted Rampage cast whenever its own cooldown is ready.",
+          "paraphrase": "Gaben replaced with granted Rampage cast whenever its own cooldown is ready.",
+          "versionContext": "Official AA1.5 developer post,2022-10-05."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BT-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Basic selfdispel and minimum-one-health protection.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-01 basic-dispels and prevents lethal direct damage"
+            }
+          ]
+        },
+        {
+          "id": "BT-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Initial900 hero priority;retain locked valid target rather than nearest switching.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-02 locks the initial hero and does not switch merely because another enemy gets closer"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-05 Trance prioritizes a hero over a closer summoned creep and ignores a conflicting taunt"
+            }
+          ]
+        },
+        {
+          "id": "BT-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Immediate lock acquisition and reacquisition on invalidation.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-02 locks the initial hero and does not switch merely because another enemy gets closer"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-09 Trance reacquires after attack immunity and Fear still moves the affected attacker away"
+            }
+          ]
+        },
+        {
+          "id": "BT-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA final duration6 and bonusAS400.",
+          "timing": null,
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-07 Super preserves final AA duration and attack speed without double-adding compiled bonuses"
+            }
+          ]
+        },
+        {
+          "id": "BT-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Separately granted Rampage gives allallies both source-specified bonuses.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "aa45",
+            "aa15",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-04 AA Gaben Rampage gives every ally both bonuses independent of attack type"
+            }
+          ]
+        },
+        {
+          "id": "BT-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Engaged cast whitelist allowsRage/axes/Rampage while ordinary spells wait.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-03 searches only within900 and restores ordinary spells when no target is engaged"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-05 ranged Whirling Axes releases instantly without facing during engaged Trance"
+            }
+          ]
+        },
+        {
+          "id": "BT-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Locked phase/unslowable ignores taunt;Fear movement remains active.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-05 Trance prioritizes a hero over a closer summoned creep and ignores a conflicting taunt"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-06 an engaged Trance is unslowable and phased but a targetless Trance respects slows"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-09 Trance reacquires after attack immunity and Fear still moves the affected attacker away"
+            }
+          ]
+        },
+        {
+          "id": "BT-C03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Culling Blade execution bypasses minimumHP.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-08 Culling Blade execution bypasses Trance minimum health protection"
+            }
+          ]
+        },
+        {
+          "id": "BT-C04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "ActualFalsePromise lethal settlement and actualIceBlast threshold both respect activeTrance;CullingBlade remains execution.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-10 a real False Promise lethal settlement respects the active Trance minimum health"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-11 real Ice Blast threshold cannot execute an active Trance target"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-08 Culling Blade execution bypasses Trance minimum health protection"
+            }
+          ]
+        },
+        {
+          "id": "BT-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "EveryAA base rank grants140/170/200AS,40/60/80percent lifesteal,25/30/35percent movement for2/3/4seconds;actual cadence and movement speed update.",
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-12 every AA base rank grants its exact attack speed, lifesteal, movement speed and duration"
+            }
+          ]
+        },
+        {
+          "id": "BT-C05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Everybase rank heals its stated fraction of an actual100physical attack,with per-skill effective healing recorded.",
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-13 every AA base rank actually heals its stated fraction of a successful physical attack"
+            }
+          ]
+        },
+        {
+          "id": "BT-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Public150mana,90/80/70cooldowns,zero castpoint and.5backswing are preserved;insufficientmana consumes neither cast nor cooldown.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-14 public mana cooldown zero-point and half-second backswing are honored at every AA base rank"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-17 insufficient public mana prevents Trance without consuming its cooldown"
+            }
+          ]
+        },
+        {
+          "id": "BT-C06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Targetless activeTrance permits a real ordinaryFalsePromise;expiry clears allown buffs and restores a formerlyblocked MagicMissile cast.",
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-15 a targetless active Trance actually permits an ordinary False Promise cast"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BT-16 expiry clears every Trance buff and restores a previously blocked ordinary spell action"
+            }
+          ]
+        }
+      ],
+      "unresolved": [],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA custom duration/AS values",
+          "sourceIds": [
+            "aa"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Native oldShard Rampage;AA1.5 independent slot thenAA4.5 both stats override native form condition",
+          "sourceIds": [
+            "aa15",
+            "aa45",
+            "troll-2023"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "Native alliedDismember/Supernova dispels are not exposed by current catalog branches;AA SunRayGaben creates an independent emitter,not a native allied egg transformation.",
+        "Flat fully-visible arena excludes fog/nightvision;existinginvisibility eligibility remains active.",
+        "Native items and manual-control orders are not part of the current arena catalog/UI.",
+        "The existing automatic activation policy is below50percentHP;it is arena AI,not a claim about native player orders."
+      ]
+    },
+    {
+      "id": "huskar_berserkers_blood",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "paraphrase": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "versionContext": "HTTPS200 direct static JSON, sha256 verified 2026-10-29; public site does not identify exact workshop Lua patch.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "paraphrase": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "versionContext": "Pinned native2023-02-10, local references/dota-20230216/npc_abilities.txt"
+        },
+        {
+          "id": "huskar-2023",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Huskar",
+          "accessedOn": "2026-10-29",
+          "observation": "Nonlinear missing-health ramp checked per server tick,max below10%;illusion resistance excluded. Regen talent adds percentage points only to regen; exact exponent not present in this capture.",
+          "paraphrase": "Nonlinear missing-health ramp checked per server tick,max below10%;illusion resistance excluded. Regen talent adds percentage points only to regen; exact exponent not present in this capture.",
+          "versionContext": "Historical Fandom capture 20230215191426; read before the later429 rate limit. Only metadata retained, no fullHTML.",
+          "archiveTimestamp": "20230215191426",
+          "sha256": "dabba597d43f03ed2a12c9c6cf9b462160c9b3023fea1861fdf064de06dec746"
+        },
+        {
+          "id": "huskar-current",
+          "url": "https://liquipedia.net/dota2/Huskar",
+          "accessedOn": "2026-10-29",
+          "observation": "Formula polynomial exponent1.85,currentHP normalized over missing90percent. This exact exponent is an explicit historical candidate,not a2023 proof.",
+          "paraphrase": "Formula polynomial exponent1.85,currentHP normalized over missing90percent. This exact exponent is an explicit historical candidate,not a2023 proof.",
+          "versionContext": "Current Wiki indexed text, read 2026-10-29; modern numerical changes are not imported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BB-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Zero atfullHP,max below10percent;nonlinear missing-health curve.",
+          "timing": null,
+          "sourceIds": [
+            "huskar-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-01 gives zero at full health and a nonlinear server-tick ramp with a low-health cap"
+            }
+          ]
+        },
+        {
+          "id": "BB-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Health-dependent bonuses update each30Hz server step.",
+          "timing": null,
+          "sourceIds": [
+            "huskar-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-01 gives zero at full health and a nonlinear server-tick ramp with a low-health cap"
+            }
+          ]
+        },
+        {
+          "id": "BB-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Illusions receive no magic-resistance component.",
+          "timing": null,
+          "sourceIds": [
+            "huskar-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-02 Super adds regen percentage points while Gaben strength survives Break and illusions receive no resistance"
+            }
+          ]
+        },
+        {
+          "id": "BB-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA+30regen means additional strength-regeneration percentage points only.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "huskar-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-02 Super adds regen percentage points while Gaben strength survives Break and illusions receive no resistance"
+            }
+          ]
+        },
+        {
+          "id": "BB-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA fixed+60strength persists throughBreak.",
+          "timing": null,
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-02 Super adds regen percentage points while Gaben strength survives Break and illusions receive no resistance"
+            }
+          ]
+        },
+        {
+          "id": "BB-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Break suppresses passive AS/resistance/regen and next health update restores them.",
+          "timing": null,
+          "sourceIds": [
+            "huskar-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-02 Super adds regen percentage points while Gaben strength survives Break and illusions receive no resistance"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-03 Break suppresses the passive bonuses and they return on the first subsequent health update"
+            }
+          ]
+        },
+        {
+          "id": "BB-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Exact1.85 exponent is tested as implementation result but historical exponent equivalence is not verified.",
+          "timing": null,
+          "sourceIds": [
+            "huskar-current",
+            "huskar-2023"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BB-01 gives zero at full health and a nonlinear server-tick ramp with a low-health cap"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Exact1.85 exponent is currentWiki evidence only;2023 article confirms nonlinear ramp but not exact polynomial."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "2023regen talent,AA final+30percentagepoints",
+          "sourceIds": [
+            "aa",
+            "huskar-2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA custom fixed strength grant,not new native activeShard",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_troll_warlord_berserkers_rage",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "paraphrase": "AA base descriptions and explicit Super/Gaben values take precedence. These five IDs were read in the official230-row catalog.",
+          "versionContext": "HTTPS200 direct static JSON, sha256 verified 2026-10-29; public site does not identify exact workshop Lua patch.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "paraphrase": "Pinned native cast/interval/radius/upgrade fields compared locally. KV values do not prove the AA modified implementation.",
+          "versionContext": "Pinned native2023-02-10, local references/dota-20230216/npc_abilities.txt"
+        },
+        {
+          "id": "troll-2023",
+          "url": "https://web.archive.org/web/20230215191901id_/https://dota2.fandom.com/wiki/Troll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Native900 hero-prioritized lock,minimumHP,cast exceptions; stance root decided at attackpoint. Axes fan/orbit mechanics and Scepter dispels. Rampage is separately granted.",
+          "paraphrase": "Native900 hero-prioritized lock,minimumHP,cast exceptions; stance root decided at attackpoint. Axes fan/orbit mechanics and Scepter dispels. Rampage is separately granted.",
+          "versionContext": "Historical Fandom capture 20230215191901; read before the later429 rate limit. Only metadata retained, no fullHTML.",
+          "archiveTimestamp": "20230215191901",
+          "sha256": "1bb2dcde851da193fbc953b9680f3a4f561ed52c6097e2a1488b915d96327021"
+        },
+        {
+          "id": "aa45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "AA intentionally supports changing a melee body to ranged and viceversa.",
+          "paraphrase": "AA intentionally supports changing a melee body to ranged and viceversa.",
+          "versionContext": "Official AA4.5 introduction,2023-02-01."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BR-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA opposite-body stance supplies explicit attackcategory and additive range.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "aa45",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-01 melee transformation keeps Arctic Burn bonus range additive and retains melee attack category"
+            }
+          ]
+        },
+        {
+          "id": "BR-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Melee PRD root decided atattackpoint,before attackdamage,and reveals victim.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-02 root is applied before damage with True Sight, but Break and illusion owners cannot proc it"
+            }
+          ]
+        },
+        {
+          "id": "BR-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Break/illusion restrictions stop root without removing stance.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-02 root is applied before damage with True Sight, but Break and illusion owners cannot proc it"
+            }
+          ]
+        },
+        {
+          "id": "BR-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA independently owned form-specific axes.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-03 Super axes are independent actions and ranged axes travel as five ground projectiles"
+            }
+          ]
+        },
+        {
+          "id": "BR-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA axes4s/25mana and native offensive/self basicdispels.",
+          "timing": null,
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-06 Gaben ranged axes dispel a real shield before damage and use their own25mana four-second cooldown"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-07 Gaben melee axes self-dispel before their first damage and use their own25mana four-second cooldown"
+            }
+          ]
+        },
+        {
+          "id": "BR-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Stance zero-point cast preserves channel;Trance rangedaxes is instant and requires no facing.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-04 Rage may change form during an existing channel without replacing that channel"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-05 ranged Whirling Axes releases instantly without facing during engaged Trance"
+            }
+          ]
+        },
+        {
+          "id": "BR-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Five real ranged linear paths deduplicate each victim.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-03 Super axes are independent actions and ranged axes travel as five ground projectiles"
+            },
+            {
+              "file": "tests/reference-attack-modes.test.ts",
+              "test": "BR-05 ranged Whirling Axes releases instantly without facing during engaged Trance"
+            }
+          ]
+        },
+        {
+          "id": "BR-M04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Melee two-axe logarithmic spiral collision remains a radius-envelope approximation.",
+          "timing": null,
+          "sourceIds": [
+            "troll-2023",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Exactmelee-axe spiral equation/initialradius is not documented in inspected nativeKV orWiki text;current radius-envelope is not original collision fidelity.",
+        "Current arena AI chooses opposite initial form once;no manual toggle command UI exists."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Native paired WhirlingAxes,AA grants independent action slots restricted by form",
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "NativeScepter dispels;AA fixes both variants4s/25mana",
+          "sourceIds": [
+            "aa",
+            "troll-2023"
+          ]
+        }
+      ]
+    }
+  ]
+}

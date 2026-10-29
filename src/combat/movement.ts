@@ -74,7 +74,7 @@ export function limitOrdinaryMove(unit: CombatUnit, point: MotionPoint): MotionP
 
 /** Unit phasing is distinct from passing through skill-created barriers. */
 export function ignoresUnitCollision(unit: CombatUnit): boolean {
-  return unit.statuses.some(status => ['banished', 'phased', 'freePathing', 'fly', 'flying'].includes(status.kind));
+  return unit.statuses.some(status=>status.kind==='berserk'&&!!(status as {data?:{engaged?:boolean}}).data?.engaged)||unit.statuses.some(status => ['banished', 'phased', 'freePathing', 'fly', 'flying'].includes(status.kind));
 }
 
 /** Swept circular-body collision. Existing overlaps may exit but cannot deepen.

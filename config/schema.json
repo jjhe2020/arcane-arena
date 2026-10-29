@@ -852,6 +852,50 @@
           "meaning": "程序参数 DEBUFF 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-extra.ts:255；seconds + .01"
+        },
+        {
+          "key": "ATTACK POINT",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "激活期间固定攻击前摇",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AWinter_Wyvern；历史攻击点0.1秒、弹速+500、每秒灼烧；AA Super持续+2秒/减速+12，Gaben移速25%。"
+        },
+        {
+          "key": "PROJECTILE SPEED BONUS",
+          "kind": "value",
+          "unit": "Dota单位每秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "激活期间攻击弹速增量",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AWinter_Wyvern；历史攻击点0.1秒、弹速+500、每秒灼烧；AA Super持续+2秒/减速+12，Gaben移速25%。"
+        },
+        {
+          "key": "BURN INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "灼烧伤害间隔",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AWinter_Wyvern；历史攻击点0.1秒、弹速+500、每秒灼烧；AA Super持续+2秒/减速+12，Gaben移速25%。"
+        },
+        {
+          "key": "GABEN MOVE SPEED",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben移动速度百分比加成",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AWinter_Wyvern；历史攻击点0.1秒、弹速+500、每秒灼烧；AA Super持续+2秒/减速+12，Gaben移速25%。"
         }
       ]
     },
@@ -911,28 +955,6 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:342；r+.5"
-        },
-        {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:342；interval:.1"
-        },
-        {
           "key": "main_upgrades_advanced.regen_amount.1",
           "kind": "program",
           "unit": "数值",
@@ -944,26 +966,92 @@
           "note": "src/combat/main-upgrades-advanced.ts:25；c.status(ally,'regen',v(c,'DURATION'),180)"
         },
         {
-          "key": "main_upgrades_advanced.interval.1",
-          "kind": "program",
+          "key": "WALL WIDTH",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "竞技场墙体宽度",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "SPEAR TRIGGER DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "战士长矛触发距离",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "SPEAR KNOCKBACK DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "战士长矛击退距离",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "SPEAR KNOCKBACK DURATION",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:25；interval:.2"
+          "meaning": "战士长矛击退时间",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
         },
         {
-          "key": "main_upgrades_advanced.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SPEAR ATTACK INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:25；c.damage(t,60)"
+          "meaning": "战士长矛攻击冷却",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "AURA LINGER DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "竞技场光环离场残留时间",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "WARRIOR COUNT",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "竞技场边缘战士数量",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Mars；历史0.2+0.97动画、400施法距离、围墙和战士机制；AA Gaben熔岩每秒300。"
+        },
+        {
+          "key": "main_engine_gaps.lava_damage_per_second",
+          "kind": "program",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben熔岩每秒伤害",
+          "source": "Wiki机制与AA有效档位",
+          "note": "AA Gaben条款熔岩300DPS"
         }
       ]
     },
@@ -1089,39 +1177,6 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:298；c.delay(.5,()=>{flag(c,'armor',armor,v(c,'BUFF DURATION'));flag(c,'attackBonus',attack,v(c,'BUFF DURATION'));flag(c,'haste',speed,v(c,'BUFF DURATION'));})"
-        },
-        {
-          "key": "main_upgrades.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:44；c.delay(.5,()=>{c.status(c.caster,'armor',v(c,'BUFF DURATION'),armor);c.status(c.caster,'attackBonus',v(c,'BUFF DURATION'),attack);c.status(c.caster,'haste',v(c,'BUFF DURATION'),sp"
-        },
-        {
-          "key": "main_upgrades.magicimmune_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:44；heroes*1.5"
-        },
-        {
           "key": "main_engine_gaps.haste_amount.1",
           "kind": "program",
           "unit": "数值",
@@ -1223,15 +1278,37 @@
           "note": "src/skill-effects-more.ts:103；slow(c, target, v(c, 'MOVEMENT SLOW'), 1.25)"
         },
         {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MIN TRAVEL DISTANCE",
+          "kind": "value",
+          "unit": "Dota单位",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:103；c.delay(1.25, () => c.damage(target, v(c, 'VOID MARK DAMAGE')))"
+          "meaning": "最短移动距离",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；历史0.2+0动画、宽度170、最短200；AA距离保留800/900/1000，升级恢复时间、暴击和充能写为最终档值。"
+        },
+        {
+          "key": "PATH WIDTH",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "攻击路径半宽",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；历史0.2+0动画、宽度170、最短200；AA距离保留800/900/1000，升级恢复时间、暴击和充能写为最终档值。"
+        },
+        {
+          "key": "CRITICAL DAMAGE",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "路径攻击总暴击倍率百分数",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；历史0.2+0动画、宽度170、最短200；AA距离保留800/900/1000，升级恢复时间、暴击和充能写为最终档值。"
         }
       ]
     },
@@ -1361,7 +1438,7 @@
         {
           "key": "RANGED ATTACK COUNT",
           "kind": "value",
-          "unit": "Dota单位",
+          "unit": "数值",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
@@ -1370,37 +1447,15 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.melee_attack_count_fallback.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "CREEP DAMAGE MULTIPLIER",
+          "kind": "value",
+          "unit": "倍率",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MELEE 攻击 数量 FALLBACK",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:271；v(c,'MELEE ATTACK COUNT',4)"
-        },
-        {
-          "key": "main_upgrades.melee_attack_count_fallback.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 MELEE 攻击 数量 FALLBACK",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:65；v(c,'MELEE ATTACK COUNT',4)"
-        },
-        {
-          "key": "main_upgrades.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:65；c.target.hp+1e6"
+          "meaning": "对普通单位及幻象的重击附加伤害倍率",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Slardar；历史条件攻击伤害、四次成功攻击计数；AA Super保留+150与处决，Gaben最终三次。"
         }
       ]
     },
@@ -1460,59 +1515,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.interval_fallback.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 间隔 FALLBACK",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:205；v(c,'INTERVAL',.7)"
-        },
-        {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "STUN DURATION",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:205；c.skill.points>=6?.25:0"
+          "meaning": "每次命中的眩晕时间",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Clockwerk；立即首跳，基础0.7秒间隔且含10.5秒末跳；AA Super减0.25秒，Gaben半径+275。"
         },
         {
-          "key": "skill_effects.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:205；victim.summoned?2:1"
-        },
-        {
-          "key": "skill_effects.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:205；victim.summoned?2:1"
-        },
-        {
-          "key": "skill_effects.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "CREEP DAMAGE MULTIPLIER",
+          "kind": "value",
+          "unit": "倍率",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:205；c.status(victim,'stun',.1,0,{harmful:true,dispel:'strong'})"
+          "meaning": "对普通非英雄单位的伤害倍率；幻象和类英雄不加倍",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Clockwerk；立即首跳，基础0.7秒间隔且含10.5秒末跳；AA Super减0.25秒，Gaben半径+275。"
         }
       ]
     },
@@ -1592,6 +1614,17 @@
           "meaning": "程序参数 BERSERK 持续时间",
           "source": "原程序工作数值",
           "note": "src/combat/main-engine-gaps.ts:22；c.skill.points>=6?2:0"
+        },
+        {
+          "key": "SEARCH RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "战斗专注锁定目标的搜索半径",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；历史0+0.5动画、900搜索半径；AA Super持续+2秒、攻速+200写为最终值。"
         }
       ]
     },
@@ -1704,6 +1737,28 @@
           "meaning": "程序参数 BUFF 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-extra.ts:424；buff(c, c.caster, 'regen', c.caster.strength * (P(value(c, 'MAX STR REGEN')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',0.3) : 0)) * scale, .3)"
+        },
+        {
+          "key": "BONUS EXPONENT",
+          "kind": "value",
+          "unit": "倍率",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "生命比例到加成的非线性指数；历史候选",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Huskar；1.85指数是当前Wiki精确公式，2023只证非线性，历史精确指数仍为工程候选；AA Super最高力量恢复+30写为最终90%。"
+        },
+        {
+          "key": "UPDATE INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "被动属性刷新间隔；不快于服务器步长",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Huskar；1.85指数是当前Wiki精确公式，2023只证非线性，历史精确指数仍为工程候选；AA Super最高力量恢复+30写为最终90%。"
         }
       ]
     },
@@ -1897,15 +1952,15 @@
           "note": "src/combat/main-engine-gaps.ts:12；options.interval+.01"
         },
         {
-          "key": "skill_effects.damage.2",
+          "key": "skill_effects.black_hole_damage_interval",
           "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:218；(v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',100):0))*balanceNumber(c,'skill_effects.damage.2',0.1)"
+          "meaning": "黑洞伤害结算间隔，不影响控制采样",
+          "source": "Wiki机制与AA有效档位",
+          "note": "2023历史Wiki黑洞伤害1/2/3/4秒结算"
         }
       ]
     },
@@ -1996,6 +2051,50 @@
           "meaning": "伤害数值或伤害公式系数",
           "source": "原程序工作数值",
           "note": "src/skill-effects.ts:216；(v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',80):0))*balanceNumber(c,'skill_effects.damage.2',0.2)"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "剑刃风暴伤害间隔",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AJuggernaut；历史剑刃风暴0.2秒伤害间隔，AA Gaben每秒100%攻击。Super半径+75写为最终335。"
+        },
+        {
+          "key": "GABEN ATTACK START",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben首次自动攻击相对施法延迟",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AJuggernaut；历史剑刃风暴0.2秒伤害间隔，AA Gaben每秒100%攻击。Super半径+75写为最终335。"
+        },
+        {
+          "key": "GABEN ATTACK INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben自动攻击间隔",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AJuggernaut；历史剑刃风暴0.2秒伤害间隔，AA Gaben每秒100%攻击。Super半径+75写为最终335。"
+        },
+        {
+          "key": "GABEN ATTACK DAMAGE",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben自动攻击伤害倍率百分数",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3AJuggernaut；历史剑刃风暴0.2秒伤害间隔，AA Gaben每秒100%攻击。Super半径+75写为最终335。"
         }
       ]
     },
@@ -2086,28 +2185,6 @@
           "meaning": "程序参数 INVULNERABLE 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-more.ts:112；c.status(c.caster, 'invulnerable', 3)"
-        },
-        {
-          "key": "skill_effects_more.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:114；7 + (superLevel(c) ? 3 : 0)"
-        },
-        {
-          "key": "skill_effects_more.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:114；superLevel(c) ? 3 : 0"
         }
       ]
     },
@@ -2299,17 +2376,6 @@
           "meaning": "SELF 加成 攻击 速度",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "main_upgrades.attackspeed_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 攻击速度 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:28；S(c)?25:0"
         }
       ]
     },
@@ -2369,81 +2435,48 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ALLY SEARCH RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:150；buff(c, ally, 'bloodrage', 1, duration + .01)"
+          "meaning": "Super选择最近友方英雄的范围",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bloodseeker；实际立即施法无需转向，0.4秒后摇；AA2%每秒生命移除按0.75秒采样，Super/Gaben数值为各档最终值。"
         },
         {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ALLY ATTACK SPEED FACTOR",
+          "kind": "value",
+          "unit": "倍率",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:151；S(c) ? 25 : 0"
+          "meaning": "对友方英雄的攻击速度加成倍率",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bloodseeker；实际立即施法无需转向，0.4秒后摇；AA2%每秒生命移除按0.75秒采样，Super/Gaben数值为各档最终值。"
         },
         {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:151；ally.id === c.caster.id ? 1 : .5"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:151；ally.id === c.caster.id ? 1 : .5"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:152；S(c) ? .08 : 0"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.6",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:153；buff(c, ally, 'maxHpAttackLifesteal', .018, duration)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "SELF DAMAGE INTERVAL",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:153；duration + .01"
+          "meaning": "自身生命移除的采样间隔",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bloodseeker；实际立即施法无需转向，0.4秒后摇；AA2%每秒生命移除按0.75秒采样，Super/Gaben数值为各档最终值。"
+        },
+        {
+          "key": "MAX HEALTH ATTACK DAMAGE",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben成功攻击附加目标最大生命伤害百分数及固定吸血",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bloodseeker；实际立即施法无需转向，0.4秒后摇；AA2%每秒生命移除按0.75秒采样，Super/Gaben数值为各档最终值。"
         }
       ]
     },
@@ -2659,6 +2692,28 @@
           "meaning": "治疗/伤害",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "SECONDARY RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben主目标周围额外魔脑汲取半径",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bane；历史0.2+0.5动画、625施法距离与先伤害后治疗；AA Gaben独立完整施放覆盖原生魔晶25%副治疗规则。"
+        },
+        {
+          "key": "MAX HEALTH GAIN FACTOR",
+          "kind": "value",
+          "unit": "倍率",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Super本局最大生命成长与实际汲取量之比",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Bane；历史0.2+0.5动画、625施法距离与先伤害后治疗；AA Gaben独立完整施放覆盖原生魔晶25%副治疗规则。"
         }
       ]
     },
@@ -26891,6 +26946,39 @@
           "meaning": "程序参数 DEBUFF 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-extra.ts:1257；debuff(c, target, 'blind', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.6), 5, { piercesImmunity: false })"
+        },
+        {
+          "key": "ORBIT CENTER RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "近战飞斧轨道中心最远半径",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；近战旋转轴心最远350、斧半径100、持续3秒；450现有施法门限不改。"
+        },
+        {
+          "key": "AXE RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "近战飞斧命中半径",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；近战旋转轴心最远350、斧半径100、持续3秒；450现有施法门限不改。"
+        },
+        {
+          "key": "ORBIT DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "近战飞斧旋转持续时间",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；近战旋转轴心最远350、斧半径100、持续3秒；450现有施法门限不改。"
         }
       ]
     },
@@ -26988,6 +27076,50 @@
           "meaning": "程序参数 DEBUFF 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-extra.ts:1272；debuff(c, unit, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.4), 4, { piercesImmunity: false })"
+        },
+        {
+          "key": "AXE COUNT",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "远程飞斧数量",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；原生远程飞斧5把、25度散射、1500速度、950射程、100半径。"
+        },
+        {
+          "key": "AXE SPREAD",
+          "kind": "value",
+          "unit": "度",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "远程飞斧总散射角度",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；原生远程飞斧5把、25度散射、1500速度、950射程、100半径。"
+        },
+        {
+          "key": "AXE SPEED",
+          "kind": "value",
+          "unit": "Dota单位每秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "远程飞斧速度",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；原生远程飞斧5把、25度散射、1500速度、950射程、100半径。"
+        },
+        {
+          "key": "AXE RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "飞斧命中半径",
+          "source": "Wiki机制与AA有效档位",
+          "note": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord；原生远程飞斧5把、25度散射、1500速度、950射程、100半径。"
         }
       ]
     },
@@ -31698,15 +31830,15 @@
           "note": "src/combat/main-engine-gaps.ts:12；options.interval+.01"
         },
         {
-          "key": "skill_effects.damage.2",
+          "key": "skill_effects.black_hole_damage_interval",
           "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:218；(v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',100):0))*balanceNumber(c,'skill_effects.damage.2',0.1)"
+          "meaning": "黑洞独立伤害结算间隔",
+          "source": "Wiki机制与AA有效档位",
+          "note": "2023历史Wiki黑洞伤害1/2/3/4秒结算"
         }
       ]
     },
@@ -32888,6 +33020,11 @@
       "group": "workingDefaults",
       "key": "chronoCasterMoveSpeed",
       "unit": "程序原单位"
+    },
+    {
+      "group": "battle",
+      "key": "spellLifestealCreepFactor",
+      "unit": "倍率"
     }
   ],
   "units": [

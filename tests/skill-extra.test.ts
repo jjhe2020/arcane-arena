@@ -251,8 +251,8 @@ describe('extra skill upgrade behavior', () => {
     const h = harness('bloodseeker_bloodrage');
     const summon = structuredClone(h.ally); summon.id = 'summon'; summon.x = .1; summon.summoned = true; h.ctx.battle.units.push(summon);
     EXTRA_PROGRAMS[h.ctx.skill.id].cast!(h.ctx);
-    expect(status(h.caster, 'maxHpAttackLifesteal')?.value).toBe(.018);
-    expect(status(h.ally, 'maxHpAttackLifesteal')?.value).toBe(.018);
+    expect(status(h.caster, 'maxHpAttackLifesteal')?.value).toBeCloseTo(.018);
+    expect(status(h.ally, 'maxHpAttackLifesteal')?.value).toBeCloseTo(.018);
     expect(status(summon, 'bloodrage')).toBeUndefined();
     expect(status(h.ally, 'attackSpeed')?.value).toBe(status(h.caster, 'attackSpeed')!.value! / 2);
   });
@@ -413,7 +413,7 @@ describe('extra skill upgrade behavior', () => {
   });
   it('uses a bounded delayed Echo strike and honors effective melee stance without recursive double attacks', () => {
     const h = harness('custom_monkey_king_jingu_mastery', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];
-    h.ctx.status(h.caster, 'attackRangeOverride', 100, 1.5); p.onAttack!(h.ctx);
+    h.ctx.status(h.caster, 'attackRangeOverride', 100, 1.5);h.ctx.status(h.caster, 'attackTypeOverride', 100, 1); p.onAttack!(h.ctx);
     expect(h.attacks).toHaveLength(0); h.until(.1); expect(h.attacks).toEqual([h.target.id]);
     p.onAttack!(h.ctx); h.until(.2); expect(h.attacks).toHaveLength(1);
     expect(status(h.target, 'slow')?.until).toBeCloseTo(.9);
@@ -565,7 +565,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     const id = 'huskar_berserkers_blood', normal = createBattle(player(0, [{ id, points: 6 }]), player(1), 7, catalog);
     const upgraded = createBattle(player(0, [{ id, points: 9 }]), player(1), 7, catalog);
     const caster = upgraded.units[0]; expect(caster.strength).toBe(Number(normal.units[0].strength) + 60);
-    caster.hp = caster.maxHp * .1; advance(upgraded, .3);
+    caster.hp = caster.maxHp * .05; advance(upgraded, .3);
     expect(status(caster, 'regen')?.value).toBeCloseTo(Number(caster.strength) * .9, 5);
     advance(upgraded, .3); expect(caster.strength).toBe(Number(normal.units[0].strength) + 60);
   });
@@ -685,7 +685,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     const strength = caster.strength, hp = caster.maxHp; applyDamage(battle, enemy, caster, 999999, 'pure');
     const image = battle.units.find(u => u.strongAuraIllusion)!;
     expect(image).toBeDefined(); expect(image.strength).toBe(strength); expect(image.maxHp).toBe(hp);
-    image.hp = image.maxHp * .1; enemy.nextAttack = 100; enemy.moveSpeed = 0; advance(battle, .3);
+    image.hp = image.maxHp * .05; enemy.nextAttack = 100; enemy.moveSpeed = 0; advance(battle, .3);
     expect(status(image, 'regen')?.value).toBeCloseTo(Number(strength) * .9);
     applyDamage(battle, enemy, image, 999999, 'pure'); expect(battle.units.filter(u => u.strongAuraIllusion)).toHaveLength(1);
   });

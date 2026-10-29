@@ -8,6 +8,7 @@ import type {BattleBarrier} from './combat/barriers';
 import {selectVisualLayers,tierVisualLayers} from './visual-layers';
 import {resolveVisualArt,statusVisuals,portalVisuals,movingVisuals,worldVisuals,eventVisuals,type VisualSource} from './visual-bindings';
 import {duelVisuals} from './duel-presentation';
+import {isRangedAttackType} from './combat';
 
 type Visual = { group: THREE.Group; mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>; clip?: AnimationClip; desired?:AnimationClip; key: string; texture?: THREE.Texture };
 export class ArenaRenderer {
@@ -169,7 +170,7 @@ export class ArenaRenderer {
       if(battle){const w=Math.max(c.summoned?12:24,Math.min(c.summoned?25:44,pixels*(c.summoned?1.3:2.2)));ctx.fillStyle='#142220';ctx.fillRect(p.x-w/2,p.y-r-13,w,5);ctx.fillStyle=mine?'#7dc99c':'#dd8475';ctx.fillRect(p.x-w/2,p.y-r-13,w*Math.max(0,c.hp/Math.max(1,c.maxHp)),5);ctx.fillStyle='#68a9df';ctx.fillRect(p.x-w/2,p.y-r-7,w*Math.max(0,c.mana/Math.max(1,c.maxMana)),2);}
     });
     if(battle){const pixelsPerWorld=this.width/(this.camera.right-this.camera.left);for(const text of combatTextEvents(recentCombatEvents(battle.events,time),time)){const target=battle.units.find(u=>u.id===text.target);if(this.hiddenBodies.has(text.target)||(target?.summoned&&pixelsPerWorld<12&&text.amount<75&&!text.critical))continue;const age=time-text.time,p=this.project(text.x,text.y),pop=text.critical?1+Math.max(0,1-age/.16)*.3:1;ctx.globalAlpha=Math.max(0,1-age/COMBAT_TEXT_LIFETIME);ctx.font=`bold ${Math.round((text.critical?17:text.damageOverTime?11:13)*pop)}px system-ui`;ctx.textAlign='center';ctx.fillStyle=text.type==='heal'?DAMAGE_COLORS.healing:DAMAGE_COLORS[text.damageType];ctx.strokeStyle='#15231fe6';ctx.lineWidth=text.critical?3.2:2.5;const label=text.outcome==='miss'?'未命中':`${text.type==='heal'?'+':''}${Math.round(text.amount)}${text.critical?'!':''}`,x=p.x+text.lane*15,y=p.y-29-Math.min(age,.2)*40-Math.max(0,age-.2)*18;ctx.strokeText(label,x,y);ctx.fillText(label,x,y);}
-      for(const e of battle.events.slice(-70)){const age=battle.time-e.time;if(e.type!=='attack'||e.toX===undefined||age<0||age>=.16)continue;const source=battle.units.find(u=>u.id===e.source);if(source&&source.range>2)continue;const a=this.project(e.x,e.y),b=this.project(e.toX,e.toY!);ctx.globalAlpha=1-age/.16;ctx.strokeStyle='#eacb8a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+      for(const e of battle.events.slice(-70)){const age=battle.time-e.time;if(e.type!=='attack'||e.toX===undefined||age<0||age>=.16)continue;const source=battle.units.find(u=>u.id===e.source);if(e.ranged===true||(e.ranged===undefined&&source&&isRangedAttackType(source)))continue;const a=this.project(e.x,e.y),b=this.project(e.toX,e.toY!);ctx.globalAlpha=1-age/.16;ctx.strokeStyle='#eacb8a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
     }ctx.globalAlpha=1;
   }
 }

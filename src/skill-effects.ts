@@ -1,3 +1,4 @@
+import {applyAttackModeAcceptance} from './combat/attack-modes';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -52,11 +53,15 @@ export interface ZoneOptions {
   immediate?:boolean;
   /** This source also applies a tick exactly at its expiry boundary. */
   includeEnd?:boolean;
+  /** Lifecycle cleanup, once for expiry, cancellation or source loss. */
+  onEnd?:()=>void;
   effect: (target: CombatUnit, tick: number) => void;
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
   trueStrike?:boolean;
+  /** Blade Fury's separate granted attack keeps its normal damage. */
+  ignoreBladeFuryPenalty?:boolean;
   /** A released area attack can hit invisible bodies without a single-unit target order. */
   allowInvisibleTarget?:boolean;
   /** Guaranteed critical candidate, compared with other criticals, never multiplied into them. */
@@ -67,6 +72,8 @@ export interface InstantAttackOptions {
   ignoreDamageBlock?:boolean;
   /** Internal: a normal attack already emitted its launch event before projectile flight. */
   attackPointEmitted?:boolean;
+  /** Snapshot of the attack category when a normal projectile was released. */
+  rangedAttackPoint?:boolean;
   /** Prevent mutually tethered follow-up attacks from feeding each other's point hook. */
   suppressAllyAttackPoint?:boolean;
 }
@@ -74,10 +81,11 @@ export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
   /** Frozen ground cursor for explicitly point-targeted orders. */
   castPosition?:{x:number;y:number};
+  currentAttackTargetId?:string;
   battle: BattleState; caster: CombatUnit; target: CombatUnit; skill: SkillStack;
   definition: SkillDefinition; amount?: number; damageType?: DamageType; triggerSkillId?: string; triggerUnitId?:string; originSkillId?: string; originPoints?: number;
   /** Successful attack snapshots before victim armor: baseline and modified. */
-  baseAttackDamage?:number; attackDamage?:number;attackSourceSkill?:string;
+  baseAttackDamage?:number; attackDamage?:number;attackSourceSkill?:string;attackIsRanged?:boolean;
   /** An accepted ability damage instance, independent of effective HP loss. */
   abilityDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
   points?:number;visualSkill?:string;visualPoints?:number;
@@ -98,6 +106,8 @@ export interface EffectContext {
   movementSpeed(target:CombatUnit):number;
   /** Effective attack cadence and ordinary single-target eligibility. */
   attackInterval?(unit:CombatUnit,target?:CombatUnit):number;
+  attackRange?(unit:CombatUnit):number;
+  isRangedAttack?(unit:CombatUnit):boolean;
   canTarget?(unit:CombatUnit,single?:boolean):boolean;
   delay(seconds: number, effect: () => void, cancelOnInterrupt?: boolean): void;
   zone(options: ZoneOptions): void;
@@ -107,6 +117,7 @@ export interface EffectContext {
   teleport(target: CombatUnit, x: number, y: number): void;
   warp(target: CombatUnit, x: number, y: number): void;
   moveContinuous(target:CombatUnit,x:number,y:number,options?:ContinuousMoveOptions):boolean;
+  motionActive?(target:CombatUnit):Readonly<{skill:string;owner:string;startedAt:number}>|undefined;
   attack(target: CombatUnit, multiplier?: number, triggerModifiers?: boolean, baseDamage?: number, released?:boolean,options?:InstantAttackOptions): AttackResolution;
   revive(target: CombatUnit, delay: number, hpFraction: number): void;
   /** Immediate granted cast; caller owns mana, cooldown, charges and animation. */
@@ -116,16 +127,23 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  /** A real attack-based projectile; instantaneous attacks without a projectile omit this. */
+  attackProjectile?:boolean;
+  /** Fired once when an individual status is dispelled or naturally expires. */
+  onStatusRemoved?:(c:EffectContext,status:EffectStatus,reason:'dispel'|'expire')=>void;
   /** Ground cursor remains fixed if the AI's original candidate moves or dies. */
   pointTarget?:boolean;
   prepareAttack?: (c:EffectContext)=>InstantAttackOptions|undefined;
   beforeAttackDamage?: (c:EffectContext)=>void;
   dynamicRange?:boolean;
+  dynamicCastPoint?:boolean;
+  /** Explicit native zero-point exception, preserving an existing channel. */
+  canCastWhileChanneling?:boolean;
   attackCastPointFactor?:number|((c:EffectContext)=>number);
   targetSelector?: (c:EffectContext,candidates:CombatUnit[])=>CombatUnit|undefined;
   target?: 'enemy' | 'ally' | 'self' | 'any'; range?: number | ((c: EffectContext) => number);
   castPoint?: number | ((c: EffectContext) => number); backswing?: number; channel?: number | ((c: EffectContext) => number);
-  requiresFacing?:boolean;
+  requiresFacing?:boolean|((c:EffectContext)=>boolean);
   spellBlockTiming?:'cast'|'impact';
   projectileDisjointable?:boolean;
   cooldown?: (c: EffectContext) => number; manaCost?: (c: EffectContext) => number;
@@ -137,8 +155,9 @@ export interface SkillProgram {
   onAbilityDamageEvent?: (c:EffectContext)=>void;
   onDeath?: (c: EffectContext) => void; onAllyCast?: (c: EffectContext) => void; onAllyAttack?: (c: EffectContext) => void; onUnitDeath?: (c: EffectContext) => void; onManaShieldSpent?: (c: EffectContext) => void;
   onAllyAttackPoint?: (c:EffectContext)=>void;
+  onAttackPoint?: (c:EffectContext)=>void;
   onKill?: (c: EffectContext) => void;
-  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; type?: DamageType };
+  attackModifier?: (c: EffectContext) => { bonus?: number; multiplier?: number; baseMultiplier?:number; postCriticalBonus?:number; type?: DamageType };
   implemented: string[]; remaining: string[];
   superImplemented?: boolean; gabenImplemented?: boolean;
 }
@@ -280,8 +299,26 @@ function acidSpray(c:EffectContext,global=false){
 }
 register('custom_alchemist_acid_spray', program(c=>acidSpray(c),['stationary ground-cursor damage zone','physical per-victim pulses including the endpoint; independent damage and unique armor aura','Super 1.5x damage and armor reduction','Gaben battle-start arena-wide persistent field'],{pointTarget:true,init:c=>{if(c.skill.points>=9)acidSpray(c,true);},canCast:c=>c.skill.points<9,superImplemented:true,gabenImplemented:true,remaining:['Different-level armor aura priority uses strongest-active selection; native priority is not directly specified','Fog-of-war, couriers and buildings are outside the arena model']}));
 register('custom_juggernaut_blade_fury', program(c => {const d=duration(c),r=radius(c)+(c.skill.points>=6?.75:0);c.dispel(c.caster);c.status(c.caster,'magicImmune',c.skill.points>=6?d:v(c,'MAGIC IMMUNITY DURATION'));c.zone({follow:true,radius:r,duration:d,interval:balanceNumber(c,'skill_effects.interval.1',0.2),effect:t=>c.damage(t,(((skillBalance(c.definition,c.skill.points)?v(c,"DAMAGE PER SECOND"):((v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',80):0))))*balanceNumber(c,'skill_effects.damage.2',0.2))))});if(c.skill.points>=9){flag(c,'moveFlat',1,d);c.zone({follow:true,radius:r,duration:d,interval:balanceNumber(c,'skill_effects.interval.2',1),effect:t=>c.attack(t)});}}, ['mobile magical damage zone','temporary spell immunity/basic dispel','Super damage/radius/full-duration immunity','Gaben speed and periodic attacks'], { target:'self',canCast:c=>near(c,radius(c)+(c.skill.points>=6?.75:0)).length>0,cooldown:c=>arrayValue(c.definition.cooldowns,c.skill.points)-(c.skill.points>=9?6:0),superImplemented:true,gabenImplemented:true,remaining:['Ordinary attack suppression during spin and Gaben victim-selection rule require source']}));
-register('custom_clockwerk_battery_assault', program(c => {const r=radius(c)+(c.skill.points>=9?2.75:0);c.zone({follow:true,radius:r,duration:duration(c),interval:v(c,'INTERVAL',balanceNumber(c,'skill_effects.interval_fallback.1',0.7))-(c.skill.points>=6?balanceNumber(c,'skill_effects.interval.1',0.25):0),targets:'all',effect:t=>{if(t.id!==c.caster.id)return;const targets=near(c,r);for(const victim of c.skill.points>=9?targets:targets.length?[targets[Math.floor(c.random()*targets.length)]]:[]){c.damage(victim,v(c,'DAMAGE')*(victim.summoned?balanceNumber(c,'skill_effects.damage.1',2):balanceNumber(c,'skill_effects.damage.2',1)));c.status(victim,'stun',balanceNumber(c,'skill_effects.stun_duration.1',0.1),0,{harmful:true,dispel:'strong'});}}});}, ['periodic seeded random target','ministun','double summon damage','Super interval -0.25s per English source','Gaben radius and all targets'], { target:'self',canCast:c=>near(c,radius(c)+(c.skill.points>=9?2.75:0)).length>0,superImplemented:true,gabenImplemented:true,remaining:['Chinese translation says +0.25s but original English says -0.25s; implementation uses English','Ministun duration and first-tick phase need exact reference']}));
-register('enigma_black_hole', program(c => {if(c.skill.points>=9&&!c.caster.blackHoleRefresh){c.caster.blackHoleRefresh=true;c.caster.cooldowns=c.caster.cooldowns.map(()=>c.battle.time);}c.zone({x:c.target.x,y:c.target.y,radius:radius(c),duration:duration(c,4),interval:balanceNumber(c,'skill_effects.interval.1',0.1),channel:true,effect:t=>{c.damage(t,(((skillBalance(c.definition,c.skill.points)?v(c,"DAMAGE PER SECOND"):((v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',100):0))))*balanceNumber(c,'skill_effects.damage.2',0.1))),'pure',true);c.status(t,'stun',balanceNumber(c,'skill_effects.stun_duration.1',0.15),0,{harmful:true,dispel:'none',piercesImmunity:true});}});}, ['interruptible channel','persistent area disable','pure damage','Super damage increase','Gaben once-per-round all-slot refresh'], {channel:c=>duration(c,4),superImplemented:true,gabenImplemented:true,remaining:['Pull movement','Refresh includes channeling ability: exact reference verification','Exact targeting/timing']}));
+interface BatteryRun{until:number;interval:number;start:number;tick:number;radius:number}
+const batteryTargets=(c:EffectContext,r:number)=>near(c,r).filter(t=>!t.ward&&(c.canTarget?.(t,true)??true)&&!t.statuses.some(s=>s.kind==='magicImmune'));
+register('custom_clockwerk_battery_assault',program(c=>{
+  const existing=c.caster.batteryAssaultRun as BatteryRun|undefined;
+  c.status(c.caster,'batteryAssault',duration(c),1,{dispel:'none'});
+  if(existing&&existing.until>=c.battle.time){existing.until=c.battle.time+duration(c);return;}
+  const compiled=!!skillBalance(c.definition,c.skill.points),run:BatteryRun={until:c.battle.time+duration(c),start:c.battle.time,tick:0,interval:v(c,'INTERVAL',.7)-(!compiled&&c.skill.points>=6?.25:0),radius:radius(c)+(!compiled&&c.skill.points>=9?2.75:0)};c.caster.batteryAssaultRun=run;
+  const pulse=()=>{if(c.caster.dead||c.caster.batteryAssaultRun!==run||c.battle.time>run.until+1e-8)return;const targets=batteryTargets(c,run.radius),selected=c.skill.points>=9?targets:targets.length?[targets[Math.floor(c.random()*targets.length)]]:[];for(const victim of selected){const creep=victim.summoned&&!victim.illusion&&!victim.consideredHero;c.damage(victim,v(c,'DAMAGE')*(creep?v(c,'CREEP DAMAGE MULTIPLIER',2):1));c.status(victim,'stun',v(c,'STUN DURATION',.1),0,{harmful:true,dispel:'strong'});}run.tick++;const next=run.start+run.tick*run.interval;c.delay(Math.max(0,next-c.battle.time),pulse);};pulse();
+},['Immediate first shrapnel and inclusive final pulse on an absolute interval clock','Single random visible eligible target; Gaben all eligible bodies in final radius','Historical double ordinary-creep damage; illusions and creep-heroes take hero damage','Damage precedes 0.1-second strong-dispellable ministun','Persists through caster disables; death stops the discharge','Recast refreshes duration without duplicate pulse clock or interval resnapshot'],{target:'self',castPoint:0,backswing:0,canCast:c=>batteryTargets(c,radius(c)+(!skillBalance(c.definition,c.skill.points)&&c.skill.points>=9?2.75:0)).length>0,onDeath:c=>{c.caster.batteryAssaultRun=undefined;},superImplemented:true,gabenImplemented:true,remaining:[]}));
+register('enigma_black_hole',program(c=>{
+ if(c.skill.points>=9&&!c.caster.blackHoleRefresh){c.caster.blackHoleRefresh=true;c.caster.cooldowns=c.caster.cooldowns.map(()=>c.battle.time);}
+ const{x,y}=c.castPosition??c.target,seconds=duration(c,4),interval=balanceNumber(c,'skill_effects.black_hole_damage_interval',1),key=`${c.caster.id}:${c.battle.time}`,affected=new Map<CombatUnit,EffectStatus>();let ended=false;
+ c.zone({x,y,radius:radius(c),duration:seconds,interval:balanceNumber(c,'skill_effects.interval.1',.1),immediate:true,includeEnd:true,channel:true,onEnd:()=>{
+  ended=true;for(const[target,status]of affected){target.statuses=target.statuses.filter(s=>s!==status);c.moveContinuous(target,target.x,target.y,{duration:1/30,priority:100,lockActions:false,ignoreBarriers:true});}
+ },effect:target=>{
+  if(target.ward)return;let status=affected.get(target);const linger=balanceNumber(c,'skill_effects.stun_duration.1',.5);
+  if(!status||!target.statuses.includes(status)){c.status(target,'stun',linger,0,{harmful:true,dispel:'none',piercesImmunity:true,ignoreStatusResistance:true,maxStacks:1000,data:{blackHoleCast:key}});status=target.statuses.find(s=>(s as EffectStatus).data?.blackHoleCast===key) as EffectStatus;affected.set(target,status);}else status.until=c.battle.time+linger;
+ }});
+ for(let at=interval;at<=seconds+1e-8;at+=interval)c.delay(at,()=>{if(ended||c.caster.dead)return;for(const target of c.enemies().filter(t=>!t.ward&&Math.hypot(t.x-x,t.y-y)<=radius(c)))c.damage(target,skillBalance(c.definition,c.skill.points)?v(c,'DAMAGE PER SECOND'):v(c,'DAMAGE PER SECOND')+(c.skill.points>=6?100:0),'pure',true);},true);
+},['interruptible fixed channel with immediate immunity-piercing disable','one-second pure damage pulses starting one second after cast','resistance-independent half-second aura linger, immediately removed when channel ends','Super final DPS increase and Gaben once-per-round all-slot cooldown refresh'],{pointTarget:true,range:2.75,backswing:0,channel:c=>duration(c,4),superImplemented:true,gabenImplemented:true,remaining:['Exact native spiral trajectory and independent charge reset semantics require additional verification']}));
 register('custom_bane_fiends_grip', program(c => { const t=c.target; c.zone({follow:true,radius:balanceNumber(c,'skill_effects.radius.1',1000),duration:balanceNumber(c,'skill_effects.duration.1',6),interval:balanceNumber(c,'skill_effects.interval.1',0.1),channel:true,effect:x=>{if(x.id!==t.id)return; c.damage(x,v(c,'DAMAGE')*balanceNumber(c,'skill_effects.damage.1',0.1),'pure',true); c.status(x,'stun',balanceNumber(c,'skill_effects.stun_duration.1',0.15),0,{harmful:true,dispel:'strong',piercesImmunity:true}); c.mana(x,-x.maxMana*percent(v(c,'MANA DRAIN PER SECOND'))*.1);}}); }, ['interruptible single-target channel','pure damage','mana drain'],{channel:6,remaining:['Channel duration absent from catalog: 6s provisional','Super/Gaben','range break']}));
 register('custom_skywrath_mage_mystic_flare', program(c => {const targets=[c.target];if(c.skill.points>=6){const nearby=c.enemies().filter(t=>t.id!==c.target.id&&dist(t,c.target)<=7),heroes=nearby.filter(t=>!t.summoned),choices=heroes.length?heroes:nearby;if(choices.length)targets.push(choices[Math.floor(c.random()*choices.length)]);}for(const target of targets){const x=target.x,y=target.y;c.zone({x,y,radius:radius(c),duration:duration(c),interval:balanceNumber(c,'skill_effects.interval.1',0.1),effect:t=>{const count=enemiesAt(c,x,y,radius(c)).filter(x=>!x.summoned).length;if(count&&!t.summoned)c.damage(t,(skillBalance(c.definition,c.skill.points)?v(c,"DAMAGE"):((((v(c,'DAMAGE')+(c.skill.points>=9?balanceNumber(c,'skill_effects.damage.1',450):0))))))/duration(c)*balanceNumber(c,'skill_effects.damage.2',0.1)/(c.skill.points>=9?balanceNumber(c,'skill_effects.damage.3',1):count));}});}},['area damage divided among heroes','Super secondary nearby field','Gaben bonus damage without division'],{superImplemented:true,gabenImplemented:true,remaining:['Secondary search centered on target versus caster and exact tick phase require reference']}));
 register('leshrac_pulse_nova', program(c => {c.status(c.caster,'pulseNova',balanceNumber(c,'skill_effects.pulsenova_duration.1',30));c.zone({follow:true,radius:radius(c),duration:balanceNumber(c,'skill_effects.duration.1',30),interval:balanceNumber(c,'skill_effects.interval.1',1),targets:'all',effect:t=>{if(t.id!==c.caster.id)return; const cost=v(c,'MANA/SEC');if(c.caster.mana<cost)return;c.mana(c.caster,-cost);for(const e of near(c,radius(c)))hit(c,e);}});},['toggle-like pulsing damage','mana consumption'],{target:'self',canCast:c=>!c.caster.statuses.some(s=>s.kind==='pulseNova')&&near(c,radius(c)).length>0,remaining:['Toggle shutdown and recast state','Super/Gaben','initial cost/timing']}));
@@ -433,6 +470,7 @@ applyLinksAndGazeAcceptance(registry);
 applySummonGapOverrides(registry);
 applyTetherAcceptance(registry);
 applyOmnislashClockOverride(registry);
+applyAttackModeAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

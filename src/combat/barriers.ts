@@ -20,6 +20,7 @@ function phased(u:CombatUnit){return u.statuses.some(s=>s.kind==='barrierPhased'
 /** Explicit historical-AA work policy: unit phasing is not free pathing.
  * Unknown spell barriers continue to block flight unless a skill says otherwise. */
 export function barrierBlocksUnit(u:CombatUnit,wall:BattleBarrier):boolean{
+  if(wall.skill==='mars_arena_of_blood'&&u.statuses.some(s=>s.kind==='magicImmune'))return false;
   if(phased(u)||wall.blocks==='enemies'&&wall.side===u.side)return false;
   const flying=u.statuses.some(s=>s.kind==='fly'||s.kind==='flying'),free=flying||u.statuses.some(s=>s.kind==='freePathing');
   if(['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(wall.skill)&&free)return false;

@@ -25,6 +25,27 @@
       "versionContext": "Archived 2023-02-15, close to pinned candidate.",
       "observation": "Rum reduces ordinary incoming damage. Repayment is nonlethal health setting, rather than a new spell damage instance that can lifesteal.",
       "entitySha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d"
+    },
+    {
+      "id": "oracle-rain-731",
+      "url": "https://liquipedia.net/dota2/Oracle/Changelogs",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Explicit 7.31 introduction and 7.32 numeric changes, before the pinned February 2023 candidate; later 7.33 values are not imported.",
+      "observation": "Historical Rain of Destiny modifies direct healing only, with no regeneration, attack-lifesteal or spell-lifesteal amplification/reduction. This record certifies the tested restoration classes, not the full parent ability."
+    },
+    {
+      "id": "valve-720",
+      "url": "https://www.dota2.com/720/",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Official 7.20 gameplay update,2018-11-19; this pre-2023 attack-lifesteal change is distinct from the later7.38 unified restoration rules.",
+      "observation": "Ordinary attack lifesteal is no longer capped by the victim's current HP. This does not remove the historical remaining-HP cap for spell lifesteal."
+    },
+    {
+      "id": "lifestealer-2019-restoration",
+      "url": "https://liquipedia.net/dota2/Lifestealer/Changelogs",
+      "accessedOn": "2026-10-29",
+      "versionContext": "2019-12-09 historical fix predates the pinned February2023 native candidate; individual AA Feast sharing composition remains separate.",
+      "observation": "The historical Feast fix explicitly applies lifesteal amplification, establishing a different restoration class from ordinary direct healing."
     }
   ],
   "engineRequirements": [
@@ -34,10 +55,19 @@
       "branch": "base",
       "rule": "Negated False Promise damage and its final health-removal settlement do not grant spell lifesteal, while final effective damage keeps original source attribution.",
       "status": "passed",
-      "sourceIds": ["spell-lifesteal-2022", "oracle-2023"],
+      "sourceIds": [
+        "spell-lifesteal-2022",
+        "oracle-2023"
+      ],
       "testEvidence": [
-        {"file":"tests/reference-deferred-lifesteal.test.ts","test":"False Promise neither the negated original hit nor the final HP removal grants spell lifesteal"},
-        {"file":"tests/reference-deferred-lifesteal.test.ts","test":"False Promise retains damage ownership without reviving an expired provider at settlement"}
+        {
+          "file": "tests/reference-deferred-lifesteal.test.ts",
+          "test": "False Promise neither the negated original hit nor the final HP removal grants spell lifesteal"
+        },
+        {
+          "file": "tests/reference-deferred-lifesteal.test.ts",
+          "test": "False Promise retains damage ownership without reviving an expired provider at settlement"
+        }
       ]
     },
     {
@@ -46,34 +76,199 @@
       "branch": "base",
       "rule": "Rum repayment does not trigger spell lifesteal a second time, and its effective repayment remains attributed to original abilities.",
       "status": "passed",
-      "sourceIds": ["spell-lifesteal-2022", "kunkka-2023"],
-      "testEvidence": [{"file":"tests/reference-lightning-bolt-edges.test.ts","test":"AR-E11 does not spell-lifesteal from rum repayment while preserving its original damage attribution"}]
+      "sourceIds": [
+        "spell-lifesteal-2022",
+        "kunkka-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-lightning-bolt-edges.test.ts",
+          "test": "AR-E11 does not spell-lifesteal from rum repayment while preserving its original damage attribution"
+        }
+      ]
     },
     {
       "id": "E-FP-SHIELD-ORDER",
       "kind": "combination",
       "branch": "base",
-      "rule": "Historical False Promise must record damage before consuming Aphotic Shield. Current engine still consumes shields first; modern ordering cannot certify this historical combination.",
-      "status": "mechanism_missing",
-      "sourceIds": ["oracle-2023"],
-      "testEvidence": []
+      "rule": "Historical False Promise records damage before Aphotic Shield consumes capacity; shield capacity remains available after the promise ends.",
+      "status": "passed",
+      "sourceIds": [
+        "oracle-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "real False Promise records before real Aphotic Shield without consuming its capacity"
+        }
+      ]
     },
     {
       "id": "E-FP-BORROWED-ORDER",
       "kind": "combination",
       "branch": "base",
-      "rule": "Historical False Promise also records damage when Borrowed Time converts it into deferred healing. Current Borrowed Time early return prevents recording that damage.",
-      "status": "mechanism_missing",
-      "sourceIds": ["oracle-2023"],
-      "testEvidence": []
+      "rule": "Historical False Promise records both incoming damage and the healing produced by Borrowed Time; adding Aphotic Shield does not consume that shield.",
+      "status": "passed",
+      "sourceIds": [
+        "oracle-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "real Borrowed Time records both original damage and its healing while False Promise is active"
+        },
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "three real abilities preserve the shield while the two negation effects settle together"
+        }
+      ]
     },
     {
       "id": "E-SPELL-LIFESTEAL-CREEPS",
       "kind": "mechanism",
       "branch": "base",
-      "rule": "Historical generic spell lifesteal uses a 0.2 creep coefficient with source/type exceptions. Engine currently lacks a general native victim-class coefficient; per-illusion and summon inheritance still needs explicit eligibility review.",
+      "rule": "Historical ordinary-creep spell lifesteal applies the 0.2 coefficient after effective damage and before the shared healing cap.",
+      "status": "passed",
+      "sourceIds": [
+        "spell-lifesteal-2022"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "ordinary summoned creeps use the historical one-fifth coefficient while hero spell lifesteal stays full"
+        },
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "spell lifesteal uses effective remaining health before its creep coefficient and shares the missing-health cap"
+        }
+      ]
+    },
+    {
+      "id": "E-SPELL-LIFESTEAL-SPECIAL-CLASSES",
+      "kind": "mechanism",
+      "branch": "base",
+      "rule": "The historical ordinary-creep coefficient is implemented. Illusions, creep heroes, Spirit Bear and owner/summon lifesteal inheritance still need explicit historical eligibility evidence; existing special-class work values are not certified by the generic rule.",
+      "status": "source_pending",
+      "sourceIds": [
+        "spell-lifesteal-2022"
+      ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-FP-RUM-ORDER",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Historical False Promise negation prevents the same hit from creating a second low-priority Rum debt.",
+      "status": "passed",
+      "sourceIds": [
+        "oracle-2023",
+        "kunkka-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "False Promise negation prevents creating an extra low-priority Rum debt for the same hit"
+        }
+      ]
+    },
+    {
+      "id": "E-RAIN-RESTORATION-CLASSES",
+      "kind": "combination",
+      "branch": "gaben",
+      "rule": "The actual AA Fortune's End Gaben rain grants its direct-heal amplifier without amplifying regeneration or spell lifesteal. Ordinary attack-lifesteal follows the separate lifesteal class, but is not independently certified by this test.",
+      "status": "passed",
+      "sourceIds": [
+        "oracle-rain-731"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "a real Rain of Destiny amplifies direct healing but neither regeneration nor spell lifesteal"
+        }
+      ]
+    },
+    {
+      "id": "E-HEALTH-REMOVAL-INTERACTIONS",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Health-removal costs now bypass ordinary shields, multipliers and Borrowed Time and can be delayed by False Promise. Tests protect those engine outcomes. Historical eligibility for each separate caller and remaining negation priorities (Carapace, Refraction, Mana Shield, redirects) are not yet wholly audited.",
+      "status": "source_pending",
+      "sourceIds": [
+        "oracle-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "HP removal bypasses ordinary reductions, shields, Borrowed Time, Rum and mana shield"
+        },
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "HP removal remains nonlethal when flagged and cannot activate automatic Borrowed Time"
+        },
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "HP removal is delayed by False Promise without being converted by Borrowed Time"
+        },
+        {
+          "file": "tests/reference-resolution-order.test.ts",
+          "test": "invulnerability prevents a health-removal cost while spell immunity does not"
+        }
+      ]
+    },
+    {
+      "id": "E-DELAYED-SPELL-LIFESTEAL-TIMING",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Generic damageDelay currently keeps the provider and victim-class snapshot and heals when effective delayed damage lands. The result test protects this implementation; the historical AA delay effect's initial-versus-delayed lifesteal timing still needs native/source evidence.",
+      "status": "source_pending",
+      "sourceIds": [
+        "spell-lifesteal-2022"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "delayed spell damage snapshots its creep class and provider instead of reading replacement statuses"
+        }
+      ]
+    },
+    {
+      "id": "E-ATTACK-LIFESTEAL-OVERKILL",
+      "kind": "mechanism",
+      "branch": "base",
+      "rule": "A normal physical attack can lifesteal from its full post-mitigation overkill damage, while effective damage/taken accounting remains capped to the victim remaining HP.",
+      "status": "passed",
+      "sourceIds": [
+        "valve-720",
+        "spell-lifesteal-2022"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "ordinary physical attack lifesteal includes overkill while damage statistics remain capped to actual health"
+        }
+      ]
+    },
+    {
+      "id": "E-ATTACK-LIFESTEAL-SPECIAL-MULTIPLIERS",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Normal overkill is now handled separately from spell lifesteal. The exact historical attack-lifesteal basis with minimum-health protection, illusion incoming damage modifiers, damage manipulation and individual item creep penalties remains to be audited. The ordinary overkill test does not certify these combinations.",
+      "status": "source_pending",
+      "sourceIds": [
+        "valve-720"
+      ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-RESTORATION-CALLER-CLASSIFICATION",
+      "kind": "mechanism",
+      "branch": "base",
+      "rule": "The engine supports separate direct-heal, regeneration and lifesteal manipulation. Individual callers remain to be classified. Real Feast currently calls ordinary c.heal, so real Rain amplifies its heal as direct healing (340→425 in the isolated review). Historical Feast lifesteal manipulation proves that this caller needs a dedicated class correction and result test; the existing Rain test does not certify Feast or all healing skills.",
       "status": "mechanism_missing",
-      "sourceIds": ["spell-lifesteal-2022"],
+      "sourceIds": [
+        "lifestealer-2019-restoration",
+        "oracle-rain-731"
+      ],
       "testEvidence": []
     }
   ],

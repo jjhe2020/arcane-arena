@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 25 项；完整逐项通过 0 项。
-当前代码下，172 条具名结果测试要求通过，172 条同时具备逐条来源绑定；另有3项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 40 项；完整逐项通过 5 项。
+当前代码下，300 条具名结果测试要求通过，300 条同时具备逐条来源绑定；另有5项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -15,25 +15,25 @@
 | 弧形闪电 (Arc Lightning) | 审查中 | 5 / 4 / 1 / 2 / 4 | 2 | [审查记录](../references/dota-wiki/acceptance/projectiles-and-fields.json) |
 | 奥术光环 (Arcane Aura) | 审查中 | 1 / 1 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
 | 奥法鹰隼 (Arcane Bolt) | 审查中 | 5 / 3 / 3 / 3 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/projectiles-and-fields.json) |
-| 严寒烧灼 (Arctic Burn) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 热血竞技场 (Arena Of Blood) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 灵体游魂 (Astral Spirit) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 太虚之径 (Astral Step) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 严寒烧灼 (Arctic Burn) | 审查中 | 2 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/attack-modes.json) |
+| 热血竞技场 (Arena Of Blood) | 审查中 | 1 / 2 / 1 / 1 / 4 | 2 | [审查记录](../references/dota-wiki/acceptance/fields-dashes-channels.json) |
+| 灵体游魂 (Astral Spirit) | 审查中 | 1 / 3 / 1 / 2 / 3 | 1 | [审查记录](../references/dota-wiki/acceptance/fields-dashes-channels.json) |
+| 太虚之径 (Astral Step) | 审查中 | 2 / 2 / 1 / 1 / 5 | 2 | [审查记录](../references/dota-wiki/acceptance/fields-dashes-channels.json) |
 | 衰退光环 (Atrophy Aura) | 审查中 | 2 / 1 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
-| 深海重击 (Bash of the Deep) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 弹幕冲击 (Battery Assault) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 战斗专注 (Battle Trance) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 狂战士之血 (Berserker's Blood) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 狂战士之怒 (Berserker's Rage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 黑洞 (Black Hole) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 剑刃风暴 (Blade Fury) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 爆破起飞！ (Blast Off!) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 深海重击 (Bash of the Deep) | 逐项通过 | 1 / 2 / 1 / 1 / 4 | 0 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
+| 弹幕冲击 (Battery Assault) | 逐项通过 | 1 / 3 / 1 / 1 / 2 | 0 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
+| 战斗专注 (Battle Trance) | 逐项通过 | 3 / 2 / 1 / 1 / 6 | 0 | [审查记录](../references/dota-wiki/acceptance/attack-modes.json) |
+| 狂战士之血 (Berserker's Blood) | 审查中 | 2 / 1 / 1 / 1 / 1 | 1 | [审查记录](../references/dota-wiki/acceptance/attack-modes.json) |
+| 狂战士之怒 (Berserker's Rage) | 审查中 | 3 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/attack-modes.json) |
+| 黑洞 (Black Hole) | 审查中 | 0 / 3 / 1 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/fields-dashes-channels.json) |
+| 剑刃风暴 (Blade Fury) | 审查中 | 2 / 1 / 1 / 1 / 2 | 1 | [审查记录](../references/dota-wiki/acceptance/attack-modes.json) |
+| 爆破起飞！ (Blast Off!) | 逐项通过 | 1 / 2 / 2 / 2 / 8 | 0 | [审查记录](../references/dota-wiki/acceptance/fields-dashes-channels.json) |
 | 闪烁 (Blink) | 审查中 | 0 / 0 / 0 / 0 / 1 | 1 | [审查记录](../references/dota-wiki/acceptance/projectiles-and-fields.json) |
-| 嗜血术 (Bloodlust) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 血怒 (Bloodrage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 嗜血术 (Bloodlust) | 逐项通过 | 1 / 3 / 1 / 1 / 2 | 0 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
+| 血怒 (Bloodrage) | 审查中 | 1 / 1 / 1 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
 | 回光返照 (Borrowed Time) | 审查中 | 1 / 0 / 0 / 0 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 棒击大地 (Boundless Strike) | 审查中 | 1 / 1 / 1 / 1 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
-| 蚀脑 (Brain Sap) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 蚀脑 (Brain Sap) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
 | 炽烈火雨 (Burning Barrage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 沸血之矛 (Burning Spear) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 掘地穿刺 (Burrowstrike) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

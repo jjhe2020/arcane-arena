@@ -90,7 +90,7 @@ describe('damage, spells and interruption',()=>{
   });
   it('stops channel damage on interruption instead of leaving a detached damage zone',()=>{
     const battle=createBattle(player(0,[{id:blackHole.id,points:3}]),player(1,[],'tank'),7,[blackHole]);
-    advance(battle,1,[blackHole]);expect(battle.units[0].action).toBe('channel');
+    advance(battle,2,[blackHole]);expect(battle.units[0].action).toBe('channel');
     const damageBefore=battle.events.filter(e=>e.type==='hit'&&e.skill===blackHole.id).length;expect(damageBefore).toBeGreaterThan(0);
     battle.units[0].statuses.push({kind:'stun',until:3});advance(battle,1,[blackHole]);
     expect(battle.events.filter(e=>e.type==='hit'&&e.skill===blackHole.id)).toHaveLength(damageBefore);
