@@ -40,6 +40,10 @@ export function rollPrd(state:PrdState,probability:number,random:()=>number):boo
  * their existing uniform draws. Each key is independent per combat skill slot. */
 export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>={
   custom_phantom_assassin_coup_de_grace:['critical'],
+  custom_chaos_knight_chaos_strike:['critical'],
+  custom_axe_counter_helix:['helix'],
+  // Native Greater Bash switched to PRD in 6.85; AA grants this proc at Gaben.
+  custom_spirit_breaker_charge_of_darkness:['greater_bash'],
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],
   custom_windrunner_focusfire:['maelstrom'],
   ursa_overpower:['bash'],

@@ -1,0 +1,1332 @@
+{
+  "schemaVersion": 1,
+  "group": "proc-acceptance",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA values and custom clauses first; pre7.33 Helix, pre7.34 Coup and pre7.36 Curse are explicit historical branches. No further Wayback requests after HTTP429.",
+  "validation": {
+    "command": "npx vitest run tests/reference-proc-acceptance.test.ts tests/combat-visual-origin.test.ts",
+    "totalTests": 57,
+    "passedTests": 57,
+    "skillGroupTests": 50,
+    "presentationRegressionTests": 7,
+    "configurationHash": "602d5b2015dedb3ededd2706849876c0961d55eeb10aeede716f7de7702b015d",
+    "typecheck": "npx tsc --noEmit passed after the final C3 workbook compilation and restored Helix presentation."
+  },
+  "skills": [
+    {
+      "id": "custom_huskar_burning_spear",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "paraphrase": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "versionContext": "HTTPS200 staticJSON,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA Lua patch unspecified."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "paraphrase": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "versionContext": "Shipped2023-02-10/local references/dota-20230216/npc_abilities.txt;candidate not proof ofAApatch."
+        },
+        {
+          "id": "spear-wiki",
+          "url": "https://liquipedia.net/dota2/Huskar",
+          "accessedOn": "2026-10-29",
+          "observation": "Active orb,set-health cost,independent stacks and target/illusion qualification.",
+          "paraphrase": "Active orb,set-health cost,independent stacks and target/illusion qualification.",
+          "versionContext": "Current Wiki;2023duration/cost values remainAA/pinnedKV overrides."
+        },
+        {
+          "id": "spear-history",
+          "url": "https://liquipedia.net/dota2/Huskar/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "2011 fixes exclude silence and wards;7.17 pure/piercing talent;6.60 removed stackcap.",
+          "paraphrase": "2011 fixes exclude silence and wards;7.17 pure/piercing talent;6.60 removed stackcap.",
+          "versionContext": "Explicit historical changelog entries,not modern numeric backport."
+        },
+        {
+          "id": "spear-old",
+          "url": "https://dota2.fandom.com/pt/wiki/Huskar",
+          "accessedOn": "2026-10-29",
+          "observation": "Archived localizedWiki text retains independent8second instances with1second delayed ticks.",
+          "paraphrase": "Archived localizedWiki text retains independent8second instances with1second delayed ticks.",
+          "versionContext": "Indexed older localized article withobsolete15health cost;only independent clock mechanics used,not numeric cost."
+        },
+        {
+          "id": "status-resistance-wiki",
+          "url": "https://liquipedia.net/dota2/Status_Resistance",
+          "accessedOn": "2026-10-29",
+          "observation": "Burning Spear is explicitly listed among abilities unaffected by status resistance.",
+          "paraphrase": "Burning Spear is explicitly listed among abilities unaffected by status resistance.",
+          "versionContext": "Search-indexed Wiki content retrieved on 2026-10-29; direct page returned HTTP403. Page retains old Curse and Helix Shard classifications. Duration qualification only; pre7.34 slow-amplitude rules are not inferred."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SP-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AAset-health cost onceperattack,nonlethal and no damage statistics.",
+          "sourceIds": [
+            "aa",
+            "spear-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-01 pays one nonlethal attack-point health cost and applies its debuff before physical damage"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-10 a missed spear still pays its released health cost but cannot kill its owner or apply a stack"
+            }
+          ]
+        },
+        {
+          "id": "SP-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Attack-point eligibility and cost;independentrecord delivery before physicaldamage.",
+          "sourceIds": [
+            "spear-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-01 pays one nonlethal attack-point health cost and applies its debuff before physical damage"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-08 two overlapping ranged attacks retain different silence eligibility in their own attack records"
+            }
+          ]
+        },
+        {
+          "id": "SP-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA7/14/28DPS,8independent onesecond ticks and per-instance expiry.",
+          "sourceIds": [
+            "aa",
+            "spear-old",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-02 every AA base rank deals eight one-second damage ticks after its own application"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-03 an additional attack keeps the first stack expiry independent"
+            }
+          ]
+        },
+        {
+          "id": "SP-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Strongdispel only,silence suppressesorb,Break doesnot;native exclusions.",
+          "sourceIds": [
+            "aa",
+            "spear-history",
+            "spear-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-04 silence suppresses the active orb but Break does not disable it"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-05 illusions wards buildings and nonpierced immune targets cannot gain a fresh spear"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-06 real basic dispel retains stacks while real strong dispel removes them"
+            }
+          ]
+        },
+        {
+          "id": "SP-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AAattacker-centered400spread,single healthcost.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-07 Super spreads around the attacker while charging health once and Gaben pierces immunity with pure ticks"
+            }
+          ]
+        },
+        {
+          "id": "SP-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AApureburn pierces spellimmunity.",
+          "sourceIds": [
+            "aa",
+            "spear-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-07 Super spreads around the attacker while charging health once and Gaben pierces immunity with pure ticks"
+            }
+          ]
+        },
+        {
+          "id": "SP-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Released attack snapshots cannot overwrite anotherinflight orb.",
+          "sourceIds": [
+            "spear-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-08 two overlapping ranged attacks retain different silence eligibility in their own attack records"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "RC-01 saved normal combat reconstructs an in-flight critical attack record deterministically"
+            }
+          ]
+        },
+        {
+          "id": "SP-M04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "No obsolete100stacklimit under anextended designer duration.",
+          "sourceIds": [
+            "spear-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-09 an explicitly extended designer duration does not retain the obsolete100-stack cap"
+            }
+          ]
+        },
+        {
+          "id": "SP-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Removed originalability afterlaunch remains unverified;no global beforeDamage exemption added.",
+          "sourceIds": [
+            "spear-wiki"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "SP-T02",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "AA spread samples attacker onimpact,retained existingpolicy;point-versus-impact exactAAclock unavailable.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "SP-T03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Status resistance does not shorten the eight-second Burning Spear instance or remove any of its eight ticks.",
+          "sourceIds": [
+            "status-resistance-wiki",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "SP-11 Burning Spear retains all eight ticks and its full duration through status resistance"
+            }
+          ]
+        },
+        {
+          "id": "SP-T04",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Damage-level changes to an existing native counter are not certified; the current arena does not upgrade a learned skill during an active battle.",
+          "sourceIds": [
+            "spear-old"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "AA Super spread sampletime is an explicit retainedimpact-center interpretation.",
+        "Delivery after removing the original ability in flight and existing-counter damage after a live level upgrade remain unverified."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AAcustom400attacker-centeredspread",
+          "sourceIds": [
+            "aa"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Historical7.17 pure/piercing talent promoted byAA",
+          "sourceIds": [
+            "aa",
+            "spear-history"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_chaos_knight_chaos_strike",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "paraphrase": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "versionContext": "HTTPS200 staticJSON,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA Lua patch unspecified."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "paraphrase": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "versionContext": "Shipped2023-02-10/local references/dota-20230216/npc_abilities.txt;candidate not proof ofAApatch."
+        },
+        {
+          "id": "chaos-wiki",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight",
+          "accessedOn": "2026-10-29",
+          "observation": "Critical atattackpoint,PRD,highercritical wins and its lifesteal alone applies;target restrictions.",
+          "paraphrase": "Critical atattackpoint,PRD,highercritical wins and its lifesteal alone applies;target restrictions.",
+          "versionContext": "Current mechanics text;modern creep/globalLS changes excluded."
+        },
+        {
+          "id": "chaos-history",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "Pre7.33 ordinarycreep damage1.5 and full criticalLS;2022fix treatscreepHeroes/Roshan asheroes.",
+          "paraphrase": "Pre7.33 ordinarycreep damage1.5 and full criticalLS;2022fix treatscreepHeroes/Roshan asheroes.",
+          "versionContext": "7.31/2022-05-04/7.33/7.34/7.38 separated;AAmin120 retained overnative125."
+        },
+        {
+          "id": "chaos-old",
+          "url": "https://liquipedia.net/dota2/Chaos_Knight/Old_Abilities",
+          "accessedOn": "2026-10-29",
+          "observation": "Both pre7.20 and7.20-7.27a Chaos Strike entries explicitly allow self-illusion lifesteal; the7.00 changelog also records this qualification. Current Wiki retains self-illusion critical and lifesteal functionality.",
+          "paraphrase": "Chaos Strike can critical and restore health on its own illusion body. No summoning-owner transfer is implied.",
+          "versionContext": "Search-indexed historical entries and current Wiki compared; used only for source-illusion qualification, not later creep lifesteal factors."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CK-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA variablecritical endpoints and selectedcrit-only lifes­teal.",
+          "sourceIds": [
+            "aa",
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-01 each AA rank uses its configured variable critical endpoints and lifesteal on a successful proc"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-02 only the winning critical provides its critical-specific lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "CK-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "PRD atattackpoint and record-snapshotted delivery,not impactreroll.",
+          "sourceIds": [
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-03 a ranged critical snapshots before flight and a later noncritical attack cannot overwrite it"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-08 actual33.33percent attacks use an independent calibrated PRD state and repeat deterministically"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "RC-01 saved normal combat reconstructs an in-flight critical attack record deterministically"
+            }
+          ]
+        },
+        {
+          "id": "CK-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Pre7.33 ordinarycreep1.5factor;illusion/creepHero treatedashero.",
+          "sourceIds": [
+            "chaos-history",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-04 ordinary creeps use the historical extra damage while illusions and considered heroes stay in the hero class"
+            }
+          ]
+        },
+        {
+          "id": "CK-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Break and ward/building exclusion.",
+          "sourceIds": [
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-06 Break blocks new owner critical rolls and suppresses an allied aura from that broken owner"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-07 enemy buildings and wards cannot trigger owner critical procs"
+            }
+          ]
+        },
+        {
+          "id": "CK-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final43.33chance/80lifesteal without doubleaddition.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-05 Super final chance and lifesteal are not added twice and Gaben applies half-chance allied aura"
+            }
+          ]
+        },
+        {
+          "id": "CK-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Halfchance allyaura,configuredlinger and sourceBreak suppression.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-05 Super final chance and lifesteal are not added twice and Gaben applies half-chance allied aura"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-06 Break blocks new owner critical rolls and suppresses an allied aura from that broken owner"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-09 Gaben aura expires after the configured linger once an ally leaves its configured radius"
+            }
+          ]
+        },
+        {
+          "id": "CK-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Actualallied auracrit retains the ordinarycreepdamagefactor.",
+          "sourceIds": [
+            "aa",
+            "chaos-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-10 an actual Gaben aura ally inherits the ordinary-creep critical damage factor"
+            }
+          ]
+        },
+        {
+          "id": "CK-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Highercritical wins;only the selectedcritical contributes its lifesteal.",
+          "sourceIds": [
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-02 only the winning critical provides its critical-specific lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "CK-G02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA aura10000range/.25linger are existing engineeringvalues,not recoverednative clauses.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-09 Gaben aura expires after the configured linger once an ally leaves its configured radius"
+            }
+          ]
+        },
+        {
+          "id": "CK-C03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "The current engine ranks variable profiles by maximum multiplier before rolling their actual value. Exact native variable-versus-fixed critical arbitration and special lifesteal target classes remain pending; endpoint tests do not prove this matrix.",
+          "sourceIds": [
+            "chaos-wiki",
+            "chaos-history"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CK-G03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "The allied aura keeps the owner critical target restrictions: wards and buildings cannot trigger its critical. Provider qualification is filtered before selecting the strongest aura.",
+          "sourceIds": [
+            "aa",
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-11 a Gaben Chaos Strike ally cannot critical a ward or building that the owner passive excludes"
+            }
+          ]
+        },
+        {
+          "id": "CK-C04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "An illusion with Chaos Strike can critical and lifesteal for itself; its summoning owner does not receive that restoration. This does not certify a target illusion damage-manipulation basis.",
+          "sourceIds": [
+            "chaos-old",
+            "chaos-history",
+            "chaos-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CK-12 an illusion Chaos Strike owner can critical and lifesteal for itself without healing its summoning owner"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA aura radius/linger undisclosed;global arena/.25linger retained and configurable.",
+        "Variablecritical arbitration order and speciallifesteal class interactions are not certified by endpoint examples."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Nativecrit-chance/lifesteal talents;AAexplicit+10/+20 values override2023+22LS talent.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-history"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AAcustomaura withhalfallychance;not a nativeCKupgrade.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_axe_counter_helix",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "paraphrase": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "versionContext": "HTTPS200 staticJSON,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA Lua patch unspecified."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "paraphrase": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "versionContext": "Shipped2023-02-10/local references/dota-20230216/npc_abilities.txt;candidate not proof ofAApatch."
+        },
+        {
+          "id": "helix-old",
+          "url": "https://liquipedia.net/dota2/Axe/Old_Abilities",
+          "accessedOn": "2026-10-29",
+          "observation": "Landed contacts,internalCD,PRD;Shard6second stackgroup refresh,max6;nativeattack-only reduction.",
+          "paraphrase": "Landed contacts,internalCD,PRD;Shard6second stackgroup refresh,max6;nativeattack-only reduction.",
+          "versionContext": "Archived pre7.33 ability;article radius300 differs pinned275 andAA375,AA kept."
+        },
+        {
+          "id": "helix-history",
+          "url": "https://liquipedia.net/dota2/Axe/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "6.84 movedproc tolanding;7.28 outgoingattack shard;7.30 stackingdebuff;7.33 replacedprobability withhitcount.",
+          "paraphrase": "6.84 movedproc tolanding;7.28 outgoingattack shard;7.30 stackingdebuff;7.33 replacedprobability withhitcount.",
+          "versionContext": "Use pre7.33 probability branch;AAindependent outgoingcooldown/customdamage retained."
+        },
+        {
+          "id": "valve-684",
+          "url": "https://www.dota2.com/684?l=dutch",
+          "accessedOn": "2026-10-29",
+          "observation": "Official 6.84 notes change Return to landed attacks and explicitly extend the same change to Counter Helix and Reactive Armor.",
+          "paraphrase": "The official 2015 change establishes landed-contact triggering rather than attack animation start.",
+          "versionContext": "Official 6.84 gameplay patch dated 2015-04-30; corroborates the pre7.33 landed-contact branch. The older contrary bugfix on Axe Changelogs is dated 2013-11-26, not 2022-09-30."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "HX-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Native landedcontact event includeszeroDamage;miss andinvalid attacker donotproc.",
+          "sourceIds": [
+            "helix-old",
+            "helix-history",
+            "valve-684"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-01 a landed zero-damage attack can proc but missed attacks cannot"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-02 source ward and building attacks do not trigger the defensive proc"
+            }
+          ]
+        },
+        {
+          "id": "HX-T01",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "AAindependent incoming/outgoing internalclocks unaffectedbyCDR.",
+          "sourceIds": [
+            "aa",
+            "helix-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-03 Super outgoing and defensive proc cooldowns are independent and do not inherit cooldown reduction"
+            }
+          ]
+        },
+        {
+          "id": "HX-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA60/100/180pureDamage and17/18/20requestedPRD;no mana or activecooldownconsumed.",
+          "sourceIds": [
+            "aa",
+            "helix-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-06 every base rank preserves AA damage radius and requested PRD probability without spending mana"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-07 the AA radius includes an enemy on its boundary while excluding the immediately farther enemy"
+            }
+          ]
+        },
+        {
+          "id": "HX-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final300damage and outgoingattackproc.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-03 Super outgoing and defensive proc cooldowns are independent and do not inherit cooldown reduction"
+            }
+          ]
+        },
+        {
+          "id": "HX-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Six-second whole stackgrouprefresh,max6 and15percentperstack towardowner.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "helix-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-04 Gaben refreshes one six-second stack group up to six stacks and reduces only damage aimed at its owner under the AA rule"
+            }
+          ]
+        },
+        {
+          "id": "HX-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Break andillusionowners cannotcreatenewspin.",
+          "sourceIds": [
+            "helix-old",
+            "valve-684"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-05 Break and illusion owners do not create new Helix instances"
+            }
+          ]
+        },
+        {
+          "id": "HX-G02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAwordingretained all-damage-to-owner;nativeShard wasattack-only.Classdifferenceunresolved.",
+          "sourceIds": [
+            "aa",
+            "helix-old"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "HX-04 Gaben refreshes one six-second stack group up to six stacks and reduces only damage aimed at its owner under the AA rule"
+            }
+          ]
+        },
+        {
+          "id": "HX-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "InitialPRD failurestate/shared incoming-outgoing PRD stream remain candidates.",
+          "sourceIds": [
+            "helix-old"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "HX-G03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Exacthistorical debuffdispelclass not established;existingbasicpurge retained.",
+          "sourceIds": [
+            "helix-old"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "AAall-damage wording versus nativeattack-only debuff remains explicit.",
+        "NativePRD initial/failurestream grouping and debuffdispellability stillneed precise evidence."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Removed7.27/7.28 ownattack talent/Shard;AAexplicitindependent cooldown and+120damage.",
+          "sourceIds": [
+            "aa",
+            "helix-history"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "7.30-7.32Shard stacks/+10chance;AA15percent6stack values match2023KV.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "helix-old"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_phantom_assassin_coup_de_grace",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "paraphrase": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "versionContext": "HTTPS200 staticJSON,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA Lua patch unspecified."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "paraphrase": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "versionContext": "Shipped2023-02-10/local references/dota-20230216/npc_abilities.txt;candidate not proof ofAApatch."
+        },
+        {
+          "id": "coup-old",
+          "url": "https://liquipedia.net/dota2/Phantom_Assassin/Old_Abilities",
+          "accessedOn": "2026-10-29",
+          "observation": "Pre7.34 directcritical atattackpoint,PRD,ward/building/ally exclusions.",
+          "paraphrase": "Pre7.34 directcritical atattackpoint,PRD,ward/building/ally exclusions.",
+          "versionContext": "Explicit3.2j-to7.34 archived ability;modernDeadlyFocus not used."
+        },
+        {
+          "id": "coup-history",
+          "url": "https://liquipedia.net/dota2/Phantom_Assassin/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.28 grantedFan;7.34 changedcrit;7.35 changedFanfrom16percentpure to25percentphysical.",
+          "paraphrase": "7.28 grantedFan;7.34 changedcrit;7.35 changedFanfrom16percentpure to25percentphysical.",
+          "versionContext": "OldAA directcrit/Fan16pure branch selected withpinned2023KV."
+        },
+        {
+          "id": "fan-wiki",
+          "url": "https://dota2.fandom.com/wiki/Phantom_Assassin",
+          "accessedOn": "2026-10-29",
+          "observation": "Fixed-center expanding filledpulse,speed1000;Break precedesdamage.",
+          "paraphrase": "Fixed-center expanding filledpulse,speed1000;Break precedesdamage.",
+          "versionContext": "Indexed7.35c-eraWiki has.15+.9 clocks andmodernphysicalnumbers;onlypulse/order/clocks used ashistoricalcandidates."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CP-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA200/325/450 directcrit;no modernDeadlyFocus.",
+          "sourceIds": [
+            "aa",
+            "coup-old",
+            "coup-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-01 every AA rank applies its configured direct critical factor without Deadly Focus"
+            }
+          ]
+        },
+        {
+          "id": "CP-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Criticalsnapshot atattackpoint survives subsequentBreak andinflight restoration.",
+          "sourceIds": [
+            "coup-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-06 a ranged Coup snapshots its critical before a later Break and preserves the damage on impact"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "RC-01 saved normal combat reconstructs an in-flight critical attack record deterministically"
+            }
+          ]
+        },
+        {
+          "id": "CP-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Ward/building and freshBreak exclusions.",
+          "sourceIds": [
+            "coup-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-02 wards buildings and Break cannot trigger a fresh Coup critical"
+            }
+          ]
+        },
+        {
+          "id": "CP-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Independent historicalFan grant with50mana/15CD/.15point/.9backswing candidate.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "fan-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-03 Super grants a separately owned Fan and pays its historical mana cooldown cast point and backswing"
+            }
+          ]
+        },
+        {
+          "id": "CP-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAEveryCrit interpretedliterally includesother selectedcritproviders;freeFanpreserves childcostledger.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-05 AA Gaben every critical includes another provider and bypasses the independently granted Fan resource ledger"
+            }
+          ]
+        },
+        {
+          "id": "CP-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Fixed-center filledpulse,speed1000,outerboundaryhit;Breakbefore16percentpureDamage.",
+          "sourceIds": [
+            "valve",
+            "fan-wiki",
+            "coup-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-04 Fan expands from its fixed cast center and applies Break before its pure damage"
+            }
+          ]
+        },
+        {
+          "id": "CP-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "NativepureFan piercesimmunity;three-secondBreak naturallyexpires.",
+          "sourceIds": [
+            "valve",
+            "fan-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-07 historical Fan pierces spell immunity and its Break expires after three seconds"
+            }
+          ]
+        },
+        {
+          "id": "CP-G02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "OriginalAAEveryCrit own-onlyversusany-critical interpretation has no recoveredLua.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-05 AA Gaben every critical includes another provider and bypasses the independently granted Fan resource ledger"
+            }
+          ]
+        },
+        {
+          "id": "CP-G03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "A successful noncritical attack does not trigger the automatic Fan of Knives. Attack statistics attribution does not make an ordinary hit critical.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-08 Gaben Coup does not cast a Fan for any successful noncritical attack"
+            }
+          ]
+        },
+        {
+          "id": "CP-M03",
+          "kind": "mechanism",
+          "branch": "base-super",
+          "mechanism": "The unmodified base15% and final Super22% chance feed the calibrated critical PRD stream. This test does not certify arbitration against a variable or fixed-count provider.",
+          "sourceIds": [
+            "aa",
+            "coup-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "CP-09 unmodified base and Super critical probabilities use their own calibrated PRD stream"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "AAEveryCrit is implementedas allselectedcritproviders;exactmodifiedLua remains unavailable.",
+        "Fan.9backswing readfrom indexedlaterWiki and maintained as historicalcandidate,not directly present inValveKV."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Pre7.34+7percentcrit talent and7.28ShardFan.",
+          "sourceIds": [
+            "aa",
+            "coup-old",
+            "coup-history"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AAcustom automaticFan oncritical,resource-free separatefrom independent slot.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_abaddon_curse_of_avernus",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "paraphrase": "Official descriptions,values and custom Super/Gaben clauses read for these exact five IDs.",
+          "versionContext": "HTTPS200 staticJSON,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae;AA Lua patch unspecified."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "paraphrase": "Native ability flags,child resources and6second Helix debuff read from pinnedKV.",
+          "versionContext": "Shipped2023-02-10/local references/dota-20230216/npc_abilities.txt;candidate not proof ofAApatch."
+        },
+        {
+          "id": "avernus-history",
+          "url": "https://liquipedia.net/dota2/Abaddon/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.20 two-stagecount/silence,hero-only targetAS;7.36 removedthisbranch.",
+          "paraphrase": "7.20 two-stagecount/silence,hero-only targetAS;7.36 removedthisbranch.",
+          "versionContext": "Pre7.36 AA/pinned2023two-stagebranch;modernDOT omitted."
+        },
+        {
+          "id": "status-resistance-wiki",
+          "url": "https://liquipedia.net/dota2/Status_Resistance",
+          "accessedOn": "2026-10-29",
+          "observation": "The initial Curse of Avernus debuff is unaffected by status resistance, while the full curse has its duration reduced.",
+          "paraphrase": "The initial Curse of Avernus debuff is unaffected by status resistance, while the full curse has its duration reduced.",
+          "versionContext": "Search-indexed Wiki content retrieved on 2026-10-29; direct page returned HTTP403. Page retains old Curse and Helix Shard classifications. Duration qualification only; pre7.34 slow-amplitude rules are not inferred."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AV-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Four landedhits causefullcurse/silence;fifthhit cannotreplacefullslow.",
+          "sourceIds": [
+            "aa",
+            "avernus-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-01 the fourth landed attack applies the full curse before damage and the fifth cannot replace its slow with the basic slow"
+            }
+          ]
+        },
+        {
+          "id": "AV-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Debuffs precede damage;hitcounter refreshesfive-second duration.",
+          "sourceIds": [
+            "valve",
+            "avernus-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-01 the fourth landed attack applies the full curse before damage and the fifth cannot replace its slow with the basic slow"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-07 the basic counter refreshes on contact and expires without a curse after its five-second duration"
+            }
+          ]
+        },
+        {
+          "id": "AV-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Basicdispel resetscounter;missdoesnotincrement;fullcurse naturallycleansup.",
+          "sourceIds": [
+            "aa",
+            "avernus-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-02 missed attacks do not increment and a real basic dispel resets the initial counter"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-04 full curse expiry clears silence and slow and the next attack starts a fresh basic counter"
+            }
+          ]
+        },
+        {
+          "id": "AV-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Finalthree-hit threshold and110percentauthoredslow before movementminimum.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-03 Super uses its final three-hit threshold and slow while Gaben can mature a new curse during the existing one"
+            }
+          ]
+        },
+        {
+          "id": "AV-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Newhitgroup canmature duringactivecurse andrefreshfull duration.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-03 Super uses its final three-hit threshold and slow while Gaben can mature a new curse during the existing one"
+            }
+          ]
+        },
+        {
+          "id": "AV-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Twoownercounters remainindependent;hero/illusiontargetAS excludescreepHero.",
+          "sourceIds": [
+            "avernus-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-05 independent owners do not combine their initial hit counters"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-06 cursed-target attack speed benefits heroes and illusions while a consideredHero creep keeps its own attack cadence"
+            }
+          ]
+        },
+        {
+          "id": "AV-S02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "ExistingAA+50percentage-point interpretation retained;relative-versus-additive wording not recovered.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-03 Super uses its final three-hit threshold and slow while Gaben can mature a new curse during the existing one"
+            }
+          ]
+        },
+        {
+          "id": "AV-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Multiplefullymaturedcurses sharingnativeAS/debuffgroups requirecomparison.",
+          "sourceIds": [
+            "avernus-history"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "AV-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Status resistance leaves the initial hit counter and basic slow at five seconds, but reduces the full curse duration.",
+          "sourceIds": [
+            "status-resistance-wiki",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-08 status resistance leaves the initial counter and basic slow unchanged but shortens the full curse"
+            }
+          ]
+        },
+        {
+          "id": "AV-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "All three AA base ranks apply10/15/25% initial slow,15/30/60% full slow and40/60/100 target attack speed, with no active mana or cooldown cost.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-09 every AA base rank preserves its initial slow full slow and attack speed without an active resource cost"
+            },
+            {
+              "file": "tests/reference-proc-acceptance.test.ts",
+              "test": "AV-06 cursed-target attack speed benefits heroes and illusions while a consideredHero creep keeps its own attack cadence"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Super-50percent wording retains prior+50percentage-point working interpretation.",
+        "Multiple fullymatured ownercurses and nativebuff/duration grouping need exactcomparison."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Nativehitcounttalent;AAcustom+50slow interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AAcustom permitsnewstacks duringactivecurse;retains pre7.36 silencebranch.",
+          "sourceIds": [
+            "aa",
+            "avernus-history"
+          ]
+        }
+      ]
+    }
+  ],
+  "integrationReview": [
+    {
+      "id": "RC-02",
+      "status": "passed",
+      "observation": "Root changed attack preparation to use the same per-attack record as launch and impact. Ranged Walrus replacement criticals now retain their matching landing disables after flight.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-proc-acceptance.test.ts",
+          "test": "RC-02 a ranged Gaben Walrus replacement retains its landing disable after its long projectile flight"
+        }
+      ]
+    },
+    {
+      "id": "CK-11",
+      "status": "passed",
+      "observation": "The Chaos aura advertises its target restrictions and shared snapshot selection filters invalid target providers before choosing the strongest candidate.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-proc-acceptance.test.ts",
+          "test": "CK-11 a Gaben Chaos Strike ally cannot critical a ward or building that the owner passive excludes"
+        }
+      ]
+    },
+    {
+      "id": "core-variable-fixed",
+      "status": "pending",
+      "observation": "Maximum-profile sorting versus comparing the rolled variable multiplier against a fixed critical is not certified. Luminosity point-probe and impact counter ordering is an unreviewed skill-specific matrix, not claimed complete here.",
+      "testEvidence": []
+    },
+    {
+      "id": "core-modifier-disabled",
+      "status": "pending",
+      "observation": "Existing triggerModifiers:false attacks still inspect generic status-based critical providers while learned criticalAttack callbacks are skipped. Native requirements of the current Time Lock and Moment of Courage callers have not been reviewed by this group.",
+      "testEvidence": []
+    }
+  ]
+}

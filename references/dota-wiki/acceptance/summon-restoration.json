@@ -1,0 +1,1167 @@
+{
+  "schemaVersion": 1,
+  "group": "summon-restoration",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit values/custom clauses are authoritative. Direct2023Wiki snapshots and pinned Valve supply compatible mechanisms; contemporary redesigns and unproved AA Lua details are not promoted by green tests.",
+  "validation": {
+    "command": "npx vitest run tests/reference-summon-restoration.test.ts",
+    "passedTests": 47,
+    "configurationHash": "602d5b2015dedb3ededd2706849876c0961d55eeb10aeede716f7de7702b015d",
+    "meaning": "One of these five skills has complete reviewed arena clauses; the other four retain precise source/mechanism gaps.47 result tests do not certify all230skills or all inherited children."
+  },
+  "skills": [
+    {
+      "id": "custom_beastmaster_call_of_the_wild",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Hero/summon arena; no fog-of-war, courier or building gameplay. AA explicit values remain authoritative. New Necro fixes cover named mechanisms only, not full child parity."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Base calls a Boar and Hawk; AA boar14/26/50damage,300/450/750HP,3s10/20/40slow; hawk150/200/300HP,300/340/420speed,750/800/900vision;60s duration. Super summons both Necro3 units, grants Hawk Dive Bomb, and adds250health to all own summons each cast. Gaben adds two Hawks and a random dominated ancient.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29,230rows,SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. AA explicit values and custom clauses take priority over native balance.",
+          "localEvidence": "references/ability-arena/abilities-summon-restoration-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191303id_/https://dota2.fandom.com/wiki/Beastmaster",
+          "accessedOn": "2026-10-29",
+          "observation": "Cast0.3+0.67. Independent repeated boars/hawks; boar550range,1.25BAT,0.5+0.47attack animation,1500projectile and flat attack-speed poison alongside movement slow. Hawk is invisible, flying and nonattacking. Dive Bomb has1s revealed windup, fixed0.4s dive,250magic damage then2.5s basic-dispellable root and hawk sacrifice; only selected target is hit. Native level20 talent grants controlled-unit250HP through an aura, unlike AA explicit per-cast increment.",
+          "versionContext": "Direct HTTP200 Dota2Wiki snapshot2023-02-15 before7.33. Snapshot content was read directly, not a current description assigned an old date. Modern facets/debuff-immunity redesigns are not imported.",
+          "sha256": "d74eb6cc83afb3bb35e6282245d875c055f6dc1084f601631c22a7c485490d53"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Beastmaster Boar/Hawk and Dive Bomb timing/targeting fields; Necro warrior3 mana burn50 and50%physical conversion, Last Will magical600/700/800; TrueSight1000. Archer KV still contains obsolete10/15/20AS, requiring changelog/Wiki arbitration.",
+          "versionContext": "Pinned shipped Valve KV2023-02-10 at commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; compatible historical candidate, not original custom AA Lua proof.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "necro2023",
+          "url": "https://web.archive.org/web/20230215203000id_/https://dota2.fandom.com/wiki/Necronomicon",
+          "accessedOn": "2026-10-29",
+          "observation": "7.28 replacement archer aura provides only5/7/9% movement speed in1200radius,0.5s linger, no stacking and no invulnerable recipients. Warrior3 TrueSight1000 with0.5s linger. Mana Break physical conditional damage shares the main attack for flat block/attack lifesteal and is excluded from crit/cleave. Current separate physical instance implements only its confirmed type/value.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki snapshot2023-02-15; obsolete pre7.27 attack-speed aura in KV is not applied.",
+          "sha256": "825610734e21a1f7ce34822d1f2d4f1aa3a4cf6750482b1166d608d2c246add3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "WI-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Each cast creates one AA boar and invisible flying nonattacking hawk; earlier summons remain and have independent60s lifetimes.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild base creates one AA boar and one invisible nonattacking hawk with independent sixty second lifetimes"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild recast preserves previous summons and Super adds two Necro3 bodies and a discrete health gain"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Historical0.3s point and0.67s backswing; AA80mana/45s cooldown commit only on release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild basic mana and cooldown begin at the three tenth release with its historical backswing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Boar ranged contact applies flat attack-speed reduction plus the AA movement slow for3s; both expire.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild boar poison applies flat attack speed reduction and movement slow after its ranged attack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Two native Necro3 bodies are created and the explicit AA250HP cast increment reaches all own existing/new summons.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild recast preserves previous summons and Super adds two Necro3 bodies and a discrete health gain"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Hawk reveals during1s windup then takes0.4s continuous targeted dive, damages250 then roots target2.5s and sacrifices itself; path bystanders are not hit.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Historical Hawk Dive Bomb reveals during one second windup then roots only its chosen target after the fixed flight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Three total hawks and one seeded ancient from the retained three-type project pool; the new ancient also receives the explicit250HP increment. This validates the retained pool behavior, not its unrecovered AA pool provenance.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild Gaben creates three hawks and includes the new ancient in its explicit all summons health bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-07",
+          "kind": "combination",
+          "branch": "super-necro",
+          "mechanism": "Historical Necro3 archer grants9% movement aura only, does not stack across sources, excludes invulnerable allies and leaves0.5s after the final source dies.",
+          "sourceIds": [
+            "aa",
+            "necro2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild Necro3 archer grants only the historical nonstacking movement aura and excludes invulnerable allies"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild Necro3 movement aura has a half second exit linger and is removed after every source dies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-08",
+          "kind": "combination",
+          "branch": "super-necro",
+          "mechanism": "Warrior3 reveals ordinary invisibility within1000 and enables normal attacks; undetectability remains untargetable.",
+          "sourceIds": [
+            "aa",
+            "necro2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild Necro3 warrior reveals ordinary invisibility within1000 without defeating undetectability"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WI-09",
+          "kind": "combination",
+          "branch": "super-necro-partial",
+          "mechanism": "A successful warrior hit burns50mana and deals25physical damage as an explicit separate attack-category instance, without spell amplification. Shared-instance block/crit/cleave/lifesteal parity remains unresolved below.",
+          "sourceIds": [
+            "aa",
+            "necro2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Wild Necro3 mana burn uses physical damage without spell amplification while its shared main-hit component remains explicit pending"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "necro2023",
+            "valve"
+          ],
+          "finding": "AA explicitly combines both Necro3 summons and native Hawk Dive Bomb. Native level20 controlled-unit250HP talent is a related origin; AA says on cast so the implementation preserves discrete increments rather than replacing them with a permanent aura."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Extra Hawks match native Hawk-count talent lineage; dominated ancient resembles Helm of the Overlord, but the AA-specific pool and stat rules remain unproved."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "WI-U01",
+          "requirement": "AA combines two native point-target summons into one arena cast. Native directed hawk scouting/vision has no equivalent without fog-of-war; autonomous summon placement remains a project policy.",
+          "blocks": "Whole-skill native scouting/vision acceptance."
+        },
+        {
+          "id": "WI-U02",
+          "requirement": "The original AA dominated-ancient pool/weights and Helm of the Overlord stat inheritance are unrecovered. Three existing types and their native child skills are retained; this is not proof of the original random pool.",
+          "blocks": "Complete Gaben original-AA clause acceptance."
+        },
+        {
+          "id": "WI-U03",
+          "requirement": "Necro Mana Break is still a separate physical instance. It needs a typed main-attack component for one shared flat block and attack-lifesteal, while excluding crit/cleave; an ordinary damage call is not treated as complete parity. Archer Purge decay/eligibility, Last Will and ancient-child full combinations have not been completely reviewed.",
+          "blocks": "Full inherited Necro/ancient child mechanism acceptance."
+        },
+        {
+          "id": "WI-U04",
+          "requirement": "Dive Bomb fixed-duration movement approximates native accelerating/decelerating homing; pre-release cast cancellation remains the shared cast policy. Native post-release disable immunity is only partially represented by forced motion.",
+          "blocks": "Full Dive Bomb interruption/trajectory acceptance."
+        }
+      ]
+    },
+    {
+      "id": "custom_warlock_chaotic_offering",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Hero/summon arena; exact last-hero battle policy remains separate from successful with-teammate death-trigger tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Offering stuns1s; golem lasts60s, takes reduced spell damage, has Permanent Immolation and Flaming Fists on attack. AA primary attack0, armor6/9/12,HP1200/2100/3000,regen25/50/75,blast600. Super summons on death; Gaben creates two reduced-stat golems.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29,230rows,SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. AA explicit values and custom clauses take priority over native balance.",
+          "localEvidence": "references/ability-arena/abilities-summon-restoration-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Warlock",
+          "accessedOn": "2026-10-29",
+          "observation": "Cast0.5+0.7,range1000,post-release effect delay0.5; piercing1s stun. Native Scepter second golem appears0.2s later and reapplies stun. Death talent summons one ordinary full golem, excluding illusion death/reincarnation. Ancient creep-hero golem has33%MR,1.2BAT,0.26+0.57attack animation,225range and320/340/360speed. Fists hits attacked target plus300radius as pure; Immolation starts+1s, independent stacking,0.5linger,59samples in60s lifetime.",
+          "versionContext": "Direct HTTP200 Dota2Wiki snapshot2023-02-15 before7.33. Snapshot content was read directly, not a current description assigned an old date. Modern facets/debuff-immunity redesigns are not imported.",
+          "sha256": "541690de3f3a5bc1d65e64a8eb2239c8a15456f2a4ba075256e9e7898bda5d54"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Offering castpoint0.5,range1000,area600,stun1,60s golem; native auxiliary Fists40/50/60 and Immolation30/50/70 predate the AA-specific reduction.",
+          "versionContext": "Pinned shipped Valve KV2023-02-10 at commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; compatible historical candidate, not original custom AA Lua proof.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "aa-changelog",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA workshop changelog2023-02-01 explicitly reduces Flaming Fists40/50/60 to30/40/50 and Immolation30/50/70 to20/40/60. These retained ancillary values are directly sourced, not inferred from a different4.5devblog.",
+          "versionContext": "Direct HTTP200 author-published Steam workshop changelog read2026-10-29. Historical AA numeric override; no claim that the fresh AA ability JSON exposes every child value.",
+          "sha256": "8f074957cc1c63b6a7e3025c2da42b527f8c02f4a7435380fcf144c448b85b60"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "OF-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Point-target offering has a separate0.5s post-release delay and1s area stun that pierces magic immunity.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering has a separate half second post-release delay before its first golem and immunity piercing stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "0.5s point/0.7s backswing, AA600mana and170s cooldown at release, followed by the independent effect delay.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering basic half second cast commits AA six hundred mana and170 second cooldown only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Actual summoned body uses33%MR, AA75regen and zero primary attack; auxiliary damage originates from the body and is attributed to Offering.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering golems use their own magic resistance and AA regeneration"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering Immolation starts after one second and uses the actual golem as the damage source"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering zero main attack still procs pure Flaming Fists on the primary and nearby targets"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Immolation first damages at+1s, independently ticks every1s and has59samples per60s body; AA ancillary60DPS is retained.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-changelog"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering Immolation starts after one second and uses the actual golem as the damage source"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering independent Immolation auras stack and both bodies expire after sixty seconds with59 samples each"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Zero main damage still permits Flaming Fists50pure on the primary and nearby eligible enemy within300, not distant enemies. This result does not resolve every attack-immune representation.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-changelog"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering zero main attack still procs pure Flaming Fists on the primary and nearby targets"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Death creates exactly one ordinary full-health golem even at Gaben without active resource/cooldown consumption; reincarnation does not trigger.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering Super death summon is one ordinary golem even at Gaben and does not consume active mana or cooldown"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering does not trigger the death talent for a reincarnating caster"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Second reduced body arrives0.2s after first and reapplies1s stun, producing1.2s total. HP2400 is explicitly a retained native-delta candidate pending custom-AA proof.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering Gaben summons its second reduced body and reapplies its area stun two tenths later"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "OF-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Two distinct body-owned Immolation clocks fully stack and both expire independently with118combined pulses.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-changelog"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Offering independent Immolation auras stack and both bodies expire after sixty seconds with59 samples each"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Corresponds to native level20 on-death golem talent, one ordinary non-Scepter golem; AA grants it as Super."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Corresponds to native Scepter double golem and0.2s separation; AA reduced-stat amount remains a retained candidate."
+        },
+        {
+          "branch": "ancillary-values",
+          "sourceIds": [
+            "aa-changelog",
+            "valve"
+          ],
+          "finding": "Steam official2023-02-01 patch directly overrides native Fists/Immolation with30/40/50 and20/40/60. Earlier uncertainty for these numbers is closed."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "OF-U01",
+          "requirement": "AA says reduced stats but does not publish the reduction formula. Existing Gaben HP3000-600=2400 remains an explicitly editable native-delta candidate; it is not claimed as original custom-Lua proof.",
+          "blocks": "Complete Gaben stat interpretation."
+        },
+        {
+          "id": "OF-U02",
+          "requirement": "Project victory policy ends combat when the final non-summoned hero dies; a delayed death golem can therefore be prevented from continuing that battle. The on-death skill works with a living teammate, but the original-AA last-hero win policy is unrecovered.",
+          "blocks": "Complete death-offering battle-ending behavior."
+        },
+        {
+          "id": "OF-U03",
+          "requirement": "Native Flaming Fists excludes ethereal/attack-immune recipients; complete shared representation of these states and attack-point versus landed-hit interactions still needs review.",
+          "blocks": "Whole child attack interaction acceptance."
+        }
+      ]
+    },
+    {
+      "id": "alchemist_chemical_rage",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA30s separate melee/ranged buffs; native undispellability intentionally yields to explicit AA Strong category."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Self rage reduces separate melee/ranged BAT, increases regen and movement30s, performs a basic dispel. Super-0.1BAT,+50regen,+150move. Gaben also casts on closest unit. AA dispellable Strong overrides native undispellability.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29,230rows,SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. AA explicit values and custom clauses take priority over native balance.",
+          "localEvidence": "references/ability-arena/abilities-summon-restoration-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191306id_/https://dota2.fandom.com/wiki/Alchemist",
+          "accessedOn": "2026-10-29",
+          "observation": "0+0cast,0.35s uninterruptible transformation, cast-time basic dispel and disjoint,30s buff canceled on death. Native melee BAT1.2/1.1/1 and regen50/75/100 differ from AA values; native-0.1BAT/+50regen talents are related but do not override AA+150movement.",
+          "versionContext": "Direct HTTP200 Dota2Wiki snapshot2023-02-15 before7.33. Snapshot content was read directly, not a current description assigned an old date. Modern facets/debuff-immunity redesigns are not imported.",
+          "sha256": "3b64233718c9d34c7b615c59c9d0d24dd138154d1f9252f2552cc47795f27247"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "alchemist_chemical_rage transform_time0.35 and duration30; native BAT/regen values remain source references rather than replacing AA distinct melee/ranged rows.",
+          "versionContext": "Pinned shipped Valve KV2023-02-10 at commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; compatible historical candidate, not original custom AA Lua proof.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "aa-conflict",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-29",
+          "observation": "The2023-02-01 author changelog describes a different permanent/Mjollnir Gaben variant. The current official ability JSON instead says closest unit. This historical variant is excluded from the current selected AA definition.",
+          "versionContext": "Direct HTTP200 Steam author changelog read2026-10-29; version conflict retained explicitly.",
+          "sha256": "8f074957cc1c63b6a7e3025c2da42b527f8c02f4a7435380fcf144c448b85b60"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CR-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Release basic-dispels and disjoints, with0.35s action-blocking transformation; native spell values do not replace AA melee/ranged rows.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Chemical Rage applies a basic dispel and blocks actions for the historical transformation interval"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CR-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Immediate0point/0back release commits AA100mana and60s cooldown; all bonuses last30s.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Chemical Rage lasts thirty seconds and spends its configured mana and cooldown at the instant release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CR-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final Super rows1.1melee/1.3ranged BAT,130regen,210move are consumed once without re-adding upgrades.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Chemical Rage Super consumes final ranged and melee base attack time regeneration and movement once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CR-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA Strong dispel removes every bonus; basic dispel leaves rage. Death clears rage before reincarnation so buffs do not return with revival.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Chemical Rage strong dispel removes every bonus and death cancels it before a reincarnation"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CR-05",
+          "kind": "gaben",
+          "branch": "gaben-policy",
+          "mechanism": "Current project chooses nearest eligible ally and derives that recipient own attack type. The result is tested but AA closest-unit wording leaves enemy eligibility unresolved, so this clause is pending source arbitration.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-conflict"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Chemical Rage Gaben applies the ally own attack type and does not choose a closer enemy"
+            }
+          ],
+          "status": "pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native talents explain-0.1BAT/+50regen lineage; AA explicit+150movement is retained rather than substituting native+50."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "aa-conflict",
+            "wiki2023"
+          ],
+          "finding": "Current official closest-unit clause resembles allied Berserk Potion lineage but does not precisely establish legal target teams. Older permanent/Mjollnir branch is not silently combined."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "CR-U01",
+          "requirement": "AA closest-unit Gaben wording does not explicitly resolve enemy eligibility. Nearest eligible allied body is retained and tested; a closer enemy is ignored as a project policy, not claimed as proven original AA targeting.",
+          "blocks": "Complete Gaben target-selection clause."
+        },
+        {
+          "id": "CR-U02",
+          "requirement": "The exact native overlap between0.35s transformation and regeneration/BAT start needs an original-engine sample. Current bonuses begin at release alongside action lock.",
+          "blocks": "Complete native transform/buff clock acceptance."
+        }
+      ]
+    },
+    {
+      "id": "custom_winter_wyvern_cold_embrace",
+      "status": "verified_within_arena_scope",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "Complete reviewed base/Super/Gaben description clauses and relevant action/heal/immunity/visibility/death combinations within the hero/summon arena. Fog-of-war/buildings/couriers are absent, not simulated as extra proven mechanics."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Four-second ally cocoon heals10/20/40flat plus1/2/4%maximum HP per second and blocks physical damage. Super replaces stun with root+disarm. Gaben adds25flat heal and at removal releases340damage/2s stun max-level Splinter Blast projectiles toward all enemies within1200. AA Strong dispellability is an explicit custom override.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29,230rows,SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. AA explicit values and custom clauses take priority over native balance.",
+          "localEvidence": "references/ability-arena/abilities-summon-restoration-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Winter_Wyvern",
+          "accessedOn": "2026-10-29",
+          "observation": "Cold Embrace0.3+0.63,range850/900/950/1000; direct healing every0.25s, first+0.25,16total samples. It protects allied spell-immune units but not invulnerable/hidden recipients. Native Shard emits Splinter secondary projectiles at any buff removal, from the embraced body,1200radius;800speed,30%slow4s, no enemy spell-immunity piercing. Secondary projectiles disjoint on invisibility; revealed invisibility remains hittable.",
+          "versionContext": "Direct HTTP200 Dota2Wiki snapshot2023-02-15 before7.33. Snapshot content was read directly, not a current description assigned an old date. Modern facets/debuff-immunity redesigns are not imported.",
+          "sha256": "a395b0cdd5f162b54270ff9f9401e74d79ce8dfab26c870fddfcc4ae5fa3c468"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Cold Embrace point0.3,duration4 and per-level range. Splinter Blast secondary speed800,slow30%,slow4s and nonpiercing magical damage. AA maps tiers1/2/3 to native1/2/4 only for compatible nonnumeric supporting values; Gaben damage340/stun2 remain explicit AA.",
+          "versionContext": "Pinned shipped Valve KV2023-02-10 at commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; compatible historical candidate, not original custom AA Lua proof.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CE-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Cocoon performs16direct-heal samples at0.25s intervals including the4s expiry boundary, not health regeneration.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace heals sixteen direct samples including the expiry boundary without granting health regeneration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Base freeze prevents a recipient spell and all physical damage while magical damage still applies.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace base freeze blocks a recipient spell while Super permits that same spell"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace blocks physical damage but permits magical damage and Super replaces stun with root and disarm"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "0.3point/0.63back and native fourth-rank1000range at AA3; AA80mana/15s cooldown debit only at release. Out-of-range ally does not trigger a cast.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace uses the historical1000 range and commits80 mana and15 second cooldown at release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Root+disarm replaces selfStun, preserving protection and healing while allowing the recipient to cast a real summon spell.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace blocks physical damage but permits magical damage and Super replaces stun with root and disarm"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace base freeze blocks a recipient spell while Super permits that same spell"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "A Cold Embrace recipient can summon without copying function closures into the unit snapshot"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Final65flat heal is used once per quarter-second sample, not65+25; total420direct healing on1000maxHP.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace Gaben consumes its final65 flat heal once in every direct healing sample"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Burst originates at embraced body on natural/strong-removal/death;340magic and AA2s strong stun plus native30%slow. Basic dispel does not remove the AA Strong cocoon.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace Gaben fires its splinters on a real early strong dispel from the embraced body"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace Gaben natural expiry does not launch a second burst after early removal"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace death removal launches once even after its original caster died"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-07",
+          "kind": "combination",
+          "branch": "healing",
+          "mechanism": "Direct-heal amplification changes the samples while regeneration amplification does not.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace direct healing responds to heal amplification rather than regeneration amplification"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-08",
+          "kind": "combination",
+          "branch": "immunity",
+          "mechanism": "Allied spell immunity permits cocoon, but Gaben secondary damage/slow/stun do not pierce enemy immunity.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace protects a spell immune ally but its Gaben enemy splinters do not pierce immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-09",
+          "kind": "combination",
+          "branch": "visibility",
+          "mechanism": "Invulnerable ally is excluded; hidden enemy secondary projectiles are launched but disjoint on invisibility, while revealed invisibility receives340damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace secondary splinters are disjointed by invisibility and release only from eligible allies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CE-10",
+          "kind": "combination",
+          "branch": "lifecycle",
+          "mechanism": "Cocoon removal fires once even if original caster is already dead, does not repeat at old expiry, and serializable recipients can summon safely.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace death removal launches once even after its original caster died"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Cold Embrace Gaben natural expiry does not launch a second burst after early removal"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "A Cold Embrace recipient can summon without copying function closures into the unit snapshot"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Root/disarm replacing native full stun is an explicit custom AA clause; it is not inferred from a modern talent."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native Shard-on-removal secondary Splinter projectiles provide the mechanism lineage. AA overrides draft dependency with fixed max-level340damage and2s stun, adds25flat heal, and declares Strong cocoon dispel behavior."
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "id": "viper_corrosive_skin",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Hero/summon arena, accepted-input response eligibility and named mitigation/illusion combinations. Lethal owner timing is not declared complete."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Any enemy damage source within1400 is retaliated against with4s attack slow and magical DPS. Flat slow8/16/32,DPS8/16/32,MR10/15/25. Super doubles slow and bonus MR, not DPS. Gaben1200aura. Basic dispellable, nonpiercing.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29,230rows,SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. AA explicit values and custom clauses take priority over native balance.",
+          "localEvidence": "references/ability-arena/abilities-summon-restoration-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper",
+          "accessedOn": "2026-10-29",
+          "observation": "Responds to physical/magical/pure accepted damage, not self/allied/HPRemoval. Four delayed1s samples; refresh does not stack. Within1400 actual attacker is debuffed; excludes wards/buildings/hidden/magicimmune, but an invulnerable source can be slowed without damage. Illusions do not receive bonus MR. Native near-radius Scepter doubles damage/slow and immediate extra tick, which AA does not state.",
+          "versionContext": "Direct HTTP200 Dota2Wiki snapshot2023-02-15 before7.33. Snapshot content was read directly, not a current description assigned an old date. Modern facets/debuff-immunity redesigns are not imported.",
+          "sha256": "8ae178621101ed1befedb41a7066f9a04efcccb90d790d7ac04414b99a9cadd2"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Corrosive Skin magical damage,400/1400-related range fields, basic-dispellable nonpiercing slow. Native balance is not substituted for AA Super MR/slow only.",
+          "versionContext": "Pinned shipped Valve KV2023-02-10 at commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; compatible historical candidate, not original custom AA Lua proof.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "negated2023",
+          "url": "https://web.archive.org/web/20230308092701id_/https://dota2.fandom.com/wiki/Damage_Manipulation",
+          "accessedOn": "2026-10-29",
+          "observation": "The explicit fully-negated-damage response list includes Viper Corrosive Skin, so flat block and complete absorption must still apply retaliation despite actual damage zero.",
+          "versionContext": "Direct HTTP2007.32e historical page before7.33; the relevant response list was read directly.",
+          "sha256": "d6b1b49d1b50763e85675d9e807c861ef8c8912c7314869db1246b0089556a55"
+        },
+        {
+          "id": "damage-types2023",
+          "url": "https://web.archive.org/web/20230215192412id_/https://dota2.fandom.com/wiki/Damage_types",
+          "accessedOn": "2026-10-29",
+          "observation": "HPRemoval and no-reflection/reflected damage do not create ordinary reflection responses. This prevents recursive Corrosive Skin exchanges.",
+          "versionContext": "Direct HTTP200 historical Dota2Wiki2023-02-15.",
+          "sha256": "36026331d592a6961f9bbb0d6d53b75995ada0e9e5614cc9b41fac2548f844a8"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CS-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Four delayed1s magical samples and flat attack slow, both removed at4s expiry. Refresh extends existing clock without stacking.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin retaliates with four delayed damage samples and an expiring flat attack slow"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin refreshes its duration without stacking damage clocks or slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Passive has no cast animation, mana debit or spell cooldown. First response damage is delayed1s, then expires after the4s sample.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin is a passive with no mana debit spell cooldown or cast animation"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin retaliates with four delayed damage samples and an expiring flat attack slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Actual attacker must be within1400; an invulnerable attacker can receive slow but not damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin uses its1400 range and can slow an invulnerable attacker without damaging it"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA final64slow and50%bonus MR are doubled once; source Break suppresses MR. No native near-radius double-DPS or immediate tick is imported.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin Super final magic resistance and attack slow are doubled once and Break suppresses resistance"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA1200aura acquires invisible enemies immediately and source Break prevents further applications.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin Gaben applies its1200 aura immediately to invisible enemies and stops acquiring targets during Break"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-06",
+          "kind": "combination",
+          "branch": "negated-damage",
+          "mechanism": "Accepted damage fully negated by flat block or complete shield absorption still retaliates.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "negated2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin still triggers when damage is completely negated by flat block or an absorption shield"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-07",
+          "kind": "combination",
+          "branch": "recursion-and-removal",
+          "mechanism": "Self, ally, HPRemoval and noReflection do not trigger; Skin damage cannot recursively trigger another Skin.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "damage-types2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin does not retaliate against self allied health removal or no reflection damage"
+            },
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin damage does not create reciprocal retaliation between two Skin owners"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-08",
+          "kind": "combination",
+          "branch": "resistance-and-dispel",
+          "mechanism": "Status resistance shortens the existing clock to2samples at50%; real basic dispel removes slow and stops future pulses.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin status resistance shortens the existing clock and a real basic dispel stops all remaining pulses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CS-09",
+          "kind": "combination",
+          "branch": "illusion",
+          "mechanism": "Real Phantasm-created illusions do not receive passive bonus magic resistance.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-summon-restoration.test.ts",
+              "test": "Corrosive Skin illusions created by real Phantasm do not receive the native magic resistance bonus"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native near-radius Scepter double-slow/damage has related lineage but AA explicitly doubles only attack slow and MR. AA final values are used without native extra immediate damage."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Native Nosedive applies Corrosive Skin over1200, but AA explicitly makes a continuous1200aura. Nosedive disarm/flight and native damage doubling are not imported."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "CS-U01",
+          "requirement": "Recovered references do not determine lethal-hit retaliation timing. New accepted-input hook retains shared live-unit dispatch and may not retaliate after immediate owner death; this remains explicitly unverified.",
+          "blocks": "Complete fatal-damage response clause."
+        }
+      ]
+    }
+  ]
+}

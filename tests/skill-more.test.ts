@@ -368,7 +368,7 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Chakram Super gives an ally a separate moving Flamethrower with damage beyond the caster body', () => {
-    const a = player(0, 'custom_shredder_chakram', 6, 2); a.heroes[0].y = -8; a.heroes[1].x = 0; a.heroes[1].y = 0;
+    const a = player(0, 'custom_shredder_chakram', 6, 2); a.heroes[0].y = -6; a.heroes[1].x = 0; a.heroes[1].y = 0;
     const state = createBattle(a, player(1), 3, defs), [caster, ally] = state.units;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.mana = u.maxMana = 10000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
     caster.cooldowns[0] = 120; advance(state, 1.2);
@@ -464,7 +464,8 @@ describe('catalog-driven additional skills', () => {
     caster.statuses.push({ kind: 'moveFlat', value: 1, until: 200 }, { kind: 'haste', value: .5, until: 200 }, { kind: 'slow', value: .2, until: 200 }, { kind: 'disarm', until: 200 });
     advance(state, 1);
     const hit = state.events.find(e => e.type === 'hit' && e.skill === 'aa_granted_greater_bash');
-    expect(hit?.amount).toBeCloseTo(((3 + 1) * 1.5 * .8 * 100 + 375) * .3 * .75);
+    // Charge is a flat movement bonus, applied before percentage modifiers.
+    expect(hit?.amount).toBeCloseTo((3 + 1 + 3.75) * 1.5 * .8 * 100 * .3 * .75);
   });
 
   it('Fissure explicitly lets allies through and Aftershock does not trigger from a merely nearby caster', () => {

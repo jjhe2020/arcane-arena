@@ -2,10 +2,23 @@ import {describe,it,expect} from 'vitest';
 import {applyDamage,battleStats,createBattle,FIXED_STEP,stepBattle,restoreBattle,serializeBattle} from '../src/combat';
 import {validateUnitStatistics} from '../src/combat/statistics';
 import type {Player,CombatUnit} from '../src/model';
+import catalog from '../public/data/skills.json';
 const player=(id:number):Player=>({id,name:`P${id}`,hp:100,gold:0,shopLevel:1,heroes:[{id:'h',name:`hero${id}`,role:'mage',skin:'female',x:0,y:-2,skills:[]}],reserve:[],shop:[],locked:false});
 function setup(){const b=createBattle(player(0),player(1),54,[]);for(const u of b.units){u.armor=0;u.statuses.push({kind:'stun',until:100});}return b;}
 const row=(u:CombatUnit,id:string)=>u.abilityStats?.filter(s=>s.abilityId===id).reduce((n,s)=>n+s.damage,0)??0;
 describe('skill-level effective battle accounting',()=>{
+ it('initializes every incoming ledger before a real opening Acid Spray can damage later units',()=>{
+  const attacker=player(0),defender=player(1);
+  attacker.heroes[0].skills=[{id:'custom_alchemist_acid_spray',points:9}];
+  for(const [first,second]of[[attacker,defender],[defender,attacker]]){
+   const b=createBattle(first,second,54,catalog),target=b.units.find(u=>u.side===1)!;
+   expect(b.time).toBe(0);expect(target.taken).toBeGreaterThan(0);
+   expect(target.abilityStats?.reduce((sum,s)=>sum+s.taken,0)).toBeCloseTo(target.taken);
+   expect(battleStats(b).every(validateUnitStatistics)).toBe(true);
+   const replay=restoreBattle(serializeBattle(b),catalog);
+   expect(battleStats(replay)).toEqual(battleStats(b));
+  }
+ });
  it('keeps attack semantics separate from the skill shown in statistics',()=>{
   const b=setup(),[a,t]=b.units;a.statuses.push({kind:'spellAmp',value:2,until:100});t.statuses.push({kind:'block',value:20,until:100},{kind:'magicImmune',until:100});
   const dealt=applyDamage(b,a,t,100,'physical','omnislash',false,0,false,undefined,{category:'attack',attribution:{abilityId:'omnislash'}});

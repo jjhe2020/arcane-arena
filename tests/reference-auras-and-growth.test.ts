@@ -76,11 +76,21 @@ describe('Wiki acceptance: selected auras and passive growth',()=>{
   it('Fervor gains capped stacks on successful repeated hits and its Super speed per stack is final',()=>{
     const h=setup(ids.fervor,6);enableAttacks(h.c,.12);h.advance(4);expect(h.c.fervorStacks).toBe(12);expect(statusValue(h.c,'attackSpeed')).toBe(552);
   });
-  it('Fervor keeps the current landed-hit rule for blind and projectile timing without inventing historical equivalence',()=>{
-    const h=setup(ids.fervor,3);enableAttacks(h.c);h.c.range=7;h.c.projectileSpeed=2;h.c.statuses.push({kind:'blind',until:.5,value:1});h.advance(.3);expect(h.c.fervorStacks??0).toBe(0);h.advance(1);expect(h.c.fervorStacks).toBe(1);h.c.nextAttack=0;h.t.statuses.push({kind:'evasion',until:100,value:1});h.advance(1.2);expect(h.c.fervorStacks).toBe(1);
+  it('Fervor follows Valve7.20 landed-hit counting for blind and projectile timing',()=>{
+    const h=setup(ids.fervor,3);enableAttacks(h.c);h.c.range=7;h.c.projectileSpeed=2;h.c.statuses.push({kind:'blind',until:.5,value:1});h.advance(.3);expect(h.c.fervorStacks??0).toBe(0);expect(own(h.c,'fervorCounter',ids.fervor)).toHaveLength(0);h.advance(1);expect(h.c.fervorStacks).toBe(0);h.c.nextAttack=0;h.advance(1.2);expect(h.c.fervorStacks).toBe(1);h.c.nextAttack=0;h.t.statuses.push({kind:'evasion',until:100,value:1});h.advance(1.2);expect(h.c.fervorStacks).toBe(1);
   });
   it('Fervor target switches reset ordinary stacks while Gaben retains them',()=>{
-    for(const points of [3,9]){const h=setup(ids.fervor,points);enableAttacks(h.c,.12);h.advance(.6);const previous=Number(h.c.fervorStacks);h.t.y=20;h.targets[1].y=2;h.c.nextAttack=0;h.advance(.1);expect(Number(h.c.fervorStacks)).toBe(points===9?previous+1:1);}
+    for(const points of [3,9]){const h=setup(ids.fervor,points);enableAttacks(h.c,.12);h.advance(.6);const previous=Number(h.c.fervorStacks);h.t.y=20;h.targets[1].y=2;h.c.nextAttack=0;h.advance(.1);expect(Number(h.c.fervorStacks)).toBe(points===9?previous+1:0);}
+  });
+  it('Fervor starts each new target at zero and a missed switch preserves the previous target stacks',()=>{
+    const h=setup(ids.fervor,3);enableAttacks(h.c);h.c.range=7;h.c.projectileSpeed=1000;
+    const lock:EffectStatus={kind:'attackTarget',until:100,data:{targetId:h.t.id}};h.c.statuses.push(lock);
+    const strike=()=>{h.c.nextAttack=0;h.advance(.1);h.c.nextAttack=99999;};
+    strike();expect(h.c.fervorStacks).toBe(0);expect(statusValue(h.c,'attackSpeed')).toBe(0);
+    strike();strike();expect(h.c.fervorStacks).toBe(2);expect(statusValue(h.c,'attackSpeed')).toBe(62);
+    lock.data!.targetId=h.targets[1].id;h.targets[1].statuses.push({kind:'evasion',until:100,value:1});strike();expect(h.c.fervorStacks).toBe(2);expect(h.c.fervorTarget).toBe(h.t.id);
+    h.targets[1].statuses=h.targets[1].statuses.filter(s=>s.kind!=='evasion');strike();expect(h.c.fervorStacks).toBe(0);expect(statusValue(h.c,'attackSpeed')).toBe(0);
+    strike();expect(h.c.fervorStacks).toBe(1);lock.data!.targetId=h.t.id;strike();expect(h.c.fervorStacks).toBe(0);expect(h.c.mana).toBe(10000);expect(h.c.cooldowns[0]).toBe(0);
   });
   it('Fervor Break suppresses existing speed and new stack gain; the AA strong-dispel counter can reset cleanly',()=>{
     const h=setup(ids.fervor,3);enableAttacks(h.c,.12);h.advance(.4);const stacks=h.c.fervorStacks;h.c.statuses.push({kind:'break',until:1});expect(statusValue(h.c,'attackSpeed')).toBe(0);h.advance(.3);expect(h.c.fervorStacks).toBe(stacks);expect(own(h.c,'fervorCounter',ids.fervor)[0].dispel).toBe('strong');h.c.statuses=h.c.statuses.filter(s=>s.skill!==ids.fervor);h.advance(.7);expect(Number(h.c.fervorStacks)).toBeGreaterThan(0);expect(effectiveStatusEffects(h.c,'attackSpeed').length).toBeGreaterThan(0);

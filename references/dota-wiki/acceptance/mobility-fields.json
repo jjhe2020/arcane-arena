@@ -1,0 +1,1610 @@
+{
+  "schemaVersion": 1,
+  "group": "mobility-fields",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured custom clauses/numbers first. Nonnumeric mechanics use directly read historical Wiki plus pinned Valve. Later Wiki details are explicitly version-scoped. Passing result tests certify only named behavior, never full230-skill acceptance or exact AA executable equivalence.",
+  "validation": {
+    "command": "npx vitest run tests/reference-mobility-fields.test.ts",
+    "passedTests": 53,
+    "regressionCommand": "npx vitest run tests/reference-mobility-fields.test.ts tests/skill-more.test.ts tests/visual-state.test.ts tests/combat-engine-gaps.test.ts",
+    "regressionPassedTests": 152,
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "Actual engine orders and registered skills. Controlled status/position/classification preconditions are disclosed by each test; five replay cases use original recorded player inputs without runtime fixture mutations.",
+    "rootAddedPrdResult": "CHARGE-11 passed with the explicit native-eligible allowlist; exact original AA PRD coefficients are not certified.",
+    "configurationHash": "602d5b2015dedb3ededd2706849876c0961d55eeb10aeede716f7de7702b015d"
+  },
+  "implementationNotes": [
+    "cooldownStart effectEnd uses a release snapshot and finite independent lock; startCooldown is idempotent and cannot overwrite a later Gaben reset.",
+    "Affected-unit-death hooks preserve source/points/attribution even when the source is dead.",
+    "Ordinary movement remains continuous. Burrow explicitly performs its historically permitted single terminal teleport.",
+    "Real attack-projectile identity is snapshotted for Arena interception. Presentation references never participate in serialized blade state."
+  ],
+  "skills": [
+    {
+      "id": "clinkz_strafe",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base, Super and Gaben clauses and numerical arrays are authoritative. Fresh official catalog comparison retained all230 captured records.",
+          "versionContext": "AA Workshop executable patch is not identified; no binary equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191632id_/https://dota2.fandom.com/wiki/Clinkz",
+          "originalUrl": "https://dota2.fandom.com/wiki/Clinkz",
+          "accessedOn": "2026-10-29",
+          "observation": "The historical ability is Burning Barrage. First arrow releases immediately; later arrows use channel duration divided by arrow count. Arrows travel at1200 with radius200, make true-strike instant attacks despite disarm, scale immediate conditional attack damage, use full attack-bonus-extended range, and do not receive spell-range bonuses. Later releases stop on interruption while released arrows continue.",
+          "versionContext": "Direct pre7.33 capture20230215191632; historical2023 candidate, not exact AA executable patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191632",
+          "htmlSha256": "34ae72cc8e794cad62163671515e95d6229ebbb149e10b3bc9668eefc45ac82a",
+          "readMethod": "Public urllib HTTPS GET, HTTP200. Gzip decompressed when magic bytes require it. Inert HTMLParser body text plus image-alt/title inspection; no HTML scripts executed. Only metadata, hashes and paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Valve historical cast point.2, backswing0, channel2, arrow speed1200, radius200. The captured AA arrays remain authoritative: six arrows and40/45/55 percent; Super adds35 percentage points and three arrows.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BARRAGE-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "the first arrow launches at release and six attacks follow the one-third-second cadence within one simulation tick",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-01 the first arrow launches at release and six attacks follow the one-third-second cadence within one simulation tick"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super produces nine final ninety-percent attacks without applying the upgrade twice",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-02 Super produces nine final ninety-percent attacks without applying the upgrade twice"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R03",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "a released arrow survives interruption while later scheduled arrows are cancelled",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-03 a released arrow survives interruption while later scheduled arrows are cancelled"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R04",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "disarm and evasion do not stop true-strike area attacks against invisible bodies",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-04 disarm and evasion do not stop true-strike area attacks against invisible bodies"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R05",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "attack range extends full arrow travel while spell range does not",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-05 attack range extends full arrow travel while spell range does not"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben has only two initial charges and restores them sequentially after ten seconds",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-06 Gaben has only two initial charges and restores them sequentially after ten seconds"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R07",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "the real attack arrow is stopped at an enemy Arena boundary",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-07 the real attack arrow is stopped at an enemy Arena boundary"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R08",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-08 a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-R09",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "source death preserves an emitted arrow and prevents the remaining channel releases",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BARRAGE-09 source death preserves an emitted arrow and prevents the remaining channel releases"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "Deterministic reconstruction from original recorded players preserves released mechanics and clocks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "MOBILITY-REPLAY clinkz_strafe reconstructs its released projectiles channels fields charges and clocks"
+            }
+          ],
+          "note": "Project compatibility proof, not independent native mechanism evidence. These cases do not mutate units outside the recorded initial inputs."
+        },
+        {
+          "id": "BARRAGE-P1",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Historical Searing Arrows is channel/autocast-dependent on impact; this project has no autocast-state model and its AA Searing Arrows passive currently applies after channel completion too. The learned-modifier result only certifies the documented working interaction, not historical autocast equivalence.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA custom+35 percentage points and+3 arrows; historical Clinkz talents provide a related damage/arrow-count concept but their+25 value is not substituted.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA two-charge custom branch. Sequential restoration uses the AA final10-second level3 cooldown; there is no claim this was a native Scepter upgrade.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "All captured AA base/Super/Gaben clauses reviewed against the finite named mechanism/timing/interaction matrix. The concrete remaining gaps below prevent full acceptance.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Trees, terrain height, fog and couriers are absent from this arena.",
+          "Native hero-identity-only innates, modern facets and replacement skills are not silently granted.",
+          "The flat30Hz presentation does not reproduce native vertical art or subframe visual timing."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Attack-range bonuses extend range, spell-range bonuses do not; the caster starts from the frozen point direction.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Barrage is an actual attack projectile for Arena interception; damage category alone is not used to classify other spells as projectiles.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Historical Searing Arrows is channel/autocast-dependent on impact; this project has no autocast-state model and its AA Searing Arrows passive currently applies after channel completion too. The learned-modifier result only certifies the documented working interaction, not historical autocast equivalence."
+      ]
+    },
+    {
+      "id": "sandking_burrowstrike",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base, Super and Gaben clauses and numerical arrays are authoritative. Fresh official catalog comparison retained all230 captured records.",
+          "versionContext": "AA Workshop executable patch is not identified; no binary equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Sand_King",
+          "originalUrl": "https://dota2.fandom.com/wiki/Sand_King",
+          "accessedOn": "2026-10-29",
+          "observation": "Traveling spikes end at the selected point before a single caster teleport; they do not disjoint tracking projectiles. Each victim independently blocks the spell. Victims are airborne for.52 and take damage on landing, including if they gain spell immunity after contact. Strong dispel can force early landing. Scepter applies Caustic; the historical native Scepter limits that application to qualified heroes, while AA expressly says units.",
+          "versionContext": "Direct pre7.33 capture20230215191542; historical2023 candidate, not exact AA executable patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191542",
+          "htmlSha256": "55d4e14a0f9143c44a303f3f96bb4f5c7d687541d30b98980f4eb331468c1f6b",
+          "readMethod": "Public urllib HTTPS GET, HTTP200. Gzip decompressed when magic bytes require it. Inert HTMLParser body text plus image-alt/title inspection; no HTML scripts executed. Only metadata, hashes and paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Historical cast point0, backswing/self-disable.53, spike speed2000 and radius150. Historical maximum Caustic has130 fixed plus22 percent victim maximum health, radius500, duration6 and26 percent slow. Native Scepter spike speed3000 is not inferred from the narrower AA Super clause.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BURROW-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "spikes precede one explicit terminal warp and damage follows the fixed airborne delay",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-01 spikes precede one explicit terminal warp and damage follows the fixed airborne delay"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R02",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "the frozen ground cursor survives movement and death of the original unit target",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-02 the frozen ground cursor survives movement and death of the original unit target"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R03",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "each traversed victim independently consumes spell block",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-03 each traversed victim independently consumes spell block"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R04",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "immunity acquired after contact does not prevent saved landing damage",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-04 immunity acquired after contact does not prevent saved landing damage"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R05",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "status resistance does not shorten the airborne clock",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-05 status resistance does not shorten the airborne clock"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super applies maximum Caustic to ordinary summons but excludes illusions",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-06 Super applies maximum Caustic to ordinary summons but excludes illusions"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R07",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Caustic explodes immediately from the victim max health even after its caster dies",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-07 Caustic explodes immediately from the victim max health even after its caster dies"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben spends two finite charges before the ten-second Super restore boundary",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-08 Gaben spends two finite charges before the ten-second Super restore boundary"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R09",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "the caster remains damageable while spikes travel and a skill-created wall does not stop its terminal warp",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-09 the caster remains damageable while spikes travel and a skill-created wall does not stop its terminal warp"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-R10",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "an already released Aphotic Shield strong dispel lands the airborne victim early exactly once",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "BURROW-10 an already released Aphotic Shield strong dispel lands the airborne victim early exactly once"
+            }
+          ]
+        },
+        {
+          "id": "BURROW-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "Deterministic reconstruction from original recorded players preserves released mechanics and clocks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "MOBILITY-REPLAY sandking_burrowstrike reconstructs its released projectiles channels fields charges and clocks"
+            }
+          ],
+          "note": "Project compatibility proof, not independent native mechanism evidence. These cases do not mutate units outside the recorded initial inputs."
+        },
+        {
+          "id": "BURROW-P1",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "The fixed.52 airborne clock and ordinary status-resisted stun run concurrently. High-status-resistance airborne duration is tested; exact historical overlap priority beyond the retrieved prose remains a narrowly identified source gap.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA explicitly grants max-level Caustic to units, +650 cast range, +.3 stun duration, and-2 cooldown. Caustic derives from historical Sand King Scepter but the AA units clause is retained, including ordinary summons.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Explicit AA two-charge custom branch. Sequential restoration is12-2=10 seconds at the captured final Super/Gaben rank.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "All captured AA base/Super/Gaben clauses reviewed against the finite named mechanism/timing/interaction matrix. The concrete remaining gaps below prevent full acceptance.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Trees, terrain height, fog and couriers are absent from this arena.",
+          "Native hero-identity-only innates, modern facets and replacement skills are not silently granted.",
+          "The flat30Hz presentation does not reproduce native vertical art or subframe visual timing."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Caster movement is an explicitly authorized Burrow teleport at spike arrival, not a general exemption from continuous motion. No caster invulnerability is invented.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "The AA units clause extends Caustic to ordinary summons; historical illusion exclusion is retained. Creephero-specific AA exception is not asserted.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "350 native vertical lift units are represented by an airborne control clock in the flat battle, not by a3D position.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "The fixed.52 airborne clock and ordinary status-resisted stun run concurrently. High-status-resistance airborne duration is tested; exact historical overlap priority beyond the retrieved prose remains a narrowly identified source gap."
+      ]
+    },
+    {
+      "id": "custom_spirit_breaker_charge_of_darkness",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base, Super and Gaben clauses and numerical arrays are authoritative. Fresh official catalog comparison retained all230 captured records.",
+          "versionContext": "AA Workshop executable patch is not identified; no binary equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Spirit_Breaker",
+          "originalUrl": "https://dota2.fandom.com/wiki/Spirit_Breaker",
+          "accessedOn": "2026-10-29",
+          "observation": "Charge is continuous unobstructed movement using current effective movement speed with its maximum unlocked; its bonus is flat before percentage movement modifiers. Cooldown begins on end or cancellation. Targeted orders and listed hard controls stop charge; non-target spells remain usable. The primary target is bashed on contact and through-bashes use radius300 with a20 forward offset. Historical retarget search is4000. Taunt cancellation changed in2026 and is not backdated.",
+          "versionContext": "Direct pre7.33 capture20230215191541; historical2023 candidate, not exact AA executable patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191541",
+          "htmlSha256": "4ece7a2a7883d995fee9226c63d4614b978518180d7f809a1db505f89d915947",
+          "readMethod": "Public urllib HTTPS GET, HTTP200. Gzip decompressed when magic bytes require it. Inert HTMLParser body text plus image-alt/title inspection; no HTML scripts executed. Only metadata, hashes and paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Historical base cast point.1 and backswing.5; bonus speed300/325/350/375. Greater Bash chance17 percent, internal cooldown1.5, maximum damage30 percent current movement speed. AA stun1.2/1.6/2.4 and Super+600 are retained.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "movement",
+          "url": "https://liquipedia.net/dota2/Movement_Speed",
+          "accessedOn": "2026-10-29",
+          "observation": "Charge is explicitly listed as a flat movement bonus. Flat changes are applied before percentage changes; the total formula adds flat changes to base before applying movement multiplier.",
+          "versionContext": "Current corroboration for the historical bonus-speed model; no later hero numerical values imported."
+        },
+        {
+          "id": "valve-685-prd",
+          "url": "https://www.dota2.com/685?l=english",
+          "accessedOn": "2026-10-29",
+          "versionContext": "Official6.85 patch,2015-09-24, before the pinned2023 native candidate. AA Gaben explicitly grants Greater Bash; exact AA coefficients/initial counter remain the common documented PRD working model.",
+          "observation": "Greater Bash switched to pseudo-random chance in6.85. The inherited attack proc now explicitly enters the opt-in per-skill PRD ledger instead of silently falling back to uniform chance."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CHARGE-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "the effect lock prevents recasting and the actual cooldown starts only on contact",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-01 the effect lock prevents recasting and the actual cooldown starts only on contact"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R02",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "a real stun cancels movement and begins the same snapshot cooldown without impact",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-02 a real stun cancels movement and begins the same snapshot cooldown without impact"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R03",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "flat charge speed is multiplied by effective bonus and slow before Greater Bash snapshots it",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve",
+            "movement"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-03 flat charge speed is multiplied by effective bonus and slow before Greater Bash snapshots it"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super is immune during travel and each nearby non-primary body is bashed only once",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-04 Super is immune during travel and each nearby non-primary body is bashed only once"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben target death retargets the nearest real hero and its reset survives later cancellation",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-05 Gaben target death retargets the nearest real hero and its reset survives later cancellation"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R06",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "unit-targeted spell orders stop charging but a no-target Warcry does not",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-06 unit-targeted spell orders stop charging but a no-target Warcry does not"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R07",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "the end-started cooldown retains the release-time cooldown reduction snapshot",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-07 the end-started cooldown retains the release-time cooldown reduction snapshot"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-R08",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "an initially spell-immune target causes no accepted order or resource consumption",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-08 an initially spell-immune target causes no accepted order or resource consumption"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "Deterministic reconstruction from original recorded players preserves released mechanics and clocks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "MOBILITY-REPLAY custom_spirit_breaker_charge_of_darkness reconstructs its released projectiles channels fields charges and clocks"
+            }
+          ],
+          "note": "Project compatibility proof, not independent native mechanism evidence. These cases do not mutate units outside the recorded initial inputs."
+        },
+        {
+          "id": "CHARGE-P1",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA says reduced Super cast point without giving a value. Current0-point candidate is implemented and table-visible; source evidence does not establish the exact reduction.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHARGE-P2",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA does not specify the granted Greater Bash rank. Current maximum historical rank4 is an explicit candidate.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHARGE-P3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Primary contact uses the project body-contact radius. Original AA hero hulls are unavailable.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHARGE-R09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben ordinary attacks actually dispatch the inherited Greater Bash through its native-eligible independent PRD ledger, with one granted cast for each successful trial.",
+          "status": "passed",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve-685-prd"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHARGE-11 Gaben attack procs actually use the native-eligible independent PRD ledger"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Captured AA custom self spell immunity, +600 bonus speed and reduced cast point. Through-bashing resembles native Charge, but AA explicitly restricts it to Super; native Scepter7-second cooldown and initial-immune-target access are not grafted in.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA target-death cooldown reset plus the historical Greater Bash passive, using calibrated PRD and its independent internal cooldown.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "All captured AA base/Super/Gaben clauses reviewed against the finite named mechanism/timing/interaction matrix. The concrete remaining gaps below prevent full acceptance.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Trees, terrain height, fog and couriers are absent from this arena.",
+          "Native hero-identity-only innates, modern facets and replacement skills are not silently granted.",
+          "The flat30Hz presentation does not reproduce native vertical art or subframe visual timing."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "AA retargeting explicitly selects the nearest enemy hero, overriding native generic enemy-unit retargeting.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "The end-started cooldown is separately locked during the effect, stores the release-time reduction snapshot, and cannot overwrite an already applied Gaben reset.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Current Wiki flat-speed formula corroborates the directly read historical current-speed mechanism; later stat values are not imported.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA says reduced Super cast point without giving a value. Current0-point candidate is implemented and table-visible; source evidence does not establish the exact reduction.",
+        "AA does not specify the granted Greater Bash rank. Current maximum historical rank4 is an explicit candidate.",
+        "Primary contact uses the project body-contact radius. Original AA hero hulls are unavailable."
+      ]
+    },
+    {
+      "id": "custom_faceless_void_chronosphere",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base, Super and Gaben clauses and numerical arrays are authoritative. Fresh official catalog comparison retained all230 captured records.",
+          "versionContext": "AA Workshop executable patch is not identified; no binary equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void",
+          "originalUrl": "https://dota2.fandom.com/wiki/Faceless_Void",
+          "accessedOn": "2026-10-29",
+          "observation": "A frozen-position field immediately freezes non-owned units through immunity and persists after source death. Caster and recursively controlled units gain1000 movement with phasing. Invulnerable heroes are excluded while ordinary invulnerable wards/summons can be frozen; passives remain active. Ordinary invisibility is revealed. Explicit native forced-motion exceptions differ: Cookie/Force Staff-family movement is blocked while external Meat Hook can rescue. The historical page exposes Depth Shroud, but the later2023-04-25 behavior changes that interaction.",
+          "versionContext": "Direct pre7.33 capture20230215191730; historical2023 candidate, not exact AA executable patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230215191730",
+          "htmlSha256": "90c6ee8c2255d0eedc93b3b9229dcc21a2b45fe3f67ec38f1b2f28d983776e33",
+          "readMethod": "Public urllib HTTPS GET, HTTP200. Gzip decompressed when magic bytes require it. Inert HTMLParser body text plus image-alt/title inspection; no HTML scripts executed. Only metadata, hashes and paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Historical cast point.35, backswing.35, range500, radius500 and caster speed1000. AA duration3/4/5 and caster-only Super200 attack speed override native historical duration4/4.5/5 and the related controlled-units attack-speed talent. Current Wiki explicitly lists.1 aura linger.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "current",
+          "url": "https://liquipedia.net/dota2/Faceless_Void",
+          "accessedOn": "2026-10-29",
+          "observation": "Chronosphere explicitly has.1-second aura linger. Modern Time Zone and facets are not part of the captured AA skill.",
+          "versionContext": "Current Wiki accessed2026-10-29. Its aura detail is explicitly identified rather than falsely backdated."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CHRONO-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "the first field frame freezes through immunity and preserves passives and source death",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-01 the first field frame freezes through immunity and preserves passives and source death"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "recursively controlled summons receive 1000 movement and phasing but Super attack speed belongs to the caster",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-02 recursively controlled summons receive 1000 movement and phasing but Super attack speed belongs to the caster"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R03",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "invulnerable heroes are excluded while invulnerable ordinary wards are frozen",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-03 invulnerable heroes are excluded while invulnerable ordinary wards are frozen"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R04",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "ordinary invisible enemies are revealed inside the frozen point even after the aim unit moves",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-04 ordinary invisible enemies are revealed inside the frozen point even after the aim unit moves"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben allied heroes remain unfrozen with the explicitly retained six-and-a-half time-factor candidate",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-05 Gaben allied heroes remain unfrozen with the explicitly retained six-and-a-half time-factor candidate"
+            }
+          ],
+          "note": "Candidate behavior only: a passing result does not establish the unsourced6.5 interpretation."
+        },
+        {
+          "id": "CHRONO-R06",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "field expiry removes only its own controls and speed components",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-06 field expiry removes only its own controls and speed components"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R07",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "an outside enemy Cookie cannot move a frozen ally through the explicitly blocked motion entry",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-07 an outside enemy Cookie cannot move a frozen ally through the explicitly blocked motion entry"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-R08",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "an outside allied Meat Hook can pull an enemy out while the freeze source remains alive",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHRONO-08 an outside allied Meat Hook can pull an enemy out while the freeze source remains alive"
+            }
+          ]
+        },
+        {
+          "id": "CHRONO-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "Deterministic reconstruction from original recorded players preserves released mechanics and clocks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "MOBILITY-REPLAY custom_faceless_void_chronosphere reconstructs its released projectiles channels fields charges and clocks"
+            }
+          ],
+          "note": "Project compatibility proof, not independent native mechanism evidence. These cases do not mutate units outside the recorded initial inputs."
+        },
+        {
+          "id": "CHRONO-P2",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Historical Depth Shroud reveal differs from later2023-04-25/current Wiki. Current undetectability exception is retained pending the exact AA patch.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHRONO-P3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "The explicit native forced-motion exclusion list is implemented by skill identity; Cookie rejection and Hook rescue are proven here. Other listed sources not present as actual project abilities cannot yet supply real combination results.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA caster-only200 attack speed resembles historical Chronosphere attack-speed talent. Native historical95 and controlled-unit eligibility are not substituted.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA custom allies can move with-550 percent movement, attack and cast speed. This predates modern Time Zone and is not treated as that facet.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "All captured AA base/Super/Gaben clauses reviewed against the finite named mechanism/timing/interaction matrix. The concrete remaining gaps below prevent full acceptance.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Trees, terrain height, fog and couriers are absent from this arena.",
+          "Native hero-identity-only innates, modern facets and replacement skills are not silently granted.",
+          "The flat30Hz presentation does not reproduce native vertical art or subframe visual timing."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Native Faceless Void immunity to another caster Chronosphere is hero-identity-specific and is not silently granted to arbitrary AA hero models.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "The source survives its caster death; instance-owned cleanup preserves unrelated controls.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Movement remains flat; native visual bubble height is not a simulated terrain mechanic.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA-550 percent does not establish a mathematically valid ordinary speed multiplier. The retained6.5x time-factor candidate has a behavior test but remains pending source confirmation.",
+        "Historical Depth Shroud reveal differs from later2023-04-25/current Wiki. Current undetectability exception is retained pending the exact AA patch.",
+        "The explicit native forced-motion exclusion list is implemented by skill identity; Cookie rejection and Hook rescue are proven here. Other listed sources not present as actual project abilities cannot yet supply real combination results."
+      ]
+    },
+    {
+      "id": "custom_shredder_chakram",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Captured English base, Super and Gaben clauses and numerical arrays are authoritative. Fresh official catalog comparison retained all230 captured records.",
+          "versionContext": "AA Workshop executable patch is not identified; no binary equivalence claim.",
+          "localEvidence": "config/reference/migration-baseline.json",
+          "catalogAudit": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://web.archive.org/web/20230210110857id_/https://dota2.fandom.com/wiki/Timbersaw",
+          "originalUrl": "https://dota2.fandom.com/wiki/Timbersaw",
+          "accessedOn": "2026-10-29",
+          "observation": "Chakram has.15 cast point, zero backswing,1200 cast range and900 blade speed. It hits each body once outward and once returning. Area damage and mana drain first occur.5 after parking and stop when returning. Passing slow is a dispellable.5 debuff applied after pass damage; stationary slow is an undispellable adaptive aura with.5 linger. Main and Second slows stack independently. Return has no cost/point or cast procs and can be used during channels. Exceeding2000 distance or lacking mana recalls the saw. Death immediately deletes blades even before reincarnation. Native Flamethrower is an eight-second cone0-to275 over400 with80 DPS, immediate half-second burn, two-second linger and30 percent slow.",
+          "versionContext": "Direct pre7.33 capture20230210110857; historical2023 candidate, not exact AA executable patch.",
+          "httpStatus": 200,
+          "captureTimestamp": "20230210110857",
+          "htmlSha256": "65d9fb23ed304e7b9a7528823b21b8cabb5770ba279db23ae3bc888a504fdb87",
+          "readMethod": "Public urllib HTTPS GET, HTTP200. Gzip decompressed when magic bytes require it. Inert HTMLParser body text plus image-alt/title inspection; no HTML scripts executed. Only metadata, hashes and paraphrases retained."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "AA DPS70/140/210, mana per second14/22/30, pass110/155/200, radius200,5 percent health-band slow are retained. Independent Second receives these AA-equivalent arrays rather than historical native50/75/100 DPS. Native Flamethrower20-second cooldown and100 mana remain working historical defaults.",
+          "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CHAKRAM-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "pass damage occurs once outward and stationary damage starts half a second after arrival",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-01 pass damage occurs once outward and stationary damage starts half a second after arrival"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R02",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "minimum slow is five percent and stationary aura follows current missing health immediately",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-02 minimum slow is five percent and stationary aura follows current missing health immediately"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R03",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "explicit Return is zero-resource, gives one new return pass, and clears only Chakram disarm",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-03 explicit Return is zero-resource, gives one new return pass, and clears only Chakram disarm"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super owns independently priced and cooled Second Chakram and both Return slots",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-04 Super owns independently priced and cooled Second Chakram and both Return slots"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R05",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "main and second stationary slows stack independently while their own pass and aura do not double",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-05 main and second stationary slows stack independently while their own pass and aura do not double"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Gaben emits exactly ten caster-centered radial blades for each independent ability",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-06 Gaben emits exactly ten caster-centered radial blades for each independent ability"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R07",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "source death removes all blades immediately and a later reincarnation can launch a fresh set",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-07 source death removes all blades immediately and a later reincarnation can launch a fresh set"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R08",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "discarded visual metadata cannot alter gameplay damage RNG events or blade state",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-08 discarded visual metadata cannot alter gameplay damage RNG events or blade state"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R09",
+          "kind": "super",
+          "branch": "super",
+          "rule": "a gifted ally-held Flamethrower applies an immediate forty-damage burn outside the caster cone",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-09 a gifted ally-held Flamethrower applies an immediate forty-damage burn outside the caster cone"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R10",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "insufficient mana returns a parked blade without charging or applying its next area pulse",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-10 insufficient mana returns a parked blade without charging or applying its next area pulse"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R11",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "a blade exceeding its twenty-world-unit leash returns even during outbound travel",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-11 a blade exceeding its twenty-world-unit leash returns even during outbound travel"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-R12",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "an ally-held full native Flamethrower burns for exactly twenty-one forty-damage pulses including linger",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "CHAKRAM-12 an ally-held full native Flamethrower burns for exactly twenty-one forty-damage pulses including linger"
+            }
+          ]
+        },
+        {
+          "id": "CHAKRAM-REPLAY",
+          "kind": "combination",
+          "branch": "all",
+          "rule": "Deterministic reconstruction from original recorded players preserves released mechanics and clocks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mobility-fields.test.ts",
+              "test": "MOBILITY-REPLAY custom_shredder_chakram reconstructs its released projectiles channels fields charges and clocks"
+            }
+          ],
+          "note": "Project compatibility proof, not independent native mechanism evidence. These cases do not mutate units outside the recorded initial inputs."
+        },
+        {
+          "id": "CHAKRAM-P1",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA buffed Throwable Flamethrower extra amplification, thrown delivery speed and delivery range are unprovided. Current native80DPS with instant gift and project700-range delivery is explicitly a candidate.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHAKRAM-P2",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA radial reach and whether ten simultaneous blades each drain full mana are unprovided. Current1200 radial reach and per-blade native drain are explicit compatibility candidates.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CHAKRAM-P3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "At exact health-band boundaries the implementation uses floor(missingHealth/5percent)+1. Historical prose labels adjoining bands without fixing the exact shared boundary; full-health minimum and adaptive half-health result are proven.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Historical Scepter grants independent Second Chakram; historical Shard grants Flamethrower. AA explicitly changes Flamethrower into an ally gift and calls it buffed; exact extra amplification and delivery parameters are not supplied.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Current captured AA explicitly launches ten radial Chakrams around the caster. Older official Season4.5 material describes ten extra from the landing point; the current captured clause is retained and versions are not mixed.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "scope": {
+        "description": "All captured AA base/Super/Gaben clauses reviewed against the finite named mechanism/timing/interaction matrix. The concrete remaining gaps below prevent full acceptance.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Trees, terrain height, fog and couriers are absent from this arena.",
+          "Native hero-identity-only innates, modern facets and replacement skills are not silently granted.",
+          "The flat30Hz presentation does not reproduce native vertical art or subframe visual timing."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Empty-area automatic Return is project battle AI, not a claim of native automatic player input. It uses the release snapshot of configured radius and policy.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Source death clears all blade counters and skill-owned disarm immediately so a revived source can launch again.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        },
+        {
+          "rule": "Blade positions and hit lists are serializable gameplay state; references to optional presentation objects are isolated in a WeakMap.",
+          "sourceIds": [
+            "aa",
+            "archive",
+            "valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "AA buffed Throwable Flamethrower extra amplification, thrown delivery speed and delivery range are unprovided. Current native80DPS with instant gift and project700-range delivery is explicitly a candidate.",
+        "AA radial reach and whether ten simultaneous blades each drain full mana are unprovided. Current1200 radial reach and per-blade native drain are explicit compatibility candidates.",
+        "At exact health-band boundaries the implementation uses floor(missingHealth/5percent)+1. Historical prose labels adjoining bands without fixing the exact shared boundary; full-health minimum and adaptive half-health result are proven."
+      ]
+    }
+  ]
+}

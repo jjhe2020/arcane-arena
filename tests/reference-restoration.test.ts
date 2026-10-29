@@ -38,4 +38,9 @@ describe('historical restoration classes and ordinary creep spell lifesteal',()=
   w.step(.1);expect(w.source.hp).toBeCloseTo(103);applyDamage(w.b,w.source,w.target,100,'pure','spell');expect(w.source.abilityStats?.find(s=>s.abilityId==='provider')?.healing).toBeCloseTo(50);
   w.source.cooldowns[1]=w.b.time;w.step(.4);const direct=w.b.events.find(e=>e.type==='heal'&&e.skill===sap);expect(direct?.amount).toBe(375);expect(battleStats(w.b).every(validateUnitStatistics)).toBe(true);
  });
+ it('a real Feast uses lifesteal amplification and ignores real Rain direct-heal amplification',()=>{
+  const rain='custom_oracle_fortunes_end',feast='life_stealer_feast',w=world([{id:rain,points:9},{id:feast,points:3}],catalog);w.source.mana=w.source.maxMana=10000;w.step(1.1);
+  expect(w.source.statuses.some(s=>s.kind==='healAmplification')).toBe(true);w.source.cooldowns[0]=100;w.source.hp=1000;w.source.range=2;w.source.attackPoint=w.source.attackBackswing=0;w.source.attack=w.source.attackMin=w.source.attackMax=100;w.source.facing=Math.PI/2;w.source.statuses=w.source.statuses.filter(s=>s.kind==='healAmplification');w.source.statuses.push({kind:'lifestealAmplification',value:.5,until:100});w.source.nextAttack=w.b.time;
+  w.step(.1);const healing=w.b.events.filter(e=>e.type==='heal'&&e.skill===feast);expect(healing).toHaveLength(1);expect(healing[0].amount).toBeCloseTo(510);expect(battleStats(w.b).every(validateUnitStatistics)).toBe(true);
+ });
 });

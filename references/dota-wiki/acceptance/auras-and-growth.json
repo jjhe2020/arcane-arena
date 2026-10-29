@@ -6,9 +6,10 @@
   "sourcePolicy": "AA explicit custom clauses/numbers first. Wiki mechanisms are compared with fixed Valve2023-02-10; conflicts remain pending. A passing result requirement is not complete skill acceptance.",
   "validation": {
     "command": "npx vitest run tests/reference-auras-and-growth.test.ts",
-    "passedTests": 21,
-    "regressionCommand": "npx vitest run tests/reference-auras-and-growth.test.ts tests/reference-instant-attacks.test.ts tests/skill-more.test.ts tests/skill-extra.test.ts",
-    "regressionPassedTests": 199
+    "passedTests": 22,
+    "regressionCommand": "npx vitest run tests/reference-auras-and-growth.test.ts tests/reference-instant-attacks.test.ts tests/skill-more.test.ts tests/skill-extra.test.ts tests/reference-proc-acceptance.test.ts",
+    "regressionPassedTests": 250,
+    "typecheck": "npx tsc --noEmit passed after the Fervor7.20 target-boundary correction."
   },
   "skills": [
     {
@@ -22,7 +23,7 @@
           "accessedOn": "2026-10-29",
           "observation": "Global mana regeneration and owner on-cast burst; Super+80 restored mana and25% healing; Gaben25% cooldown aura. Six mana-related keys coexist ambiguously.",
           "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
-          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "readMethod": "Official AA static catalog fields retained locally and compared with the official response; the Season4 developer blog is separately sourced.",
           "localEvidence": "config/reference/migration-baseline.json"
         },
         {
@@ -45,8 +46,8 @@
           "id": "history",
           "url": "https://liquipedia.net/dota2/Crystal_Maiden/Changelogs",
           "accessedOn": "2026-10-29",
-          "observation": "7.35 changes self factor6→7;7.36 adds a mana-cost-based on-cast facet. Neither establishes AA flat on-cast formula.",
-          "versionContext": "Post2023 changes explicitly excluded.",
+          "observation": "7.32 used global regeneration0.6/0.9/1.2/1.5, proximity factor2 and self factor4. Its1/2/4-level close and self totals exactly match the legacy AA CLOSE and SELF arrays.7.32d changed global to0.4/0.6/0.8/1, proximity to3 and self to6.",
+          "versionContext": "7.32 dated2022-08-24 and7.32d dated2022-11-29. This establishes field ancestry, not the formula combining AA's independently modified global values with those legacy totals.",
           "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
         },
         {
@@ -65,6 +66,22 @@
           "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
           "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
           "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "native-731-burst",
+          "url": "https://liquipedia.net/dota2/Version_7.31",
+          "accessedOn": "2026-10-29",
+          "observation": "Arcane Aura gained a fixed6/12/18/24 mana burst to allies within1200 whenever Crystal Maiden cast a non-item ability; a level15 talent added20.7.32 subsequently removed the burst.",
+          "versionContext": "7.31 dated2022-02-23; historical native predecessor, not a rule importing its range or values over AA.",
+          "readMethod": "Liquipedia search-index content actually read."
+        },
+        {
+          "id": "aa-season4",
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "accessedOn": "2026-10-29",
+          "observation": "SUNSfan records self bonus factor4 to2, ally bonus factor2 to1, an added20/40/80 mana per cast to caster and team, and replacement of Super with an additional80 mana per cast.",
+          "versionContext": "Official AA Season4 developer blog published2023-01-01. Its explanation explicitly restores the older flat burst; it does not establish the later25% healing or the ambiguous combination of tooltip regeneration fields.",
+          "readMethod": "Official developer blog search-index content actually read."
         }
       ],
       "requirements": [
@@ -107,7 +124,8 @@
           "branch": "super",
           "mechanism": "Final160 mana burst and40 health after completed cast.",
           "sourceIds": [
-            "aa"
+            "aa",
+            "aa-season4"
           ],
           "testEvidence": [
             {
@@ -166,7 +184,7 @@
       "unresolved": [
         "AA says caster gains extra regeneration but top-tier MANA REGEN6 and SELF MANA REGEN6 are equal. CLOSE MANA REGEN3,SELF FACTOR2 andALLY FACTOR1 introduce duplicate/ambiguous meanings. Existing explicit global/self values are retained; proximity/factor semantics are unaccepted.",
         "Burst healing currently uses nominal restored amount; behavior at full mana, mana restoration amplification and hidden units needs original AA Lua/result tests.",
-        "AA flat cast burst and25% global cooldown aura have no established exact native predecessor; current Cold Comfort is a later percentage-of-cost facet.",
+        "The fixed cast burst has a7.31 native predecessor and direct AA Season4 provenance. The25% healing and global cooldown aura remain explicit AA custom clauses; later Cold Comfort percentage-of-cost rules are not imported.",
         "Aura numerical stacks/dispels beyond strongest-provider grouping and source Break require further coverage."
       ],
       "upgradeProvenance": [
@@ -174,10 +192,12 @@
           "branch": "super",
           "sourceIds": [
             "aa",
-            "history"
+            "history",
+            "native-731-burst",
+            "aa-season4"
           ],
-          "classification": "AA custom on-cast flat burst/healing",
-          "decision": "Keep+80 and25%; do not import later mana-cost facet."
+          "classification": "Native7.31 fixed burst restored by AA Season4, with direct AA+80 Super and custom25% healing",
+          "decision": "Keep AA20/40/80 team burst,+80 Super and25% healing. Do not import native1200 range or later mana-cost facets; the conflicting global/close/self regeneration formula is unchanged."
         },
         {
           "branch": "gaben",
@@ -734,7 +754,7 @@
           "accessedOn": "2026-10-29",
           "observation": "AA attack speed10/17/31per stack,max12. Super+15each; Gaben retains stacks on target changes; strong-dispel category.",
           "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
-          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "readMethod": "Official AA static catalog fields retained locally and compared with the official response.",
           "localEvidence": "config/reference/migration-baseline.json"
         },
         {
@@ -757,16 +777,16 @@
           "id": "older",
           "url": "https://liquipedia.net/dota2/Siltbreaker/Troll_Warlord",
           "accessedOn": "2026-10-29",
-          "observation": "Older event documentation instead counts at attack point, including misses/disjoints.",
-          "versionContext": "2017event mechanics; explicitly a version conflict, not certified as AA implementation.",
+          "observation": "Older event documentation counts at attack point, including misses/disjoints.",
+          "versionContext": "2017 event predates Valve7.20's explicit2018 miss and new-target fixes; it does not override the adopted post7.20 mainline contact rule.",
           "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
         },
         {
           "id": "history",
           "url": "https://liquipedia.net/dota2/Troll_Warlord/Changelogs",
           "accessedOn": "2026-10-29",
-          "observation": "7.27b talent changes to+5per-stack speed;7.36c reduces12max to10.",
-          "versionContext": "AA+15 and12max retained; modern shard/innate attack effects excluded.",
+          "observation": "7.27b changed the talent to+5per-stack speed;7.36c reduced12max to10. The2025-08-22 patch explicitly fixed gaining stacks and attack speed while broken.",
+          "versionContext": "AA+15 and12max retained. The2025 Break fix and older indexed page disagree on prior behavior; the exact2023 state is not certified from this later fix.",
           "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
         },
         {
@@ -777,6 +797,22 @@
           "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
           "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
           "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "valve-720",
+          "url": "https://www.dota2.com/720/",
+          "accessedOn": "2026-10-29",
+          "observation": "The official patch fixes Fervor increasing on missed attacks, makes a new target start at zero stacks, and increases the maximum from7 to12.",
+          "versionContext": "Official7.20 gameplay update dated2018-11-19, after the2017 Siltbreaker event and before the2023 candidate.",
+          "readMethod": "Official Valve page directly opened; Troll Warlord lines1068-1070 read."
+        },
+        {
+          "id": "older-break",
+          "url": "https://dota2.fandom.com/wiki/Troll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "The older article's Break note permits new Fervor stacks while suppressing their attack speed. Its base notes count successful projectile impacts and make the first new-target contact discard existing stacks without adding a stack.",
+          "versionContext": "Indexed pre-migration article has max12 and the7.35-era Shard. This is later than2023 and before the2025 fix, so it cannot by itself certify the exact2023 Break behavior.",
+          "readMethod": "Search-index full section actually read; no Wayback retry."
         }
       ],
       "requirements": [
@@ -801,18 +837,18 @@
           "id": "FE-P1",
           "kind": "timing",
           "branch": "base",
-          "mechanism": "Current landed-hit behavior is tested; old attack-point equivalence remains unresolved.",
+          "mechanism": "Post7.20 Fervor counts successful landed contact; blind/missed attacks and projectiles still in flight do not add stacks.",
           "sourceIds": [
             "wiki",
-            "older"
+            "valve-720"
           ],
           "testEvidence": [
             {
               "file": "tests/reference-auras-and-growth.test.ts",
-              "test": "Fervor keeps the current landed-hit rule for blind and projectile timing without inventing historical equivalence"
+              "test": "Fervor follows Valve7.20 landed-hit counting for blind and projectile timing"
             }
           ],
-          "status": "pending"
+          "status": "passed"
         },
         {
           "id": "FE-02",
@@ -850,9 +886,10 @@
           "id": "FE-04",
           "kind": "combination",
           "branch": "Break",
-          "mechanism": "Break suppresses both stored speed and further gains.",
+          "mechanism": "The project retains the2025-fix policy suppressing stored speed and further gains. Exact2023 native stack gain under Break is not certified by the later fix or the older indexed article.",
           "sourceIds": [
-            "wiki"
+            "history",
+            "older-break"
           ],
           "testEvidence": [
             {
@@ -860,13 +897,13 @@
               "test": "Fervor Break suppresses existing speed and new stack gain; the AA strong-dispel counter can reset cleanly"
             }
           ],
-          "status": "passed"
+          "status": "source_pending"
         },
         {
           "id": "FE-P2",
           "kind": "mechanism",
-          "branch": "switch-and-dispel",
-          "mechanism": "First new-target stack and AA strong-purge semantics need original-script evidence.",
+          "branch": "strong-dispel",
+          "mechanism": "AA strong-purge counter/bonus coverage remains unverified by a real enemy strong-purge result; new-target timing is separately established by Valve7.20.",
           "sourceIds": [
             "aa",
             "wiki",
@@ -874,11 +911,28 @@
           ],
           "testEvidence": [],
           "status": "pending"
+        },
+        {
+          "id": "FE-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "The first successful contact with each ordinary new target establishes zero stacks; its next successful same-target contact adds one. A missed attempted switch retains the old target and its stacks.",
+          "sourceIds": [
+            "valve-720",
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor starts each new target at zero and a missed switch preserves the previous target stacks"
+            }
+          ],
+          "status": "passed"
         }
       ],
       "unresolved": [
-        "Historical attack-point/miss counting conflicts with current landed-hit behavior; no trustworthy AA patch transition recovered. Existing landed-hit rule is retained and tested, not promoted to verified timing.",
-        "Ordinary target switch currently starts a new count1; some descriptions imply the switching hit yields0, so that exact boundary remains pending.",
+        "Break retains the project's behavior matching the2025 fix; exact2023 new-stack qualification remains source_pending rather than inferred from that later fix.",
+        "Gaben keeps the existing interpretation granting one stack when its first target is established. AA expressly preserves stacks on a switch but does not separately prove the initial-target count; base7.20 zero does not establish the custom Gaben exception.",
         "Strong-dispel category differs from native no-dispel; counter/bonus are configured strong and explicit-removal reset is tested, but a real enemy strong-purge combination is not yet exercised.",
         "Gaben no-reset is AA custom; no exact same-hero native predecessor established.",
         "Death/reincarnation and unit-target redirection stack semantics are not fully covered."

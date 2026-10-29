@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "sourceFingerprint": "cb30af07f501c50d13642356b5c478294b35d55992034c51c95304f65ededcfe",
+  "sourceFingerprint": "f8c6367bcee1fd206730cf098ae9f41c28d04acf987fbcfb3d18b34e26883a14",
   "sourceUnchanged": true,
   "passed": true,
-  "executedTests": 326,
+  "executedTests": 478,
   "command": "npm run reference:verify",
   "tests": [
     {
@@ -584,14 +584,20 @@
     },
     {
       "file": "tests/reference-auras-and-growth.test.ts",
-      "title": "Fervor keeps the current landed-hit rule for blind and projectile timing without inventing historical equivalence",
-      "fullName": "Wiki acceptance: selected auras and passive growth Fervor keeps the current landed-hit rule for blind and projectile timing without inventing historical equivalence",
+      "title": "Fervor follows Valve7.20 landed-hit counting for blind and projectile timing",
+      "fullName": "Wiki acceptance: selected auras and passive growth Fervor follows Valve7.20 landed-hit counting for blind and projectile timing",
       "status": "passed"
     },
     {
       "file": "tests/reference-auras-and-growth.test.ts",
       "title": "Fervor target switches reset ordinary stacks while Gaben retains them",
       "fullName": "Wiki acceptance: selected auras and passive growth Fervor target switches reset ordinary stacks while Gaben retains them",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-auras-and-growth.test.ts",
+      "title": "Fervor starts each new target at zero and a missed switch preserves the previous target stacks",
+      "fullName": "Wiki acceptance: selected auras and passive growth Fervor starts each new target at zero and a missed switch preserves the previous target stacks",
       "status": "passed"
     },
     {
@@ -1777,6 +1783,624 @@
       "status": "passed"
     },
     {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-01 the first arrow launches at release and six attacks follow the one-third-second cadence within one simulation tick",
+      "fullName": "Burning Barrage historical reference results BARRAGE-01 the first arrow launches at release and six attacks follow the one-third-second cadence within one simulation tick",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-02 Super produces nine final ninety-percent attacks without applying the upgrade twice",
+      "fullName": "Burning Barrage historical reference results BARRAGE-02 Super produces nine final ninety-percent attacks without applying the upgrade twice",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-03 a released arrow survives interruption while later scheduled arrows are cancelled",
+      "fullName": "Burning Barrage historical reference results BARRAGE-03 a released arrow survives interruption while later scheduled arrows are cancelled",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-04 disarm and evasion do not stop true-strike area attacks against invisible bodies",
+      "fullName": "Burning Barrage historical reference results BARRAGE-04 disarm and evasion do not stop true-strike area attacks against invisible bodies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-05 attack range extends full arrow travel while spell range does not",
+      "fullName": "Burning Barrage historical reference results BARRAGE-05 attack range extends full arrow travel while spell range does not",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-06 Gaben has only two initial charges and restores them sequentially after ten seconds",
+      "fullName": "Burning Barrage historical reference results BARRAGE-06 Gaben has only two initial charges and restores them sequentially after ten seconds",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-07 the real attack arrow is stopped at an enemy Arena boundary",
+      "fullName": "Burning Barrage historical reference results BARRAGE-07 the real attack arrow is stopped at an enemy Arena boundary",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-08 a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction",
+      "fullName": "Burning Barrage historical reference results BARRAGE-08 a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BARRAGE-09 source death preserves an emitted arrow and prevents the remaining channel releases",
+      "fullName": "Burning Barrage historical reference results BARRAGE-09 source death preserves an emitted arrow and prevents the remaining channel releases",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-01 spikes precede one explicit terminal warp and damage follows the fixed airborne delay",
+      "fullName": "Burrowstrike historical reference results BURROW-01 spikes precede one explicit terminal warp and damage follows the fixed airborne delay",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-02 the frozen ground cursor survives movement and death of the original unit target",
+      "fullName": "Burrowstrike historical reference results BURROW-02 the frozen ground cursor survives movement and death of the original unit target",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-03 each traversed victim independently consumes spell block",
+      "fullName": "Burrowstrike historical reference results BURROW-03 each traversed victim independently consumes spell block",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-04 immunity acquired after contact does not prevent saved landing damage",
+      "fullName": "Burrowstrike historical reference results BURROW-04 immunity acquired after contact does not prevent saved landing damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-05 status resistance does not shorten the airborne clock",
+      "fullName": "Burrowstrike historical reference results BURROW-05 status resistance does not shorten the airborne clock",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-06 Super applies maximum Caustic to ordinary summons but excludes illusions",
+      "fullName": "Burrowstrike historical reference results BURROW-06 Super applies maximum Caustic to ordinary summons but excludes illusions",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-07 Caustic explodes immediately from the victim max health even after its caster dies",
+      "fullName": "Burrowstrike historical reference results BURROW-07 Caustic explodes immediately from the victim max health even after its caster dies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-08 Gaben spends two finite charges before the ten-second Super restore boundary",
+      "fullName": "Burrowstrike historical reference results BURROW-08 Gaben spends two finite charges before the ten-second Super restore boundary",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-09 the caster remains damageable while spikes travel and a skill-created wall does not stop its terminal warp",
+      "fullName": "Burrowstrike historical reference results BURROW-09 the caster remains damageable while spikes travel and a skill-created wall does not stop its terminal warp",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "BURROW-10 an already released Aphotic Shield strong dispel lands the airborne victim early exactly once",
+      "fullName": "Burrowstrike historical reference results BURROW-10 an already released Aphotic Shield strong dispel lands the airborne victim early exactly once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-01 the effect lock prevents recasting and the actual cooldown starts only on contact",
+      "fullName": "Charge of Darkness historical reference results CHARGE-01 the effect lock prevents recasting and the actual cooldown starts only on contact",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-02 a real stun cancels movement and begins the same snapshot cooldown without impact",
+      "fullName": "Charge of Darkness historical reference results CHARGE-02 a real stun cancels movement and begins the same snapshot cooldown without impact",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-03 flat charge speed is multiplied by effective bonus and slow before Greater Bash snapshots it",
+      "fullName": "Charge of Darkness historical reference results CHARGE-03 flat charge speed is multiplied by effective bonus and slow before Greater Bash snapshots it",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-04 Super is immune during travel and each nearby non-primary body is bashed only once",
+      "fullName": "Charge of Darkness historical reference results CHARGE-04 Super is immune during travel and each nearby non-primary body is bashed only once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-05 Gaben target death retargets the nearest real hero and its reset survives later cancellation",
+      "fullName": "Charge of Darkness historical reference results CHARGE-05 Gaben target death retargets the nearest real hero and its reset survives later cancellation",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-06 unit-targeted spell orders stop charging but a no-target Warcry does not",
+      "fullName": "Charge of Darkness historical reference results CHARGE-06 unit-targeted spell orders stop charging but a no-target Warcry does not",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-07 the end-started cooldown retains the release-time cooldown reduction snapshot",
+      "fullName": "Charge of Darkness historical reference results CHARGE-07 the end-started cooldown retains the release-time cooldown reduction snapshot",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-08 an initially spell-immune target causes no accepted order or resource consumption",
+      "fullName": "Charge of Darkness historical reference results CHARGE-08 an initially spell-immune target causes no accepted order or resource consumption",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-01 the first field frame freezes through immunity and preserves passives and source death",
+      "fullName": "Chronosphere historical reference results CHRONO-01 the first field frame freezes through immunity and preserves passives and source death",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-02 recursively controlled summons receive 1000 movement and phasing but Super attack speed belongs to the caster",
+      "fullName": "Chronosphere historical reference results CHRONO-02 recursively controlled summons receive 1000 movement and phasing but Super attack speed belongs to the caster",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-03 invulnerable heroes are excluded while invulnerable ordinary wards are frozen",
+      "fullName": "Chronosphere historical reference results CHRONO-03 invulnerable heroes are excluded while invulnerable ordinary wards are frozen",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-04 ordinary invisible enemies are revealed inside the frozen point even after the aim unit moves",
+      "fullName": "Chronosphere historical reference results CHRONO-04 ordinary invisible enemies are revealed inside the frozen point even after the aim unit moves",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-05 Gaben allied heroes remain unfrozen with the explicitly retained six-and-a-half time-factor candidate",
+      "fullName": "Chronosphere historical reference results CHRONO-05 Gaben allied heroes remain unfrozen with the explicitly retained six-and-a-half time-factor candidate",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-06 field expiry removes only its own controls and speed components",
+      "fullName": "Chronosphere historical reference results CHRONO-06 field expiry removes only its own controls and speed components",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-07 an outside enemy Cookie cannot move a frozen ally through the explicitly blocked motion entry",
+      "fullName": "Chronosphere historical reference results CHRONO-07 an outside enemy Cookie cannot move a frozen ally through the explicitly blocked motion entry",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHRONO-08 an outside allied Meat Hook can pull an enemy out while the freeze source remains alive",
+      "fullName": "Chronosphere historical reference results CHRONO-08 an outside allied Meat Hook can pull an enemy out while the freeze source remains alive",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-01 pass damage occurs once outward and stationary damage starts half a second after arrival",
+      "fullName": "Chakram historical reference results CHAKRAM-01 pass damage occurs once outward and stationary damage starts half a second after arrival",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-02 minimum slow is five percent and stationary aura follows current missing health immediately",
+      "fullName": "Chakram historical reference results CHAKRAM-02 minimum slow is five percent and stationary aura follows current missing health immediately",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-03 explicit Return is zero-resource, gives one new return pass, and clears only Chakram disarm",
+      "fullName": "Chakram historical reference results CHAKRAM-03 explicit Return is zero-resource, gives one new return pass, and clears only Chakram disarm",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-04 Super owns independently priced and cooled Second Chakram and both Return slots",
+      "fullName": "Chakram historical reference results CHAKRAM-04 Super owns independently priced and cooled Second Chakram and both Return slots",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-05 main and second stationary slows stack independently while their own pass and aura do not double",
+      "fullName": "Chakram historical reference results CHAKRAM-05 main and second stationary slows stack independently while their own pass and aura do not double",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-06 Gaben emits exactly ten caster-centered radial blades for each independent ability",
+      "fullName": "Chakram historical reference results CHAKRAM-06 Gaben emits exactly ten caster-centered radial blades for each independent ability",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-07 source death removes all blades immediately and a later reincarnation can launch a fresh set",
+      "fullName": "Chakram historical reference results CHAKRAM-07 source death removes all blades immediately and a later reincarnation can launch a fresh set",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-08 discarded visual metadata cannot alter gameplay damage RNG events or blade state",
+      "fullName": "Chakram historical reference results CHAKRAM-08 discarded visual metadata cannot alter gameplay damage RNG events or blade state",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-09 a gifted ally-held Flamethrower applies an immediate forty-damage burn outside the caster cone",
+      "fullName": "Chakram historical reference results CHAKRAM-09 a gifted ally-held Flamethrower applies an immediate forty-damage burn outside the caster cone",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-10 insufficient mana returns a parked blade without charging or applying its next area pulse",
+      "fullName": "Chakram historical reference results CHAKRAM-10 insufficient mana returns a parked blade without charging or applying its next area pulse",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-11 a blade exceeding its twenty-world-unit leash returns even during outbound travel",
+      "fullName": "Chakram historical reference results CHAKRAM-11 a blade exceeding its twenty-world-unit leash returns even during outbound travel",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHAKRAM-12 an ally-held full native Flamethrower burns for exactly twenty-one forty-damage pulses including linger",
+      "fullName": "Chakram historical reference results CHAKRAM-12 an ally-held full native Flamethrower burns for exactly twenty-one forty-damage pulses including linger",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "MOBILITY-REPLAY clinkz_strafe reconstructs its released projectiles channels fields charges and clocks",
+      "fullName": "Mobility field replay results from original recorded player inputs MOBILITY-REPLAY clinkz_strafe reconstructs its released projectiles channels fields charges and clocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "MOBILITY-REPLAY sandking_burrowstrike reconstructs its released projectiles channels fields charges and clocks",
+      "fullName": "Mobility field replay results from original recorded player inputs MOBILITY-REPLAY sandking_burrowstrike reconstructs its released projectiles channels fields charges and clocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "MOBILITY-REPLAY custom_spirit_breaker_charge_of_darkness reconstructs its released projectiles channels fields charges and clocks",
+      "fullName": "Mobility field replay results from original recorded player inputs MOBILITY-REPLAY custom_spirit_breaker_charge_of_darkness reconstructs its released projectiles channels fields charges and clocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "MOBILITY-REPLAY custom_faceless_void_chronosphere reconstructs its released projectiles channels fields charges and clocks",
+      "fullName": "Mobility field replay results from original recorded player inputs MOBILITY-REPLAY custom_faceless_void_chronosphere reconstructs its released projectiles channels fields charges and clocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "MOBILITY-REPLAY custom_shredder_chakram reconstructs its released projectiles channels fields charges and clocks",
+      "fullName": "Mobility field replay results from original recorded player inputs MOBILITY-REPLAY custom_shredder_chakram reconstructs its released projectiles channels fields charges and clocks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-mobility-fields.test.ts",
+      "title": "CHARGE-11 Gaben attack procs actually use the native-eligible independent PRD ledger",
+      "fullName": "Greater Bash native PRD eligibility CHARGE-11 Gaben attack procs actually use the native-eligible independent PRD ledger",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-01 pays one nonlethal attack-point health cost and applies its debuff before physical damage",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-01 pays one nonlethal attack-point health cost and applies its debuff before physical damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-02 every AA base rank deals eight one-second damage ticks after its own application",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-02 every AA base rank deals eight one-second damage ticks after its own application",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-03 an additional attack keeps the first stack expiry independent",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-03 an additional attack keeps the first stack expiry independent",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-04 silence suppresses the active orb but Break does not disable it",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-04 silence suppresses the active orb but Break does not disable it",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-05 illusions wards buildings and nonpierced immune targets cannot gain a fresh spear",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-05 illusions wards buildings and nonpierced immune targets cannot gain a fresh spear",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-06 real basic dispel retains stacks while real strong dispel removes them",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-06 real basic dispel retains stacks while real strong dispel removes them",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-07 Super spreads around the attacker while charging health once and Gaben pierces immunity with pure ticks",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-07 Super spreads around the attacker while charging health once and Gaben pierces immunity with pure ticks",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-08 two overlapping ranged attacks retain different silence eligibility in their own attack records",
+      "fullName": "Burning Spear AA attack modifier and independent clocks SP-08 two overlapping ranged attacks retain different silence eligibility in their own attack records",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-01 each AA rank uses its configured variable critical endpoints and lifesteal on a successful proc",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-01 each AA rank uses its configured variable critical endpoints and lifesteal on a successful proc",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-02 only the winning critical provides its critical-specific lifesteal",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-02 only the winning critical provides its critical-specific lifesteal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-03 a ranged critical snapshots before flight and a later noncritical attack cannot overwrite it",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-03 a ranged critical snapshots before flight and a later noncritical attack cannot overwrite it",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-04 ordinary creeps use the historical extra damage while illusions and considered heroes stay in the hero class",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-04 ordinary creeps use the historical extra damage while illusions and considered heroes stay in the hero class",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-05 Super final chance and lifesteal are not added twice and Gaben applies half-chance allied aura",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-05 Super final chance and lifesteal are not added twice and Gaben applies half-chance allied aura",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-06 Break blocks new owner critical rolls and suppresses an allied aura from that broken owner",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-06 Break blocks new owner critical rolls and suppresses an allied aura from that broken owner",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-07 enemy buildings and wards cannot trigger owner critical procs",
+      "fullName": "Chaos Strike selection aura and critical launch records CK-07 enemy buildings and wards cannot trigger owner critical procs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-01 a landed zero-damage attack can proc but missed attacks cannot",
+      "fullName": "Counter Helix native contacts and AA independent upgrades HX-01 a landed zero-damage attack can proc but missed attacks cannot",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-02 source ward and building attacks do not trigger the defensive proc",
+      "fullName": "Counter Helix native contacts and AA independent upgrades HX-02 source ward and building attacks do not trigger the defensive proc",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-03 Super outgoing and defensive proc cooldowns are independent and do not inherit cooldown reduction",
+      "fullName": "Counter Helix native contacts and AA independent upgrades HX-03 Super outgoing and defensive proc cooldowns are independent and do not inherit cooldown reduction",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-04 Gaben refreshes one six-second stack group up to six stacks and reduces only damage aimed at its owner under the AA rule",
+      "fullName": "Counter Helix native contacts and AA independent upgrades HX-04 Gaben refreshes one six-second stack group up to six stacks and reduces only damage aimed at its owner under the AA rule",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-05 Break and illusion owners do not create new Helix instances",
+      "fullName": "Counter Helix native contacts and AA independent upgrades HX-05 Break and illusion owners do not create new Helix instances",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-01 every AA rank applies its configured direct critical factor without Deadly Focus",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-01 every AA rank applies its configured direct critical factor without Deadly Focus",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-02 wards buildings and Break cannot trigger a fresh Coup critical",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-02 wards buildings and Break cannot trigger a fresh Coup critical",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-03 Super grants a separately owned Fan and pays its historical mana cooldown cast point and backswing",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-03 Super grants a separately owned Fan and pays its historical mana cooldown cast point and backswing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-04 Fan expands from its fixed cast center and applies Break before its pure damage",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-04 Fan expands from its fixed cast center and applies Break before its pure damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-05 AA Gaben every critical includes another provider and bypasses the independently granted Fan resource ledger",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-05 AA Gaben every critical includes another provider and bypasses the independently granted Fan resource ledger",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-06 a ranged Coup snapshots its critical before a later Break and preserves the damage on impact",
+      "fullName": "Coup de Grace and historical Fan of Knives CP-06 a ranged Coup snapshots its critical before a later Break and preserves the damage on impact",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-01 the fourth landed attack applies the full curse before damage and the fifth cannot replace its slow with the basic slow",
+      "fullName": "Curse of Avernus counting dispels and AA repeat curse AV-01 the fourth landed attack applies the full curse before damage and the fifth cannot replace its slow with the basic slow",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-02 missed attacks do not increment and a real basic dispel resets the initial counter",
+      "fullName": "Curse of Avernus counting dispels and AA repeat curse AV-02 missed attacks do not increment and a real basic dispel resets the initial counter",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-03 Super uses its final three-hit threshold and slow while Gaben can mature a new curse during the existing one",
+      "fullName": "Curse of Avernus counting dispels and AA repeat curse AV-03 Super uses its final three-hit threshold and slow while Gaben can mature a new curse during the existing one",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-04 full curse expiry clears silence and slow and the next attack starts a fresh basic counter",
+      "fullName": "Curse of Avernus counting dispels and AA repeat curse AV-04 full curse expiry clears silence and slow and the next attack starts a fresh basic counter",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-05 independent owners do not combine their initial hit counters",
+      "fullName": "Curse of Avernus counting dispels and AA repeat curse AV-05 independent owners do not combine their initial hit counters",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-09 an explicitly extended designer duration does not retain the obsolete100-stack cap",
+      "fullName": "Proc stress boundaries and target-specific attack cadence SP-09 an explicitly extended designer duration does not retain the obsolete100-stack cap",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-08 actual33.33percent attacks use an independent calibrated PRD state and repeat deterministically",
+      "fullName": "Proc stress boundaries and target-specific attack cadence CK-08 actual33.33percent attacks use an independent calibrated PRD state and repeat deterministically",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-06 cursed-target attack speed benefits heroes and illusions while a consideredHero creep keeps its own attack cadence",
+      "fullName": "Proc stress boundaries and target-specific attack cadence AV-06 cursed-target attack speed benefits heroes and illusions while a consideredHero creep keeps its own attack cadence",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-10 a missed spear still pays its released health cost but cannot kill its owner or apply a stack",
+      "fullName": "Proc lifecycle resources and deterministic restoration SP-10 a missed spear still pays its released health cost but cannot kill its owner or apply a stack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-09 Gaben aura expires after the configured linger once an ally leaves its configured radius",
+      "fullName": "Proc lifecycle resources and deterministic restoration CK-09 Gaben aura expires after the configured linger once an ally leaves its configured radius",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-06 every base rank preserves AA damage radius and requested PRD probability without spending mana",
+      "fullName": "Proc lifecycle resources and deterministic restoration HX-06 every base rank preserves AA damage radius and requested PRD probability without spending mana",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-07 historical Fan pierces spell immunity and its Break expires after three seconds",
+      "fullName": "Proc lifecycle resources and deterministic restoration CP-07 historical Fan pierces spell immunity and its Break expires after three seconds",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-07 the basic counter refreshes on contact and expires without a curse after its five-second duration",
+      "fullName": "Proc lifecycle resources and deterministic restoration AV-07 the basic counter refreshes on contact and expires without a curse after its five-second duration",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "RC-01 saved normal combat reconstructs an in-flight critical attack record deterministically",
+      "fullName": "Proc lifecycle resources and deterministic restoration RC-01 saved normal combat reconstructs an in-flight critical attack record deterministically",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-10 an actual Gaben aura ally inherits the ordinary-creep critical damage factor",
+      "fullName": "Gaben aura critical creep equivalence CK-10 an actual Gaben aura ally inherits the ordinary-creep critical damage factor",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-08 Gaben Coup does not cast a Fan for any successful noncritical attack",
+      "fullName": "Negative Gaben critical and source-specific status resistance CP-08 Gaben Coup does not cast a Fan for any successful noncritical attack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "SP-11 Burning Spear retains all eight ticks and its full duration through status resistance",
+      "fullName": "Negative Gaben critical and source-specific status resistance SP-11 Burning Spear retains all eight ticks and its full duration through status resistance",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-08 status resistance leaves the initial counter and basic slow unchanged but shortens the full curse",
+      "fullName": "Negative Gaben critical and source-specific status resistance AV-08 status resistance leaves the initial counter and basic slow unchanged but shortens the full curse",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "AV-09 every AA base rank preserves its initial slow full slow and attack speed without an active resource cost",
+      "fullName": "Unmodified base level values and boundary results AV-09 every AA base rank preserves its initial slow full slow and attack speed without an active resource cost",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CP-09 unmodified base and Super critical probabilities use their own calibrated PRD stream",
+      "fullName": "Unmodified base level values and boundary results CP-09 unmodified base and Super critical probabilities use their own calibrated PRD stream",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "HX-07 the AA radius includes an enemy on its boundary while excluding the immediately farther enemy",
+      "fullName": "Unmodified base level values and boundary results HX-07 the AA radius includes an enemy on its boundary while excluding the immediately farther enemy",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "RC-02 a ranged Gaben Walrus replacement retains its landing disable after its long projectile flight",
+      "fullName": "Critical launch record integration regressions RC-02 a ranged Gaben Walrus replacement retains its landing disable after its long projectile flight",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-11 a Gaben Chaos Strike ally cannot critical a ward or building that the owner passive excludes",
+      "fullName": "Aura target qualification parity CK-11 a Gaben Chaos Strike ally cannot critical a ward or building that the owner passive excludes",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-proc-acceptance.test.ts",
+      "title": "CK-12 an illusion Chaos Strike owner can critical and lifesteal for itself without healing its summoning owner",
+      "fullName": "Chaos Strike illusion-owned restoration CK-12 an illusion Chaos Strike owner can critical and lifesteal for itself without healing its summoning owner",
+      "status": "passed"
+    },
+    {
       "file": "tests/reference-projectiles-and-fields.test.ts",
       "title": "Arc Lightning damages one new victim per historical bounce interval instead of all on release",
       "fullName": "reference projectile, field and Skywrath clauses Arc Lightning damages one new victim per historical bounce interval instead of all on release",
@@ -1960,6 +2584,294 @@
       "file": "tests/reference-restoration.test.ts",
       "title": "a real Rain of Destiny amplifies direct healing but neither regeneration nor spell lifesteal",
       "fullName": "historical restoration classes and ordinary creep spell lifesteal a real Rain of Destiny amplifies direct healing but neither regeneration nor spell lifesteal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-restoration.test.ts",
+      "title": "a real Feast uses lifesteal amplification and ignores real Rain direct-heal amplification",
+      "fullName": "historical restoration classes and ordinary creep spell lifesteal a real Feast uses lifesteal amplification and ignores real Rain direct-heal amplification",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild base creates one AA boar and one invisible nonattacking hawk with independent sixty second lifetimes",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild base creates one AA boar and one invisible nonattacking hawk with independent sixty second lifetimes",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild boar poison applies flat attack speed reduction and movement slow after its ranged attack",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild boar poison applies flat attack speed reduction and movement slow after its ranged attack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild recast preserves previous summons and Super adds two Necro3 bodies and a discrete health gain",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild recast preserves previous summons and Super adds two Necro3 bodies and a discrete health gain",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild Gaben creates three hawks and includes the new ancient in its explicit all summons health bonus",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild Gaben creates three hawks and includes the new ancient in its explicit all summons health bonus",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild basic mana and cooldown begin at the three tenth release with its historical backswing",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild basic mana and cooldown begin at the three tenth release with its historical backswing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Historical Hawk Dive Bomb reveals during one second windup then roots only its chosen target after the fixed flight",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Historical Hawk Dive Bomb reveals during one second windup then roots only its chosen target after the fixed flight",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild Necro3 archer grants only the historical nonstacking movement aura and excludes invulnerable allies",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild Necro3 archer grants only the historical nonstacking movement aura and excludes invulnerable allies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild Necro3 movement aura has a half second exit linger and is removed after every source dies",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild Necro3 movement aura has a half second exit linger and is removed after every source dies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild Necro3 warrior reveals ordinary invisibility within1000 without defeating undetectability",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild Necro3 warrior reveals ordinary invisibility within1000 without defeating undetectability",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Wild Necro3 mana burn uses physical damage without spell amplification while its shared main-hit component remains explicit pending",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Wild Necro3 mana burn uses physical damage without spell amplification while its shared main-hit component remains explicit pending",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering has a separate half second post-release delay before its first golem and immunity piercing stun",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering has a separate half second post-release delay before its first golem and immunity piercing stun",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering Gaben summons its second reduced body and reapplies its area stun two tenths later",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering Gaben summons its second reduced body and reapplies its area stun two tenths later",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering Immolation starts after one second and uses the actual golem as the damage source",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering Immolation starts after one second and uses the actual golem as the damage source",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering zero main attack still procs pure Flaming Fists on the primary and nearby targets",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering zero main attack still procs pure Flaming Fists on the primary and nearby targets",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering Super death summon is one ordinary golem even at Gaben and does not consume active mana or cooldown",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering Super death summon is one ordinary golem even at Gaben and does not consume active mana or cooldown",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering does not trigger the death talent for a reincarnating caster",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering does not trigger the death talent for a reincarnating caster",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering basic half second cast commits AA six hundred mana and170 second cooldown only on release",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering basic half second cast commits AA six hundred mana and170 second cooldown only on release",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering golems use their own magic resistance and AA regeneration",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering golems use their own magic resistance and AA regeneration",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Offering independent Immolation auras stack and both bodies expire after sixty seconds with59 samples each",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Offering independent Immolation auras stack and both bodies expire after sixty seconds with59 samples each",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Chemical Rage applies a basic dispel and blocks actions for the historical transformation interval",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Chemical Rage applies a basic dispel and blocks actions for the historical transformation interval",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Chemical Rage Super consumes final ranged and melee base attack time regeneration and movement once",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Chemical Rage Super consumes final ranged and melee base attack time regeneration and movement once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Chemical Rage Gaben applies the ally own attack type and does not choose a closer enemy",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Chemical Rage Gaben applies the ally own attack type and does not choose a closer enemy",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Chemical Rage lasts thirty seconds and spends its configured mana and cooldown at the instant release",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Chemical Rage lasts thirty seconds and spends its configured mana and cooldown at the instant release",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Chemical Rage strong dispel removes every bonus and death cancels it before a reincarnation",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Chemical Rage strong dispel removes every bonus and death cancels it before a reincarnation",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace heals sixteen direct samples including the expiry boundary without granting health regeneration",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace heals sixteen direct samples including the expiry boundary without granting health regeneration",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace blocks physical damage but permits magical damage and Super replaces stun with root and disarm",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace blocks physical damage but permits magical damage and Super replaces stun with root and disarm",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace direct healing responds to heal amplification rather than regeneration amplification",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace direct healing responds to heal amplification rather than regeneration amplification",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace base freeze blocks a recipient spell while Super permits that same spell",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace base freeze blocks a recipient spell while Super permits that same spell",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace Gaben consumes its final65 flat heal once in every direct healing sample",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace Gaben consumes its final65 flat heal once in every direct healing sample",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace Gaben fires its splinters on a real early strong dispel from the embraced body",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace Gaben fires its splinters on a real early strong dispel from the embraced body",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace Gaben natural expiry does not launch a second burst after early removal",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace Gaben natural expiry does not launch a second burst after early removal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "A Cold Embrace recipient can summon without copying function closures into the unit snapshot",
+      "fullName": "Wiki acceptance: summons, transformations and restoration A Cold Embrace recipient can summon without copying function closures into the unit snapshot",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace death removal launches once even after its original caster died",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace death removal launches once even after its original caster died",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace protects a spell immune ally but its Gaben enemy splinters do not pierce immunity",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace protects a spell immune ally but its Gaben enemy splinters do not pierce immunity",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace secondary splinters are disjointed by invisibility and release only from eligible allies",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace secondary splinters are disjointed by invisibility and release only from eligible allies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Cold Embrace uses the historical1000 range and commits80 mana and15 second cooldown at release",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Cold Embrace uses the historical1000 range and commits80 mana and15 second cooldown at release",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin retaliates with four delayed damage samples and an expiring flat attack slow",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin retaliates with four delayed damage samples and an expiring flat attack slow",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin refreshes its duration without stacking damage clocks or slow",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin refreshes its duration without stacking damage clocks or slow",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin does not retaliate against self allied health removal or no reflection damage",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin does not retaliate against self allied health removal or no reflection damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin uses its1400 range and can slow an invulnerable attacker without damaging it",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin uses its1400 range and can slow an invulnerable attacker without damaging it",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin Super final magic resistance and attack slow are doubled once and Break suppresses resistance",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin Super final magic resistance and attack slow are doubled once and Break suppresses resistance",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin Gaben applies its1200 aura immediately to invisible enemies and stops acquiring targets during Break",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin Gaben applies its1200 aura immediately to invisible enemies and stops acquiring targets during Break",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin still triggers when damage is completely negated by flat block or an absorption shield",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin still triggers when damage is completely negated by flat block or an absorption shield",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin status resistance shortens the existing clock and a real basic dispel stops all remaining pulses",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin status resistance shortens the existing clock and a real basic dispel stops all remaining pulses",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin damage does not create reciprocal retaliation between two Skin owners",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin damage does not create reciprocal retaliation between two Skin owners",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin illusions created by real Phantasm do not receive the native magic resistance bonus",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin illusions created by real Phantasm do not receive the native magic resistance bonus",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-summon-restoration.test.ts",
+      "title": "Corrosive Skin is a passive with no mana debit spell cooldown or cast animation",
+      "fullName": "Wiki acceptance: summons, transformations and restoration Corrosive Skin is a passive with no mana debit spell cooldown or cast animation",
       "status": "passed"
     }
   ]

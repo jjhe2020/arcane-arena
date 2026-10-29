@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 40 项；完整逐项通过 5 项。
-当前代码下，300 条具名结果测试要求通过，300 条同时具备逐条来源绑定；另有5项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 55 项；完整逐项通过 6 项。
+当前代码下，435 条具名结果测试要求通过，435 条同时具备逐条来源绑定；另有9项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -34,26 +34,26 @@
 | 回光返照 (Borrowed Time) | 审查中 | 1 / 0 / 0 / 0 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 棒击大地 (Boundless Strike) | 审查中 | 1 / 1 / 1 / 1 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 蚀脑 (Brain Sap) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
-| 炽烈火雨 (Burning Barrage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 沸血之矛 (Burning Spear) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 掘地穿刺 (Burrowstrike) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 野性呼唤 (Call of the Wild) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 炽烈火雨 (Burning Barrage) | 审查中 | 0 / 1 / 1 / 1 / 7 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 沸血之矛 (Burning Spear) | 审查中 | 4 / 2 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
+| 掘地穿刺 (Burrowstrike) | 审查中 | 0 / 1 / 1 / 1 / 8 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 野性呼唤 (Call of the Wild) | 审查中 | 2 / 1 / 2 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
 | 连环霜冻 (Chain Frost) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 查克拉魔法 (Chakra Magic) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 锯齿飞轮 (Chakram) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 混沌一击 (Chaos Strike) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 混乱献祭 (Chaotic Offering) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 暗影冲刺 (Charge of Darkness) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 化学狂暴 (Chemical Rage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 时间结界 (Chronosphere) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 极寒之拥 (Cold Embrace) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 锯齿飞轮 (Chakram) | 审查中 | 0 / 1 / 2 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 混沌一击 (Chaos Strike) | 审查中 | 3 / 1 / 1 / 2 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
+| 混乱献祭 (Chaotic Offering) | 审查中 | 3 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
+| 暗影冲刺 (Charge of Darkness) | 审查中 | 0 / 1 / 1 / 2 / 6 | 3 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 化学狂暴 (Chemical Rage) | 审查中 | 1 / 1 / 1 / 0 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
+| 时间结界 (Chronosphere) | 审查中 | 0 / 1 / 1 / 0 / 6 | 3 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 极寒之拥 (Cold Embrace) | 逐项通过 | 2 / 1 / 1 / 2 / 4 | 0 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
 | 侵蚀雾霭 (Corrosive Haze) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 腐蚀皮肤 (Corrosive Skin) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 反击螺旋 (Counter Helix) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 恩赐解脱 (Coup de Grace) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 腐蚀皮肤 (Corrosive Skin) | 审查中 | 2 / 1 / 1 / 1 / 4 | 1 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
+| 反击螺旋 (Counter Helix) | 审查中 | 2 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
+| 恩赐解脱 (Coup de Grace) | 审查中 | 3 / 1 / 1 / 2 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
 | 伤残恐惧 (Crippling Fear) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 淘汰之刃 (Culling Blade) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 魔霭诅咒 (Curse of Avernus) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 魔霭诅咒 (Curse of Avernus) | 审查中 | 3 / 2 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
 | 诅咒王冠 (Cursed Crown) | 审查中 | 0 / 1 / 0 / 1 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 黑暗契约 (Dark Pact) | 审查中 | 0 / 1 / 0 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 死亡脉冲 (Death Pulse) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -83,7 +83,7 @@
 | 虚妄之诺 (False Promise) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 盛宴 (Feast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 野性驱使 (Feral Impulse) | 审查中 | 1 / 1 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
-| 热血战魂 (Fervor) | 审查中 | 1 / 0 / 1 / 1 / 1 | 5 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
+| 热血战魂 (Fervor) | 审查中 | 2 / 1 / 1 / 1 / 0 | 5 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
 | 魔爪 (Fiend's Grip) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 炽魂 (Fiery Soul) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 死亡之指 (Finger of Death) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

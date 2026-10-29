@@ -46,6 +46,14 @@
       "accessedOn": "2026-10-29",
       "versionContext": "2019-12-09 historical fix predates the pinned February2023 native candidate; individual AA Feast sharing composition remains separate.",
       "observation": "The historical Feast fix explicitly applies lifesteal amplification, establishing a different restoration class from ordinary direct healing."
+    },
+    {
+      "id": "native-units-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Pinned2023-02-10 shipped units; raw and parsed copies exist in references/dota-20230216. User-confirmed four-role custom values are separate from native summons.",
+      "observation": "Native units specify AttackCapabilities independently from range, plus BaseAttackSpeed and projectile fields. The level3 Necronomicon archer has BaseAttackSpeed109 and ProjectileSpeed900. Live Wild9 currently folds109 into BAT and still launches at14world/s; with+100IAS its .458716s differs from the independent-native-base formula .478469s.",
+      "entitySha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592"
     }
   ],
   "engineRequirements": [
@@ -263,12 +271,67 @@
       "id": "E-RESTORATION-CALLER-CLASSIFICATION",
       "kind": "mechanism",
       "branch": "base",
-      "rule": "The engine supports separate direct-heal, regeneration and lifesteal manipulation. Individual callers remain to be classified. Real Feast currently calls ordinary c.heal, so real Rain amplifies its heal as direct healing (340→425 in the isolated review). Historical Feast lifesteal manipulation proves that this caller needs a dedicated class correction and result test; the existing Rain test does not certify Feast or all healing skills.",
-      "status": "mechanism_missing",
+      "rule": "C3 explicitly classifies base Feast and AA shared Feast as lifesteal restoration. The real base-Feast/Rain/lifesteal-amplification result is separately certified. Other healing call sites still need per-skill source classification; this finite result does not certify every damage-based heal as lifesteal or all healing callers as migrated.",
+      "status": "source_pending",
       "sourceIds": [
         "lifestealer-2019-restoration",
         "oracle-rain-731"
       ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-FEAST-RESTORATION-CLASS",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Real base Feast ignores real Rain direct-healing amplification and uses the distinct lifesteal-amplification class while preserving effective skill healing statistics. Damage order, conditional attack composition and shared Feast remain separate per-skill work.",
+      "status": "passed",
+      "sourceIds": [
+        "lifestealer-2019-restoration",
+        "oracle-rain-731"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-restoration.test.ts",
+          "test": "a real Feast uses lifesteal amplification and ignores real Rain direct-heal amplification"
+        }
+      ]
+    },
+    {
+      "id": "E-BATTLE-START-PASSIVE-ORDER",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "C3 initializes all statistics before any init hook and tests both player orders with real Gaben Acid Spray. Startup damage can still precede a later unit's passive-defense initialization: measured initial damage against Dragon Blood3 differs by init order (60.1986755 versus37.1900826). Audit a separate battle-start phase after constant passive initialization before claiming this order is correct; the ledger regression does not certify defensive startup semantics.",
+      "status": "mechanism_missing",
+      "sourceIds": [],
+      "testEvidence": []
+    },
+    {
+      "id": "E-NATIVE-SUMMON-ATTACK-PROFILE",
+      "kind": "mechanism",
+      "branch": "base",
+      "rule": "Bind and verify native summon attack capabilities, BaseAS, BAT, windup, projectile speed and movement turn units separately. Do not pre-divide BAT by nativeBaseAS then multiply bonusIAS again. Live Necronomicon archer has a measured speed/BaseAS mismatch; Hawk is currently disarmed, so missing NO_ATTACK metadata is not falsely reported as an observed Hawk attack. Preserve the four approved custom role profiles.",
+      "status": "mechanism_missing",
+      "sourceIds": [
+        "native-units-2023"
+      ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-INSTANT-ATTACK-PROC-ELIGIBILITY",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Review native per-caller proc eligibility and implement explicit exceptions. Existing triggerModifiers:false still permits generic status-based critical providers while suppressing learned criticalAttack callbacks. Time Lock, Moment of Courage and Specialist Array eligibility must not be certified merely because a shared false flag or a callback exists.",
+      "status": "source_pending",
+      "sourceIds": [],
+      "testEvidence": []
+    },
+    {
+      "id": "E-VARIABLE-AND-FIXED-CRITICAL-ORDER",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Current shared selection orders a variable critical by its maximum profile, while fixed-count Luminosity probes at point and also advances at impact. The exact variable-versus-fixed native priority and simultaneous in-flight fixed-count behavior still require per-skill evidence and result tests. Existing passing Chaos/PA launch snapshots do not certify these unreviewed matrices.",
+      "status": "source_pending",
+      "sourceIds": [],
       "testEvidence": []
     }
   ],

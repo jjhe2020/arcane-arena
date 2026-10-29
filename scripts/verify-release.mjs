@@ -7,7 +7,7 @@ const [assets,skills,coverage,config,configReport]=await Promise.all(['assets','
 for(const name of ['assets','skills','mechanics-coverage','game-config','config-report'])assert.equal(await fs.readFile(`dist/data/${name}.json`,'utf8'),await fs.readFile(`public/data/${name}.json`,'utf8'),`Stale production ${name}`);
 assert.equal(await fs.readFile('src/generated/game-config.json','utf8'),await fs.readFile('dist/data/game-config.json','utf8'),'Compiled runtime configuration mismatch');
 assert.equal(config.hash,configReport.hash);assert.equal(config.hash,coverage.configHash);
-assert.equal(configReport.counts.skills,230);assert.equal(configReport.counts.granted,69);
+assert.equal(configReport.counts.skills,230);assert.equal(configReport.counts.granted,73);
 assert.ok(skills.every(skill=>skill.configHash===config.hash&&[1,2,3,6,9].every(tier=>skill.balanceLevels[String(tier)])), 'Missing configured AA tier');
 const images=new Set();
 function collect(value){if(typeof value==='string'&&/^\/art\/.*\.(png|webp|jpg)$/.test(value))images.add(value);else if(Array.isArray(value))value.forEach(collect);else if(value&&typeof value==='object')Object.values(value).forEach(collect);}

@@ -542,9 +542,12 @@ describe('extra skill integration with combat and persistent gains', () => {
     expect(caster.statuses.filter(s => s.skill === `${id}:persistent` && s.kind === 'strength')).toHaveLength(1);
   });
   it('summons a Super Offering golem after caster death without mana or cooldown requirements', () => {
-    const id = 'custom_warlock_chaotic_offering', battle = createBattle(player(0, [{ id, points: 6 }]), player(1), 7, catalog);
-    const [caster, enemy] = battle.units; caster.mana = 0; caster.cooldowns[0] = 100;
+    const id = 'custom_warlock_chaotic_offering', team=player(0, [{ id, points: 6 }]);
+    team.heroes.push({...structuredClone(team.heroes[0]),id:'surviving-ally',skills:[]});
+    const battle = createBattle(team, player(1), 7, catalog),caster=battle.units[0],enemy=battle.units.find(unit=>unit.side===1)!;
+    for(const unit of battle.units){unit.nextAttack=100;unit.moveSpeed=0;}caster.mana = 0; caster.cooldowns[0] = 100;
     applyDamage(battle, enemy, caster, caster.maxHp * 10, 'pure');
+    expect(battle.units.filter(unit=>unit.owner===caster.id&&unit.name==='地狱火')).toHaveLength(0);advance(battle,.6);
     const golems = battle.units.filter(u => u.owner === caster.id && u.name === '地狱火');
     expect(golems).toHaveLength(1); expect(golems[0].dead).toBe(false);
     expect(golems[0].maxHp).toBe(skillValue({ definition: definition(id), skill: { id, points: 6 } }, 'GOLEM HEALTH'));

@@ -1,4 +1,8 @@
 import {applyAttackModeAcceptance} from './combat/attack-modes';
+import {applyProcAcceptance} from './combat/proc-acceptance';
+import {applySummonRestorationAcceptance} from './combat/summon-restoration-acceptance';
+import {applyMobilityFieldsAcceptance,MOBILITY_FIELDS_CHILD_DEFINITIONS} from './combat/mobility-fields-acceptance';
+import {applyFervorAcceptance} from './combat/fervor-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -29,6 +33,7 @@ import {applyLinksAndGazeAcceptance,applyTetherAcceptance} from './combat/links-
 export const REFERENCE_UNITS_PER_WORLD_UNIT = 100;
 export type DamageType = 'physical' | 'magical' | 'pure';
 export interface EffectStatus extends Status {
+  affectsInvulnerable?:boolean;
   attribution?:import('./model').Attribution;
   points?:number;visualSkill?:string;visualPoints?:number;
   stolenOrigin?: string;
@@ -59,6 +64,9 @@ export interface ZoneOptions {
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
+  attackRecord?:import('./model').AttackRecord;
+  /** Internal: launch already applied attack replacements. */
+  preparedAttack?:boolean;
   trueStrike?:boolean;
   /** Blade Fury's separate granted attack keeps its normal damage. */
   ignoreBladeFuryPenalty?:boolean;
@@ -79,6 +87,13 @@ export interface InstantAttackOptions {
 }
 export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
+  attackRecord?:import('./model').AttackRecord;
+  attackInstanceKey?:string;
+  attackCritical?:boolean;
+  criticalSourceKey?:string;
+  damageFlags?:import('./model').DamageFlags;
+  damageCategory?:import('./model').DamageCategory;
+  castOrder?:{skillId:string;targetId:string;kind:'unit'|'point'|'none'};
   /** Frozen ground cursor for explicitly point-targeted orders. */
   castPosition?:{x:number;y:number};
   currentAttackTargetId?:string;
@@ -88,13 +103,14 @@ export interface EffectContext {
   baseAttackDamage?:number; attackDamage?:number;attackSourceSkill?:string;attackIsRanged?:boolean;
   /** An accepted ability damage instance, independent of effective HP loss. */
   abilityDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
+  incomingDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
   points?:number;visualSkill?:string;visualPoints?:number;
   random(): number;
   /** Opt-in calibrated PRD; probability is a fraction, key identifies one proc. */
   chance?(probability:number,key:string):boolean;
   enemies(): CombatUnit[]; allies(): CombatUnit[];
   damage(target: CombatUnit, amount: number, type?: DamageType, piercesImmunity?: boolean, options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}): number;
-  heal(target: CombatUnit, amount: number): number;
+  heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal'): number;
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
@@ -102,6 +118,10 @@ export interface EffectContext {
   linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';origin?:{x:number;y:number};onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
+  trySpellBlock?(target:CombatUnit):boolean;
+  cancelMotion?(target:CombatUnit):boolean;
+  startCooldown?(seconds?:number):void;
+  resetCooldown?():void;
   endChannel():void;
   movementSpeed(target:CombatUnit):number;
   /** Effective attack cadence and ordinary single-target eligibility. */
@@ -127,6 +147,14 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  procsOnCast?:boolean;
+  allowZeroCooldown?:boolean;
+  ignoreCastRangeBonuses?:boolean;
+  onCastStart?:(c:EffectContext)=>void;
+  onSpellOrder?:(c:EffectContext)=>void;
+  onAffectedUnitDeath?:(c:EffectContext,status:EffectStatus)=>void;
+  cooldownStart?:'release'|'effectEnd';
+  criticalAttack?:(c:EffectContext)=>{chance:number;multiplier:number;minMultiplier?:number;maxMultiplier?:number;lifesteal?:number;prdKey?:string}|undefined;
   /** A real attack-based projectile; instantaneous attacks without a projectile omit this. */
   attackProjectile?:boolean;
   /** Fired once when an individual status is dispelled or naturally expires. */
@@ -146,6 +174,7 @@ export interface SkillProgram {
   requiresFacing?:boolean|((c:EffectContext)=>boolean);
   spellBlockTiming?:'cast'|'impact';
   projectileDisjointable?:boolean;
+  projectileDisjointOnInvisibility?:boolean;
   cooldown?: (c: EffectContext) => number; manaCost?: (c: EffectContext) => number;
   passive?: boolean; canCast?: (c: EffectContext) => boolean;
   cast?: (c: EffectContext) => void; init?: (c: EffectContext) => void;
@@ -153,6 +182,7 @@ export interface SkillProgram {
   onDamage?: (c: EffectContext) => void; onCast?: (c: EffectContext) => void;
   onDealDamage?: (c: EffectContext) => void;
   onAbilityDamageEvent?: (c:EffectContext)=>void;
+  onIncomingDamageEvent?: (c:EffectContext)=>void;
   onDeath?: (c: EffectContext) => void; onAllyCast?: (c: EffectContext) => void; onAllyAttack?: (c: EffectContext) => void; onUnitDeath?: (c: EffectContext) => void; onManaShieldSpent?: (c: EffectContext) => void;
   onAllyAttackPoint?: (c:EffectContext)=>void;
   onAttackPoint?: (c:EffectContext)=>void;
@@ -386,7 +416,7 @@ register('clinkz_searing_arrows',passive({attackModifier:c=>({bonus:v(c,'BONUS D
 register('custom_slardar_bash_of_the_deep',passive({onAttack:c=>{const key='bash:'+c.skill.id;const n=Number(c.caster[key]??0)+1;c.caster[key]=n;if(n%v(c,'MELEE ATTACK COUNT',balanceNumber(c,'skill_effects.melee_attack_count_fallback.1',4))===0){hit(c,c.target,'BONUS DAMAGE','physical');stun(c,c.target,'BASH DURATION');}}},['every-fourth attack bash']));
 function timeLock(c:EffectContext,t:CombatUnit){c.damage(t,v(c,'BONUS DAMAGE')+(c.skill.points>=6?70:0));c.status(t,'stun',duration(c),0,{harmful:true,dispel:'strong'});c.delay(.1,()=>c.attack(t,1,false));}
 register('faceless_void_time_lock',passive({onAttack:c=>{if(c.random()<percent(v(c,'CHANCE')+(c.skill.points>=6?4:0)))timeLock(c,c.target);},init:c=>{if(c.skill.points>=9)c.zone({follow:true,radius:balanceNumber(c,'skill_effects.radius.1',4.5),duration:balanceNumber(c,'skill_effects.duration.1',120),interval:balanceNumber(c,'skill_effects.interval.1',4),effect:t=>timeLock(c,t)});},superImplemented:true,gabenImplemented:true,remaining:['Second-strike delay 0.1s and attack-modifier recursion rules need reference verification']},['seeded bash','bonus damage and second attack','Super damage/proc increase','Gaben four-second area Time Lock']));
-register('life_stealer_feast',passive({onAttack:c=>{const n=c.target.maxHp*percent(v(c,'MAX HEALTH DAMAGE'));c.damage(c.target,n,'physical');c.heal(c.caster,c.target.maxHp*percent(v(c,'MAX HEALTH LIFE STEAL')));}},['target-max-health damage','self healing']));
+register('life_stealer_feast',passive({onAttack:c=>{const n=c.target.maxHp*percent(v(c,'MAX HEALTH DAMAGE'));c.damage(c.target,n,'physical');c.heal(c.caster,c.target.maxHp*percent(v(c,'MAX HEALTH LIFE STEAL')),'lifesteal');}},['target-max-health damage','self healing']));
 register('antimage_mana_break',passive({onAttack:c=>{const n=Math.min(c.target.mana,v(c,'MANA BURNED PER HIT')+c.target.maxMana*percent(v(c,'MAX MANA BURNED PER HIT')));c.mana(c.target,-n);c.damage(c.target,n*percent(v(c,'MANA BURNED AS DAMAGE')),'physical');if(c.target.mana===0)slow(c,c.target,v(c,'MOVE SPEED SLOW ON FULL DRAIN'),v(c,'SLOW DURATION'));}},['mana burn','burn-based physical damage','empty-mana slow']));
 register('ursa_fury_swipes',passive({onAttack:c=>{const d=c.skill.points>=6?120:v(c,'RESET TIME'),s=c.target.statuses.find(s=>s.kind==='furySwipes'&&s.source===c.caster.id),n=(s?.value??0)+1;c.status(c.target,'furySwipes',d,n,{harmful:true,dispel:'none'});c.damage(c.target,n*(skillBalance(c.definition,c.skill.points)?v(c,"DAMAGE PER ATTACK"):((((v(c,'DAMAGE PER ATTACK')+(c.skill.points>=6?balanceNumber(c,'skill_effects.damage.1',12):0)))))),'physical');if(c.skill.points>=9){const key=`furyAttacks:${c.target.id}`;c.caster[key]=Number(c.caster[key]??0)+1;if(Number(c.caster[key])%2===0)for(const t of c.enemies().filter(t=>t.id!==c.target.id)){const stacks=t.statuses.find(s=>s.kind==='furySwipes'&&s.source===c.caster.id)?.value??0;c.status(t,'furySwipes',d,stacks+balanceNumber(c,'skill_effects.furyswipes_amount.1',1),{harmful:true,dispel:'none'});}}},superImplemented:true,gabenImplemented:true,remaining:['Attack damage categorization and summoned-unit interactions need reference verification']},['per-target stacking damage','Super round-long stacks and +12 damage','Gaben every-second-attack global extra stack']));
 register('troll_warlord_fervor',passive({onAttack:c=>{const previous=c.caster.statuses.find(s=>s.kind==='fervorCounter'&&s.source===c.caster.id&&s.skill===c.skill.id&&s.until>c.battle.time)?.value??0;let stacks=c.skill.points>=9||c.caster.fervorTarget===c.target.id?previous+1:1;c.caster.fervorTarget=c.target.id;stacks=Math.min(stacks,v(c,'MAX STACKS'));c.caster.fervorStacks=stacks;c.status(c.caster,'fervorCounter',1e6,stacks,{dispel:'strong'});c.status(c.caster,'attackSpeed',1e6,stacks*(v(c,'ATTACK SPEED PER STACK')+(!skillBalance(c.definition,c.skill.points)&&c.skill.points>=6?15:0)),{dispel:'strong'});},superImplemented:true,gabenImplemented:true,remaining:['Historical Wiki attack-point counting conflicts with current landed-hit counting; exact AA miss/disjoint version unresolved','First switched-target attack retaining one new stack is an explicit pending interpretation']},['same-target successful-hit attack-speed stacks and cap','AA strong dispel removes both bonus and counter','Break suppresses existing attack speed and new stack gain','Super final speed per stack','Gaben retains stacks on target switch']));
@@ -471,7 +501,11 @@ applySummonGapOverrides(registry);
 applyTetherAcceptance(registry);
 applyOmnislashClockOverride(registry);
 applyAttackModeAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS];
+applyProcAcceptance(registry);
+applySummonRestorationAcceptance(registry);
+applyMobilityFieldsAcceptance(registry);
+applyFervorAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;
 export function getSkillProgram(id: string): SkillProgram | undefined { return registry[id]; }
