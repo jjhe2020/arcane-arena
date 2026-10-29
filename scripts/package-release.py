@@ -56,7 +56,7 @@ with zipfile.ZipFile(archive) as z:
         raise RuntimeError(f'Archive CRC failed: {bad}')
 report = {'archive': str(archive), 'bytes': archive.stat().st_size, 'fileCount': len(entries)+1,
           'sha256': hashlib.file_digest(archive.open('rb'), 'sha256').hexdigest(),
-          'version': version, 'simulationRevision': revision, 'mechanics': coverage['counts'],
+          'version': version, 'simulationRevision': revision, 'configHash': coverage.get('configHash'), 'configuration': coverage.get('configurationCoverage'), 'mechanics': coverage['counts'],
           'strictReferenceVerifiedCount': coverage['strictReferenceVerifiedCount'],
           'crcVerified': True, 'status': 'playable_development_build_not_full_scope_complete'}
 (out/'release-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

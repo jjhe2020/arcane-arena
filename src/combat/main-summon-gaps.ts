@@ -1,6 +1,8 @@
+import {defaultMotionDuration} from '../config';
 import type { CombatUnit, SkillDefinition } from '../model';
 import type { EffectContext as C, EffectStatus, SkillProgram, SummonOptions } from '../skill-effects';
-import units from './historical-unit-data.json';
+import {UNIT_CONFIG} from '../config';
+const units={units:UNIT_CONFIG};
 
 // AA's explicit values remain authoritative. These are missing neutral-unit
 // behaviors from the pinned Valve 2023-02-10 KV/localization working baseline.
@@ -42,7 +44,7 @@ export const SUMMON_GAP_CHILD_PROGRAMS: Record<string, SkillProgram> = {
         shard.magicResist = raw.MagicalResistance / 100; shard.mana = shard.maxMana = raw.StatusMana;
         c.status(shard, 'regen', 60, raw.StatusHealthRegen);
         c.status(shard, 'manaRegen', 60, raw.StatusManaRegen - 3);
-        boulder(shard); c.teleport(shard, c.caster.x + (i ? .45 : -.45), c.caster.y);
+        boulder(shard); c.warp(shard,c.caster.x + (i ? .45 : -.45),c.caster.y);
       });
     },
     implemented: ['On death spawns exactly two 60-second Shard Golems', 'Shards retain Boulder but do not split again'],
@@ -130,7 +132,7 @@ export function applySummonGapOverrides(registry: Record<string, SkillProgram>):
       c.status(c.caster, 'root', .1, 0, { skill: marker, dispel: 'none' });
       c.status(c.caster, 'freePathing', .1, 1, { skill: marker, dispel: 'none' });
       const step = Math.min(10 / 30, gap - 3);
-      c.teleport(c.caster, c.caster.x + (partner.x - c.caster.x) / gap * step, c.caster.y + (partner.y - c.caster.y) / gap * step);
+      c.moveContinuous(c.caster,c.caster.x + (partner.x - c.caster.x) / gap * step,c.caster.y + (partner.y - c.caster.y) / gap * step,{duration:1/30});
       c.delay(1 / 30, pull);
     };
     c.delay(1 / 30, pull);

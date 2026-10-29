@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import type { AnimationClip, AssetManifest, BattleState, CombatEvent, CombatUnit, Hero } from './model';
-import {atlasFrame,bodyPresentation,barrierPresentations,linePresentations,combatTextEvents,basicAttackClip,bodyVisibility,shadowPathPresentations} from './animation';
+import {atlasFrame,bodyPresentation,barrierPresentations,linePresentations,combatTextEvents,recentCombatEvents,COMBAT_TEXT_LIFETIME,basicAttackClip,bodyVisibility,shadowPathPresentations} from './animation';
+import {interpolatedTransform} from './combat/presentation';
+import {DAMAGE_COLORS} from './combat/statistics';
 import type {ShadowPath} from './animation';
 import type {BattleBarrier} from './combat/barriers';
 import {selectVisualLayers,tierVisualLayers} from './visual-layers';
@@ -90,11 +92,12 @@ export class ArenaRenderer {
     v.texture.repeat.set(cell.repeatX,cell.repeatY);v.texture.offset.set(cell.offsetX,cell.offsetY);
     v.mesh.scale.set(size,height,1);const pivot=c.pivot??[.5,.3888889];v.mesh.position.set((.5-pivot[0])*size,-(.5-pivot[1])*height,0);
   }
-  draw(heroes:Hero[],enemy:Hero[],battle:BattleState|undefined,viewSide:number,dt:number){
+  draw(heroes:Hero[],enemy:Hero[],battle:BattleState|undefined,viewSide:number,dt:number,alpha=1){
     this.clock+=dt;this.grid.visible=this.gridVisible;
     if(this.ambient)this.frame(this.ambient,this.clock,true,39);
     if(battle!==this.currentBattle){this.currentBattle=battle;this.finishClock=undefined;this.eventCursor=0;this.attacks.clear();this.attackChoices.clear();this.cosmeticRandom.clear();this.windups.clear();this.births.clear();this.fx.forEach(f=>this.remove(f.visual));this.fx=[];}
-    const units: (Hero|CombatUnit)[]=battle?battle.units:[...heroes,...enemy.map(h=>({...h,y:-h.y,x:-h.x}))];
+    const displayBattle=battle?{...battle,units:battle.units.map(unit=>({...unit,...interpolatedTransform(unit,alpha)}))}:undefined;
+    const units: (Hero|CombatUnit)[]=displayBattle?displayBattle.units:[...heroes,...enemy.map(h=>({...h,y:-h.y,x:-h.x}))];
     if(battle?.finished&&this.finishClock===undefined)this.finishClock=this.clock;
     const used=new Set<string>();this.hiddenBodies.clear();const time=battle?battle.time+(this.finishClock===undefined?0:Math.min(2,this.clock-this.finishClock)):this.clock;
     units.forEach((u)=>{const live='dead' in u,unit=u as CombatUnit;if(live&&unit.dead&&time-unit.actionStart>5)return;used.add(u.id);let v=this.visuals.get(u.id);if(!v){v=this.makeVisual();this.visuals.set(u.id,v);}
@@ -121,9 +124,9 @@ export class ArenaRenderer {
         this.fx.push({key:placed.key,visual,start:e.time,end,x:placed.x,y:placed.y,angle:placed.angle,size:placed.size});
       }
     }}
-    this.drawPersistentEffects(battle,time);
+    this.drawPersistentEffects(displayBattle,time);
     this.fx=this.fx.filter(f=>{if(time>f.end){this.remove(f.visual);return false;}f.visual.group.position.set(f.x,f.y,.7);f.visual.group.rotation.z=f.angle;this.frame(f.visual,time-f.start,false,f.size);return true;});
-    this.trimTextures();this.renderer.render(this.scene,this.camera);this.drawHUD(units,battle,viewSide);
+    this.trimTextures();this.renderer.render(this.scene,this.camera);this.drawHUD(units,displayBattle,viewSide,time);
   }
   private trimTextures(){const active=new Set<string>();this.scene.traverse(object=>{if(object instanceof THREE.Mesh){const materials=Array.isArray(object.material)?object.material:[object.material];for(const m of materials){const t=(m as THREE.MeshBasicMaterial).map;if(t?.name)active.add(t.name);}}});
     const budget=(this.compactAtlases()?96:256)*1048576;
@@ -160,12 +163,12 @@ export class ArenaRenderer {
     }
     this.persistentFx.forEach((v,key)=>{if(!used.has(key)){this.remove(v);this.persistentFx.delete(key);}});
   }
-  private drawHUD(units:(Hero|CombatUnit)[],battle:BattleState|undefined,side:number){const ctx=this.ctx;ctx.setTransform(this.hud.width/this.width,0,0,this.hud.height/this.height,0,0);ctx.clearRect(0,0,this.width,this.height);
+  private drawHUD(units:(Hero|CombatUnit)[],battle:BattleState|undefined,side:number,time=battle?.time??0){const ctx=this.ctx;ctx.setTransform(this.hud.width/this.width,0,0,this.hud.height/this.height,0,0);ctx.clearRect(0,0,this.width,this.height);
     units.forEach(u=>{const p=this.project(u.x,u.y);const c=u as CombatUnit;if(c.dead||this.hiddenBodies.has(u.id))return;const mine=!battle?u.y<=0:c.side===side,pixels=this.width/(this.camera.right-this.camera.left),r=Math.max(c.summoned?3:5,Math.min(c.summoned?12:23,pixels*(c.summoned?.5:1)));
       ctx.strokeStyle=u.id===this.selected?'#f5d891':battle&&typeof battle.ghostSide==='number'&&battle.ghostSide===c.side?'#e0edf6':mine?'#70c9b2':'#ec8c76';ctx.lineWidth=u.id===this.selected?2.5:1;ctx.beginPath();ctx.ellipse(p.x,p.y+3,r,r*.7,0,0,Math.PI*2);ctx.stroke();
       if(battle){const w=Math.max(c.summoned?12:24,Math.min(c.summoned?25:44,pixels*(c.summoned?1.3:2.2)));ctx.fillStyle='#142220';ctx.fillRect(p.x-w/2,p.y-r-13,w,5);ctx.fillStyle=mine?'#7dc99c':'#dd8475';ctx.fillRect(p.x-w/2,p.y-r-13,w*Math.max(0,c.hp/Math.max(1,c.maxHp)),5);ctx.fillStyle='#68a9df';ctx.fillRect(p.x-w/2,p.y-r-7,w*Math.max(0,c.mana/Math.max(1,c.maxMana)),2);}
     });
-    if(battle){const pixelsPerWorld=this.width/(this.camera.right-this.camera.left);for(const text of combatTextEvents(battle.events.slice(-240),battle.time)){const target=battle.units.find(u=>u.id===text.target);if(this.hiddenBodies.has(text.target)||(target?.summoned&&pixelsPerWorld<12&&text.amount<75))continue;const age=battle.time-text.time,p=this.project(text.x,text.y);ctx.globalAlpha=Math.max(0,1-age/1.1);ctx.font='bold 12px system-ui';ctx.textAlign='center';ctx.fillStyle=text.type==='heal'?'#8fe5ae':'#fff0ce';ctx.strokeStyle='#15231fe6';ctx.lineWidth=2.5;const label=`${text.type==='heal'?'+':''}${Math.round(text.amount)}`,x=p.x+text.lane*13,y=p.y-29-age*25;ctx.strokeText(label,x,y);ctx.fillText(label,x,y);}
+    if(battle){const pixelsPerWorld=this.width/(this.camera.right-this.camera.left);for(const text of combatTextEvents(recentCombatEvents(battle.events,time),time)){const target=battle.units.find(u=>u.id===text.target);if(this.hiddenBodies.has(text.target)||(target?.summoned&&pixelsPerWorld<12&&text.amount<75&&!text.critical))continue;const age=time-text.time,p=this.project(text.x,text.y),pop=text.critical?1+Math.max(0,1-age/.16)*.3:1;ctx.globalAlpha=Math.max(0,1-age/COMBAT_TEXT_LIFETIME);ctx.font=`bold ${Math.round((text.critical?17:text.damageOverTime?11:13)*pop)}px system-ui`;ctx.textAlign='center';ctx.fillStyle=text.type==='heal'?DAMAGE_COLORS.healing:DAMAGE_COLORS[text.damageType];ctx.strokeStyle='#15231fe6';ctx.lineWidth=text.critical?3.2:2.5;const label=text.outcome==='miss'?'未命中':`${text.type==='heal'?'+':''}${Math.round(text.amount)}${text.critical?'!':''}`,x=p.x+text.lane*15,y=p.y-29-Math.min(age,.2)*40-Math.max(0,age-.2)*18;ctx.strokeText(label,x,y);ctx.fillText(label,x,y);}
       for(const e of battle.events.slice(-70)){const age=battle.time-e.time;if(e.type!=='attack'||e.toX===undefined||age<0||age>=.16)continue;const source=battle.units.find(u=>u.id===e.source);if(source&&source.range>2)continue;const a=this.project(e.x,e.y),b=this.project(e.toX,e.toY!);ctx.globalAlpha=1-age/.16;ctx.strokeStyle='#eacb8a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
     }ctx.globalAlpha=1;
   }

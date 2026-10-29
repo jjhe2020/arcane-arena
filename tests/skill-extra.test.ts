@@ -43,6 +43,7 @@ function harness(id: string, points = 9) {
     dispel: () => {}, projectile: (u, _speed, callback) => callback(u), linearProjectile: () => {},
     delay: (seconds, callback) => { timers.push({ due: battle.time + seconds, callback }); },
     zone: zone => { zones.push(zone); }, barrier: () => {}, disjoint: () => {}, endChannel: () => {}, movementSpeed: unit => unit.moveSpeed, summon: () => [], teleport: (u, x, y) => { u.x = x; u.y = y; },
+    warp: (u, x, y) => { u.x = x; u.y = y; }, moveContinuous: (u, x, y) => { u.x = x; u.y = y; return true; },
     attack: (u, multiplier = 1) => { attacks.push(u.id); u.hp -= caster.attack * multiplier; }, revive: () => {},
     castAbility: (grantedId, level, u) => { grants.push({ id: grantedId, points: level, target: u.id }); return true; },
   };

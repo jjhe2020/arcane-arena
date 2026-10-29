@@ -1,18 +1,25 @@
-import type {AnimationClip,AssetManifest,CombatUnit,CombatEvent} from './model';
+import type {AnimationClip,AssetManifest,CombatUnit,CombatEvent,DamageType} from './model';
 import type {BattleBarrier} from './combat/barriers';
 import {selectVisualLayers} from './visual-layers';
 import {resolveVisualArt} from './visual-bindings';
 
 export interface BodyPresentation {clip?:AnimationClip;hidden:boolean;skill?:string;prefix?:string}
 export function bodyVisibility(u:CombatUnit,viewSide:number,time:number){const has=(kind:string)=>u.statuses.some(s=>s.kind===kind&&s.until>time),concealed=(has('invisible')&&!has('revealed'))||has('undetectable');return{hidden:u.side!==viewSide&&concealed,opacity:u.side===viewSide&&concealed ? .45 : 1};}
-export function combatTextEvents(events:CombatEvent[],time:number){
- const packets=new Map<string,{key:string;target:string;type:'hit'|'heal';amount:number;x:number;y:number;time:number;lane:number}>();
+export const COMBAT_TEXT_LIFETIME=1.1;
+/** Events are appended in simulation-time order; binary search avoids count truncation. */
+export function recentCombatEvents(events:CombatEvent[],time:number,window=COMBAT_TEXT_LIFETIME):CombatEvent[]{
+ let low=0,high=events.length;while(low<high){const middle=(low+high)>>>1;if(events[middle].time<time-window)low=middle+1;else high=middle;}return events.slice(low).filter(event=>event.time<=time);
+}
+export interface CombatTextPacket {key:string;target:string;type:'hit'|'heal';amount:number;x:number;y:number;time:number;lane:number;damageType:DamageType;critical:boolean;damageOverTime:boolean;outcome?:string}
+export function combatTextEvents(events:CombatEvent[],time:number):CombatTextPacket[]{
+ const packets=new Map<string,CombatTextPacket>();
  for(const event of events){if((event.type!=='hit'&&event.type!=='heal')||event.time>time||time-event.time>1.1)continue;
-  const target=event.target??event.source,bucket=Math.floor((event.time+1e-8)/.35),key=`${target}:${event.type}:${bucket}`,old=packets.get(key);
+  const target=event.target??event.source,damageType=event.damageType??event.originDamageType??'physical',critical=!!event.flags?.critical,damageOverTime=!!event.flags?.damageOverTime,outcome=typeof event.outcome==='string'?event.outcome:undefined;
+  const bucket=Math.floor((event.time+1e-8)/.35),key=`${target}:${event.type}:${damageType}:${critical}:${damageOverTime}:${event.source}:${event.attribution?.abilityId??event.skill??''}:${outcome??''}:${bucket}`,old=packets.get(key);
   if(old){old.amount+=Number(event.amount??0);if(event.time>=old.time){old.x=event.toX??event.x;old.y=event.toY??event.y;old.time=event.time;}}
-  else packets.set(key,{key,target,type:event.type,amount:Number(event.amount??0),x:event.toX??event.x,y:event.toY??event.y,time:event.time,lane:bucket%3-1});
+  else packets.set(key,{key,target,type:event.type,amount:Number(event.amount??0),x:event.toX??event.x,y:event.toY??event.y,time:event.time,lane:bucket%3-1,damageType,critical,damageOverTime,outcome});
  }
- return [...packets.values()].filter(p=>p.amount>=.5);
+ const lanes=new Map<string,number>();return [...packets.values()].filter(p=>p.amount>=.5||p.outcome==='miss').map(packet=>{const index=lanes.get(packet.target)??0;lanes.set(packet.target,index+1);return{...packet,lane:packet.lane+(index%3-1)*1.4};});
 }
 const FORM_SKILLS:Record<string,{kind:string;prefix:(points:number)=>string}>={
  dragon_knight_elder_dragon_form:{kind:'elderDragon',prefix:p=>p>=9?'dragon_black':p>=3?'dragon_blue':p>=2?'dragon_red':'dragon_green'},

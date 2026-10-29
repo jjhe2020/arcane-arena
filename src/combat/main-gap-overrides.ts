@@ -1,3 +1,5 @@
+import {skillBalance} from '../config';
+import {configuredValue} from '../config';
 import type { CombatUnit } from '../model';
 import type { EffectContext as C, EffectStatus, SkillProgram } from '../skill-effects';
 import { historicalValue as historical } from './historical-upgrades';
@@ -6,6 +8,7 @@ import { addVisualWorldEffect, updateVisualWorldEffect, removeVisualWorldEffect 
 const S = (c: C) => c.skill.points >= 6, G = (c: C) => c.skill.points >= 9;
 const distance = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
 function value(c: C, key: string, fallback = 0): number {
+  const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row = c.definition.values.filter(v => v.split(':')[0].trim().toUpperCase() === key.toUpperCase()).at(-1);
   const values = row?.slice(row.indexOf(':') + 1).match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
   return values[Math.min(values.length - 1, Math.max(0, Math.min(2, c.skill.points - 1)))] ?? fallback;
@@ -153,7 +156,7 @@ export function applyMainGapOverrides(registry: Record<string, SkillProgram>): v
 
   const dispersion = registry.custom_spectre_dispersion;
   dispersion.onDamage = c => {
-    const reflected = (value(c, 'DAMAGE REFLECTED') + (S(c) ? 5 : 0)) / 100, raw = (c.amount ?? 0) / Math.max(.01, 1 - reflected);
+    const reflected = (value(c, 'DAMAGE REFLECTED') + (skillBalance(c.definition,c.skill.points)?0:S(c)?5:0)) / 100, raw = (c.amount ?? 0) / Math.max(.01, 1 - reflected);
     const min = value(c, 'MIN RADIUS') / 100, max = value(c, 'MAX RADIUS') / 100;
     for (const target of c.enemies().filter(unit => distance(unit, c.caster) <= max)) c.damage(target, raw * reflected * Math.max(0, 1 - Math.max(0, distance(target, c.caster) - min) / Math.max(.01, max - min)), c.damageType);
     if (!S(c)) return;

@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "scope": "Main AA skill numeric parameters at point tiers 1, 2, and 3. This is a complete default-value migration comparison for these tiers, not full original-game validation of Super/Gaben or ability mechanisms.",
+  "hash": "e4f6dabdb4b84fb7072a518d3c3dac33c6c9759ebcee54327dd1108c59c542fb",
+  "baseline": "config/reference/migration-baseline.json#skills[].values",
+  "compiled": "src/generated/game-config.json#skills",
+  "method": "Parse colon-delimited numeric value rows with the original runtime's first-key-match rule and rank clamping. Compare with relative tolerance 1e-8. Duplicate keys with conflicting values are listed separately; malformed non-parameter metadata is excluded.",
+  "counts": {
+    "skills": 230,
+    "uniqueKeys": 860,
+    "comparisons": 2580,
+    "unchanged": 2577,
+    "missing": 0,
+    "approvedExceptionComparisons": 3,
+    "unexpectedDifferences": 0
+  },
+  "missing": [],
+  "unexpectedDifferences": [],
+  "approvedExceptions": [
+    {
+      "id": "jakiro_ice_path",
+      "key": "DAMAGE",
+      "tiers": [
+        1,
+        2,
+        3
+      ],
+      "originalFirstValue": 0,
+      "compiledValue": 50,
+      "classification": "Explicit bug fix for duplicate generic and effect-specific DAMAGE fields in the AA snapshot.",
+      "reason": "The generic AbilityDamage=0 is not the Ice Path effect damage. The effect-specific AbilityValues.damage.value is 50; the maintained configuration keeps one authoritative DAMAGE=50.",
+      "sources": [
+        {
+          "path": "references/dota-20230216/npc_abilities.txt",
+          "line": 19769,
+          "field": "AbilityDamage",
+          "value": 0
+        },
+        {
+          "path": "references/dota-20230216/npc_abilities.txt",
+          "line": 19791,
+          "valueLine": 19793,
+          "field": "AbilityValues.damage.value",
+          "value": 50
+        },
+        {
+          "url": "https://liquipedia.net/dota2/Archive%3AJakiro",
+          "description": "Historical Jakiro reference used with the pinned Valve ability data."
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "jakiro_ice_path",
+          "key": "DAMAGE",
+          "tier": 1,
+          "expected": 0,
+          "actual": 50
+        },
+        {
+          "id": "jakiro_ice_path",
+          "key": "DAMAGE",
+          "tier": 2,
+          "expected": 0,
+          "actual": 50
+        },
+        {
+          "id": "jakiro_ice_path",
+          "key": "DAMAGE",
+          "tier": 3,
+          "expected": 0,
+          "actual": 50
+        }
+      ]
+    }
+  ],
+  "conflictingOriginalKeys": [
+    {
+      "id": "jakiro_ice_path",
+      "key": "DAMAGE",
+      "first": [
+        0
+      ],
+      "later": [
+        50
+      ]
+    }
+  ],
+  "excludedNonParameterMetadata": [
+    {
+      "id": "medusa_stone_gaze",
+      "row": "#DOTA_Tooltip_Ability_medusa_stone_gaze_AbilityCastRange 900"
+    }
+  ]
+}

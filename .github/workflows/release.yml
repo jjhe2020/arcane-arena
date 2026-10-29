@@ -79,6 +79,8 @@ jobs:
           fi
           node scripts/verify-release.mjs
           node scripts/browser-smoke.mjs
+          node scripts/skill-stats-smoke.mjs
+          node scripts/skill-stats-engine-smoke.mjs
 
       - name: Package playable version
         run: python scripts/package-release.py

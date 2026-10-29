@@ -1,3 +1,8 @@
+import {skillBalance} from './config';
+import {defaultMotionDuration} from './config';
+import {WORKING_DEFAULTS} from './config';
+import {configuredValue} from './config';
+import {balanceNumber} from './config';
 import type { CombatUnit, SkillDefinition } from './model';
 import type { EffectContext, EffectStatus, SkillProgram } from './skill-effects';
 import { addVisualWorldEffect } from './combat/visual-state';
@@ -15,6 +20,7 @@ const distance = (a: CombatUnit, b: CombatUnit) => Math.hypot(a.x - b.x, a.y - b
 const effectiveRange = (c: C) => c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ??
   c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0);
 function value(c: C, key: string, fallback = 0): number {
+  const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row = c.definition.values.find(row => row.slice(0, row.indexOf(':')).trim().toUpperCase() === key.toUpperCase());
   const numbers = row?.slice(row.indexOf(':') + 1).match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
   return numbers.length ? numbers[Math.min(numbers.length - 1, Math.max(0, Math.min(2, Math.floor(c.skill.points) - 1)))] : fallback;
@@ -76,6 +82,7 @@ export const EXTRA_WORKING_DEFAULTS = Object.freeze({
   wolfBiteDuration: 120, wolfBiteSharedLifesteal: .3, wolfBiteLinkRange: 12,
   frontlinerDepthTolerance: .4, hypothermiaBurstRadius: 4,
   moonGlaiveProjectileSpeed: 9, empowerSuperExtraEndWidth: 2, chronoCasterMoveSpeed: 10,
+  ...WORKING_DEFAULTS,
 });
 const WORKING = 'AA unspecified details use EXTRA_WORKING_DEFAULTS; see evidence document, not reference-verified';
 // Explicit working allowlist of attack effects without owner-only summons,
@@ -134,11 +141,11 @@ programs.crystal_maiden_brilliance_aura = passive({
   init: c => periodic(c, FOREVER, SECOND, () => {
     for (const ally of c.allies()) {
       c.mana(ally, value(c, ally.id === c.caster.id ? 'SELF MANA REGEN' : 'MANA REGEN'));
-      if (G(c)) buff(c, ally, 'cooldownReduction', .25, 1.1);
+      if (G(c)) buff(c, ally, 'cooldownReduction', balanceNumber(c,'skill_effects_extra.buff_amount.1',0.25), balanceNumber(c,'skill_effects_extra.buff_duration.1',1.1));
     }
   }),
   onCast: c => { const restored = value(c, 'MANA RESTORED PER CAST') + (S(c) ? 80 : 0);
-    for (const ally of c.allies()) { c.mana(ally, restored); if (S(c)) c.heal(ally, restored * .25); }
+    for (const ally of c.allies()) { c.mana(ally, restored); if (S(c)) c.heal(ally, restored * balanceNumber(c,'skill_effects_extra.heal.1',0.25)); }
   }
 }, ['global ally mana regeneration', 'cast-triggered mana burst', 'Super +80 burst and healing', 'Gaben cooldown-reduction aura'],
 ['Close/self mana regen fields conflict in the captured text; SELF MANA REGEN used for caster and MANA REGEN for allies']);
@@ -147,10 +154,10 @@ programs.bloodseeker_bloodrage = active(c => {
   const duration = value(c, 'DURATION');
   const targets = [c.caster, ...(S(c) ? ordered(c.allies().filter(t => t.id !== c.caster.id && !t.summoned && distance(t, c.caster) <= 8), c.caster).slice(0, 1) : [])];
   for (const ally of targets) {
-    buff(c, ally, 'bloodrage', 1, duration + .01);
-    buff(c, ally, 'attackSpeed', (value(c, 'ATTACK SPEED') + (S(c) ? 25 : 0)) * (ally.id === c.caster.id ? 1 : .5), duration);
-    buff(c, ally, 'spellAmp', P(value(c, 'SPELL AMPLIFICATION')) + (S(c) ? .08 : 0), duration);
-    if (G(c)) buff(c, ally, 'maxHpAttackLifesteal', .018, duration);
+    buff(c, ally, 'bloodrage', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), duration + balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01));
+    buff(c, ally, 'attackSpeed', (value(c, 'ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',25) : 0)) * (ally.id === c.caster.id ? balanceNumber(c,'skill_effects_extra.buff_amount.3',1) : balanceNumber(c,'skill_effects_extra.buff_amount.4',0.5)), duration);
+    buff(c, ally, 'spellAmp', P(value(c, 'SPELL AMPLIFICATION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.5',0.08) : 0), duration);
+    if (G(c)) buff(c, ally, 'maxHpAttackLifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.6',0.018), duration);
     for (let time = 1; time <= duration; time++) c.delay(time, () => {
       if (!ally.dead && has(c, ally, 'bloodrage')) ally.hp = Math.max(1, ally.hp - ally.maxHp * P(value(c, 'MAX HEALTH DAMAGE PER SECOND')));
     });
@@ -160,8 +167,8 @@ programs.bloodseeker_bloodrage = active(c => {
 
 programs.custom_beastmaster_inner_beast = passive({ init: c => periodic(c, FOREVER, .25, () => {
   for (const ally of friendlies(c, c.caster, U(value(c, 'RADIUS')))) {
-    buff(c, ally, 'attackSpeed', value(c, 'BONUS ATTACK SPEED') + (S(c) ? 15 : 0) + (G(c) ? 15 : 0), .35);
-    if (S(c)) { buff(c, ally, 'lifesteal', .2, .35); buff(c, ally, 'attackPct', .15, .35); }
+    buff(c, ally, 'attackSpeed', (skillBalance(c.definition,c.skill.points)?value(c,"BONUS ATTACK SPEED"):(((value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',15) : 0) + (G(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',15) : 0))))), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
+    if (S(c)) { buff(c, ally, 'lifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.2), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.35)); buff(c, ally, 'attackPct', balanceNumber(c,'skill_effects_extra.buff_amount.4',0.15), balanceNumber(c,'skill_effects_extra.buff_duration.3',0.35)); }
   }
 }) }, ['radius-bound ally attack-speed aura', 'Super lifesteal and attack-damage aura', 'Gaben extra attack speed'],
 ['Gaben Wraith Pact body, physical suppression and damage aura']);
@@ -169,16 +176,16 @@ programs.custom_beastmaster_inner_beast = passive({ init: c => periodic(c, FOREV
 programs.luna_lunar_blessing = passive({ init: c => periodic(c, FOREVER, .25, () => {
   const round = Number(c.battle.round ?? 1), upgradeRound = c.skill.superRound ?? round;
   const accumulated = S(c) ? Math.max(0, round - upgradeRound) * 4 : 0;
-  for (const ally of friendlies(c, c.caster, U(value(c, 'BLESSING RADIUS')))) buff(c, ally, 'attackBonus', value(c, 'DAMAGE BONUS') + accumulated, .35);
+  for (const ally of friendlies(c, c.caster, U(value(c, 'BLESSING RADIUS')))) buff(c, ally, 'attackBonus', value(c, 'DAMAGE BONUS') + accumulated, balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
 }) }, ['radius-bound flat ally attack-damage aura', 'Super +4 damage for each round after the recorded upgrade round'], ['Gaben Bongo Drums exact referenced-item statistics', 'Day/night vision omitted from flat arena']);
 
 programs.vengefulspirit_command_aura = passive({ init: c => periodic(c, FOREVER, .25, () => {
-  for (const ally of friendlies(c, c.caster, U(value(c, 'RADIUS')))) buff(c, ally, 'attackPct', P(value(c, 'BASE DAMAGE BONUS')) + (S(c) ? .16 : 0), .35);
+  for (const ally of friendlies(c, c.caster, U(value(c, 'RADIUS')))) buff(c, ally, 'attackPct', P(value(c, 'BASE DAMAGE BONUS')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',0.16) : 0), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
 }), onDeath: c => {
   if (!G(c) || c.caster.strongAuraIllusion) return;
-  const images = c.summon({ name: `${c.caster.name}·复仇幻象`, count: 1, hp: c.caster.maxHp, attack: c.caster.attack,
-    armor: c.caster.armor, range: c.caster.range, interval: c.caster.attackInterval, speed: c.caster.moveSpeed * 1.12,
-    lifetime: FOREVER, illusion: true, damageTaken: 1, inheritsSkills: true, initializeInherited: true });
+  const images = c.summon({ name: `${c.caster.name}·复仇幻象`, count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: c.caster.maxHp, attack: c.caster.attack,
+    armor: c.caster.armor, range: c.caster.range, interval: c.caster.attackInterval, speed: c.caster.moveSpeed * balanceNumber(c,'skill_effects_extra.speed.1',1.12),
+    lifetime: FOREVER, illusion: true, damageTaken: balanceNumber(c,'skill_effects_extra.damagetaken.1',1), inheritsSkills: true, initializeInherited: true });
   for (const image of images) { image.strongAuraIllusion = true; image.strongIllusion = true; image.maxMana = c.caster.maxMana; image.mana = c.caster.maxMana; }
 } }, ['radius-bound percentage attack-damage aura', 'Super +16 percentage points', 'Gaben on-death full-damage strong illusion with active abilities and +12% move speed'],
 ['Working strong-illusion inheritance initializes all registered abilities with snapshot attribute deduplication; exact AA allowlist remains unverified']);
@@ -192,7 +199,7 @@ function empower(c: C, target: CombatUnit) {
     { data: { distance: 6.5, startWidth: 1.5, endWidth: 3.6 + (S(c) ? EXTRA_WORKING_DEFAULTS.empowerSuperExtraEndWidth : 0) } });
 }
 programs.custom_magnataur_empower = active(c => {
-  if (G(c)) { periodic(c, FOREVER, .25, () => { for (const ally of c.allies()) empower(c, ally); }); buff(c, c.caster, 'empowerAura', 1); }
+  if (G(c)) { periodic(c, FOREVER, .25, () => { for (const ally of c.allies()) empower(c, ally); }); buff(c, c.caster, 'empowerAura', balanceNumber(c,'skill_effects_extra.buff_amount.1',1)); }
   else { empower(c, c.target); if (S(c) && c.target.id !== c.caster.id) empower(c, c.caster); }
 }, ['bonus attack damage', 'closest-other-ally targeting with self fallback', '75% larger self bonus', 'Super self co-cast and numerical bonuses', 'Gaben global aura'],
 [HISTORICAL, 'Directional cleave uses native 150 starting radius, 360 ending radius and 650 distance; target centers define inclusion',
@@ -201,34 +208,34 @@ programs.custom_magnataur_empower = active(c => {
   targetSelector: (c, candidates) => ordered(candidates.filter(t => t.id !== c.caster.id), c.caster)[0] ?? candidates.find(t => t.id === c.caster.id) });
 
 programs.custom_drow_ranger_frost_arrows = passive({
-  attackModifier: c => ({ bonus: value(c, 'BONUS DAMAGE') + (S(c) ? 20 : 0) }),
+  attackModifier: c => ({ bonus: (skillBalance(c.definition,c.skill.points)?value(c,"BONUS DAMAGE"):(((value(c, 'BONUS DAMAGE') + (S(c) ? 20 : 0))))) }),
   onAttack: c => {
     const n = Math.min(7, Number(c.target.statuses.find(s => s.kind === 'hypothermia' && s.source === c.caster.id && s.until > c.battle.time)?.value ?? 0) + 1);
-    debuff(c, c.target, 'slow', P(value(c, 'MOVEMENT SLOW')), 1.5);
-    debuff(c, c.target, 'hypothermia', n, 7);
-    debuff(c, c.target, 'healReduction', Math.min(1, n * (P(value(c, 'HYPOTHERMIA REGEN REDUCTION')) + (S(c) ? .04 : 0))), 7);
-    if (G(c)) for (const enemy of ordered(nearby(c, c.target, 3.75).filter(t => t.id !== c.target.id), c.target).slice(0, 2)) c.attack(enemy, .5, false);
+    debuff(c, c.target, 'slow', P(value(c, 'MOVEMENT SLOW')), balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.5));
+    debuff(c, c.target, 'hypothermia', n, balanceNumber(c,'skill_effects_extra.debuff_duration.2',7));
+    debuff(c, c.target, 'healReduction', Math.min(balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), n * (P(value(c, 'HYPOTHERMIA REGEN REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.04) : 0))), balanceNumber(c,'skill_effects_extra.debuff_duration.3',7));
+    if (G(c)) for (const enemy of ordered(nearby(c, c.target, 3.75).filter(t => t.id !== c.target.id), c.target).slice(0, 2)) c.attack(enemy, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',0.5), false);
   }, onUnitDeath: c => {
     const stacks = c.target.statuses.find(s => s.kind === 'hypothermia' && s.source === c.caster.id && s.until > c.battle.time)?.value ?? 0;
     if (!stacks || c.target.side === c.caster.side) return;
     for (const enemy of nearby(c, c.target, EXTRA_WORKING_DEFAULTS.hypothermiaBurstRadius)) {
       c.damage(enemy, stacks * value(c, 'HYPOTHERMIA BURST DAMAGE'), 'magical', false);
-      debuff(c, enemy, 'slow', .4, 2, { piercesImmunity: false });
+      debuff(c, enemy, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.3',0.4), balanceNumber(c,'skill_effects_extra.debuff_duration.4',2), { piercesImmunity: false });
     }
   }
 }, ['zero-mana passive attack bonus', '1.5-second movement slow', 'seven-second capped Hypothermia stacks and recovery suppression', 'death burst uses AA damage per stack', 'Super bonus damage and suppression', 'Gaben two nearby split attacks'],
 [HISTORICAL, 'Hypothermia lifetime/cap/slow use historical shard values; radius 400 is a transparent default', 'AA flat bonus damage is retained; historical shard extra damage per stack is not added without matching AA evidence', 'Death bursts after the original caster has already died require persistent passive-source hooks']);
 
 programs.custom_viper_poison_attack = passive({
-  init: c => { if (S(c)) buff(c, c.caster, 'range', 1.5, FOREVER, { dispel: 'none' }); },
+  init: c => { if (S(c)) buff(c, c.caster, 'range', balanceNumber(c,'skill_effects_extra.buff_amount.1',1.5), FOREVER, { dispel: 'none' }); },
   onAttack: c => {
     const seconds = value(c, 'DURATION');
     const old = c.target.statuses.find(s => s.kind === 'poisonAttack' && s.source === c.caster.id)?.value ?? 0;
     const n = Math.min(value(c, 'MAX STACKS') + (G(c) ? 3 : 0), old + 1);
     debuff(c, c.target, 'poisonAttack', n, seconds);
-    debuff(c, c.target, 'slow', Math.min(.99, n * P(value(c, 'MOVE SLOW PER STACK'))), seconds);
-    debuff(c, c.target, 'magicResist', -n * (P(value(c, 'MAGIC RESISTANCE PER STACK')) + (S(c) ? .1 : 0)), seconds);
-    debuff(c, c.target, 'dot', n * value(c, 'DAMAGE PER SECOND'), seconds, { interval: 1, damageType: 'magical' });
+    debuff(c, c.target, 'slow', Math.min(balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.99), n * P(value(c, 'MOVE SLOW PER STACK'))), seconds);
+    debuff(c, c.target, 'magicResist', -n * (P(value(c, 'MAGIC RESISTANCE PER STACK')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.1) : 0)), seconds);
+    debuff(c, c.target, 'dot', n * value(c, 'DAMAGE PER SECOND'), seconds, { interval: balanceNumber(c,'skill_effects_extra.interval.1',1), damageType: 'magical' });
     if (G(c)) debuff(c, c.target, 'armor', -n, seconds);
     if (S(c)) { const bonus = readState(c, 'resistance') + P(value(c, 'MAGIC RESISTANCE PER STACK')) + .1; setState(c, 'resistance', bonus); buff(c, c.caster, 'magicResist', bonus); }
   }
@@ -237,9 +244,9 @@ programs.custom_viper_poison_attack = passive({
 
 programs.winter_wyvern_arctic_burn = active(c => {
   const seconds = G(c) ? FOREVER : value(c, 'FLIGHT DURATION');
-  buff(c, c.caster, 'arcticBurn', 1, seconds); buff(c, c.caster, 'range', U(value(c, 'BONUS ATTACK RANGE')), seconds);
-  buff(c, c.caster, 'flying', 1, seconds);
-  if (G(c)) buff(c, c.caster, 'haste', .25, seconds);
+  buff(c, c.caster, 'arcticBurn', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds); buff(c, c.caster, 'range', U(value(c, 'BONUS ATTACK RANGE')), seconds);
+  buff(c, c.caster, 'flying', balanceNumber(c,'skill_effects_extra.buff_amount.2',1), seconds);
+  if (G(c)) buff(c, c.caster, 'haste', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), seconds);
   c.caster[stateKey(c, 'hitTargets')] = new Set<string>();
 }, ['temporary attack-range increase', 'current-health percentage burn', 'movement slow', 'Super slow and duration', 'Gaben permanent burn and repeated targets'],
 ['Flying collision/pathing', HISTORICAL, 'Projectile speed and one-hit-per-target reference verification'], {
@@ -249,8 +256,8 @@ programs.winter_wyvern_arctic_burn = active(c => {
     if (!G(c) && hits?.has(c.target.id)) return;
     hits?.add(c.target.id);
     const seconds = value(c, 'BURN DURATION') + (S(c) ? 2 : 0), target = c.target;
-    debuff(c, target, 'arcticBurnDot', 1, seconds + .01);
-    debuff(c, target, 'slow', P(value(c, 'MOVEMENT SLOW')) + (S(c) ? .12 : 0), seconds);
+    debuff(c, target, 'arcticBurnDot', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), seconds + balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.01));
+    debuff(c, target, 'slow', P(value(c, 'MOVEMENT SLOW')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.12) : 0), seconds);
     const generation = Number(target[stateKey(c, 'burnGeneration')] ?? 0) + 1;
     target[stateKey(c, 'burnGeneration')] = generation;
     for (let i = 1; i <= seconds; i++) c.delay(i, () => {
@@ -263,18 +270,18 @@ programs.enchantress_impetus = passive({ onAttack: c => {
   const cost = c.caster.extraFreeImpetus ? EXTRA_WORKING_DEFAULTS.sproinkExtraImpetusMana : c.definition.mana[Math.min(c.definition.mana.length - 1, Math.max(0, Math.min(2, c.skill.points - 1)))] ?? 0;
   if (c.caster.mana < cost) return;
   c.mana(c.caster, -cost);
-  c.damage(c.target, distance(c.caster, c.target) * 100 * (P(value(c, 'DISTANCE DAMAGE')) + (S(c) ? .06 : 0)) * (c.target.summoned ? 2 : 1), 'pure');
+  c.damage(c.target, distance(c.caster, c.target) * balanceNumber(c,'skill_effects_extra.damage.1',100) * (P(value(c, 'DISTANCE DAMAGE')) + (S(c) ? balanceNumber(c,'skill_effects_extra.damage.2',0.06) : 0)) * (c.target.summoned ? balanceNumber(c,'skill_effects_extra.damage.3',2) : balanceNumber(c,'skill_effects_extra.damage.4',1)), 'pure');
 } }, ['mana-funded distance-based pure attack damage', 'double damage to summoned targets', 'Super +6% distance factor'],
 ['Specialist Array exact item effect', 'Gaben Sproink', 'Creep/illusion classification for doubled damage', 'Distance measured at impact needs attack-origin snapshot']);
 
 programs.doom_bringer_infernal_blade = active(c => {
-  c.attack(c.target, 1, false);
+  c.attack(c.target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), false);
   for (const target of G(c) ? nearby(c, c.target, 5) : [c.target]) {
-    debuff(c, target, 'stun', 0, value(c, 'STUN DURATION') + (S(c) ? 1.2 : 0), { dispel: 'strong' });
+    debuff(c, target, 'stun', 0, value(c, 'STUN DURATION') + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.2) : 0), { dispel: 'strong' });
     // AA 4.5, 2023-02-01: the default break was shortened from four to two seconds.
-    debuff(c, target, 'break', 0, 2);
-    if (S(c)) c.damage(target, 150, 'magical', false);
-    debuff(c, target, 'dot', value(c, 'BASE BURN DAMAGE') + target.maxHp * (P(value(c, 'MAX HP AS DAMAGE')) + (S(c) ? .021 : 0)), value(c, 'BURN DURATION'), { interval: 1, damageType: 'magical' });
+    debuff(c, target, 'break', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.2',2));
+    if (S(c)) c.damage(target, balanceNumber(c,'skill_effects_extra.damage.1',150), 'magical', false);
+    debuff(c, target, 'dot', value(c, 'BASE BURN DAMAGE') + target.maxHp * (P(value(c, 'MAX HP AS DAMAGE')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.021) : 0)), value(c, 'BURN DURATION'), { interval: balanceNumber(c,'skill_effects_extra.interval.1',1), damageType: 'magical' });
   }
 }, ['infernal instant attack', 'ministun', 'base plus max-health burn', 'Super stun and burn percentages', 'Gaben 500-radius application'],
 [HISTORICAL, 'Super bonus damage uses historical shard_bonus_damage=150; AA-specific trigger conditions still require comparison'], { range: 2 });
@@ -299,17 +306,17 @@ programs.custom_dawnbreaker_luminosity = passive({ attackModifier: c => {
 }, onAttack: c => {
   if (readState(c, 'proc')) {
     const heal = (c.amount ?? 0) * (P(value(c, 'HEALING FROM HEROES')) + (G(c) ? 1.5 : 0)) * (c.target.summoned ? 1 - P(value(c, 'CREEP HEAL PENALTY')) : 1);
-    c.heal(c.caster, heal); for (const ally of friendlies(c, c.caster, 6.5).filter(t => t.id !== c.caster.id)) c.heal(ally, heal * .35);
+    c.heal(c.caster, heal); for (const ally of friendlies(c, c.caster, 6.5).filter(t => t.id !== c.caster.id)) c.heal(ally, heal * balanceNumber(c,'skill_effects_extra.heal.1',0.35));
   }
   if (G(c) && c.battle.time >= readState(c, 'doubleAttack')) {
     setState(c, 'doubleAttack', c.battle.time + 5);
-    c.delay(EXTRA_WORKING_DEFAULTS.luminositySecondStrikeDelay, () => { if (!c.caster.dead && !c.target.dead) c.attack(c.target, 1, true); });
+    c.delay(EXTRA_WORKING_DEFAULTS.luminositySecondStrikeDelay, () => { if (!c.caster.dead && !c.target.dead) c.attack(c.target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), true); });
   }
 } }, ['every-fourth attack critical and area healing', 'Super one fewer attack and critical bonus', 'Gaben five-second double attack'],
 ['Gaben +150% lifesteal interpreted as percentage points pending reference verification', 'Proc counter interaction with secondary attacks']);
 
 programs.custom_monkey_king_jingu_mastery = passive({
-  attackModifier: c => ({ bonus: readState(c, 'charges') > 0 ? value(c, 'BONUS DAMAGE') + (S(c) ? 130 : 0) : 0 }),
+  attackModifier: c => ({ bonus: readState(c, 'charges') > 0 ? (skillBalance(c.definition,c.skill.points)?value(c,"BONUS DAMAGE"):(((value(c, 'BONUS DAMAGE') + (S(c) ? 130 : 0))))) : 0 }),
   onAttack: c => {
     if (readState(c, 'charges') > 0) { setState(c, 'charges', readState(c, 'charges') - 1); c.heal(c.caster, (c.amount ?? 0) * P(value(c, 'BONUS LIFESTEAL'))); return; }
     if (c.target.summoned) return;
@@ -318,7 +325,7 @@ programs.custom_monkey_king_jingu_mastery = passive({
     if (n >= value(c, 'REQUIRED HITS')) {
       clear(c, c.target, 'jinguHits'); setState(c, 'charges', value(c, 'CHARGES'));
       const generation = readState(c, 'jinguGeneration') + 1; setState(c, 'jinguGeneration', generation);
-      c.delay(35, () => { if (readState(c, 'jinguGeneration') === generation) setState(c, 'charges', 0); });
+      c.delay(balanceNumber(c,'skill_effects_extra.delay.1',35), () => { if (readState(c, 'jinguGeneration') === generation) setState(c, 'charges', 0); });
     }
   }
 }, ['per-enemy hit counters with expiry', 'four charged bonus-damage/lifesteal attacks', 'Super +130 damage'], ['Super Echo Sabre', 'Gaben stone soldiers', 'Charged attack lifetime absent in catalog']);
@@ -344,9 +351,9 @@ programs.custom_storm_spirit_overload = passive({
   onAllyCast: c => { if (S(c) && distance(c.target, c.caster) <= 7.5) setState(c, 'charges', readState(c, 'charges') + 1); },
   onAttack: c => { const n = readState(c, 'charges'); if (!n) return; setState(c, 'charges', 0);
     const release = (center: CombatUnit) => { for (const target of nearby(c, center, U(value(c, 'RADIUS')))) {
-      c.damage(target, n * value(c, 'DAMAGE')); debuff(c, target, 'slow', P(value(c, 'MOVEMENT SLOW')), .8);
+      c.damage(target, n * value(c, 'DAMAGE')); debuff(c, target, 'slow', P(value(c, 'MOVEMENT SLOW')), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.8));
       // AA 4.5 explicitly changes the attack-speed slow from .8 to 1.2 seconds.
-      debuff(c, target, 'attackSpeed', value(c, 'ATTACK SLOW'), 1.2);
+      debuff(c, target, 'attackSpeed', value(c, 'ATTACK SLOW'), balanceNumber(c,'skill_effects_extra.debuff_duration.2',1.2));
     } };
     release(c.target);
     if (G(c)) {
@@ -356,7 +363,7 @@ programs.custom_storm_spirit_overload = passive({
         const next = ordered(nearby(c, current, EXTRA_WORKING_DEFAULTS.overloadBounceRadius).filter(t => !seen.has(t.id)), current)[0]; if (!next) return;
         seen.add(next.id);
         c.delay(distance(current, next) / EXTRA_WORKING_DEFAULTS.overloadBounceSpeed, () => {
-          if (next.dead || c.caster.dead) return; c.attack(next, 1, false); release(next); bounce(next, remaining - 1);
+          if (next.dead || c.caster.dead) return; c.attack(next, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), false); release(next); bounce(next, remaining - 1);
         });
       };
       bounce(c.target, 2);
@@ -372,13 +379,13 @@ programs.custom_zuus_static_field = passive({ onDealDamage: c => {
   const cooldownKey = `trigger:${c.triggerSkillId}`;
   if (c.battle.time < readState(c, cooldownKey)) return;
   setState(c, cooldownKey, c.battle.time + value(c, 'COOLDOWN'));
-  c.damage(c.target, c.target.hp * (P(value(c, 'HEALTH REDUCTION')) + (S(c) ? .02 : 0)));
+  c.damage(c.target, c.target.hp * (P(value(c, 'HEALTH REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.damage.1',0.02) : 0)));
   if (G(c)) for (const target of nearby(c, c.caster, 10)
     .filter(t => !t.statuses.some(s => ['undetectable', 'shadowRealm'].includes(s.kind) && s.until > c.battle.time))
     .sort((a, b) => Number(!!a.summoned) - Number(!!b.summoned) || distance(a, c.caster) - distance(b, c.caster) || a.id.localeCompare(b.id)).slice(0, 2)) {
-    c.damage(target, 100, 'magical', false);
-    debuff(c, target, 'slow', .8, 1.6); debuff(c, target, 'attackSpeed', -100, 1.6);
-    debuff(c, target, 'castTimePct', .5, 1.6);
+    c.damage(target, balanceNumber(c,'skill_effects_extra.damage.2',100), 'magical', false);
+    debuff(c, target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.8), balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.6)); debuff(c, target, 'attackSpeed', balanceNumber(c,'skill_effects_extra.debuff_amount.2',-100), balanceNumber(c,'skill_effects_extra.debuff_duration.2',1.6));
+    debuff(c, target, 'castTimePct', balanceNumber(c,'skill_effects_extra.debuff_amount.3',0.5), balanceNumber(c,'skill_effects_extra.debuff_duration.3',1.6));
   }
 } }, ['current-health damage only after an actual ability damage event', 'independent cooldown per triggering ability', 'Super +2 percentage points'],
 ['Multi-target ability shared-vs-per-target cooldown needs reference comparison', HISTORICAL, 'Heavenly Jump uses maximum basic level, nearest-two targeting; granted level is unspecified in AA text']);
@@ -392,7 +399,7 @@ programs.custom_abaddon_curse_of_avernus = passive({ onAttack: c => {
     clear(c, c.target, 'avernusHits'); const duration = value(c, 'CURSE DURATION');
     debuff(c, c.target, 'avernusCurse', value(c, 'CURSE ATTACK SPEED'), duration);
     debuff(c, c.target, 'silence', 0, duration);
-    debuff(c, c.target, 'slow', Math.min(.99, P(value(c, 'CURSE SLOW')) + (S(c) ? EXTRA_WORKING_DEFAULTS.avernusExtraSlow : 0)), duration);
+    debuff(c, c.target, 'slow', Math.min(balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.99), P(value(c, 'CURSE SLOW')) + (S(c) ? EXTRA_WORKING_DEFAULTS.avernusExtraSlow : 0)), duration);
   }
 } }, ['four-hit curse/silence', 'basic and curse slows', 'Super three-hit threshold', 'Gaben can stack during existing curse'],
 ['Super -50% slow wording requires reference interpretation']);
@@ -400,34 +407,34 @@ programs.custom_abaddon_curse_of_avernus = passive({ onAttack: c => {
 programs.custom_abyssal_underlord_atrophy_aura = passive({ init: c => {
   periodic(c, FOREVER, .25, () => {
     const radius = S(c) ? 1000 : U(value(c, 'RADIUS'));
-    for (const enemy of nearby(c, c.caster, radius)) debuff(c, enemy, 'attackPct', -(P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? .15 : 0)), .35);
+    for (const enemy of nearby(c, c.caster, radius)) debuff(c, enemy, 'attackPct', -(P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.15) : 0)), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.35));
     buff(c, c.caster, 'attackBonus', readState(c, 'bonus'));
-    if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), .35);
+    if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
   });
 }, onUnitDeath: c => {
   if (c.target.side === c.caster.side || distance(c.target, c.caster) > (S(c) ? 1000 : U(value(c, 'RADIUS')))) return;
   setState(c, 'bonus', readState(c, 'bonus') + value(c, c.target.summoned ? 'BONUS DAMAGE(CREEP)' : 'BONUS DAMAGE(HERO)'));
   buff(c, c.caster, 'attackBonus', readState(c, 'bonus'));
-  if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), .35);
+  if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.35));
 } }, ['enemy base-damage reduction aura', 'nearby death bonus damage', 'Super global aura', 'Gaben shares acquired bonus with allies'],
 ['Temporary damage-bonus duration absent: currently lasts until battle ends']);
 
 programs.huskar_berserkers_blood = passive({ init: c => {
-  if (G(c)) buff(c, c.caster, 'strength', 60, FOREVER, { dispel: 'none' });
+  if (G(c)) buff(c, c.caster, 'strength', balanceNumber(c,'skill_effects_extra.buff_amount.1',60), FOREVER, { dispel: 'none' });
   periodic(c, FOREVER, .2, () => {
   const scale = Math.min(1, Math.max(0, (1 - c.caster.hp / c.caster.maxHp) / (1 - P(value(c, 'HP FOR MAX BONUS')))));
-  buff(c, c.caster, 'attackSpeed', value(c, 'MAX ATTACK SPEED') * scale, .3);
-  buff(c, c.caster, 'magicResist', P(value(c, 'MAX MAGIC RESIST')) * scale, .3);
-  if (typeof c.caster.strength === 'number') buff(c, c.caster, 'regen', c.caster.strength * (P(value(c, 'MAX STR REGEN')) + (S(c) ? .3 : 0)) * scale, .3);
+  buff(c, c.caster, 'attackSpeed', value(c, 'MAX ATTACK SPEED') * scale, balanceNumber(c,'skill_effects_extra.buff_duration.1',0.3));
+  buff(c, c.caster, 'magicResist', P(value(c, 'MAX MAGIC RESIST')) * scale, balanceNumber(c,'skill_effects_extra.buff_duration.2',0.3));
+  if (typeof c.caster.strength === 'number') buff(c, c.caster, 'regen', c.caster.strength * (P(value(c, 'MAX STR REGEN')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',0.3) : 0)) * scale, balanceNumber(c,'skill_effects_extra.buff_duration.3',0.3));
 }); } }, ['continuous missing-health attack speed and magic resistance', 'strength-based regeneration', 'Super +30 percentage points strength regeneration', 'Gaben +60 Strength'],
 ['Missing-health interpolation curve needs reference comparison']);
 
 programs.custom_slark_dark_pact = active(c => {
   const allies = G(c) ? c.allies().filter(t => t.id !== c.caster.id && !t.summoned && !t.illusion) : [];
-  for (let pulse = 0; pulse < 10; pulse++) c.delay(value(c, 'DELAY') + pulse * .1, () => {
+  for (let pulse = 0; pulse < 10; pulse++) c.delay(value(c, 'DELAY') + pulse * balanceNumber(c,'skill_effects_extra.delay.1',0.1), () => {
     for (const unit of [c.caster, ...allies]) {
       if (unit.dead) continue;
-      const own = unit.id === c.caster.id, damage = own ? (value(c, 'DAMAGE') + (S(c) ? 150 : 0)) / 10 : value(c, 'DAMAGE') * .05;
+      const own = unit.id === c.caster.id, damage = own ? (((skillBalance(c.definition,c.skill.points)?value(c,"DAMAGE"):((value(c, 'DAMAGE') + (S(c) ? 150 : 0)))) / 10)) : (skillBalance(c.definition,c.skill.points)?value(c,'ALLY COPY DAMAGE')/10:value(c,'DAMAGE')*.05);
       c.dispel(unit, true);
       for (const enemy of nearby(c, unit, U(value(c, 'RADIUS')) + (own && S(c) ? 1.5 : 0))) { c.damage(enemy, damage); if (own && S(c)) c.dispel(enemy, false, false); }
       unit.hp = Math.max(1, unit.hp - damage * P(value(c, 'SELF DAMAGE')));
@@ -438,43 +445,43 @@ programs.custom_slark_dark_pact = active(c => {
 
 programs.custom_enchantress_natures_attendants = active(c => {
   const healTick = (wisps: number) => { const targets = friendlies(c, c.caster, U(value(c, 'RADIUS'))).filter(t => t.hp < t.maxHp);
-    for (let i = 0; i < wisps && targets.length; i++) c.heal(targets[Math.floor(c.random() * targets.length)], value(c, 'HEAL PER SECOND') + (S(c) ? 20 : 0));
+    for (let i = 0; i < wisps && targets.length; i++) c.heal(targets[Math.floor(c.random() * targets.length)], (skillBalance(c.definition,c.skill.points)?value(c,"HEAL PER SECOND"):(((value(c, 'HEAL PER SECOND') + (S(c) ? balanceNumber(c,'skill_effects_extra.heal.1',20) : 0))))));
   };
   periodic(c, 12, 1, () => healTick(value(c, 'WISPS') + (S(c) ? 5 : 0)));
   if (G(c)) periodic(c, EXTRA_WORKING_DEFAULTS.evilWispDuration, .5, () => {
     for (let wisp = 0; wisp < EXTRA_WORKING_DEFAULTS.evilWispCount; wisp++) {
       const enemies = nearby(c, c.caster, EXTRA_WORKING_DEFAULTS.evilWispRadius);
       if (!enemies.length) break;
-      c.damage(enemies[Math.floor(c.random() * enemies.length)], EXTRA_WORKING_DEFAULTS.evilWispDamagePerSecond * .5, 'magical', false);
+      c.damage(enemies[Math.floor(c.random() * enemies.length)], EXTRA_WORKING_DEFAULTS.evilWispDamagePerSecond * balanceNumber(c,'skill_effects_extra.damage.1',0.5), 'magical', false);
     }
   });
-  if (S(c) && !has(c, c.caster, 'permanentWisps')) { buff(c, c.caster, 'permanentWisps', 1); periodic(c, FOREVER, 1, () => healTick(3)); }
+  if (S(c) && !has(c, c.caster, 'permanentWisps')) { buff(c, c.caster, 'permanentWisps', balanceNumber(c,'skill_effects_extra.buff_amount.1',1)); periodic(c, FOREVER, 1, () => healTick(3)); }
 }, ['seeded wisps distribute healing among injured nearby allies', '12-second duration', 'Super extra heal/wisps and permanent three wisps'],
 ['Exact wisp pulse/cycle distribution', WORKING], { target: 'self', canCast: c => friendlies(c, c.caster, U(value(c, 'RADIUS'))).some(t => t.hp < t.maxHp * .85) || (G(c) && nearby(c, c.caster, EXTRA_WORKING_DEFAULTS.evilWispRadius).length > 0) });
 
 programs.lich_frost_shield = active(c => {
   const target = c.target, duration = value(c, 'BUFF DURATION');
-  buff(c, target, 'frostShield', 1, duration + .01);
-  buff(c, target, 'attackDamageReduction', P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? .1 : 0), duration);
-  if (S(c)) buff(c, target, 'regen', 50, duration);
+  buff(c, target, 'frostShield', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), duration + balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01));
+  buff(c, target, 'attackDamageReduction', P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',0.1) : 0), duration);
+  if (S(c)) buff(c, target, 'regen', balanceNumber(c,'skill_effects_extra.buff_amount.3',50), duration);
   for (let i = 1; i <= duration; i++) c.delay(i, () => {
     if (target.dead || !has(c, target, 'frostShield')) return;
-    for (const enemy of nearby(c, target, 6)) { c.damage(enemy, value(c, 'DAMAGE') + (G(c) ? target.maxHp * .06 : 0)); debuff(c, enemy, 'slow', P(value(c, 'SLOW')), value(c, 'SLOW DURATION')); }
+    for (const enemy of nearby(c, target, 6)) { c.damage(enemy, value(c, 'DAMAGE') + (G(c) ? target.maxHp * balanceNumber(c,'skill_effects_extra.damage.1',0.06) : 0)); debuff(c, enemy, 'slow', P(value(c, 'SLOW')), value(c, 'SLOW DURATION')); }
   });
 }, ['attack-only damage reduction', 'target-following ice pulses and slow', 'Super mitigation/regen', 'Gaben target-max-health area damage'],
 ['Pulse radius missing: 600 reference units provisional', 'Shield expiry boundary pulse ordering'], { target: 'ally' });
 
 programs.custom_grimstroke_ink_swell = active(c => {
   const target = c.target, seconds = value(c, 'BUFF DURATION'), radius = U(value(c, 'RADIUS')) + (S(c) ? 1.5 : 0); let contact = 0;
-  buff(c, target, 'inkSwell', 1, seconds + .01); buff(c, target, 'haste', P(value(c, 'MOVEMENT SPEED BONUS')) + (S(c) ? .16 : 0), seconds);
+  buff(c, target, 'inkSwell', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds + balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01)); buff(c, target, 'haste', P(value(c, 'MOVEMENT SPEED BONUS')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',0.16) : 0), seconds);
   for (let time = .2; time <= seconds + .001; time += .2) c.delay(time, () => {
     if (target.dead || !has(c, target, 'inkSwell')) return;
     const enemies = nearby(c, target, radius); if (enemies.some(t => !t.summoned)) contact += .2;
     for (const enemy of enemies) {
-      const damage = c.damage(enemy, value(c, 'INK TENDRILS DPS') * .2 * (S(c) ? 1.4 : 1));
-      if (damage > 0) c.status(enemy, 'visualLink', .21, 0, { source: target.id, dispel: 'none', ignoreStatusResistance: true,
+      const damage = c.damage(enemy, value(c, 'INK TENDRILS DPS') * balanceNumber(c,'skill_effects_extra.damage.1',0.2) * (S(c) ? balanceNumber(c,'skill_effects_extra.damage.2',1.4) : balanceNumber(c,'skill_effects_extra.damage.3',1)));
+      if (damage > 0) c.status(enemy, 'visualLink', balanceNumber(c,'skill_effects_extra.visuallink_duration.1',0.21), 0, { source: target.id, dispel: 'none', ignoreStatusResistance: true,
         data: { layer: 'tendril', beneficiaryId: target.id } });
-      if (S(c)) c.heal(target, damage * .4);
+      if (S(c)) c.heal(target, damage * balanceNumber(c,'skill_effects_extra.heal.1',0.4));
     }
   });
   c.delay(seconds, () => {
@@ -482,7 +489,7 @@ programs.custom_grimstroke_ink_swell = active(c => {
     const fraction = Math.min(1, contact / value(c, 'MAX THRESHOLD DURATION'));
     addVisualWorldEffect(c.battle, { source: c.caster.id, skill: c.skill.id, points: c.skill.points, layer: 'burst',
       x: target.x, y: target.y, radius, until: c.battle.time + 16 / 24, kind: 'burst', loop: false });
-    for (const enemy of nearby(c, target, radius)) { const damage = c.damage(enemy, value(c, 'MAX DAMAGE') * fraction * (S(c) ? 1.4 : 1)); debuff(c, enemy, 'stun', 0, value(c, 'MAX STUN DURATION') * fraction, { dispel: 'strong' }); if (S(c)) c.heal(target, damage * .4); }
+    for (const enemy of nearby(c, target, radius)) { const damage = c.damage(enemy, value(c, 'MAX DAMAGE') * fraction * (S(c) ? balanceNumber(c,'skill_effects_extra.damage.4',1.4) : balanceNumber(c,'skill_effects_extra.damage.5',1))); debuff(c, enemy, 'stun', 0, value(c, 'MAX STUN DURATION') * fraction, { dispel: 'strong' }); if (S(c)) c.heal(target, damage * balanceNumber(c,'skill_effects_extra.heal.2',0.4)); }
     if (S(c)) c.dispel(target, true);
   });
 }, ['frontliner-priority ally targeting with nearest fallback', 'ally haste and following tendril damage', 'contact-time-scaled detonation/stun', 'Super radius/speed/damage/healing and strong dispel'],
@@ -508,30 +515,30 @@ programs.custom_chaos_knight_reality_rift = active(c => {
   const dx = c.target.x - c.caster.x, dy = c.target.y - c.caster.y, length = Math.hypot(dx, dy) || 1;
   const pull = G(c) ? Math.max(0, length - .8) : Math.min(length, U(value(c, 'PULL DISTANCE')));
   const x = c.target.x - dx / length * pull, y = c.target.y - dy / length * pull;
-  c.teleport(c.target, x, y); c.teleport(c.caster, x - dx / length * .8, y - dy / length * .8);
-  for (const image of c.allies().filter(t => t.owner === c.caster.id && !!t.illusion)) c.teleport(image, c.caster.x, c.caster.y);
-  debuff(c, c.target, 'armor', -value(c, 'ARMOR REDUCTION') * (G(c) ? 2 : 1), 6, { piercesImmunity: S(c) });
+  c.warp(c.target,x,y); c.warp(c.caster,x - dx / length * .8,y - dy / length * .8);
+  for (const image of c.allies().filter(t => t.owner === c.caster.id && !!t.illusion)) c.warp(image,c.caster.x,c.caster.y);
+  debuff(c, c.target, 'armor', (skillBalance(c.definition,c.skill.points)?-value(c,"ARMOR REDUCTION"):(((-value(c, 'ARMOR REDUCTION') * (G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',2) : balanceNumber(c,'skill_effects_extra.debuff_amount.2',1)))))), balanceNumber(c,'skill_effects_extra.debuff_duration.1',6), { piercesImmunity: S(c) });
   if (S(c)) {
     // Native localization explicitly relates stun inversely to damage. One
     // seeded draw controls both; AA explicitly grants level 4, not the old 2.
     const roll = c.random(), damage = 150 + roll * 150, stun = 4 - roll * 2;
-    c.projectile(c.target, 7, target => {
+    c.projectile(c.target, balanceNumber(c,'skill_effects_extra.projectile_speed.1',7), target => {
       c.damage(target, damage, 'magical', false); debuff(c, target, 'stun', 0, stun, { dispel: 'strong', piercesImmunity: false });
-      const images = c.summon({ name: '混沌幻象', count: 1, hp: c.caster.maxHp, attack: c.caster.attack, armor: c.caster.armor,
-        range: c.caster.range, interval: c.caster.attackInterval, speed: c.caster.moveSpeed, lifetime: 6, illusion: true, damageTaken: 3.25,
+      const images = c.summon({ name: '混沌幻象', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: c.caster.maxHp, attack: c.caster.attack, armor: c.caster.armor,
+        range: c.caster.range, interval: c.caster.attackInterval, speed: c.caster.moveSpeed, lifetime: balanceNumber(c,'skill_effects_extra.lifetime.1',6), illusion: true, damageTaken: balanceNumber(c,'skill_effects_extra.damagetaken.1',3.25),
         inheritsSkills: true, initializeInherited: true, inheritedMode: 'attackEffects' });
-      for (const image of images) { image.strongIllusion = true; c.teleport(image, c.caster.x, c.caster.y); buff(c, image, 'attackTarget', 1, 6, { dispel: 'none', data: { targetId: target.id } }); }
+      for (const image of images) { image.strongIllusion = true; c.warp(image,c.caster.x,c.caster.y); buff(c, image, 'attackTarget', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',6), { dispel: 'none', data: { targetId: target.id } }); }
     });
   }
 }, ['backline-priority target/caster/owned-image reposition', 'six-second armor reduction', 'Super range/piercing debuff and impact-timed illusion', 'Gaben direct pull and doubled armor reduction'],
 ['Backline uses furthest team-forward depth, with nearest distance as tie-breaker; midpoint distribution remains a working interpretation', HISTORICAL, 'Illusion inherits passive/attack-effect programs with snapshot deduplication; exact AA allowlist remains unverified', 'Chaos Bolt uses one continuous uniform roll with inverse linear damage/stun; native distribution requires comparison'], {
-  range: c => U(value(c, 'CAST RANGE')) + (S(c) ? 5 : 0),
+  range: c => U(value(c, 'CAST RANGE')) + (S(c) ? balanceNumber(c,'skill_effects_extra.range.1',5) : 0),
   targetSelector: (c, candidates) => candidates.sort((a, b) => (c.caster.side === 0 ? 1 : -1) * (b.y - a.y) || distance(a, c.caster) - distance(b, c.caster) || a.id.localeCompare(b.id))[0]
 });
 
 programs.custom_undying_soul_rip = active(c => {
   const count = Math.min(value(c, 'MAX UNITS'), c.battle.units.filter(t => !t.dead && distance(t, c.caster) <= U(value(c, 'RIP RADIUS'))).length);
-  const amount = count * (value(c, 'DAMAGE/HEAL PER UNIT') + (S(c) ? 25 : 0));
+  const amount = count * (skillBalance(c.definition,c.skill.points)?value(c,"DAMAGE/HEAL PER UNIT"):((((value(c, 'DAMAGE/HEAL PER UNIT') + (S(c) ? 25 : 0))))));
   const targets = G(c) ? c.battle.units.filter(t => !t.dead && distance(t, c.target) <= 5) : [c.target];
   for (const target of targets) { if (target.side === c.caster.side) c.heal(target, amount); else c.damage(target, amount); }
 }, ['nearby-unit-count scaled heal/damage', 'Super +25 per unit', 'Gaben mixed-team 500-radius effect'],
@@ -544,7 +551,7 @@ programs.dazzle_shadow_wave = active(c => {
     const next = ordered(friendlies(c, current, U(value(c, 'HEAL ARC RADIUS'))).filter(t => !seen.has(t.id)), current)[0];
     if (!next) break; current = next;
   }
-  for (const ally of targets) { c.heal(ally, value(c, 'DAMAGE')); if (G(c)) jujuEffect(c, ally, 1, c.skill.id); for (const enemy of nearby(c, ally, U(value(c, 'DAMAGE RADIUS')))) { c.damage(enemy, value(c, 'DAMAGE'), 'physical'); if (S(c)) debuff(c, enemy, 'hex', 0, 2); } }
+  for (const ally of targets) { c.heal(ally, value(c, 'DAMAGE')); if (G(c)) jujuEffect(c, ally, 1, c.skill.id); for (const enemy of nearby(c, ally, U(value(c, 'DAMAGE RADIUS')))) { c.damage(enemy, value(c, 'DAMAGE'), 'physical'); if (S(c)) debuff(c, enemy, 'hex', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',2)); } }
 }, ['bounded ally healing chain including caster', 'physical damage around every healed ally', 'Super hex'], ['Gaben Bad Juju referenced ability/version undefined', 'Chain priority needs reference comparison'], { target: 'ally' });
 
 programs.custom_oracle_fortunes_end = active(c => {
@@ -554,39 +561,39 @@ programs.custom_oracle_fortunes_end = active(c => {
     if (S(c)) {
       // Friendly Purifying Flames is nonlethal magical damage. Using the damage
       // primitive retains magic resistance, shields and False Promise handling.
-      if (target.side === c.caster.side) buff(c, target, 'undying', 1, .01, { dispel: 'none' });
-      c.damage(target, 360);
+      if (target.side === c.caster.side) buff(c, target, 'undying', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01), { dispel: 'none' });
+      c.damage(target, balanceNumber(c,'skill_effects_extra.damage.1',360));
       if (target.side === c.caster.side) clear(c, target, 'undying');
-      buff(c, target, 'regen', 44, 9);
+      buff(c, target, 'regen', balanceNumber(c,'skill_effects_extra.buff_amount.2',44), balanceNumber(c,'skill_effects_extra.buff_duration.2',9));
     }
     if (target.side === c.caster.side) c.dispel(target); else { c.dispel(target, false, false); c.damage(target, value(c, 'DAMAGE')); debuff(c, target, 'root', 0, value(c, 'ROOT DURATION')); }
   }
-  if (G(c)) c.zone({ x: center.x, y: center.y, radius: 6.5, duration: 10, interval: 1, targets: 'all', effect: target => {
-    if (target.side === c.caster.side) { buff(c, target, 'healAmplification', .25, 1.1); c.heal(target, 60); }
-    else { debuff(c, target, 'healReduction', .25, 1.1); c.damage(target, 60); }
+  if (G(c)) c.zone({ x: center.x, y: center.y, radius: balanceNumber(c,'skill_effects_extra.radius.1',6.5), duration: balanceNumber(c,'skill_effects_extra.duration.1',10), interval: balanceNumber(c,'skill_effects_extra.interval.1',1), targets: 'all', effect: target => {
+    if (target.side === c.caster.side) { buff(c, target, 'healAmplification', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), balanceNumber(c,'skill_effects_extra.buff_duration.3',1.1)); c.heal(target, balanceNumber(c,'skill_effects_extra.heal.1',60)); }
+    else { debuff(c, target, 'healReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.25), balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.1)); c.damage(target, balanceNumber(c,'skill_effects_extra.damage.2',60)); }
   } });
 }, ['instant area damage/root/enemy purge', 'ally debuff purge', 'Super pre-purge Purifying Flames', 'Gaben healing/damage rain'],
 [HISTORICAL, 'Healing-buff dispel interaction and False Promise nonlethal settlement require reference check'], { castPoint: 0 });
 
 programs.custom_shadow_demon_demonic_purge = active(c => {
   const target = c.target, seconds = value(c, 'DURATION');
-  debuff(c, target, 'demonicPurge', 1, seconds + .01, { dispel: 'none' }); debuff(c, target, 'break', 0, seconds, { dispel: 'none' });
+  debuff(c, target, 'demonicPurge', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), seconds + balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.01), { dispel: 'none' }); debuff(c, target, 'break', 0, seconds, { dispel: 'none' });
   for (let time = 0; time <= seconds; time += .25) c.delay(time, () => {
     if (target.dead || !has(c, target, 'demonicPurge')) return;
-    c.dispel(target, false, false); debuff(c, target, 'slow', Math.max(.2, 1 - .8 * time / seconds), .3, { dispel: 'none' });
+    c.dispel(target, false, false); debuff(c, target, 'slow', Math.max(balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.2), balanceNumber(c,'skill_effects_extra.debuff_amount.3',1) - balanceNumber(c,'skill_effects_extra.debuff_amount.4',0.8) * time / seconds), balanceNumber(c,'skill_effects_extra.debuff_duration.2',0.3), { dispel: 'none' });
   });
   c.delay(seconds, () => { if (has(c, target, 'demonicPurge')) c.damage(target, value(c, 'PURGE DAMAGE')); });
 }, ['continuously strips positive buffs', 'gradually declining slow', 'break', 'expiry damage'],
 ['Slow min/max absent: linear 100% to 0% provisional', 'Super three charges', 'Gaben separate Demonic Cleanse ability']);
 
 programs.custom_shadow_demon_demonic_cleanse = active(c => {
-  const target = c.target, seconds = value(c, 'DURATION'); buff(c, target, 'demonicCleanse', 1, seconds + .01);
+  const target = c.target, seconds = value(c, 'DURATION'); buff(c, target, 'demonicCleanse', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds + balanceNumber(c,'skill_effects_extra.buff_duration.1',0.01));
   for (let time = 0; time <= seconds; time += .25) c.delay(time, () => { if (!target.dead && has(c, target, 'demonicCleanse')) c.dispel(target); });
   c.delay(seconds, () => { if (has(c, target, 'demonicCleanse')) c.heal(target, value(c, 'CLEANSE HEAL')); });
 }, ['continuous allied basic dispel', 'expiry healing'], ['Disrupted/invulnerable ally targeting', 'Super three charges', 'Gaben separate Demonic Purge ability'], { target: 'ally' });
 
-programs.night_stalker_crippling_fear = active(c => c.zone({ follow: true, radius: U(value(c, 'AURA RADIUS')) + (S(c) ? .5 : 0), duration: value(c, 'NIGHT DURATION'), interval: .2, effect: target => {
-  debuff(c, target, 'silence', 0, .3); if (S(c)) debuff(c, target, 'blind', .5, .3);
+programs.night_stalker_crippling_fear = active(c => c.zone({ follow: true, radius: U(value(c, 'AURA RADIUS')) + (S(c) ? balanceNumber(c,'skill_effects_extra.radius.1',0.5) : 0), duration: value(c, 'NIGHT DURATION'), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.2), effect: target => {
+  debuff(c, target, 'silence', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.3)); if (S(c)) debuff(c, target, 'blind', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.5), balanceNumber(c,'skill_effects_extra.debuff_duration.2',0.3));
 } }), ['mobile silence aura with night-duration values', 'Super radius and miss chance', 'captured AA catalog .1-second cast point overrides older zero-cast-point patch'], ['Super cooldown reduction', 'Gaben periodic level-four Void reference ability'], { target: 'self', castPoint: .1 });
 
 programs.custom_drow_ranger_wave_of_silence = active(c => {
@@ -596,8 +603,8 @@ programs.custom_drow_ranger_wave_of_silence = active(c => {
     const across = Math.abs((target.x - c.caster.x) * dy - (target.y - c.caster.y) * dx) / length;
     if (along < 0 || along > range || across > U(value(c, 'WIDTH')) + (S(c) ? 2.5 : 0)) continue;
     const knockback = U(value(c, 'KNOCKBACK MAX')) * (G(c) ? 2 : 1) * Math.max(0, 1 - along / range);
-    c.teleport(target, target.x + dx / length * knockback, target.y + dy / length * knockback);
-    debuff(c, target, 'silence', 0, value(c, 'SILENCE DURATION')); if (G(c)) debuff(c, target, 'blind', 1, value(c, 'SILENCE DURATION'));
+    c.moveContinuous(target,target.x + dx / length * knockback,target.y + dy / length * knockback,{duration:defaultMotionDuration()});
+    debuff(c, target, 'silence', 0, value(c, 'SILENCE DURATION')); if (G(c)) debuff(c, target, 'blind', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), value(c, 'SILENCE DURATION'));
   }
 }, ['directional silence wave', 'distance-weighted knockback', 'Super width', 'Gaben double knockback and total miss chance'],
 ['Continuous knockback duration/path', 'Super cooldown reduction', 'Width vs full diameter reference verification'], { range: 9 });
@@ -642,11 +649,11 @@ programs.ursa_overpower = active(c => { setState(c, 'charges', value(c, 'ATTACKS
 ['fixed number of very fast attacks', 'Super three extra attacks', 'Gaben seeded cooldown-limited bash'], ['Buff duration absent from source', 'Bash damage type needs reference verification'], {
   target: 'self', canCast: c => readState(c, 'charges') <= 0, onAttack: c => {
     if (readState(c, 'charges') > 0) { setState(c, 'charges', readState(c, 'charges') - 1); if (!readState(c, 'charges')) clear(c, c.caster, 'attackSpeed'); }
-    if (G(c) && c.battle.time >= readState(c, 'bashReady') && chance(c, .25, 'bash')) { setState(c, 'bashReady', c.battle.time + 2.3); c.damage(c.target, 120, 'physical'); debuff(c, c.target, 'stun', 0, 1.5, { dispel: 'strong' }); }
+    if (G(c) && c.battle.time >= readState(c, 'bashReady') && chance(c, .25, 'bash')) { setState(c, 'bashReady', c.battle.time + 2.3); c.damage(c.target, balanceNumber(c,'skill_effects_extra.damage.1',120), 'physical'); debuff(c, c.target, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.5), { dispel: 'strong' }); }
   }
 });
 
-programs.custom_earthshaker_enchant_totem = active(c => { buff(c, c.caster, 'enchantTotem', 1); buff(c, c.caster, 'range', .75); },
+programs.custom_earthshaker_enchant_totem = active(c => { buff(c, c.caster, 'enchantTotem', balanceNumber(c,'skill_effects_extra.buff_amount.1',1)); buff(c, c.caster, 'range', balanceNumber(c,'skill_effects_extra.buff_amount.2',0.75)); },
 ['one empowered attack', 'temporary bonus range', 'Gaben +60 base attack damage'], ['Super mana cost and cooldown reduction', 'Buff timeout absent from catalog'], {
   target: 'self', castPoint: .3, canCast: c => !has(c, c.caster, 'enchantTotem'),
   init: c => { if (G(c)) c.caster.attack += 60; },
@@ -667,22 +674,22 @@ programs.custom_snapfire_lil_shredder = active(c => { setState(c, 'charges', 6);
       debuff(c, target, 'armor', -n * value(c, 'ARMOR LOSS PER STACK'), value(c, 'ARMOR LOSS DURATION'));
     };
     shred(c.target);
-    if (G(c)) for (const target of ordered(c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= c.caster.range + U(value(c, 'BONUS RANGE'))), c.target).slice(0, 2)) { c.attack(target, 1, false); shred(target); }
+    if (G(c)) for (const target of ordered(c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= c.caster.range + U(value(c, 'BONUS RANGE'))), c.target).slice(0, 2)) { c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), false); shred(target); }
     setState(c, 'charges', readState(c, 'charges') - 1);
     if (!readState(c, 'charges')) { clear(c, c.caster, 'attackSpeed'); clear(c, c.caster, 'range'); }
   }
 });
 
 programs.custom_lone_druid_spirit_bear = active(c => {
-  const bears = c.summon({ name: '灵熊', count: 1, hp: value(c, 'BEAR HP') + (S(c) ? 1000 : 0), attack: 28,
-    armor: value(c, 'BEAR ARMOR') + (S(c) ? 8 : 0), interval: value(c, 'BEAR BASE ATTACK TIME') - (S(c) ? .1 : 0),
-    speed: U(value(c, 'BEAR MOVESPEED') + (S(c) ? 25 : 0)), range: 1.5, lifetime: FOREVER });
+  const bears = c.summon({ name: '灵熊', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: value(c, 'BEAR HP') + (S(c) ? balanceNumber(c,'skill_effects_extra.hp.1',1000) : 0), attack: balanceNumber(c,'skill_effects_extra.attack.1',28),
+    armor: (skillBalance(c.definition,c.skill.points)?value(c,"BEAR ARMOR"):(((value(c, 'BEAR ARMOR') + (S(c) ? balanceNumber(c,'skill_effects_extra.armor.1',8) : 0))))), interval: value(c, 'BEAR BASE ATTACK TIME') - (S(c) ? balanceNumber(c,'skill_effects_extra.interval.1',0.1) : 0),
+    speed: U(value(c, 'BEAR MOVESPEED') + (S(c) ? 25 : 0)), range: balanceNumber(c,'skill_effects_extra.range.1',1.5), lifetime: FOREVER });
   for (const bear of bears) {
     bear.extraSpiritBear = true; bear.consideredHero = true; bear.skills = [{ ...c.skill }]; bear.cooldowns = [FOREVER];
     bear.mana = bear.maxMana = 300;
-    buff(c, bear, 'regen', value(c, 'BEAR HP REGEN')); buff(c, bear, 'manaRegen', -2.5);
+    buff(c, bear, 'regen', value(c, 'BEAR HP REGEN')); buff(c, bear, 'manaRegen', balanceNumber(c,'skill_effects_extra.buff_amount.1',-2.5));
     // No Strength/Agility/Intelligence item bonuses: the AA description excludes attributes.
-    if (G(c)) { buff(c, bear, 'attackBonus', 24 + 10 + 25); buff(c, bear, 'attackSpeed', 70 + 10); buff(c, bear, 'lifesteal', .24); }
+    if (G(c)) { buff(c, bear, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.2',24) + balanceNumber(c,'skill_effects_extra.buff_amount.3',10) + balanceNumber(c,'skill_effects_extra.buff_amount.4',25)); buff(c, bear, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.5',70) + balanceNumber(c,'skill_effects_extra.buff_amount.6',10)); buff(c, bear, 'lifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.7',0.24)); }
   }
   setState(c, 'summoned', 1);
 }, ['independent bear body with source HP/armor/regen/movement/attack timing', 'Super bear numerical bonuses'],
@@ -690,44 +697,44 @@ programs.custom_lone_druid_spirit_bear = active(c => {
   target: 'self', canCast: c => !c.caster.extraSpiritBear && !c.allies().some(t => t.owner === c.caster.id && t.name === '灵熊'),
   onAttack: c => {
     if (!c.caster.extraSpiritBear) return;
-    if (c.battle.time >= readState(c, 'entangleReady') && c.random() < .2) {
+    if (c.battle.time >= readState(c, 'entangleReady') && c.random() < balanceNumber(c,'skill_effects_extra.trigger_chance.1',0.2)) {
       setState(c, 'entangleReady', c.battle.time + (S(c) ? 0 : 5));
       const duration = sourceArray([1, 1.6, 2.8], c), damage = sourceArray([30, 40, 60], c);
       debuff(c, c.target, 'root', 0, duration, { piercesImmunity: false });
-      debuff(c, c.target, 'dot', damage * (c.target.summoned ? 3 : 1), duration, { interval: 1, damageType: 'magical', piercesImmunity: false });
+      debuff(c, c.target, 'dot', damage * (c.target.summoned ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',3) : balanceNumber(c,'skill_effects_extra.debuff_amount.2',1)), duration, { interval: balanceNumber(c,'skill_effects_extra.interval.2',1), damageType: 'magical', piercesImmunity: false });
     }
     if (!G(c)) return;
     maelstrom(c, 180, 12);
-    if (c.battle.time >= readState(c, 'bashReady') && c.random() < .25) {
-      setState(c, 'bashReady', c.battle.time + 2.3); c.damage(c.target, 100, 'physical', true);
-      debuff(c, c.target, 'stun', 0, 1.5, { dispel: 'strong', piercesImmunity: true });
+    if (c.battle.time >= readState(c, 'bashReady') && c.random() < balanceNumber(c,'skill_effects_extra.trigger_chance.2',0.25)) {
+      setState(c, 'bashReady', c.battle.time + 2.3); c.damage(c.target, balanceNumber(c,'skill_effects_extra.damage.1',100), 'physical', true);
+      debuff(c, c.target, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.5), { dispel: 'strong', piercesImmunity: true });
     }
     if (canUseGranted(c) && c.battle.time >= readState(c, 'berserkReady') && c.caster.mana >= 25) {
       c.mana(c.caster, -25); setState(c, 'berserkReady', c.battle.time + 16);
       // Passive item stats originate from the summoner; the bear's temporary
       // buff is an additional source and must add only the active 110 AS.
-      buff(c, c.caster, 'attackSpeed', 110, 6);
-      buff(c, c.caster, 'moveFlat', .3, 6); debuff(c, c.caster, 'armor', -8, 6); debuff(c, c.caster, 'silence', 0, 6);
+      buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.8',110), balanceNumber(c,'skill_effects_extra.buff_duration.1',6));
+      buff(c, c.caster, 'moveFlat', balanceNumber(c,'skill_effects_extra.buff_amount.9',0.3), balanceNumber(c,'skill_effects_extra.buff_duration.2',6)); debuff(c, c.caster, 'armor', balanceNumber(c,'skill_effects_extra.debuff_amount.3',-8), balanceNumber(c,'skill_effects_extra.debuff_duration.2',6)); debuff(c, c.caster, 'silence', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.3',6));
     }
     if (c.battle.time >= readState(c, 'staticShieldReady') && c.caster.mana >= 50) {
-      c.mana(c.caster, -50); setState(c, 'staticShieldReady', c.battle.time + 35); buff(c, c.caster, 'staticShield', 1, 15);
+      c.mana(c.caster, -50); setState(c, 'staticShieldReady', c.battle.time + 35); buff(c, c.caster, 'staticShield', balanceNumber(c,'skill_effects_extra.buff_amount.10',1), balanceNumber(c,'skill_effects_extra.buff_duration.3',15));
     }
   }, onAttacked: c => {
-    if (!G(c) || !c.caster.extraSpiritBear || !has(c, c.caster, 'staticShield') || c.battle.time < readState(c, 'staticReady') || c.random() >= .2) return;
+    if (!G(c) || !c.caster.extraSpiritBear || !has(c, c.caster, 'staticShield') || c.battle.time < readState(c, 'staticReady') || c.random() >= balanceNumber(c,'skill_effects_extra.trigger_chance.3',0.2)) return;
     setState(c, 'staticReady', c.battle.time + 1);
     const others = ordered(nearby(c, c.caster, 9).filter(t => t.id !== c.target.id), c.caster).slice(0, 4);
-    for (const target of [c.target, ...others]) c.damage(target, 225, 'magical', false);
+    for (const target of [c.target, ...others]) c.damage(target, balanceNumber(c,'skill_effects_extra.damage.2',225), 'magical', false);
   }
 });
 
 programs.custom_warlock_chaotic_offering = active(c => {
-  for (const enemy of nearby(c, c.target, U(value(c, 'SUMMON BLAST RADIUS')))) debuff(c, enemy, 'stun', 0, 1, { dispel: 'strong' });
+  for (const enemy of nearby(c, c.target, U(value(c, 'SUMMON BLAST RADIUS')))) debuff(c, enemy, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',1), { dispel: 'strong' });
   const hp = G(c) ? value(c, 'GOLEM HEALTH') - sourceArray([500, 600, 600], c) : value(c, 'GOLEM HEALTH');
-  const golems = c.summon({ name: '地狱火', count: G(c) ? 2 : 1, hp, attack: value(c, 'GOLEM DAMAGE'), armor: value(c, 'GOLEM ARMOR'), lifetime: 60, range: 2.25, speed: sourceArray([3.2, 3.4, 3.6], c), interval: 1.2 });
+  const golems = c.summon({ name: '地狱火', count: G(c) ? balanceNumber(c,'skill_effects_extra.count.1',2) : balanceNumber(c,'skill_effects_extra.count.2',1), hp, attack: value(c, 'GOLEM DAMAGE'), armor: value(c, 'GOLEM ARMOR'), lifetime: balanceNumber(c,'skill_effects_extra.lifetime.1',60), range: balanceNumber(c,'skill_effects_extra.range.1',2.25), speed: sourceArray([3.2, 3.4, 3.6], c), interval: balanceNumber(c,'skill_effects_extra.interval.1',1.2) });
   for (const golem of golems) {
     golem.magicResist = .33; golem.ancient = true;
     golem.extraOfferingGolem = true; golem.skills = [{ ...c.skill }]; golem.cooldowns = [FOREVER];
-    c.teleport(golem, c.target.x, c.target.y); buff(c, golem, 'regen', value(c, 'GOLEM HEALTH REGEN'));
+    c.warp(golem,c.target.x,c.target.y); buff(c, golem, 'regen', value(c, 'GOLEM HEALTH REGEN'));
     // AA 4.5 overrides the historical native spell damage; the KV supplies radius/type.
     for (let second = 1; second <= 60; second++) c.delay(second, () => {
       if (!golem.dead) for (const enemy of nearby(c, golem, 3)) c.damage(enemy, sourceArray([20, 40, 60], c), 'magical', false);
@@ -744,21 +751,21 @@ programs.custom_warlock_chaotic_offering = active(c => {
 // implement the damage/targeting contracts; display layers remain independent.
 programs.custom_faceless_void_chronosphere = active(c => {
   const x = c.target.x, y = c.target.y;
-  c.zone({ x, y, radius: U(value(c, 'RADIUS')), duration: value(c, 'DURATION'), interval: .1, targets: 'all', effect: target => {
+  c.zone({ x, y, radius: U(value(c, 'RADIUS')), duration: value(c, 'DURATION'), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.1), targets: 'all', effect: target => {
     if (target.id === c.caster.id) {
-      buff(c, target, 'forceMoveSpeed', EXTRA_WORKING_DEFAULTS.chronoCasterMoveSpeed, .15, { dispel: 'none' });
-      if (S(c)) buff(c, target, 'attackSpeed', 200, .15); return;
+      buff(c, target, 'forceMoveSpeed', EXTRA_WORKING_DEFAULTS.chronoCasterMoveSpeed, balanceNumber(c,'skill_effects_extra.buff_duration.1',0.15), { dispel: 'none' });
+      if (S(c)) buff(c, target, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.1',200), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.15)); return;
     }
     if (target.owner === c.caster.id) return;
     if (target.side !== c.caster.side && target.statuses.some(s => s.kind === 'invisible' && s.until > c.battle.time) &&
       !target.statuses.some(s => ['undetectable', 'shadowRealm'].includes(s.kind) && s.until > c.battle.time)) {
-      debuff(c, target, 'revealed', 1, .15, { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
+      debuff(c, target, 'revealed', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.15), { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
     }
     if (G(c) && target.side === c.caster.side) {
-      debuff(c, target, 'slow', 1 - 1 / EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier, .15, { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
-      debuff(c, target, 'attackTimePct', EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier - 1, .15, { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
-      debuff(c, target, 'castTimePct', EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier - 1, .15, { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
-    } else debuff(c, target, 'stun', 0, .15, { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
+      debuff(c, target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.2',1) - 1 / EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier, balanceNumber(c,'skill_effects_extra.debuff_duration.2',0.15), { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
+      debuff(c, target, 'attackTimePct', EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier - balanceNumber(c,'skill_effects_extra.debuff_amount.3',1), balanceNumber(c,'skill_effects_extra.debuff_duration.3',0.15), { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
+      debuff(c, target, 'castTimePct', EXTRA_WORKING_DEFAULTS.chronoTimeMultiplier - balanceNumber(c,'skill_effects_extra.debuff_amount.4',1), balanceNumber(c,'skill_effects_extra.debuff_duration.4',0.15), { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
+    } else debuff(c, target, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.5',0.15), { piercesImmunity: true, dispel: 'none', ignoreStatusResistance: true });
   } });
 }, ['stationary time-stop affects enemies and allies', 'caster and controlled units exempt', 'caster moves at a disclosed high speed while inside',
   'reveals normally invisible enemies without overriding undetectable concealment', 'Super in-zone caster attack speed', 'Gaben allies retain slowed actions'],
@@ -767,17 +774,17 @@ programs.custom_faceless_void_chronosphere = active(c => {
 
 programs.custom_legion_commander_duel = active(c => {
   const seconds = value(c, 'DURATION') + (S(c) ? 1 : 0), externalReduction = G(c) ? .8 : 0;
-  buff(c, c.caster, 'duel', 1, seconds, { dispel: 'none', data: { targetId: c.target.id, externalReduction } });
-  debuff(c, c.target, 'duel', 1, seconds, { dispel: 'none', data: { targetId: c.caster.id, externalReduction } });
+  buff(c, c.caster, 'duel', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds, { dispel: 'none', data: { targetId: c.target.id, externalReduction } });
+  debuff(c, c.target, 'duel', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), seconds, { dispel: 'none', data: { targetId: c.caster.id, externalReduction } });
   if ([c.caster, c.target].every(unit => unit.statuses.some(s => s.kind === 'duel' && s.skill === c.skill.id && s.source === c.caster.id))) addVisualWorldEffect(c.battle, { source: c.caster.id, skill: c.skill.id, points: c.skill.points, layer: 'challenge', kind: 'burst', x: (c.caster.x + c.target.x) / 2, y: (c.caster.y + c.target.y) / 2, angle: Math.atan2(c.target.y - c.caster.y, c.target.x - c.caster.x), until: c.battle.time + 16 / 24 });
 }, ['mutually forced attacks on duel partner', 'both participants cannot cast', 'caster-only duel victory damage reward', 'Super range/duration/reward', 'Gaben outside-source damage reduction'],
 ['Super cooldown reduction', 'Hero-only selection excludes summon bodies and illusions; considered-hero special bodies need original target-type verification'], {
   init: c => { c.caster.attack += permanentValue(c, 'attack'); },
-  range: c => U(value(c, 'CAST RANGE')) + (S(c) ? 2.5 : 0),
+  range: c => U(value(c, 'CAST RANGE')) + (S(c) ? balanceNumber(c,'skill_effects_extra.range.1',2.5) : 0),
   targetSelector: (c, candidates) => ordered(candidates.filter(t => !t.summoned && !t.illusion), c.caster)[0],
   onUnitDeath: c => { const duel = c.caster.statuses.find(s => s.kind === 'duel' && s.skill === c.skill.id && s.source === c.caster.id) as EffectStatus | undefined;
     if (duel?.data?.targetId === c.target.id && duel.until > c.battle.time) {
-      const gain = value(c, 'REWARD DAMAGE') + (S(c) ? 10 : 0);
+      const gain = (skillBalance(c.definition,c.skill.points)?value(c,"REWARD DAMAGE"):(((value(c, 'REWARD DAMAGE') + (S(c) ? 10 : 0)))));
       c.caster.attack += gain; gainPermanent(c, 'attack', gain);
       addVisualWorldEffect(c.battle, { source: c.caster.id, skill: c.skill.id, points: c.skill.points, layer: 'victory', kind: 'burst', x: c.caster.x, y: c.caster.y, until: c.battle.time + 28 / 24 });
       clear(c, c.caster, 'duel');
@@ -788,54 +795,54 @@ programs.custom_legion_commander_duel = active(c => {
 programs.oracle_false_promise = active(c => {
   const seconds = value(c, 'DURATION') + (S(c) ? 1.5 : 0);
   c.dispel(c.target, true);
-  buff(c, c.target, 'falsePromise', 1, seconds, { data: { healMultiplier: 1 + P(value(c, 'DELAYED HEAL AMPLIFICATION')) }, dispel: 'none' });
-  if (S(c)) buff(c, c.target, 'armor', 15, seconds);
-  if (G(c)) { buff(c, c.target, 'lifesteal', .25, seconds); buff(c, c.target, 'spellLifesteal', .25, seconds); }
+  buff(c, c.target, 'falsePromise', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds, { data: { healMultiplier: 1 + P(value(c, 'DELAYED HEAL AMPLIFICATION')) }, dispel: 'none' });
+  if (S(c)) buff(c, c.target, 'armor', balanceNumber(c,'skill_effects_extra.buff_amount.2',15), seconds);
+  if (G(c)) { buff(c, c.target, 'lifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.25), seconds); buff(c, c.target, 'spellLifesteal', balanceNumber(c,'skill_effects_extra.buff_amount.4',0.25), seconds); }
 }, ['strong dispel on cast', 'damage and amplified healing settled on expiration', 'Super duration and armor', 'Gaben attack/spell lifesteal statuses'],
 ['Super cooldown reduction', 'Settlement interactions with immunity, reductions and other death-prevention require reference comparison'],
 { target: 'ally', range: c => U(value(c, 'CAST RANGE')), canCast: c => c.target.hp / c.target.maxHp < .6 && !has(c, c.target, 'falsePromise') });
 
 programs.custom_ember_spirit_flame_guard = active(c => {
   const seconds = value(c, 'DURATION');
-  buff(c, c.caster, 'magicShield', value(c, 'MAGIC ABSORB') + (S(c) ? 280 : 0), seconds);
-  c.zone({ follow: true, radius: U(value(c, 'RADIUS')), duration: seconds, interval: .2, effect: target => {
-    if (has(c, c.caster, 'magicShield')) c.damage(target, (value(c, 'DAMAGE PER SECOND') + (S(c) ? 50 : 0)) * .2);
+  buff(c, c.caster, 'magicShield', value(c, 'MAGIC ABSORB') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',280) : 0), seconds);
+  c.zone({ follow: true, radius: U(value(c, 'RADIUS')), duration: seconds, interval: balanceNumber(c,'skill_effects_extra.interval.1',0.2), effect: target => {
+    if (has(c, c.caster, 'magicShield')) c.damage(target, (((skillBalance(c.definition,c.skill.points)?value(c,"DAMAGE PER SECOND"):((value(c, 'DAMAGE PER SECOND') + (S(c) ? balanceNumber(c,'skill_effects_extra.damage.1',50) : 0)))) * balanceNumber(c,'skill_effects_extra.damage.2',0.2))));
   } });
 }, ['magic-only absorption shield', 'mobile damage stops immediately when shield breaks', 'Super shield and DPS bonuses'],
 ['Super cooldown reduction', 'Gaben twice-power Radiance item statistics'], { target: 'self', canCast: c => !has(c, c.caster, 'magicShield') });
 
 programs.undying_flesh_golem = active(c => {
-  const seconds = value(c, 'DURATION'); buff(c, c.caster, 'fleshGolem', 1, seconds);
-  buff(c, c.caster, 'attackRangeOverride', 1.5, seconds); buff(c, c.caster, 'moveFlat', U(value(c, 'MOVEMENT BONUS')), seconds);
-  if (typeof c.caster.strength === 'number') buff(c, c.caster, 'strengthPct', P(value(c, 'STRENGTH MULTIPLIER')) + (S(c) ? .1 : 0), seconds);
+  const seconds = value(c, 'DURATION'); buff(c, c.caster, 'fleshGolem', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds);
+  buff(c, c.caster, 'attackRangeOverride', balanceNumber(c,'skill_effects_extra.buff_amount.2',1.5), seconds); buff(c, c.caster, 'moveFlat', U(value(c, 'MOVEMENT BONUS')), seconds);
+  if (typeof c.caster.strength === 'number') buff(c, c.caster, 'strengthPct', P(value(c, 'STRENGTH MULTIPLIER')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.3',0.1) : 0), seconds);
 }, ['forty-second melee transformation', 'movement increase', 'attacks apply slow and incoming-damage amplification'],
 ['Super zombie body stats absent from catalog', 'Super cooldown reduction', 'AA 5.5 identifies level-four Soul Rip; mapped to Standard points 3 per site FAQ, with attack/attacked triggers from English snapshot'], { target: 'self',
   canCast: c => !c.caster.extraFleshZombie,
   onAttack: c => {
     if (c.caster.extraFleshZombie) {
-      debuff(c, c.target, 'slow', .05, 2.5, { maxStacks: 99, piercesImmunity: true });
-      if (c.target.hp / c.target.maxHp < .4) { buff(c, c.caster, 'attackSpeed', 80, 2.5); buff(c, c.caster, 'haste', .5, 2.5); }
+      debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.05), balanceNumber(c,'skill_effects_extra.debuff_duration.1',2.5), { maxStacks: balanceNumber(c,'skill_effects_extra.maxstacks.1',99), piercesImmunity: true });
+      if (c.target.hp / c.target.maxHp < .4) { buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.4',80), balanceNumber(c,'skill_effects_extra.buff_duration.1',2.5)); buff(c, c.caster, 'haste', balanceNumber(c,'skill_effects_extra.buff_amount.5',0.5), balanceNumber(c,'skill_effects_extra.buff_duration.2',2.5)); }
       return;
     }
-    if (G(c) && c.random() < .1) c.castAbility('custom_undying_soul_rip', 3, c.target);
+    if (G(c) && c.random() < balanceNumber(c,'skill_effects_extra.trigger_chance.1',0.1)) c.castAbility('custom_undying_soul_rip', 3, c.target);
     if (!has(c, c.caster, 'fleshGolem')) return;
     debuff(c, c.target, 'slow', P(value(c, 'SLOW')), value(c, 'SLOW DURATION'));
-    debuff(c, c.target, 'damageVulnerability', P(value(c, 'DAMAGE AMPLIFICATION')) + (S(c) ? .1 : 0), value(c, 'SLOW DURATION'));
+    debuff(c, c.target, 'damageVulnerability', P(value(c, 'DAMAGE AMPLIFICATION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.1) : 0), value(c, 'SLOW DURATION'));
     if (S(c)) {
-      const zombies = c.summon({ name: '僵尸', count: 1, hp: 2, attack: 34.5, armor: 0, range: 1.28, interval: 1.6, speed: 3.75, lifetime: 15 });
+      const zombies = c.summon({ name: '僵尸', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: balanceNumber(c,'skill_effects_extra.hp.1',2), attack: balanceNumber(c,'skill_effects_extra.attack.1',34.5), armor: 0, range: balanceNumber(c,'skill_effects_extra.range.1',1.28), interval: balanceNumber(c,'skill_effects_extra.interval.1',1.6), speed: balanceNumber(c,'skill_effects_extra.speed.1',3.75), lifetime: balanceNumber(c,'skill_effects_extra.lifetime.1',15) });
       for (const zombie of zombies) {
         zombie.extraFleshZombie = true; zombie.extraZombieTarget = c.target.id;
         zombie.skills = [{ ...c.skill }]; zombie.cooldowns = [FOREVER]; zombie.magicResist = .33;
-        c.teleport(zombie, c.target.x + .3, c.target.y);
-        buff(c, zombie, 'attackTarget', 1, 15, { dispel: 'none', data: { targetId: c.target.id } });
-        buff(c, zombie, 'hitCountBody', 1, 15, { dispel: 'none', data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } });
+        c.warp(zombie,c.target.x + .3,c.target.y);
+        buff(c, zombie, 'attackTarget', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), balanceNumber(c,'skill_effects_extra.buff_duration.3',15), { dispel: 'none', data: { targetId: c.target.id } });
+        buff(c, zombie, 'hitCountBody', balanceNumber(c,'skill_effects_extra.buff_amount.7',1), balanceNumber(c,'skill_effects_extra.buff_duration.4',15), { dispel: 'none', data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } });
       }
     }
-  }, onAttacked: c => { if (G(c) && !c.caster.extraFleshZombie && c.random() < .1) c.castAbility('custom_undying_soul_rip', 3, c.caster); },
+  }, onAttacked: c => { if (G(c) && !c.caster.extraFleshZombie && c.random() < balanceNumber(c,'skill_effects_extra.trigger_chance.2',0.1)) c.castAbility('custom_undying_soul_rip', 3, c.caster); },
   onUnitDeath: c => { if (c.caster.extraFleshZombie && c.caster.extraZombieTarget === c.target.id) c.caster.expiresAt = c.battle.time; }
 });
 
-programs.custom_pudge_flesh_heap = active(c => buff(c, c.caster, 'allDamageBlock', value(c, 'DAMAGE BLOCK') * (G(c) ? 2 : 1), value(c, 'DURATION')),
+programs.custom_pudge_flesh_heap = active(c => buff(c, c.caster, 'allDamageBlock', (skillBalance(c.definition,c.skill.points)?value(c,"DAMAGE BLOCK"):(((value(c, 'DAMAGE BLOCK') * (G(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',2) : balanceNumber(c,'skill_effects_extra.buff_amount.2',1)))))), value(c, 'DURATION')),
 ['temporary flat block against all damage types', 'Super permanent +2 Strength per nearby enemy hero death', 'Gaben doubled block and Strength gain'],
 ['Base kill credit outside the death radius conflicts with Super wording; using Super explicit 450 radius'], { target: 'self',
 init: c => buff(c, c.caster, 'strength', permanentValue(c, 'strength'), FOREVER,
@@ -861,31 +868,31 @@ programs.arc_warden_magnetic_field = active(c => {
   if (S(c)) for (const enemy of c.enemies().filter(t => Math.hypot(t.x - x, t.y - y) <= radius)) {
     const offsetX = enemy.x - x, offsetY = enemy.y - y, exactCenter = Math.hypot(offsetX, offsetY) < 1e-8;
     const dx = exactCenter ? 1 : offsetX, dy = exactCenter ? 0 : offsetY, length = Math.hypot(dx, dy);
-    c.teleport(enemy, x + dx / length * (radius + .4), y + dy / length * (radius + .4));
+    c.moveContinuous(enemy,x + dx / length * (radius + .4),y + dy / length * (radius + .4),{duration:defaultMotionDuration()});
   }
-  c.zone({ x, y, radius, duration: value(c, 'DURATION'), interval: .2, targets: 'all', effect: target => {
+  c.zone({ x, y, radius, duration: value(c, 'DURATION'), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.2), targets: 'all', effect: target => {
     if (target.side === c.caster.side) {
-      buff(c, target, 'attackSpeed', value(c, 'ATTACK SPEED BONUS') + (S(c) ? 40 : 0), .3);
-      buff(c, target, 'magneticField', P(value(c, 'EVASION BONUS')), .3, { data: { x, y, radius } });
-      if (S(c)) buff(c, target, 'magicResist', .4, .3);
-      if (G(c)) buff(c, target, 'damageDelay', 2.5, .3);
-    } else if (S(c)) debuff(c, target, 'slow', .3, .3);
+      buff(c, target, 'attackSpeed', value(c, 'ATTACK SPEED BONUS') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',40) : 0), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.3));
+      buff(c, target, 'magneticField', P(value(c, 'EVASION BONUS')), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.3), { data: { x, y, radius } });
+      if (S(c)) buff(c, target, 'magicResist', balanceNumber(c,'skill_effects_extra.buff_amount.2',0.4), balanceNumber(c,'skill_effects_extra.buff_duration.3',0.3));
+      if (G(c)) buff(c, target, 'damageDelay', balanceNumber(c,'skill_effects_extra.buff_amount.3',2.5), balanceNumber(c,'skill_effects_extra.buff_duration.4',0.3));
+    } else if (S(c)) debuff(c, target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.3), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.3));
   } });
 }, ['stationary attack-speed field', 'evades only attacks from outside its boundary', 'Super enemy displacement/slow and ally magic resistance', 'Gaben increased radius'],
 ['Delayed damage mitigation/death-prevention ordering requires reference verification', 'Exact initial area target policy and displacement path'], { target: 'ally' });
 
 programs.muerta_pierce_the_veil = active(c => c.delay(value(c, 'TRANSFORM DURATION'), () => {
-  const seconds = value(c, 'DURATION'); buff(c, c.caster, 'physicalImmune', 1, seconds); buff(c, c.caster, 'attackMagical', 1, seconds);
-  buff(c, c.caster, 'attackBonus', value(c, 'BONUS ATTACK DAMAGE') + (S(c) ? 100 : 0), seconds);
-  if (S(c)) buff(c, c.caster, 'range', 2, seconds);
+  const seconds = value(c, 'DURATION'); buff(c, c.caster, 'physicalImmune', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds); buff(c, c.caster, 'attackMagical', balanceNumber(c,'skill_effects_extra.buff_amount.2',1), seconds);
+  buff(c, c.caster, 'attackBonus', (skillBalance(c.definition,c.skill.points)?value(c,"BONUS ATTACK DAMAGE"):(((value(c, 'BONUS ATTACK DAMAGE') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.3',100) : 0))))), seconds);
+  if (S(c)) buff(c, c.caster, 'range', balanceNumber(c,'skill_effects_extra.buff_amount.4',2), seconds);
   c.dispel(c.caster);
 }), ['delayed physical immunity', 'attacks become magical', 'attack damage bonus', 'basic dispel', 'Super extra attack damage/range'],
 ['Phased collision movement', 'Gaben Gunslinger'], { target: 'self' });
 
 programs.slark_shadow_dance = active(c => {
   const seconds = value(c, 'DURATION') + (S(c) ? 1 : 0);
-  buff(c, c.caster, 'undetectable', 1, seconds); buff(c, c.caster, 'haste', P(value(c, 'BONUS MOVEMENT SPEED')), seconds);
-  buff(c, c.caster, 'regen', value(c, 'HEALTH GAINED PER SECOND'), seconds); if (S(c)) buff(c, c.caster, 'attackSpeed', 50, seconds);
+  buff(c, c.caster, 'undetectable', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds); buff(c, c.caster, 'haste', P(value(c, 'BONUS MOVEMENT SPEED')), seconds);
+  buff(c, c.caster, 'regen', value(c, 'HEALTH GAINED PER SECOND'), seconds); if (S(c)) buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.2',50), seconds);
 }, ['temporary single-target concealment while still vulnerable to AOE', 'concealment regeneration/movement', 'Super duration and attack speed'],
 ['Passive out-of-enemy-vision condition requires visibility model', 'Gaben Depth Shroud'], { target: 'self', canCast: c => c.caster.hp / c.caster.maxHp < .6 });
 
@@ -896,14 +903,14 @@ function wolf(c: C, target: CombatUnit) {
 programs.lycan_shapeshift = active(c => {
   wolf(c, c.caster); c.caster.maxHp += value(c, 'HEALTH BONUS'); c.caster.hp += value(c, 'HEALTH BONUS');
   for (const summon of c.allies().filter(t => t.owner === c.caster.id)) {
-    buff(c, summon, 'slowImmune', 1); buff(c, summon, 'forceMoveSpeed', U(value(c, 'SHAPESHIFT MOVE SPEED')));
+    buff(c, summon, 'slowImmune', balanceNumber(c,'skill_effects_extra.buff_amount.1',1)); buff(c, summon, 'forceMoveSpeed', U(value(c, 'SHAPESHIFT MOVE SPEED')));
     buff(c, summon, 'critChance', P(value(c, 'CRITICAL CHANCE'))); buff(c, summon, 'critMultiplier', P(value(c, 'CRITICAL DAMAGE')));
   }
   if (S(c)) { const direction = c.caster.side === 0 ? 1 : -1;
     const enemy = c.enemies().sort((a, b) => direction * (b.y - a.y) || distance(a, c.caster) - distance(b, c.caster) || a.id.localeCompare(b.id))[0];
     if (enemy) { const dx = enemy.x - c.caster.x, dy = enemy.y + direction * .8 - c.caster.y, length = Math.hypot(dx, dy) || 1, travel = Math.min(15, length);
-      c.teleport(c.caster, c.caster.x + dx / length * travel, c.caster.y + dy / length * travel);
-      for (const target of nearby(c, c.caster, 4)) debuff(c, target, 'fear', 0, 1.5);
+      c.moveContinuous(c.caster,c.caster.x + dx / length * travel,c.caster.y + dy / length * travel,{duration:defaultMotionDuration()});
+      for (const target of nearby(c, c.caster, 4)) debuff(c, target, 'fear', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',1.5));
     }
   }
   if (G(c)) { const ally = ordered(friendlies(c, c.caster, 6).filter(t => t.id !== c.caster.id && !t.summoned && !t.illusion && !has(c, t, 'wolfForm')), c.caster)[0];
@@ -913,13 +920,13 @@ programs.lycan_shapeshift = active(c => {
 [WORKING, 'Backline uses furthest enemy along team-forward axis plus .8 unit clearance; Wolf Bite inherits persistent form/health for this battle'], { target: 'self', castPoint: 0, canCast: c => !has(c, c.caster, 'wolfForm'), init: c => periodic(c, FOREVER, .1, () => {
   if (!has(c, c.caster, 'wolfForm')) return;
   for (const unit of c.allies().filter(t => t.owner === c.caster.id)) {
-    buff(c, unit, 'slowImmune', 1, .2); buff(c, unit, 'forceMoveSpeed', U(value(c, 'SHAPESHIFT MOVE SPEED')), .2);
-    buff(c, unit, 'critChance', P(value(c, 'CRITICAL CHANCE')), .2); buff(c, unit, 'critMultiplier', P(value(c, 'CRITICAL DAMAGE')), .2);
+    buff(c, unit, 'slowImmune', balanceNumber(c,'skill_effects_extra.buff_amount.2',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.2)); buff(c, unit, 'forceMoveSpeed', U(value(c, 'SHAPESHIFT MOVE SPEED')), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.2));
+    buff(c, unit, 'critChance', P(value(c, 'CRITICAL CHANCE')), balanceNumber(c,'skill_effects_extra.buff_duration.3',0.2)); buff(c, unit, 'critMultiplier', P(value(c, 'CRITICAL DAMAGE')), balanceNumber(c,'skill_effects_extra.buff_duration.4',0.2));
   }
   const partner = c.allies().find(t => t.id === c.caster.extraWolfPartner);
   if (partner && distance(partner, c.caster) <= EXTRA_WORKING_DEFAULTS.wolfBiteLinkRange) for (const [unit, other] of [[c.caster, partner], [partner, c.caster]]) {
-    buff(c, unit, 'lifesteal', EXTRA_WORKING_DEFAULTS.wolfBiteSharedLifesteal, .2);
-    buff(c, unit, 'ownerLifesteal', EXTRA_WORKING_DEFAULTS.wolfBiteSharedLifesteal, .2, { data: { ownerId: other.id } });
+    buff(c, unit, 'lifesteal', EXTRA_WORKING_DEFAULTS.wolfBiteSharedLifesteal, balanceNumber(c,'skill_effects_extra.buff_duration.5',0.2));
+    buff(c, unit, 'ownerLifesteal', EXTRA_WORKING_DEFAULTS.wolfBiteSharedLifesteal, balanceNumber(c,'skill_effects_extra.buff_duration.6',0.2), { data: { ownerId: other.id } });
   }
 }) });
 
@@ -927,19 +934,19 @@ programs.custom_lone_druid_spirit_link = passive({ init: c => {
   if (c.caster.illusion) return; // AA 4.5b, 2023-02-04: Spirit Link does not work on illusions.
   periodic(c, FOREVER, .25, () => {
   const summons = c.allies().filter(t => t.owner === c.caster.id && !t.illusion), shared = P(value(c, 'SHARED ARMOR'));
-  buff(c, c.caster, 'attackSpeed', value(c, 'BONUS ATTACK SPEED') + (S(c) ? 30 : 0), .35);
-  buff(c, c.caster, 'armor', summons.reduce((sum, t) => sum + t.armor, 0) * shared, .35);
+  buff(c, c.caster, 'attackSpeed', (skillBalance(c.definition,c.skill.points)?value(c,"BONUS ATTACK SPEED"):(((value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',30) : 0))))), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
+  buff(c, c.caster, 'armor', summons.reduce((sum, t) => sum + t.armor, 0) * shared, balanceNumber(c,'skill_effects_extra.buff_duration.2',0.35));
   for (const summon of summons) {
-    buff(c, summon, 'armor', c.caster.armor * shared, .35); buff(c, summon, 'attackSpeed', value(c, 'BONUS ATTACK SPEED') + (S(c) ? 30 : 0), .35);
-    buff(c, summon, 'ownerLifesteal', P(value(c, 'SHARED LIFESTEAL')) + (S(c) ? .2 : 0), .35, { data: { ownerId: c.caster.id } });
+    buff(c, summon, 'armor', c.caster.armor * shared, balanceNumber(c,'skill_effects_extra.buff_duration.3',0.35)); buff(c, summon, 'attackSpeed', (skillBalance(c.definition,c.skill.points)?value(c,"BONUS ATTACK SPEED"):(((value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',30) : 0))))), balanceNumber(c,'skill_effects_extra.buff_duration.4',0.35));
+    buff(c, summon, 'ownerLifesteal', P(value(c, 'SHARED LIFESTEAL')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.3',0.2) : 0), balanceNumber(c,'skill_effects_extra.buff_duration.5',0.35), { data: { ownerId: c.caster.id } });
   }
 }); } }, ['periodic caster/summon shared base armor', 'both receive attack speed', 'summon attack damage heals owner', 'Super lifesteal and attack speed', 'AA 4.5b excludes illusions'],
 ['Armor-sharing aggregation across multiple summons needs source comparison', 'Gaben level-two True Form statistics']);
 
 programs.custom_skeleton_king_vampiric_aura = active(c => {
-  for (let index = 0; index < value(c, 'SKELETONS'); index++) c.delay(index * .25, () => {
-    const skeletons = c.summon({ name: '骷髅战士', count: 1, hp: 175 * (S(c) ? 2 : 1), attack: 24.5 + (S(c) ? 24 : 0), armor: 1,
-      range: 1.15, speed: 3.5, interval: 1.2, lifetime: value(c, 'SKELETON DURATION') });
+  for (let index = 0; index < value(c, 'SKELETONS'); index++) c.delay(index * balanceNumber(c,'skill_effects_extra.delay.1',0.25), () => {
+    const skeletons = c.summon({ name: '骷髅战士', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: balanceNumber(c,'skill_effects_extra.hp.1',175) * (S(c) ? balanceNumber(c,'skill_effects_extra.hp.2',2) : balanceNumber(c,'skill_effects_extra.hp.3',1)), attack: balanceNumber(c,'skill_effects_extra.attack.1',24.5) + (S(c) ? balanceNumber(c,'skill_effects_extra.attack.2',24) : 0), armor: balanceNumber(c,'skill_effects_extra.armor.1',1),
+      range: balanceNumber(c,'skill_effects_extra.range.1',1.15), speed: balanceNumber(c,'skill_effects_extra.speed.1',3.5), interval: balanceNumber(c,'skill_effects_extra.interval.1',1.2), lifetime: value(c, 'SKELETON DURATION') });
     for (const skeleton of skeletons) {
       skeleton.attackMin = 22; skeleton.attackMax = 27;
       skeleton.extraVampiricSkeleton = true; skeleton.skills = [{ ...c.skill }]; skeleton.cooldowns = [FOREVER];
@@ -955,19 +962,19 @@ programs.custom_skeleton_king_vampiric_aura = active(c => {
     if (!c.caster.extraVampiricSkeleton || c.battle.time >= Number(c.caster.expiresAt) || (!G(c) && Number(c.caster.extraSkeletonLives) >= 1)) return;
     c.caster.extraSkeletonLives = Number(c.caster.extraSkeletonLives) + 1;
     c.revive(c.caster, 3, 1);
-    if (G(c)) c.delay(3, () => {
+    if (G(c)) c.delay(balanceNumber(c,'skill_effects_extra.delay.2',3), () => {
       if (c.caster.dead || c.battle.time >= Number(c.caster.expiresAt)) return;
       const targets = c.enemies().filter(t => !t.summoned && !t.illusion), target = targets[Math.min(targets.length - 1, Math.floor(c.random() * targets.length))];
-      if (target) c.projectile(target, 12, unit => {
-        c.damage(unit, 90, 'magical', false); debuff(c, unit, 'stun', 0, .75, { dispel: 'strong', piercesImmunity: false });
-        c.delay(.75, () => { if (!unit.dead) { debuff(c, unit, 'slow', .2, 2, { piercesImmunity: false }); debuff(c, unit, 'dot', 40, 2, { interval: 1, damageType: 'magical', piercesImmunity: false }); } });
+      if (target) c.projectile(target, balanceNumber(c,'skill_effects_extra.projectile_speed.1',12), unit => {
+        c.damage(unit, balanceNumber(c,'skill_effects_extra.damage.1',90), 'magical', false); debuff(c, unit, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.75), { dispel: 'strong', piercesImmunity: false });
+        c.delay(balanceNumber(c,'skill_effects_extra.delay.3',0.75), () => { if (!unit.dead) { debuff(c, unit, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.2), balanceNumber(c,'skill_effects_extra.debuff_duration.2',2), { piercesImmunity: false }); debuff(c, unit, 'dot', balanceNumber(c,'skill_effects_extra.debuff_amount.2',40), balanceNumber(c,'skill_effects_extra.debuff_duration.3',2), { interval: balanceNumber(c,'skill_effects_extra.interval.2',1), damageType: 'magical', piercesImmunity: false }); } });
       });
     });
   }
 });
 
 programs.custom_troll_warlord_berserkers_rage = active(c => {
-  const melee = c.caster.range > 2; buff(c, c.caster, 'berserkersStance', melee ? 1 : 2);
+  const melee = c.caster.range > 2; buff(c, c.caster, 'berserkersStance', melee ? balanceNumber(c,'skill_effects_extra.buff_amount.1',1) : balanceNumber(c,'skill_effects_extra.buff_amount.2',2));
   buff(c, c.caster, 'attackRangeOverride', U(value(c, melee ? 'MELEE ATTACK RANGE' : 'RANGED ATTACK RANGE')));
   if (melee) { buff(c, c.caster, 'armor', value(c, 'BONUS ARMOR')); buff(c, c.caster, 'moveFlat', U(value(c, 'BONUS MOVE SPEED'))); buff(c, c.caster, 'baseAttackTime', value(c, 'MELEE BASE ATTACK TIME')); }
 }, ['switches original ranged/melee attack style', 'melee stance movement/armor/base attack time', 'seeded melee ensnare'],
@@ -978,41 +985,41 @@ programs.custom_troll_warlord_berserkers_rage = active(c => {
 });
 
 programs.dragon_knight_elder_dragon_form = active(c => {
-  buff(c, c.caster, 'elderDragon', 1, value(c, 'DURATION')); buff(c, c.caster, 'moveFlat', U(value(c, 'BONUS MOVE SPEED')), value(c, 'DURATION'));
-  if (G(c)) buff(c, c.caster, 'magicResist', .25, value(c, 'DURATION'));
-  if (G(c)) buff(c, c.caster, 'freePathing', 1, value(c, 'DURATION'));
+  buff(c, c.caster, 'elderDragon', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), value(c, 'DURATION')); buff(c, c.caster, 'moveFlat', U(value(c, 'BONUS MOVE SPEED')), value(c, 'DURATION'));
+  if (G(c)) buff(c, c.caster, 'magicResist', balanceNumber(c,'skill_effects_extra.buff_amount.2',0.25), value(c, 'DURATION'));
+  if (G(c)) buff(c, c.caster, 'freePathing', balanceNumber(c,'skill_effects_extra.buff_amount.3',1), value(c, 'DURATION'));
 }, ['timed dragon transformation state', 'movement bonus', 'level-specific poison/splash/frost attacks', 'Super stronger wider splash', 'Gaben black-dragon numerical effects'],
 ['Form attack range omitted/zero in catalog', 'Super Fireball', 'Gaben free pathing', 'Splash pre-mitigation damage and poison propagation require ordering verification'], {
   target: 'self', canCast: c => !has(c, c.caster, 'elderDragon'), onAttack: c => {
     if (!has(c, c.caster, 'elderDragon')) return;
     const targets = c.skill.points >= 2 ? nearby(c, c.target, 2.5 + (S(c) ? 1 : 0)) : [c.target];
     for (const target of targets) {
-      if (target.id !== c.target.id) c.damage(target, c.caster.attack * (G(c) ? 1 : .6 + (S(c) ? .15 : 0)), 'physical');
-      debuff(c, target, 'dot', G(c) ? 30 : 20, 5, { damageType: 'magical', interval: 1 });
-      if (c.skill.points >= 3) { debuff(c, target, 'slow', G(c) ? .6 : .4, 3); debuff(c, target, 'attackSpeed', G(c) ? -60 : -40, 3); }
+      if (target.id !== c.target.id) c.damage(target, c.caster.attack * (G(c) ? balanceNumber(c,'skill_effects_extra.damage.1',1) : balanceNumber(c,'skill_effects_extra.damage.2',0.6) + (S(c) ? balanceNumber(c,'skill_effects_extra.damage.3',0.15) : 0)), 'physical');
+      debuff(c, target, 'dot', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',30) : balanceNumber(c,'skill_effects_extra.debuff_amount.2',20), balanceNumber(c,'skill_effects_extra.debuff_duration.1',5), { damageType: 'magical', interval: balanceNumber(c,'skill_effects_extra.interval.1',1) });
+      if (c.skill.points >= 3) { debuff(c, target, 'slow', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.3',0.6) : balanceNumber(c,'skill_effects_extra.debuff_amount.4',0.4), balanceNumber(c,'skill_effects_extra.debuff_duration.2',3)); debuff(c, target, 'attackSpeed', G(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.5',-60) : balanceNumber(c,'skill_effects_extra.debuff_amount.6',-40), balanceNumber(c,'skill_effects_extra.debuff_duration.3',3)); }
     }
   }
 });
 
 programs.gyrocopter_flak_cannon = active(c => {
-  setState(c, 'charges', value(c, 'MAX ATTACKS')); buff(c, c.caster, 'flakCannon', 1, 10);
+  setState(c, 'charges', value(c, 'MAX ATTACKS')); buff(c, c.caster, 'flakCannon', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',10));
 }, ['limited attacks splash independent attacks to all nearby enemies', 'secondary attacks skip attack modifiers', 'Super autonomous furthest-target side gunner', 'Gaben side-gunner flak attacks'],
 ['Side-gunner and flak interactions with lifesteal/attack immunities require reference verification'], {
   target: 'self', canCast: c => !has(c, c.caster, 'flakCannon') || readState(c, 'charges') <= 0,
   init: c => { if (S(c)) periodic(c, FOREVER, 1.2, () => {
     const target = c.enemies().filter(t => distance(t, c.caster) <= 7).sort((a, b) => distance(b, c.caster) - distance(a, c.caster) || a.id.localeCompare(b.id))[0];
-    if (!target) return; c.attack(target, 1, false);
-    if (G(c)) for (const other of c.enemies().filter(t => t.id !== target.id && distance(t, c.caster) <= U(value(c, 'RADIUS')))) c.attack(other, 1, false);
+    if (!target) return; c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), false);
+    if (G(c)) for (const other of c.enemies().filter(t => t.id !== target.id && distance(t, c.caster) <= U(value(c, 'RADIUS')))) c.attack(other, balanceNumber(c,'skill_effects_extra.attack_multiplier.2',1), false);
   }); },
   onAttack: c => { if (!has(c, c.caster, 'flakCannon') || readState(c, 'charges') <= 0) return;
-    for (const target of c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= U(value(c, 'RADIUS')))) c.attack(target, 1, false);
+    for (const target of c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= U(value(c, 'RADIUS')))) c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.3',1), false);
     setState(c, 'charges', readState(c, 'charges') - 1);
   }
 });
 
 programs.custom_dark_willow_shadow_realm = active(c => {
   const seconds = value(c, 'DURATION') + (S(c) ? 2 : 0); setState(c, 'entered', c.battle.time);
-  buff(c, c.caster, 'shadowRealm', 1, seconds, { data: { persistOnAttack: G(c) } }); buff(c, c.caster, 'range', U(value(c, 'ATTACK RANGE BONUS')), seconds);
+  buff(c, c.caster, 'shadowRealm', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), seconds, { data: { persistOnAttack: G(c) } }); buff(c, c.caster, 'range', U(value(c, 'ATTACK RANGE BONUS')), seconds);
 }, ['temporary single-target untargetability', 'bonus attack range', 'charge-time-scaled magical attack bonus', 'Super duration', 'Gaben attacks preserve realm'],
 ['Super cooldown reduction', 'Untargetability interaction with in-flight projectiles and delayed single-target spells'], {
   target: 'self', canCast: c => !has(c, c.caster, 'shadowRealm'), onAttack: c => {
@@ -1033,7 +1040,7 @@ programs.kunkka_tidebringer = passive({ attackModifier: c => {
   for (const target of c.enemies().filter(t => t.id !== c.target.id)) {
     const along = ((target.x - c.caster.x) * dx + (target.y - c.caster.y) * dy) / length;
     const across = Math.abs((target.x - c.caster.x) * dy - (target.y - c.caster.y) * dx) / length;
-    if (along > 0 && along <= U(value(c, 'CLEAVE RANGE')) && across <= .5 + along * .5) c.damage(target, (c.caster.attack + value(c, 'DAMAGE BONUS')) * (P(value(c, 'CLEAVE DAMAGE')) + (G(c) ? 1 : 0)), 'physical');
+    if (along > 0 && along <= U(value(c, 'CLEAVE RANGE')) && across <= .5 + along * .5) c.damage(target, (c.caster.attack + value(c, 'DAMAGE BONUS')) * (P(value(c, 'CLEAVE DAMAGE')) + (G(c) ? balanceNumber(c,'skill_effects_extra.damage.1',1) : 0)), 'physical');
   }
 } }, ['cooldown-limited bonus attack', 'forward cleave without secondary attack modifiers', 'Super cooldown reduction', 'Gaben +100 percentage points cleave'],
 ['Cleave start/end widths absent: expanding .5+distance/2 half-width provisional', 'Cleave uses raw attack + ability bonus; full pre-mitigation attack snapshot needed']);
@@ -1064,20 +1071,20 @@ programs.custom_windrunner_focusfire.remaining = programs.custom_windrunner_focu
 // proc behavior. These are selected factual values, not bundled reference files.
 appendInit('custom_beastmaster_inner_beast', c => {
   if (!G(c)) return;
-  const totems = c.summon({ name: '怨灵图腾', count: 1, hp: 8, attack: 0, armor: 0, range: 0, interval: 1, speed: 1.5, lifetime: 25 });
+  const totems = c.summon({ name: '怨灵图腾', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: balanceNumber(c,'skill_effects_extra.hp.1',8), attack: 0, armor: 0, range: 0, interval: balanceNumber(c,'skill_effects_extra.interval.1',1), speed: balanceNumber(c,'skill_effects_extra.speed.1',1.5), lifetime: balanceNumber(c,'skill_effects_extra.lifetime.1',25) });
   for (const totem of totems) {
-    buff(c, totem, 'disarm', 1, 25, { dispel: 'none', passive: false });
-    buff(c, totem, 'hitCountBody', 1, 25, { dispel: 'none', passive: false, data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } });
+    buff(c, totem, 'disarm', balanceNumber(c,'skill_effects_extra.buff_amount.5',1), balanceNumber(c,'skill_effects_extra.buff_duration.4',25), { dispel: 'none', passive: false });
+    buff(c, totem, 'hitCountBody', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), balanceNumber(c,'skill_effects_extra.buff_duration.5',25), { dispel: 'none', passive: false, data: { heroDamage: 2, basicDamage: 1, immuneSpells: true } });
     const center = c.enemies().sort((a, b) => nearby(c, b, 9).length - nearby(c, a, 9).length || distance(a, c.caster) - distance(b, c.caster))[0];
     if (center) {
       const dx = center.x - c.caster.x, dy = center.y - c.caster.y, length = Math.hypot(dx, dy) || 1;
-      c.teleport(totem, c.caster.x + dx / length * Math.min(3.5, length), c.caster.y + dy / length * Math.min(3.5, length));
+      c.warp(totem,c.caster.x + dx / length * Math.min(3.5, length),c.caster.y + dy / length * Math.min(3.5, length));
     }
     // A summoned totem persists independently when its original owner dies.
-    for (let tick = 1; tick <= 100; tick++) c.delay(tick * .25, () => {
+    for (let tick = 1; tick <= 100; tick++) c.delay(tick * balanceNumber(c,'skill_effects_extra.delay.1',0.25), () => {
       if (totem.dead) return;
       for (const enemy of nearby(c, totem, 9)) {
-        debuff(c, enemy, 'physicalOutputReduction', .3, .35, { passive: false }); c.damage(enemy, 7.5, 'magical', false);
+        debuff(c, enemy, 'physicalOutputReduction', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.3), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.35), { passive: false }); c.damage(enemy, balanceNumber(c,'skill_effects_extra.damage.1',7.5), 'magical', false);
       }
     });
   }
@@ -1087,13 +1094,13 @@ programs.custom_beastmaster_inner_beast.remaining = programs.custom_beastmaster_
 
 appendInit('luna_lunar_blessing', c => {
   if (!G(c)) return;
-  buff(c, c.caster, 'strength', 7); buff(c, c.caster, 'intelligence', 7); setState(c, 'drumCharges', 8);
+  buff(c, c.caster, 'strength', balanceNumber(c,'skill_effects_extra.buff_amount.1',7)); buff(c, c.caster, 'intelligence', balanceNumber(c,'skill_effects_extra.buff_amount.2',7)); setState(c, 'drumCharges', 8);
   periodic(c, FOREVER, .1, () => {
-    for (const ally of friendlies(c, c.caster, 12)) buff(c, ally, 'moveFlat', .2, .2);
+    for (const ally of friendlies(c, c.caster, 12)) buff(c, ally, 'moveFlat', balanceNumber(c,'skill_effects_extra.buff_amount.3',0.2), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.2));
     if (!canUseGranted(c) || !nearby(c, c.caster, 12).length || readState(c, 'drumCharges') <= 0 || c.battle.time < readState(c, 'drumsReady')) return;
     setState(c, 'drumCharges', readState(c, 'drumCharges') - 1); setState(c, 'drumsReady', c.battle.time + 30);
     const round = Number(c.battle.round ?? 1), damage = value(c, 'DAMAGE BONUS') + Math.max(0, round - (c.skill.superRound ?? round)) * 4;
-    for (const ally of friendlies(c, c.caster, 12)) { buff(c, ally, 'attackSpeed', damage, 6); buff(c, ally, 'haste', .13, 6); }
+    for (const ally of friendlies(c, c.caster, 12)) { buff(c, ally, 'attackSpeed', damage, balanceNumber(c,'skill_effects_extra.buff_duration.3',6)); buff(c, ally, 'haste', balanceNumber(c,'skill_effects_extra.buff_amount.4',0.13), balanceNumber(c,'skill_effects_extra.buff_duration.4',6)); }
   });
 });
 programs.luna_lunar_blessing.implemented.push('Gaben Bongo Drums passive attributes/movement aura and eight six-second activations every 30 seconds; active attack speed equals current round-scaled Blessing damage');
@@ -1104,13 +1111,13 @@ programs.undying_flesh_golem.remaining = programs.undying_flesh_golem.remaining.
 
 appendInit('custom_luna_moon_glaive', c => {
   if (!G(c)) return;
-  buff(c, c.caster, 'agility', 35); buff(c, c.caster, 'attackSpeed', 30);
-  buff(c, c.caster, 'attackBonus', 25); buff(c, c.caster, 'evasion', .35);
+  buff(c, c.caster, 'agility', balanceNumber(c,'skill_effects_extra.buff_amount.1',35)); buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.2',30));
+  buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.3',25)); buff(c, c.caster, 'evasion', balanceNumber(c,'skill_effects_extra.buff_amount.4',0.35));
 });
 programs.custom_luna_moon_glaive.implemented.push('Gaben historical Butterfly: 35 Agility, 30 attack speed, 25 damage and 35% evasion');
 programs.custom_luna_moon_glaive.remaining = programs.custom_luna_moon_glaive.remaining.filter(s => s !== 'Gaben Butterfly').concat(HISTORICAL);
 
-appendInit('custom_windrunner_focusfire', c => { if (S(c)) buff(c, c.caster, 'attackBonus', 24); });
+appendInit('custom_windrunner_focusfire', c => { if (S(c)) buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.1',24)); });
 appendAttack('custom_windrunner_focusfire', c => { if (S(c)) maelstrom(c); });
 programs.custom_windrunner_focusfire.range = c => c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ?? c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0);
 programs.custom_windrunner_focusfire.implemented.push('Super Maelstrom +24 damage and 30% four-target 140 magic-damage chain; .2s proc cooldown and .25s jumps', 'AA 4.0 cast range equals attack range');
@@ -1118,18 +1125,18 @@ programs.custom_windrunner_focusfire.remaining = programs.custom_windrunner_focu
 
 appendInit('custom_monkey_king_jingu_mastery', c => {
   if (!S(c)) return;
-  buff(c, c.caster, 'strength', 13); buff(c, c.caster, 'intelligence', 10);
-  buff(c, c.caster, 'attackBonus', 15); buff(c, c.caster, 'attackSpeed', 10); buff(c, c.caster, 'manaRegen', 1.75);
+  buff(c, c.caster, 'strength', balanceNumber(c,'skill_effects_extra.buff_amount.1',13)); buff(c, c.caster, 'intelligence', balanceNumber(c,'skill_effects_extra.buff_amount.2',10));
+  buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.3',15)); buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.4',10)); buff(c, c.caster, 'manaRegen', balanceNumber(c,'skill_effects_extra.buff_amount.5',1.75));
 });
 appendAttack('custom_monkey_king_jingu_mastery', c => {
   if (!S(c) || effectiveRange(c) > 2 || c.battle.time < readState(c, 'echoReady')) return;
   setState(c, 'echoReady', c.battle.time + 6);
-  debuff(c, c.target, 'slow', 1, .8);
+  debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.8));
   // Item native scripts are not in KV: second strike is explicit and bounded,
   // with its exact interval and modifier inheritance retained as unresolved.
   c.delay(EXTRA_WORKING_DEFAULTS.echoSecondStrikeDelay, () => {
     if (c.caster.dead || c.target.dead) return;
-    c.attack(c.target, 1, true); debuff(c, c.target, 'slow', 1, .8);
+    c.attack(c.target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), true); debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.2',1), balanceNumber(c,'skill_effects_extra.debuff_duration.2',0.8));
   });
 });
 programs.custom_monkey_king_jingu_mastery.implemented.push('Super historical Echo Sabre attributes, six-second melee double attack and .8s slow');
@@ -1137,26 +1144,26 @@ programs.custom_monkey_king_jingu_mastery.remaining = programs.custom_monkey_kin
 appendInit('custom_monkey_king_jingu_mastery', c => {
   if (!G(c) || c.caster.extraJinguSoldier) return;
   periodic(c, FOREVER, 2, () => {
-    const attack = (c.caster.attack + (readState(c, 'charges') > 0 ? value(c, 'BONUS DAMAGE') + 130 : 0) + c.caster.statuses.filter(s => s.kind === 'attackBonus' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0)) *
+    const attack = (c.caster.attack + (readState(c, 'charges') > 0 ? value(c, 'BONUS DAMAGE') + (skillBalance(c.definition,c.skill.points)?0:130) : 0) + c.caster.statuses.filter(s => s.kind === 'attackBonus' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0)) *
       (1 + c.caster.statuses.filter(s => s.kind === 'attackPct' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0));
     const template = { ...c.caster, skills: c.caster.skills.filter(skill => !!skill && JINGU_ATTACK_EFFECT_IDS.has(skill.id)) };
-    const soldiers = c.summon({ name: '石猴战士', count: 1, hp: 1, attack, armor: 0, range: effectiveRange(c) + 4, interval: 1.2, speed: 0,
+    const soldiers = c.summon({ name: '石猴战士', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: balanceNumber(c,'skill_effects_extra.hp.1',1), attack, armor: 0, range: effectiveRange(c) + balanceNumber(c,'skill_effects_extra.range.1',4), interval: balanceNumber(c,'skill_effects_extra.interval.1',1.2), speed: 0,
       lifetime: EXTRA_WORKING_DEFAULTS.soldierLifetime, template, inheritsSkills: true, initializeInherited: true,
       inheritedMode: 'attackEffects', attackSnapshotIncludesBonuses: true });
     const angle = readState(c, 'soldierCount') * Math.PI / 3; setState(c, 'soldierCount', readState(c, 'soldierCount') + 1);
     for (const soldier of soldiers) {
-      soldier.extraJinguSoldier = true; c.teleport(soldier, c.caster.x + Math.cos(angle) * EXTRA_WORKING_DEFAULTS.soldierSpawnOffset, c.caster.y + Math.sin(angle) * EXTRA_WORKING_DEFAULTS.soldierSpawnOffset);
-      buff(c, soldier, 'invulnerable', 1, EXTRA_WORKING_DEFAULTS.soldierLifetime, { dispel: 'none', passive: false });
+      soldier.extraJinguSoldier = true; c.warp(soldier,c.caster.x + Math.cos(angle) * EXTRA_WORKING_DEFAULTS.soldierSpawnOffset,c.caster.y + Math.sin(angle) * EXTRA_WORKING_DEFAULTS.soldierSpawnOffset);
+      buff(c, soldier, 'invulnerable', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), EXTRA_WORKING_DEFAULTS.soldierLifetime, { dispel: 'none', passive: false });
     }
   });
 });
 
 appendInit('custom_ember_spirit_flame_guard', c => {
   if (!G(c)) return;
-  c.zone({ follow: true, radius: EXTRA_WORKING_DEFAULTS.radianceRadius, duration: FOREVER, interval: .25, effect: target => {
+  c.zone({ follow: true, radius: EXTRA_WORKING_DEFAULTS.radianceRadius, duration: FOREVER, interval: balanceNumber(c,'skill_effects_extra.interval.2',0.25), effect: target => {
     if (c.caster.statuses.some(s => s.kind === 'break' && s.until > c.battle.time)) return;
-    c.damage(target, EXTRA_WORKING_DEFAULTS.radianceDamagePerSecond * .25, 'magical', false);
-    debuff(c, target, 'blind', EXTRA_WORKING_DEFAULTS.radianceBlind, .35);
+    c.damage(target, EXTRA_WORKING_DEFAULTS.radianceDamagePerSecond * balanceNumber(c,'skill_effects_extra.damage.3',0.25), 'magical', false);
+    debuff(c, target, 'blind', EXTRA_WORKING_DEFAULTS.radianceBlind, balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.35));
   } });
 });
 appendAttack('muerta_pierce_the_veil', c => {
@@ -1164,18 +1171,18 @@ appendAttack('muerta_pierce_the_veil', c => {
   const range = c.caster.statuses.find(s => s.kind === 'attackRangeOverride' && s.until > c.battle.time)?.value ?? c.caster.range + c.caster.statuses.filter(s => s.kind === 'range' && s.until > c.battle.time).reduce((n, s) => n + (s.value ?? 0), 0);
   const alternatives = ordered(nearby(c, c.caster, range).filter(t => t.id !== c.target.id && !t.statuses.some(s => ['undetectable', 'shadowRealm'].includes(s.kind) && s.until > c.battle.time)), c.caster);
   const target = alternatives[0] ?? c.target;
-  setState(c, 'gunslingerSecondary', 1); try { c.attack(target, 1, true); } finally { setState(c, 'gunslingerSecondary', 0); }
+  setState(c, 'gunslingerSecondary', 1); try { c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), true); } finally { setState(c, 'gunslingerSecondary', 0); }
 });
 
 appendInit('enchantress_impetus', c => {
-  if (!S(c)) return; buff(c, c.caster, 'statBonus', 5); buff(c, c.caster, 'attackBonus', 10);
+  if (!S(c)) return; buff(c, c.caster, 'statBonus', balanceNumber(c,'skill_effects_extra.buff_amount.1',5)); buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.2',10));
 });
 appendAttack('enchantress_impetus', c => {
   if (!S(c) || effectiveRange(c) <= 2 || c.battle.time < readState(c, 'arrayReady')) return;
   const targets = ordered(c.enemies().filter(t => t.id !== c.target.id && distance(t, c.caster) <= effectiveRange(c)), c.caster).slice(0, 2);
   if (!targets.length) return;
   setState(c, 'arrayReady', c.battle.time + 12);
-  for (const target of targets) c.attack(target, 1, false);
+  for (const target of targets) c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), false);
 });
 programs.enchantress_impetus.implemented.push('Super historical Specialists Array +5 attributes/+10 damage and two secondary ranged attacks every 12 seconds');
 programs.enchantress_impetus.remaining = programs.enchantress_impetus.remaining.filter(s => s !== 'Specialist Array exact item effect').concat(HISTORICAL, 'Historical native localization confirms ranged-only Array secondary attacks do not trigger attack modifiers');
@@ -1184,9 +1191,9 @@ appendInit('night_stalker_crippling_fear', c => {
   if (!G(c)) return;
   periodic(c, FOREVER, 4, () => {
     for (const target of nearby(c, c.caster, 5.5)) {
-      c.damage(target, 320, 'magical', false); debuff(c, target, 'stun', 0, EXTRA_WORKING_DEFAULTS.voidMinistun, { dispel: 'strong', piercesImmunity: false });
-      debuff(c, target, 'slow', .5, 4, { piercesImmunity: false });
-      debuff(c, target, 'attackSpeed', -50, 4, { piercesImmunity: false });
+      c.damage(target, balanceNumber(c,'skill_effects_extra.damage.1',320), 'magical', false); debuff(c, target, 'stun', 0, EXTRA_WORKING_DEFAULTS.voidMinistun, { dispel: 'strong', piercesImmunity: false });
+      debuff(c, target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.5), balanceNumber(c,'skill_effects_extra.debuff_duration.3',4), { piercesImmunity: false });
+      debuff(c, target, 'attackSpeed', balanceNumber(c,'skill_effects_extra.debuff_amount.3',-50), balanceNumber(c,'skill_effects_extra.debuff_duration.4',4), { piercesImmunity: false });
     }
   });
 });
@@ -1195,13 +1202,13 @@ programs.night_stalker_crippling_fear.remaining = programs.night_stalker_crippli
 
 appendInit('custom_undying_soul_rip', c => {
   if (!G(c)) return;
-  c.caster.maxHp += 250; c.caster.hp += 250; buff(c, c.caster, 'regen', 12); buff(c, c.caster, 'armor', 8);
+  c.caster.maxHp += 250; c.caster.hp += 250; buff(c, c.caster, 'regen', balanceNumber(c,'skill_effects_extra.buff_amount.1',12)); buff(c, c.caster, 'armor', balanceNumber(c,'skill_effects_extra.buff_amount.2',8));
   periodic(c, FOREVER, .1, () => {
-    if (!has(c, c.caster, 'crimsonActive')) buff(c, c.caster, 'attackDamageBlock', c.caster.range > 2 ? 50 : 75, .2, { data: { chance: .6 } });
+    if (!has(c, c.caster, 'crimsonActive')) buff(c, c.caster, 'attackDamageBlock', c.caster.range > balanceNumber(c,'skill_effects_extra.buff_amount.3',2) ? balanceNumber(c,'skill_effects_extra.buff_amount.4',50) : balanceNumber(c,'skill_effects_extra.buff_amount.5',75), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.2), { data: { chance: balanceNumber(c,'skill_effects_extra.chance.1',0.6) } });
     if (!canUseGranted(c) || c.battle.time < readState(c, 'crimsonReady') || !nearby(c, c.caster, 12).length) return;
     setState(c, 'crimsonReady', c.battle.time + 35);
     for (const ally of friendlies(c, c.caster, 12)) {
-      buff(c, ally, 'crimsonActive', 1, 12); buff(c, ally, 'attackDamageBlock', 75, 12, { data: { chance: 1 } });
+      buff(c, ally, 'crimsonActive', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), balanceNumber(c,'skill_effects_extra.buff_duration.2',12)); buff(c, ally, 'attackDamageBlock', balanceNumber(c,'skill_effects_extra.buff_amount.7',75), balanceNumber(c,'skill_effects_extra.buff_duration.3',12), { data: { chance: balanceNumber(c,'skill_effects_extra.chance.2',1) } });
     }
   });
 });
@@ -1210,17 +1217,17 @@ programs.custom_undying_soul_rip.remaining = programs.custom_undying_soul_rip.re
 
 child('dragon_knight_fireball', ['RADIUS: 350', 'DAMAGE: 75', 'DURATION: 8', 'LINGER: 2'], 20, 100, {
   target: 'enemy', castPoint: .2,
-  range: c => c.caster.statuses.some(s => s.kind === 'elderDragon' && s.until > c.battle.time) ? 14 : 6,
+  range: c => c.caster.statuses.some(s => s.kind === 'elderDragon' && s.until > c.battle.time) ? balanceNumber(c,'skill_effects_extra.range.1',14) : balanceNumber(c,'skill_effects_extra.range.2',6),
   cast: c => {
-    c.zone({ x: c.target.x, y: c.target.y, radius: 3.5, duration: 8, interval: .5, effect: unit => {
-      debuff(c, unit, 'fireballBurn', 1, 2.01);
+    c.zone({ x: c.target.x, y: c.target.y, radius: balanceNumber(c,'skill_effects_extra.radius.1',3.5), duration: balanceNumber(c,'skill_effects_extra.duration.1',8), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.5), effect: unit => {
+      debuff(c, unit, 'fireballBurn', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), balanceNumber(c,'skill_effects_extra.debuff_duration.1',2.01));
       // Independent from dragon poison: native lingering burn must not replace it.
       // The target's timers must also remain independent across different casters.
       const lastDamageKey = `${stateKey(c, 'fireballLastDamage')}:${c.caster.id}`;
       const generationKey = `${stateKey(c, 'fireballGeneration')}:${c.caster.id}`;
       const burn = () => {
         if (Number(unit[lastDamageKey] ?? -1) > c.battle.time - .25) return;
-        unit[lastDamageKey] = c.battle.time; c.damage(unit, 37.5, 'magical', false);
+        unit[lastDamageKey] = c.battle.time; c.damage(unit, balanceNumber(c,'skill_effects_extra.damage.1',37.5), 'magical', false);
       };
       burn();
       const generation = Number(unit[generationKey] ?? 0) + 1;
@@ -1250,8 +1257,8 @@ child('troll_warlord_whirling_axes_melee', ['DAMAGE: 200', 'MAX RANGE: 450', 'BL
   cast: c => {
       if (c.caster.extraAxesGaben) c.dispel(c.caster);
       const hit = new Set<string>();
-      c.zone({ follow: true, radius: 4.5, duration: 3, interval: .1, visualLayer: 'axe_melee', effect: target => {
-        if (hit.has(target.id)) return; hit.add(target.id); c.damage(target, 200, 'magical', false); debuff(c, target, 'blind', .6, 5, { piercesImmunity: false });
+      c.zone({ follow: true, radius: balanceNumber(c,'skill_effects_extra.radius.1',4.5), duration: balanceNumber(c,'skill_effects_extra.duration.1',3), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.1), visualLayer: 'axe_melee', effect: target => {
+        if (hit.has(target.id)) return; hit.add(target.id); c.damage(target, balanceNumber(c,'skill_effects_extra.damage.1',200), 'magical', false); debuff(c, target, 'blind', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.6), balanceNumber(c,'skill_effects_extra.debuff_duration.1',5), { piercesImmunity: false });
       } });
   },
   implemented: ['independent melee Whirling Axes action and resource ledger', 'once-per-target damage/blind', 'AA Gaben 4s/25 mana and self basic dispel'],
@@ -1266,7 +1273,7 @@ child('troll_warlord_whirling_axes_ranged', ['DAMAGE: 90', 'RANGE: 950', 'SLOW: 
       for (const target of targets) {
         const bearing = Math.atan2(target.y - c.caster.y, target.x - c.caster.x), difference = Math.atan2(Math.sin(bearing - facing), Math.cos(bearing - facing));
         if (Math.abs(difference) > 25 / 2 * Math.PI / 180 + Math.atan2(1, Math.max(.01, distance(target, c.caster)))) continue;
-        c.projectile(target, 15, unit => { if (c.caster.extraAxesGaben) c.dispel(unit, false, false); c.damage(unit, 90, 'magical', false); debuff(c, unit, 'slow', .4, 4, { piercesImmunity: false }); });
+        c.projectile(target, balanceNumber(c,'skill_effects_extra.projectile_speed.1',15), unit => { if (c.caster.extraAxesGaben) c.dispel(unit, false, false); c.damage(unit, balanceNumber(c,'skill_effects_extra.damage.1',90), 'magical', false); debuff(c, unit, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.4), balanceNumber(c,'skill_effects_extra.debuff_duration.1',4), { piercesImmunity: false }); });
       }
   },
   implemented: ['independent ranged Whirling Axes action and resource ledger', 'traveling fan damage/slow', 'AA Gaben 4s/25 mana and enemy basic dispel'],
@@ -1278,10 +1285,10 @@ programs.custom_troll_warlord_berserkers_rage.remaining = programs.custom_troll_
 child('slark_depth_shroud', ['RADIUS: 250', 'DURATION: 3'], 75, 75, {
   target: 'ally', range: 8, castPoint: .1,
   canCast: c => c.target.hp < c.target.maxHp * .75 && !c.target.statuses.some(s => s.kind === 'undetectable' && s.until > c.battle.time),
-  cast: c => c.zone({ x: c.target.x, y: c.target.y, radius: 2.5, duration: 3, interval: .1, targets: 'allies', effect: target => {
-    buff(c, target, 'undetectable', 1, .15); buff(c, target, 'haste', Number(c.caster.depthShroudHaste ?? .48), .15);
-    buff(c, target, 'regen', Number(c.caster.depthShroudRegen ?? 120), .15);
-    buff(c, target, 'attackSpeed', Number(c.caster.depthShroudAttackSpeed ?? 0), .15);
+  cast: c => c.zone({ x: c.target.x, y: c.target.y, radius: balanceNumber(c,'skill_effects_extra.radius.1',2.5), duration: balanceNumber(c,'skill_effects_extra.duration.1',3), interval: balanceNumber(c,'skill_effects_extra.interval.1',0.1), targets: 'allies', effect: target => {
+    buff(c, target, 'undetectable', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.15)); buff(c, target, 'haste', Number(c.caster.depthShroudHaste ?? balanceNumber(c,'skill_effects_extra.buff_amount.2',0.48)), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.15));
+    buff(c, target, 'regen', Number(c.caster.depthShroudRegen ?? balanceNumber(c,'skill_effects_extra.buff_amount.3',120)), balanceNumber(c,'skill_effects_extra.buff_duration.3',0.15));
+    buff(c, target, 'attackSpeed', Number(c.caster.depthShroudAttackSpeed ?? 0), balanceNumber(c,'skill_effects_extra.buff_duration.4',0.15));
   } }),
   implemented: ['independent queued point cast, mana, cooldown and .1s cast point', 'three-second stationary allied concealment field', 'parent AA Shadow Dance recovery/movement effects'],
   remaining: [HISTORICAL, 'Shadow Dance Super attack-speed inheritance and aura boundary linger use explicit working interpretation'],
@@ -1298,15 +1305,15 @@ child('lone_druid_true_form', ['BONUS ARMOR: 10', 'BONUS HP: 1000', 'DURATION: 4
   target: 'self', castPoint: 0,
   canCast: c => !has(c, c.caster, 'trueForm') && nearby(c, c.caster, 12).length > 0,
   cast: c => {
-    buff(c, c.caster, 'trueForm', 1, 40, { dispel: 'none' }); buff(c, c.caster, 'armor', 10, 40, { dispel: 'none' });
-    buff(c, c.caster, 'attackRangeOverride', 1.5, 40, { dispel: 'none' }); buff(c, c.caster, 'baseAttackTime', 1.7, 40, { dispel: 'none' });
-    buff(c, c.caster, 'magicResist', .33, 40, { dispel: 'none' }); c.caster.maxHp += 1000; c.caster.hp += 1000;
-    c.delay(40, () => { c.caster.maxHp -= 1000; c.caster.hp = Math.min(c.caster.hp, c.caster.maxHp); });
+    buff(c, c.caster, 'trueForm', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), balanceNumber(c,'skill_effects_extra.buff_duration.1',40), { dispel: 'none' }); buff(c, c.caster, 'armor', balanceNumber(c,'skill_effects_extra.buff_amount.2',10), balanceNumber(c,'skill_effects_extra.buff_duration.2',40), { dispel: 'none' });
+    buff(c, c.caster, 'attackRangeOverride', balanceNumber(c,'skill_effects_extra.buff_amount.3',1.5), balanceNumber(c,'skill_effects_extra.buff_duration.3',40), { dispel: 'none' }); buff(c, c.caster, 'baseAttackTime', balanceNumber(c,'skill_effects_extra.buff_amount.4',1.7), balanceNumber(c,'skill_effects_extra.buff_duration.4',40), { dispel: 'none' });
+    buff(c, c.caster, 'magicResist', balanceNumber(c,'skill_effects_extra.buff_amount.5',0.33), balanceNumber(c,'skill_effects_extra.buff_duration.5',40), { dispel: 'none' }); c.caster.maxHp += 1000; c.caster.hp += 1000;
+    c.delay(balanceNumber(c,'skill_effects_extra.delay.1',40), () => { c.caster.maxHp -= 1000; c.caster.hp = Math.min(c.caster.hp, c.caster.maxHp); });
   },
   onAttack: c => {
-    if (!has(c, c.caster, 'trueForm') || c.battle.time < readState(c, 'heroEntangleReady') || c.random() >= .3) return;
+    if (!has(c, c.caster, 'trueForm') || c.battle.time < readState(c, 'heroEntangleReady') || c.random() >= balanceNumber(c,'skill_effects_extra.trigger_chance.1',0.3)) return;
     setState(c, 'heroEntangleReady', c.battle.time + 5);
-    debuff(c, c.target, 'root', 0, 2.8); debuff(c, c.target, 'dot', 60 * (c.target.summoned ? 3 : 1), 2.8, { interval: 1, damageType: 'magical' });
+    debuff(c, c.target, 'root', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',2.8)); debuff(c, c.target, 'dot', balanceNumber(c,'skill_effects_extra.debuff_amount.1',60) * (c.target.summoned ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',3) : balanceNumber(c,'skill_effects_extra.debuff_amount.3',1)), balanceNumber(c,'skill_effects_extra.debuff_duration.2',2.8), { interval: balanceNumber(c,'skill_effects_extra.interval.1',1), damageType: 'magical' });
   },
   implemented: ['independent queued level-two True Form at 200 mana/100s cooldown', 'forty-second +1000 HP/+10 armor melee form and 1.7 BAT', 'historical Demolish spell resistance and hero Entangle'],
   remaining: [HISTORICAL, 'AA 4.5b zero transformation timing overrides native 1.933 seconds; exact Entangle granted level and melee range require comparison', 'Building damage has no targets in the flat arena'],
@@ -1325,11 +1332,11 @@ child('enchantress_bunny_hop', ['HOP DISTANCE: 500', 'HOP DURATION: .4', 'ATTACK
       .sort((a, b) => distance(b, c.caster) - distance(a, c.caster) || a.id.localeCompare(b.id)).slice(0, 3);
     for (const target of targets) {
       const x = target.x, y = target.y, dx = x - c.caster.x, dy = y - c.caster.y, length = Math.hypot(dx, dy) || 1;
-      debuff(c, target, 'stun', 0, .4, { dispel: 'none', piercesImmunity: false });
-      for (let step = 1; step <= 8; step++) c.delay(step * .05, () => { if (!target.dead) c.teleport(target, x + dx / length * 5 * step / 8, y + dy / length * 5 * step / 8); });
-      c.delay(.4, () => {
+      debuff(c, target, 'stun', 0, balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.4), { dispel: 'none', piercesImmunity: false });
+      for (let step = 1; step <= 8; step++) c.delay(step * balanceNumber(c,'skill_effects_extra.delay.1',0.05), () => { if (!target.dead) c.moveContinuous(target,x + dx / length * 5 * step / 8,y + dy / length * 5 * step / 8,{duration:.05}); });
+      c.delay(balanceNumber(c,'skill_effects_extra.delay.2',0.4), () => {
         if (c.caster.dead || target.dead) return;
-        c.caster.extraFreeImpetus = true; try { c.attack(target, 1, true); } finally { c.caster.extraFreeImpetus = false; }
+        c.caster.extraFreeImpetus = true; try { c.attack(target, balanceNumber(c,'skill_effects_extra.attack_multiplier.1',1), true); } finally { c.caster.extraFreeImpetus = false; }
       });
     }
   },

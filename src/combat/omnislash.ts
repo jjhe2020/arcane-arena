@@ -1,8 +1,11 @@
+import {configuredValue} from '../config';
+import {balanceNumber} from '../config';
 import type { CombatUnit } from '../model';
 import type { EffectContext, EffectStatus, SkillProgram } from '../skill-effects';
 
 const ID='juggernaut_omni_slash',STEP=1/30;
 function value(c:EffectContext,key:string,fallback=0):number {
+  const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row=c.definition.values.filter(r=>r.slice(0,r.indexOf(':')).trim().toUpperCase()===key).at(-1);
   const values=row?.slice(row.indexOf(':')+1).match(/-?\d+(?:\.\d+)?/g)?.map(Number)??[];
   return values[Math.min(values.length-1,Math.max(0,Math.min(2,c.skill.points-1)))]??fallback;
@@ -22,7 +25,7 @@ function slash(c:EffectContext,miniDuration?:number):void {
   for(const [kind,amount]of [['invulnerable',0],['disarm',0],['omnislash',0],['attackSpeed',value(c,'BONUS ATTACK SPEED')],['attackBonus',value(c,'BONUS DAMAGE')]] as const)
     c.status(c.caster,kind,duration,amount,{dispel:'none',data:{omnislashToken:token}});
   let previous:CombatUnit=c.target,progress=0,lastTime=c.battle.time;
-  const hit=(target:CombatUnit)=>{c.teleport(c.caster,target.x+.5,target.y);c.attack(target,1,true);previous=target;};
+  const hit=(target:CombatUnit)=>{c.warp(c.caster,target.x+.5,target.y);c.attack(target,1,true);previous=target;};
   if(c.target.dead||(c.canTarget&&!c.canTarget(c.target))){finish();return;}
   hit(c.target);
   const tick=()=>{
@@ -37,7 +40,7 @@ function slash(c:EffectContext,miniDuration?:number):void {
 }
 export function applyOmnislashClockOverride(registry:Record<string,SkillProgram>):void {
   const base=registry[ID];if(!base)return;
-  registry[ID]={...base,cast:c=>slash(c),onAttack:c=>{if(c.skill.points>=9&&!slicing(c)&&c.random()<.2)slash(c,.8);},
+  registry[ID]={...base,cast:c=>slash(c),onAttack:c=>{if(c.skill.points>=9&&!slicing(c)&&c.random()<balanceNumber(c,'omnislash.trigger_chance.1',0.2))slash(c,.8);},
     implemented:[...base.implemented,'effective attack-speed slash clock with preserved fractional progress','ends and removes only its own protective/attack modifiers when no eligible nearby targets remain'],
     remaining:[...base.remaining.filter(s=>s!=='Full attack-speed status integration and early end without targets'),'Slash progress updates each fixed step; no-target check ends within one tick, and additive attack-speed/bonus-damage timing is an explicit working rule pending original-version comparison']};
 }

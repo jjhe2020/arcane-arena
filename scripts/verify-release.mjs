@@ -3,14 +3,18 @@ import assert from 'node:assert/strict';
 import {chromium} from '@playwright/test';
 
 const readJSON=async path=>JSON.parse(await fs.readFile(path,'utf8'));
-const [assets,skills,coverage]=await Promise.all(['assets','skills','mechanics-coverage'].map(name=>readJSON(`dist/data/${name}.json`)));
-for(const name of ['assets','skills','mechanics-coverage'])assert.equal(await fs.readFile(`dist/data/${name}.json`,'utf8'),await fs.readFile(`public/data/${name}.json`,'utf8'),`Stale production ${name}`);
+const [assets,skills,coverage,config,configReport]=await Promise.all(['assets','skills','mechanics-coverage','game-config','config-report'].map(name=>readJSON(`dist/data/${name}.json`)));
+for(const name of ['assets','skills','mechanics-coverage','game-config','config-report'])assert.equal(await fs.readFile(`dist/data/${name}.json`,'utf8'),await fs.readFile(`public/data/${name}.json`,'utf8'),`Stale production ${name}`);
+assert.equal(await fs.readFile('src/generated/game-config.json','utf8'),await fs.readFile('dist/data/game-config.json','utf8'),'Compiled runtime configuration mismatch');
+assert.equal(config.hash,configReport.hash);assert.equal(config.hash,coverage.configHash);
+assert.equal(configReport.counts.skills,230);assert.equal(configReport.counts.granted,69);
+assert.ok(skills.every(skill=>skill.configHash===config.hash&&[1,2,3,6,9].every(tier=>skill.balanceLevels[String(tier)])), 'Missing configured AA tier');
 const images=new Set();
 function collect(value){if(typeof value==='string'&&/^\/art\/.*\.(png|webp|jpg)$/.test(value))images.add(value);else if(Array.isArray(value))value.forEach(collect);else if(value&&typeof value==='object')Object.values(value).forEach(collect);}
 collect(assets);collect(skills);
 await Promise.all([...images].map(path=>fs.access(`dist${path}`)));
 assert.equal(skills.length,230);assert.equal(Object.keys(assets.characters).length,8);
-const assetsReport={status:'passed',generatedAt:new Date().toISOString(),simulationRevision:coverage.simulationRevision,imageReferences:images.size,characterAppearances:Object.keys(assets.characters).length,mobileAtlases:Object.keys(assets.mobileAtlases??{}).length,sourceAndProductionDataIdentical:true};
+const assetsReport={status:'passed',generatedAt:new Date().toISOString(),simulationRevision:coverage.simulationRevision,configHash:config.hash,configuration:configReport.counts,imageReferences:images.size,characterAppearances:Object.keys(assets.characters).length,mobileAtlases:Object.keys(assets.mobileAtlases??{}).length,sourceAndProductionDataIdentical:true};
 await fs.writeFile('artifacts/release-assets-check.json',JSON.stringify(assetsReport,null,2));
 const browser=await chromium.launch({headless:true});
 try{

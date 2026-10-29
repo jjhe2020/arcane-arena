@@ -1,17 +1,19 @@
 import { ROLES, type GameState, type Hero, type Player, type Role, type RoundReport, type SkillDefinition, type SkillStack } from './model';
 import {SIMULATION_REVISION} from './simulation-version';
+import {CONFIG_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
+import {validateUnitStatistics} from './combat/statistics';
 
 /** Confirmed capacities/economy, plus explicitly provisional project rules. */
 export const GAME_RULES = {
-  version: 1, players: 8, initialHp: 100, shopSlots: 12, reserveSlots: 4,
-  skillsPerHero: 4, copiesPerSkill: 20, skillPrice: 3, rerollPrice: 1,
-  maximumPoints: 9, ultimateShopLevel: 3,
-  regularShopSlots:10, godShopSlots:2, activeShopSlots:[4,6,6,8,10],
-  matchPoolSize:100,
+  version: 1, players: 8, initialHp: ECONOMY_CONFIG.initialHp, shopSlots: 12, reserveSlots: 4,
+  skillsPerHero: 4, copiesPerSkill: ECONOMY_CONFIG.copiesPerSkill, skillPrice: ECONOMY_CONFIG.skillPrice, rerollPrice: ECONOMY_CONFIG.rerollPrice,
+  maximumPoints: 9, ultimateShopLevel: ECONOMY_CONFIG.ultimateShopLevel,
+  regularShopSlots:10, godShopSlots:2, activeShopSlots:SHOP_LEVELS.map(level=>level.activeSlots),
+  matchPoolSize:ECONOMY_CONFIG.matchPoolSize,
   // Working rules: four custom classes arrive on these rounds; refunds and
   // upgrade costs are configurable project defaults, not a claimed AA patch.
-  heroArrivalRounds: [1, 3, 5, 7, 9], saleGoldPerPoint: 2,
-  shopUpgradePrices: [10, 15, 20, 25], upgradeDiscountPerRound: 1,
+  heroArrivalRounds: ECONOMY_CONFIG.heroArrivalRounds, saleGoldPerPoint: ECONOMY_CONFIG.saleGoldPerPoint,
+  shopUpgradePrices: SHOP_LEVELS.slice(0,4).map(level=>level.upgradePrice), upgradeDiscountPerRound: ECONOMY_CONFIG.upgradeDiscountPerRound,
   // User confirmed five levels and two reserved, inactive God placeholders.
   maximumShopLevel: 5,
 } as const;
@@ -28,7 +30,7 @@ const validSkillState=(value:unknown):value is Record<string,number>=>record(val
 
 function signature(defs: SkillDefinition[]): string {
   // Appearance changes do not invalidate a game; rules/content changes do.
-  const text = SIMULATION_REVISION+JSON.stringify([...defs].sort((a, b) => a.id.localeCompare(b.id)).map(d => [d.id, d.ultimate, d.passive, d.tags, d.categories, d.values, d.cooldowns, d.mana, d.descriptionEn, d.super, d.gaben]));
+  const text = SIMULATION_REVISION+CONFIG_HASH+JSON.stringify([...defs].sort((a, b) => a.id.localeCompare(b.id)).map(d => [d.id, d.ultimate, d.passive, d.tags, d.categories, d.values, d.cooldowns, d.mana, d.balanceLevels, d.descriptionEn, d.super, d.gaben]));
   let hash = 2166136261;
   for (let i = 0; i < text.length; i++) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
   return `arena-${GAME_RULES.version}-${(hash >>> 0).toString(16)}`;
@@ -65,14 +67,14 @@ function shuffle<T>(state: GameState, values: T[]): T[] {
   return result;
 }
 
-export function roundIncome(round: number): number { return Math.min(20, 6 + 2 * Math.max(0, round - 1)); }
+export function roundIncome(round: number): number { return Math.min(ECONOMY_CONFIG.incomeCap, ECONOMY_CONFIG.incomeBase + ECONOMY_CONFIG.incomePerRound * Math.max(0, round - 1)); }
 export function shopOfferCount(level:number):number{return GAME_RULES.activeShopSlots[Math.max(0,Math.min(4,Math.floor(level)-1))];}
 export function heroCountForRound(round: number): number { return GAME_RULES.heroArrivalRounds.filter(r => r <= round).length; }
 export function skillTier(points: number): 'basic' | 'standard' | 'super' | 'gaben' {
   return points >= 9 ? 'gaben' : points >= 6 ? 'super' : points >= 3 ? 'standard' : 'basic';
 }
 /** Current official FAQ formula; floor rounding and draws are project defaults. */
-export function roundDamage(round: number, survivors: number): number { return Math.max(1, Math.floor(5 + round / 3.8 + survivors * round / 3.8)); }
+export function roundDamage(round: number, survivors: number): number { return Math.max(1, Math.floor(ECONOMY_CONFIG.roundDamageBase + round / ECONOMY_CONFIG.roundDamageDivisor + survivors * round / ECONOMY_CONFIG.roundDamageDivisor)); }
 
 function makeHero(player: number, index: number): Hero {
   const role = roleOrder[(index + (player % 4)) % roleOrder.length];
@@ -183,7 +185,7 @@ export function buySkill(state: GameState, playerId: number, shopIndex: number):
   if(!integer(shopIndex,0,shopOfferCount(player.shopLevel)-1))return shopIndex>=10?'God位置尚未开放':'这个商品位尚未解锁';
   if (!integer(shopIndex, 0, 11)) return '商品位置无效';
   const id = player.shop[shopIndex]; if (!id) return '这个商品已售出';
-  if (player.gold < GAME_RULES.skillPrice) return '金币不足，需要 3 金币';
+  if (player.gold < GAME_RULES.skillPrice) return `金币不足，需要 ${GAME_RULES.skillPrice} 金币`;
   const existing = allStacks(player).find(s => s.id === id);
   if (existing && existing.points >= GAME_RULES.maximumPoints) return '该技能已经达到 Gaben';
   const destination = existing ? null : destinationFor(state, player, id);
@@ -198,7 +200,7 @@ export function buySkill(state: GameState, playerId: number, shopIndex: number):
 export function rerollShop(state: GameState, playerId: number): string | null {
   const player = editable(state, playerId); if (typeof player === 'string') return player;
   if (player.locked) return '请先解除商店锁定';
-  if (player.gold < GAME_RULES.rerollPrice) return '刷新需要 1 金币';
+  if (player.gold < GAME_RULES.rerollPrice) return `刷新需要 ${GAME_RULES.rerollPrice} 金币`;
   player.gold -= GAME_RULES.rerollPrice;
   releaseShop(state, player); drawShop(state, player);
   return null;
@@ -238,7 +240,7 @@ export function moveSkill(state: GameState, playerId: number, from: SkillLocatio
   // FAQ: hero-to-hero / hero-to-reserve costs 1; reserve-to-hero is free.
   // Swap policy: one gold per cross-body operation, including an outgoing
   // hero skill when swapping from reserve. Internal ordering is free.
-  const fee=source.slots!==target.slots&&(from.hero!==undefined||(to.hero!==undefined&&!!other&&other.id!==stack.id))?1:0;
+  const fee=source.slots!==target.slots&&(from.hero!==undefined||(to.hero!==undefined&&!!other&&other.id!==stack.id))?ECONOMY_CONFIG.moveSkillPrice:0;
   const catalog = catalogFor(state);
   // Validate the final arrangement on a copy: swaps inside the same hero must
   // not mistake the source's ultimate for a second ultimate.
@@ -256,7 +258,7 @@ export function moveSkill(state: GameState, playerId: number, from: SkillLocatio
   }
   if (next.heroes.some(h => h.skills.filter(s => s && catalog.get(s.id)!.ultimate).length > 1)) return '每名英雄最多装备一个终极技能';
   if (next.heroes.some(h => new Set(h.skills.filter(Boolean).map(s => s!.id)).size !== h.skills.filter(Boolean).length)) return '同一英雄不能装备重复技能';
-  if(player.gold<fee)return '移动技能需要1金币';
+  if(player.gold<fee)return `移动技能需要${fee}金币`;
   player.gold-=fee;
   source.slots[source.index] = nextSource.slots[nextSource.index];
   target.slots[target.index] = nextTarget.slots[nextTarget.index];
@@ -381,7 +383,7 @@ export function getBattlePlayers(state: GameState): Player[] { return copy(state
 function validReport(report: unknown): report is RoundReport {
   if (!record(report) || !integer(report.round, 1, 10000) || !integer(report.a, 0, 7) || !integer(report.b, 0, 7) || report.a === report.b || (report.winner !== null && report.winner !== report.a && report.winner !== report.b) || !integer(report.damage, 0, 10000) || !finite(report.duration, 0, 100000) || !integer(report.survivors, 0, 10000) || !Array.isArray(report.stats) || report.stats.length > 10000) return false;
   if(report.gains!==undefined&&(!Array.isArray(report.gains)||report.gains.length>100||report.gains.some(g=>!record(g)||typeof g.heroId!=='string'||!finite(g.attack,0,1e7)||['strength','agility','intelligence'].some(k=>g[k]!==undefined&&!finite(g[k],0,1e7))||(g.skillState!==undefined&&!validSkillState(g.skillState)))))return false;
-  return report.stats.every(s => record(s) && typeof s.id === 'string' && typeof s.name === 'string' && integer(s.side, 0, 7) && finite(s.damage) && finite(s.taken) && finite(s.healing));
+  return report.stats.every(s => record(s) && typeof s.id === 'string' && typeof s.name === 'string' && integer(s.side, 0, 7) && finite(s.damage) && finite(s.taken) && finite(s.healing) && validateUnitStatistics(s));
 }
 
 export function finishRound(state: GameState, reports: RoundReport[]): string | null {
@@ -444,7 +446,7 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
   if(!integer(state.nextSkillInstance,1,1e9)||!Array.isArray(state.matchSkillIds)||state.matchSkillIds.length!==Math.min(GAME_RULES.matchPoolSize,ids.size)||new Set(state.matchSkillIds).size!==state.matchSkillIds.length||state.matchSkillIds.some(id=>typeof id!=='string'||!ids.has(id)))return '存档本局随机池无效';
   const matchIds=new Set(state.matchSkillIds);
   const totals = Object.fromEntries([...ids].map(id => [id, 0]));
-  if (!record(state.pool) || Object.keys(state.pool).length !== ids.size || Object.entries(state.pool).some(([id, count]) => !ids.has(id) || !integer(count, 0, 20))) return '存档共享库存无效';
+  if (!record(state.pool) || Object.keys(state.pool).length !== ids.size || Object.entries(state.pool).some(([id, count]) => !ids.has(id) || !integer(count, 0, GAME_RULES.copiesPerSkill))) return '存档共享库存无效';
   for (const id of ids) totals[id] = state.pool[id] as number;
   const validPlayers = (players: unknown, countInventory: boolean): players is Player[] => {
     if (!Array.isArray(players) || players.length !== 8) return false;
@@ -469,14 +471,14 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
         heroIds.add(h.id);
         return h.skills.filter(s => s && catalog.get(s.id)!.ultimate).length <= 1;
       }) || !p.reserve.every(stackValid)) return false;
-      for (const [slot,id] of p.shop.entries()) { if (id !== null) { if (slot>=shopOfferCount(p.shopLevel as number)||typeof id !== 'string' || !matchIds.has(id)||((p.shopLevel as number)<3&&catalog.get(id)!.ultimate)) return false; if (countInventory) totals[id]++; } }
+      for (const [slot,id] of p.shop.entries()) { if (id !== null) { if (slot>=shopOfferCount(p.shopLevel as number)||typeof id !== 'string' || !matchIds.has(id)||((p.shopLevel as number)<GAME_RULES.ultimateShopLevel&&catalog.get(id)!.ultimate)) return false; if (countInventory) totals[id]++; } }
       if (p.hp === 0 && (p.eliminatedRound === undefined || !integer(p.placement,1,8) || owned.size || p.shop.some(Boolean))) return false;
       if (p.hp > 0 && (p.eliminatedRound !== undefined || p.placement!==undefined || p.heroes.length !== heroCountForRound((countInventory ? state.planningRound : state.round) as number))) return false;
       if(p.placement!==undefined){if(placements.has(p.placement as number))return false;placements.add(p.placement as number);}
       return true;
     });
   };
-  if (!validPlayers(state.players, true) || Object.values(totals).some(total => total !== 20)) return '存档阵容或技能库存不守恒';
+  if (!validPlayers(state.players, true) || Object.values(totals).some(total => total !== GAME_RULES.copiesPerSkill)) return '存档阵容或技能库存不守恒';
   if (!integer(state.selectedHero, 0, state.players[0].heroes.length - 1)) return '存档选中英雄无效';
   if (!Array.isArray(state.battlePlayers) || !Array.isArray(state.pairs) || state.pairs.length > 4 || !Array.isArray(state.ghostPairs) || state.ghostPairs.length > 1 || new Set(state.ghostPairs).size !== state.ghostPairs.length) return '存档配对信息无效';
   if (state.phase === 'prep') {

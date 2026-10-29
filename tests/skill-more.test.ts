@@ -361,7 +361,9 @@ describe('catalog-driven additional skills', () => {
     expect(caster.maxHp).toBe(1200); expect(ally.maxHp).toBe(1000);
     ally.hp = 100; for (const u of state.units) { u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
     advance(state, 4.7);
-    expect(state.events.filter(e => e.type === 'move' && e.skill === 'custom_snapfire_firesnap_cookie' && e.source === ally.id)).toHaveLength(4);
+    const hops=state.events.filter(e=>e.type==='move'&&e.skill==='custom_snapfire_firesnap_cookie'&&e.source===ally.id);
+    expect(hops.length).toBeGreaterThan(4);expect(hops.every(e=>e.teleport===false)).toBe(true);
+    expect(hops.filter((e,i)=>i===0||e.time-hops[i-1].time>.1)).toHaveLength(4);
     expect(caster.maxHp).toBe(1200);
   });
 
@@ -742,8 +744,8 @@ describe('catalog-driven additional skills', () => {
     const state = createBattle(player(0, 'custom_snapfire_mortimer_kisses', 9), player(1, undefined, 3, 2), 8, defs), [, creep, destination] = state.units;
     creep.summoned = true; creep.x = 1; creep.y = -2; destination.x = 0; destination.y = 6;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.mana = u.maxMana = 10000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, 1); expect(creep.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true); expect(creep.dead).toBe(false);
-    advance(state, 1); expect(creep.dead).toBe(true);
+    advance(state, .8); expect(creep.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true); expect(creep.dead).toBe(false);
+    advance(state, 1.2); expect(creep.dead).toBe(true);
     expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_gobble_up' && e.executed === true && e.target === creep.id)).toBe(true);
     expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_gobble_up' && e.target === destination.id)).toBe(true);
   });

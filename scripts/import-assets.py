@@ -247,7 +247,11 @@ def main():
                  "artCoverage": manifest["skills"][identifier]["coverage"], "mechanicsStatus": "requires_engine_coverage_validation"}
         skills.append(skill)
     assert len(skills) == 230 and len({s["id"] for s in skills}) == 230
-    write(PUBLIC / "data/skills.json", skills)
+    # The editable balance workbooks own runtime skills after the first import.
+    # Keep fresh source evidence separately; importing art must not reset balance.
+    write(ROOT / "references/ability-arena/imported-skills.json", skills)
+    if not (ROOT / "config/技能配置.xlsx").exists():
+        write(PUBLIC / "data/skills.json", skills)
     write(PUBLIC / "data/assets.json", manifest)
     write(PUBLIC / "data/provenance.json", {"sourceRoot": str(SOURCE), "catalogSource": catalog["source_page"], "catalogPatch": catalog["source_patch"],
           "sourceCatalogSha256": sha(SOURCE / "outputs/aa02-reference-catalog-20261026/abilities.en.json"), "catalogCount": 230,

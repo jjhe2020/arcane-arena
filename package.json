@@ -4,8 +4,11 @@
   "version": "0.1.1",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/config-check.mjs",
     "dev": "vite --host 0.0.0.0",
-    "prebuild": "node scripts/build-mechanics-coverage.mjs",
+    "config:compile": "node scripts/config-compile.mjs",
+    "config:check": "node scripts/config-check.mjs",
+    "prebuild": "node scripts/config-check.mjs && node scripts/build-mechanics-coverage.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run"
@@ -17,6 +20,8 @@
     "@playwright/test": "^1.56.1",
     "@types/node": "^22.20.5",
     "@types/three": "^0.180.0",
+    "exceljs": "^4.4.0",
+    "jszip": "^3.10.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
     "vitest": "^3.2.4"

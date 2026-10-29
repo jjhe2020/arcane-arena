@@ -1,0 +1,25 @@
+{
+  "accessedOn": "2026-10-29",
+  "policy": "AA explicit values and approved project customizations take priority. Current Wiki is research evidence, not an automatic numerical update to the historical AA catalog.",
+  "historicalCandidateCommit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+  "historicalCandidateDate": "2023-02-10",
+  "pages": [
+    {"id":"cast-animation","url":"https://liquipedia.net/dota2/Cast_Animation","fields":["Cast Point","Cast Backswing"],"application":"Separate mechanical windup from visual clip length; preserve interrupted windup resource semantics."},
+    {"id":"turn-rate","url":"https://liquipedia.net/dota2/Turn_Rate","fields":["turn rate","facing angle"],"application":"Require facing before eligible movement/attack/cast. Four custom bodies use a configurable 18rad/s work value and 11.5 degree tolerance; the native acceleration curve is not verified."},
+    {"id":"magic-missile","url":"https://liquipedia.net/dota2/Vengeful_Spirit","fields":["Cast Animation"],"observedCastPointSeconds":0.3,"observedBackswingSeconds":0.5,"application":"Timing reference only; retain the AA damage, stun and upgrade values."},
+    {"id":"critical-strike","url":"https://liquipedia.net/dota2/Critical_Strike","historicalChange":"7.30 (2021-08-18)","application":"Chance-based critical sources roll in descending multiplier order and stop at the first success; never multiply simultaneous critical factors."},
+    {"id":"cast-range-buffer","url":"https://liquipedia.net/dota2/Cast_Range","historicalFields":"npc_abilities.txt:55 AbilityCastRangeBuffer=250; Assassinate 600, Nether Strike 500","application":"Recheck unit-targeted release range with the historical motion buffer; zero-windup casts do not gain a motion buffer."},
+    {"id":"cleave-flags","url":"https://liquipedia.net/dota2/Splash","historicalChange":"7.00 (2016-12-12)","application":"Cleave is attributed to its provider while preserving physical spell damage and the no-spell-amplification/no-spell-lifesteal exceptions."},
+    {"id":"waveform-motion","url":"https://liquipedia.net/dota2/Morphling","application":"Projectile-driven continuous travel may explicitly pass impassable terrain. Its moving body and damaging path must stay synchronized; modern facets and numerical changes are not imported."},
+    {"id":"evasion","url":"https://liquipedia.net/dota2/Evasion","application":"Independent evasion sources combine through complementary probabilities. Blind is a separate additive group; map elevation is outside this project scope."},
+    {"id":"status-resistance","url":"https://liquipedia.net/dota2/Status_Resistance","application":"Independent duration-resistance sources combine multiplicatively; newly applied effects use current resistance. Per-effect and aura exceptions remain explicit."},
+    {"id":"attack-speed-limits","url":"https://liquipedia.net/dota2/Archive%3AAttack_Speed","application":"Default total attack speed is constrained to 20–700 with explicit ability overrides; the project's minimum interval is a separately labeled configurable work safeguard."},
+    {"id":"movement-speed-limits","url":"https://liquipedia.net/dota2/Archive%3AMovement_Speed","application":"Ordinary movement uses the historical 100–550 native-unit limits. Stationary bodies remain stationary, and explicit absolute movement effects use their own rules."},
+    {"id":"damage-types","url":"https://liquipedia.net/dota2/Damage_Types","application":"Attack/spell classification and physical/magical/pure damage types are independent. Health setting and damage flags must not be inferred from a skill ID."},
+    {"id":"dispel","url":"https://liquipedia.net/dota2/Dispel","application":"Separate basic and strong dispel and explicit persistence exceptions; aura lifetime is owned by its source."},
+    {"id":"false-promise","url":"https://liquipedia.net/dota2/Oracle","application":"Keep post-reduction damage and effective-healing contributions until final settlement, with original ownership and kill-credit order. Do not apply ordinary mitigation twice."},
+    {"id":"debuff-immunity-version-boundary","url":"https://www.dota2.com/newfrontiers","application":"7.33 introduced major immunity changes after the chosen historical candidate; do not silently migrate the AA snapshot to modern debuff immunity."},
+    {"id":"damage-display","url":"https://liquipedia.net/dota2/Game_Settings","application":"Use compact ordinary damage and emphasized critical text as presentation reference. Physical/magical/pure colors are an approved project extension."}
+  ],
+  "limitations": ["Some Liquipedia direct pages return HTTP 403; searchable page excerpts and the retained historical Valve data were cross-checked.","This record does not certify all 230 AA skills against a known AA patch.","Unknown source values remain labeled working candidates; environment-dependent map branches remain outside scope."]
+}
