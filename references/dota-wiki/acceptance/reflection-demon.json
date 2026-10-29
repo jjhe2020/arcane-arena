@@ -1,0 +1,1859 @@
+{
+  "schemaVersion": 1,
+  "group": "reflection-demon",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured English catalog clauses and values first;dated native prototypes with explicit working candidates. No Wayback retries or whole-page HTML stored.",
+  "validation": {
+    "command": "npx vitest run tests/reference-reflection-demon.test.ts",
+    "skillGroupTests": 54,
+    "passedTests": 54,
+    "configurationHash": "38bd18f77137ae040d01bff0a47c46064c149537d03baba552ecc77d6610f75a",
+    "typecheck": "npx tsc --noEmit passed after final production and54-result test updates;parent whole-project proof remains separate.",
+    "regressionRuns": [
+      {
+        "command": "npx vitest run tests/reference-reflection-demon.test.ts tests/reference-death-demonic.test.ts tests/reference-control-execution.test.ts tests/main-gaps.test.ts tests/config.test.ts",
+        "tests": 159,
+        "passed": 158,
+        "context": "At49group results;only legacy config Doom .2-second tick assertion failed and was reported to parent for migration."
+      },
+      {
+        "command": "npx vitest run tests/reference-reflection-demon.test.ts tests/reference-death-demonic.test.ts tests/reference-control-execution.test.ts tests/main-gaps.test.ts tests/config.test.ts tests/combat-visual-origin.test.ts",
+        "tests": 171,
+        "passed": 171,
+        "context": "Final compiled38bd18f configuration;includes all54group results,actual death inputs and legacy configuration assertion migration by parent."
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": "custom_spectre_dispersion",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "paraphrase": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "versionContext": "任务早期保存的官方静态JSON，SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae；没有宣称本轮重新HTTP200获取，AA原Lua修订未知。"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "paraphrase": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "versionContext": "2023-02-10 Valve shipped KV候选；AA明示值覆盖原值，KV不证明全部native硬编码。"
+        },
+        {
+          "id": "spectre-old",
+          "url": "https://dota2.fandom.com/wiki/Spectre",
+          "accessedOn": "2026-10-30",
+          "observation": "索引保留页：折射在目标减免前反射同类型伤害、包含过量伤害，双重致死时敌方先死亡；HPLOSS不触发伤害钩子，减伤属于加算组。",
+          "paraphrase": "索引保留页：折射在目标减免前反射同类型伤害、包含过量伤害，双重致死时敌方先死亡；HPLOSS不触发伤害钩子，减伤属于加算组。",
+          "versionContext": "保留7.35附近旧页，非精确2023快照；现代Shard与半径不采用，源输出进入basis的措辞仍未解。"
+        },
+        {
+          "id": "spectre-history",
+          "url": "https://liquipedia.net/dota2/Spectre/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "6.85改为减免前/原类型反射；7.30Shard提供300阈值与7秒幽鬼之刃；6.33b禁止幻象折射。",
+          "paraphrase": "6.85改为减免前/原类型反射；7.30Shard提供300阈值与7秒幽鬼之刃；6.33b禁止幻象折射。",
+          "versionContext": "按明确patch条目定位；古老LP日期字段有错误，不采用其显示日期。AA改随机敌人与1秒优先。"
+        },
+        {
+          "id": "illusions",
+          "url": "https://liquipedia.net/dota2/Illusions",
+          "accessedOn": "2026-10-30",
+          "observation": "折射列于幻象不生效的被动表。",
+          "paraphrase": "折射列于幻象不生效的被动表。",
+          "versionContext": "现页与6.33b历史更改相互印证；不据此宣称整个幻象被动继承表已终验。"
+        },
+        {
+          "id": "damage-types",
+          "url": "https://liquipedia.net/dota2/Damage_types",
+          "accessedOn": "2026-10-30",
+          "observation": "HPLOSS是保留物魔纯类型的伤害旗，与直接设置生命不同；不触发伤害钩子/吸血。",
+          "paraphrase": "HPLOSS是保留物魔纯类型的伤害旗，与直接设置生命不同；不触发伤害钩子/吸血。",
+          "versionContext": "现页屏障细节不能直接反推7.33统一barrier改制前，逐类旧例外保留待证。"
+        },
+        {
+          "id": "damage-order",
+          "url": "https://dota2.fandom.com/wiki/Spell_Damage",
+          "accessedOn": "2026-10-30",
+          "observation": "示例中源输出增幅与Spectre入伤减免相乘；没有提供反射量的独立数值例子。",
+          "paraphrase": "示例中源输出增幅与Spectre入伤减免相乘；没有提供反射量的独立数值例子。",
+          "versionContext": "仅支持after-outgoing作为透明候选，不能消除before-all-manipulations措辞歧义。"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DS-01",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "every AA rank consumes one final percentage for reduction and reflection with no active cost",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-01 every AA rank consumes one final percentage for reduction and reflection with no active cost"
+            }
+          ]
+        },
+        {
+          "id": "DS-02",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "AA300minimum and700maximum give full,half and zero reflection without splitting recipients",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "spectre-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-02 AA300minimum and700maximum give full,half and zero reflection without splitting recipients"
+            }
+          ]
+        },
+        {
+          "id": "DS-03",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "physical reflection uses pre-victim-armor input but still uses each recipient armor",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "spectre-history",
+            "damage-types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-03 physical reflection uses pre-victim-armor input but still uses each recipient armor"
+            }
+          ]
+        },
+        {
+          "id": "DS-04",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "magical reflection precedes the primary victim MR and retains recipient MR and type",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "spectre-history",
+            "damage-types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-04 magical reflection precedes the primary victim MR and retains recipient MR and type"
+            }
+          ]
+        },
+        {
+          "id": "DS-05",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "a fully shielding primary victim still reflects the accepted pre-shield amount",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-05 a fully shielding primary victim still reflects the accepted pre-shield amount"
+            }
+          ]
+        },
+        {
+          "id": "DS-06",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "overkill reflection is not capped to victim health and resolves the enemy death first",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-06 overkill reflection is not capped to victim health and resolves the enemy death first"
+            }
+          ]
+        },
+        {
+          "id": "DS-07",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "typed HPLOSS and reflected input do not recursively trigger Dispersion",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old",
+            "damage-types"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-07 typed HPLOSS and reflected input do not recursively trigger Dispersion"
+            }
+          ]
+        },
+        {
+          "id": "DS-08",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "reflection creates no Scion stacks,spell lifesteal or Carapace feedback",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "damage-types",
+            "spectre-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-08 reflection creates no Scion stacks,spell lifesteal or Carapace feedback"
+            }
+          ]
+        },
+        {
+          "id": "DS-09",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "explicitly classified generic reductions add while Break disables the original passive",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-09 explicitly classified generic reductions add while Break disables the original passive"
+            }
+          ]
+        },
+        {
+          "id": "DS-10",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "passive level-four Dagger travels,damages and keeps child-parent attribution without spending mana",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "spectre-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-10 passive level-four Dagger travels,damages and keeps child-parent attribution without spending mana"
+            }
+          ]
+        },
+        {
+          "id": "DS-11",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "editable Super7 and Gaben1 cooldowns retain the disclosed accumulated-progress working policy",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-11 editable Super7 and Gaben1 cooldowns retain the disclosed accumulated-progress working policy"
+            }
+          ]
+        },
+        {
+          "id": "DS-P01",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Reflection basis before source-output modifiers versus after-outgoing is not resolved; implementation explicitly chooses after-outgoing before target mitigation.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old",
+            "spectre-history",
+            "damage-order"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "DS-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Pre2023 HPLOSS exceptions for recipient ManaShield/AphoticShield/Refraction/activeBorrowedTime/FalsePromise are individually pending; current preserved shield behavior is not proof.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [
+            "Mana Shield",
+            "Aphotic Shield",
+            "Refraction",
+            "Borrowed Time",
+            "False Promise"
+          ],
+          "sourceIds": [
+            "damage-types",
+            "spectre-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "DS-P03",
+          "kind": "super",
+          "branch": "super",
+          "baseSuperGaben": "super-gaben",
+          "mechanism": "AA total300 does not establish counter carry during cooldown,overflow consumption,lethal-trigger eligibility,or child level4; current behavior is a disclosed candidate.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "spectre-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-10 passive level-four Dagger travels,damages and keeps child-parent attribution without spending mana"
+            },
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DS-11 editable Super7 and Gaben1 cooldowns retain the disclosed accumulated-progress working policy"
+            }
+          ]
+        },
+        {
+          "id": "DS-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Only explicitly genericIncoming-classified providers add; unclassified damage-reduction providers and prehook damage-dodge priority are not fully audited.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "spectre-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Reflection basis before source-output modifiers versus after-outgoing is not resolved; implementation explicitly chooses after-outgoing before target mitigation.",
+        "Pre2023 HPLOSS exceptions for recipient ManaShield/AphoticShield/Refraction/activeBorrowedTime/FalsePromise are individually pending; current preserved shield behavior is not proof.",
+        "AA total300 does not establish counter carry during cooldown,overflow consumption,lethal-trigger eligibility,or child level4; current behavior is a disclosed candidate.",
+        "Only explicitly genericIncoming-classified providers add; unclassified damage-reduction providers and prehook damage-dodge priority are not fully audited."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "spectre-history",
+            "valve"
+          ],
+          "prototype": "7.30Shard300/7plus+5talent;AA seeded-random enemy replaces native last-attacker rule;child level4 candidate."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "prototype": "AA custom1second passive cooldown;no modern activeShard imported."
+        },
+        "translationConflict": "English random enemy versus Chinese random hero: English retained."
+      }
+    },
+    {
+      "id": "marci_grapple",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "paraphrase": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "versionContext": "任务早期保存的官方静态JSON，SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae；没有宣称本轮重新HTTP200获取，AA原Lua修订未知。"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "paraphrase": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "versionContext": "2023-02-10 Valve shipped KV候选；AA明示值覆盖原值，KV不证明全部native硬编码。"
+        },
+        {
+          "id": "marci-old",
+          "url": "https://dota2.fandom.com/wiki/Marci",
+          "accessedOn": "2026-10-30",
+          "observation": "保留页给0.2+1.04施法动画、0.5秒投掷、230度总面对锥；空中不能行动，死亡/后续强制移动会提前落地。",
+          "paraphrase": "保留页给0.2+1.04施法动画、0.5秒投掷、230度总面对锥；空中不能行动，死亡/后续强制移动会提前落地。",
+          "versionContext": "保留7.35附近资料，与2023KV air_duration/pull_angle交叉核对；不采用后续damage/radius值。"
+        },
+        {
+          "id": "marci-current",
+          "url": "https://liquipedia.net/dota2/Marci",
+          "accessedOn": "2026-10-30",
+          "observation": "不可应用或被中断的抛掷在受害者当前位置结算落地；当前细节写先slow后damage。",
+          "paraphrase": "不可应用或被中断的抛掷在受害者当前位置结算落地；当前细节写先slow后damage。",
+          "versionContext": "2026现页，仅其明确机制候选使用；早期slow-before-damage精确引入时间未被证明。"
+        },
+        {
+          "id": "marci-history",
+          "url": "https://liquipedia.net/dota2/Marci/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "2022-09-01修复允许魔免友军；7.32c禁止拖出Black Hole/Chronosphere并取250距离；7.33才扩大落地半径。",
+          "paraphrase": "2022-09-01修复允许魔免友军；7.32c禁止拖出Black Hole/Chronosphere并取250距离；7.33才扩大落地半径。",
+          "versionContext": "采用2023之前条目，275半径保留，不加后来的300。"
+        },
+        {
+          "id": "lens",
+          "url": "https://liquipedia.net/dota2/Aether_Lens",
+          "accessedOn": "2026-10-30",
+          "observation": "存在225施法距离加成原型，但没有证明Dispose AA Super就是授予整件物品。",
+          "paraphrase": "存在225施法距离加成原型，但没有证明Dispose AA Super就是授予整件物品。",
+          "versionContext": "相似数值追溯；不导入额外mana/regen。"
+        },
+        {
+          "id": "penitence-history",
+          "url": "https://liquipedia.net/dota2/Chen/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.20后Penitence有最高120攻速及攻击者短buff原型，标记持续最高8秒。",
+          "paraphrase": "7.20后Penitence有最高120攻速及攻击者短buff原型，标记持续最高8秒。",
+          "versionContext": "相似机制追溯，不证明AA Gaben复制Chen；AA没写的2秒buff linger不新增。"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DP-01",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "every AA rank pays its configured mana and cooldown at.2release with historical1.04backswing",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "marci-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-01 every AA rank pays its configured mana and cooldown at.2release with historical1.04backswing"
+            }
+          ]
+        },
+        {
+          "id": "DP-02",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "disabled victim moves continuously and landing slow precedes damage after.5seconds",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "marci-old",
+            "marci-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-02 disabled victim moves continuously and landing slow precedes damage after.5seconds"
+            }
+          ]
+        },
+        {
+          "id": "DP-03",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "a critically wounded spell-immune ally is legal and unharmed while nearby enemies receive landing effects",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "marci-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-03 a critically wounded spell-immune ally is legal and unharmed while nearby enemies receive landing effects"
+            }
+          ]
+        },
+        {
+          "id": "DP-04",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "spell-immune enemy is not selected or moved and its immunity expires without a false landing",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "marci-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-04 spell-immune enemy is not selected or moved and its immunity expires without a false landing"
+            }
+          ]
+        },
+        {
+          "id": "DP-05",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "victims inside the115degree cone do not force a turn toward their off-axis position",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "marci-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-05 victims inside the115degree cone do not force a turn toward their off-axis position"
+            }
+          ]
+        },
+        {
+          "id": "DP-06",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "death of the thrower lands early exactly once at the current victim position",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-old",
+            "marci-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-06 death of the thrower lands early exactly once at the current victim position"
+            }
+          ]
+        },
+        {
+          "id": "DP-07",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "a replacement forced controller lands early without cancelling that new controller",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-old",
+            "marci-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-07 a replacement forced controller lands early without cancelling that new controller"
+            }
+          ]
+        },
+        {
+          "id": "DP-08",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "a motion-restricted Chronosphere-style target lands immediately without being pulled out",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-08 a motion-restricted Chronosphere-style target lands immediately without being pulled out"
+            }
+          ]
+        },
+        {
+          "id": "DP-09",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "Super uses the final400cast range and Gaben applies120target attack speed for8seconds only",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-09 Super uses the final400cast range and Gaben applies120target attack speed for8seconds only"
+            }
+          ]
+        },
+        {
+          "id": "DP-10",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "victim death still lands area effects once on living collateral enemies",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-10 victim death still lands area effects once on living collateral enemies"
+            }
+          ]
+        },
+        {
+          "id": "DP-11",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "Gaben target mark increases the actual attack frequency against its victim",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-11 Gaben target mark increases the actual attack frequency against its victim"
+            }
+          ]
+        },
+        {
+          "id": "DP-12",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "super",
+          "mechanism": "actual Chronosphere prevents an outside Super Dispose from extracting its frozen victim",
+          "timing": "The real Chronosphere resolves before the outside Super Dispose releases.",
+          "combinations": [
+            "custom_faceless_void_chronosphere"
+          ],
+          "sourceIds": [
+            "marci-history",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-12 actual Chronosphere prevents an outside Super Dispose from extracting its frozen victim"
+            }
+          ]
+        },
+        {
+          "id": "DP-P01",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Off-axis landing endpoint projection and passage through each skill-created wall need dated geometry evidence; existing caster-victim-vector endpoint and ordinary wall policy retained.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-old",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "DP-P02",
+          "kind": "timing",
+          "branch": "timing",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Slow-before-damage is explicit current Wiki but precise historical introduction is not established; current order is a disclosed candidate.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "marci-current",
+            "marci-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DP-02 disabled victim moves continuously and landing slow precedes damage after.5seconds"
+            }
+          ]
+        },
+        {
+          "id": "DP-P03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "AA does not specify native-like attacker-buff linger or friendly-main-target custom behavior; target-specific mark retained without importing Penitence extras.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "penitence-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Off-axis landing endpoint projection and passage through each skill-created wall need dated geometry evidence; existing caster-victim-vector endpoint and ordinary wall policy retained.",
+        "Slow-before-damage is explicit current Wiki but precise historical introduction is not established; current order is a disclosed candidate.",
+        "AA does not specify native-like attacker-buff linger or friendly-main-target custom behavior; target-specific mark retained without importing Penitence extras."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "lens"
+          ],
+          "prototype": "AA explicit+225;AetherLens similarity only,no provenance proof and no extra item bonuses."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "penitence-history"
+          ],
+          "prototype": "AA120AS/8s main-target mark;Penitence historical120AS is a similar prototype,not proof of copied2second attacker buff."
+        }
+      }
+    },
+    {
+      "id": "custom_shadow_demon_disruption",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "paraphrase": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "versionContext": "任务早期保存的官方静态JSON，SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae；没有宣称本轮重新HTTP200获取，AA原Lua修订未知。"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "paraphrase": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "versionContext": "2023-02-10 Valve shipped KV候选；AA明示值覆盖原值，KV不证明全部native硬编码。"
+        },
+        {
+          "id": "demon-old",
+          "url": "https://dota2.fandom.com/wiki/Shadow_Demon",
+          "accessedOn": "2026-10-30",
+          "observation": "幻象当前生命在施放禁锢时快照；其它身体数据/当前蓝在出生时取；受害者死亡不生幻象，施法者死亡不取消已释放效果。",
+          "paraphrase": "幻象当前生命在施放禁锢时快照；其它身体数据/当前蓝在出生时取；受害者死亡不生幻象，施法者死亡不取消已释放效果。",
+          "versionContext": "保留7.35旧页；原生不可驱散被AA Strong Dispels Only覆盖；7.35幻象伤害重做不用。"
+        },
+        {
+          "id": "demon-history",
+          "url": "https://dota2.fandom.com/wiki/Shadow_Demon/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.20明确生命快照改为施放时，7.32以Disseminate替代Soul Catcher。",
+          "paraphrase": "7.20明确生命快照改为施放时，7.32以Disseminate替代Soul Catcher。",
+          "versionContext": "明确历史边界；2023KV残留Soul Catcher字段不证明当时native仍在技能栏。"
+        },
+        {
+          "id": "catcher-old",
+          "url": "https://dota2.fandom.com/wiki/Shadow_Demon/Old_Abilities",
+          "accessedOn": "2026-10-30",
+          "observation": "7.20–7.31d Soul Catcher按区域直接扣当前生命，结束返还初始扣除的一半；放大buff由本次真实英雄/克隆数量刷新，排除幻象/creepHero。",
+          "paraphrase": "7.20–7.31d Soul Catcher按区域直接扣当前生命，结束返还初始扣除的一半；放大buff由本次真实英雄/克隆数量刷新，排除幻象/creepHero。",
+          "versionContext": "AA明示授予被移除的旧技能，采用这一原型，不采用Pre7.20伤害放大或7.32Disseminate。返还是否普通heal仍待证。"
+        },
+        {
+          "id": "illusions",
+          "url": "https://liquipedia.net/dota2/Illusions",
+          "accessedOn": "2026-10-30",
+          "observation": "折射列于幻象不生效的被动表。",
+          "paraphrase": "折射列于幻象不生效的被动表。",
+          "versionContext": "现页与6.33b历史更改相互印证；不据此宣称整个幻象被动继承表已终验。"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DR-01",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "AA ranks preserve2.75banish,two20second images and final damage penalties",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "demon-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-01 AA ranks preserve2.75banish,two20second images and final damage penalties"
+            }
+          ]
+        },
+        {
+          "id": "DR-02",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "image current health snapshots on cast while attack and mana snapshot on return",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "demon-old",
+            "demon-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-02 image current health snapshots on cast while attack and mana snapshot on return"
+            }
+          ]
+        },
+        {
+          "id": "DR-03",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "ally and self banishment are legal but spell-immune ally is excluded",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "demon-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-03 ally and self banishment are legal but spell-immune ally is excluded"
+            }
+          ]
+        },
+        {
+          "id": "DR-04",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "caster death does not cancel image release but victim death does",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "demon-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-04 caster death does not cancel image release but victim death does"
+            }
+          ]
+        },
+        {
+          "id": "DR-05",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "external basic dispel leaves AA banishment while strong dispel returns two images once",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-05 external basic dispel leaves AA banishment while strong dispel returns two images once"
+            }
+          ]
+        },
+        {
+          "id": "DR-06",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "Gaben supplies two sequential20second recharges and Chakra reduces the active recharge only",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-06 Gaben supplies two sequential20second recharges and Chakra reduces the active recharge only"
+            }
+          ]
+        },
+        {
+          "id": "DR-07",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "Super applies level-four Soul Catcher to every nearby enemy before image HP capture",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "catcher-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-07 Super applies level-four Soul Catcher to every nearby enemy before image HP capture"
+            }
+          ]
+        },
+        {
+          "id": "DR-08",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "Soul Catcher replaces spell amplification from this cast hero count and returns half initial loss",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "catcher-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-08 Soul Catcher replaces spell amplification from this cast hero count and returns half initial loss"
+            }
+          ]
+        },
+        {
+          "id": "DR-09",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "copied Dispersion does not initialize reduction or reflect damage on the released images",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "illusions"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-09 copied Dispersion does not initialize reduction or reflect damage on the released images"
+            }
+          ]
+        },
+        {
+          "id": "DR-10",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "released images actually expire after their20second lifetime",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-10 released images actually expire after their20second lifetime"
+            }
+          ]
+        },
+        {
+          "id": "DR-11",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "re-banishment of a Disruption illusion uses its original hero attack rather than multiplying an existing illusion penalty",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "demon-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-11 re-banishment of a Disruption illusion uses its original hero attack rather than multiplying an existing illusion penalty"
+            }
+          ]
+        },
+        {
+          "id": "DR-P01",
+          "kind": "super",
+          "branch": "super",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "AA does not specify SoulCatcher level or its before-banish ordering;level4,before-banish and resulting image HP snapshot remain disclosed candidates.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "catcher-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-07 Super applies level-four Soul Catcher to every nearby enemy before image HP capture"
+            }
+          ]
+        },
+        {
+          "id": "DR-P02",
+          "kind": "super",
+          "branch": "super",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "SoulCatcher half-health return ordinary-heal versus fixed-health restoration under amplifiers,FalsePromise,Tether remains unproven;existing ordinary healing retained.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "catcher-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-08 Soul Catcher replaces spell amplification from this cast hero count and returns half initial loss"
+            }
+          ]
+        },
+        {
+          "id": "DR-P03",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Native collision-dependent cardinal image placement is not implemented;arena+/-100layout retained. Other illusion families without original-body identity keep existing copied template.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "demon-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DR-11 re-banishment of a Disruption illusion uses its original hero attack rather than multiplying an existing illusion penalty"
+            }
+          ]
+        },
+        {
+          "id": "DR-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Most-recent Disruption exception across different demons and full inherited-passive allowlist beyond specifically tested Dispersion remain pending.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "demon-old",
+            "catcher-old",
+            "illusions"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "AA does not specify SoulCatcher level or its before-banish ordering;level4,before-banish and resulting image HP snapshot remain disclosed candidates.",
+        "SoulCatcher half-health return ordinary-heal versus fixed-health restoration under amplifiers,FalsePromise,Tether remains unproven;existing ordinary healing retained.",
+        "Native collision-dependent cardinal image placement is not implemented;arena+/-100layout retained. Other illusion families without original-body identity keep existing copied template.",
+        "Most-recent Disruption exception across different demons and full inherited-passive allowlist beyond specifically tested Dispersion remain pending."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "catcher-old",
+            "demon-history",
+            "valve"
+          ],
+          "prototype": "Explicit AA SoulCatcher uses archived7.20-7.31d health-setting ability removed7.32,not Disseminate;max4 chosen candidate."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "prototype": "AA two charges;historical Disruption-charge talent prototype;AA cooldown29/26/20 retained."
+        }
+      }
+    },
+    {
+      "id": "custom_void_spirit_dissimilate",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "paraphrase": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "versionContext": "任务早期保存的官方静态JSON，SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae；没有宣称本轮重新HTTP200获取，AA原Lua修订未知。"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "paraphrase": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "versionContext": "2023-02-10 Valve shipped KV候选；AA明示值覆盖原值，KV不证明全部native硬编码。"
+        },
+        {
+          "id": "void-old",
+          "url": "https://dota2.fandom.com/wiki/Void_Spirit",
+          "accessedOn": "2026-10-30",
+          "observation": "异化门户依施法者朝向；隐藏/无敌且不能行动，但仍挡单位；出口传送不躲弹道。",
+          "paraphrase": "异化门户依施法者朝向；隐藏/无敌且不能行动，但仍挡单位；出口传送不躲弹道。",
+          "versionContext": "保留7.35旧页；不采用后续物理伤害/1.1秒/缠绕等AA不兼容值。"
+        },
+        {
+          "id": "void-history",
+          "url": "https://liquipedia.net/dota2/Void_Spirit/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "历史外环是六个1040距离的对齐门户；7.30e伤害加成175，旧天赋曾为2.5秒眩晕，7.32以后换成缠绕。",
+          "paraphrase": "历史外环是六个1040距离的对齐门户；7.30e伤害加成175，旧天赋曾为2.5秒眩晕，7.32以后换成缠绕。",
+          "versionContext": "AA混合历史升级优先，不用2023缠绕替换其明确眩晕。"
+        },
+        {
+          "id": "mistwoods",
+          "url": "https://www.dota2.com/mistwoods?l=english",
+          "accessedOn": "2026-10-30",
+          "observation": "7.28官方Shard描述使用与AA相同的partial outer ring措辞。",
+          "paraphrase": "7.28官方Shard描述使用与AA相同的partial outer ring措辞。",
+          "versionContext": "官方7.28原型，原始伤害125不覆盖AA175。"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DI-01",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "all AA ranks retain mana/cooldown and release.3seconds before the1.3second phase",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "void-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-01 all AA ranks retain mana/cooldown and release.3seconds before the1.3second phase"
+            }
+          ]
+        },
+        {
+          "id": "DI-02",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve",
+            "mistwoods",
+            "void-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-02 normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn"
+            }
+          ]
+        },
+        {
+          "id": "DI-03",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "hidden collision remains while no attacks or other casts escape the phase and exit warps exactly once",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "void-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-03 hidden collision remains while no attacks or other casts escape the phase and exit warps exactly once"
+            }
+          ]
+        },
+        {
+          "id": "DI-04",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "Super consumes the compiled515final damage once and Gaben adds2.5second stun after damage",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "void-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-04 Super consumes the compiled515final damage once and Gaben adds2.5second stun after damage"
+            }
+          ]
+        },
+        {
+          "id": "DI-05",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "Soulbind root blocks the real mobility action before resources are spent",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-05 Soulbind root blocks the real mobility action before resources are spent"
+            }
+          ]
+        },
+        {
+          "id": "DI-06",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "phase damage remains magical and does not affect a spell-immune victim on exit",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-06 phase damage remains magical and does not affect a spell-immune victim on exit"
+            }
+          ]
+        },
+        {
+          "id": "DI-07",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "an already released attack projectile remains homing through phase and exit without a disjoint",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "void-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-07 an already released attack projectile remains homing through phase and exit without a disjoint"
+            }
+          ]
+        },
+        {
+          "id": "DI-P01",
+          "kind": "super",
+          "branch": "super",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Six outer portals trace exact official partial-outer-ring phrase plus native geometry;AA original Lua is unavailable,so this is the strongest historical prototype rather than direct AA runtime capture.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "mistwoods",
+            "void-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-02 normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn"
+            }
+          ]
+        },
+        {
+          "id": "DI-P02",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Entry disjoint and forced-movement/banishment replacement while hidden need exact historical proof;exit does not disjoint is independently tested.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "void-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-07 an already released attack projectile remains homing through phase and exit without a disjoint"
+            }
+          ]
+        },
+        {
+          "id": "DI-P03",
+          "kind": "mechanism",
+          "branch": "mechanism",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Exit chooses most victims at release with target-distance tie-break;clipped portal layout and lack of manual hidden-phase reselection are declared arena AI policies.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-02 normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn"
+            },
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DI-03 hidden collision remains while no attacks or other casts escape the phase and exit warps exactly once"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Six outer portals trace exact official partial-outer-ring phrase plus native geometry;AA original Lua is unavailable,so this is the strongest historical prototype rather than direct AA runtime capture.",
+        "Entry disjoint and forced-movement/banishment replacement while hidden need exact historical proof;exit does not disjoint is independently tested.",
+        "Exit chooses most victims at release with target-distance tie-break;clipped portal layout and lack of manual hidden-phase reselection are declared arena AI policies."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "mistwoods",
+            "void-history"
+          ],
+          "prototype": "Official7.28partialouterring actually6additional1040portals;AA175matches7.30eShard,not later135."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "void-history"
+          ],
+          "prototype": "Older2.5secondstun talent;AA overrides2023rootreplacement."
+        }
+      }
+    },
+    {
+      "id": "custom_doom_bringer_doom",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "paraphrase": "AA原始英文目录、分类、三档值与Super/Gaben条款，读取public/data/skills.json.catalog；中文翻译不覆盖英文资格。",
+          "versionContext": "任务早期保存的官方静态JSON，SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae；没有宣称本轮重新HTTP200获取，AA原Lua修订未知。"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "paraphrase": "读取references/dota-20230216/npc_abilities.txt中对应能力原始flags/时点/子技能参数。",
+          "versionContext": "2023-02-10 Valve shipped KV候选；AA明示值覆盖原值，KV不证明全部native硬编码。"
+        },
+        {
+          "id": "doom-old",
+          "url": "https://dota2.fandom.com/wiki/Doom",
+          "accessedOn": "2026-10-30",
+          "observation": "初次立即伤害、间隔一秒、自我施放不触发Spell Block且不限制本人；离开重入不重复Basic Dispel。",
+          "paraphrase": "初次立即伤害、间隔一秒、自我施放不触发Spell Block且不限制本人；离开重入不重复Basic Dispel。",
+          "versionContext": "保留7.35旧页；7.34治疗禁止不采用。短AA持续的末跳、零linger精确2023引入日期仍待证。"
+        },
+        {
+          "id": "doom-732",
+          "url": "https://liquipedia.net/dota2/Version_7.32",
+          "accessedOn": "2026-10-30",
+          "observation": "Doom神杖改325光环并能对自身施放，天赋含Break。",
+          "paraphrase": "Doom神杖改325光环并能对自身施放，天赋含Break。",
+          "versionContext": "明确2022神杖原型；AA自身专用/0point和短duration覆盖原生。"
+        },
+        {
+          "id": "doom-734",
+          "url": "https://liquipedia.net/dota2/Version_7.34",
+          "accessedOn": "2026-10-30",
+          "observation": "7.34才移除基础mute并加入禁止治疗，同时更改DPS和CD。",
+          "paraphrase": "7.34才移除基础mute并加入禁止治疗，同时更改DPS和CD。",
+          "versionContext": "2023-08历史分界；AA仍mute/CD145/30,45,60，因此保留更早的可治疗规则。"
+        },
+        {
+          "id": "aa-doom-intro",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-30",
+          "observation": "官方AA Season4.5加入缩短持续时间的Doom，提到后续Break。",
+          "paraphrase": "官方AA Season4.5加入缩短持续时间的Doom，提到后续Break。",
+          "versionContext": "2023-02-01 AA公告，不包含原Lua时钟或所有升级实现。"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DM-01",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "all base AA ranks pay resources and immediately tick at historical.5release with1second spacing",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-01 all base AA ranks pay resources and immediately tick at historical.5release with1second spacing"
+            }
+          ]
+        },
+        {
+          "id": "DM-02",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "base offensive Basic Dispel happens once and later positive buffs remain",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-02 base offensive Basic Dispel happens once and later positive buffs remain"
+            }
+          ]
+        },
+        {
+          "id": "DM-03",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "pre7.34 Doom permits actual healing and a released curse continues after its owner dies",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "doom-734",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-03 pre7.34 Doom permits actual healing and a released curse continues after its owner dies"
+            }
+          ]
+        },
+        {
+          "id": "DM-04",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "AA basic dispel preserves the curse while strong dispel stops every correlated component and later damage",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-04 AA basic dispel preserves the curse while strong dispel stops every correlated component and later damage"
+            }
+          ]
+        },
+        {
+          "id": "DM-05",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "base Spell Block consumes the enemy shield and mana without applying any curse",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-05 base Spell Block consumes the enemy shield and mana without applying any curse"
+            }
+          ]
+        },
+        {
+          "id": "DM-06",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "Gaben is a true zero-point self order and does not consume nearby enemy Spell Block or disable its owner",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-732",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-06 Gaben is a true zero-point self order and does not consume nearby enemy Spell Block or disable its owner"
+            }
+          ]
+        },
+        {
+          "id": "DM-07",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "Gaben can release with no enemy in range and uses a moving325radius with one shared second clock",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-07 Gaben can release with no enemy in range and uses a moving325radius with one shared second clock"
+            }
+          ]
+        },
+        {
+          "id": "DM-08",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "baseSuperGaben": "gaben",
+          "mechanism": "leaving and reentering the aura does not repeat the initial offensive dispel",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-08 leaving and reentering the aura does not repeat the initial offensive dispel"
+            }
+          ]
+        },
+        {
+          "id": "DM-09",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "Gaben expiry restores actions and source death removes only its moving aura",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-09 Gaben expiry restores actions and source death removes only its moving aura"
+            }
+          ]
+        },
+        {
+          "id": "DM-10",
+          "kind": "mechanism",
+          "branch": "基础机制",
+          "baseSuperGaben": "mechanism",
+          "mechanism": "pure Doom pierces spell immunity while effective statistics retain actual health loss",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-10 pure Doom pierces spell immunity while effective statistics retain actual health loss"
+            }
+          ]
+        },
+        {
+          "id": "DM-11",
+          "kind": "combination",
+          "branch": "组合",
+          "baseSuperGaben": "combination",
+          "mechanism": "Gaben self Doom does not duplicate through the caster Soulbind group",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-732"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-11 Gaben self Doom does not duplicate through the caster Soulbind group"
+            }
+          ]
+        },
+        {
+          "id": "DM-12",
+          "kind": "super",
+          "branch": "Super",
+          "baseSuperGaben": "super",
+          "mechanism": "Super Break suppresses real Berserkers Blood regen and removal restores the accepted passive",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "valve",
+            "doom-732"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-12 Super Break suppresses real Berserkers Blood regen and removal restores the accepted passive"
+            }
+          ]
+        },
+        {
+          "id": "DM-13",
+          "kind": "timing",
+          "branch": "时序",
+          "baseSuperGaben": "timing",
+          "mechanism": "base expiry removes the full curse and allows a real disabled victim to cast again",
+          "timing": "Observed simulation-time boundaries are asserted in the named result test.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-13 base expiry removes the full curse and allows a real disabled victim to cast again"
+            }
+          ]
+        },
+        {
+          "id": "DM-P01",
+          "kind": "timing",
+          "branch": "timing",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Exact final tick for shortened AA7/9/11seconds and status-resistance interval policy lack dated direct proof;current clock ticks immediately and strictly before actual expiry.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-01 all base AA ranks pay resources and immediately tick at historical.5release with1second spacing"
+            },
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-13 base expiry removes the full curse and allows a real disabled victim to cast again"
+            }
+          ]
+        },
+        {
+          "id": "DM-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Zero aura linger and shared global1second tick clock are retained native candidates;precise pre2023 implementation date and strong-dispel/re-entry aura details remain pending.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "doom-old",
+            "doom-732"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-07 Gaben can release with no enemy in range and uses a moving325radius with one shared second clock"
+            },
+            {
+              "file": "tests/reference-reflection-demon.test.ts",
+              "test": "DM-08 leaving and reentering the aura does not repeat the initial offensive dispel"
+            }
+          ]
+        },
+        {
+          "id": "DM-P03",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Mute is a semantic state only because current catalog has no equipment action system;no actual item-active interaction is claimed.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "aa",
+            "doom-734"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "DM-P04",
+          "kind": "combination",
+          "branch": "combination",
+          "baseSuperGaben": "base-super-gaben",
+          "mechanism": "Independent multi-caster curse damage stacking and advanced immunity/banishment combinations beyond the tested branches remain pending.",
+          "timing": "Exact historical/AA branch not established.",
+          "combinations": [],
+          "sourceIds": [
+            "doom-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Exact final tick for shortened AA7/9/11seconds and status-resistance interval policy lack dated direct proof;current clock ticks immediately and strictly before actual expiry.",
+        "Zero aura linger and shared global1second tick clock are retained native candidates;precise pre2023 implementation date and strong-dispel/re-entry aura details remain pending.",
+        "Mute is a semantic state only because current catalog has no equipment action system;no actual item-active interaction is claimed.",
+        "Independent multi-caster curse damage stacking and advanced immunity/banishment combinations beyond the tested branches remain pending."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "valve",
+            "doom-732"
+          ],
+          "prototype": "AA combines historical+30DPS and Break talent;final90readonce."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa",
+            "doom-732",
+            "doom-old"
+          ],
+          "prototype": "7.32Scepter325aura/selfcast prototype;AA changes to self-only0castpoint and shortened duration.7.34healingpreventionexcluded."
+        }
+      }
+    }
+  ]
+}

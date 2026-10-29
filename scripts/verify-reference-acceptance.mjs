@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {spawn} from 'node:child_process';
-import {root,referenceFingerprint,buildReferenceAcceptance} from './reference-acceptance.mjs';
+import {root,referenceFingerprint,referenceTestFiles,buildReferenceAcceptance} from './reference-acceptance.mjs';
 const before=await referenceFingerprint();await fs.mkdir(path.join(root,'artifacts'),{recursive:true});
 const reportPath=path.join(root,'output/reference-acceptance-tests.vitest.json');await fs.mkdir(path.dirname(reportPath),{recursive:true});
-const testFiles=(await fs.readdir(path.join(root,'tests'))).filter(name=>/^reference-.*\.test\.ts$/.test(name)).map(name=>`tests/${name}`).sort();
+const testFiles=await referenceTestFiles();
 if(!testFiles.length)throw Error('No individually authored reference tests exist.');
 const result=await new Promise((resolve,reject)=>{const child=spawn(process.execPath,[path.join(root,'node_modules/vitest/vitest.mjs'),'run',...testFiles,'--reporter=default','--reporter=json',`--outputFile=${reportPath}`],{cwd:root,stdio:'inherit',windowsHide:true});child.on('error',reject);child.on('exit',code=>resolve(code));});
 const vitest=JSON.parse(await fs.readFile(reportPath,'utf8')),after=await referenceFingerprint();

@@ -16,7 +16,7 @@ export function prdCoefficient(probability:number):number {
   const p=Math.max(0,Math.min(1,Number.isFinite(probability)?probability:0));
   if(p===0||p===1)return p;
   const cached=coefficients.get(p);if(cached!==undefined)return cached;
-  // Current allowlisted gameplay probabilities are >= .15. For an exceptional
+  // Current allowlisted gameplay probabilities are >= .12. For an exceptional
   // caller below .001%, use the rare-event asymptote to bound calibration cost;
   // no current catalog proc uses this approximate path.
   if(p<1e-5)return p*p*Math.PI/2;
@@ -42,6 +42,8 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   custom_phantom_assassin_coup_de_grace:['critical'],
   custom_chaos_knight_chaos_strike:['critical'],
   custom_axe_counter_helix:['helix'],
+  // Native Time Lock enabled PRD in the November 2012 patch history.
+  faceless_void_time_lock:['timeLock'],
   // Native Greater Bash switched to PRD in 6.85; AA grants this proc at Gaben.
   custom_spirit_breaker_charge_of_darkness:['greater_bash'],
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],

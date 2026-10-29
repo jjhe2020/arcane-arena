@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 65 项；完整逐项通过 7 项。
-当前代码下，519 条具名结果测试要求通过，519 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 80 项；完整逐项通过 7 项。
+当前代码下，667 条具名结果测试要求通过，667 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -31,7 +31,7 @@
 | 闪烁 (Blink) | 审查中 | 0 / 0 / 0 / 0 / 1 | 1 | [审查记录](../references/dota-wiki/acceptance/projectiles-and-fields.json) |
 | 嗜血术 (Bloodlust) | 逐项通过 | 1 / 3 / 1 / 1 / 2 | 0 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
 | 血怒 (Bloodrage) | 审查中 | 1 / 1 / 1 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
-| 回光返照 (Borrowed Time) | 审查中 | 1 / 0 / 0 / 0 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
+| 回光返照 (Borrowed Time) | 审查中 | 1 / 0 / 0 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 棒击大地 (Boundless Strike) | 审查中 | 1 / 1 / 1 / 1 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 蚀脑 (Brain Sap) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
 | 炽烈火雨 (Burning Barrage) | 审查中 | 0 / 1 / 1 / 1 / 7 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
@@ -61,17 +61,17 @@
 | 腐朽 (Decay) | 审查中 | 2 / 1 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/death-demonic.json) |
 | 邪恶净愈 (Demonic Cleanse) | 审查中 | 1 / 1 / 1 / 0 / 3 | 1 | [审查记录](../references/dota-wiki/acceptance/death-demonic.json) |
 | 邪恶净化 (Demonic Purge) | 逐项通过 | 2 / 1 / 1 / 1 / 6 | 0 | [审查记录](../references/dota-wiki/acceptance/death-demonic.json) |
-| 折射 (Dispersion) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 过肩摔 (Dispose) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 崩裂禁锢 (Disruption) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 异化 (Dissimilate) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 末日 (Doom) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 双刃剑 (Double Edge) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 折射 (Dispersion) | 审查中 | 5 / 1 / 1 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/reflection-demon.json) |
+| 过肩摔 (Dispose) | 审查中 | 2 / 3 / 1 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/reflection-demon.json) |
+| 崩裂禁锢 (Disruption) | 审查中 | 1 / 3 / 2 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/reflection-demon.json) |
+| 异化 (Dissimilate) | 审查中 | 1 / 1 / 1 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/reflection-demon.json) |
+| 末日 (Doom) | 审查中 | 2 / 3 / 1 / 3 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/reflection-demon.json) |
+| 双刃剑 (Double Edge) | 审查中 | 1 / 2 / 3 / 2 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
 | 龙族血统 (Dragon Blood) | 审查中 | 1 / 1 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/auras-and-growth.json) |
-| 龙破斩 (Dragon Slave) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 决斗 (Duel) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 裂地沟壑 (Earth Splitter) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 震撼大地 (Earthshock) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 龙破斩 (Dragon Slave) | 审查中 | 1 / 1 / 1 / 2 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
+| 决斗 (Duel) | 审查中 | 4 / 1 / 0 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
+| 裂地沟壑 (Earth Splitter) | 审查中 | 1 / 1 / 2 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
+| 震撼大地 (Earthshock) | 审查中 | 2 / 1 / 3 / 1 / 2 | 2 | [审查记录](../references/dota-wiki/acceptance/edge-earth.json) |
 | 古龙形态 (Elder Dragon Form) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 授予力量 (Empower) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 强化图腾 (Enchant Totem) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -116,7 +116,7 @@
 | 冰晶爆轰 (Ice Blast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 冰封路径 (Ice Path) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 冰晶 (Ice Shards) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 推进 (Impetus) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 推进 (Impetus) | 审查中 | 2 / 1 / 0 / 0 / 4 | 2 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 阎刃 (Infernal Blade) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 墨涌 (Ink Swell) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 野性之心 (Inner Beast) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -132,7 +132,7 @@
 | 霹雳铁手 (Lil' Shredder) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 活体护甲 (Living Armor) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 月光 (Lucent Beam) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 熠熠生辉 (Luminosity) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 熠熠生辉 (Luminosity) | 审查中 | 5 / 0 / 1 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 月之祝福 (Lunar Blessing) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 魔法箭 (Magic Missile) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 磁场 (Magnetic Field) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -142,7 +142,7 @@
 | 肉钩 (Meat Hook) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 镜像 (Mirror Image) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 迷雾缠绕 (Mist Coil) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 勇气之霎 (Moment of Courage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 勇气之霎 (Moment of Courage) | 审查中 | 2 / 0 / 0 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 月刃 (Moon Glaives) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 蜥蜴绝吻 (Mortimer Kisses) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 数箭齐发 (Multishot) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -202,7 +202,7 @@
 | 吸魂巫术 (Spirit Siphon) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 撕裂大地 (Split Earth) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 奔袭冲撞 (Stampede) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 星破天惊 (Starbreaker) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 星破天惊 (Starbreaker) | 审查中 | 3 / 6 / 4 / 1 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 静电场 (Static Field) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 静电连接 (Static Link) | 审查中 | 2 / 1 / 1 / 1 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
 | 粘性燃油 (Sticky Napalm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -217,7 +217,7 @@
 | 瞄准 (Take Aim) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 羁绊 (Tether) | 审查中 | 1 / 2 / 1 / 2 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
 | 潮汐使者 (Tidebringer) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 时间锁定 (Time Lock) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 时间锁定 (Time Lock) | 审查中 | 3 / 2 / 0 / 1 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
 | 时间漫游 (Time Walk) | 审查中 | 1 / 0 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
 | 洪流 (Torrent) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 投掷 (Toss) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

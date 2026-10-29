@@ -1,0 +1,1484 @@
+{
+  "schemaVersion": 1,
+  "group": "attack-trigger",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicitclauses/values first;direct2022/2023Wiki andpinned2023Valve compatible mechanisms. In-flight fixedcritical consumption,variablepriority andprecommit healing basis are precise open issues.",
+  "validation": {
+    "command": "npx vitest run tests/reference-attack-trigger.test.ts",
+    "passedTests": 52,
+    "configurationHash": "38bd18f77137ae040d01bff0a47c46064c149537d03baba552ecc77d6610f75a",
+    "regressionCommand": "npx vitest run tests/reference-attack-trigger.test.ts tests/skill-extra.test.ts tests/skill-more.test.ts tests/combat-clock-prd.test.ts tests/visual-state.test.ts",
+    "regressionPassedTests": 229,
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "52named actualengine results including nativeposition/facing/action clocks and5original-input restorations. The229 regression run preceded the finaltwo windup tests;the finaltwo passed in the52-test run. Noneofthese counts closes the remaining source/mechanism gaps."
+  },
+  "skills": [
+    {
+      "id": "faceless_void_time_lock",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "ExplicitAA numeric/custom clauses first;the historicalcandidate mechanism paths below are individually bounded.",
+        "Controlled positions/statuses/AI locks in resulttests are disclosed preconditions;fiveoriginal-input restorations do not inject runtime ledgers.",
+        "This group doesnot certify all230skills or unresolved clauses."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA bonus15/20/30, chance12/16/24, duration.65. Super adds70bonus and4percentage chance; Gaben independently applies TimeLock in450radius every4seconds.",
+          "versionContext": "OfficialEnglishHTTP200 fresh full230catalog;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. ExplicitAA values/custom clauses override native balance. Local compiled catalog retains theoriginal English clauses.",
+          "localEvidence": "public/data/skills.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void",
+          "accessedOn": "2026-10-29",
+          "observation": "The historical7.31d change makes the second attack and bash bonus damage wait.4seconds. Its attack can trigger all modifiers including TimeLock itself,uses a ranged caster projectile,ignores disarm and lacks TrueStrike. The primary bash is immediate.",
+          "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215191730. No modernfacet redesign imported.",
+          "sha256": "90c6ee8c2255d0eedc93b3b9229dcc21a2b45fe3f67ec38f1b2f28d983776e33"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned shippedKV supplies duration/delay and related upgradeprototypes. AA explicitnumbers and directlyversionedWiki mechanism statements remainpreferred;KV isnot customAA executable.",
+          "versionContext": "2023-02-10 pinnedValveKV. AA three-rank values are not replaced with native four ranks.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "prd2012",
+          "url": "https://liquipedia.net/dota2/Faceless_Void/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The dated2012-11-30 change enables pseudo-random distribution forTimeLock;the2012-11-28testpatch page independently lists the same ability.",
+          "versionContext": "Indexed primaryWiki changelog read with websearch;directopenHTTP403. This is an explicitpre2023eligibilitydate,not a recoveredAA coefficient table.",
+          "crossCheckUrl": "https://liquipedia.net/dota2/November_28%2C_2012_Patch_%28Test%29",
+          "accessMethod": "indexedPrimarySearch"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/docs/r6-c4-progress.md",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and statistical ledger;this is a project serialization contract,not a nativeDota mechanic.",
+          "versionContext": "C4 baseline before theC5 attack protocol change;result tests verify the C5 registered programs preserve this contract."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "TL-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "TL-01 the bash is immediate while magical damage and the second melee attack wait four tenths of a second",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-01 the bash is immediate while magical damage and the second melee attack wait four tenths of a second"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TL-02 delayed attacks can proc learned criticals and Time Lock itself",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-02 delayed attacks can proc learned criticals and Time Lock itself"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "TL-03 a ranged delayed attack creates its own normal-speed missile instead of hitting at the proc deadline",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-03 a ranged delayed attack creates its own normal-speed missile instead of hitting at the proc deadline"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TL-04 an existing delayed attack ignores a later disarm but retains the target evasion roll",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-04 an existing delayed attack ignores a later disarm but retains the target evasion roll"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TL-05 a failed ordinary attack and an illusion owner cannot create a fresh bash",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-05 a failed ordinary attack and an illusion owner cannot create a fresh bash"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "TL-06 Super uses final bonus and chance while Gaben pulses on its independent four-second clock",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-06 Super uses final bonus and chance while Gaben pulses on its independent four-second clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TL-07 released follow-up state replays without duplicating a pending bash",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-07 released follow-up state replays without duplicating a pending bash"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TL-08 actual twenty-four-percent attacks use the explicit independent PRD state deterministically",
+          "sourceIds": [
+            "aa",
+            "prd2012"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "TL-08 actual twenty-four-percent attacks use the explicit independent PRD state deterministically"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "TL-P1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Exact originalAA PRD coefficient table is not recovered;native2012eligibility uses the disclosed calibrated projectPRD model.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "TL-P2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Only synchronous recursion has the shared safety bound;delayedTimeLock chains are not capped to eight procs.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "TL-P3",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Attack-point versus landed-contact probability snapshot is source-pending for the2023AA-compatible path;modernmainWiki wording alone is not backdated.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "TL-P4",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Caster death between proc and delayed damage/attack,and strong dispel after the immediate bash need direct historical qualification.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "TL-P5",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA Gaben force-proc recursion qualification is not equated with the nativeTimeWalkScepter one-proc exception.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Exact originalAA PRD coefficient table is not recovered;native2012eligibility uses the disclosed calibrated projectPRD model.",
+        "Only synchronous recursion has the shared safety bound;delayedTimeLock chains are not capped to eight procs.",
+        "Attack-point versus landed-contact probability snapshot is source-pending for the2023AA-compatible path;modernmainWiki wording alone is not backdated.",
+        "Caster death between proc and delayed damage/attack,and strong dispel after the immediate bash need direct historical qualification.",
+        "AA Gaben force-proc recursion qualification is not equated with the nativeTimeWalkScepter one-proc exception."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve2023"
+          ],
+          "interpretation": "AA explicit upgrade values first;keyword-traced native talent/item/shard is a compatible mechanism prototype,not authorization to replacecustom values."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA literal custom behavior retained. No unspecified numeric multiplier or modernfacet imported."
+        }
+      }
+    },
+    {
+      "id": "legion_commander_moment_of_courage",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "ExplicitAA numeric/custom clauses first;the historicalcandidate mechanism paths below are individually bounded.",
+        "Controlled positions/statuses/AI locks in resulttests are disclosed preconditions;fiveoriginal-input restorations do not inject runtime ledgers.",
+        "This group doesnot certify all230skills or unresolved clauses."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA incoming counterattack,25percent chance,55/65/85lifesteal and1/.8/.4cooldown. Super adds8percentage chance and15percentage lifesteal. Gaben outgoing proc owns an independent cooldown.",
+          "versionContext": "OfficialEnglishHTTP200 fresh full230catalog;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. ExplicitAA values/custom clauses override native balance. Local compiled catalog retains theoriginal English clauses.",
+          "localEvidence": "public/data/skills.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander",
+          "accessedOn": "2026-10-29",
+          "observation": "An incoming ordinary attack starting can proc before damage or a later miss/cancellation. If not attacking,gain1000AS and lifesteal for1second or until a successful hit;misses do not consume. An ongoing attacker instantly hits its current target with all modifiers and withoutTrueStrike.",
+          "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215191421. No modernfacet redesign imported.",
+          "sha256": "b1c233ccaed16d92c9fd31d796d4b7654af32dbe5850f2794669dd3ef16f886a"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned shippedKV supplies duration/delay and related upgradeprototypes. AA explicitnumbers and directlyversionedWiki mechanism statements remainpreferred;KV isnot customAA executable.",
+          "versionContext": "2023-02-10 pinnedValveKV. AA three-rank values are not replaced with native four ranks.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/docs/r6-c4-progress.md",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and statistical ledger;this is a project serialization contract,not a nativeDota mechanic.",
+          "versionContext": "C4 baseline before theC5 attack protocol change;result tests verify the C5 registered programs preserve this contract."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MC-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MC-01 a subsequently cancelled incoming attack can grant its one-second thousand-AS buff before any damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-01 a subsequently cancelled incoming attack can grant its one-second thousand-AS buff before any damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MC-02 missed attacks retain the proc buff and the next successful attack consumes it with source-attributed lifesteal",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-02 missed attacks retain the proc buff and the next successful attack consumes it with source-attributed lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MC-03 a proc during an ongoing attack counters the current victim rather than the incoming attacker and keeps modifiers",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-03 a proc during an ongoing attack counters the current victim rather than the incoming attacker and keeps modifiers"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "MC-04 Gaben outgoing and incoming proc clocks remain independent and ignore ordinary cooldown reduction",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-04 Gaben outgoing and incoming proc clocks remain independent and ignore ordinary cooldown reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MC-05 Break and illusion owners do not gain fresh proc buffs",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-05 Break and illusion owners do not gain fresh proc buffs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MC-06 a stale last target does not convert an idle proc into an immediate counterattack",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "MC-06 a stale last target does not convert an idle proc into an immediate counterattack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-REPLAY",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "REPLAY legion_commander_moment_of_courage reconstructs its actual attack triggers from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "REPLAY legion_commander_moment_of_courage reconstructs its actual attack triggers from original recorded inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MC-P1",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Native eligibility of animation-free incoming instantattacks is not established:TimeLock-to-Courage andCourage-to-Courage combinations retainordinary-order-only notification.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ExactAA outgoing recursive eligibility remainsunproven;explicit independentproc clocks are preserved.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Break after aproc and targetdamage-redirection/FalsePromise consumption combinations require direct source comparison.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Native eligibility of animation-free incoming instantattacks is not established:TimeLock-to-Courage andCourage-to-Courage combinations retainordinary-order-only notification.",
+        "ExactAA outgoing recursive eligibility remainsunproven;explicit independentproc clocks are preserved.",
+        "Break after aproc and targetdamage-redirection/FalsePromise consumption combinations require direct source comparison."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve2023"
+          ],
+          "interpretation": "AA explicit upgrade values first;keyword-traced native talent/item/shard is a compatible mechanism prototype,not authorization to replacecustom values."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA literal custom behavior retained. No unspecified numeric multiplier or modernfacet imported."
+        }
+      }
+    },
+    {
+      "id": "custom_dawnbreaker_luminosity",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "ExplicitAA numeric/custom clauses first;the historicalcandidate mechanism paths below are individually bounded.",
+        "Controlled positions/statuses/AI locks in resulttests are disclosed preconditions;fiveoriginal-input restorations do not inject runtime ledgers.",
+        "This group doesnot certify all230skills or unresolved clauses."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA three charging attacks then powered hit,120/140/180critical,25/50/100healing,650radius,35percent allied share,50percent ordinary-creep reduction. Super requires one fewer charging hit and adds40critical percentage points. Gaben +150percentlifesteal and one extra attack every5seconds.",
+          "versionContext": "OfficialEnglishHTTP200 fresh full230catalog;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. ExplicitAA values/custom clauses override native balance. Local compiled catalog retains theoriginal English clauses.",
+          "localEvidence": "public/data/skills.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+          "accessedOn": "2026-10-29",
+          "observation": "Successful enemyhero/creep attacks count;allies wards buildings neither count nor consume. Starbreaker adds one charge per wave regardless victim count. Precharged hit still criticals and resets underBreak while newcharges/healing are disabled. Illusions and creep-heroes use hero healing factor. Self then allies heal before criticaldamage,and restoration uses caster lifesteal amplification.",
+          "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215191331. No modernfacet redesign imported.",
+          "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned shippedKV supplies duration/delay and related upgradeprototypes. AA explicitnumbers and directlyversionedWiki mechanism statements remainpreferred;KV isnot customAA executable.",
+          "versionContext": "2023-02-10 pinnedValveKV. AA three-rank values are not replaced with native four ranks.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/docs/r6-c4-progress.md",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and statistical ledger;this is a project serialization contract,not a nativeDota mechanic.",
+          "versionContext": "C4 baseline before theC5 attack protocol change;result tests verify the C5 registered programs preserve this contract."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "LM-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "LM-01 three successful attacks charge the next ordinary critical and reset the counter",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-01 three successful attacks charge the next ordinary critical and reset the counter"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "LM-02 allied ward and building contacts neither charge nor consume an already powered strike",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-02 allied ward and building contacts neither charge nor consume an already powered strike"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "LM-03 Break suppresses new charges and healing but a precharged successful hit still criticals and resets",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-03 Break suppresses new charges and healing but a precharged successful hit still criticals and resets"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "LM-04 missed attacks do not charge or consume the ready buff",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-04 missed attacks do not charge or consume the ready buff"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-05",
+          "kind": "super",
+          "branch": "super",
+          "rule": "LM-05 Super requires two charging hits and uses its final220-percent critical without adding another forty points",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-05 Super requires two charging hits and uses its final220-percent critical without adding another forty points"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "LM-06 ordinary creeps halve healing while hero illusions and creep-heroes retain the hero factor",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-06 ordinary creeps halve healing while hero illusions and creep-heroes retain the hero factor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "LM-07 nearby allied heroes use the caster lifesteal amplification and their own restoration reduction",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-07 nearby allied heroes use the caster lifesteal amplification and their own restoration reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "LM-08 Gaben adds its final healing factor and independently schedules only one extra attack during five seconds",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-08 Gaben adds its final healing factor and independently schedules only one extra attack during five seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "LM-09 actual fatal damage removes an already powered strike without inventing a new charge",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-09 actual fatal damage removes an already powered strike without inventing a new charge"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "LM-10 allied hero healing includes the650-unit boundary and excludes a farther hero",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "LM-10 allied hero healing includes the650-unit boundary and excludes a farther hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-REPLAY",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "REPLAY custom_dawnbreaker_luminosity reconstructs its actual attack triggers from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "REPLAY custom_dawnbreaker_luminosity reconstructs its actual attack triggers from original recorded inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "LM-P1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Healing-before-damage sequencing is still missing;current effectiveHP-damage basis is retained until armor/block/barriers/nonlethal/deferred-damage basis is established.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "mechanism_missing",
+          "testEvidence": []
+        },
+        {
+          "id": "LM-P2",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Ready-state allocation and consumption among several in-flight ranged missiles is not established.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LM-P3",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Strongerfixed/variable critical competition and consumption/healing of a readyLuminosity buff remain source-pending.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LM-P4",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA Gaben +150percent keeps existing percentage-point interpretation;the.1second extra-attack delay is a retained working value,not a recoveredAA parameter.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LM-P5",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Partial unpowered charge retention through death/reincarnation remains source-pending.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Healing-before-damage sequencing is still missing;current effectiveHP-damage basis is retained until armor/block/barriers/nonlethal/deferred-damage basis is established.",
+        "Ready-state allocation and consumption among several in-flight ranged missiles is not established.",
+        "Strongerfixed/variable critical competition and consumption/healing of a readyLuminosity buff remain source-pending.",
+        "AA Gaben +150percent keeps existing percentage-point interpretation;the.1second extra-attack delay is a retained working value,not a recoveredAA parameter.",
+        "Partial unpowered charge retention through death/reincarnation remains source-pending."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve2023"
+          ],
+          "interpretation": "AA explicit upgrade values first;keyword-traced native talent/item/shard is a compatible mechanism prototype,not authorization to replacecustom values."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA+150percentlifesteal retains the existingpercentage-point reading;the.1second extraattack delay is an editableworkingcandidate. This isnot an exactmodifiedLua proof."
+        }
+      }
+    },
+    {
+      "id": "dawnbreaker_fire_wreath",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "ExplicitAA numeric/custom clauses first;the historicalcandidate mechanism paths below are individually bounded.",
+        "Controlled positions/statuses/AI locks in resulttests are disclosed preconditions;fiveoriginal-input restorations do not inject runtime ledgers.",
+        "This group doesnot certify all230skills or unresolved clauses."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "AA three attacks,combo1.1seconds,radius300,bonus25/40/70,finalstun.8/1/1.4. Super grants2charges,+150radius and spellimmunity. Gaben successful attacks add basic-dispellable-1armor stacks for5seconds and refresh every stack.",
+          "versionContext": "OfficialEnglishHTTP200 fresh full230catalog;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. ExplicitAA values/custom clauses override native balance. Local compiled catalog retains theoriginal English clauses.",
+          "localEvidence": "public/data/skills.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+          "accessedOn": "2026-10-29",
+          "observation": "Historical waves at0,.55,1.1seconds,TrueStrike and all modifiers exceptcleave. Firsttwo circles centered oncaster slow afterdamage. Lastcircle centered250infront stuns afterdamage;selfstun.2. Silence does not cancel;stun/cyclone/hex/taunt/fear/hypnosis cancel. Nativepointcast isglobal. Baseforward travel215persecond totals236.5over1.1seconds with ordinarymovement/turn disabled. Root only pauses travel;other nondisabling motion and path blockers pause without cancelling. CompatibleSuper movement isfree ordinarywalking at25percent selfslow and minimum215,butfacing remainslocked. Other abilities can cast if they needno turn;silence doesnotcancel;the lastsmash adds0.2selfstun.",
+          "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215191331. No modernfacet redesign imported.",
+          "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864"
+        },
+        {
+          "id": "valve2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned shippedKV supplies duration/delay and related upgradeprototypes. AA explicitnumbers and directlyversionedWiki mechanism statements remainpreferred;KV isnot customAA executable.",
+          "versionContext": "2023-02-10 pinnedValveKV. AA three-rank values are not replaced with native four ranks.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/docs/r6-c4-progress.md",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and statistical ledger;this is a project serialization contract,not a nativeDota mechanic.",
+          "versionContext": "C4 baseline before theC5 attack protocol change;result tests verify the C5 registered programs preserve this contract."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SB-REPLAY",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "REPLAY dawnbreaker_fire_wreath reconstructs its actual attack triggers from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "REPLAY dawnbreaker_fire_wreath reconstructs its actual attack triggers from original recorded inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-01 first swipe hits at release followed by half-duration and endpoint waves with one charge per wave",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-01 first swipe hits at release followed by half-duration and endpoint waves with one charge per wave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "SB-02 swipes have True Strike and cannot cleave while ordinary attack modifiers still apply",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-02 swipes have True Strike and cannot cleave while ordinary attack modifiers still apply"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "SB-03 only the frontal-offset final circle reaches a victim five world units away and applies damage before stun",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-03 only the frontal-offset final circle reaches a victim five world units away and applies damage before stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "SB-04 swipes slow after damage and spell immunity blocks the disable while retaining instant attack damage",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-04 swipes slow after damage and spell immunity blocks the disable while retaining instant attack damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-05",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-05 silence does not cancel released waves but a subsequent stun cancels them and removes this cast immunity",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-05 silence does not cancel released waves but a subsequent stun cancels them and removes this cast immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "SB-06 Gaben successful contacts add independently purgable armor stacks and refresh every source-owned stack",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-06 Gaben successful contacts add independently purgable armor stacks and refresh every source-owned stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "SB-07 Super spends two real charges while sequential recharge starts at the first release",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-07 Super spends two real charges while sequential recharge starts at the first release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "SB-08 editing the authored public cooldown changes actual recharge rather than falling back to the original catalog",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-08 editing the authored public cooldown changes actual recharge rather than falling back to the original catalog"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-09 base motion covers236point5 units continuously while target movement cannot turn its frozen facing",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-09 base motion covers236point5 units continuously while target movement cannot turn its frozen facing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-10",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-10 root pauses only base travel and resumes without cancelling the combo or catching up missed distance",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-10 root pauses only base travel and resumes without cancelling the combo or catching up missed distance"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-11",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-11 a wall pauses base travel and removing it resumes from the stopped position without tunnelling or catch-up",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-11 a wall pauses base travel and removing it resumes from the stopped position without tunnelling or catch-up"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-12",
+          "kind": "super",
+          "branch": "super",
+          "rule": "SB-12 Super ordinary movement can run backward at25percent self-slow while facing remains locked",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-12 Super ordinary movement can run backward at25percent self-slow while facing remains locked"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-13",
+          "kind": "super",
+          "branch": "super",
+          "rule": "SB-13 Super minimum215 permits normal movement even from zero base speed under an additional severe slow",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-13 Super minimum215 permits normal movement even from zero base speed under an additional severe slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "SB-14 forward abilities can release during base travel while an order requiring a turn waits until the combo and self-stun end",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-14 forward abilities can release during base travel while an order requiring a turn waits until the combo and self-stun end"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-15",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "SB-15 normal attacks are permitted before release and after the final self-stun but never during the three-wave combo",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-15 normal attacks are permitted before release and after the final self-stun but never during the three-wave combo"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-16",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "SB-16 an actual nondisabling Blinding Light motion pauses base travel and allows its later continuation without cancelling the final smash",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-16 an actual nondisabling Blinding Light motion pauses base travel and allows its later continuation without cancelling the final smash"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-17",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "SB-17 the authored base cast waits its actual point before its first attack motion and resource payment",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-17 the authored base cast waits its actual point before its first attack motion and resource payment"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-18",
+          "kind": "super",
+          "branch": "super",
+          "rule": "SB-18 interrupting the real Super windup spends no mana cooldown or charge and starts no movement",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "SB-18 interrupting the real Super windup spends no mana cooldown or charge and starts no movement"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SB-P1",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Native90-range vertical smash knock-up has no altitudeaxis in thisflat arena;damage and final/self stuns are represented.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "mechanism_missing",
+          "testEvidence": []
+        },
+        {
+          "id": "SB-P2",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Cliffs/trees/buildings and facing-dependent manual queuedorders lack exact navigation/input counterparts;the existing wall/motion pipeline is covered by explicit results.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "SB-P3",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "NativeShard0.1castpoint is not imported into AA Super/Gaben:keep the existing0.2table candidate until exactAA override is recovered. Free-movement compatibility does not prove the separate numericcastpoint.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "SB-P4",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Combo/charge behavior through death/reincarnation and status source-removal require their specific source-backed qualification.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "Native90-range vertical smash knock-up has no altitudeaxis in thisflat arena;damage and final/self stuns are represented.",
+        "Cliffs/trees/buildings and facing-dependent manual queuedorders lack exact navigation/input counterparts;the existing wall/motion pipeline is covered by explicit results.",
+        "NativeShard0.1castpoint is not imported into AA Super/Gaben:keep the existing0.2table candidate until exactAA override is recovered. Free-movement compatibility does not prove the separate numericcastpoint.",
+        "Combo/charge behavior through death/reincarnation and status source-removal require their specific source-backed qualification."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve2023"
+          ],
+          "interpretation": "AA2charges/+150radius/immunity;the historicShard supplies compatible free-movement/selfslow/facing behavior. Its separate0.1castpoint is not backdated into thisAA candidate."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA literal custom behavior retained. No unspecified numeric multiplier or modernfacet imported."
+        }
+      }
+    },
+    {
+      "id": "enchantress_impetus",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "ExplicitAA numeric/custom clauses first;the historicalcandidate mechanism paths below are individually bounded.",
+        "Controlled positions/statuses/AI locks in resulttests are disclosed preconditions;fiveoriginal-input restorations do not inject runtime ledgers.",
+        "This group doesnot certify all230skills or unresolved clauses.",
+        "Only theSpecialistsArray grant is accepted here;thebaseImpetus orb andGabenSproink are not markedcomplete."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Impetus Super grantsSpecialistsArray and+6percent distance damage. Only the grantedArray submechanism is reviewed here;thebase orb andGabenSproink remain separately scoped.",
+          "versionContext": "OfficialEnglishHTTP200 fresh full230catalog;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. ExplicitAA values/custom clauses override native balance. Local compiled catalog retains theoriginal English clauses.",
+          "localEvidence": "public/data/skills.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215200510id_/https://dota2.fandom.com/wiki/Specialist's_Array",
+          "accessedOn": "2026-10-29",
+          "observation": "Array releases2closest extra ranged projectiles atprimarylaunch regardlessprimarymiss,usingownerprojectilespeed plusbonuses. Extraattacks have noattackmodifiers/onhiteffects orTrueStrike;retainarmor/block/misses. Searchrange iscurrentattackrange. Excludewards/buildings/invisible/attackimmune/couriers.",
+          "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215200510. No modernfacet redesign imported.",
+          "sha256": "a4b7e2e6c925d44fa9ad2423297a17d49968682e9e671f38b4a7bc500af6f20d"
+        },
+        {
+          "id": "project-replay",
+          "url": "https://github.com/jjhe2020/arcane-arena/blob/b9256ab598e8de41b4ed6d0312ca838ce5716203/docs/r6-c4-progress.md",
+          "accessedOn": "2026-10-30",
+          "observation": "Original player inputs and seed reconstruct the same deterministic battle and statistical ledger;this is a project serialization contract,not a nativeDota mechanic.",
+          "versionContext": "C4 baseline before theC5 attack protocol change;result tests verify the C5 registered programs preserve this contract."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AR-REPLAY",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "REPLAY enchantress_impetus reconstructs its actual attack triggers from original recorded inputs",
+          "sourceIds": [
+            "project-replay"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "REPLAY enchantress_impetus reconstructs its actual attack triggers from original recorded inputs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-01 the two additional missiles launch with the primary even when the primary later misses",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-01 the two additional missiles launch with the primary even when the primary later misses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "AR-02 secondary attacks exclude generic status criticals as well as learned criticals",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-02 secondary attacks exclude generic status criticals as well as learned criticals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "AR-03 no-modifier missiles retain armor damage block and evasion without triggering marksmanship MKB or lifesteal",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-03 no-modifier missiles retain armor damage block and evasion without triggering marksmanship MKB or lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-04 target filtering happens before the two closest eligible alternatives are selected",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-04 target filtering happens before the two closest eligible alternatives are selected"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-05",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "AR-05 melee attacks cannot release Array and successful extra missiles do not recursively create another proc",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-05 melee attacks cannot release Array and successful extra missiles do not recursively create another proc"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "AR-06 ordinary missile travel snapshots release speed and inherits projectile-speed bonuses",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-trigger.test.ts",
+              "test": "AR-06 ordinary missile travel snapshots release speed and inherits projectile-speed bonuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-P1",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "BaseImpetus mana/orb attackpoint/impactorigin/damageclassification andSproink are outside thisArray-only submechanism review.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "AR-P2",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Array eligibility for nonordinary projectile-attack callers,source death and projectile disjoint combinations need direct comparisons.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "BaseImpetus mana/orb attackpoint/impactorigin/damageclassification andSproink are outside thisArray-only submechanism review.",
+        "Array eligibility for nonordinary projectile-attack callers,source death and projectile disjoint combinations need direct comparisons."
+      ],
+      "upgradeProvenance": {
+        "super": {
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "interpretation": "AA explicit upgrade values first;keyword-traced native talent/item/shard is a compatible mechanism prototype,not authorization to replacecustom values."
+        },
+        "gaben": {
+          "sourceIds": [
+            "aa"
+          ],
+          "interpretation": "AA literal custom behavior retained. No unspecified numeric multiplier or modernfacet imported."
+        }
+      }
+    }
+  ],
+  "extras": {
+    "nativeConflicts": [
+      {
+        "skill": "dawnbreaker_fire_wreath",
+        "field": "smashcenter",
+        "wiki2023": 250,
+        "valveKV": "smash_distance_from_hero120",
+        "policy": "Prefer directlyread historicalWiki250 for effective circle;do not silently importKV120."
+      },
+      {
+        "skill": "dawnbreaker_fire_wreath",
+        "field": "range",
+        "native": "Global",
+        "runtime": "Finite autonomousAI search threshold550/700 authored in commonrange;this isnot a nativecast-range limit."
+      }
+    ]
+  },
+  "implementationNotes": [
+    "All/none attack policy isexplicit percaller;legacyfalse isnot silently redefined for unrelated skills. Arraynone suppressesstatus/learnedcriticals/procs/lifesteal but retains regularattack defenses.",
+    "Ordinary incomingattack-start isnotified once perrecord beforewindup. Animation-free incoming attacks remain a precise source-pending combination.",
+    "TimeLock delayed packets reset the synchronousrecursion depth afterworldtime advances. Delayedchains have no artificial eight-proc cap.",
+    "BaseStar motion uses smallcontinuous sweeps;root/walls/nondisablingforeignmotion pause withoutcatchup. Supermovement usesordinary budget/collision whilelockingfacing.",
+    "ThepublicStar cooldown is the uniqueactualrechargeauthority17/15/11/11/11;remainingcharges still show noactivecooldown."
+  ]
+}

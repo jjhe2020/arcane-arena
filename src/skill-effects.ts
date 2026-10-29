@@ -5,6 +5,9 @@ import {applyMobilityFieldsAcceptance,MOBILITY_FIELDS_CHILD_DEFINITIONS} from '.
 import {applyFervorAcceptance} from './combat/fervor-acceptance';
 import {applyControlExecutionAcceptance,CONTROL_EXECUTION_CHILD_DEFINITIONS} from './combat/control-execution-acceptance';
 import {applyDeathDemonicAcceptance} from './combat/death-demonic-acceptance';
+import {applyAttackTriggerAcceptance} from './combat/attack-trigger-acceptance';
+import {applyReflectionDemonAcceptance} from './combat/reflection-demon-acceptance';
+import {applyEdgeEarthAcceptance} from './combat/edge-earth-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -68,6 +71,8 @@ export interface ZoneOptions {
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
+  modifierPolicy?:'all'|'none';
+  attackBatchKey?:string;
   accuracy?:number;
   attackRecord?:import('./model').AttackRecord;
   /** Internal: launch already applied attack replacements. */
@@ -92,6 +97,12 @@ export interface InstantAttackOptions {
 }
 export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
+  beforeDamageResolution?:{inputAmount:number;damageAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;stage:'beforeTargetMitigation'};
+  attackBatchKey?:string;
+  attackInProgress?:boolean;
+  launchAttack?(target:CombatUnit,multiplier?:number,triggerModifiers?:boolean,options?:InstantAttackOptions):boolean;
+  interrupt?(target:CombatUnit):void;
+  lifestealHeal?(target:CombatUnit,amount:number):number;
   reduceCooldowns?(target:CombatUnit,seconds:number,options?:{includeUltimates?:boolean;excludeAbilityId?:string;onlyAbilityId?:string;includeChargeRecharge?:boolean;includeActiveEffect?:boolean}):void;
   attackRecord?:import('./model').AttackRecord;
   attackInstanceKey?:string;
@@ -116,7 +127,7 @@ export interface EffectContext {
   chance?(probability:number,key:string):boolean;
   enemies(): CombatUnit[]; allies(): CombatUnit[];
   damage(target: CombatUnit, amount: number, type?: DamageType, piercesImmunity?: boolean, options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}): number;
-  heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal'): number;
+  heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal',options?:{lifestealAmplificationSource?:CombatUnit}): number;
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
@@ -153,6 +164,11 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  onBeforeDamageResolution?:(c:EffectContext)=>void;
+  unitTarget?:boolean|((c:EffectContext)=>boolean);
+  /** This program handles the separately documented surviving effects itself. */
+  handlesBreak?:boolean;
+  onIncomingAttackStart?:(c:EffectContext)=>void;
   /** Explicit per-ability targeting exception, including its ordinary checks. */
   targetEligibility?:(c:EffectContext,target:CombatUnit)=>boolean;
   reduceRecharge?:(c:EffectContext,seconds:number)=>void;
@@ -516,6 +532,9 @@ applyMobilityFieldsAcceptance(registry);
 applyFervorAcceptance(registry);
 applyControlExecutionAcceptance(registry);
 applyDeathDemonicAcceptance(registry);
+applyAttackTriggerAcceptance(registry);
+applyReflectionDemonAcceptance(registry);
+applyEdgeEarthAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));

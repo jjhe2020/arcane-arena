@@ -1,11 +1,59 @@
 {
   "schemaVersion": 1,
-  "sourceFingerprint": "bcda568851ab8d02cfaadbfaaf119dfc73870e8cb9a00cc3b5621013f05b7392",
+  "sourceFingerprint": "4ca0c14470c2de109c9f7ea8a1cb3b16ab7fe3ddc3156fe92612f50f4814d94c",
   "sourceUnchanged": true,
   "passed": true,
-  "executedTests": 606,
+  "executedTests": 768,
   "command": "npm run reference:verify",
   "tests": [
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Culling executes through deferred damage and its armor charge follows the skill stack",
+      "fullName": "advanced source-backed upgrade behavior Culling executes through deferred damage and its armor charge follows the skill stack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Brain Sap Super gains round-only maximum health equal to damage sapped and applies Enfeeble",
+      "fullName": "advanced source-backed upgrade behavior Brain Sap Super gains round-only maximum health equal to damage sapped and applies Enfeeble",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Finger kill gains survive the next battle only on the holder and are reported as deltas",
+      "fullName": "advanced source-backed upgrade behavior Finger kill gains survive the next battle only on the holder and are reported as deltas",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Scythe awards persistent regeneration when a third-party ally kills the marked victim",
+      "fullName": "advanced source-backed upgrade behavior Scythe awards persistent regeneration when a third-party ally kills the marked victim",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Refraction consumes separate attack bonus charges without exhausting defense charges",
+      "fullName": "advanced source-backed upgrade behavior Refraction consumes separate attack bonus charges without exhausting defense charges",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Ravage Gaben returns and damages/stuns a second time after the outward wave",
+      "fullName": "advanced source-backed upgrade behavior Ravage Gaben returns and damages/stuns a second time after the outward wave",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Borrowed Time automatically activates while stunned and redirects an ally injury",
+      "fullName": "advanced source-backed upgrade behavior Borrowed Time automatically activates while stunned and redirects an ally injury",
+      "status": "passed"
+    },
+    {
+      "file": "tests/combat-advanced.test.ts",
+      "title": "Death Pulse Gaben has a distinct bounce projectile and replay preserves it",
+      "fullName": "advanced source-backed upgrade behavior Death Pulse Gaben has a distinct bounce projectile and replay preserves it",
+      "status": "passed"
+    },
     {
       "file": "tests/reference-acceptance-gate.test.ts",
       "title": "does not count stale passing tests as current original-reference verification",
@@ -16,6 +64,12 @@
       "file": "tests/reference-acceptance-gate.test.ts",
       "title": "requires a real named passing test and a versioned source for each claim",
       "fullName": "reference acceptance evidence gate requires a real named passing test and a versioned source for each claim",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-acceptance-gate.test.ts",
+      "title": "executes every evidence-bound test file even when its name lacks the reference prefix",
+      "fullName": "reference acceptance evidence gate executes every evidence-bound test file even when its name lacks the reference prefix",
       "status": "passed"
     },
     {
@@ -478,6 +532,318 @@
       "file": "tests/reference-attack-modes.test.ts",
       "title": "BT-17 insufficient public mana prevents Trance without consuming its cooldown",
       "fullName": "Battle Trance complete base clauses and public action clocks BT-17 insufficient public mana prevents Trance without consuming its cooldown",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-01 the bash is immediate while magical damage and the second melee attack wait four tenths of a second",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-01 the bash is immediate while magical damage and the second melee attack wait four tenths of a second",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-02 delayed attacks can proc learned criticals and Time Lock itself",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-02 delayed attacks can proc learned criticals and Time Lock itself",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-03 a ranged delayed attack creates its own normal-speed missile instead of hitting at the proc deadline",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-03 a ranged delayed attack creates its own normal-speed missile instead of hitting at the proc deadline",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-04 an existing delayed attack ignores a later disarm but retains the target evasion roll",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-04 an existing delayed attack ignores a later disarm but retains the target evasion roll",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-05 a failed ordinary attack and an illusion owner cannot create a fresh bash",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-05 a failed ordinary attack and an illusion owner cannot create a fresh bash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-06 Super uses final bonus and chance while Gaben pulses on its independent four-second clock",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-06 Super uses final bonus and chance while Gaben pulses on its independent four-second clock",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-07 released follow-up state replays without duplicating a pending bash",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-07 released follow-up state replays without duplicating a pending bash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "TL-08 actual twenty-four-percent attacks use the explicit independent PRD state deterministically",
+      "fullName": "Time Lock delayed modifier-enabled attacks TL-08 actual twenty-four-percent attacks use the explicit independent PRD state deterministically",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-01 a subsequently cancelled incoming attack can grant its one-second thousand-AS buff before any damage",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-01 a subsequently cancelled incoming attack can grant its one-second thousand-AS buff before any damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-02 missed attacks retain the proc buff and the next successful attack consumes it with source-attributed lifesteal",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-02 missed attacks retain the proc buff and the next successful attack consumes it with source-attributed lifesteal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-03 a proc during an ongoing attack counters the current victim rather than the incoming attacker and keeps modifiers",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-03 a proc during an ongoing attack counters the current victim rather than the incoming attacker and keeps modifiers",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-04 Gaben outgoing and incoming proc clocks remain independent and ignore ordinary cooldown reduction",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-04 Gaben outgoing and incoming proc clocks remain independent and ignore ordinary cooldown reduction",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-05 Break and illusion owners do not gain fresh proc buffs",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-05 Break and illusion owners do not gain fresh proc buffs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "MC-06 a stale last target does not convert an idle proc into an immediate counterattack",
+      "fullName": "Moment of Courage attack-start and successful-contact buff lifecycle MC-06 a stale last target does not convert an idle proc into an immediate counterattack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-01 three successful attacks charge the next ordinary critical and reset the counter",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-01 three successful attacks charge the next ordinary critical and reset the counter",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-02 allied ward and building contacts neither charge nor consume an already powered strike",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-02 allied ward and building contacts neither charge nor consume an already powered strike",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-03 Break suppresses new charges and healing but a precharged successful hit still criticals and resets",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-03 Break suppresses new charges and healing but a precharged successful hit still criticals and resets",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-04 missed attacks do not charge or consume the ready buff",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-04 missed attacks do not charge or consume the ready buff",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-05 Super requires two charging hits and uses its final220-percent critical without adding another forty points",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-05 Super requires two charging hits and uses its final220-percent critical without adding another forty points",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-06 ordinary creeps halve healing while hero illusions and creep-heroes retain the hero factor",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-06 ordinary creeps halve healing while hero illusions and creep-heroes retain the hero factor",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-07 nearby allied heroes use the caster lifesteal amplification and their own restoration reduction",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-07 nearby allied heroes use the caster lifesteal amplification and their own restoration reduction",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-08 Gaben adds its final healing factor and independently schedules only one extra attack during five seconds",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-08 Gaben adds its final healing factor and independently schedules only one extra attack during five seconds",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-09 actual fatal damage removes an already powered strike without inventing a new charge",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-09 actual fatal damage removes an already powered strike without inventing a new charge",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "LM-10 allied hero healing includes the650-unit boundary and excludes a farther hero",
+      "fullName": "Luminosity fixed contact counters and lifesteal-class restoration LM-10 allied hero healing includes the650-unit boundary and excludes a farther hero",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "REPLAY legion_commander_moment_of_courage reconstructs its actual attack triggers from original recorded inputs",
+      "fullName": "Attack-trigger original-input restoration REPLAY legion_commander_moment_of_courage reconstructs its actual attack triggers from original recorded inputs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "REPLAY custom_dawnbreaker_luminosity reconstructs its actual attack triggers from original recorded inputs",
+      "fullName": "Attack-trigger original-input restoration REPLAY custom_dawnbreaker_luminosity reconstructs its actual attack triggers from original recorded inputs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "REPLAY dawnbreaker_fire_wreath reconstructs its actual attack triggers from original recorded inputs",
+      "fullName": "Attack-trigger original-input restoration REPLAY dawnbreaker_fire_wreath reconstructs its actual attack triggers from original recorded inputs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "REPLAY enchantress_impetus reconstructs its actual attack triggers from original recorded inputs",
+      "fullName": "Attack-trigger original-input restoration REPLAY enchantress_impetus reconstructs its actual attack triggers from original recorded inputs",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-01 first swipe hits at release followed by half-duration and endpoint waves with one charge per wave",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-01 first swipe hits at release followed by half-duration and endpoint waves with one charge per wave",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-02 swipes have True Strike and cannot cleave while ordinary attack modifiers still apply",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-02 swipes have True Strike and cannot cleave while ordinary attack modifiers still apply",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-03 only the frontal-offset final circle reaches a victim five world units away and applies damage before stun",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-03 only the frontal-offset final circle reaches a victim five world units away and applies damage before stun",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-04 swipes slow after damage and spell immunity blocks the disable while retaining instant attack damage",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-04 swipes slow after damage and spell immunity blocks the disable while retaining instant attack damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-05 silence does not cancel released waves but a subsequent stun cancels them and removes this cast immunity",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-05 silence does not cancel released waves but a subsequent stun cancels them and removes this cast immunity",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-06 Gaben successful contacts add independently purgable armor stacks and refresh every source-owned stack",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-06 Gaben successful contacts add independently purgable armor stacks and refresh every source-owned stack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-07 Super spends two real charges while sequential recharge starts at the first release",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-07 Super spends two real charges while sequential recharge starts at the first release",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-08 editing the authored public cooldown changes actual recharge rather than falling back to the original catalog",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-08 editing the authored public cooldown changes actual recharge rather than falling back to the original catalog",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-09 base motion covers236point5 units continuously while target movement cannot turn its frozen facing",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-09 base motion covers236point5 units continuously while target movement cannot turn its frozen facing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-10 root pauses only base travel and resumes without cancelling the combo or catching up missed distance",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-10 root pauses only base travel and resumes without cancelling the combo or catching up missed distance",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-11 a wall pauses base travel and removing it resumes from the stopped position without tunnelling or catch-up",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-11 a wall pauses base travel and removing it resumes from the stopped position without tunnelling or catch-up",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-12 Super ordinary movement can run backward at25percent self-slow while facing remains locked",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-12 Super ordinary movement can run backward at25percent self-slow while facing remains locked",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-13 Super minimum215 permits normal movement even from zero base speed under an additional severe slow",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-13 Super minimum215 permits normal movement even from zero base speed under an additional severe slow",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-14 forward abilities can release during base travel while an order requiring a turn waits until the combo and self-stun end",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-14 forward abilities can release during base travel while an order requiring a turn waits until the combo and self-stun end",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-15 normal attacks are permitted before release and after the final self-stun but never during the three-wave combo",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-15 normal attacks are permitted before release and after the final self-stun but never during the three-wave combo",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-16 an actual nondisabling Blinding Light motion pauses base travel and allows its later continuation without cancelling the final smash",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-16 an actual nondisabling Blinding Light motion pauses base travel and allows its later continuation without cancelling the final smash",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-17 the authored base cast waits its actual point before its first attack motion and resource payment",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-17 the authored base cast waits its actual point before its first attack motion and resource payment",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "SB-18 interrupting the real Super windup spends no mana cooldown or charge and starts no movement",
+      "fullName": "Starbreaker wave attacks and Luminosity batching SB-18 interrupting the real Super windup spends no mana cooldown or charge and starts no movement",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-01 the two additional missiles launch with the primary even when the primary later misses",
+      "fullName": "Specialists Array released projectile policy AR-01 the two additional missiles launch with the primary even when the primary later misses",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-02 secondary attacks exclude generic status criticals as well as learned criticals",
+      "fullName": "Specialists Array released projectile policy AR-02 secondary attacks exclude generic status criticals as well as learned criticals",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-03 no-modifier missiles retain armor damage block and evasion without triggering marksmanship MKB or lifesteal",
+      "fullName": "Specialists Array released projectile policy AR-03 no-modifier missiles retain armor damage block and evasion without triggering marksmanship MKB or lifesteal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-04 target filtering happens before the two closest eligible alternatives are selected",
+      "fullName": "Specialists Array released projectile policy AR-04 target filtering happens before the two closest eligible alternatives are selected",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-05 melee attacks cannot release Array and successful extra missiles do not recursively create another proc",
+      "fullName": "Specialists Array released projectile policy AR-05 melee attacks cannot release Array and successful extra missiles do not recursively create another proc",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-attack-trigger.test.ts",
+      "title": "AR-06 ordinary missile travel snapshots release speed and inherits projectile-speed bonuses",
+      "fullName": "Specialists Array released projectile policy AR-06 ordinary missile travel snapshots release speed and inherits projectile-speed bonuses",
       "status": "passed"
     },
     {
@@ -1528,6 +1894,288 @@
       "file": "tests/reference-deferred-lifesteal.test.ts",
       "title": "False Promise retains damage ownership without reviving an expired provider at settlement",
       "fullName": "historical delayed settlement and spell lifesteal False Promise retains damage ownership without reviving an expired provider at settlement",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge has300ms point500ms recovery250AA range zero mana and four second release cooldown",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge has300ms point500ms recovery250AA range zero mana and four second release cooldown",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge targets its victim center and reaches220radius rather than the old190",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge targets its victim center and reaches220radius rather than the old190",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge computes damage after every eligible hero strength stack and applies one shared result to all victims",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge computes damage after every eligible hero strength stack and applies one shared result to all victims",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge strength updates maximum health without healing the current health and Gaben removes self damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge strength updates maximum health without healing the current health and Gaben removes self damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge grants clone stacks but excludes illusions and considered hero creeps and caps the total at five",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge grants clone stacks but excludes illusions and considered hero creeps and caps the total at five",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge nonlethal self damage pierces the caster spell immunity without granting general undying protection",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge nonlethal self damage pierces the caster spell immunity without granting general undying protection",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge primary spell block prevents both area damage and self damage and still starts cooldown",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge primary spell block prevents both area damage and self damage and still starts cooldown",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge Super slow attack slow and strength stacks can be dispelled and Gaben regeneration ends with its stack",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge Super slow attack slow and strength stacks can be dispelled and Gaben regeneration ends with its stack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge later hero hits refresh all existing stacks to one fifteen second expiry",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge later hero hits refresh all existing stacks to one fifteen second expiry",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Double Edge natural strength expiry clamps the maximum without adding a return heal",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Double Edge natural strength expiry clamps the maximum without adding a return heal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave has450ms point380ms recovery800cast range and releases145mana6.5second cooldown",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave has450ms point380ms recovery800cast range and releases145mana6.5second cooldown",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave travels at1200 and reaches1075 after launch rather than dealing instant line damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave travels at1200 and reaches1075 after launch rather than dealing instant line damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave Super consumes final460damage only once and stacks50per previously hit unit",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave Super consumes final460damage only once and stacks50per previously hit unit",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave invisible targets can be hit but spell immune targets do not increase the wave damage counter",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave invisible targets can be hit but spell immune targets do not increase the wave damage counter",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave a changed Super damage value remains the authority for all subsequent stacked hits",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave a changed Super damage value remains the authority for all subsequent stacked hits",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave Gaben creates its Black Dragon at the endpoint only after the wave completes",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave Gaben creates its Black Dragon at the endpoint only after the wave completes",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Dragon Slave Overlord bonuses add to native health and mana regeneration instead of replacing the native rates",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Dragon Slave Overlord bonuses add to native health and mana regeneration instead of replacing the native rates",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel has300ms point zero recovery75mana and final Super8.5duration30second cooldown650range",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel has300ms point zero recovery75mana and final Super8.5duration30second cooldown650range",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel Strong dispel or natural expiry removes both linked states while basic dispel does not",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel Strong dispel or natural expiry removes both linked states while basic dispel does not",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel pierces spell immunity and its partner attack target takes priority over an unrelated focus fire lock",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel pierces spell immunity and its partner attack target takes priority over an unrelated focus fire lock",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel ends without victory when partners are separated beyond2000units",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel ends without victory when partners are separated beyond2000units",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel grants one permanent caster reward on a third party kill but no reward for an illusion",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel grants one permanent caster reward on a third party kill but no reward for an illusion",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel never rewards a victorious enemy and current duel cannot launch an independent normal spell",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel never rewards a victorious enemy and current duel cannot launch an independent normal spell",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel Gaben reduces external damage by80percent but not damage dealt by the opposing duelist or HP removal",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel Gaben reduces external damage by80percent but not damage dealt by the opposing duelist or HP removal",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel Gaben and Enrage incoming reductions add for an external hit rather than multiplying two reductions",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel Gaben and Enrage incoming reductions add for an external hit rather than multiplying two reductions",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter has400ms point730ms recovery225mana and delays its two damage halves by2.718seconds",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter has400ms point730ms recovery225mana and delays its two damage halves by2.718seconds",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter final Super50percent maximum health damage300width and40second cooldown apply once",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter final Super50percent maximum health damage300width and40second cooldown apply once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter Gaben applies base armor and resistance reductions before its own magical then physical damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter Gaben applies base armor and resistance reductions before its own magical then physical damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter affects invisible and spell immune victims but no ancient creep or hidden unit",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter affects invisible and spell immune victims but no ancient creep or hidden unit",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter pulls a side victim onto the crack and stops its real Death Ward channel without a stun",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter pulls a side victim onto the crack and stops its real Death Ward channel without a stun",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter Gaben defenses and slow all end together on basic dispel",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter Gaben defenses and slow all end together on basic dispel",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earth Splitter a changed final damage percentage remains authoritative for both halves",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earth Splitter a changed final damage percentage remains authoritative for both halves",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock has instant point and zero recovery85mana with four second cooldown and damage only on landing",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock has instant point and zero recovery85mana with four second cooldown and damage only on landing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock follows current facing for the full400distance instead of turning toward or stopping short of its target",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock follows current facing for the full400distance instead of turning toward or stopping short of its target",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock casts while already rooted without leaping and applies its debuffs before damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock casts while already rooted without leaping and applies its debuffs before damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock a midair root ends movement and immediately impacts at the interrupted location",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock a midair root ends movement and immediately impacts at the interrupted location",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock permits an ordinary attack and another spell to start while airborne",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock permits an ordinary attack and another spell to start while airborne",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock Super Enrage does not strong dispel existing debuffs and provides only1.5second damage reduction and status resistance",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock Super Enrage does not strong dispel existing debuffs and provides only1.5second damage reduction and status resistance",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock Super extends an existing native Enrage duration without adding a second reduction stack",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock Super extends an existing native Enrage duration without adding a second reduction stack",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock Gaben allies each leap and use base radius half damage without Super Enrage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock Gaben allies each leap and use base radius half damage without Super Enrage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Earthshock Super consumes final885radius without adding a second500bonus",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Earthshock Super consumes final885radius without adding a second500bonus",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Wild native archer actually queues its300ms Purge and starts the fifteen second cooldown after release",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Wild native archer actually queues its300ms Purge and starts the fifteen second cooldown after release",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Wild native Black Dragon actually casts Fireball with native200mana and delayed burning damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Wild native Black Dragon actually casts Fireball with native200mana and delayed burning damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel a caster side strong cleanse removes both harmful linked states while its basic cleanse does not",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel a caster side strong cleanse removes both harmful linked states while its basic cleanse does not",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Duel real victory skill gains survive finishRound and next battle exactly once on the purchased skill instance",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Duel real victory skill gains survive finishRound and next battle exactly once on the purchased skill instance",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Motion replacement Dispose landing kills the victim before Vacuum can move its corpse",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Motion replacement Dispose landing kills the victim before Vacuum can move its corpse",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-edge-earth.test.ts",
+      "title": "Motion replacement Vacuum still moves a living Dispose victim and resolves its own damage",
+      "fullName": "Wiki acceptance: edge and earth mechanisms Motion replacement Vacuum still moves a living Dispose victim and resolves its own damage",
       "status": "passed"
     },
     {
@@ -3268,6 +3916,330 @@
       "file": "tests/reference-projectiles-and-fields.test.ts",
       "title": "real catalog chains, stacks and blink replay identically across a mid-battle save",
       "fullName": "reference projectile, field and Skywrath clauses real catalog chains, stacks and blink replay identically across a mid-battle save",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-01 every AA rank pays its configured mana and cooldown at.2release with historical1.04backswing",
+      "fullName": "Dispose continuous throw and landing execution DP-01 every AA rank pays its configured mana and cooldown at.2release with historical1.04backswing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-02 disabled victim moves continuously and landing slow precedes damage after.5seconds",
+      "fullName": "Dispose continuous throw and landing execution DP-02 disabled victim moves continuously and landing slow precedes damage after.5seconds",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-03 a critically wounded spell-immune ally is legal and unharmed while nearby enemies receive landing effects",
+      "fullName": "Dispose continuous throw and landing execution DP-03 a critically wounded spell-immune ally is legal and unharmed while nearby enemies receive landing effects",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-04 spell-immune enemy is not selected or moved and its immunity expires without a false landing",
+      "fullName": "Dispose continuous throw and landing execution DP-04 spell-immune enemy is not selected or moved and its immunity expires without a false landing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-05 victims inside the115degree cone do not force a turn toward their off-axis position",
+      "fullName": "Dispose continuous throw and landing execution DP-05 victims inside the115degree cone do not force a turn toward their off-axis position",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-06 death of the thrower lands early exactly once at the current victim position",
+      "fullName": "Dispose continuous throw and landing execution DP-06 death of the thrower lands early exactly once at the current victim position",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-07 a replacement forced controller lands early without cancelling that new controller",
+      "fullName": "Dispose continuous throw and landing execution DP-07 a replacement forced controller lands early without cancelling that new controller",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-08 a motion-restricted Chronosphere-style target lands immediately without being pulled out",
+      "fullName": "Dispose continuous throw and landing execution DP-08 a motion-restricted Chronosphere-style target lands immediately without being pulled out",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-09 Super uses the final400cast range and Gaben applies120target attack speed for8seconds only",
+      "fullName": "Dispose continuous throw and landing execution DP-09 Super uses the final400cast range and Gaben applies120target attack speed for8seconds only",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-10 victim death still lands area effects once on living collateral enemies",
+      "fullName": "Dispose continuous throw and landing execution DP-10 victim death still lands area effects once on living collateral enemies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-11 Gaben target mark increases the actual attack frequency against its victim",
+      "fullName": "Dispose continuous throw and landing execution DP-11 Gaben target mark increases the actual attack frequency against its victim",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DP-12 actual Chronosphere prevents an outside Super Dispose from extracting its frozen victim",
+      "fullName": "Dispose continuous throw and landing execution DP-12 actual Chronosphere prevents an outside Super Dispose from extracting its frozen victim",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-01 AA ranks preserve2.75banish,two20second images and final damage penalties",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-01 AA ranks preserve2.75banish,two20second images and final damage penalties",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-02 image current health snapshots on cast while attack and mana snapshot on return",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-02 image current health snapshots on cast while attack and mana snapshot on return",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-03 ally and self banishment are legal but spell-immune ally is excluded",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-03 ally and self banishment are legal but spell-immune ally is excluded",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-04 caster death does not cancel image release but victim death does",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-04 caster death does not cancel image release but victim death does",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-05 external basic dispel leaves AA banishment while strong dispel returns two images once",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-05 external basic dispel leaves AA banishment while strong dispel returns two images once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-06 Gaben supplies two sequential20second recharges and Chakra reduces the active recharge only",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-06 Gaben supplies two sequential20second recharges and Chakra reduces the active recharge only",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-07 Super applies level-four Soul Catcher to every nearby enemy before image HP capture",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-07 Super applies level-four Soul Catcher to every nearby enemy before image HP capture",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-08 Soul Catcher replaces spell amplification from this cast hero count and returns half initial loss",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-08 Soul Catcher replaces spell amplification from this cast hero count and returns half initial loss",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-09 copied Dispersion does not initialize reduction or reflect damage on the released images",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-09 copied Dispersion does not initialize reduction or reflect damage on the released images",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-10 released images actually expire after their20second lifetime",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-10 released images actually expire after their20second lifetime",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DR-11 re-banishment of a Disruption illusion uses its original hero attack rather than multiplying an existing illusion penalty",
+      "fullName": "Disruption cast-time health and historical Soul Catcher DR-11 re-banishment of a Disruption illusion uses its original hero attack rather than multiplying an existing illusion penalty",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-01 all AA ranks retain mana/cooldown and release.3seconds before the1.3second phase",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-01 all AA ranks retain mana/cooldown and release.3seconds before the1.3second phase",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-02 normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-02 normal seven and Super thirteen portals align to the caster facing without forcing an enemy-facing turn",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-03 hidden collision remains while no attacks or other casts escape the phase and exit warps exactly once",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-03 hidden collision remains while no attacks or other casts escape the phase and exit warps exactly once",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-04 Super consumes the compiled515final damage once and Gaben adds2.5second stun after damage",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-04 Super consumes the compiled515final damage once and Gaben adds2.5second stun after damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-05 Soulbind root blocks the real mobility action before resources are spent",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-05 Soulbind root blocks the real mobility action before resources are spent",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-06 phase damage remains magical and does not affect a spell-immune victim on exit",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-06 phase damage remains magical and does not affect a spell-immune victim on exit",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DI-07 an already released attack projectile remains homing through phase and exit without a disjoint",
+      "fullName": "Dissimilate hidden phase and historical portal geometry DI-07 an already released attack projectile remains homing through phase and exit without a disjoint",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-01 all base AA ranks pay resources and immediately tick at historical.5release with1second spacing",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-01 all base AA ranks pay resources and immediately tick at historical.5release with1second spacing",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-02 base offensive Basic Dispel happens once and later positive buffs remain",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-02 base offensive Basic Dispel happens once and later positive buffs remain",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-03 pre7.34 Doom permits actual healing and a released curse continues after its owner dies",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-03 pre7.34 Doom permits actual healing and a released curse continues after its owner dies",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-04 AA basic dispel preserves the curse while strong dispel stops every correlated component and later damage",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-04 AA basic dispel preserves the curse while strong dispel stops every correlated component and later damage",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-05 base Spell Block consumes the enemy shield and mana without applying any curse",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-05 base Spell Block consumes the enemy shield and mana without applying any curse",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-06 Gaben is a true zero-point self order and does not consume nearby enemy Spell Block or disable its owner",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-06 Gaben is a true zero-point self order and does not consume nearby enemy Spell Block or disable its owner",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-07 Gaben can release with no enemy in range and uses a moving325radius with one shared second clock",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-07 Gaben can release with no enemy in range and uses a moving325radius with one shared second clock",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-08 leaving and reentering the aura does not repeat the initial offensive dispel",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-08 leaving and reentering the aura does not repeat the initial offensive dispel",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-09 Gaben expiry restores actions and source death removes only its moving aura",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-09 Gaben expiry restores actions and source death removes only its moving aura",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-10 pure Doom pierces spell immunity while effective statistics retain actual health loss",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-10 pure Doom pierces spell immunity while effective statistics retain actual health loss",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-11 Gaben self Doom does not duplicate through the caster Soulbind group",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-11 Gaben self Doom does not duplicate through the caster Soulbind group",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-12 Super Break suppresses real Berserkers Blood regen and removal restores the accepted passive",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-12 Super Break suppresses real Berserkers Blood regen and removal restores the accepted passive",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DM-13 base expiry removes the full curse and allows a real disabled victim to cast again",
+      "fullName": "Doom pre7.34 curse and AA self aura execution DM-13 base expiry removes the full curse and allows a real disabled victim to cast again",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-01 every AA rank consumes one final percentage for reduction and reflection with no active cost",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-01 every AA rank consumes one final percentage for reduction and reflection with no active cost",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-02 AA300minimum and700maximum give full,half and zero reflection without splitting recipients",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-02 AA300minimum and700maximum give full,half and zero reflection without splitting recipients",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-03 physical reflection uses pre-victim-armor input but still uses each recipient armor",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-03 physical reflection uses pre-victim-armor input but still uses each recipient armor",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-04 magical reflection precedes the primary victim MR and retains recipient MR and type",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-04 magical reflection precedes the primary victim MR and retains recipient MR and type",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-05 a fully shielding primary victim still reflects the accepted pre-shield amount",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-05 a fully shielding primary victim still reflects the accepted pre-shield amount",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-06 overkill reflection is not capped to victim health and resolves the enemy death first",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-06 overkill reflection is not capped to victim health and resolves the enemy death first",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-07 typed HPLOSS and reflected input do not recursively trigger Dispersion",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-07 typed HPLOSS and reflected input do not recursively trigger Dispersion",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-08 reflection creates no Scion stacks,spell lifesteal or Carapace feedback",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-08 reflection creates no Scion stacks,spell lifesteal or Carapace feedback",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-09 explicitly classified generic reductions add while Break disables the original passive",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-09 explicitly classified generic reductions add while Break disables the original passive",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-10 passive level-four Dagger travels,damages and keeps child-parent attribution without spending mana",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-10 passive level-four Dagger travels,damages and keeps child-parent attribution without spending mana",
+      "status": "passed"
+    },
+    {
+      "file": "tests/reference-reflection-demon.test.ts",
+      "title": "DS-11 editable Super7 and Gaben1 cooldowns retain the disclosed accumulated-progress working policy",
+      "fullName": "Dispersion pre-lethal typed reflection and AA passive Dagger DS-11 editable Super7 and Gaben1 cooldowns retain the disclosed accumulated-progress working policy",
       "status": "passed"
     },
     {

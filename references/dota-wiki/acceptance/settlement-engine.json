@@ -248,7 +248,7 @@
       "id": "E-HEALTH-REMOVAL-INTERACTIONS",
       "kind": "combination",
       "branch": "base",
-      "rule": "Health-removal costs now bypass ordinary shields, multipliers and Borrowed Time and can be delayed by False Promise. Tests protect those engine outcomes. Historical eligibility for each separate caller and remaining negation priorities (Carapace, Refraction, Mana Shield, redirects) are not yet wholly audited.",
+      "rule": "Direct healthRemoval and typed healthLoss are distinct in C5. Dispersion typed HPLOSS retains recipient armor/MR and suppresses damage hooks,spell lifesteal and reflection chains,while direct SetHealth/execute keep their existing separate paths. Historical FP/BT/Refraction/ManaShield/Aphotic exceptions and all other HP-removal callers still require per-skill evidence; do not apply modern universal-barrier rules to every2023case.",
       "status": "source_pending",
       "sourceIds": [
         "oracle-2023"
@@ -320,7 +320,7 @@
       "id": "E-RESTORATION-CALLER-CLASSIFICATION",
       "kind": "mechanism",
       "branch": "base",
-      "rule": "C3 explicitly classifies base Feast and AA shared Feast as lifesteal restoration. The real base-Feast/Rain/lifesteal-amplification result is separately certified. Other healing call sites still need per-skill source classification; this finite result does not certify every damage-based heal as lifesteal or all healing callers as migrated.",
+      "rule": "Base/shared Feast and C5 Luminosity explicitly use the lifesteal restoration class. Luminosity ally restoration uses the caster lifesteal amplification and recipient suppression in a real result. Its before-damage ordering,barrier/deferred basis,and other heal call-site classifications remain open; these finite results do not certify every damage-based heal.",
       "status": "source_pending",
       "sourceIds": [
         "lifestealer-2019-restoration",
@@ -389,20 +389,57 @@
       "id": "E-INSTANT-ATTACK-PROC-ELIGIBILITY",
       "kind": "combination",
       "branch": "base",
-      "rule": "C5 source audit establishes three actual caller gaps: Time Lock and Moment of Courage incorrectly suppress ordinary attack/on-hit effects; ranged Time Lock lacks its ordinary projectile path; nonattacking Courage lacks its preparation path. Specialist Array currently starts from landed attacks rather than simultaneous launch and its false flag still leaks generic critical/lifesteal providers. Implement explicit per-caller rules and real results instead of certifying triggerModifiers:false as a universal native rule. Historical7.31d/February2023 Time Lock delays its second attack and bonus damage by0.4seconds,while the current caller deals bonus damage immediately and schedules a0.1second follow-up; ranged follow-ups additionally need projectile travel.",
-      "status": "mechanism_missing",
+      "rule": "C5 uses explicit all/none modifier contracts for the tested callers. Historical delayed Time Lock keeps modifiers and ranged projectile travel; ordinary incoming-start Courage uses its current target or preparation buff; Array releases alongside the primary even on a later miss and excludes learned/status criticals,Marksmanship,MKB and lifesteal. This finite result does not certify every instant caller or whether animation-free attacks emit an incoming-start event.",
+      "status": "passed",
       "sourceIds": [
         "time-lock-2023-attacks",
         "courage-2023-attacks",
         "specialist-2023-attacks"
       ],
-      "testEvidence": []
+      "testEvidence": [
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "TL-01 the bash is immediate while magical damage and the second melee attack wait four tenths of a second"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "TL-02 delayed attacks can proc learned criticals and Time Lock itself"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "TL-03 a ranged delayed attack creates its own normal-speed missile instead of hitting at the proc deadline"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "MC-01 a subsequently cancelled incoming attack can grant its one-second thousand-AS buff before any damage"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "MC-03 a proc during an ongoing attack counters the current victim rather than the incoming attacker and keeps modifiers"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "MC-06 a stale last target does not convert an idle proc into an immediate counterattack"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "AR-01 the two additional missiles launch with the primary even when the primary later misses"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "AR-02 secondary attacks exclude generic status criticals as well as learned criticals"
+        },
+        {
+          "file": "tests/reference-attack-trigger.test.ts",
+          "test": "AR-03 no-modifier missiles retain armor damage block and evasion without triggering marksmanship MKB or lifesteal"
+        }
+      ]
     },
     {
       "id": "E-VARIABLE-AND-FIXED-CRITICAL-ORDER",
       "kind": "combination",
       "branch": "base",
-      "rule": "Current shared selection orders a variable critical by its maximum profile, while fixed-count Luminosity probes at point and also advances at impact. The exact variable-versus-fixed native priority and simultaneous in-flight fixed-count behavior still require per-skill evidence and result tests. Existing passing Chaos/PA launch snapshots do not certify these unreviewed matrices.",
+      "rule": "C5 replaces the mutating cloned Luminosity probe with an explicit ensured critical candidate and per-record/batch snapshots. The exact variable-versus-fixed priority,stronger-critical-versus-ready-buff consumption and simultaneous in-flight charging still require direct evidence and result matrices. Existing Chaos/PA flight snapshots and finite Luminosity contact/Break results do not certify those unresolved combinations.",
       "status": "source_pending",
       "sourceIds": [],
       "testEvidence": []
@@ -428,6 +465,18 @@
       "sourceIds": [
         "critical-strike-2022",
         "chaos-critical-2023"
+      ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-INSTANT-INCOMING-START",
+      "kind": "combination",
+      "branch": "base",
+      "status": "source_pending",
+      "rule": "Ordinary accepted attack orders emit incoming-start once before windup. The exact historical TimeLock-to-Courage,Courage-to-Courage and other animation-free attack eligibility for that start event is unproved; all on-hit modifiers is not treated as direct proof of a separate start event. Keep the ordinary-only project policy explicit until native evidence resolves it.",
+      "sourceIds": [
+        "time-lock-2023-attacks",
+        "courage-2023-attacks"
       ],
       "testEvidence": []
     }

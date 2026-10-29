@@ -7,6 +7,8 @@ export type DamageCategory = 'attack' | 'spell' | 'hpRemoval';
 /** One released attack; opaque data must contain serializable snapshots only. */
 export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number}}
 export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; reflection?:boolean; noSpellLifesteal?:boolean; delayed?:boolean; healthRemoval?:boolean;noAmplification?:boolean;noReflection?:boolean;noDamageHooks?:boolean;nonLethal?:boolean;ignoreDamageBlock?:boolean;bypassGenericMultipliers?:boolean;convertedAttack?:boolean;affectsBanished?:boolean;affectsInvulnerable?:boolean }
+/** Typed HPLOSS retains armor/MR; direct healthRemoval follows its older path. */
+export interface DamageFlags {healthLoss?:boolean}
 export interface Attribution { abilityId:string; rootAbilityId?:string; parentAbilityId?:string; sourceUnitId?:string; ownerUnitId?:string; sourceName?:string; summonAbilityId?:string; skillInstanceId?:string }
 export type DamageAmounts = Record<DamageType,number>;
 export interface AbilityStats { key:string; abilityId:string; rootAbilityId:string; sourceUnitId:string; sourceName:string; damage:number; taken:number; healing:number; absorbed?:number; damageTypes:DamageAmounts; takenTypes:DamageAmounts }

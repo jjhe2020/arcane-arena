@@ -10,6 +10,8 @@ export interface ContinuousMoveOptions {
   lockActions?: boolean;
   /** Only a skill's explicit motion exception may bypass a skill-created wall. */
   ignoreBarriers?: boolean;
+  cancelOnRoot?:boolean;
+  onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 export interface MotionController {
   owner: string;
@@ -21,6 +23,8 @@ export interface MotionController {
   priority: number;
   lockActions: boolean;
   ignoreBarriers: boolean;
+  cancelOnRoot?:boolean;
+  onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 
 /** Historical base turn-rate candidate, expressed in this engine's radians/sec.
@@ -74,7 +78,8 @@ export function limitOrdinaryMove(unit: CombatUnit, point: MotionPoint): MotionP
 
 /** Unit phasing is distinct from passing through skill-created barriers. */
 export function ignoresUnitCollision(unit: CombatUnit): boolean {
-  return unit.statuses.some(status=>status.kind==='berserk'&&!!(status as {data?:{engaged?:boolean}}).data?.engaged)||unit.statuses.some(status => ['banished', 'phased', 'freePathing', 'fly', 'flying'].includes(status.kind));
+  if(unit.statuses.some(status=>status.kind==='duel'&&!!(status as {data?:{duelRules?:boolean}}).data?.duelRules))return true;
+  return unit.statuses.some(status=>status.kind==='berserk'&&!!(status as {data?:{engaged?:boolean}}).data?.engaged)||unit.statuses.some(status => status.kind==='banished'?!(status as {data?:{keepUnitCollision?:boolean}}).data?.keepUnitCollision:['phased','freePathing','fly','flying'].includes(status.kind));
 }
 
 /** Swept circular-body collision. Existing overlaps may exit but cannot deepen.

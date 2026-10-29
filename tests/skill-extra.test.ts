@@ -170,8 +170,9 @@ describe('extra skill upgrade behavior', () => {
       p.onAttack!(h.ctx); expect(calls).toEqual([key, key]); expect(hp - h.target.hp).toBe(amount);
     }
     const h = harness('legion_commander_moment_of_courage'), p = EXTRA_PROGRAMS[h.ctx.skill.id], keys: string[] = [];
+    h.ctx.attackInProgress=true;h.ctx.currentAttackTargetId=h.target.id;
     h.ctx.chance = (_p, key) => { keys.push(key); return true; };
-    p.onAttacked!(h.ctx); p.onAttack!(h.ctx); p.onAttacked!(h.ctx); p.onAttack!(h.ctx);
+    p.onIncomingAttackStart!(h.ctx); p.onAttack!(h.ctx); p.onIncomingAttackStart!(h.ctx); p.onAttack!(h.ctx);
     expect(keys).toEqual(['defensiveCounterattack', 'offensiveCounterattack']); expect(h.attacks).toHaveLength(2);
     const procs = activeVisualWorldEffects(h.ctx.battle);
     expect(procs).toHaveLength(2); expect(new Set(procs.map(p => p.id)).size).toBe(2);
@@ -180,7 +181,7 @@ describe('extra skill upgrade behavior', () => {
     h.caster.dead = true; expect(activeVisualWorldEffects(h.ctx.battle, .25)).toHaveLength(2);
     expect(activeVisualWorldEffects(h.ctx.battle, .5)).toEqual([]);
     const failed = harness('legion_commander_moment_of_courage'); failed.ctx.chance = () => false;
-    EXTRA_PROGRAMS[failed.ctx.skill.id].onAttacked!(failed.ctx);
+    EXTRA_PROGRAMS[failed.ctx.skill.id].onIncomingAttackStart!(failed.ctx);
     expect(activeVisualWorldEffects(failed.ctx.battle)).toEqual([]);
   });
   it('lets Jingu soldiers apply whitelisted attack effects without copying Jingu or owner-only summons', () => {
@@ -318,11 +319,12 @@ describe('extra skill upgrade behavior', () => {
     EXTRA_PROGRAMS[h.ctx.skill.id].cast!(h.ctx); h.until(1.5); expect(h.ally.hp).toBe(hp - 4.5); h.until(2.5);
     expect(h.ally.hp).toBe(hp - 45);
   });
-  it('uses source-level Courage cooldown independently for attack and attacked procs', () => {
+  it('uses source-level Courage cooldown independently for attack and incoming-start procs', () => {
     const h = harness('legion_commander_moment_of_courage'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
-    p.onAttack!(h.ctx); p.onAttacked!(h.ctx); expect(h.attacks).toHaveLength(2);
-    h.until(.39); p.onAttack!(h.ctx); p.onAttacked!(h.ctx); expect(h.attacks).toHaveLength(2);
-    h.until(.4); p.onAttack!(h.ctx); p.onAttacked!(h.ctx); expect(h.attacks).toHaveLength(4);
+    h.ctx.attackInProgress=true;h.ctx.currentAttackTargetId=h.target.id;
+    p.onAttack!(h.ctx); p.onIncomingAttackStart!(h.ctx); expect(h.attacks).toHaveLength(2);
+    h.until(.39); p.onAttack!(h.ctx); p.onIncomingAttackStart!(h.ctx); expect(h.attacks).toHaveLength(2);
+    h.until(.4); p.onAttack!(h.ctx); p.onIncomingAttackStart!(h.ctx); expect(h.attacks).toHaveLength(4);
   });
   it('applies Shredder armor loss to both extra targets without consuming extra charges', () => {
     const h = harness('custom_snapfire_lil_shredder'), p = EXTRA_PROGRAMS[h.ctx.skill.id];

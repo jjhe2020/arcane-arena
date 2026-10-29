@@ -349,8 +349,8 @@ describe('catalog-driven additional skills', () => {
       const state = battle('custom_void_spirit_dissimilate', points); advance(state, .5);
       const visual = state.units[0].statuses.find(s => s.kind === 'visualForm') as { data: { portals: string } } | undefined;
       expect(visual).toBeDefined(); const portals = JSON.parse(visual!.data.portals) as { x: number; y: number }[];
-      expect(portals.length).toBe(points === 3 ? 7 : 10);
-      expect(state.units[0].statuses.some(s => s.kind === 'silence')).toBe(true);
+      expect(portals.length).toBe(points === 3 ? 7 : 13);
+      expect(state.units[0].statuses.some(s => s.kind === 'banished'&&(s as {data?:{keepUnitCollision?:boolean}}).data?.keepUnitCollision)).toBe(true);
       advance(state, 1.4);
       expect(portals.some(p => Math.hypot(p.x - state.units[0].x, p.y - state.units[0].y) < .01)).toBe(true);
       expect(state.units[0].statuses.some(s => s.kind === 'visualForm')).toBe(false);

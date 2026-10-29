@@ -5,6 +5,20 @@ import {fileURLToPath} from 'node:url';
 
 export const root=fileURLToPath(new URL('../',import.meta.url));
 export const dimensions=['mechanism','timing','super','gaben','combination'];
+export async function referenceTestFiles(base=root){
+ const files=new Set((await fs.readdir(path.join(base,'tests'))).filter(name=>/^reference-.*\.test\.ts$/.test(name)).map(name=>`tests/${name}`));
+ const directory=path.join(base,'references/dota-wiki/acceptance');
+ for(const filename of (await fs.readdir(directory)).filter(name=>name.endsWith('.json'))){
+  const group=JSON.parse(await fs.readFile(path.join(directory,filename),'utf8'));
+  const requirements=[...(group.engineRequirements??[]),...(group.skills??[]).flatMap(skill=>skill.requirements??[])];
+  for(const requirement of requirements)for(const evidence of requirement.testEvidence??[]){
+   const file=evidence?.file;if(!file)continue;
+   if(typeof file!=='string'||!/^(?:tests|src)\/.+\.test\.ts$/.test(file)||file.includes('\\')||file.split('/').some(part=>part==='..'||part===''))throw Error(`Invalid reference test path: ${file}`);
+   await fs.access(path.join(base,file));files.add(file);
+  }
+ }
+ return [...files].sort();
+}
 export async function referenceFingerprint(base=root){
  const files=[];
  async function walk(dir,filter){for(const entry of await fs.readdir(path.join(base,dir),{withFileTypes:true})){const name=path.posix.join(dir,entry.name);if(entry.isDirectory())await walk(name,filter);else if(filter(name))files.push(name);}}

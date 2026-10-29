@@ -1,0 +1,1295 @@
+{
+  "schemaVersion": 1,
+  "group": "edge-earth",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit description,categories,numbers and overrides have priority. Pinned2023 Wiki/Valve support compatible mechanisms. Native upgrade keywords establish lineage,not permission to replace AA numeric values. Passing tests only prove the named results.",
+  "validation": {
+    "command": "npx vitest run tests/reference-edge-earth.test.ts",
+    "passedTests": 47,
+    "configurationHash": "38bd18f77137ae040d01bff0a47c46064c149537d03baba552ecc77d6610f75a",
+    "meaning": "47named result tests pass;the last2are project controller-lifecycle regressions,not newly certified native mechanics. Source_pending requirements retain their original meaning and all5skills remain partial."
+  },
+  "skills": [
+    {
+      "id": "centaur_double_edge",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Planar combat; AA strength/slow/radius/regen numbers retained. Strength-derived passive regeneration remains outside the current attribute model."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA complete description,categories,differences,three base values and both upgrades are retained in the selected evidence. Super: Slows the movement speed and attack speed of enemies by 25% for 2s and increase caster's strength by 30% per, hero hit that lasts 15s. Duration refreshes per stack, up to a max of 5 stacks. Increases damage radius by 200 units. Gaben: No longer deals self-damage. Grants 0.5% HP regen per stack.",
+          "versionContext": "Official English HTTP200;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; explicit AA custom values override native balance.",
+          "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner",
+          "accessedOn": "2026-10-30",
+          "observation": "300ms point/500ms recovery,150native cast range,220target-centered radius. Slow and all hero strength layers precede damage; self magical damage is nonlethal and pierces own immunity. Buff strength changes preserve current HP;clones count but illusions/creep-heroes do not.",
+          "versionContext": "Direct2023-02 archived Dota2Wiki HTTP200;read as historical HTML. Current facets and unrelated redesigns are excluded.",
+          "sha256": "88352f985ac28ed2d722b74eda3d1d08d33c46661c9dd417768c41c6f8d1a62c"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "radius220,castpoint.3;native Shard15%strength/15seconds/5layers,25%slow/2seconds;native150range.",
+          "versionContext": "Pinned shipped Valve2023-02 compatible candidate,not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "aa-history",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=17",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA change notes explicitly add100DoubleEdge cast range,attack-speed slow and200Super damage radius;also add50DragonSlave damage per hit. This historical patch does not replace the final AA website definitions.",
+          "versionContext": "Official workshop changelog HTTP200; historical AA patch lineage,not final balance authority.",
+          "sha256": "8ed0c2274acfc33c710e5a1db37818fbddbe9870ba3c88a35518c68f51e6dd65"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DE-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "300ms point/500ms recovery;zero mana and four-second cooldown start at release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge has300ms point500ms recovery250AA range zero mana and four second release cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "The220radius is centered on the target,not on the caster.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge targets its victim center and reaches220radius rather than the old190"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Every eligible hero strength stack is applied before one common strength-scaled damage value is evaluated.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge computes damage after every eligible hero strength stack and applies one shared result to all victims"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Strength increases maximum HP without healing;Gaben has no self-damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge strength updates maximum health without healing the current health and Gaben removes self damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Clone heroes grant strength,illusions and creep-heroes do not;five layers cap the total.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge grants clone stacks but excludes illusions and considered hero creeps and caps the total at five"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Nonlethal self damage pierces caster BKB;no global undying window protects another hit.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge nonlethal self damage pierces the caster spell immunity without granting general undying protection"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Primary spell block cancels the entire enemy/self effect while retaining release cooldown.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge primary spell block prevents both area damage and self damage and still starts cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Basic dispels remove both slows/strength layers;percentage regeneration ends with its layer.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge Super slow attack slow and strength stacks can be dispelled and Gaben regeneration ends with its stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-09",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Later qualifying hits refresh all existing strength-layer expiry to15seconds.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge later hero hits refresh all existing stacks to one fifteen second expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-10",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Natural strength expiry removes maximum HP and percentage regeneration without a return heal.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge natural strength expiry clamps the maximum without adding a return heal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DE-11",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Chosen250AA cast-range candidate is tested, but150native+official100increase is an inference without original AA KV.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Double Edge has300ms point500ms recovery250AA range zero mana and four second release cooldown"
+            }
+          ],
+          "status": "source_pending"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "aa-history"
+          ],
+          "finding": "Historical Shard is the strength/slow/refresh prototype. AA overrides strength to30%,adds25%attack-speed slow and+200radius. Official AA+100cast-range note plus native150 yields250candidate."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Self-damage removal and0.5%maxHP regeneration per strength layer are explicit AA extensions. No equivalent native Shard or talent is claimed."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DE-U1",
+          "reason": "Native0.1HP regeneration per strength is not modeled by the project attribute conversions; AA Gaben percentage regeneration is implemented.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DE-U2",
+          "reason": "AA increased cast range is inferred250from native150plus official AA+100change note; original AA ability KV is unrecovered.",
+          "sourceIds": [
+            "aa",
+            "aa-history",
+            "valve"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DE-U3",
+          "reason": "Gaben maximum-HP regeneration resamples every configurable100ms;original AA sampling cadence and mid-interval maximum-HP changes are unproven.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "custom_lina_dragon_slave",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA base damage85/160/310 and Super final460 preserved;Overlord body bonuses are native2023 candidates."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA complete description,categories,differences,three base values and both upgrades are retained in the selected evidence. Super: Deals 50 extra stacking damage for every unit hit. Increases damage by 150. Gaben: Spawns a Helm of the Overlord buffed Black Dragon where the spell ends.",
+          "versionContext": "Official English HTTP200;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; explicit AA custom values override native balance.",
+          "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina",
+          "accessedOn": "2026-10-30",
+          "observation": "450ms point/380ms recovery;800cast range versus1075travel;1200speed;radius tapers275to200. Historical cast range conflicts with shipped KV1075,and Wiki priority is explicit.",
+          "versionContext": "Direct2023-02 archived Dota2Wiki HTTP200;read as historical HTML. Current facets and unrelated redesigns are excluded.",
+          "sha256": "79cb74e2f44066000cb6f6c648d4b3fdb2050c1438d15cb3f0f75edb64801605"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Travel1075,speed1200,start/end275/200. AbilityCastRange1075conflicts with Wiki800;AA website has no range override.",
+          "versionContext": "Pinned shipped Valve2023-02 compatible candidate,not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "overlord",
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Helm_of_the_Overlord",
+          "accessedOn": "2026-10-30",
+          "observation": "Dominated creep keeps native HP if above1800;sets400move speed;adds80base attack,8armor,12HPregen and4mana regen. Bonuses add to native recovery rather than replacing it.",
+          "versionContext": "Direct2023-02 historical Wiki HTTP200;item buff supplies the explicit AA Gaben prototype.",
+          "sha256": "c676e50a8789aae3e656fc5d91da93615bdba0988ad00f4c1e2676d6bc516772"
+        },
+        {
+          "id": "aa-history",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=17",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA DragonSlave Super change adds50extra damage per unit hit;final AA site independently retains+150base damage.",
+          "versionContext": "Official historical AA workshop change note HTTP200.",
+          "sha256": "8ed0c2274acfc33c710e5a1db37818fbddbe9870ba3c88a35518c68f51e6dd65"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DS-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "450ms point/380ms recovery;800cast gate;145mana and6.5second cooldown at tier3 release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave has450ms point380ms recovery800cast range and releases145mana6.5second cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DS-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Traveling1200speed fire wave delays remote hits and retains1075travel distance.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave travels at1200 and reaches1075 after launch rather than dealing instant line damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DS-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final460damage is read once,then50per previously affected unit is added. The result verifies the existing within-wave interpretation;exact original AA counter lifetime remains source_pending.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave Super consumes final460damage only once and stacks50per previously hit unit"
+            }
+          ],
+          "status": "source_pending"
+        },
+        {
+          "id": "DS-04",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Invisible enemies are affected,immune enemies neither take damage nor advance the counter.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave invisible targets can be hit but spell immune targets do not increase the wave damage counter"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DS-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Editing finalDAMAGE999andSTACK17 changes all later wave hits without another150upgrade.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave a changed Super damage value remains the authority for all subsequent stacked hits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DS-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Native-profile BlackDragon appears only at the completed wave endpoint and keeps all3native abilities.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "overlord"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave Gaben creates its Black Dragon at the endpoint only after the wave completes"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DS-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Overlord bonuses give native2000HP,145base attack,12base armor,400move,14HPregen and5mana regen.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "overlord"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Dragon Slave Overlord bonuses add to native health and mana regeneration instead of replacing the native rates"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "aa-history"
+          ],
+          "finding": "AA custom per-unit stacking damage is supported by official workshop wording;no original Lua establishes permanent cross-cast accumulation,so the existing within-wave interpretation is explicit."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "overlord"
+          ],
+          "finding": "Explicitly named Helm of the Overlord Black Dragon uses native2023body/skills and dominance bonuses. Owner item auras are not granted because AA describes the buffed summoned creep."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DS-U1",
+          "reason": "AA per-unit damage stacking lifetime/counter eligibility has no original Lua;current counter resets for each wave and excludes immune/invulnerable bodies.",
+          "sourceIds": [
+            "aa",
+            "aa-history"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DS-U2",
+          "reason": "AA does not publish BlackDragon lifetime;existing120seconds is retained and editable.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DS-U3",
+          "reason": "BlackDragonFireball/splash/Dragonhide are restored and run,but their complete independent native child combination matrices are not closed.",
+          "sourceIds": [
+            "aa",
+            "overlord"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "custom_legion_commander_duel",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA overrides native undispellability to StrongDispelsOnly and removes opposing winner reward. Modern caster-can-cast redesign is excluded;attack modifiers remain permitted."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA complete description,categories,differences,three base values and both upgrades are retained in the selected evidence. Super: +250 cast range, +10 bonus damage, +1 duration, and -20s cooldown. Gaben: Caster and opponent take 80% less damage from other sources.",
+          "versionContext": "Official English HTTP200;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; explicit AA custom values override native balance.",
+          "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander",
+          "accessedOn": "2026-10-30",
+          "observation": "300ms point/zero recovery. Mutual taunt has highest priority,TrueSight and unobstructed pathing;2000distance ends no-winner. Third-party kills/reincarnation count;illusions/creep-heroes/TempestDouble do not reward caster. External Scepter reduction adds with generic incoming reduction and excludesHPRemoval.",
+          "versionContext": "Direct2023-02 archived Dota2Wiki HTTP200;read as historical HTML. Current facets and unrelated redesigns are excluded.",
+          "sha256": "b1c233ccaed16d92c9fd31d796d4b7654af32dbe5850f2794669dd3ef16f886a"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native hero-only Duel,pierces immunity,50sCD/75mana;Scepter-20CD/50%external reduction. AA duration/range/reward/80%replace native values.",
+          "versionContext": "Pinned shipped Valve2023-02 compatible candidate,not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DU-01",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "300ms point/zero recovery;75mana;final8.5duration/30CD/650range at Super.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel has300ms point zero recovery75mana and final Super8.5duration30second cooldown650range"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Target-side Strong dispel or natural expiry cleans both linked states;basic dispel does not.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel Strong dispel or natural expiry removes both linked states while basic dispel does not"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "BKB does not block Duel;its partner lock has priority over another FocusFire lock.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel pierces spell immunity and its partner attack target takes priority over an unrelated focus fire lock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Separating beyond2000ends both sides with no victory reward.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel ends without victory when partners are separated beyond2000units"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-05",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "An allied third-party kill grants the caster43permanent flat damage once;illusions give none.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel grants one permanent caster reward on a third party kill but no reward for an illusion"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Caster death never rewards enemy;Duel prevents an independent normal spell from starting.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel never rewards a victorious enemy and current duel cannot launch an independent normal spell"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "External1000damage becomes200;opponent andHPRemoval remain1000.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel Gaben reduces external damage by80percent but not damage dealt by the opposing duelist or HP removal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Duel80and Enrage80add to zero external damage;opponent only sees Enrage80.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel Gaben and Enrage incoming reductions add for an external hit rather than multiplying two reductions"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Caster-side Strong harmful cleanse ends the whole pair;basic cleanse does not.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel a caster side strong cleanse removes both harmful linked states while its basic cleanse does not"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DU-10",
+          "kind": "mechanism",
+          "branch": "persistent",
+          "mechanism": "Real bought-skill Duel victory flows through battleGains,finishRound and next battle exactly once;its private skillState reward stays with the purchased instance.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Duel real victory skill gains survive finishRound and next battle exactly once on the purchased skill instance"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native Scepter cooldown/duration and older victory/range talents provide related components;AA exact+250range/+10reward/+1duration/-20CD is authoritative."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native Scepter generic outside-source damage reduction is overridden to80%,still not affecting opponent orHPRemoval."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DU-U1",
+          "reason": "Meepo simultaneous death-family propagation and TempestDouble concrete identity are not modeled;the explicit tempestDouble flag is excluded but generic clones require family evidence.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DU-U2",
+          "reason": "Native automatic PressTheAttack on victory,reflected/Soulbind multiple Duels,swallow/Supernova and TrueSight-immunity termination need named AA-compatible result cases.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "DU-U3",
+          "reason": "Core now supplies mutual reveal/pathing and forced-motion/fear immunity,but this group does not yet bind a full source-proven result matrix for all attack modifiers and movement-source combinations.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "elder_titan_earth_splitter",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA2400length,225width,2.718delay and20/30/40damage retained;Super final300width/50%damage. Flat arena has no fog/tree axis."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA complete description,categories,differences,three base values and both upgrades are retained in the selected evidence. Super: +10% maximum health as damage, +75 effect width, -60s cooldown. Gaben: Enemies affected by Earth Splitter will also have 100% reduced base armor and 100% reduced magical resistance for the duration of the debuff.",
+          "versionContext": "Official English HTTP200;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; explicit AA custom values override native balance.",
+          "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan",
+          "accessedOn": "2026-10-30",
+          "observation": "400ms point/730ms recovery. Instant crack-center displacement and Stop precede debuff,then magical half and physical half max-HP damage. Ancients excluded. NaturalOrder prototype removes only base armor/base magic resistance,not direct bonuses.",
+          "versionContext": "Direct2023-02 archived Dota2Wiki HTTP200;read as historical HTML. Current facets and unrelated redesigns are excluded.",
+          "sha256": "5ac9829689a3e22dee84a8e0c00e2e603a1b512baa069db4c83f499c49c3bebb"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native crack_distance2400 conflicts with Wiki2100;AA explicitly2400wins. Native crack_time2.7182 is not substituted for AA2.718. Native60sEarthSplitter cooldown talent supplies Super lineage.",
+          "versionContext": "Pinned shipped Valve2023-02 compatible candidate,not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ES-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "400ms point/730ms recovery,225mana/100sCD and2.718sdelay precede two equal max-HP damage halves.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter has400ms point730ms recovery225mana and delays its two damage halves by2.718seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final50%maximum-health damage,300width and40sCD are applied once.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter final Super50percent maximum health damage300width and40second cooldown apply once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Base armor/resistance debuffs precede this burst;bonus armor/magic resistance remain under the documented prototype choice.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter Gaben applies base armor and resistance reductions before its own magical then physical damage"
+            }
+          ],
+          "status": "source_pending"
+        },
+        {
+          "id": "ES-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Invisible and BKB victims are affected;ancient creeps and hidden units are excluded.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter affects invisible and spell immune victims but no ancient creep or hidden unit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Center pull and Stop interrupt a real DeathWard channel without applying a stun.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter pulls a side victim onto the crack and stops its real Death Ward channel without a stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Basic dispel removes slow and both Gaben defense debuffs together.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter Gaben defenses and slow all end together on basic dispel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ES-07",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Editing final60%damage directly controls both30%damage halves.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earth Splitter a changed final damage percentage remains authoritative for both halves"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "AA+10damage/+75width are explicit custom numbers;native-60cooldown talent supplies the cooldown component."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "100%base armor/base resistance from maximum NaturalOrder is a strong prototype. AA says base armor but does not explicitly say base before magic resistance,so exact bonus-resistance handling remains a documented interpretation."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "ES-U1",
+          "reason": "Native segmented-cell pull geometry versus continuous closest-line projection lacks executable original evidence;AA2400full line is retained.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "ES-U2",
+          "reason": "AA Gaben magical-resistance reduction may include bonus resistance;existing historical NaturalOrder base-resistance interpretation is explicit until original custom Lua is recovered.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "custom_ursa_earthshock",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA400leap,3second movement/attack slows,385radius and mana85 override native values. Super final885radius and Gaben allied half-damage copies retain AA text."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Official AA complete description,categories,differences,three base values and both upgrades are retained in the selected evidence. Super: Causes Earthshock to apply a 1.5 second Enrage buff on yourself. +500 radius. Gaben: All other allied heroes perform an Earthshock that deals 50% of the original damage. Earthshocks created this way do not gain any bonuses from its Super.",
+          "versionContext": "Official English HTTP200;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; explicit AA custom values override native balance.",
+          "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa",
+          "accessedOn": "2026-10-30",
+          "observation": "0+0instant animation;250ms leap follows current facing and permits attacking,turning and spells. Root/leash cancels movement and impacts current location;debuff precedes damage. Shard only grants Enrage incoming reduction/status resistance,not its active strong dispel,and extends an existing buff.",
+          "versionContext": "Direct2023-02 archived Dota2Wiki HTTP200;read as historical HTML. Current facets and unrelated redesigns are excluded.",
+          "sha256": "fdc8fdbb748f2c0ecf6ab3e45356d1361a69ecbba48ab55315654c4813f73b8f"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Native250leap/.25duration/83height;AA400overridesdistance. Enrage80incoming reduction/50status resistance and Shard1.5s are compatible numeric candidates.",
+          "versionContext": "Pinned shipped Valve2023-02 compatible candidate,not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "EQ-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Instant point/zero recovery;85mana/four-second tier3CD;damage waits until250ms landing.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock has instant point and zero recovery85mana with four second cooldown and damage only on landing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Current facing is frozen for full400leap instead of turning toward/shortening to the nearest enemy.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock follows current facing for the full400distance instead of turning toward or stopping short of its target"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Already rooted caster shocks immediately without leaping;debuff is before damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock casts while already rooted without leaping and applies its debuffs before damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Midair root ends the controller with one immediate impact at current position.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock a midair root ends movement and immediately impacts at the interrupted location"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "An ordinary attack or separate ChemicalRage spell may begin during the leap.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock permits an ordinary attack and another spell to start while airborne"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Enrage does not strong dispel;only80%damage reduction/50%status resistance lasts1.5seconds.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock Super Enrage does not strong dispel existing debuffs and provides only1.5second damage reduction and status resistance"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-07",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Existing native Enrage duration is extended1.5seconds without creating another reduction stack.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock Super extends an existing native Enrage duration without adding a second reduction stack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Each other allied hero performs its own leap/base-radius half-damage shock without Super Enrage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock Gaben allies each leap and use base radius half damage without Super Enrage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "EQ-09",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final885radius is consumed once,not increased by another500.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-edge-earth.test.ts",
+              "test": "Earthshock Super consumes final885radius without adding a second500bonus"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Historical Shard Enrage1.5s plus older500radius talent are recognizable components;AA explicitly grants the Enrage buff without requiring separately drafted Enrage. Only the native buff effects,not active-cast dispel,are used."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "finding": "Other allied heroes perform half-damage base Earthshocks without Super bonuses. A native base leap is therefore reproduced for each ally;no corresponding native all-allies upgrade was located."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "EQ-U1",
+          "reason": "AA delegated allied Earthshock damage/cast attribution and spell-amplification ownership have no original Lua;damage retains the original caster source as before.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "EQ-U2",
+          "reason": "Source-specific vertical/other-controller interruptions and inherited FurySwipes talent are not exhaustively verified;the AA upgrade itself does not grant FurySwipes.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "aa-wild",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "observation": "AA Super grants level3Necronomicon units and Gaben an ancient creep with its native abilities.",
+      "versionContext": "Official English HTTP200 refetched2026-10-30;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "localEvidence": "references/ability-arena/abilities-edge-earth-20261030.json"
+    },
+    {
+      "id": "native-creeps",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Native archer/dragon units have their own active spell entries. A passive-only illusion inheritance policy must not silence ordinary native creeps.",
+      "versionContext": "Pinned2023 native units;C3/C4 profile lineage preserved.",
+      "localEvidence": "references/dota-20230216/parsed/npc_units.json"
+    },
+    {
+      "id": "project-motion-contract",
+      "url": "https://github.com/jjhe2020/arcane-arena/blob/main/src/combat.ts",
+      "accessedOn": "2026-10-30",
+      "observation": "A motion termination callback may resolve landing damage or create another controller. A replacement must recheck the resulting death/controller state;dead bodies cannot receive a fresh movement step. A live body may still be handed to the replacement.",
+      "versionContext": "C5 project implementation contract read from the current local working tree,not a claim of new Dota or AA behavior. URL identifies the repository file;localEvidence binds the actual reviewed C5 source.",
+      "localEvidence": "src/combat.ts"
+    }
+  ],
+  "engineRequirements": [
+    {
+      "id": "E-NATIVE-ACTIVE-01",
+      "kind": "mechanism",
+      "branch": "regression",
+      "mechanism": "A normal native archer can queue and actually release Purge,dispel a beneficial buff and start its compiled cooldown;the illusion-only inheritance restriction no longer suppresses its active skill. Existing native-child public timing remains independently unreviewed.",
+      "sourceIds": [
+        "aa-wild",
+        "native-creeps"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-edge-earth.test.ts",
+          "test": "Wild native archer actually queues its300ms Purge and starts the fifteen second cooldown after release"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-NATIVE-ACTIVE-02",
+      "kind": "mechanism",
+      "branch": "regression",
+      "mechanism": "Wild BlackDragon has realFireball queue,200mana debit,15sreleaseCD and later burning hits.",
+      "sourceIds": [
+        "aa-wild",
+        "native-creeps"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-edge-earth.test.ts",
+          "test": "Wild native Black Dragon actually casts Fireball with native200mana and delayed burning damage"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-MOTION-LIFE-01",
+      "kind": "mechanism",
+      "branch": "engine_regression",
+      "mechanism": "Actual Dispose-to-Vacuum replacement can kill the victim inside the old onEnd callback;after death there is no move event and the corpse remains at that landing coordinate.",
+      "sourceIds": [
+        "project-motion-contract"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-edge-earth.test.ts",
+          "test": "Motion replacement Dispose landing kills the victim before Vacuum can move its corpse"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-MOTION-LIFE-02",
+      "kind": "mechanism",
+      "branch": "engine_regression",
+      "mechanism": "Nonlethal counterpart still hands the living body to Vacuum,with its250damage and final target coordinate preserved.",
+      "sourceIds": [
+        "project-motion-contract"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-edge-earth.test.ts",
+          "test": "Motion replacement Vacuum still moves a living Dispose victim and resolves its own damage"
+        }
+      ],
+      "status": "passed"
+    }
+  ],
+  "extras": {
+    "configurationQA": "output/c5-edge-earth/semantic-check.json",
+    "baselineHash": "d726a9bef22ee3f2751db500996c3a75b30d409a4342ddf8d1631d3651e69189",
+    "noClaim": "No complete-skill status is awarded while the listed source/combination boundaries remain.",
+    "sourcePendingRequirements": [
+      "DE-11",
+      "DS-03",
+      "ES-03"
+    ]
+  }
+}

@@ -5709,37 +5709,37 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.damage.1",
-          "kind": "program",
+          "key": "DAGGER DAMAGE THRESHOLD",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:288；1-Math.max(0,d-min)/(max-min)"
-        },
-        {
-          "key": "main_upgrades_advanced.damagereduction_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "meaning": "累计承受伤害触发幽鬼之刃门槛",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://liquipedia.net/dota2/Spectre/Changelogs；7.30Shard300伤害门槛/7秒CD原型，AA Gaben1秒；Dagger原生等级4是现项目工作候选，非AA脚本确值。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 伤害降低 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:32；c.status(c.caster,'damageReduction',120,pct(v(c,'DAMAGE REFLECTED')+(S(c)?5:0)))"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "DAGGER COOLDOWN",
+          "unit": "ms",
+          "meaning": "每档触发幽鬼之刃最小间隔",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://liquipedia.net/dota2/Spectre/Changelogs；7.30Shard300伤害门槛/7秒CD原型，AA Gaben1秒；Dagger原生等级4是现项目工作候选，非AA脚本确值。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:32；1-Math.max(0,distance(t,c.caster)-min)/(max-min)"
+          "integer": false
+        },
+        {
+          "key": "DAGGER LEVEL",
+          "unit": "数值",
+          "meaning": "授予幽鬼之刃原生等级；工作候选",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://liquipedia.net/dota2/Spectre/Changelogs；7.30Shard300伤害门槛/7秒CD原型，AA Gaben1秒；Dagger原生等级4是现项目工作候选，非AA脚本确值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true
         }
       ]
     },
@@ -5799,48 +5799,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.targetattackspeed_duration.1",
-          "kind": "program",
+          "key": "THROW DURATION",
           "unit": "ms",
+          "meaning": "过肩摔连续投掷时长",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Marci；AA原伤害/距离保留；落地半径275与.5秒投掷为2023候选。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 TARGET攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:172；c.status(c.target, 'targetAttackSpeed', 8, 120, harmful)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.targetattackspeed_amount.1",
-          "kind": "program",
+          "key": "LANDING RADIUS",
+          "unit": "Dota单位",
+          "meaning": "落地伤害及眩晕半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Marci；AA原伤害/距离保留；落地半径275与.5秒投掷为2023候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "FACING ANGLE",
           "unit": "数值",
-          "min": -1000000000,
+          "meaning": "容许目标离施法朝向的角度",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Marci；AA原伤害/距离保留；落地半径275与.5秒投掷为2023候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 TARGET攻击速度 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:172；c.status(c.target, 'targetAttackSpeed', 8, 120, harmful)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "GABEN ATTACK SPEED",
+          "unit": "数值",
+          "meaning": "Gaben友军固定攻击速度增益",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Marci；AA原伤害/距离保留；落地半径275与.5秒投掷为2023候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:174；1.75 + (superLevel(c) ? 2.25 : 0)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "GABEN DURATION",
+          "unit": "ms",
+          "meaning": "Gaben友军增益持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Marci；AA原伤害/距离保留；落地半径275与.5秒投掷为2023候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:174；superLevel(c) ? 2.25 : 0"
+          "integer": false
         }
       ]
     },
@@ -5900,15 +5911,48 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.count.1",
-          "kind": "program",
+          "key": "ILLUSION COUNT",
           "unit": "次数",
+          "meaning": "释放后生成幻象数量",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA幻象数值保留，Super共享连续两充能；授予SoulCatcher使用独立native4候选。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:343；count:2"
+          "integer": true
+        },
+        {
+          "key": "CHARGES",
+          "unit": "次数",
+          "meaning": "Super最大储存充能数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA幻象数值保留，Super共享连续两充能；授予SoulCatcher使用独立native4候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "每档连续恢复一层充能时长",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA幻象数值保留，Super共享连续两充能；授予SoulCatcher使用独立native4候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SOUL CATCHER LEVEL",
+          "unit": "数值",
+          "meaning": "Super先施加SoulCatcher原生子等级",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA幻象数值保留，Super共享连续两充能；授予SoulCatcher使用独立native4候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -5946,48 +5990,81 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.visualform_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "INNER PORTALS",
+          "unit": "次数",
+          "meaning": "中心外内环传送门数量",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 VISUALFORM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:186；v(c, 'PHASE DURATION') + .05"
+          "integer": true
         },
         {
-          "key": "skill_effects_more.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PORTAL ANGLE",
+          "unit": "数值",
+          "meaning": "同环相邻传送门角度",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:187；stun(c, t, 2.5)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "INNER RADIUS",
+          "unit": "Dota单位",
+          "meaning": "内环中心到施法点距离",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:188；superLevel(c) ? 13.15 : 7.95"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
+          "key": "OUTER PORTALS",
+          "unit": "次数",
+          "meaning": "Super外环传送门数量",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:188；superLevel(c) ? 13.15 : 7.95"
+          "integer": true
+        },
+        {
+          "key": "OUTER RADIUS",
+          "unit": "Dota单位",
+          "meaning": "外环中心到施法点距离",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DAMAGE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "单个传送门伤害半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "GABEN STUN",
+          "unit": "ms",
+          "meaning": "Gaben传送落点眩晕时长",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Void_Spirit；保留AA伤害/技能躲避持续，几何6/60/520等为原生候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -6025,81 +6102,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.healreduction_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 治疗降低 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:170；c.status(c.target, 'healReduction', d, 1, { harmful: true, dispel: 'none' })"
-        },
-        {
-          "key": "main_upgrades_advanced.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；G(c)?3.25:7"
-        },
-        {
-          "key": "main_upgrades_advanced.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；G(c)?3.25:7"
-        },
-        {
-          "key": "main_upgrades_advanced.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；radius:3.25"
-        },
-        {
-          "key": "main_upgrades_advanced.interval.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "固定原生每秒结算间隔",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Doom；公共500范围与400ms后摇为历史候选，Gaben自体光环325；AA伤害最终档90等不重复加。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；interval:.2"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；(v(c,'DAMAGE PER SECOND')+30)*.2"
-        },
-        {
-          "key": "main_upgrades_advanced.interval.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben移动光环范围",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Doom；公共500范围与400ms后摇为历史候选，Gaben自体光环325；AA伤害最终档90等不重复加。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:21；interval:1"
+          "integer": false
         }
       ]
     },
@@ -6137,114 +6159,103 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；slow(c, t, 25, 2)"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "RADIUS",
+          "unit": "Dota单位",
+          "meaning": "目标为圆心的最终伤害半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；slow(c, t, 25, 2)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.attackspeedpct_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MOVEMENT SLOW",
+          "unit": "%",
+          "meaning": "Super移动速度减缓",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 攻击速度PCT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；c.status(t, 'attackSpeedPct', 2, -.25, harmful)"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.attackspeedpct_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 攻击速度PCT AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；c.status(t, 'attackSpeedPct', 2, -.25, harmful)"
-        },
-        {
-          "key": "skill_effects_more.strengthpct_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ATTACK SLOW",
+          "unit": "%",
+          "meaning": "Super攻击速度百分比减缓",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 力量PCT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；c.status(c.caster, 'strengthPct', 15, .3, { maxStacks: 5 })"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.strengthpct_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SLOW DURATION",
+          "unit": "ms",
+          "meaning": "Super双减速持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 力量PCT AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；c.status(c.caster, 'strengthPct', 15, .3, { maxStacks: 5 })"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.maxstacks.1",
-          "kind": "program",
+          "key": "STRENGTH PER STACK",
+          "unit": "%",
+          "meaning": "每层增加总力量百分比",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "STRENGTH DURATION",
+          "unit": "ms",
+          "meaning": "力量层数统一刷新持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "MAX STACKS",
           "unit": "次数",
+          "meaning": "力量最大层数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:194；maxStacks: 5"
+          "integer": true
         },
         {
-          "key": "skill_effects_more.undying_duration.1",
-          "kind": "program",
+          "key": "REGEN PER STACK",
+          "unit": "%",
+          "meaning": "Gaben每层每秒最大生命恢复比例",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "REGEN UPDATE INTERVAL",
           "unit": "ms",
+          "meaning": "按当前最大生命重采样恢复；项目时钟工作值",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Centaur_Warrunner；AA原伤害与力量系数保留；原生150施法距离加官方AA变更+100推导250，AA精确KV未取证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 UNDYING 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:196；c.status(c.caster, 'undying', .01)"
-        },
-        {
-          "key": "skill_effects_more.regen_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:197；c.status(c.caster, 'regen', .15, c.caster.maxHp * .005 * count)"
-        },
-        {
-          "key": "skill_effects_more.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:197；c.caster.maxHp * .005"
+          "integer": false
         }
       ]
     },
@@ -6309,34 +6320,144 @@
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终基础魔法伤害",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。"
         },
         {
-          "key": "main_upgrades_remaining.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "TRAVEL DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "火焰波从释放点前进距离",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:30；150+count*50"
+          "integer": false
         },
         {
-          "key": "main_upgrades_remaining.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "火焰波移动速度",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:30；count*50"
+          "integer": false
+        },
+        {
+          "key": "START RADIUS",
+          "unit": "Dota单位",
+          "meaning": "火焰波起始命中半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "END RADIUS",
+          "unit": "Dota单位",
+          "meaning": "火焰波末端命中半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "STACK DAMAGE",
+          "unit": "数值",
+          "meaning": "Super每个此前有效命中目标增加伤害；同一次弹道解释待AA Lua",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON DURATION",
+          "unit": "ms",
+          "meaning": "Gaben黑龙寿命；保留项目工作值",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON MIN HEALTH",
+          "unit": "数值",
+          "meaning": "霸主黑龙最低基础生命",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON BONUS DAMAGE",
+          "unit": "数值",
+          "meaning": "霸主额外基础攻击力",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON BONUS ARMOR",
+          "unit": "数值",
+          "meaning": "霸主额外护甲",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON MOVE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "霸主设置移动速度",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON BONUS HEALTH REGEN",
+          "unit": "数值",
+          "meaning": "霸主每秒额外生命恢复",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DRAGON BONUS MANA REGEN",
+          "unit": "数值",
+          "meaning": "霸主每秒额外法力恢复",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191858id_/https://dota2.fandom.com/wiki/Lina；Wiki公共施法距离800优先KV1075冲突，1075仍是弹道长度；AA Super伤害310+150折为最终460。Overlord2023加成+12/+4为额外恢复；120秒召唤寿命保留项目工作候选。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -6352,26 +6473,15 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DURATION",
           "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终决斗持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA覆盖：敌方胜利无奖励、Strong可驱散；Super完整最终持续8.5秒/奖励43/范围650/CD30。公共H为唯一施法距离，删除重复可编辑CAST RANGE。"
         },
         {
           "key": "REWARD DAMAGE",
@@ -6385,37 +6495,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BREAK DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "双方相距超过此值决斗无胜者结束",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA覆盖：敌方胜利无奖励、Strong可驱散；Super完整最终持续8.5秒/奖励43/范围650/CD30。公共H为唯一施法距离，删除重复可编辑CAST RANGE。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:770；buff(c, c.caster, 'duel', 1, seconds, { dispel: 'none', data: { targetId: c.target.id, externalReduction } })"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "EXTERNAL DAMAGE REDUCTION",
+          "unit": "%",
+          "meaning": "Gaben来自对手以外来源的伤害降低",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA覆盖：敌方胜利无奖励、Strong可驱散；Super完整最终持续8.5秒/奖励43/范围650/CD30。公共H为唯一施法距离，删除重复可编辑CAST RANGE。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:771；debuff(c, c.target, 'duel', 1, seconds, { dispel: 'none', data: { targetId: c.caster.id, externalReduction } })"
-        },
-        {
-          "key": "skill_effects_extra.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:776；S(c) ? 2.5 : 0"
+          "integer": false
         }
       ]
     },
@@ -6445,12 +6544,12 @@
           "key": "CRACK WIDTH",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "CRACK 宽度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "裂缝最终命中半宽/半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan；AA2400长度/225宽/2.718秒保留，Super折为300宽与50%最大生命伤害。Gaben基于历史NaturalOrder仅基础护甲/魔抗原型，AA确切Lua仍待证。"
         },
         {
           "key": "IMPLODE DELAY",
@@ -6466,13 +6565,13 @@
         {
           "key": "MAX HP AS DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 HP AS 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "总最大生命伤害；物理和魔法各一半",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan；AA2400长度/225宽/2.718秒保留，Super折为300宽与50%最大生命伤害。Gaben基于历史NaturalOrder仅基础护甲/魔抗原型，AA确切Lua仍待证。"
         },
         {
           "key": "MOVEMENT SLOW",
@@ -6497,37 +6596,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BASE ARMOR REDUCTION",
+          "unit": "%",
+          "meaning": "Gaben基础护甲降低；额外护甲保留",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan；AA2400长度/225宽/2.718秒保留，Super折为300宽与50%最大生命伤害。Gaben基于历史NaturalOrder仅基础护甲/魔抗原型，AA确切Lua仍待证。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:204；damage / 2"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BASE MAGIC RESISTANCE REDUCTION",
+          "unit": "%",
+          "meaning": "Gaben基础魔抗降低；额外魔抗保留",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Elder_Titan；AA2400长度/225宽/2.718秒保留，Super折为300宽与50%最大生命伤害。Gaben基于历史NaturalOrder仅基础护甲/魔抗原型，AA确切Lua仍待证。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:204；damage / 2"
-        },
-        {
-          "key": "skill_effects_more.basemagicresistpct_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 基础MAGICRESISTPCT AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:205；c.status(t, 'baseMagicResistPct', v(c, 'SLOW DURATION'), -1, { harmful: true, piercesImmunity: true })"
+          "integer": false
         }
       ]
     },
@@ -6579,122 +6667,100 @@
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:216；slow(c,t,v(c,'MOVEMENT SLOW'),4)"
+          "meaning": "主施法者最终落地冲击半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。"
         },
         {
-          "key": "skill_effects.attackspeed_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ALLY RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben盟友仅基础冲击半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:216；c.status(t,'attackSpeed',4,v(c,'ATTACK SLOW'),{harmful:true})"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；main?1:.5"
-        },
-        {
-          "key": "main_upgrades_advanced.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；main?1:.5"
-        },
-        {
-          "key": "main_upgrades_advanced.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ALLY DAMAGE PERCENT",
+          "unit": "%",
+          "meaning": "Gaben盟友冲击伤害倍率百分数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(t,'slow',3,pct(v(c,'MOVEMENT SLOW')),{harmful:true})"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.attackspeed_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "LEAP DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "沿施法时朝向固定跳跃距离",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(t,'attackSpeed',3,v(c,'ATTACK SLOW'),{harmful:true})"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.damagereduction_duration.1",
-          "kind": "program",
+          "key": "LEAP DURATION",
           "unit": "ms",
+          "meaning": "原生空中连续跳跃时长",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 伤害降低 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(c.caster,'damageReduction',1.5,.8)"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.damagereduction_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 伤害降低 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(c.caster,'damageReduction',1.5,.8)"
-        },
-        {
-          "key": "main_upgrades_advanced.statusresistance_duration.1",
-          "kind": "program",
+          "key": "SLOW DURATION",
           "unit": "ms",
+          "meaning": "AA移动与攻击减速持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 STATUS抗性 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(c.caster,'statusResistance',1.5,.5)"
+          "integer": false
         },
         {
-          "key": "main_upgrades_advanced.statusresistance_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ENRAGE DURATION",
+          "unit": "ms",
+          "meaning": "Super狂怒减伤/状态抗性持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 STATUS抗性 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:24；c.status(c.caster,'statusResistance',1.5,.5)"
+          "integer": false
+        },
+        {
+          "key": "ENRAGE DAMAGE REDUCTION",
+          "unit": "%",
+          "meaning": "Super狂怒承伤降低",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "ENRAGE STATUS RESISTANCE",
+          "unit": "%",
+          "meaning": "Super狂怒状态抗性",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Ursa；AA400跳跃/3秒减速保留，原生0+0动画与250ms跳跃。Shard只应用Enrage减伤/状态抗性，不执行主动强驱散；盟友perform动作按AA描述执行但归因原件待证。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -11220,15 +11286,26 @@
           "note": "src/skill-effects-extra.ts:1171；buff(c, c.caster, 'attackBonus', 10)"
         },
         {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "ARRAY COOLDOWN",
+          "unit": "ms",
+          "meaning": "专家阵列两次触发的最小间隔",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215200510id_/https://dota2.fandom.com/wiki/Specialist%27s_Array；仅本轮分裂射击子机制核验，不重设Impetus本体工作数值。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1178；c.attack(target, 1, false)"
+          "integer": false
+        },
+        {
+          "key": "ARRAY TARGETS",
+          "unit": "次数",
+          "meaning": "额外不同敌方目标数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215200510id_/https://dota2.fandom.com/wiki/Specialist%27s_Array；仅本轮分裂射击子机制核验，不重设Impetus本体工作数值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true
         }
       ]
     },
@@ -13025,46 +13102,79 @@
         {
           "key": "CRITICAL STRIKE DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "暴击 STRIKE 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终暴击倍率百分数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。"
         },
         {
           "key": "HEALING FROM HEROES",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗 FROM 英雄",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:302；heal * .35"
-        },
-        {
-          "key": "skill_effects_extra.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
+          "unit": "%",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:306；c.attack(c.target, 1, true)"
+          "meaning": "每档最终英雄伤害生命窃取比例",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。"
+        },
+        {
+          "key": "ATTACKS TO CHARGE",
+          "unit": "次数",
+          "meaning": "准备发光攻击前所需攻击次数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true
+        },
+        {
+          "key": "HEAL RADIUS",
+          "unit": "Dota单位",
+          "meaning": "友方英雄生命恢复半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "ALLY HEAL PERCENT",
+          "unit": "%",
+          "meaning": "友军恢复占自身恢复比例",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "GABEN ATTACK INTERVAL",
+          "unit": "ms",
+          "meaning": "Gaben额外攻击周期",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "GABEN ATTACK DELAY",
+          "unit": "ms",
+          "meaning": "Gaben额外攻击延迟；工作候选",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；Gaben治疗+150按沿用百分点解释250%，原始AA Lua待证；Gaben攻击延迟100ms为项目保留工作值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -14025,23 +14135,45 @@
           "key": "CHANCE TO COUNTERATTACK",
           "kind": "value",
           "unit": "%",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "概率 TO 数量ER攻击",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终反击概率",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA基础被动CD1/.8/.4保留；原生一秒1000AS加速状态，Super数值已折为33%概率/100%吸血。"
         },
         {
           "key": "LIFESTEAL",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "吸血",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "反击最终攻击吸血比例",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA基础被动CD1/.8/.4保留；原生一秒1000AS加速状态，Super数值已折为33%概率/100%吸血。"
+        },
+        {
+          "key": "PROC BUFF DURATION",
+          "unit": "ms",
+          "meaning": "触发后待消耗加速与吸血最长持续",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA基础被动CD1/.8/.4保留；原生一秒1000AS加速状态，Super数值已折为33%概率/100%吸血。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "PROC ATTACK SPEED",
+          "unit": "数值",
+          "meaning": "反击状态额外固定攻击速度",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander；AA基础被动CD1/.8/.4保留；原生一秒1000AS加速状态，Super数值已折为33%概率/100%吸血。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -20415,67 +20547,122 @@
           "key": "SWIPE/SMASH RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SWIPE/SMASH 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:842；strike + 1"
+          "meaning": "每档最终挥扫及重击半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。"
         },
         {
-          "key": "skill_effects_more.delay.2",
-          "kind": "program",
+          "key": "ATTACK INTERVAL",
           "unit": "ms",
+          "meaning": "三次攻击间隔；首击立即",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:842；(strike + 1) * duration / 3"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.armor_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SMASH DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "末次重击中心向前偏移",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:846；c.status(c.target, 'armor', 5, -1, { ...harmful, maxStacks: 1000 })"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.armor_amount.1",
-          "kind": "program",
+          "key": "SWIPE SLOW",
+          "unit": "%",
+          "meaning": "挥扫移动速度减缓百分数",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SWIPE SLOW DURATION",
+          "unit": "ms",
+          "meaning": "挥扫减速持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SELF STUN DURATION",
+          "unit": "ms",
+          "meaning": "末次重击后的自身动作停顿",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "GABEN ARMOR REDUCTION",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:846；c.status(c.target, 'armor', 5, -1, { ...harmful, maxStacks: 1000 })"
-        },
-        {
-          "key": "skill_effects_more.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "meaning": "Gaben每次成功攻击护甲降低",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:846；maxStacks: 1000"
+          "integer": false
+        },
+        {
+          "key": "GABEN ARMOR DURATION",
+          "unit": "ms",
+          "meaning": "Gaben护甲层统一刷新持续时间",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；历史Wiki smash前移250优先固定KV120冲突。公共range为项目AI搜索550/700，原生允许全图地面施放；AA Super未声明减少前摇，保留200ms。；公共CD为实际连续充能恢复时长，不使用旧0秒剩余充能显示投影。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "FORCED MOVE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "基础档固定向前移动速度；6/9不消费",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C5固定2023Dawnbreaker运动规则",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；基础向施放朝向215速度，Super/Shard允许自由移动但25%自身减速且最少215，朝向仍锁。AA未声明Super减前摇故仍200ms。"
+        },
+        {
+          "key": "SUPER MOVE SLOW",
+          "unit": "%",
+          "meaning": "Super/Gaben自由移动时自身移动速度减缓",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C5固定2023Dawnbreaker运动规则",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；基础向施放朝向215速度，Super/Shard允许自由移动但25%自身减速且最少215，朝向仍锁。AA未声明Super减前摇故仍200ms。"
+        },
+        {
+          "key": "SUPER MIN MOVE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "Super/Gaben移动速度最终下限",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C5固定2023Dawnbreaker运动规则",
+          "note": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker；基础向施放朝向215速度，Super/Shard允许自由移动但25%自身减速且最少215，朝向仍锁。AA未声明Super减前摇故仍200ms。"
         }
       ]
     },
@@ -22656,23 +22843,23 @@
           "key": "BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终额外魔法伤害",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。"
         },
         {
           "key": "CHANCE",
           "kind": "value",
           "unit": "%",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "概率",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终触发概率",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。"
         },
         {
           "key": "DURATION",
@@ -22681,42 +22868,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "AA英雄与单位眩晕时长",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。"
         },
         {
-          "key": "skill_effects.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:273；radius:4.5"
-        },
-        {
-          "key": "skill_effects.duration.1",
-          "kind": "program",
+          "key": "SECOND ATTACK DELAY",
           "unit": "ms",
+          "meaning": "重击后额外攻击与魔法伤害延迟",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:273；duration:120"
+          "integer": false
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben区域重击半径",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:273；interval:4"
+          "integer": false
+        },
+        {
+          "key": "GABEN INTERVAL",
+          "unit": "ms",
+          "meaning": "Gaben区域重击间隔",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void；2023 delay0.4，AA DURATION.65覆盖原生creep差异；6/9档伤害100与28%均最终值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -29723,26 +29910,15 @@
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
         },
         {
-          "key": "historical_upgrades.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "HEALTH RETURN",
+          "unit": "%",
+          "meaning": "结束时返回最初移除生命的比例",
+          "source": "C5逐项AA/Wiki/固定2023核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；移除结束时返回一半原移除生命，2023原生机制。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:39；maxStacks:100"
-        },
-        {
-          "key": "historical_upgrades.heal.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "治疗数值或治疗公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:39；loss/2"
+          "integer": false
         }
       ]
     },
