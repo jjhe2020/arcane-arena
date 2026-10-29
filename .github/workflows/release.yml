@@ -1,0 +1,170 @@
+name: Publish GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    env:
+      ARENA_TEST_URL: http://127.0.0.1:4173
+    steps:
+      - name: Check out the tagged version
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate tag and version notes
+        id: version
+        run: node scripts/validate-release-tag.mjs
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build production version
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify production assets and browser interactions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          node scripts/serve.mjs > "$RUNNER_TEMP/arena-release-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true; wait "$server_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in {1..60}; do
+            if ! kill -0 "$server_pid" 2>/dev/null; then
+              cat "$RUNNER_TEMP/arena-release-server.log"
+              exit 1
+            fi
+            if curl --fail --silent "$ARENA_TEST_URL/" > /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 1
+          done
+          if [[ "$ready" != true ]]; then
+            cat "$RUNNER_TEMP/arena-release-server.log"
+            exit 1
+          fi
+          node scripts/verify-release.mjs
+          node scripts/browser-smoke.mjs
+
+      - name: Package playable version
+        run: python scripts/package-release.py
+
+      - name: Prepare Chinese release notes
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_REVISION: ${{ steps.version.outputs.revision }}
+          RELEASE_NOTES_FILE: ${{ steps.version.outputs.notesFile }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(Path('output/release-report.json').read_text(encoding='utf-8'))
+          tag = os.environ['RELEASE_TAG']
+          source_notes = Path(os.environ['RELEASE_NOTES_FILE']).read_text(encoding='utf-8')
+          notes_url = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/blob/{tag}/{os.environ['RELEASE_NOTES_FILE']}"
+          notes = f"""技能小乱斗 {os.environ['RELEASE_VERSION']} {os.environ['RELEASE_REVISION']} 开发构建。
+
+          下载附件中的 ZIP，解压后双击 `启动游戏.cmd`；需要先安装 Node.js。Linux/macOS 可在解压目录运行 `node scripts/serve.mjs`，浏览器打开 http://localhost:4173。
+
+          这是可玩的开发构建。逐项机制和原作对照的验证边界以本版本验证说明为准。
+
+          - 模拟修订：`{report['simulationRevision']}`
+          - ZIP SHA-256：`{report['sha256']}`
+          - 包内文件数：{report['fileCount']}；CRC 检查通过。
+          - 本次发布已通过单元测试、生产构建、资源检查与生产浏览器操作检查。
+          - [本版本验证说明]({notes_url})
+
+          ---
+
+          {source_notes}
+          """
+          Path('output/release-notes.md').write_text(notes, encoding='utf-8')
+          PY
+
+      - name: Publish version with archive and verification report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_REVISION: ${{ steps.version.outputs.revision }}
+          RELEASE_PRERELEASE: ${{ steps.version.outputs.prerelease }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          archives=(output/*.zip)
+          if [[ ${#archives[@]} -ne 1 ]]; then
+            echo 'Expected exactly one release archive.' >&2
+            exit 1
+          fi
+          create_args=(--repo "$GITHUB_REPOSITORY" --verify-tag --draft --title "技能小乱斗 ${RELEASE_VERSION} ${RELEASE_REVISION} 开发构建" --notes-file output/release-notes.md)
+          if [[ "$RELEASE_PRERELEASE" == true ]]; then
+            create_args+=(--prerelease)
+          fi
+          # An existing tag's release must fail here; never overwrite published assets.
+          gh release create "$RELEASE_TAG" "${create_args[@]}"
+          gh release upload "$RELEASE_TAG" "${archives[0]}" output/release-report.json --repo "$GITHUB_REPOSITORY"
+          publish_args=(--repo "$GITHUB_REPOSITORY" --draft=false)
+          if [[ "$RELEASE_PRERELEASE" == true ]]; then
+            publish_args+=(--prerelease --latest=false)
+          else
+            publish_args+=(--prerelease=false --latest)
+          fi
+          gh release edit "$RELEASE_TAG" "${publish_args[@]}"
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json tagName,isDraft,isPrerelease,assets,url > "$RUNNER_TEMP/arena-published-release.json"
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          const release = JSON.parse(await fs.readFile(path.join(process.env.RUNNER_TEMP, 'arena-published-release.json'), 'utf8'));
+          const report = JSON.parse(await fs.readFile('output/release-report.json', 'utf8'));
+          assert.equal(release.tagName, process.env.RELEASE_TAG);
+          assert.equal(release.isDraft, false);
+          assert.equal(release.isPrerelease, process.env.RELEASE_PRERELEASE === 'true');
+          assert.equal(release.assets.length, 2);
+          const archive = release.assets.find(asset => asset.name === path.basename(report.archive));
+          assert.ok(archive, 'Published archive is missing');
+          assert.equal(archive.size, report.bytes);
+          const reportAsset = release.assets.find(asset => asset.name === 'release-report.json');
+          assert.ok(reportAsset, 'Published verification report is missing');
+          assert.equal(reportAsset.size, (await fs.stat('output/release-report.json')).size);
+          console.log(release.url);
+          JS

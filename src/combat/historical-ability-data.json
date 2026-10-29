@@ -1,0 +1,296 @@
+{
+  "source": {
+    "file": "npc_abilities.txt",
+    "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+    "commitDate": "2023-02-10T01:16:45Z",
+    "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+    "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+    "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+    "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+  },
+  "abilities": {
+    "shredder_whirling_death": {
+      "ID": "5524",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Shredder.WhirlingDeath.Cast",
+      "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+      "AbilityCooldown": "7.5 7 6.5 6",
+      "AbilityManaCost": "80",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "whirling_radius": "325"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "whirling_damage": "80 120 160 200"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "tree_damage_scale": "11 18 25 32"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "whirling_tick": "0.3"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "stat_loss_pct": "10",
+          "LinkedSpecialBonus": "special_bonus_unique_timbersaw"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "12 13 14 15"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "dragon_knight_breathe_fire": {
+      "ID": "5226",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_DragonKnight.BreathFire",
+      "AbilityCastPoint": "0.2",
+      "AbilityCooldown": "14 13 12 11",
+      "AbilityManaCost": "90 95 100 105",
+      "AbilityValues": {
+        "start_radius": "150 150 150 150",
+        "end_radius": "250 250 250 250",
+        "range": "750",
+        "AbilityCastRange": "600",
+        "speed": "1050",
+        "damage": {
+          "value": "80 160 240 320",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "reduction": {
+          "value": "-30",
+          "special_bonus_unique_dragon_knight_3": "-30"
+        },
+        "dragon_form_bonus_pct": {
+          "value": "0",
+          "special_bonus_unique_dragon_knight_9": "+75"
+        },
+        "duration": "11"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "sven_storm_bolt": {
+      "ID": "5094",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Sven.StormBoltImpact",
+      "HasScepterUpgrade": "1",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.2 0.2 0.2 0.2",
+      "AbilityCooldown": "18 16 14 12",
+      "AbilityDamage": "95 170 245 320",
+      "AbilityManaCost": "110 115 120 125",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bolt_speed": "1000"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "bolt_stun_duration": "1.4 1.6 1.8 2.0",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_4"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "bolt_aoe": "255"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "vision_radius": "225"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "cast_range_bonus_scepter": "350",
+          "RequiresScepter": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "bloodseeker_rupture": {
+      "ID": "5018",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "FightRecapLevel": "2",
+      "AbilitySound": "hero_bloodseeker.rupture",
+      "AbilityDraftUltScepterAbility": "bloodseeker_blood_mist",
+      "AbilityCastPoint": "0.4",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_6",
+      "AbilityCooldown": "70",
+      "AbilityManaCost": "100 150 200",
+      "AbilityModifierSupportValue": "0.0",
+      "AbilityValues": {
+        "duration": "10 11 12",
+        "movement_damage_pct": {
+          "value": "33 44 55",
+          "CalculateSpellDamageTooltip": "0"
+        },
+        "hp_pct": {
+          "value": "10",
+          "CalculateSpellDamageTooltip": "0",
+          "special_bonus_unique_bloodseeker_7": "+8",
+          "DamageTypeTooltip": "DAMAGE_TYPE_PURE"
+        },
+        "damage_cap_amount": {
+          "value": "200",
+          "CalculateSpellDamageTooltip": "0"
+        },
+        "AbilityCastRange": {
+          "value": "800",
+          "special_bonus_unique_bloodseeker_3": "+425"
+        },
+        "AbilityCharges": {
+          "value": "0",
+          "special_bonus_unique_bloodseeker_rupture_charges": "+2"
+        }
+      }
+    },
+    "medusa_mystic_snake": {
+      "ID": "5505",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Medusa.MysticSnake.Cast",
+      "AbilityDraftShardAbility": "medusa_cold_blooded",
+      "HasScepterUpgrade": "1",
+      "AbilityValues": {
+        "AbilityCastRange": "750",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": {
+          "value": "10",
+          "special_bonus_unique_medusa_5": "-2"
+        },
+        "AbilityManaCost": "140",
+        "radius": "450",
+        "snake_jumps": {
+          "value": "3 4 5 6",
+          "special_bonus_unique_medusa_3": "+2"
+        },
+        "jump_delay": "0.25 0.25 0.25 0.25",
+        "snake_damage": {
+          "value": "80 120 160 200",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "snake_damage_pct": "0",
+        "snake_mana_steal": "11 14 17 20",
+        "snake_scale": "35",
+        "snake_speed_scale": "15",
+        "initial_speed": "800",
+        "return_speed": "800",
+        "stone_form_scepter_base": {
+          "value": "1.3",
+          "RequiresScepter": "1"
+        },
+        "stone_form_scepter_increment": {
+          "value": "0.2",
+          "RequiresScepter": "1"
+        },
+        "movement_slow": {
+          "value": "30",
+          "special_bonus_unique_medusa_7": "+15"
+        },
+        "turn_slow": {
+          "value": "50",
+          "special_bonus_unique_medusa_7": "+15"
+        },
+        "slow_duration": "3"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "pudge_dismember": {
+      "ID": "5077",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "2",
+      "AbilityDraftPreAbility": "pudge_eject",
+      "HasShardUpgrade": "1",
+      "AbilityCastRange": "160",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_4",
+      "AbilityManaCost": "100 130 170",
+      "AbilityValues": {
+        "dismember_damage": {
+          "value": "80 100 120",
+          "special_bonus_unique_pudge_3": "x1.8",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "strength_damage": {
+          "value": "0.3 0.6 0.9",
+          "special_bonus_unique_pudge_3": "x1.8",
+          "CalculateSpellDamageTooltip": "0"
+        },
+        "ticks": {
+          "value": "6",
+          "special_bonus_unique_pudge_6": "+2"
+        },
+        "pull_units_per_second": "75",
+        "pull_distance_limit": "125",
+        "animation_rate": "1.5",
+        "AbilityChannelTime": {
+          "value": "3.0 3.0 3.0",
+          "special_bonus_unique_pudge_6": "+0.8"
+        },
+        "creep_dismember_duration_tooltip": {
+          "value": "6.0",
+          "special_bonus_unique_pudge_6": "+0.8"
+        },
+        "AbilityCooldown": {
+          "value": "30 25 20",
+          "special_bonus_shard": "-5"
+        },
+        "shard_regen_pct": {
+          "value": "5",
+          "RequiresShard": "1"
+        },
+        "order_lock_duration": {
+          "value": "3",
+          "RequiresShard": "1"
+        },
+        "shard_cast_range": {
+          "value": "300",
+          "RequiresShard": "1"
+        },
+        "shard_cooldown_reduction": {
+          "value": "5.0",
+          "RequiresShard": "1"
+        }
+      }
+    }
+  }
+}

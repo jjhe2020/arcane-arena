@@ -1,0 +1,17 @@
+import {describe,it,expect} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {createBattle,stepBattle} from '../src/combat';
+import type {Player,SkillDefinition,SkillStack} from '../src/model';
+import type {EffectStatus} from '../src/skill-effects';
+const ID='juggernaut_omni_slash';
+const all=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const defs=all.map(d=>d.id===ID?{...d,mana:[0],cooldowns:[100]}:d);
+function player(id:number,skills:SkillStack[]=[]):Player{return {id,name:'P',gold:0,hp:100,shopLevel:1,locked:false,shop:[],reserve:[],heroes:[{id:'h',name:'H',skin:'male',role:'mage',x:0,y:-1,skills}]};}
+function setup(points=3){const b=createBattle(player(0,[{id:ID,points}]),player(1),9,defs),[u,t]=b.units;for(const unit of b.units){unit.nextAttack=100;unit.moveSpeed=0;unit.hp=unit.maxHp=100000;}t.statuses.push({kind:'stun',until:120});return {b,u,t,step:(s:number)=>stepBattle(b,s,defs),hits:()=>b.events.filter(e=>e.type==='hit'&&e.source===u.id&&(e.amount??0)>0)};}
+describe('Omnislash effective clock and termination',()=>{
+ it('adds its 40 attack speed to other real attack-speed effects instead of multiplying a base-only cadence',()=>{const normal=setup(),fast=setup();fast.u.statuses.push({kind:'attackSpeed',value:200,until:100});normal.step(3);fast.step(3);expect(fast.hits().length).toBeGreaterThan(normal.hits().length*1.5);expect(normal.u.statuses.some(s=>s.kind==='omnislash')).toBe(true);});
+ it('a speed change during the sequence changes subsequent slash progress',()=>{const slow=setup(),changing=setup();slow.step(1);changing.step(1);const slowBefore=slow.hits().length,changingBefore=changing.hits().length;expect(changingBefore).toBe(slowBefore);changing.u.statuses.push({kind:'attackSpeed',value:300,until:100});slow.step(1);changing.step(1);expect(changing.hits().length-changingBefore).toBeGreaterThan(slow.hits().length-slowBefore);});
+ it('ends within one fixed tick when every nearby target becomes unavailable and never resumes stale queued slashes',()=>{const h=setup();h.step(.7);expect(h.hits().length).toBeGreaterThan(0);const foreign:EffectStatus={kind:'invulnerable',until:100,skill:'foreign',source:h.u.id};h.u.statuses.push(foreign);h.t.statuses.push({kind:'banished',until:100});const hits=h.hits().length;h.step(1/30);expect(h.u.statuses.some(s=>s.kind==='omnislash')).toBe(false);expect(h.u.statuses).toContain(foreign);expect((h.u.statuses as EffectStatus[]).some(s=>s.data?.omnislashToken)).toBe(false);h.t.statuses=h.t.statuses.filter(s=>s.kind!=='banished');h.step(2);expect(h.hits()).toHaveLength(hits);});
+ it('jump search uses the current hero position, so a target fleeing beyond the reduced radius ends the sequence',()=>{const h=setup();h.step(.7);h.t.x=12;h.t.y=10;h.step(1/30);expect(h.u.statuses.some(s=>s.kind==='omnislash')).toBe(false);});
+ it('a Gaben attack-triggered mini sequence cannot recursively trigger itself and releases its modifiers',()=>{const h=setup(9);h.u.cooldowns[0]=100;h.u.nextAttack=0;h.u.attackInterval=.12;h.u.range=3;for(let i=0;i<180&&!h.u.statuses.some(s=>s.kind==='omnislash');i++)h.step(1/30);expect(h.u.statuses.some(s=>s.kind==='omnislash')).toBe(true);h.u.nextAttack=100;const start=h.b.time;h.step(.9);expect(h.u.statuses.some(s=>s.kind==='omnislash')).toBe(false);expect((h.u.statuses as EffectStatus[]).some(s=>s.data?.omnislashToken)).toBe(false);expect(h.hits().filter(e=>e.time>=start).length).toBeLessThan(20);});
+});

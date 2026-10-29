@@ -1,0 +1,635 @@
+{
+  "status": "passed",
+  "url": "http://localhost:5173",
+  "fixtureNote": "Actual createBattle/stepBattle with catalog definitions: HP 12000, mana 4000, base moveSpeed 0 and nextAttack 100 preserve subjects for observation. Duel/Axes use Gaben; Ink Swell uses Super (one charge). No fabricated statuses, hits, zones, metadata or preview timing. Rendering uses frozen real snapshots and loads actual desktop/mobile atlases. Touch emulation is not physical-device performance evidence.",
+  "reports": [
+    {
+      "scenario": "duel",
+      "mobile": false,
+      "fixture": {
+        "skill": "custom_legion_commander_duel",
+        "points": 9,
+        "time": 0.4666666666666667,
+        "expected": [
+          {
+            "key": "duel:0:h0|1:h0:arena",
+            "image": "/art/skills/custom_legion_commander_duel/arena.webp",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "key": "duel:0:h0|1:h0:isolation",
+            "image": "/art/skills/custom_legion_commander_duel/isolation.webp",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "evidence": {
+          "pair": [
+            "0:h0",
+            "1:h0"
+          ],
+          "reductions": [
+            0.8,
+            0.8
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 8,
+        "activeImageBytes": 88309760,
+        "cachedImageBytes": 95535104,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "duel:0:h0|1:h0:arena",
+          "duel:0:h0|1:h0:isolation",
+          "world:visual-world:0:challenge"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "effects": [
+        {
+          "key": "duel:0:h0|1:h0:arena",
+          "image": "/art/skills/custom_legion_commander_duel/arena.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 1.5707963267948966,
+          "width": 6.8,
+          "height": 6.8,
+          "visible": true
+        },
+        {
+          "key": "duel:0:h0|1:h0:isolation",
+          "image": "/art/skills/custom_legion_commander_duel/isolation.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 1.5707963267948966,
+          "width": 10.666666666666668,
+          "height": 4.6,
+          "visible": true
+        },
+        {
+          "key": "world:visual-world:0:challenge",
+          "image": "/art/skills/custom_legion_commander_duel/challenge.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 3.141592653589793,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        }
+      ],
+      "contextLosses": 0,
+      "contextLost": false,
+      "errors": [],
+      "webglWarnings": [
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      ]
+    },
+    {
+      "scenario": "ink-tendril",
+      "mobile": false,
+      "fixture": {
+        "skill": "custom_grimstroke_ink_swell",
+        "points": 6,
+        "time": 0.6333333333333333,
+        "expected": [
+          {
+            "key": "link:0:h1:1:h0:custom_grimstroke_ink_swell",
+            "image": "/art/skills/custom_grimstroke_ink_swell/tendril.webp",
+            "x": 0,
+            "y": 0.09999999999999998
+          }
+        ],
+        "evidence": {
+          "tickTimes": [
+            0.4,
+            0.6
+          ],
+          "enemyIds": [
+            "1:h0",
+            "1:h1"
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 8,
+        "triangles": 16,
+        "gpuTextures": 6,
+        "activeImageBytes": 77398016,
+        "cachedImageBytes": 102907904,
+        "cachedAtlases": 11,
+        "unitBodies": [
+          {
+            "id": "0:h0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "link:0:h1:1:h0:custom_grimstroke_ink_swell",
+          "s:0:h1:0:h0:custom_grimstroke_ink_swell:coat"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "effects": [
+        {
+          "key": "link:0:h1:1:h0:custom_grimstroke_ink_swell",
+          "image": "/art/skills/custom_grimstroke_ink_swell/tendril.webp",
+          "x": 0,
+          "y": 0.09999999999999998,
+          "angle": 0,
+          "width": 4.8,
+          "height": 2.6865671641791042,
+          "visible": true
+        },
+        {
+          "key": "s:0:h1:0:h0:custom_grimstroke_ink_swell:coat",
+          "image": "/art/skills/custom_grimstroke_ink_swell/coat.webp",
+          "x": 0,
+          "y": -0.8,
+          "angle": 0,
+          "width": 3.6,
+          "height": 3.6,
+          "visible": true
+        }
+      ],
+      "contextLosses": 0,
+      "contextLost": false,
+      "errors": [],
+      "webglWarnings": [
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      ]
+    },
+    {
+      "scenario": "ink-burst",
+      "mobile": false,
+      "fixture": {
+        "skill": "custom_grimstroke_ink_swell",
+        "points": 6,
+        "time": 3.3333333333333335,
+        "expected": [
+          {
+            "key": "world:visual-world:0:burst",
+            "image": "/art/skills/custom_grimstroke_ink_swell/burst.webp",
+            "x": 0,
+            "y": -0.8
+          }
+        ],
+        "evidence": {
+          "worldEffect": {
+            "loop": false,
+            "source": "0:h0",
+            "skill": "custom_grimstroke_ink_swell",
+            "points": 6,
+            "layer": "burst",
+            "x": 0,
+            "y": -0.8,
+            "radius": 4.75,
+            "until": 3.8666666666666667,
+            "kind": "burst",
+            "id": "visual-world:0",
+            "createdAt": 3.2
+          },
+          "detonationHits": [
+            {
+              "type": "hit",
+              "source": "0:h0",
+              "target": "1:h0",
+              "skill": "custom_grimstroke_ink_swell",
+              "x": 0,
+              "y": 1,
+              "amount": 377.99999999999994,
+              "damageType": "magical",
+              "points": 6,
+              "visualSkill": "custom_grimstroke_ink_swell",
+              "visualPoints": 6,
+              "time": 3.2,
+              "sequence": 32
+            },
+            {
+              "type": "hit",
+              "source": "0:h0",
+              "target": "1:h0",
+              "skill": "custom_grimstroke_ink_swell",
+              "x": 0,
+              "y": 1,
+              "amount": 11.549999999999999,
+              "damageType": "magical",
+              "points": 6,
+              "visualSkill": "custom_grimstroke_ink_swell",
+              "visualPoints": 6,
+              "time": 3.2,
+              "sequence": 35
+            }
+          ],
+          "enemyIds": [
+            "1:h0",
+            "1:h1"
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 8,
+        "triangles": 16,
+        "gpuTextures": 7,
+        "activeImageBytes": 81379328,
+        "cachedImageBytes": 110575616,
+        "cachedAtlases": 13,
+        "unitBodies": [
+          {
+            "id": "0:h0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h0",
+            "image": "/art/characters/mage-female/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "link:0:h1:1:h0:custom_grimstroke_ink_swell",
+          "world:visual-world:0:burst"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "effects": [
+        {
+          "key": "link:0:h1:1:h0:custom_grimstroke_ink_swell",
+          "image": "/art/skills/custom_grimstroke_ink_swell/tendril.webp",
+          "x": 0,
+          "y": 0.09999999999999998,
+          "angle": 0,
+          "width": 4.8,
+          "height": 2.6865671641791042,
+          "visible": true
+        },
+        {
+          "key": "world:visual-world:0:burst",
+          "image": "/art/skills/custom_grimstroke_ink_swell/burst.webp",
+          "x": 0,
+          "y": -0.8,
+          "angle": 0,
+          "width": 7.2,
+          "height": 7.2,
+          "visible": true
+        }
+      ],
+      "contextLosses": 0,
+      "contextLost": false,
+      "errors": [],
+      "webglWarnings": [
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "[.WebGL-0x726c00424200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      ]
+    },
+    {
+      "scenario": "duel",
+      "mobile": true,
+      "fixture": {
+        "skill": "custom_legion_commander_duel",
+        "points": 9,
+        "time": 0.4666666666666667,
+        "expected": [
+          {
+            "key": "duel:0:h0|1:h0:arena",
+            "image": "/art/mobile/skills/custom_legion_commander_duel/arena.webp",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "key": "duel:0:h0|1:h0:isolation",
+            "image": "/art/mobile/skills/custom_legion_commander_duel/isolation.webp",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "evidence": {
+          "pair": [
+            "0:h0",
+            "1:h0"
+          ],
+          "reductions": [
+            0.8,
+            0.8
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 8,
+        "activeImageBytes": 31588352,
+        "cachedImageBytes": 34799616,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "duel:0:h0|1:h0:arena",
+          "duel:0:h0|1:h0:isolation",
+          "world:visual-world:0:challenge"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "effects": [
+        {
+          "key": "duel:0:h0|1:h0:arena",
+          "image": "/art/mobile/skills/custom_legion_commander_duel/arena.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 1.5707963267948966,
+          "width": 6.8,
+          "height": 6.8,
+          "visible": true
+        },
+        {
+          "key": "duel:0:h0|1:h0:isolation",
+          "image": "/art/mobile/skills/custom_legion_commander_duel/isolation.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 1.5707963267948966,
+          "width": 10.666666666666668,
+          "height": 4.6,
+          "visible": true
+        },
+        {
+          "key": "world:visual-world:0:challenge",
+          "image": "/art/mobile/skills/custom_legion_commander_duel/challenge.webp",
+          "x": 0,
+          "y": 0,
+          "angle": 3.141592653589793,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        }
+      ],
+      "contextLosses": 0,
+      "contextLost": false,
+      "errors": [],
+      "webglWarnings": []
+    },
+    {
+      "scenario": "axes-melee",
+      "mobile": true,
+      "fixture": {
+        "skill": "custom_troll_warlord_berserkers_rage",
+        "points": 9,
+        "time": 0.4,
+        "expected": [
+          {
+            "key": "z:zone:0:axe_melee",
+            "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/axe_melee.webp",
+            "x": 0,
+            "y": -1
+          }
+        ],
+        "evidence": {
+          "zones": [
+            {
+              "id": "zone:0",
+              "createdAt": 0.23333333333333334,
+              "source": "0:h0",
+              "skill": "troll_warlord_whirling_axes_melee",
+              "layer": "axe_melee",
+              "points": 4,
+              "visualSkill": "custom_troll_warlord_berserkers_rage",
+              "visualPoints": 9,
+              "x": 0,
+              "y": -1,
+              "radius": 4.5,
+              "until": 3.2333333333333334
+            }
+          ],
+          "childCasts": [
+            {
+              "type": "cast",
+              "source": "0:h0",
+              "target": "0:h0",
+              "skill": "troll_warlord_whirling_axes_melee",
+              "x": 0,
+              "y": -1,
+              "toX": 0,
+              "toY": -1,
+              "duration": 0.2,
+              "points": 4,
+              "visualSkill": "custom_troll_warlord_berserkers_rage",
+              "visualPoints": 9,
+              "time": 0.23333333333333334,
+              "sequence": 8
+            }
+          ],
+          "childHits": [
+            {
+              "type": "hit",
+              "source": "0:h0",
+              "target": "1:h0",
+              "skill": "troll_warlord_whirling_axes_melee",
+              "x": 0,
+              "y": 1,
+              "amount": 150,
+              "damageType": "magical",
+              "points": 4,
+              "visualSkill": "custom_troll_warlord_berserkers_rage",
+              "visualPoints": 9,
+              "time": 0.3333333333333333,
+              "sequence": 10
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 13,
+        "triangles": 26,
+        "gpuTextures": 12,
+        "activeImageBytes": 36110336,
+        "cachedImageBytes": 45088768,
+        "cachedAtlases": 16,
+        "unitBodies": [
+          {
+            "id": "0:h0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 6,
+        "persistentEffectKeys": [
+          "z:zone:0:axe_melee",
+          "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:stance_switch",
+          "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_1",
+          "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_2",
+          "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_3",
+          "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_4"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "effects": [
+        {
+          "key": "z:zone:0:axe_melee",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/axe_melee.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 3.6,
+          "height": 3.6,
+          "visible": true
+        },
+        {
+          "key": "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:stance_switch",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/stance_switch.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        },
+        {
+          "key": "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_1",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/rage_stack_1.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        },
+        {
+          "key": "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_2",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/rage_stack_2.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        },
+        {
+          "key": "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_3",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/rage_stack_3.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        },
+        {
+          "key": "s:0:h0:0:h0:custom_troll_warlord_berserkers_rage:rage_stack_4",
+          "image": "/art/mobile/skills/custom_troll_warlord_berserkers_rage/rage_stack_4.webp",
+          "x": 0,
+          "y": -1,
+          "angle": 0,
+          "width": 4.8,
+          "height": 4.8,
+          "visible": true
+        }
+      ],
+      "contextLosses": 0,
+      "contextLost": false,
+      "errors": [],
+      "webglWarnings": []
+    }
+  ]
+}

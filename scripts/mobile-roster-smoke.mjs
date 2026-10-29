@@ -1,0 +1,24 @@
+import { chromium } from '@playwright/test';
+import fs from 'node:fs/promises';
+const browser=await chromium.launch({headless:true});
+await fs.mkdir('artifacts',{recursive:true});
+try{
+ const p=await browser.newPage({viewport:{width:667,height:375},hasTouch:true});const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.routeWebSocket('**',()=>{});await p.goto(process.env.ARENA_TEST_URL??'http://localhost:5173');await p.waitForFunction(()=>window.arena?.state);await p.locator('[data-action=newGame]').click();
+ for(let r=0;r<8;r++){
+  if(await p.evaluate(()=>window.arena.state.phase==='result'))await p.locator('#ready').click();
+  await p.evaluate(()=>window.arena.state.players[0].hp=100); // UI capacity fixture, not a balance test.
+  await p.locator('#ready').click();await p.evaluate(async()=>{const{stepBattle}=await import('/src/combat.ts');for(const b of window.arena.battles)while(!b.finished)stepBattle(b,1,window.arena.definitions)});await p.waitForFunction(()=>window.arena.state.phase!=='battle');
+ }
+ const metrics=await p.evaluate(()=>{const groups=[...document.querySelectorAll('#teamRoster .hero-block')];return{heroes:window.arena.state.players[0].heroes.length,slotsPerHero:groups.map(g=>g.querySelectorAll('.skill-slot').length),poolSize:window.arena.state.matchSkillIds.length,disabledGods:document.querySelectorAll('.god-placeholder [data-buy]:disabled').length,documentWidth:document.documentElement.scrollWidth,viewport:innerWidth,middleRight:document.querySelector('.middle').getBoundingClientRect().right,rosterRight:document.querySelector('#teamRoster').getBoundingClientRect().right,overlaps:groups.some(g=>{const r=[...g.querySelectorAll('.skill-slot')].map(e=>e.getBoundingClientRect());return r.some((x,i)=>i&&x.left<r[i-1].right-1);})};});
+ if(metrics.heroes!==5||metrics.slotsPerHero.length!==5||metrics.slotsPerHero.some(n=>n!==4)||metrics.poolSize!==100||metrics.disabledGods!==2||metrics.documentWidth>metrics.viewport||metrics.middleRight>metrics.viewport||metrics.rosterRight>metrics.viewport||metrics.overlaps)throw Error('满编队移动端重叠/容量错误:'+JSON.stringify(metrics));
+ const purchaseGold=await p.evaluate(()=>window.arena.state.players[0].gold);if(purchaseGold<4)throw Error('满编队fixture需要至少4金币购买并跨英雄移动');
+ await p.locator('[data-buy="0"]').click();const skill=await p.evaluate(()=>window.arena.state.players[0].heroes[0].skills[0]?.id);if(!skill||await p.evaluate(()=>window.arena.state.players[0].gold)!==purchaseGold-3)throw Error('测试购买失败或未扣3金币');
+ await p.locator('#teamRoster [data-team-hero="0"][data-slot="0"]').tap();const cdp=await p.context().newCDPSession(p),roster=await p.locator('#teamRoster').boundingBox();
+ for(let pass=0;pass<2;pass++){const start=roster.x+roster.width-20,end=roster.x+20,y=roster.y+roster.height*.65;await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:start,y}]});for(let i=1;i<=12;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start+(end-start)*i/12,y}]});await p.waitForTimeout(20);}await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await p.waitForTimeout(250);}
+ const target=await p.locator('#teamRoster [data-team-hero="4"][data-slot="3"]').boundingBox();if(target.x<roster.x||target.x+target.width>roster.x+roster.width+1)throw Error('原生触摸滑动后第5英雄第4槽仍不可达');const rosterScroll=await p.locator('#teamRoster').evaluate(e=>e.scrollLeft);await p.touchscreen.tap(target.x+target.width/2,target.y+target.height/2);
+ const transferred=await p.evaluate(()=>window.arena.state.players[0].heroes[4].skills[3]?.id);if(transferred!==skill){await p.screenshot({path:'artifacts/mobile-roster-failure.png'});console.log(await p.evaluate(({x,y})=>({toast:document.querySelector('#toast').textContent,selected:[...document.querySelectorAll('.selected-skill')].map(e=>e.outerHTML),at:document.elementFromPoint(x,y)?.outerHTML,roster:document.querySelector('#teamRoster').scrollLeft,skills:window.arena.state.players[0].heroes.map(h=>h.skills)}),{x:target.x+target.width/2,y:target.y+target.height/2}));throw Error('滑动到第5英雄后分配技能失败');}
+ if(await p.evaluate(()=>window.arena.state.players[0].gold)!==purchaseGold-4||await p.evaluate(()=>window.arena.state.players[0].heroes[0].skills[0])!==null)throw Error('跨英雄移动应扣1金币且移走原槽技能');
+ if(Math.abs(await p.locator('#teamRoster').evaluate(e=>e.scrollLeft)-rosterScroll)>1)throw Error('跨英雄分配后编队滚动位置复位');
+ await p.screenshot({path:'artifacts/mobile-full-roster.png'});if(errors.length)throw Error(errors.join('\n'));
+ await fs.writeFile('artifacts/mobile-roster-smoke.json',JSON.stringify({status:'passed',metrics,transferred,rosterScroll,errors},null,2));console.log({status:'passed',metrics,rosterScroll});
+}finally{await browser.close();}

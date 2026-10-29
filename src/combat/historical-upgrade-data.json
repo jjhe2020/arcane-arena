@@ -1,0 +1,1973 @@
+{
+  "source": {
+    "file": "npc_abilities.txt",
+    "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+    "commitDate": "2023-02-10T01:16:45Z",
+    "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+    "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+    "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+    "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+  },
+  "abilities": {
+    "bane_enfeeble": {
+      "ID": "5012",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "Hero_Bane.Enfeeble",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastRange": "800 900 1000 1100",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+      "AbilityCooldown": "28 21 14 7",
+      "AbilityManaCost": "40 50 60 70",
+      "AbilityValues": {
+        "damage_reduction": "45 50 55 60",
+        "heal_reduction": {
+          "value": "45 50 55 60",
+          "special_bonus_unique_bane_6": "+50"
+        },
+        "cast_reduction": {
+          "value": "30",
+          "special_bonus_unique_bane_11": "+20"
+        },
+        "duration": "8 9 10 11"
+      }
+    },
+    "keeper_of_the_light_blinding_light": {
+      "ID": "5476",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "Hero_KeeperOfTheLight.BlindingLight",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCooldown": "18",
+      "AbilityManaCost": "150",
+      "AbilityModifierSupportValue": "1.0",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "miss_rate": "40",
+          "LinkedSpecialBonus": "special_bonus_unique_keeper_of_the_light_8"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "4"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "600"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "knockback_duration": "0.6"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "knockback_distance": "400"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "100 140 180"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "AbilityCharges": "",
+          "LinkedSpecialBonus": "special_bonus_unique_keeper_of_the_light_12"
+        }
+      }
+    },
+    "witch_doctor_maledict": {
+      "ID": "5140",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_WitchDoctor.Maledict_Cast",
+      "AbilityCastRange": "575",
+      "AbilityCastPoint": "0.35 0.35 0.35 0.35",
+      "AbilityCooldown": "30 26 22 18",
+      "AbilityDuration": "12.0",
+      "AbilityDamage": "12 18 24 30",
+      "AbilityManaCost": "105 110 115 120",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "180",
+          "LinkedSpecialBonus": "special_bonus_unique_witch_doctor_6"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage": "16 24 32 40",
+          "LinkedSpecialBonus": "special_bonus_unique_witch_doctor_7"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage_threshold": "100"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "ticks": "3",
+          "LinkedSpecialBonusField": "value2"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5"
+    },
+    "leshrac_lightning_storm": {
+      "ID": "5243",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Leshrac.Lightning_Storm",
+      "AbilityCastRange": "650",
+      "AbilityCastPoint": "0.3",
+      "AbilityCooldown": "4",
+      "AbilityManaCost": "80 100 120 140",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "70 120 170 220",
+          "LinkedSpecialBonus": "special_bonus_unique_leshrac_6"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "jump_count": "5 7 9 11"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "475"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "jump_delay": "0.25 0.25 0.25 0.25"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "slow_movement_speed": "-75"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "slow_duration": "0.4 0.6 0.8 1.0",
+          "LinkedSpecialBonus": "special_bonus_unique_leshrac_2"
+        },
+        "07": {
+          "var_type": "FIELD_FLOAT",
+          "interval_scepter": "1.5",
+          "RequiresScepter": "1"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "radius_scepter": "750",
+          "RequiresScepter": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "omniknight_hammer_of_purity": {
+      "ID": "656",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "AbilitySound": "Hero_Omniknight.Repel",
+      "AbilityCastRange": "350",
+      "AbilityCastPoint": "0.3",
+      "AbilityDamage": "0 0 0 0",
+      "AbilityManaCost": "40 45 50 55",
+      "AbilityValues": {
+        "AbilityCooldown": {
+          "value": "16 14 12 10",
+          "special_bonus_unique_omniknight_3": "-6"
+        },
+        "base_damage": {
+          "value": "60 80 100 120",
+          "special_bonus_unique_omniknight_4": "+75"
+        },
+        "bonus_damage": "50 75 100 125",
+        "duration": "5",
+        "movement_slow": "14 22 30 38"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "troll_warlord_rampage": {
+      "ID": "728",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "IsShardUpgrade": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastPoint": "0.0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCooldown": "80",
+      "AbilityManaCost": "75",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "attack_speed": "70"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "status_resistance": "25"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "5"
+        }
+      }
+    },
+    "dark_seer_normal_punch": {
+      "ID": "687",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "MaxLevel": "1",
+      "IsGrantedByScepter": "1",
+      "AbilityCooldown": "9",
+      "AbilityValues": {
+        "max_stun": "2.25",
+        "recent_duration": "3.0",
+        "max_distance": "900",
+        "knockback_distance": "350",
+        "illusion_duration": "6.0",
+        "max_damage": "450",
+        "normal_punch_illusion_delay": "0.25"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "sandking_caustic_finale": {
+      "ID": "5104",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "Ability.SandKing_CausticFinale",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "caustic_finale_radius": "500"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "caustic_finale_damage_base": "70 90 110 130",
+          "LinkedSpecialBonus": "special_bonus_unique_sand_king_8"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "caustic_finale_damage_pct": "10 14 18 22"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "caustic_finale_duration": "6"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "caustic_finale_slow": "-14 -18 -22 -26",
+          "LinkedSpecialBonus": "special_bonus_unique_sand_king_6",
+          "LinkedSpecialBonusOperation": "SPECIAL_BONUS_SUBTRACT"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "shadow_demon_soul_catcher": {
+      "ID": "5422",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_ShadowDemon.Soul_Catcher",
+      "AbilityCooldown": "26 24 22 20",
+      "AbilityCastRange": "700",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityManaCost": "80 100 120 140",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "health_lost": "20 25 30 35"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "175 200 225 250"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "10",
+          "LinkedSpecialBonus": "special_bonus_unique_shadow_demon_8"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "illusion_outgoing_damage": "-70 -55 -40 -25"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "illusion_outgoing_damage_tooltip": "30 45 60 75"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "illusion_incoming_damage": "100"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "illusion_incoming_damage_tooltip": "200"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_spell_amp": "5 7 9 11"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "silencer_curse_of_the_silent": {
+      "ID": "5377",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Silencer.Curse.Cast",
+      "AbilityCastRange": "1000",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "20 18 16 14",
+      "AbilityManaCost": "130 135 140 145",
+      "AbilityModifierSupportValue": "0.5",
+      "AbilityValues": {
+        "damage": {
+          "value": "16 24 32 40",
+          "special_bonus_unique_silencer": "+12"
+        },
+        "application_damage": "40 60 80 100",
+        "radius": "340 360 380 400",
+        "duration": "6",
+        "penalty_duration": "2",
+        "movespeed": "-10 -15 -20 -25",
+        "penalty_multiplier": "1.5",
+        "undispellable": {
+          "value": "0",
+          "special_bonus_unique_silencer_arcane_curse_undispellable": "+1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lycan_howl": {
+      "ID": "5396",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilitySound": "Hero_Lycan.Howl",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "22 20 18 16",
+      "AbilityManaCost": "35 40 45 50",
+      "AbilityModifierSupportBonus": "5",
+      "AbilityValues": {
+        "howl_duration": "8",
+        "attack_damage_reduction": {
+          "value": "25 30 35 40",
+          "special_bonus_unique_lycan_6": "+20"
+        },
+        "total_attack_damage_reduction": {
+          "value": "0",
+          "special_bonus_unique_lycan_5": "+1"
+        },
+        "armor": "4 5 6 7",
+        "radius": "2000"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2",
+      "AbilityCastGestureSlot": "DEFAULT"
+    },
+    "spectre_spectral_dagger": {
+      "ID": "5334",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Spectre.DaggerCast",
+      "AbilityCastRange": "1800",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "22 20 18 16",
+      "AbilityManaCost": "130 140 150 160",
+      "AbilityModifierSupportValue": "0.0",
+      "AbilitySpecial": {
+        "10": {
+          "var_type": "FIELD_INTEGER",
+          "vision_radius": "200"
+        },
+        "11": {
+          "var_type": "FIELD_INTEGER",
+          "speed": "800"
+        },
+        "12": {
+          "var_type": "FIELD_FLOAT",
+          "dagger_grace_period": "1.0"
+        },
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "70 120 170 220",
+          "LinkedSpecialBonus": "special_bonus_unique_spectre_6"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_movespeed": "10 14 18 22",
+          "LinkedSpecialBonus": "special_bonus_unique_spectre_3"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "dagger_path_duration": "12.0 12.0 12.0 12.0"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "hero_path_duration": "7.0 7.0 7.0 7.0"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "buff_persistence": "4.0 4.0 4.0 4.0"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "dagger_radius": "125 125 125 125"
+        },
+        "09": {
+          "var_type": "FIELD_INTEGER",
+          "path_radius": "175 175 175 175"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "phantom_assassin_fan_of_knives": {
+      "ID": "662",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilitySound": "Ability.Torrent",
+      "AbilityCastPoint": "0.15",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "15",
+      "AbilityManaCost": "50",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "pct_health_damage_initial": "16"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "pct_health_damage": "2"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "degen": "-50"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "3"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "550"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "projectile_speed": "1000"
+        },
+        "07": {
+          "var_type": "FIELD_FLOAT",
+          "max_damage_initial": "-1"
+        }
+      }
+    },
+    "templar_assassin_refraction": {
+      "ID": "5194",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySound": "Hero_TemplarAssassin.Refraction",
+      "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+      "AbilityCooldown": "17.0 17.0 17.0 17.0",
+      "AbilityManaCost": "85 90 95 100",
+      "AbilityValues": {
+        "instances": {
+          "value": "3 4 5 6",
+          "LinkedSpecialBonus": "special_bonus_unique_templar_assassin"
+        },
+        "bonus_damage": {
+          "value": "25 45 65 85",
+          "special_bonus_unique_templar_assassin_refraction_damage": "+25"
+        },
+        "damage_threshold": "5",
+        "duration": "17.0 17.0 17.0 17.0",
+        "cast_while_disabled": {
+          "value": "0",
+          "special_bonus_unique_templar_assassin_refraction_disable_cast": "+1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "tidehunter_ravage": {
+      "ID": "5121",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Ability.Ravage",
+      "AbilityDraftUltShardAbility": "tidehunter_arm_of_the_deep",
+      "AbilityCastRange": "0",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "150.0 150.0 150.0",
+      "AbilityDamage": "250 350 450",
+      "AbilityManaCost": "150 225 325",
+      "AbilityValues": {
+        "radius": "1250",
+        "speed": "725",
+        "duration": {
+          "value": "2.4 2.6 2.8",
+          "special_bonus_unique_tidehunter_7": "+1"
+        }
+      }
+    },
+    "dark_willow_bramble_maze": {
+      "ID": "6339",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "1",
+      "AbilityCastRange": "1000 1100 1200 1300",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "20",
+      "AbilityManaCost": "100 120 140 160",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "placement_range": "500"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "placement_count": "8"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "placement_duration": "15"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "latch_duration": "1.0 1.5 2.0 2.5"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "latch_range": "90"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "damage_per_tick": "50 55 60 65"
+        },
+        "07": {
+          "var_type": "FIELD_FLOAT",
+          "latch_creation_interval": "0.075"
+        },
+        "08": {
+          "var_type": "FIELD_FLOAT",
+          "latch_creation_delay": "0.1"
+        },
+        "09": {
+          "var_type": "FIELD_FLOAT",
+          "initial_creation_delay": "0.3"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "dark_willow_terrorize": {
+      "ID": "8340",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "LinkedAbility": "dark_willow_bedlam",
+      "AbilityDraftPreAbility": "dark_willow_bedlam",
+      "AbilityCastRange": "1200",
+      "AbilityCastPoint": "1.0",
+      "AbilityCooldown": "100 90 80",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityManaCost": "150",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "destination_travel_speed": "2000"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "destination_radius": "400"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "destination_status_duration": "3.5 3.75 4"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "return_travel_speed": "600"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "starting_height": "300"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "telegraph_to_enemies": "0"
+        }
+      }
+    },
+    "lich_ice_spire": {
+      "ID": "8028",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySound": "Ability.FrostNova",
+      "MaxLevel": "1",
+      "IsShardUpgrade": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "750",
+      "AbilityCastPoint": "0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCooldown": "25",
+      "AbilityManaCost": "150",
+      "AbilityValues": {
+        "bonus_movespeed": "-30",
+        "aura_radius": "750",
+        "max_hero_attacks": "2",
+        "duration": "15.0",
+        "slow_duration": "0.5"
+      }
+    },
+    "elder_titan_ancestral_spirit": {
+      "ID": "5591",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "Hero_ElderTitan.AncestralSpirit.Cast",
+      "HasScepterUpgrade": "1",
+      "AbilityCastAnimation": "ACT_DOTA_ANCESTRAL_SPIRIT",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCastRange": "1200",
+      "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+      "AbilityCooldown": "23 21 19 17",
+      "AbilityManaCost": "80 90 100 110",
+      "AbilityValues": {
+        "radius": "275",
+        "pass_damage": {
+          "value": "50",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "spirit_duration": "10.0",
+        "buff_duration": "10.0",
+        "speed": "900",
+        "move_pct_creeps": "1.5",
+        "move_pct_heroes": {
+          "value": "5 6 7 8",
+          "special_bonus_unique_elder_titan_bonus_spirit_speed": "+2"
+        },
+        "damage_creeps": {
+          "value": "3 7 11 15",
+          "CalculateSpellDamageTooltip": "0",
+          "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+        },
+        "damage_heroes": {
+          "value": "14 36 58 80",
+          "special_bonus_unique_elder_titan": "+25",
+          "CalculateSpellDamageTooltip": "0",
+          "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+        },
+        "armor_creeps": "0.5",
+        "armor_heroes": "1.5 3 4.5 6",
+        "move_pct_cap": "40",
+        "scepter_magic_immune_per_hero": {
+          "value": "2",
+          "RequiresScepter": "1"
+        }
+      }
+    },
+    "zuus_cloud": {
+      "ID": "6325",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByScepter": "1",
+      "AbilitySound": "Hero_Zuus.Cloud.Cast",
+      "AbilityCastRange": "0",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "45",
+      "AbilityManaCost": "325",
+      "AbilityModifierSupportValue": "0.1",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "cloud_duration": "30"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "cloud_bolt_interval": "2.5"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "cloud_radius": "450"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "hits_to_kill_tooltip": "8"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "creep_hits_to_kill_tooltip": "16"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "cloud_bounty_tooltip": "125"
+        }
+      }
+    },
+    "zuus_thundergods_wrath": {
+      "ID": "5113",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Hero_Zuus.GodsWrath",
+      "AbilityDraftUltScepterAbility": "zuus_cloud",
+      "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCooldown": "130 125 120",
+      "AbilityManaCost": "300 400 500",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "sight_radius_day": "500"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "sight_radius_night": "500"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "sight_duration": "3.0 3.0 3.0 3.0"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "300 425 550",
+          "LinkedSpecialBonus": "special_bonus_unique_zeus_4"
+        }
+      }
+    },
+    "antimage_mana_void": {
+      "ID": "5006",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Hero_Antimage.ManaVoid",
+      "AbilityDraftUltScepterAbility": "antimage_mana_overload",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityManaCost": "100 200 300",
+      "AbilityModifierSupportValue": "0.0",
+      "AbilityValues": {
+        "AbilityCooldown": {
+          "value": "70",
+          "special_bonus_unique_antimage_2": "-50"
+        },
+        "mana_void_damage_per_mana": {
+          "value": "0.8 0.95 1.1",
+          "special_bonus_unique_antimage_6": "+0.1"
+        },
+        "mana_void_ministun": {
+          "value": "0.3",
+          "special_bonus_unique_antimage_8": "+1"
+        },
+        "mana_void_aoe_radius": {
+          "value": "500",
+          "special_bonus_unique_antimage_manavoid_aoe": "+150"
+        }
+      }
+    },
+    "broodmother_sticky_snare": {
+      "ID": "873",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES | DOTA_ABILITY_BEHAVIOR_CHANNELLED ",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "1",
+      "MaxLevel": "1",
+      "HasScepterUpgrade": "1",
+      "IsGrantedByScepter": "1",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCharges": "2",
+      "AbilityChargeRestoreTime": "20",
+      "AbilityManaCost": "100",
+      "AbilityValues": {
+        "formation_delay": "2.0",
+        "root_duration": "3.0",
+        "damage_per_second": {
+          "value": "100",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "count": "5",
+        "width": "900"
+      }
+    },
+    "leshrac_diabolic_edict": {
+      "ID": "5242",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Leshrac.Diabolic_Edict",
+      "AbilityCastPoint": "0.5",
+      "AbilityCooldown": "22",
+      "AbilityManaCost": "95 120 135 155",
+      "AbilityDamage": "7 14 21 28",
+      "AbilityDuration": "10",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "num_explosions": "40",
+          "LinkedSpecialBonus": "special_bonus_unique_leshrac_1"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "500"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "tower_bonus": "0"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "bristleback_hairball": {
+      "ID": "643",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "1500",
+      "AbilityCastPoint": "0.1",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "20",
+      "AbilityManaCost": "100",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "projectile_speed": "1200"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "700"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "quill_stacks": "2"
+        }
+      }
+    },
+    "grimstroke_dark_portrait": {
+      "ID": "7852",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "FightRecapLevel": "1",
+      "MaxLevel": "1",
+      "IsGrantedByScepter": "1",
+      "AbilityCastAnimation": "ACT_DOTA_GS_INK_CREATURE",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCastRange": "1200",
+      "AbilityCastPoint": "0.0",
+      "AbilityCooldown": "35",
+      "AbilityManaCost": "200",
+      "AbilityModifierSupportValue": "0.5",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "illusion_duration": "25"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "images_do_damage_percent": "50"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "images_do_damage_percent_tooltip": "150"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "images_take_damage_percent": "250"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "images_take_damage_percent_tooltip": "350"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "images_movespeed_bonus": "30"
+        }
+      }
+    },
+    "kunkka_torrent_storm": {
+      "ID": "319",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByScepter": "1",
+      "HasScepterUpgrade": "1",
+      "AbilitySound": "Ability.Torrent",
+      "AbilityCastPoint": "0.4",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+      "AbilityCooldown": "70",
+      "AbilityManaCost": "250",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "torrent_interval": "0.25",
+          "RequiresScepter": "1"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "torrent_duration": "5.0",
+          "RequiresScepter": "1"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "torrent_min_distance": "300",
+          "RequiresScepter": "1"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "torrent_max_distance": "1100",
+          "RequiresScepter": "1"
+        }
+      }
+    },
+    "sniper_concussive_grenade": {
+      "ID": "694",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "MaxLevel": "1",
+      "AbilityCastPoint": "0.1",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCooldown": "10",
+      "AbilityManaCost": "50",
+      "AbilityValues": {
+        "damage": {
+          "value": "25",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "AbilityCastRange": {
+          "value": "600",
+          "special_bonus_unique_sniper_grenade_range": "+250"
+        },
+        "radius": "375",
+        "slow": "50",
+        "debuff_duration": "3",
+        "knockback_height": "100",
+        "knockback_distance": "475",
+        "knockback_duration": "0.4",
+        "self_push": {
+          "value": "1",
+          "special_bonus_unique_sniper_grenade_self_push": "+1"
+        }
+      }
+    },
+    "sniper_assassinate": {
+      "ID": "5157",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "FightRecapLevel": "2",
+      "HasScepterUpgrade": "1",
+      "AbilitySound": "Ability.Assassinate",
+      "AbilityDraftUltShardAbility": "sniper_concussive_grenade",
+      "AbilityCastRange": "3000",
+      "AbilityCastRangeBuffer": "600",
+      "AbilityCastPoint": "2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "20 15 10",
+      "AbilityDamage": "320 510 700",
+      "AbilityManaCost": "175 225 275",
+      "AbilityModifierSupportValue": "0.0",
+      "AbilityValues": {
+        "projectile_speed": "2500 2500 2500",
+        "scepter_stun_duration": {
+          "value": "1 1.25 1.5",
+          "RequiresScepter": "1"
+        },
+        "scepter_crit": {
+          "value": "0",
+          "RequiresScepter": "1"
+        },
+        "scepter_cast_point": {
+          "value": "0.5",
+          "RequiresScepter": "1"
+        },
+        "scatter_range": {
+          "value": "0",
+          "special_bonus_shard": "0"
+        },
+        "scatter_width": {
+          "value": "0",
+          "special_bonus_shard": "0",
+          "RequiresShard": "1"
+        },
+        "scatter_damage_pct": {
+          "value": "0",
+          "special_bonus_shard": "0",
+          "RequiresShard": "1"
+        }
+      }
+    },
+    "visage_summon_familiars_stone_form": {
+      "ID": "5484",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "AbilityCastRange": "160",
+      "AbilityCastPoint": "0.0",
+      "MaxLevel": "3",
+      "AbilitySound": "Visage_Familiar.StoneForm.Cast",
+      "AbilityCooldown": "14.0",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "stun_radius": "375"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "stun_delay": "0.55"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "stun_damage": "60 100 140"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "stun_duration": "1.0 1.25 1.5"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "stone_duration": "6.0"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "hp_regen": "150 175 200"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5"
+    },
+    "visage_silent_as_the_grave": {
+      "ID": "683",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "MaxLevel": "1",
+      "IsGrantedByScepter": "1",
+      "AbilityCastPoint": "0.0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCooldown": "45.0",
+      "AbilityManaCost": "100",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "bonus_duration": "4"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage": "25"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "invis_duration": "35.0"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "movespeed_bonus": "20"
+        }
+      }
+    },
+    "tusk_walrus_punch": {
+      "ID": "5568",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Tusk.WalrusPunch.Target",
+      "AbilityDraftUltScepterAbility": "tusk_walrus_kick",
+      "AbilityCastPoint": "0",
+      "AbilityCastRange": "150",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "20 15 10",
+      "AbilityManaCost": "75",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "crit_multiplier": "300 350 400",
+          "LinkedSpecialBonus": "special_bonus_unique_tusk"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "air_time": "1.0",
+          "LinkedSpecialBonus": "special_bonus_unique_tusk_7"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "slow_duration": "2.0 3.0 4.0"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "move_slow": "40"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "push_length": "1000"
+        }
+      }
+    },
+    "life_stealer_open_wounds": {
+      "ID": "5251",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_LifeStealer.OpenWounds.Cast",
+      "MaxLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastRange": "800",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+      "AbilityCooldown": "15",
+      "AbilityManaCost": "75",
+      "AbilityValues": {
+        "duration": "7",
+        "slow_steps": "-50 -50 -40 -30 -20 -10 -10 -10",
+        "heal_percent": "50",
+        "max_health_as_damage_pct": "2",
+        "damage_threshold": "500",
+        "spread_radius": "700",
+        "slow_tooltip": "50"
+      }
+    },
+    "clinkz_burning_army": {
+      "ID": "7319",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByScepter": "1",
+      "HasScepterUpgrade": "1",
+      "AbilitySound": "Hero_Clinkz.DeathPact",
+      "AbilityCastRange": "1200",
+      "AbilityCastPoint": "0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "80",
+      "AbilityManaCost": "150",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "range": "1300"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "30"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "count": "5"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "attack_rate": "1.6"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "damage_percent": "30"
+        },
+        "07": {
+          "var_type": "FIELD_FLOAT",
+          "spawn_interval": "0.5"
+        }
+      }
+    },
+    "enigma_black_hole": {
+      "ID": "5149",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "FightRecapLevel": "2",
+      "HasScepterUpgrade": "1",
+      "AbilityCastRange": "275",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityChannelTime": "4.0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_4",
+      "AbilityCooldown": "200.0 180.0 160.0",
+      "AbilityManaCost": "300 400 500",
+      "AbilityValues": {
+        "damage": {
+          "value": "100 150 200",
+          "special_bonus_unique_enigma_6": "+50"
+        },
+        "radius": "420",
+        "pull_speed": "30",
+        "tick_rate": "0.1 0.1 0.1",
+        "duration": "4.0 4.0 4.0",
+        "vision_radius": "800 800 800",
+        "pull_rotate_speed": "0.25",
+        "animation_rate": "0.2",
+        "scepter_pct_damage": {
+          "value": "3.5",
+          "RequiresScepter": "1"
+        },
+        "scepter_radius": {
+          "value": "1200",
+          "RequiresScepter": "1"
+        },
+        "scepter_drag_speed": {
+          "value": "175",
+          "RequiresScepter": "1"
+        },
+        "scepter_pull_rotate_speed": {
+          "value": "0.1",
+          "RequiresScepter": "1"
+        }
+      }
+    },
+    "mud_golem_hurl_boulder": {
+      "ID": "5670",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "MaxLevel": "1",
+      "AbilityCastRange": "800",
+      "AbilityCooldown": "30",
+      "AbilityCastPoint": "0.3",
+      "AbilityManaCost": "0",
+      "AbilityValues": {
+        "damage": "75",
+        "damage_creeps": "150",
+        "duration": "0.6",
+        "speed": "800"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lycan_summon_wolves_critical_strike": {
+      "ID": "5399",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityValues": {
+        "maim_chance": "20",
+        "maim_duration": "4.0",
+        "maim_movement_speed": {
+          "value": "15",
+          "special_bonus_unique_lycan_3": "+10"
+        },
+        "maim_attack_speed": "60",
+        "maim_damage": "8"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lycan_summon_wolves_invisibility": {
+      "ID": "5500",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "fade_time": "0.0 0.0 0.0"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "fade_delay": "2"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "beastmaster_hawk_dive": {
+      "ID": "700",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "900",
+      "AbilityCastPoint": "1.0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCooldown": "0",
+      "AbilityManaCost": "0",
+      "AbilityValues": {
+        "damage": "250",
+        "stun_duration": "2.5"
+      }
+    },
+    "phantom_assassin_stifling_dagger": {
+      "ID": "5190",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "Hero_PhantomAssassin.Dagger.Cast",
+      "AbilityCastRange": "550 750 950 1150",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "6",
+      "AbilityManaCost": "30",
+      "AbilityValues": {
+        "move_slow": "-50",
+        "dagger_speed": "1200",
+        "duration": "2.2 2.8 3.4 4",
+        "base_damage": "65",
+        "attack_factor": {
+          "value": "-75 -60 -45 -30",
+          "special_bonus_unique_phantom_assassin_5": "+20"
+        },
+        "attack_factor_tooltip": {
+          "value": "25 40 55 70",
+          "special_bonus_unique_phantom_assassin_5": "+20",
+          "DamageTypeTooltip": "DAMAGE_TYPE_PHYSICAL"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "treant_natures_grasp": {
+      "ID": "338",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_TREE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "AbilitySound": "Hero_Treant.NaturesGuise.On",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityCastRange": "1500",
+      "AbilityCastPoint": "0.2",
+      "AbilityCooldown": "20 19 18 17",
+      "AbilityManaCost": "75 80 85 90",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "damage_per_second": "30 40 50 60",
+          "LinkedSpecialBonus": "special_bonus_unique_treant_9"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "movement_slow": "20 25 30 35"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "vines_duration": "9 10 11 12"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "creation_interval": "0.1"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "initial_latch_delay": "0.3"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "vine_spawn_interval": "175"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "latch_range": "135"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "latch_vision": "150"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "bane_fiends_grip": {
+      "ID": "5013",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Hero_Bane.FiendsGrip",
+      "HasScepterUpgrade": "1",
+      "AbilityCastRange": "625",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityManaCost": "200 300 400",
+      "AbilityValues": {
+        "fiend_grip_tick_interval": "0.5",
+        "fiend_grip_mana_drain": {
+          "value": "5",
+          "special_bonus_unique_bane_9": "+5"
+        },
+        "AbilityChannelTime": {
+          "value": "5.0 5.5 6.0",
+          "special_bonus_unique_bane_3": "+5"
+        },
+        "fiend_grip_damage": {
+          "value": "70 110 150",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "AbilityCooldown": {
+          "value": "120 110 100",
+          "special_bonus_scepter": "-45"
+        },
+        "illusion_count": {
+          "special_bonus_scepter": "+2"
+        },
+        "scepter_incoming_illusion_damage": {
+          "special_bonus_scepter": "+200"
+        }
+      }
+    },
+    "dark_willow_bedlam": {
+      "ID": "6340",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "MaxLevel": "3",
+      "FightRecapLevel": "1",
+      "LinkedAbility": "dark_willow_terrorize",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCastGestureSlot": "ABSOLUTE",
+      "AbilityCooldown": "30",
+      "AbilityManaCost": "100 150 200",
+      "AbilityValues": {
+        "attack_damage": {
+          "value": "70 120 170",
+          "LinkedSpecialBonus": "special_bonus_unique_dark_willow_4"
+        },
+        "attack_interval": "0.25",
+        "attack_radius": "300",
+        "attack_targets": "1",
+        "roaming_radius": "200",
+        "roaming_seconds_per_rotation": "1.5",
+        "roaming_duration": "5.0",
+        "pierces_magic_immunity": {
+          "value": "0",
+          "special_bonus_unique_dark_willow_2": "+1"
+        }
+      }
+    },
+    "magnataur_horn_toss": {
+      "ID": "649",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastPoint": "0.2",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCooldown": "30",
+      "AbilityManaCost": "125",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "200"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "325"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "air_duration": "0.6"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "air_height": "300"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "slow_duration": "2"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "pull_offset": "75"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "destination_offset": "175"
+        },
+        "08": {
+          "var_type": "FIELD_INTEGER",
+          "pull_angle": "230"
+        },
+        "09": {
+          "var_type": "FIELD_INTEGER",
+          "horn_toss_slow_pct": "100"
+        }
+      }
+    },
+    "antimage_blink": {
+      "ID": "5004",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_OVERSHOOT",
+      "HasScepterUpgrade": "0",
+      "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+      "AbilityManaCost": "45",
+      "AbilitySound": "Hero_Antimage.Blink_out",
+      "AbilityValues": {
+        "AbilityCooldown": {
+          "value": "12 10 8 6",
+          "special_bonus_unique_antimage": "-1"
+        },
+        "AbilityCastRange": {
+          "value": "750 900 1050 1200",
+          "special_bonus_unique_antimage_3": "+250"
+        },
+        "min_blink_range": "200"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "dark_seer_vacuum": {
+      "ID": "5255",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Dark_Seer.Vacuum",
+      "AbilityCastRange": "450 500 550 600",
+      "AbilityCastPoint": "0.4",
+      "AbilityCooldown": "60 50 40 30",
+      "AbilityManaCost": "60 90 120 150",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "400 450 500 550",
+          "LinkedSpecialBonus": "special_bonus_unique_dark_seer_2"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "0.3 0.4 0.5 0.6"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "100 150 200 250"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "radius_tree": "150"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "necronomicon_warrior_mana_burn": {
+      "ID": "5202",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "burn_amount": "30 40 50"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "burn_damage_conversion": "50"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "necronomicon_warrior_last_will": {
+      "ID": "5200",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "explosion": "600 700 800"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "necronomicon_archer_purge": {
+      "ID": "8203",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+      "AbilityCastRange": "600",
+      "AbilityCastPoint": "0.3",
+      "AbilityCooldown": "15",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "purge_rate": "5"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "4.0"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "necronomicon_archer_aoe": {
+      "ID": "5204",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "1200"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "ms_bonus": "5 7 9"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "as_bonus": "10 15 20"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "black_dragon_fireball": {
+      "ID": "5689",
+      "MaxLevel": "1",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "FightRecapLevel": "1",
+      "AbilityCastRange": "1000",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCooldown": "15",
+      "AbilityManaCost": "200",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "300"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "damage": "85"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "10.0"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "burn_interval": "0.5"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "black_dragon_splash_attack": {
+      "ID": "5324",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "range": "250"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "damage_percent": "100"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "black_dragon_dragonhide_aura": {
+      "ID": "5681",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_armor": "3"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "1200"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "granite_golem_hp_aura": {
+      "ID": "5656",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "bonus_hp": "15"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "1200"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "big_thunder_lizard_slam": {
+      "ID": "5332",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityCastPoint": "0.3",
+      "AbilityCooldown": "6.0",
+      "AbilityDamage": "250",
+      "AbilityManaCost": "150",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "350"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "movespeed_slow": "-60"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "attack_slow_tooltip": "-60"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "non_hero_duration": "4.0"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "hero_duration": "2.0"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "big_thunder_lizard_frenzy": {
+      "ID": "5333",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityCastRange": "900",
+      "AbilityCastPoint": "0.0",
+      "AbilityCooldown": "8.0",
+      "AbilityManaCost": "75",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "attackspeed_bonus": "75"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "duration": "8.0"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lina_dragon_slave": {
+      "ID": "5040",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Lina.DragonSlave",
+      "AbilityCastRange": "1075",
+      "AbilityCastPoint": "0.45",
+      "AbilityDuration": "0.6875 0.6875 0.6875 0.6875",
+      "AbilityManaCost": "100 115 130 145",
+      "AbilityValues": {
+        "dragon_slave_damage": "85 160 235 310",
+        "dragon_slave_speed": "1200",
+        "dragon_slave_width_initial": "275",
+        "dragon_slave_width_end": "200",
+        "dragon_slave_distance": "1075",
+        "AbilityCooldown": {
+          "value": "9",
+          "special_bonus_unique_lina_1": "-3.5"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "sandking_burrowstrike": {
+      "ID": "5102",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "1",
+      "HasScepterUpgrade": "1",
+      "AbilitySound": "Ability.SandKing_BurrowStrike",
+      "AbilityCastRange": "500 550 600 650",
+      "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+      "AbilityCooldown": "15 14 13 12",
+      "AbilityManaCost": "110 120 130 140",
+      "AbilityDamage": "100 160 220 280",
+      "AbilityValues": {
+        "burrow_width": "150",
+        "burrow_duration": {
+          "value": "1.6 1.8 2.0 2.2",
+          "special_bonus_unique_sand_king_burrowstrike_stun": "+0.3"
+        },
+        "burrow_speed": "2000",
+        "burrow_anim_time": "0.52",
+        "cast_range_scepter": {
+          "value": "1300",
+          "RequiresScepter": "1"
+        },
+        "burrow_speed_scepter": {
+          "value": "3000",
+          "RequiresScepter": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "huskar_inner_fire": {
+      "ID": "7300",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilitySound": "Hero_Huskar.Inner_Vitality",
+      "HasShardUpgrade": "1",
+      "AbilityCastRange": "500",
+      "AbilityCastPoint": "0.2",
+      "AbilityManaCost": "75 100 125 150",
+      "AbilityModifierSupportValue": "0.0",
+      "AbilityValues": {
+        "damage": {
+          "value": "120 180 240 300",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "radius": "500",
+        "disarm_duration": {
+          "value": "1.75 2.5 3.25 4",
+          "special_bonus_unique_huskar_3": "+0.75"
+        },
+        "knockback_distance": "400",
+        "knockback_duration": "1",
+        "AbilityCooldown": {
+          "value": "17 15 13 11",
+          "special_bonus_shard": "-3"
+        },
+        "movement_slow_pct": {
+          "value": "0",
+          "special_bonus_shard": "+40",
+          "RequiresShard": "1"
+        },
+        "hero_damage_heal_pct": {
+          "value": "0",
+          "special_bonus_shard": "+50",
+          "DamageTypeTooltip": "DAMAGE_TYPE_NONE",
+          "RequiresShard": "1"
+        },
+        "creep_damage_heal_pct": {
+          "value": "0",
+          "special_bonus_shard": "+10",
+          "DamageTypeTooltip": "DAMAGE_TYPE_NONE",
+          "RequiresShard": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    }
+  }
+}

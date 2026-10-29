@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>秘境竞技场 · 战斗 UI v006</title>
+  <link rel="stylesheet" href="/src/approved-ui.css">
+  
+  
+</head>
+<body>
+<main class="game" id="game" aria-label="秘境竞技场战斗界面">
+  <header class="topbar" data-feature="F03 F22">
+    <div class="identity"><span class="crest" aria-hidden="true">✧</span><div><strong>秘境竞技场</strong><small>ARCANE ARENA</small></div></div>
+    <div class="round-block"><span class="round-number"><small>回合</small><b id="round">12</b></span><div class="phase-info"><span id="phaseName">备战阶段</span><div class="time-track"><i id="timeTrack"></i></div></div><strong class="timer" id="timer">00:42</strong></div>
+    <nav class="top-tools" aria-label="对局工具"><button data-action="deck" data-feature="F16" aria-label="打开技能图鉴"><span aria-hidden="true">▤</span><span class="tool-label">图鉴</span></button><button data-action="summary"><span aria-hidden="true">▥</span><span class="tool-label">对局</span></button><button data-action="settings" aria-label="设置与帮助"><span aria-hidden="true">⚙</span></button></nav>
+  </header>
+  <section class="middle">
+    <aside class="ranking panel" data-feature="F04 F05">
+      <div class="section-heading"><span>竞技排名</span><small>8 人</small></div>
+      <div class="players" id="players"></div>
+      <section class="leader-short" id="leaderShort" data-feature="F06" aria-label="我方统帅"></section>
+      <button class="subtle chat-trigger" data-action="chat" data-feature="F22"><span aria-hidden="true">◇</span><span class="rank-wide">聊天 / 表情</span></button>
+    </aside>
+    <section class="arena" id="arena" data-feature="F01 F02 F03 F05">
+      <canvas id="world" aria-label="12乘10正顶视棋盘，点击英雄可选中，备战时拖动英雄可调整站位"></canvas>
+      <div class="arena-top"><div class="arena-location"><i></i><span>苔庭遗迹</span><small>12 × 10</small></div><div class="arena-actions"><button id="backBoard" data-action="home" hidden>返回我的棋盘</button><button class="mini" data-action="grid" aria-pressed="false" aria-label="显示布阵网格">⊞</button></div></div>
+      <div class="matchup" id="matchup"><span>我的棋盘</span><b>VS</b><span id="opponent">北境守望</span><small>下一位对手</small></div>
+      <div class="battle-view" id="battleView" hidden><button data-action="live" class="active">本轮实战</button><button data-action="plan">下轮站位</button></div>
+      <div class="arena-bottom"><span id="arenaHint"><i class="status-dot"></i>选择英雄后，拖动调整站位</span><button data-action="roundResult" data-feature="F23">上轮战报 <span aria-hidden="true">↗</span></button></div>
+      <div class="stage-notice" id="stageNotice" hidden></div>
+      <div class="replay-bar" id="replayBar" data-feature="F24" hidden><button data-action="replayPlay" aria-label="暂停回放">Ⅱ</button><span id="replayTime">00:18</span><input id="replayProgress" aria-label="回放进度" type="range" min="0" max="60" value="18"><button data-action="replaySpeed">1×</button><button data-action="replayLive">返回实时</button></div>
+    </section>
+    <aside class="right-rail panel">
+      <div class="rail-tabs" role="tablist" aria-label="信息面板"><button id="tabUnit" data-tab="unit" role="tab" aria-selected="true" aria-controls="infoContent">单位</button><button id="tabStats" data-tab="stats" role="tab" aria-selected="false" aria-controls="infoContent">统计</button></div>
+      <div id="infoContent" class="info-content" role="tabpanel" aria-labelledby="tabUnit" data-feature="F08 F15 F19"></div>
+      <div class="module-links" data-feature="F17 F18"><button data-action="equipment" data-module="equipment">◈ 装备</button><button data-action="wonders" data-module="wonders">✧ 奇观</button><button data-action="trial" data-module="trial">⚑ 试炼</button></div>
+      <section class="reserve-section" data-feature="F13 F14"><div class="section-heading"><span>技能暂存 <small id="reserveCount">2 / 4</small></span><button data-action="sell" id="sell" class="text-button" disabled>出售</button></div><div class="reserve-slots" id="reserveSlots"></div><div class="reserve-hint" id="reserveHint">选中技能，再点击目标槽位</div></section>
+    </aside>
+  </section>
+  <footer class="dock panel">
+    <div class="team-bar" data-feature="F07 F09 F14"><div class="team-meta"><strong>我的阵容</strong><span>5 / 5</span><small id="planLabel">准备就绪，布阵迎敌</small><button data-action="reselect" class="text-button">更换身体</button></div><div class="team-roster" id="teamRoster"></div></div>
+    <div class="shop-control" data-feature="F10 F11 F12 F21"><div class="shop-label"><strong>技能商店</strong><span id="shopLevel">等级 4</span><small>12 件在售</small></div><div class="economy"><span class="coin-symbol" aria-hidden="true">◉</span><strong id="gold">32</strong><button data-action="economy" class="economy-help" aria-label="查看金币规则">?</button></div><div class="shop-buttons"><button data-action="shopUpgrade" id="shopUpgrade">商店升级 <span>8 ◉</span></button><button data-action="reroll" id="reroll">↻ 刷新 <span>2 ◉</span></button><button data-action="lock" id="lock" aria-pressed="false">◇ 锁定</button></div><button class="ready-button" data-action="ready" id="ready">准备完成 <span>✓</span></button></div>
+    <div class="shop-grid" id="shopGrid" data-feature="F10"></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" data-feature="F20" hidden></div>
+  <dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialog-header"><div><small id="dialogEyebrow"></small><h2 id="dialogTitle"></h2></div><button class="dialog-close" data-action="close" aria-label="关闭对话框">×</button></div><div id="dialogBody" class="dialog-body"></div><div id="dialogFooter" class="dialog-footer"></div></dialog>
+</main>
+<script type="module" src="/src/main.ts"></script></body>
+</html>
+
