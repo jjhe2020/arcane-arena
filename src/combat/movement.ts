@@ -108,3 +108,22 @@ export function constrainUnitMotion(unit: CombatUnit, point: MotionPoint, others
   }
   return { x: unit.x + dx * fraction, y: unit.y + dy * fraction };
 }
+
+/** Local walking fallback, not a claim of native global pathfinding. Project a
+ * blocked step onto nearby body tangents. Every candidate is swept again and
+ * stays within the original step length; no random draw or positional snap. */
+export function slideUnitMotion(unit:CombatUnit,point:MotionPoint,others:CombatUnit[],radius:number):MotionPoint {
+  const dx=point.x-unit.x,dy=point.y-unit.y,length=Math.hypot(dx,dy),direct=constrainUnitMotion(unit,point,others,radius);
+  if(length<1e-9||ignoresUnitCollision(unit)||Math.hypot(direct.x-unit.x,direct.y-unit.y)>=length-1e-8)return direct;
+  const score=(p:MotionPoint)=>((p.x-unit.x)*dx+(p.y-unit.y)*dy)/length+Math.hypot(p.x-unit.x,p.y-unit.y)*.001;
+  let best=direct,bestScore=score(best);
+  for(const other of others){
+    if(other===unit||other.dead||ignoresUnitCollision(other))continue;
+    const ox=unit.x-other.x,oy=unit.y-other.y,separation=Math.hypot(ox,oy);if(separation<1e-9||separation>radius*2+length+1e-8)continue;
+    const nx=ox/separation,ny=oy/separation,inward=dx*nx+dy*ny;if(inward>=0)continue;
+    const tx=dx-inward*nx,ty=dy-inward*ny,tangent=Math.hypot(tx,ty),sign=unit.id.localeCompare(other.id)<0?1:-1;
+    const candidates=tangent>1e-9?[{x:unit.x+tx,y:unit.y+ty}]:[sign,-sign].map(side=>({x:unit.x-ny*length*side,y:unit.y+nx*length*side}));
+    for(const candidate of candidates){const swept=constrainUnitMotion(unit,candidate,others,radius),candidateScore=score(swept);if(candidateScore>bestScore+1e-9){best=swept;bestScore=candidateScore;}}
+  }
+  return best;
+}

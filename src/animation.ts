@@ -15,9 +15,9 @@ export function recentCombatEvents(events:CombatEvent[],time:number,window=COMBA
 export interface CombatTextPacket {key:string;target:string;type:'hit'|'heal';amount:number;x:number;y:number;time:number;lane:number;damageType:DamageType;critical:boolean;damageOverTime:boolean;outcome?:string}
 export function combatTextEvents(events:CombatEvent[],time:number):CombatTextPacket[]{
  const packets=new Map<string,CombatTextPacket>();
- for(const event of events){if((event.type!=='hit'&&event.type!=='heal')||event.time>time||time-event.time>1.1)continue;
+ for(const [index,event] of events.entries()){if((event.type!=='hit'&&event.type!=='heal')||event.time>time||time-event.time>1.1)continue;
   const target=event.target??event.source,damageType=event.damageType??event.originDamageType??'physical',critical=!!event.flags?.critical,damageOverTime=!!event.flags?.damageOverTime,outcome=typeof event.outcome==='string'?event.outcome:undefined;
-  const bucket=Math.floor((event.time+1e-8)/.35),key=`${target}:${event.type}:${damageType}:${critical}:${damageOverTime}:${event.source}:${event.attribution?.abilityId??event.skill??''}:${outcome??''}:${bucket}`,old=packets.get(key);
+  const bucket=Math.floor((event.time+1e-8)/.35),occurrence=damageOverTime?`dot:${bucket}`:`impact:${event.sequence??`${event.time}:${index}`}`,key=`${target}:${event.type}:${damageType}:${critical}:${damageOverTime}:${event.source}:${event.attribution?.abilityId??event.skill??''}:${outcome??''}:${occurrence}`,old=packets.get(key);
   if(old){old.amount+=Number(event.amount??0);if(event.time>=old.time){old.x=event.toX??event.x;old.y=event.toY??event.y;old.time=event.time;}}
   else packets.set(key,{key,target,type:event.type,amount:Number(event.amount??0),x:event.toX??event.x,y:event.toY??event.y,time:event.time,lane:bucket%3-1,damageType,critical,damageOverTime,outcome});
  }

@@ -68,7 +68,7 @@ describe('historical candidate child abilities and replay revision',()=>{
     applyDamage(b,enemy,caster,1429,'pure','test_damage',true);stepBattle(b,1.2,[shield]);
     expect(b.events.filter(e=>e.type==='cast'&&e.skill==='medusa_mystic_snake')).toHaveLength(1);
     expect(b.events.find(e=>e.type==='hit'&&e.skill==='medusa_mystic_snake')?.amount).toBe(150);
-    expect(caster.mana).toBeCloseTo(783.45,1);expect(enemy.mana).toBeGreaterThan(920);expect(enemy.mana).toBeLessThan(923);
+    expect(caster.mana).toBeCloseTo(783.45,1);expect(enemy.mana).toBe(1000);
     expect(enemy.statuses.find(s=>s.kind==='physicalVulnerability')?.value).toBe(.5);
     const petrify=b.events.find(e=>e.type==='status'&&e.skill==='medusa_mystic_snake'&&e.status==='stun');expect(petrify?.duration).toBeCloseTo(1);
   });
@@ -88,7 +88,8 @@ describe('historical candidate child abilities and replay revision',()=>{
     expect(()=>stepBattle(saved,.1,[])).toThrow(/simulation revision/i);
   });
   it('keeps simultaneous same-caster zones distinct and restores their deterministic IDs and ages',()=>{
-    const flare=definition('custom_skywrath_mage_mystic_flare',{mana:[0],cooldowns:[100]}),b=createBattle(player(0,[{id:flare.id,points:6}]),player(1,[],true),3,[flare]);
+    const flare=definition('custom_skywrath_mage_mystic_flare',{mana:[0],cooldowns:[100]}),enemies=player(1,[],true);enemies.heroes[1].x=4;
+    const b=createBattle(player(0,[{id:flare.id,points:6}]),enemies,3,[flare]);
     stepBattle(b,.5,[flare]);const zones=b.zones as {id:string;createdAt:number}[];
     expect(zones).toHaveLength(2);expect(new Set(zones.map(z=>z.id)).size).toBe(2);expect(zones.every(z=>z.createdAt>=0&&z.createdAt<=b.time)).toBe(true);
     expect(restoreBattle(serializeBattle(b),[flare]).zones).toEqual(zones);

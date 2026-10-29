@@ -2,7 +2,7 @@
 
 状态：开发中，尚未发布。完整目标仍为230技能的机制、时序和相关组合原作逐项验收；本文件不是完成证明。
 
-当前模拟修订：`arena-2026-10-30-c9-r6`；上一源码检查点为`arena-2026-10-30-c8-r6`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。
+当前模拟修订：`arena-2026-10-30-c10-r6`；上一源码检查点为`arena-2026-10-30-c9-r6`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。非数值机制优先核对Wiki；AA类别标签本身不被当作已确认的自定义Lua。
 
 ## 当前实现
 
@@ -110,6 +110,18 @@
 - `config:compile`、`config:check`、类型和构建通过。配置hash`f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1`：230主、80授予、21原生参考、1382档、2651参数、16单位、四职业。19域集中迁移，83旧参数及魔法箭重复弹跳半径清理；新增Bongo原生一级与Nimbus单位，移除Wrath不可达原生四级。其余单位、职业、经济及12表旧样式/行高/冻结保持；工作簿SHA及语义/视觉QA见`artifacts/r6-c9-config-validation.json`。
 - 构建后4181生产资源验证（2899图片引用、1330移动图集）、浏览器购买/费用/快照/暂停/恢复/布局、真实购买/有效统计、固定账本展示、UI完整性8/8、旧档备份下载及新局重载均通过。真实开发模块Laser/Nimbus/Jingu石猴/Missile弹跳/Drain主子链桌面和手机10场景通过，连线和统计截图已检查。汇总见`artifacts/r6-c9-validation.json`；构建大代码块提示仍在，未做真机性能终验。
 - 明确保留Laser最大生命及模型叠乘的AA证据、Wukong技能允许清单、Life Break历史屏障资格、AA Shredder多重攻击/二次弹道、跨来源光环/延期账本、原生转身加速度及暴击随机起点等具名边界。光环复活验证为引擎组合夹具，不冒称目录Reincarnation已核验。无r6 tag或Release。
+
+2026-10-30第十源码检查点（C10）实际通过：
+
+- `npm test`：80文件、2404项通过，报告`artifacts/r6-c10-unit-tests.json`。新三组76、65、73项及根代理21项协议结果，另补普通命中独立跳字回归；旧用例按真实分身延迟、弹射重访、吞吐独立动作和无敌斩宽限更新，保留结算/归属/飞行/清理断言。
+- `npm run reference:verify`：44文件、1915项通过，来源/配置/代码指纹一致。155项已开始、75未审；2143条技能要求中1647条有来源及当前结果，496条未闭合；61条共用要求中11条未闭合。当前竞技场范围整项通过仍为7项，新增15项均保持partial。
+- 新三组覆盖Mana Break/Mana Drain/Mana Shield/Meat Hook/Mirror Image、Mist Coil/Moon Glaives/Mortimer Kisses/Multishot/Mystic Flare、Nature's Attendants/Nature's Call/Nether Swap/Nethertoxin/Omnislash。详见`docs/r6-c10-progress.md`和三组具名账本。原生闪烁碎片实际KV别名已找到；Snake不燃烧敌人法力、按最大法力恢复的历史原型与AA旧steal用词冲突单列，不伪称已读原AA Lua。
+- Mana Break为同击非暴击物理分量，正常物理同包只格挡一次；Muerta转换例外保物理类型。Marksmanship发射时保存PRD结果、额外伤害/必中/基础护甲忽略，条件伤害不被暴击放大。普通暴击完整随机试验起点仍独立待修。
+- 魔法盾先扣蓝再算目标减免；真实Frost Shield60%及Golem15%有符号generic incoming加算。1000攻击对应350耗蓝/120有效伤害，二者同在对应350/165。只修声明的Frost分支，未知旧sourceDamageAmp及其它反伤顺序不被据此放行。真实树人同点出生后的双体追击死锁已修；每候选切向步仍扫碰撞并遵预算、屏障、Soulbind和转身，不宣称恢复原生全局寻路。
+- `config:compile`、`config:check`、类型与生产构建通过。最终hash`e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397`：230主、83授予、21原生参考、1389档、2641参数、18单位、四职业。23域迁移，新增8档、去Void不可达原生4级，净增7档，删除117旧死参数；新增两个Treant模板。旧16单位/职业/属性/经济保持；12表旧样式/行高/冻结零漂移。最终两条授予技能仅6格名称/描述本地化，数字配置逐字相同，QA45PNG及工作簿SHA见`artifacts/r6-c10-config-validation.json`。
+- 4182生产服务通过资源验证（2899图片引用、1330移动图集）、浏览器购买/费用/快照/暂停/恢复/布局、真实购买/有效统计、固定账本展示、UI完整性8/8及旧档恢复。额外生产UI脚本实际购买9/9/6点父技能，核验激流4级、射手天赋3级、吐出1级真实授予槽、中文详情和可加载图标，见`artifacts/r6-c10-granted-ui/report.json`。图标复用已有主技能资源，不冒称新增原生图标。
+- 最终配置下真实开发模块20个桌面/手机场景通过：Hook拉拽链、Mirror隐藏/成形、Kisses、Toxin飞弹/场域、Greater树人、Omni、Multishot和Spit实际乘客。只聚合持续伤害，普通命中保独立。截图已检查，实际引擎、观察夹具、固定账本及生产证据分开。汇总见`artifacts/r6-c10-validation.json`。首次并行构建/浏览器检查遇Windows文件占用，改为顺序执行后构建通过；大代码块提示仍在，未做真机性能终验。
+- 明确保留AA metadata与Wiki驱散冲突、Fragment与其它授予技能耦合、法力分配策略、AA多重射击分类/压缩时钟/扇形、共享光环资格、模型/继承边界及其余具名未闭合项。没有把496条开放项改写成通过；无r6发布tag或Release。
 
 后续变化后的实际状态以[逐项状态](skill-reference-status.md)、`public/data/reference-acceptance.json`和`artifacts/reference-acceptance-proof.json`为准。指纹过期时，分项结果不会沿用为当前通过。
 

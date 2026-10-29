@@ -78,11 +78,13 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
     const shots: { target: CombatUnit; origin: { x: number; y: number }; hit: (u: CombatUnit) => void }[] = [];
     h.ctx.projectile = (target, _speed, hit, origin) => shots.push({ target, origin: { ...origin! }, hit });
     p.onAttack!({ ...h.ctx, baseAttackDamage: 180, attackDamage: 999 });
-    expect(shots).toHaveLength(1); expect(shots[0].origin).toEqual({ x: 0, y: 0 }); expect(shots[0].target.id).toBe(h.other.id);
+    expect(shots).toHaveLength(1); expect(shots[0].origin).toMatchObject({ x: 0, y: 0 }); expect(shots[0].target.id).toBe(h.other.id);
     const hp = h.other.hp; shots[0].hit(h.other); expect(hp - h.other.hp).toBeCloseTo(180 * .62);
-    expect(shots).toHaveLength(2); expect(shots[1].origin).toEqual({ x: 3, y: 0 }); expect(shots[1].target.id).toBe(third.id);
+    expect(shots).toHaveLength(2); expect(shots[1].origin).toMatchObject({ x: 3, y: 0 }); expect(shots[1].target.id).toBe(third.id);
     h.caster.attack = 5000; const thirdHp = third.hp; shots[1].hit(third);
-    expect(thirdHp - third.hp).toBeCloseTo(180 * .62 ** 2); expect(shots).toHaveLength(2);
+    expect(thirdHp - third.hp).toBeCloseTo(180 * .62 ** 2);expect(shots).toHaveLength(3);expect(shots[2].target.id).toBe(h.other.id);
+    const secondHp=h.other.hp;shots[2].hit(h.other);expect(secondHp-h.other.hp).toBeCloseTo(180*.62**3);expect(shots).toHaveLength(4);expect(shots[3].target.id).toBe(h.target.id);
+    const primaryHp=h.target.hp;shots[3].hit(h.target);expect(primaryHp-h.target.hp).toBeCloseTo(180*.62**4);expect(shots).toHaveLength(4);
   });
   it('makes real Moon Glaive hits include flat/percentage attack bonuses and arrive after successive flights', () => {
     const id = 'custom_luna_moon_glaive', opponents = player(1);
@@ -94,9 +96,9 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
     advance(battle, .6);
     expect(10000 - battle.units[1].hp).toBeCloseTo(142.5); expect(battle.units[2].hp).toBe(10000); expect(battle.units[3].hp).toBe(10000);
     advance(battle, 1.2);
-    expect(10000 - battle.units[2].hp).toBeCloseTo(142.5 * .62); expect(10000 - battle.units[3].hp).toBeCloseTo(142.5 * .62 ** 2);
+    expect(10000 - battle.units[2].hp).toBeCloseTo(142.5 * (.62+.62**3));expect(10000 - battle.units[3].hp).toBeCloseTo(142.5 * .62 ** 2);expect(10000-battle.units[1].hp).toBeCloseTo(142.5*(1+.62**4));
     const hits = battle.events.filter(e => e.type === 'hit' && e.source === caster.id);
-    expect(hits).toHaveLength(3); expect(hits[1].time - hits[0].time).toBeGreaterThan(.2); expect(hits[2].time - hits[1].time).toBeGreaterThan(.2);
+    expect(hits).toHaveLength(5);expect(hits.map(e=>e.target)).toEqual([battle.units[1].id,battle.units[2].id,battle.units[3].id,battle.units[2].id,battle.units[1].id]);expect(hits.slice(1).map(e=>Number(e.amount))).toEqual([1,2,3,4].map(i=>142.5*.62**i));for(let i=1;i<hits.length;i++)expect(hits[i].time-hits[i-1].time).toBeCloseTo(.2,1);
   });
   it.each([3, 6])('samples skeleton attack damage every hit at tier %i and replays the seeded sequence', points => {
     function sample(seed: number) {

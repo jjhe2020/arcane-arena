@@ -1,0 +1,447 @@
+{
+  "status": "passed",
+  "checkpoint": "r6 C10; not a Release or full native certification",
+  "configurationHash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397",
+  "configCounts": {
+    "granted": 83,
+    "parameters": 2641,
+    "referenceAbilities": 21,
+    "roles": 4,
+    "skillTiers": 1389,
+    "skills": 230,
+    "units": 18
+  },
+  "simulationRevision": "arena-2026-10-30-c10-r6",
+  "unit": {
+    "files": 80,
+    "tests": 2404,
+    "passed": 2404
+  },
+  "reference": {
+    "tests": 1915,
+    "sourceFingerprint": "7fca7cd626b97146dea47c2eb068d136593d115a5c4392def0df800305c77f19",
+    "proofCurrent": true,
+    "counts": {
+      "catalog": 230,
+      "reviewStarted": 155,
+      "unreviewed": 75,
+      "fullyReferenceVerified": 7,
+      "requirements": 2143,
+      "resultTestPassed": 1647,
+      "referenceVerifiedRequirements": 1647,
+      "pendingRequirements": 496,
+      "engineRequirements": 61,
+      "enginePending": 11
+    }
+  },
+  "render": {
+    "scenarios": 20,
+    "report": "artifacts/r6-c10-render/report.json",
+    "fixtureNote": "Actual development-module createBattle/stepBattle using the compiled catalog. Observation heroes have100000HP/4000mana,zero ordinary movement and delayed ordinary attacks. Freeze after real Hook pull, Mirror split/images, Kisses globe/pool, Toxin projectile/field, Treants or Omnislash. No injected combat statuses, packets, summons or visual effects. Render checks are distinct from original-mechanism certification, production smoke and physical-device performance."
+  },
+  "productionURL": "http://localhost:4182",
+  "checks": {
+    "artifacts/release-assets-check.json": {
+      "sha256": "ef80c942586c1cfdb0dc05c651a4cec60806ae3d1bd0862bc15aa0237114e83b",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-29T22:05:47.266Z",
+        "simulationRevision": "arena-2026-10-30-c10-r6",
+        "configHash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397",
+        "configuration": {
+          "granted": 83,
+          "parameters": 2641,
+          "referenceAbilities": 21,
+          "roles": 4,
+          "skillTiers": 1389,
+          "skills": 230,
+          "units": 18
+        },
+        "imageReferences": 2899,
+        "characterAppearances": 8,
+        "mobileAtlases": 1330,
+        "sourceAndProductionDataIdentical": true
+      }
+    },
+    "artifacts/production-release-check.json": {
+      "sha256": "97d97f4f652e467da32657fbf6c4a79f2425a006ad2eb534007e5e1c0ece3404",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-29T22:05:48.348Z",
+        "revision": "arena-2026-10-30-c10-r6",
+        "poolSize": 100,
+        "diagnostics": {
+          "drawCalls": 3,
+          "triangles": 6,
+          "gpuTextures": 3,
+          "activeImageBytes": 62799872,
+          "cachedImageBytes": 62799872,
+          "cachedAtlases": 3,
+          "unitBodies": [
+            {
+              "id": "p0-h0",
+              "image": "/art/characters/tank-female/idle.webp",
+              "visible": true
+            }
+          ],
+          "persistentEffects": 0,
+          "persistentEffectKeys": [],
+          "transientEffects": 0,
+          "loadErrors": []
+        },
+        "errors": []
+      }
+    },
+    "artifacts/browser-smoke.json": {
+      "sha256": "9d720fc4d7b1f3e215d52044fb5b1f38b1b10ac3d4528e4e3ea9113c7af01b8b",
+      "result": {
+        "status": "passed",
+        "results": [
+          "本局100技能池、初始4商品及2个禁用God占位",
+          "真实购买扣3金、移入暂存扣1金、暂存重新装备免费",
+          "当前战斗快照与下轮编辑隔离",
+          "暂停冻结模拟时间",
+          "战斗中保存与刷新恢复",
+          "844×390横屏商店与单位/暂存入口",
+          "手机竖屏旋转提示",
+          "4:3与21:9渲染截图"
+        ],
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/engine-report.json": {
+      "sha256": "15c123a5bdb16ce9dca6d9a3485110ca54346b72db824c3b3211d5d47aba2379",
+      "result": {
+        "status": "passed",
+        "method": "Actual UI new game, real shop purchase, real battle hits, pause, read-only ledger inspection; no injected units or statistics",
+        "purchase": [
+          "custom_windrunner_windrun"
+        ],
+        "evidence": {
+          "time": 3.2666666666666666,
+          "units": [
+            {
+              "id": "5:p5-h0",
+              "name": "远程射手 1",
+              "summoned": false,
+              "damage": 56.25,
+              "taken": 0,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 56.25,
+                  "taken": 0,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  }
+                }
+              ]
+            },
+            {
+              "id": "0:p0-h0",
+              "name": "近战肉盾 1",
+              "summoned": false,
+              "damage": 0,
+              "taken": 56.25,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 0,
+                  "taken": 56.25,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  }
+                }
+              ]
+            }
+          ],
+          "selectedId": "5:p5-h0",
+          "displayLabel": "震荡波",
+          "positiveHits": 1
+        },
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/report.json": {
+      "sha256": "f67cdaa71df8ff245bbbddb43939d7ef9d203cf38486714209181e9166a43cf5",
+      "result": {
+        "status": "passed",
+        "reports": [
+          {
+            "mobile": false,
+            "viewport": "1600×900",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 1600,
+              "viewport": 1600,
+              "panel": {
+                "x": 1313,
+                "y": 88,
+                "width": 268,
+                "height": 601,
+                "top": 88,
+                "right": 1581,
+                "bottom": 689,
+                "left": 1313
+              }
+            },
+            "errors": []
+          },
+          {
+            "mobile": true,
+            "viewport": "844×390",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 844,
+              "viewport": 844,
+              "panel": {
+                "x": 595,
+                "y": 108,
+                "width": 248,
+                "height": 221,
+                "top": 108,
+                "right": 843,
+                "bottom": 329,
+                "left": 595
+              }
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/ui-integrity/report.json": {
+      "sha256": "a8d19a18c25316a9fd8ebb344407005abdefdb0c8aaf1fbbd378bcdb39231360",
+      "result": {
+        "status": "passed",
+        "baseUrl": "http://localhost:4182",
+        "timestamp": "2026-10-29T22:06:17.876Z",
+        "results": [
+          {
+            "name": "storage-getItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "storage-setItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "valid-battle-save-baseline",
+            "status": "passed",
+            "evidence": {
+              "originalBytes": 24637,
+              "restoredBattleCount": 4
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-missing",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 23445,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-seed",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24637,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-participant",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24630,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "live-role-snapshot",
+            "status": "passed",
+            "evidence": {
+              "roles": {
+                "planned": "mage",
+                "live": "tank"
+              },
+              "liveHeading": "近战肉盾 1\n近战肉盾 · 女",
+              "plannedHeading": "远程法师 1\n远程法师 · 女",
+              "correctPortraitAndStats": true
+            },
+            "errors": []
+          },
+          {
+            "name": "granted-skill-details-and-cooldown",
+            "status": "passed",
+            "evidence": {
+              "parent": "dragon_knight_elder_dragon_form",
+              "points": 6,
+              "child": "dragon_knight_fireball",
+              "actualCooldown": 19.9,
+              "displayedCooldown": 20,
+              "dialogTitle": "火焰领域",
+              "fallbackIcon": true
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/recovery-smoke.json": {
+      "sha256": "b634069e9c22a029b91e859c6020d510502b805cab207222cff79a76e607537f",
+      "result": {
+        "status": "passed",
+        "checks": [
+          "旧存档原样保留",
+          "备份下载逐字节一致",
+          "开始新对局后保留原备份",
+          "新版本存档可再次恢复"
+        ],
+        "errors": [],
+        "loadErrors": []
+      }
+    },
+    "artifacts/r6-c10-granted-ui/report.json": {
+      "sha256": "beda5f721d8f386fa8efcdf8c15a65e27a7768981be1d37fc14f94adbc21aac0",
+      "result": {
+        "status": "passed",
+        "url": "http://localhost:4182",
+        "configurationHash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397",
+        "fixture": "Funded game fixture; actual public seed selection, shop upgrades, rerolls, purchases and battle initialization. No native child slot or level is fabricated.",
+        "results": [
+          {
+            "parent": "custom_naga_siren_mirror_image",
+            "points": 9,
+            "child": "naga_siren_rip_tide",
+            "name": "激流",
+            "level": 4,
+            "seed": 2027808484,
+            "acquired": 9,
+            "actual": {
+              "points": 4,
+              "parent": "custom_naga_siren_mirror_image",
+              "hash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397"
+            },
+            "icon": {
+              "source": "/art/icons/custom_naga_siren_mirror_image.webp",
+              "width": 128
+            },
+            "errors": [],
+            "badImages": []
+          },
+          {
+            "parent": "custom_drow_ranger_multishot",
+            "points": 9,
+            "child": "drow_ranger_marksmanship",
+            "name": "射手天赋",
+            "level": 3,
+            "seed": 2654435769,
+            "acquired": 9,
+            "actual": {
+              "points": 3,
+              "parent": "custom_drow_ranger_multishot",
+              "hash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397"
+            },
+            "icon": {
+              "source": "/art/icons/custom_drow_ranger_multishot.webp",
+              "width": 128
+            },
+            "errors": [],
+            "badImages": []
+          },
+          {
+            "parent": "custom_snapfire_mortimer_kisses",
+            "points": 6,
+            "child": "aa_granted_spit_out",
+            "name": "吐出",
+            "level": 1,
+            "seed": 2654435769,
+            "acquired": 6,
+            "actual": {
+              "points": 1,
+              "parent": "custom_snapfire_mortimer_kisses",
+              "hash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397"
+            },
+            "icon": {
+              "source": "/art/icons/custom_snapfire_mortimer_kisses.webp",
+              "width": 128
+            },
+            "errors": [],
+            "badImages": []
+          }
+        ]
+      }
+    }
+  }
+}

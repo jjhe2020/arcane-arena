@@ -1,0 +1,306 @@
+{
+  "checkedOn": "2026-10-30",
+  "method": "Source metadata/short native paraphrases and selected local captured AA clauses, no remote whole-page HTML tracked.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+      "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+      "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+      "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+      "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+    },
+    {
+      "id": "abaddon-2023",
+      "url": "https://web.archive.org/web/20230215191306id_/https://dota2.fandom.com/wiki/Abaddon",
+      "accessedOn": "2026-10-30",
+      "observation": "Nonlethal pure self damage before1300projectile, impact SpellBlock and disjoint. AoE talent independently launches to both teams excluding caster. Old Shard enemy attacks lack TrueStrike and follow spell damage.",
+      "paraphrase": "Nonlethal pure self damage before1300projectile, impact SpellBlock and disjoint. AoE talent independently launches to both teams excluding caster. Old Shard enemy attacks lack TrueStrike and follow spell damage.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215191306",
+      "sha256": "94426455e754512db85e078a595f317d903051f3572162c81c3a6dcae9cd2478"
+    },
+    {
+      "id": "solar-2023",
+      "url": "https://web.archive.org/web/20230215194145id_/https://dota2.fandom.com/wiki/Solar_Crest",
+      "accessedOn": "2026-10-30",
+      "observation": "Old target modifiers refresh by sign and are basic dispellable. Item-owner armor reduction follows item cooldown independently, not target duration; no inventory behavior is inferred for AA free target effects.",
+      "paraphrase": "Old target modifiers refresh by sign and are basic dispellable. Item-owner armor reduction follows item cooldown independently, not target duration; no inventory behavior is inferred for AA free target effects.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215194145",
+      "sha256": "50e37e468e221505490c43d74b406cb1573cefcfcc96616023f981a235fe7bf3"
+    },
+    {
+      "id": "items-valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Old Butterfly35agility30attackSpeed25damage35percent evasion and old Solar6armor50AS10percent movement12seconds.",
+      "paraphrase": "Old Butterfly35agility30attackSpeed25damage35percent evasion and old Solar6armor50AS10percent movement12seconds.",
+      "versionContext": "Pinned2023 candidate; later item redesigns are excluded."
+    },
+    {
+      "id": "luna-2023",
+      "url": "https://web.archive.org/web/20230215191811id_/https://dota2.fandom.com/wiki/Luna",
+      "accessedOn": "2026-10-30",
+      "observation": "Main attack-begin damage/critical and leading speed feed bounces; no spell amp/lifesteal, physical block. Fresh targets then revisits; disjoint consumes bounce without marking hit.",
+      "paraphrase": "Main attack-begin damage/critical and leading speed feed bounces; no spell amp/lifesteal, physical block. Fresh targets then revisits; disjoint consumes bounce without marking hit.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215191811",
+      "sha256": "91209ecaeb19aa72f38e4a5ecccb9bdbd20ea49ba3325d949083ec953fa3312a"
+    },
+    {
+      "id": "snapfire-2023",
+      "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire",
+      "accessedOn": "2026-10-30",
+      "observation": "Immediate8globs,1300speed with.8..2flight;75percent turn slow. Shared first-source1second magma, immediate half-second ticks. Gobble/Spit have distinct actions and actual flight/landing.",
+      "paraphrase": "Immediate8globs,1300speed with.8..2flight;75percent turn slow. Shared first-source1second magma, immediate half-second ticks. Gobble/Spit have distinct actions and actual flight/landing.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215191541",
+      "sha256": "5e27ec69554d71439ee67f16cfd5ca40a8eb5c69f59676da23b9e2a8c604b0b1"
+    },
+    {
+      "id": "snap-history",
+      "url": "https://liquipedia.net/dota2/Snapfire/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "Older20percent slow talent and native Scepter Gobble prototypes identified; exact20burn lineage and free-action AA upgrade origin unproved.",
+      "paraphrase": "Older20percent slow talent and native Scepter Gobble prototypes identified; exact20burn lineage and free-action AA upgrade origin unproved.",
+      "versionContext": "Indexed history corroboration; actual2023 full snapshot remains the primary mechanic source."
+    },
+    {
+      "id": "drow-2023",
+      "url": "https://web.archive.org/web/20230215191655id_/https://dota2.fandom.com/wiki/Drow_Ranger",
+      "accessedOn": "2026-10-30",
+      "observation": "Base .1firstwave/.55wavegap/stagger; native class and immunity differ from explicit AA. Old Marksmanship conditional80is not critical; native aura/launch proc/body filters and half-second linger.",
+      "paraphrase": "Base .1firstwave/.55wavegap/stagger; native class and immunity differ from explicit AA. Old Marksmanship conditional80is not critical; native aura/launch proc/body filters and half-second linger.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215191655",
+      "sha256": "a0b383ce3ea1050c966f72c6697faeb4f5037a32e7c26c6271c8e9eb55069e0f"
+    },
+    {
+      "id": "drow-history",
+      "url": "https://liquipedia.net/dota2/Drow_Ranger/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "Older+2wave talent exists;7.32e reduces ally agility coefficient without changing self. Later wave/cone descriptions conflict with retained2023 timing.",
+      "paraphrase": "Older+2wave talent exists;7.32e reduces ally agility coefficient without changing self. Later wave/cone descriptions conflict with retained2023 timing.",
+      "versionContext": "Current indexed history only; used to distinguish versions, not to prove an exact AA Super clock."
+    },
+    {
+      "id": "skywrath-2023",
+      "url": "https://web.archive.org/web/20230215192153id_/https://dota2.fandom.com/wiki/Skywrath_Mage",
+      "accessedOn": "2026-10-30",
+      "observation": "Twenty-two .1pulses prioritize hero bodies then creeps, exclude immune soakers. Secondary search around primary excludes its170field. Old450talent and native Scepter match parts of AA upgrades.",
+      "paraphrase": "Twenty-two .1pulses prioritize hero bodies then creeps, exclude immune soakers. Secondary search around primary excludes its170field. Old450talent and native Scepter match parts of AA upgrades.",
+      "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+      "httpStatus": 200,
+      "archiveTimestamp": "20230215192153",
+      "sha256": "3b53c6694d56b7140fb9f173de9f0627ba654cc321879995c79ff55a86b8ef40"
+    }
+  ],
+  "capturedAA": [
+    {
+      "id": "custom_abaddon_death_coil",
+      "catalog": {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: Allies Yes, Enemies No"
+        ],
+        "cooldowns": [
+          5.5
+        ],
+        "description": "The caster releases a coil of deathly mist that can damage an enemy unit or heal a friendly unit at the cost of some of caster's health.",
+        "differences": "AI: Prioritize cast on allies with missing health.",
+        "gabenUpgrade": "Gaben: Performs an instant attack and applies a basic dispel and Solar Crests on every unit hit. DISPEL TYPE: Basic Dispel",
+        "icon": "abaddon_death_coil",
+        "id": "custom_abaddon_death_coil",
+        "manaCost": [
+          50
+        ],
+        "name": "Mist Coil",
+        "superUpgrade": "Super: Hits in 1000 AOE around target and doesn't hurt caster.",
+        "tags": [
+          "buff",
+          "damageAmplification",
+          "healing",
+          "instantAttack"
+        ],
+        "values": [
+          "CAST RANGE: 575",
+          "DAMAGE/HEAL: 110 / 160 / 260",
+          "SELF DAMAGE: 25%"
+        ]
+      },
+      "sha256": "2d543dcbd3e539672e6eab43858b7ab34f594c245d1899ce428db5c8e5a7d2c1"
+    },
+    {
+      "id": "custom_luna_moon_glaive",
+      "catalog": {
+        "categories": [
+          "ABILITY: Passive",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "cooldowns": [],
+        "description": "Empowers the hero's attacks, causing their attacks to bounce between enemy units. Deals less damage with each bounce.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Grants Butterfly.",
+        "icon": "luna_moon_glaive",
+        "id": "custom_luna_moon_glaive",
+        "manaCost": [],
+        "name": "Moon Glaives",
+        "superUpgrade": "Super: -8% damage reduction per bounce. +1 bounces.",
+        "tags": [
+          "instantAttack",
+          "passive"
+        ],
+        "values": [
+          "BOUNCE RADIUS: 500",
+          "BOUNCES: 1 / 2 / 4",
+          "DAMAGE REDUCTION PER BOUNCE: 56% / 50% / 38%"
+        ]
+      },
+      "sha256": "a9ada23c805cf54847718f3d0664e96880c4665d12d6029c0e82b3ac1dd8ec9c"
+    },
+    {
+      "id": "custom_snapfire_mortimer_kisses",
+      "catalog": {
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          120,
+          110,
+          100
+        ],
+        "description": "The caster launches a barrage of firespit globs over 5.5 seconds. Globs cause impact damage and create pools of firespit, which slow and apply damage over time. The caster has a reduced turn rate for the duration and a minimum launch range of 600.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: No longer requires channeling.",
+        "icon": "snapfire_mortimer_kisses",
+        "id": "custom_snapfire_mortimer_kisses",
+        "manaCost": [
+          125,
+          150,
+          175
+        ],
+        "name": "Mortimer Kisses",
+        "superUpgrade": "Super: +20% slow, and +20 burn damage per second. Given Gobble Up ability.",
+        "tags": [
+          "magicDamage",
+          "mobility",
+          "ultimate"
+        ],
+        "values": [
+          "BURN DPS: 10 / 20 / 30",
+          "DAMAGE PER GLOB: 100 / 200 / 300",
+          "ENEMY MOVEMENT SLOW: 15% / 20% / 25%",
+          "FIRESPIT POOL DURATION: 3",
+          "GLOB COUNT: 8",
+          "IMPACT RADIUS: 275"
+        ]
+      },
+      "sha256": "4dd50184bd001def4ff5768ca8f40e1c9a86710885cbe497fe0478fc0fe30a64"
+    },
+    {
+      "id": "custom_drow_ranger_multishot",
+      "catalog": {
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "cooldowns": [
+          24,
+          20,
+          12
+        ],
+        "description": "Channeling. Releases a flurry of arrows in continuous salvos, hitting enemies for extra damage and applying longer duration Frost Arrows. Lasts up to 1.75 seconds.",
+        "differences": "Applies all attack modifiers -- not just Frost Arrows.",
+        "gabenUpgrade": "Gaben: Grants Marksmanship.",
+        "icon": "drow_ranger_multishot",
+        "id": "custom_drow_ranger_multishot",
+        "manaCost": [
+          50,
+          70,
+          110
+        ],
+        "name": "Multishot",
+        "superUpgrade": "Super: +2 waves. +2 arrows per wave.",
+        "tags": [
+          "instantAttack"
+        ],
+        "values": [
+          "ARROW BASE DAMAGE BONUS: 85% / 110% / 160%",
+          "ARROW RANGE MULTIPLIER: 2",
+          "ARROW SLOW DURATION: 1.25 / 2 / 3.5",
+          "ARROWS PER WAVE: 4",
+          "WAVE COUNT: 3"
+        ]
+      },
+      "sha256": "0708f0c7f756d23716ea170a1111ccb88036af3c52d052e45e6149c2e67849f9"
+    },
+    {
+      "id": "custom_skywrath_mage_mystic_flare",
+      "catalog": {
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "cooldowns": [
+          60,
+          40,
+          20
+        ],
+        "description": "The caster uses their ultimate magical ability to conjure a precise and violent mystical field that lays waste to their adversaries. Deals massive damage distributed evenly among any Heroes in the area over 2.2 seconds.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Increases total damage by 450 and causes damage to no longer split between enemies.",
+        "icon": "skywrath_mage_mystic_flare",
+        "id": "custom_skywrath_mage_mystic_flare",
+        "manaCost": [
+          300,
+          400,
+          500
+        ],
+        "name": "Mystic Flare",
+        "superUpgrade": "Super: When Skywrath Mage casts Mystic Flare, another Mystic Flare will be created on the position of a different random target enemy within 700 range. Heroes will take priority.",
+        "tags": [
+          "magicDamage",
+          "ultimate"
+        ],
+        "values": [
+          "DAMAGE: 750 / 1175 / 1600",
+          "DURATION: 2.2",
+          "RADIUS: 170"
+        ]
+      },
+      "sha256": "d1fda286a8ba625e218f6fbf3c126e431687a303d1b6903fcdbc31b105658efa"
+    }
+  ],
+  "nativeArtifacts": [
+    {
+      "path": "references/dota-20230216/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+    },
+    {
+      "path": "references/dota-20230216/items.txt",
+      "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40"
+    }
+  ],
+  "ignoredEvidenceDirectory": "output/c10-mist-flare",
+  "network": "Four distinct new pages returnedHTTP200 once. Luna/Snapfire were reused from existing ignored captures; no known429URL retried."
+}

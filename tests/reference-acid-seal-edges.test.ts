@@ -122,7 +122,7 @@ describe('Ancient Seal reference edge results',()=>{
   const{b,u,t}=match(SEAL);castAt(b,SEAL);expect(t.summoned).toBeUndefined();expect(t.statuses.some(s=>s.kind==='silence'&&s.skill===SEAL)).toBe(true);expect(t.statuses.find(s=>s.kind==='magicResist'&&s.skill===SEAL)?.value).toBe(-.45);expect(applyDamage(b,u,t,100,'magical','hero_probe')).toBeCloseTo(145);
  });
  it.each(['ordinary summon','hero illusion','creep hero'] as const)('ASL-EDGE-11 a real %s is silenced without receiving the hero-only resistance reduction',kind=>{
-  const spawn=kind==='ordinary summon'?'custom_beastmaster_call_of_the_wild':kind==='hero illusion'?'custom_naga_siren_mirror_image':'custom_lone_druid_spirit_bear',w=match(SEAL,3,{targetSkill:spawn});w.u.cooldowns[0]=1000;advance(w.b,.85);
+  const spawn=kind==='ordinary summon'?'custom_beastmaster_call_of_the_wild':kind==='hero illusion'?'custom_naga_siren_mirror_image':'custom_lone_druid_spirit_bear',w=match(SEAL,3,{targetSkill:spawn});w.u.cooldowns[0]=1000;advance(w.b,kind==='hero illusion'?1.1:.85);
   const victim=w.b.units.find(unit=>unit.side===1&&unit.summoned&&(kind==='hero illusion'?unit.illusion:kind==='creep hero'?unit.extraSpiritBear:unit.name==='豪猪'))!;expect(victim).toBeDefined();expect(victim.owner).toBe(w.t.id);
   if(kind==='hero illusion'){expect(victim.illusion).toBe(true);expect(victim.role).toBe(w.t.role);}if(kind==='creep hero')expect(victim.consideredHero).toBe(true);
   for(const body of w.b.units){body.moveSpeed=0;body.nextAttack=1000;body.cooldowns=body.cooldowns.map(()=>1000);body.statuses.push({kind:'disarm',until:100});if(body.side===1){body.x=7;body.y=10;}}

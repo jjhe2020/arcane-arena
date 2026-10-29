@@ -336,10 +336,10 @@ describe('catalog-driven additional skills', () => {
     const state = createBattle(a, player(1), 5, defs), [caster, ally, enemy] = state.units;
     enemy.y = 8; caster.cooldowns[0] = 120;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .3); expect(ally.statuses.some(s => s.kind === 'banished')).toBe(true);
+    advance(state, .4); expect(ally.statuses.some(s => s.kind === 'banished')).toBe(true);
     advance(state, 1.2); expect(ally.statuses.some(s => s.kind === 'banished')).toBe(false); expect(ally.y).toBeGreaterThan(7);
     expect(state.events.filter(e => e.type === 'cast' && e.skill === 'aa_granted_gobble_up')).toHaveLength(1);
-    expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_gobble_up')).toBe(true);
+    expect(state.events.some(e => e.type === 'cast' && e.skill === 'aa_granted_spit_out')).toBe(true);expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_spit_out')).toBe(true);
   });
 
   it('Astral Step Super applies the documented working interpretation of a 200% total critical', () => {
@@ -497,8 +497,8 @@ describe('catalog-driven additional skills', () => {
 
   it('Multishot arrows already released survive a later channel interrupt while later salvos stop', () => {
     const state = battle('custom_drow_ranger_multishot', 3), [caster, target] = state.units;
-    caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;
-    advance(state, .7);
+    caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;target.y=7;
+    advance(state, .4);expect((state.projectiles as {skill:string}[]).some(p=>p.skill==='custom_drow_ranger_multishot')).toBe(true);
     expect(state.events.filter(e => e.type === 'hit' && e.source === caster.id)).toHaveLength(0);
     caster.statuses.push({ kind: 'stun', until: 200 }); advance(state, 2);
     expect(state.events.filter(e => e.type === 'hit' && e.source === caster.id && (e.amount ?? 0) > 0)).toHaveLength(1);
@@ -613,7 +613,7 @@ describe('catalog-driven additional skills', () => {
     const a = player(0, 'custom_drow_ranger_multishot', 3, 2); a.heroes[1].x = 8;
     const state = createBattle(a, player(1), 4, defs), [caster, , target] = state.units;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .7); caster.hp = 0; caster.dead = true; advance(state, 1.5);
+    target.y=7;advance(state, .7);expect((state.projectiles as {skill:string}[]).some(p=>p.skill==='custom_drow_ranger_multishot')).toBe(true);caster.hp = 0; caster.dead = true; advance(state, 1.5);
     expect(state.events.filter(e => e.type === 'hit' && e.source === caster.id && e.target === target.id && (e.amount ?? 0) > 0)).toHaveLength(1);
   });
 
@@ -723,7 +723,8 @@ describe('catalog-driven additional skills', () => {
       expect(state.events.some(e => e.type === 'status' && e.skill === id && e.status === 'spellBlocked'), id).toBe(true);
       expect(target.statuses.some(s => s.kind === 'spellBlock')).toBe(false);
       expect(caster.mana).toBeLessThan(mana);
-      expect(state.events.some(e => e.type === 'hit' && e.skill === id)).toBe(false);
+      expect(state.events.some(e => e.type === 'hit' && e.skill === id&&e.target===target.id)).toBe(false);
+      if(id==='custom_abaddon_death_coil')expect(state.events.filter(e=>e.type==='hit'&&e.skill===id&&e.target===caster.id).map(e=>[e.damageType,e.amount])).toEqual([['pure',65]]);
       expect(target.statuses.some(s => ['lifeDrainLink', 'manaDrainLink'].includes(s.kind))).toBe(false);
     }
   });
@@ -747,7 +748,7 @@ describe('catalog-driven additional skills', () => {
   it('Gobble Up promptly releases a held ally if the caster dies before the automatic spit', () => {
     const state = createBattle(player(0, 'custom_snapfire_mortimer_kisses', 6, 2), player(1), 8, defs), [caster, ally] = state.units;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.mana = u.maxMana = 10000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .2); expect(ally.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true);
+    caster.cooldowns[0]=120;advance(state, .4);expect(ally.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true);
     caster.hp = 0; caster.dead = true; advance(state, .1);
     expect(ally.statuses.some(s => s.skill === 'aa_granted_gobble_up' && ['banished', 'visualForm'].includes(s.kind))).toBe(false);
     const position = { x: ally.x, y: ally.y }; advance(state, .8);
@@ -756,12 +757,12 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Gobble Up can fall back to an ordinary nearby enemy creep and consumes it only after the spit lands', () => {
-    const state = createBattle(player(0, 'custom_snapfire_mortimer_kisses', 9), player(1, undefined, 3, 2), 8, defs), [, creep, destination] = state.units;
+    const state = createBattle(player(0, 'custom_snapfire_mortimer_kisses', 9), player(1, undefined, 3, 2), 8, defs), [caster, creep, destination] = state.units;
     creep.summoned = true; creep.x = 1; creep.y = -2; destination.x = 0; destination.y = 6;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.mana = u.maxMana = 10000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .8); expect(creep.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true); expect(creep.dead).toBe(false);
+    caster.cooldowns[0]=120;advance(state, .4);expect(creep.statuses.some(s => s.kind === 'banished' && s.skill === 'aa_granted_gobble_up')).toBe(true); expect(creep.dead).toBe(false);
     advance(state, 1.2); expect(creep.dead).toBe(true);
-    expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_gobble_up' && e.executed === true && e.target === creep.id)).toBe(true);
-    expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_gobble_up' && e.target === destination.id)).toBe(true);
+    expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_spit_out' && e.executed === true && e.target === creep.id)).toBe(true);
+    expect(state.events.some(e => e.type === 'hit' && e.skill === 'aa_granted_spit_out' && e.target === destination.id)).toBe(true);
   });
 });

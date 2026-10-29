@@ -1,0 +1,685 @@
+{
+  "group": "mana-mirror",
+  "accessedOn": "2026-10-30",
+  "policy": "AA explicit numbers and confirmed custom behavior are retained. Other nonnumeric mechanisms prioritize directly read2023Wiki;AA category strings are recorded conflicts,not evidence of custom Lua.",
+  "aa": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "status": 200,
+    "accessedOn": "2026-10-30",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "selection": [
+      {
+        "name": "Mana Break",
+        "id": "antimage_mana_break",
+        "icon": "antimage_mana_break",
+        "tags": [
+          "attackModifier",
+          "passive"
+        ],
+        "categories": [
+          "ABILITY: Passive",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "description": "Burns an opponent's mana on each attack and deals damage equal to a percentage of the mana burnt. Enemies with no mana left are temporarily slowed.",
+        "differences": "",
+        "values": [
+          "MANA BURNED AS DAMAGE: 50%",
+          "MANA BURNED PER HIT: 28 / 40 / 64",
+          "MAX MANA BURNED PER HIT: 1% / 1.8% / 3.4%",
+          "MOVE SPEED SLOW ON FULL DRAIN: 25% / 30% / 40%",
+          "SLOW DURATION: 0.75"
+        ],
+        "cooldowns": [],
+        "manaCost": [],
+        "superUpgrade": "Super: Grants Blink Fragment.",
+        "gabenUpgrade": "Gaben: Automatically casts Mana Void if the target is out of mana. This effect has a 5 second cooldown."
+      },
+      {
+        "name": "Mana Drain",
+        "id": "custom_lion_mana_drain",
+        "icon": "lion_mana_drain",
+        "tags": [
+          "magicImmunity",
+          "manaRegeneration",
+          "spam"
+        ],
+        "categories": [
+          "ABILITY: Channeled",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "CHANNELED - Absorbs the magical energies of a target enemy unit by taking mana from it every second.",
+        "differences": "",
+        "values": [
+          "BREAK DISTANCE: 1100",
+          "CHANNEL DURATION: 5",
+          "MANA PER SECOND: 20 / 40 / 120",
+          "MOVEMENT SLOW: 20% / 25% / 35%"
+        ],
+        "cooldowns": [
+          15,
+          12,
+          6
+        ],
+        "manaCost": [
+          10,
+          10,
+          10
+        ],
+        "superUpgrade": "Super: Grants spell immunity while channelling. Mana drained is distributed to allies within 900 unit radius from the caster.",
+        "gabenUpgrade": "Gaben: Mana Drain deals damage and targets 2 more units."
+      },
+      {
+        "name": "Mana Shield",
+        "id": "custom_medusa_mana_shield",
+        "icon": "medusa_mana_shield",
+        "tags": [
+          "magicDamage",
+          "manaRegeneration",
+          "stun"
+        ],
+        "categories": [
+          "ABILITY: Toggle",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "Creates a shield that absorbs 40% / 50% / 60% / 70% of incoming damage in exchange for the hero's mana. Provides bonus mana capacity.",
+        "differences": "",
+        "values": [
+          "BONUS MANA: 50 / 100 / 200",
+          "DAMAGE ABSORBED: 40% / 50% / 70%",
+          "DAMAGE PER MANA: 0.8 / 1.2 / 2"
+        ],
+        "cooldowns": [],
+        "manaCost": [],
+        "superUpgrade": "Super: When the hero spends 500 of their mana on Mana Shield, it automatically casts a Mystic Snake (8% mana steal) on the last unit that damaged this hero.",
+        "gabenUpgrade": "Gaben: Mystic Snake petrifies for 1 seconds. Targets affected are stunned and take 50% extra physical damage for the duration of the debuff."
+      },
+      {
+        "name": "Meat Hook",
+        "id": "custom_pudge_meat_hook",
+        "icon": "pudge_meat_hook",
+        "tags": [
+          "displacement",
+          "pureDamage"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Pure",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "description": "Launches a bloody hook toward a unit or location. The hook will snag the first unit it encounters, dragging the unit back to Pudge, killing it if it's a non-ancient creep and dealing damage if it is an enemy otherwise.",
+        "differences": "Hook only affects enemy heroes.",
+        "values": [
+          "CAST RANGE: 1300",
+          "DAMAGE: 150 / 220 / 360"
+        ],
+        "cooldowns": [
+          18,
+          16,
+          12
+        ],
+        "manaCost": [
+          110
+        ],
+        "superUpgrade": "Super: Units hit are max level Ruptured during hook.",
+        "gabenUpgrade": "Gaben: Launches two extra hooks to either side of the main one."
+      },
+      {
+        "name": "Mirror Image",
+        "id": "custom_naga_siren_mirror_image",
+        "icon": "naga_siren_mirror_image",
+        "tags": [
+          "dispel"
+        ],
+        "categories": [
+          "ABILITY: No Target"
+        ],
+        "description": "Creates multiple images of the caster under their control.",
+        "differences": "",
+        "values": [
+          "IMAGE COUNT: 3",
+          "IMAGE DAMAGE TAKEN: 350%",
+          "IMAGE DAMAGE: 25% / 30% / 40%",
+          "IMAGE DURATION: 26"
+        ],
+        "cooldowns": [
+          40,
+          35,
+          25
+        ],
+        "manaCost": [
+          70,
+          85,
+          115
+        ],
+        "superUpgrade": "Super: +25 agility. Reduces cooldown by 10, and increases outgoing damage by 13%.",
+        "gabenUpgrade": "Gaben: Grants Riptide: every 6 attacks (including illusions), the caster and their images will hit all nearby units with a 55 damage wave that lowers armor by 8 for 4 seconds. Increases illusion count by 1."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "hero": "Anti-Mage",
+      "url": "https://web.archive.org/web/20230215191509id_/https://dota2.fandom.com/wiki/Anti-Mage",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "005df87f109712c0df4063990f53434f360962f8db43065ac73987c570176684",
+      "observation": "Mana Break is noncritical physical conditional attack damage,counts for ordinary lifesteal/cleave/oneflatblock,ignores percentage attack bonuses and burns half with illusions. Burn precedes attack and empty-pool slow follows. Native BlinkFragment is antimage_mana_overload:1level,3charges,25restore,45mana,0.2+0.84,75/200percent,7seconds,default750range without Blink. Native3ManaVoid stuns only the primary before shared damage.",
+      "versionContext": "Actual HTTP2002023-02-15Wayback hero page read during C10intake. AA explicit values override native balance;modern post7.33changes are not imported."
+    },
+    {
+      "hero": "Lion",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Lion",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "f5420f38384ccda6bd22528def079c59e88b85ccb87791e3cf9b2b0340ace24c",
+      "observation": "Mana Drain0.3+0/850 starts at0.1and ticks50times over5seconds;ordinary illusions die without mana transfer,strong illusions are drained. It supplies TrueSight. Primary immunity/untargetability ends the channel. Secondary invisibility pauses mana/damage despite the retained link and slow;secondary immunity retains drain/slow without magical damage. Native talent coefficient150percent is distinguished from AA unspecified damage. Native link/TrueSight modifier is Death-only and is not removed by basic or strong dispel.",
+      "versionContext": "Actual HTTP2002023-02-15Wayback hero page read during C10intake. AA explicit values override native balance;modern post7.33changes are not imported."
+    },
+    {
+      "hero": "Medusa",
+      "url": "https://web.archive.org/web/20230215191810id_/https://dota2.fandom.com/wiki/Medusa",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "664a9c2419fcf6444c81d35788fd1a4f18396196935d27968d058982bc444f5a",
+      "observation": "Pre7.33 ManaShield is toggle protection before incoming reductions/block/barriers,excluding HPLOSS. MysticSnake uses maximum-mana restoration without burning enemy mana,excludes illusion mana returns,increases speed multiplicatively15percent and damage linearly35percent,does not count invalid victims,returns on impact SpellBlock and applies damage then slow then stone. Its stone uses the nonstacking StoneGaze modifier. Native shield toggle is undispellable.",
+      "versionContext": "Actual HTTP2002023-02-15Wayback hero page read during C10intake. AA explicit values override native balance;modern post7.33changes are not imported."
+    },
+    {
+      "hero": "Pudge",
+      "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Pudge",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "ff04d65ddbb348f93bd45a55add2fdb17beab9220426ac5b43ef5e476eb398e9",
+      "observation": "MeatHook0.3+0.59,1450speed/100collision radius and full return hold ignore status resistance;spell-immune victims are pulled and damaged without disable. AA specifically restricts collision to enemy heroes,overriding native ally rescue/creep execution. Return origin is separately corroborated by the dated2013patch.",
+      "versionContext": "Actual HTTP2002023-02-15Wayback hero page read during C10intake. AA explicit values override native balance;modern post7.33changes are not imported."
+    },
+    {
+      "hero": "Naga_Siren",
+      "url": "https://web.archive.org/web/20230215191633id_/https://dota2.fandom.com/wiki/Naga_Siren",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "ad0041533f955ee9d822567196cb136c2b6660d118012e23c0c264c7344a313b",
+      "observation": "MirrorImage0.4+0 then0.5split applies basic dispel/disjoint and hidden/invulnerable/spellimmune states,then cardinal formation with randomized caster placement;recasts replace old images. RipTide applies armor before one magical wave per unique victim and before the triggering attack;actual triggering body owns damage. The summary says independent counters while detail and AA wording support shared counting,so the conflict remains explicit.",
+      "versionContext": "Actual HTTP2002023-02-15Wayback hero page read during C10intake. AA explicit values override native balance;modern post7.33changes are not imported."
+    }
+  ],
+  "muerta": {
+    "id": "muerta2023",
+    "url": "https://web.archive.org/web/20230315233726id_/https://dota2.fandom.com/wiki/Muerta",
+    "accessedOn": "2026-10-29",
+    "observation": "Early Pierce the Veil converts conditional attack damage together with the main hit. Converted damage uses spell amplification and spell lifesteal, excluding ordinary lifesteal. Separate damage instances and Mana Break are excluded.",
+    "versionContext": "Direct HTTP2007.32e snapshot, after Muerta release2023-03-06; used only for this AA cross-skill conversion, not modern Muerta mechanics.",
+    "sha256": "66c00da92023cd12943ea11d6ba0204738328d928ba9f5688d1d408ef0bb2f84"
+  },
+  "selectedValve": {
+    "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+    "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+    "fields": {
+      "antimage_mana_break": {
+        "ID": "5003",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilitySound": "Hero_Antimage.ManaBreak",
+        "AbilityValues": {
+          "percent_damage_per_burn": "50",
+          "mana_per_hit": "28 40 52 64",
+          "mana_per_hit_pct": {
+            "value": "1 1.8 2.6 3.4",
+            "special_bonus_unique_antimage_7": "+0.6"
+          },
+          "illusion_percentage": "50",
+          "move_slow": "25 30 35 40",
+          "slow_duration": "0.75"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "antimage_mana_overload": {
+        "ID": "543",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "MaxLevel": "1",
+        "IsGrantedByScepter": "1",
+        "HasScepterUpgrade": "1",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2",
+        "AbilityCooldown": "0",
+        "AbilityCharges": "3",
+        "AbilityChargeRestoreTime": "25",
+        "AbilityManaCost": "45",
+        "AbilityValues": {
+          "duration": "7",
+          "outgoing_damage": "-25",
+          "incoming_damage": "100"
+        }
+      },
+      "antimage_blink": {
+        "ID": "5004",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_OVERSHOOT",
+        "HasScepterUpgrade": "0",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityManaCost": "45",
+        "AbilitySound": "Hero_Antimage.Blink_out",
+        "AbilityValues": {
+          "AbilityCooldown": {
+            "value": "12 10 8 6",
+            "special_bonus_unique_antimage": "-1"
+          },
+          "AbilityCastRange": {
+            "value": "750 900 1050 1200",
+            "special_bonus_unique_antimage_3": "+250"
+          },
+          "min_blink_range": "200"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "antimage_counterspell": {
+        "ID": "7314",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityCooldown": "15 11 7 3",
+        "AbilityManaCost": "45",
+        "AbilityValues": {
+          "magic_resistance": {
+            "value": "15 25 35 45",
+            "special_bonus_unique_antimage_4": "+20"
+          },
+          "duration": "1.2",
+          "shard_radius": {
+            "special_bonus_shard": "+900"
+          },
+          "shard_spell_damage_reduction_pct": {
+            "special_bonus_shard": "+10"
+          },
+          "shard_bonus_aura_range": {
+            "special_bonus_shard": "+300"
+          },
+          "shard_bonus_spell_damage_reduction_pct": {
+            "special_bonus_shard": "+30"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT"
+      },
+      "antimage_mana_void": {
+        "ID": "5006",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Antimage.ManaVoid",
+        "AbilityDraftUltScepterAbility": "antimage_mana_overload",
+        "AbilityCastRange": "600",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityManaCost": "100 200 300",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilityValues": {
+          "AbilityCooldown": {
+            "value": "70",
+            "special_bonus_unique_antimage_2": "-50"
+          },
+          "mana_void_damage_per_mana": {
+            "value": "0.8 0.95 1.1",
+            "special_bonus_unique_antimage_6": "+0.1"
+          },
+          "mana_void_ministun": {
+            "value": "0.3",
+            "special_bonus_unique_antimage_8": "+1"
+          },
+          "mana_void_aoe_radius": {
+            "value": "500",
+            "special_bonus_unique_antimage_manavoid_aoe": "+150"
+          }
+        }
+      },
+      "lion_mana_drain": {
+        "ID": "5046",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "850",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityChannelTime": "5.1",
+        "AbilityCooldown": "15 12 9 6",
+        "AbilityManaCost": "10 10 10 10",
+        "AbilityModifierSupportValue": "5.0",
+        "AbilityValues": {
+          "duration": "5.0",
+          "mana_per_second": {
+            "value": "20 40 60 120"
+          },
+          "break_distance": {
+            "value": "1100",
+            "special_bonus_shard": "+400"
+          },
+          "tick_interval": "0.1",
+          "movespeed": {
+            "value": "20 25 30 35",
+            "special_bonus_unique_lion_6": "+10"
+          },
+          "shard_bonus_break_distance": {
+            "value": "400",
+            "RequiresShard": "1"
+          },
+          "shard_bonus_targets": {
+            "value": "2",
+            "RequiresShard": "1"
+          },
+          "damage_pct": {
+            "value": "0",
+            "special_bonus_unique_lion_manadrain_damage": "+150"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "medusa_mana_shield": {
+        "ID": "5506",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySound": "Hero_Medusa.ManaShield.On",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityValues": {
+          "damage_per_mana": {
+            "value": "1.3 1.7 2.1 2.5",
+            "special_bonus_unique_medusa_6": "+0.5"
+          },
+          "absorption_pct": "70",
+          "bonus_mana": "120 180 240 300"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "medusa_mystic_snake": {
+        "ID": "5505",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Medusa.MysticSnake.Cast",
+        "AbilityDraftShardAbility": "medusa_cold_blooded",
+        "HasScepterUpgrade": "1",
+        "AbilityValues": {
+          "AbilityCastRange": "750",
+          "AbilityCastPoint": "0.2",
+          "AbilityCooldown": {
+            "value": "10",
+            "special_bonus_unique_medusa_5": "-2"
+          },
+          "AbilityManaCost": "140",
+          "radius": "450",
+          "snake_jumps": {
+            "value": "3 4 5 6",
+            "special_bonus_unique_medusa_3": "+2"
+          },
+          "jump_delay": "0.25 0.25 0.25 0.25",
+          "snake_damage": {
+            "value": "80 120 160 200",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "snake_damage_pct": "0",
+          "snake_mana_steal": "11 14 17 20",
+          "snake_scale": "35",
+          "snake_speed_scale": "15",
+          "initial_speed": "800",
+          "return_speed": "800",
+          "stone_form_scepter_base": {
+            "value": "1.3",
+            "RequiresScepter": "1"
+          },
+          "stone_form_scepter_increment": {
+            "value": "0.2",
+            "RequiresScepter": "1"
+          },
+          "movement_slow": {
+            "value": "30",
+            "special_bonus_unique_medusa_7": "+15"
+          },
+          "turn_slow": {
+            "value": "50",
+            "special_bonus_unique_medusa_7": "+15"
+          },
+          "slow_duration": "3"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "pudge_meat_hook": {
+        "ID": "5075",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Pudge.AttackHookExtend",
+        "AbilityCastRange": "1300",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityManaCost": "110",
+        "AbilityValues": {
+          "damage": {
+            "value": "150 220 290 360",
+            "special_bonus_unique_pudge_7": "+120"
+          },
+          "hook_speed": "1450.0",
+          "hook_width": "100",
+          "hook_distance": "1300",
+          "vision_radius": "500 500 500 500",
+          "vision_duration": "4.0 4.0 4.0 4.0",
+          "AbilityCooldown": {
+            "value": "18 16 14 12",
+            "special_bonus_unique_pudge_5": "-4"
+          },
+          "vector_target_distance": {
+            "value": "0"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "bloodseeker_rupture": {
+        "ID": "5018",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+        "FightRecapLevel": "2",
+        "AbilitySound": "hero_bloodseeker.rupture",
+        "AbilityDraftUltScepterAbility": "bloodseeker_blood_mist",
+        "AbilityCastPoint": "0.4",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_6",
+        "AbilityCooldown": "70",
+        "AbilityManaCost": "100 150 200",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilityValues": {
+          "duration": "10 11 12",
+          "movement_damage_pct": {
+            "value": "33 44 55",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "hp_pct": {
+            "value": "10",
+            "CalculateSpellDamageTooltip": "0",
+            "special_bonus_unique_bloodseeker_7": "+8",
+            "DamageTypeTooltip": "DAMAGE_TYPE_PURE"
+          },
+          "damage_cap_amount": {
+            "value": "200",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "AbilityCastRange": {
+            "value": "800",
+            "special_bonus_unique_bloodseeker_3": "+425"
+          },
+          "AbilityCharges": {
+            "value": "0",
+            "special_bonus_unique_bloodseeker_rupture_charges": "+2"
+          }
+        }
+      },
+      "naga_siren_mirror_image": {
+        "ID": "5467",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilitySound": "Hero_NagaSiren.MirrorImage",
+        "AbilityCastPoint": "0.4",
+        "AbilityCooldown": "40 35 30 25",
+        "AbilityManaCost": "70 85 100 115",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "illusion_duration": "26"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "outgoing_damage": "-75 -70 -65 -60",
+            "LinkedSpecialBonus": "special_bonus_unique_naga_siren_4"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "outgoing_damage_tooltip": "25 30 35 40",
+            "LinkedSpecialBonus": "special_bonus_unique_naga_siren_4"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "incoming_damage": "250"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "tooltip_incoming_damage_total_pct": "350"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "images_count": "3 3 3 3",
+            "LinkedSpecialBonus": "special_bonus_unique_naga_siren"
+          },
+          "07": {
+            "var_type": "FIELD_FLOAT",
+            "invuln_duration": "0.5"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "naga_siren_rip_tide": {
+        "ID": "5469",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_NagaSiren.Riptide.Cast",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityValues": {
+          "hits": {
+            "value": "6"
+          },
+          "armor_reduction": {
+            "value": "-2 -4 -6 -8",
+            "LinkedSpecialBonus": "special_bonus_unique_naga_siren_3"
+          },
+          "damage": {
+            "value": "40 45 50 55",
+            "LinkedSpecialBonus": "special_bonus_unique_naga_siren_2"
+          },
+          "radius": "300",
+          "duration": "4.0",
+          "debuff_duration": "10"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      }
+    }
+  },
+  "diagnosticIntake": {
+    "path": "output/c10-mana-mirror/actual-diagnostics.json",
+    "actualCases": 20,
+    "meaning": "Original before-fix diagnostic results;manually moved units and flag probes are not claimed as complete real-skill interactions."
+  },
+  "versionDecisions": [
+    {
+      "id": "fragment-real-kv",
+      "decision": "Retain granted alias aa_granted_blink_fragment but map its source to real antimage_mana_overload. The previous absent-from-KV statement was a lookup error."
+    },
+    {
+      "id": "snake-restore",
+      "decision": "AA8percent overrides the restored fraction. Pre7.33 contemporary native Snake does not burn enemy mana. The legacy steal wording is mapped to that prototype,with exact AA Lua still source_pending."
+    },
+    {
+      "id": "shield-category",
+      "decision": "Prioritize directly read native undispellable toggle. AA StrongDispelsOnly metadata conflicts remain source_pending without AA Lua;AA numeric values and existing manual-toggle policy are unchanged."
+    },
+    {
+      "id": "hook-aa-hero-only",
+      "decision": "Specific AAenemyheroes-only difference overrides generic native ally/creep wording. Current hero gate includes actual heroes/illusions/clones and excludes consideredHero creeps;the ambiguous AA creep-hero classification stays qualified."
+    },
+    {
+      "id": "rip-shared",
+      "decision": "AA includingillusions and dated detailed counter paragraph win over conflicting independent-counter summary. Post-owner-death accumulated counter persistence remains a tested working policy."
+    },
+    {
+      "id": "drain-category",
+      "decision": "Prioritize native Death-only link/TrueSight and attached slow. Basic/strong dispel do not end them;real interruption/death/invalid primary still does. AA StrongDispelsOnly remains unproved conflicting category metadata."
+    }
+  ],
+  "premitigationPairingReview": {
+    "accessedOn": "2026-10-30",
+    "sources": [
+      {
+        "id": "lich-incoming-retained",
+        "url": "https://dota2.fandom.com/wiki/Lich",
+        "accessedOn": "2026-10-30",
+        "observation": "Retained older Wiki identifies FrostShield as generic incoming reduction limited to hero-based attacks of alltypes and says it adds with other generic incoming manipulation. Nonhero/building attacks,spells,cleave andHPRemoval are excluded. No modern balance numbers are imported.",
+        "versionContext": "Actually read indexed retained approximately7.35page on final C10boundary review. This is a nonnumeric compatibility source,not a claimed direct2023HTTPcapture.",
+        "corroborationUrl": "https://liquipedia.net/dota2/Lich"
+      },
+      {
+        "id": "golem-incoming-2023",
+        "url": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying",
+        "accessedOn": "2026-10-30",
+        "sha256": "c1e8149f8658ff90b208ebb5f858e06b682cf2b97dc3bc05ccacb92cc4adf688",
+        "observation": "The directly captured2023FleshGolem page says the attack first applies its generic incoming damage amplification,which adds with other generic incoming manipulation and affects all damage types. Final registered Golem uses this target-wide generic group,not the old sourceDamageAmp field.",
+        "versionContext": "C4prior directHTTP2002023-02-15cache actually reread for this pairing. No newHTTP200claim;AA15percent testvalue remains the locked custom number."
+      }
+    ],
+    "preFixDiagnostic": "output/c10-mana-mirror/premit-combos.json",
+    "redReport": "output/c10-mana-mirror/premit-red-tests.json",
+    "confirmedBeforeFix": {
+      "input1000bareManaSpent": 350,
+      "frost60ManaSpent": 140,
+      "frost60Golem15ManaSpent": 140,
+      "golem15ManaSpent": 350,
+      "golem15Hp": 345
+    },
+    "acceptedFiniteResults": {
+      "frost60": {
+        "mana": 350,
+        "hp": 120
+      },
+      "golem15": {
+        "mana": 350,
+        "hp": 345
+      },
+      "frost60Golem15": {
+        "mana": 350,
+        "hp": 165
+      }
+    },
+    "sourceBoundary": "Medusa2023before-any-target-reduction plus retainedFrost generic additive incoming semantics and directly captured2023Golem generic semantics. Preserve unknownlegacy attackDamageReduction/sourceDamageAmp behavior;actualfinal sourceDamageAmp consumer is WildAxes,not this Golem override. No whole-engine damage-order certification."
+  }
+}

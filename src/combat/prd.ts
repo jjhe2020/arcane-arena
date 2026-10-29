@@ -58,4 +58,6 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   custom_tusk_walrus_punch:['walrusPunch'],
   // The 7.30 Anchor Smash attack-proc talent is documented as PRD.
   tidehunter_anchor_smash:['anchorSmash'],
+  // The dated 2023 Marksmanship notes explicitly name PRD.
+  drow_ranger_marksmanship:['marksmanship'],
 };

@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 140 项；完整逐项通过 7 项。
-当前代码下，1463 条具名结果测试要求通过，1463 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 155 项；完整逐项通过 7 项。
+当前代码下，1647 条具名结果测试要求通过，1647 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -136,22 +136,22 @@
 | 月之祝福 (Lunar Blessing) | 审查中 | 1 / 1 / 1 / 10 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
 | 魔法箭 (Magic Missile) | 审查中 | 2 / 1 / 1 / 2 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
 | 磁场 (Magnetic Field) | 审查中 | 1 / 2 / 0 / 2 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
-| 法力损毁 (Mana Break) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 法力吸取 (Mana Drain) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 魔法护盾 (Mana Shield) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 肉钩 (Meat Hook) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 镜像 (Mirror Image) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 迷雾缠绕 (Mist Coil) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 法力损毁 (Mana Break) | 审查中 | 1 / 1 / 5 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 法力吸取 (Mana Drain) | 审查中 | 1 / 1 / 1 / 4 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 魔法护盾 (Mana Shield) | 审查中 | 1 / 0 / 0 / 3 / 13 | 5 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 肉钩 (Meat Hook) | 审查中 | 1 / 1 / 1 / 0 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 镜像 (Mirror Image) | 审查中 | 1 / 0 / 1 / 4 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 迷雾缠绕 (Mist Coil) | 审查中 | 2 / 4 / 0 / 0 / 5 | 5 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
 | 勇气之霎 (Moment of Courage) | 审查中 | 2 / 0 / 0 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
-| 月刃 (Moon Glaives) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 蜥蜴绝吻 (Mortimer Kisses) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 数箭齐发 (Multishot) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 神秘之耀 (Mystic Flare) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 自然之助 (Nature's Attendants) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 自然的呼唤 (Nature's Call) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 移形换位 (Nether Swap) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 幽冥剧毒 (Nethertoxin) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 无敌斩 (Omnislash) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 月刃 (Moon Glaives) | 审查中 | 3 / 2 / 0 / 0 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
+| 蜥蜴绝吻 (Mortimer Kisses) | 审查中 | 2 / 7 / 0 / 0 / 3 | 8 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
+| 数箭齐发 (Multishot) | 审查中 | 3 / 2 / 0 / 0 / 6 | 10 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
+| 神秘之耀 (Mystic Flare) | 审查中 | 2 / 8 / 0 / 0 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
+| 自然之助 (Nature's Attendants) | 审查中 | 3 / 3 / 3 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 自然的呼唤 (Nature's Call) | 审查中 | 3 / 2 / 0 / 1 / 2 | 6 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 移形换位 (Nether Swap) | 审查中 | 3 / 1 / 1 / 2 / 6 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 幽冥剧毒 (Nethertoxin) | 审查中 | 3 / 3 / 2 / 2 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 无敌斩 (Omnislash) | 审查中 | 3 / 2 / 2 / 1 / 8 | 9 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 过载 (Overcharge) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 疯狂生长 (Overgrowth) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 超负荷 (Overload) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

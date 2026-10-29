@@ -61,4 +61,10 @@ describe('combat text and interpolated transforms',()=>{
   const middle=interpolatedTransform(u,.5);expect(middle.x).toBe(5);expect(middle.y).toBe(2);expect(Math.abs(middle.facing)).toBeCloseTo(Math.PI);expect(u).toEqual(saved);
   u.warpSequence=1;expect(interpolatedTransform(u,.5)).toMatchObject({x:10,y:4,facing:u.facing});
  });
+ it('shows ordinary impacts separately while merging only same-type periodic damage',()=>{
+  const base:CombatEvent={time:.5,type:'hit',source:'s',target:'t',skill:'ability',x:0,y:0,amount:10,damageType:'magical'};
+  const events=[{...base,sequence:1},{...base,time:.55,sequence:2},{...base,time:.56,sequence:3,flags:{damageOverTime:true}},{...base,time:.57,sequence:4,flags:{damageOverTime:true}},{...base,time:.58,sequence:5,damageType:'pure' as const,flags:{damageOverTime:true}}],before=structuredClone(events);
+  const packets=combatTextEvents(events,.6);expect(packets.filter(p=>!p.damageOverTime).map(p=>p.amount)).toEqual([10,10]);expect(packets.filter(p=>p.damageOverTime).map(p=>[p.damageType,p.amount])).toEqual([['magical',20],['pure',10]]);expect(events).toEqual(before);
+  expect(combatTextEvents(events.slice(1),.6).find(p=>!p.damageOverTime)?.key).toBe(packets.filter(p=>!p.damageOverTime)[1].key);
+ });
 });

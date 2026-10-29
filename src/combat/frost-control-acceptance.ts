@@ -75,7 +75,7 @@ function frostShield(c:C):void{
  const target=c.target,duration=v(c,'BUFF DURATION'),token=sequence(c,'shield'),data={ownerInstance:identity(c),componentToken:token,token};
  c.status(target,'frostShield',duration,1,{dispel:'basic',removeOnDeath:true,piercesImmunity:true,affectsInvulnerable:true,data});
  const marker=owned(c,target,'frostShield');if(!marker)return;
- c.status(target,'attackDamageReduction',duration,v(c,'DAMAGE REDUCTION')/100+(!compiled(c,'PULSE RADIUS')&&c.skill.points>=6?.1:0),{dispel:'basic',removeOnDeath:true,piercesImmunity:true,affectsInvulnerable:true,data:{...data,heroAttackOnly:true}});
+ c.status(target,'attackDamageReduction',duration,v(c,'DAMAGE REDUCTION')/100+(!compiled(c,'PULSE RADIUS')&&c.skill.points>=6?.1:0),{dispel:'basic',removeOnDeath:true,piercesImmunity:true,affectsInvulnerable:true,data:{...data,heroAttackOnly:true,genericIncoming:true}});
  if(c.skill.points>=6)c.status(target,'regen',duration,v(c,'HEALTH REGEN',50),{dispel:'basic',removeOnDeath:true,piercesImmunity:true,affectsInvulnerable:true,data});
  for(let time=v(c,'FIRST PULSE DELAY',.1);time<duration-EPS;time+=v(c,'PULSE INTERVAL',1))c.delay(time,()=>{
   if(target.dead||!target.statuses.includes(marker)||marker.data?.token!==token||marker.until<=c.battle.time+EPS)return;

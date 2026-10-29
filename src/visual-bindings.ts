@@ -85,7 +85,9 @@ export function movingVisuals(assets:AssetManifest,battle:BattleState,time:numbe
   const layers=selectVisualLayers(resolved.art,resolved.points,'projectile',projectile.layer?[projectile.layer]:undefined);
   // Ghostship is an authored moving construct, not a damage projectile layer.
   if(projectile.layer&&!layers.length){const layer=tierVisualLayers(resolved.art,resolved.points).find(layer=>layer.id===projectile.layer);if(layer)layers.push(layer);}
-  const position=visualProjectilePosition(projectile,time);
+  const followed=projectile.followUnit?battle.units.find(unit=>unit.id===projectile.followUnit):undefined;
+  if(projectile.followUnit&&!followed)continue;
+  const position=followed?{x:followed.x,y:followed.y}:visualProjectilePosition(projectile,time);
   for(const layer of layers.slice(0,2))result.push({key:`motion:${projectile.id}:${layer.id}`,clip:layer.clip,...position,age:time-projectile.createdAt,size:Number(layer.clip.worldSize??3.6),angle:projectile.angle+Math.PI/2,z:.75,loop:true});
  }
  return result;

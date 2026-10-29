@@ -1,0 +1,2004 @@
+{
+  "schemaVersion": 1,
+  "group": "mist-flare",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA captured English/custom values first; dated2023 snapshots and native KV distinguish modern changes. Full remote HTML stays ignored output. Native source proof and tested work candidates are distinct.",
+  "validation": {
+    "command": "npx vitest run tests/reference-mist-flare.test.ts tests/reference-attack-main-snapshot.test.ts tests/reference-fire-fissure.test.ts --reporter=json --outputFile=output/c10-mist-flare/final-tests.json",
+    "configurationHash": "2117e86f214b2462b64b102c3125aece3215a1c89e55d088cf657c16f449f320",
+    "skillGroupTests": 65,
+    "passedTests": 65,
+    "combinedTests": 148,
+    "combinedPassedTests": 148,
+    "reportInput": "output/c10-mist-flare/final-tests.json",
+    "typecheck": "npx tsc --noEmit passed; parent owns whole-repository proof/build."
+  },
+  "skills": [
+    {
+      "id": "custom_abaddon_death_coil",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+        },
+        {
+          "id": "abaddon-2023",
+          "url": "https://web.archive.org/web/20230215191306id_/https://dota2.fandom.com/wiki/Abaddon",
+          "accessedOn": "2026-10-30",
+          "observation": "Nonlethal pure self damage before1300projectile, impact SpellBlock and disjoint. AoE talent independently launches to both teams excluding caster. Old Shard enemy attacks lack TrueStrike and follow spell damage.",
+          "paraphrase": "Nonlethal pure self damage before1300projectile, impact SpellBlock and disjoint. AoE talent independently launches to both teams excluding caster. Old Shard enemy attacks lack TrueStrike and follow spell damage.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191306",
+          "sha256": "94426455e754512db85e078a595f317d903051f3572162c81c3a6dcae9cd2478"
+        },
+        {
+          "id": "solar-2023",
+          "url": "https://web.archive.org/web/20230215194145id_/https://dota2.fandom.com/wiki/Solar_Crest",
+          "accessedOn": "2026-10-30",
+          "observation": "Old target modifiers refresh by sign and are basic dispellable. Item-owner armor reduction follows item cooldown independently, not target duration; no inventory behavior is inferred for AA free target effects.",
+          "paraphrase": "Old target modifiers refresh by sign and are basic dispellable. Item-owner armor reduction follows item cooldown independently, not target duration; no inventory behavior is inferred for AA free target effects.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215194145",
+          "sha256": "50e37e468e221505490c43d74b406cb1573cefcfcc96616023f981a235fe7bf3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MC-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "five AA ranks spend50mana with.25point.4backswing5.5cooldown and25percent base self damage",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-01 five AA ranks spend50mana with.25point.4backswing5.5cooldown and25percent base self damage"
+            }
+          ]
+        },
+        {
+          "id": "MC-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "pure nonlethal self damage stops at1and is absorbed by a real Aphotic Shield",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-02 pure nonlethal self damage stops at1and is absorbed by a real Aphotic Shield"
+            }
+          ]
+        },
+        {
+          "id": "MC-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "actual Borrowed Time converts self damage into restoration",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-03 actual Borrowed Time converts self damage into restoration"
+            }
+          ]
+        },
+        {
+          "id": "MC-04",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "enemy impact Spell Block still spends mana cooldown and self health",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-04 enemy impact Spell Block still spends mana cooldown and self health"
+            }
+          ]
+        },
+        {
+          "id": "MC-05",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "Super launches at both teams on cast while excluding its caster",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-05 Super launches at both teams on cast while excluding its caster"
+            }
+          ]
+        },
+        {
+          "id": "MC-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "allies missing only a small amount of health still have AA targeting priority",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-06 allies missing only a small amount of health still have AA targeting priority"
+            }
+          ]
+        },
+        {
+          "id": "MC-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "ally healing survives becoming hidden and invulnerable without disjoint",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-07 ally healing survives becoming hidden and invulnerable without disjoint"
+            }
+          ]
+        },
+        {
+          "id": "MC-08",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "moving the main target does not retarget Super recipient selection at impact",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-08 moving the main target does not retarget Super recipient selection at impact"
+            }
+          ]
+        },
+        {
+          "id": "MC-09",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben enemy attacks ignore disarm but may miss and retain target Solar effects",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Dated native Shard enemy-only attacks are retained; AA every-unit wording and exact attack/dispel/Solar order remain a compatibility boundary.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-09 Gaben enemy attacks ignore disarm but may miss and retain target Solar effects"
+            }
+          ]
+        },
+        {
+          "id": "MC-10",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "target Solar equal signs refresh and allied target bonuses are basic dispellable",
+          "sourceIds": [
+            "aa",
+            "solar-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-10 target Solar equal signs refresh and allied target bonuses are basic dispellable"
+            }
+          ]
+        },
+        {
+          "id": "MC-11",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "an actual Chemical Rage disjoint spends the Coil cost without applying its impact",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-11 an actual Chemical Rage disjoint spends the Coil cost without applying its impact"
+            }
+          ]
+        },
+        {
+          "id": "MC-12",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "the independently released Super secondary still resolves after primary death",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MC-12 the independently released Super secondary still resolves after primary death"
+            }
+          ]
+        },
+        {
+          "id": "MC-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA1000radius maps the native release-time both-team talent. Exact original AA radius inclusion and recipient selection Lua remains unavailable.",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA grants target Solar effects; inventory stats and owner cooldown-bound armor loss are not fabricated. Exact original AA free-item contract is unknown.",
+          "sourceIds": [
+            "aa",
+            "solar-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Self damage spell amplification/FP/rum/HPminimum and all restorative source-credit cases are not inferred from the shield/BT results.",
+          "sourceIds": [
+            "abaddon-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA wording may qualify every-unit differently; old native enemy-only instant attacks/noTrueStrike retained. Full ordering with dispel/heal/conditional modifiers remains scoped.",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MC-P05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Generic spell reflection source is absent; this is not replaced by damage reflection.",
+          "sourceIds": [
+            "abaddon-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "MC-09",
+          "status": "source_pending",
+          "detail": "Dated native Shard enemy-only attacks are retained; AA every-unit wording and exact attack/dispel/Solar order remain a compatibility boundary."
+        },
+        {
+          "requirementId": "MC-P01",
+          "status": "source_pending",
+          "detail": "AA1000radius maps the native release-time both-team talent. Exact original AA radius inclusion and recipient selection Lua remains unavailable."
+        },
+        {
+          "requirementId": "MC-P02",
+          "status": "source_pending",
+          "detail": "AA grants target Solar effects; inventory stats and owner cooldown-bound armor loss are not fabricated. Exact original AA free-item contract is unknown."
+        },
+        {
+          "requirementId": "MC-P03",
+          "status": "source_pending",
+          "detail": "Self damage spell amplification/FP/rum/HPminimum and all restorative source-credit cases are not inferred from the shield/BT results."
+        },
+        {
+          "requirementId": "MC-P04",
+          "status": "source_pending",
+          "detail": "AA wording may qualify every-unit differently; old native enemy-only instant attacks/noTrueStrike retained. Full ordering with dispel/heal/conditional modifiers remains scoped."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023"
+          ],
+          "status": "partial",
+          "observation": "Native400AoE talent is a mechanism prototype; AA1000/noSelfCost override remains authoritative."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "abaddon-2023",
+            "solar-2023"
+          ],
+          "status": "partial",
+          "observation": "Old Shard enemy attacks plus basic dispel and Solar target-effect composition. Exact original AA ordering/contract remains unknown."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled final5tiers, without double runtime Super additions.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remain meaningful. Fog/tree/highground are not invented."
+      }
+    },
+    {
+      "id": "custom_luna_moon_glaive",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+        },
+        {
+          "id": "items-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Old Butterfly35agility30attackSpeed25damage35percent evasion and old Solar6armor50AS10percent movement12seconds.",
+          "paraphrase": "Old Butterfly35agility30attackSpeed25damage35percent evasion and old Solar6armor50AS10percent movement12seconds.",
+          "versionContext": "Pinned2023 candidate; later item redesigns are excluded."
+        },
+        {
+          "id": "luna-2023",
+          "url": "https://web.archive.org/web/20230215191811id_/https://dota2.fandom.com/wiki/Luna",
+          "accessedOn": "2026-10-30",
+          "observation": "Main attack-begin damage/critical and leading speed feed bounces; no spell amp/lifesteal, physical block. Fresh targets then revisits; disjoint consumes bounce without marking hit.",
+          "paraphrase": "Main attack-begin damage/critical and leading speed feed bounces; no spell amp/lifesteal, physical block. Fresh targets then revisits; disjoint consumes bounce without marking hit.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191811",
+          "sha256": "91209ecaeb19aa72f38e4a5ecccb9bdbd20ea49ba3325d949083ec953fa3312a"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MG-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "five AA ranks produce1or2or4or5serial bounces with final penalties",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-01 five AA ranks produce1or2or4or5serial bounces with final penalties"
+            }
+          ]
+        },
+        {
+          "id": "MG-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "leading critical main snapshot and physical attack block combine without spell amp or lifesteal",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-02 leading critical main snapshot and physical attack block combine without spell amp or lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "MG-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "a launch with2world-speed retains that speed after the owner changes it",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-03 a launch with2world-speed retains that speed after the owner changes it"
+            }
+          ]
+        },
+        {
+          "id": "MG-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "fresh targets are visited before revisiting an exhausted two-body pool",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-04 fresh targets are visited before revisiting an exhausted two-body pool"
+            }
+          ]
+        },
+        {
+          "id": "MG-05",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "secondary disjoint consumes one bounded bounce and can reacquire the still-visible body",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-05 secondary disjoint consumes one bounded bounce and can reacquire the still-visible body"
+            }
+          ]
+        },
+        {
+          "id": "MG-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "dying before impact continues from the frozen projectile position",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "The engine lost-target callback is tested, but exact native Moon death/missing-target continuation phase is not explicitly stated by the dated disjoint notes.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-06 dying before impact continues from the frozen projectile position"
+            }
+          ]
+        },
+        {
+          "id": "MG-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "invisibility wards and couriers are excluded but an ethereal building is an eligible physical-zero bounce",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-07 invisibility wards and couriers are excluded but an ethereal building is an eligible physical-zero bounce"
+            }
+          ]
+        },
+        {
+          "id": "MG-08",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Butterfly item stats survive Break basic dispel and120seconds",
+          "sourceIds": [
+            "aa",
+            "items-valve"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-08 Butterfly item stats survive Break basic dispel and120seconds"
+            }
+          ]
+        },
+        {
+          "id": "MG-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a genuinely earned Jingu pool contributes to Moon main snapshot before the bounce",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-09 a genuinely earned Jingu pool contributes to Moon main snapshot before the bounce"
+            }
+          ]
+        },
+        {
+          "id": "MG-10",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "a released serial chain survives its owners death with the original snapshot",
+          "sourceIds": [
+            "aa",
+            "luna-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MG-10 a released serial chain survives its owners death with the original snapshot"
+            }
+          ]
+        },
+        {
+          "id": "MG-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA+1bounce is explicit but exact native upgrade origin remains unidentified; old-8penalty talent is corroborated.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MG-P02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Native death/missing continuation timing, melee body speed fallback and every conditional attack-main producer are not all closed by one leading-record protocol.",
+          "sourceIds": [
+            "luna-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MG-P03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Butterfly base stats match old item; full real illusion inheritance and owner permanent-growth interactions remain separate.",
+          "sourceIds": [
+            "aa",
+            "items-valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MG-P04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Primary attacks against allied/ward/courier bodies and exact hit-count target events require individual combinations; secondary filters alone do not prove them.",
+          "sourceIds": [
+            "luna-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "MG-06",
+          "status": "source_pending",
+          "detail": "The engine lost-target callback is tested, but exact native Moon death/missing-target continuation phase is not explicitly stated by the dated disjoint notes."
+        },
+        {
+          "requirementId": "MG-P01",
+          "status": "source_pending",
+          "detail": "AA+1bounce is explicit but exact native upgrade origin remains unidentified; old-8penalty talent is corroborated."
+        },
+        {
+          "requirementId": "MG-P02",
+          "status": "source_pending",
+          "detail": "Native death/missing continuation timing, melee body speed fallback and every conditional attack-main producer are not all closed by one leading-record protocol."
+        },
+        {
+          "requirementId": "MG-P03",
+          "status": "source_pending",
+          "detail": "Butterfly base stats match old item; full real illusion inheritance and owner permanent-growth interactions remain separate."
+        },
+        {
+          "requirementId": "MG-P04",
+          "status": "source_pending",
+          "detail": "Primary attacks against allied/ward/courier bodies and exact hit-count target events require individual combinations; secondary filters alone do not prove them."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "luna-2023"
+          ],
+          "status": "partial",
+          "observation": "Old-8bounce penalty talent; AA+1bounce explicit custom number."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "items-valve"
+          ],
+          "status": "passed",
+          "observation": "Named old Butterfly stats, no modern percentage attack-speed behavior imported."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled final5tiers, without double runtime Super additions.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remain meaningful. Fog/tree/highground are not invented."
+      }
+    },
+    {
+      "id": "custom_snapfire_mortimer_kisses",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+        },
+        {
+          "id": "snapfire-2023",
+          "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire",
+          "accessedOn": "2026-10-30",
+          "observation": "Immediate8globs,1300speed with.8..2flight;75percent turn slow. Shared first-source1second magma, immediate half-second ticks. Gobble/Spit have distinct actions and actual flight/landing.",
+          "paraphrase": "Immediate8globs,1300speed with.8..2flight;75percent turn slow. Shared first-source1second magma, immediate half-second ticks. Gobble/Spit have distinct actions and actual flight/landing.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191541",
+          "sha256": "5e27ec69554d71439ee67f16cfd5ca40a8eb5c69f59676da23b9e2a8c604b0b1"
+        },
+        {
+          "id": "snap-history",
+          "url": "https://liquipedia.net/dota2/Snapfire/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Older20percent slow talent and native Scepter Gobble prototypes identified; exact20burn lineage and free-action AA upgrade origin unproved.",
+          "paraphrase": "Older20percent slow talent and native Scepter Gobble prototypes identified; exact20burn lineage and free-action AA upgrade origin unproved.",
+          "versionContext": "Indexed history corroboration; actual2023 full snapshot remains the primary mechanic source."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MK-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "all AA ranks use native.5point.73recovery and final impact burn slow resources",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-01 all AA ranks use native.5point.73recovery and final impact burn slow resources"
+            }
+          ]
+        },
+        {
+          "id": "MK-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "first glob launches immediately and flight has the dated minimum.8",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-02 first glob launches immediately and flight has the dated minimum.8"
+            }
+          ]
+        },
+        {
+          "id": "MK-03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "a single configured glob includes all nine half-second burn instances through its one-second tail",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-03 a single configured glob includes all nine half-second burn instances through its one-second tail"
+            }
+          ]
+        },
+        {
+          "id": "MK-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "overlapping globs share one first-source burn instead of multiplying burn DPS",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-04 overlapping globs share one first-source burn instead of multiplying burn DPS"
+            }
+          ]
+        },
+        {
+          "id": "MK-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "interruption stops future launches but keeps an already released impact and burn",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-05 interruption stops future launches but keeps an already released impact and burn"
+            }
+          ]
+        },
+        {
+          "id": "MK-06",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben permits ordinary actions without channel movement or attack locks",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "AA explicitly removes channeling; which remaining native self-lock/strong-control/death qualifiers the original custom Lua retained is unrecovered.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-06 Gaben permits ordinary actions without channel movement or attack locks"
+            }
+          ]
+        },
+        {
+          "id": "MK-07",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Super grants real Gobble and Spit slots with independent native resources",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Ordinary native child resources are proven. AA child level/aim selection and composed-grant mapping remain explicit candidates.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-07 Super grants real Gobble and Spit slots with independent native resources"
+            }
+          ]
+        },
+        {
+          "id": "MK-08",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "native hold times out after3seconds and source death releases a living allied passenger",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-08 native hold times out after3seconds and source death releases a living allied passenger"
+            }
+          ]
+        },
+        {
+          "id": "MK-09",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "swallowed ordinary enemy creep changes ownership and dies at actual Spit landing",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Native ordinary-creep ownership/kill behavior is tested; original AA creep selector and deny/economy reporting remain scoped.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-09 swallowed ordinary enemy creep changes ownership and dies at actual Spit landing"
+            }
+          ]
+        },
+        {
+          "id": "MK-10",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "a basic dispel removes one magma tail and a later pool scan may reapply it",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-10 a basic dispel removes one magma tail and a later pool scan may reapply it"
+            }
+          ]
+        },
+        {
+          "id": "MK-11",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "actual Cookie30DPS remains the first provider when Super Kisses50DPS overlaps it",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-11 actual Cookie30DPS remains the first provider when Super Kisses50DPS overlaps it"
+            }
+          ]
+        },
+        {
+          "id": "MK-12",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "actual Spit100DPS refreshes an existing Kisses50DPS debuff without replacing its attribution",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-12 actual Spit100DPS refreshes an existing Kisses50DPS debuff without replacing its attribution"
+            }
+          ]
+        },
+        {
+          "id": "MK-13",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "a launched Spit passenger completes its actual landing after its caster dies",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-13 a launched Spit passenger completes its actual landing after its caster dies"
+            }
+          ]
+        },
+        {
+          "id": "MK-14",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Gobble and Spit use real.3points and1.27or1.03backswing with zero Spit mana",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-14 Gobble and Spit use real.3points and1.27or1.03backswing with zero Spit mana"
+            }
+          ]
+        },
+        {
+          "id": "MK-15",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "real Spit visual follows its actual moving passenger and is removed exactly at landing after source death",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MK-15 real Spit visual follows its actual moving passenger and is removed exactly at landing after source death"
+            }
+          ]
+        },
+        {
+          "id": "MK-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Exact20burnDPS talent provenance is unidentified; AA explicit20is retained. Native Gobble Scepter and older20slowtalent are distinct provenance claims.",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023",
+            "snap-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MK-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Free-action Gaben uses the existing no-lock/uninterrupted-release candidate; original AA handling of source death/control while firing remains unrecovered.",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MK-P03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Magma status resistance tail/tick order, simultaneous competing source applications and damage/provider replacement after a complete gap need specific dated evidence.",
+          "sourceIds": [
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MK-P04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Spit impact reads the actual owned AA parent glob level; exact AA child level and AI use/hold order are candidates rather than native original Lua.",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MK-P05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Gobble/Spit special clone/creep-hero bodies, source-loss/reacquisition and all wall/Soulbind flight restrictions retain precise pending scope.",
+          "sourceIds": [
+            "snapfire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MK-P06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Fog/flying vision, tree destruction and Disabled Help UI are outside the flat arena scope.",
+          "sourceIds": [
+            "snapfire-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "MK-06",
+          "status": "source_pending",
+          "detail": "AA explicitly removes channeling; which remaining native self-lock/strong-control/death qualifiers the original custom Lua retained is unrecovered."
+        },
+        {
+          "requirementId": "MK-07",
+          "status": "source_pending",
+          "detail": "Ordinary native child resources are proven. AA child level/aim selection and composed-grant mapping remain explicit candidates."
+        },
+        {
+          "requirementId": "MK-09",
+          "status": "source_pending",
+          "detail": "Native ordinary-creep ownership/kill behavior is tested; original AA creep selector and deny/economy reporting remain scoped."
+        },
+        {
+          "requirementId": "MK-P01",
+          "status": "source_pending",
+          "detail": "Exact20burnDPS talent provenance is unidentified; AA explicit20is retained. Native Gobble Scepter and older20slowtalent are distinct provenance claims."
+        },
+        {
+          "requirementId": "MK-P02",
+          "status": "source_pending",
+          "detail": "Free-action Gaben uses the existing no-lock/uninterrupted-release candidate; original AA handling of source death/control while firing remains unrecovered."
+        },
+        {
+          "requirementId": "MK-P03",
+          "status": "source_pending",
+          "detail": "Magma status resistance tail/tick order, simultaneous competing source applications and damage/provider replacement after a complete gap need specific dated evidence."
+        },
+        {
+          "requirementId": "MK-P04",
+          "status": "source_pending",
+          "detail": "Spit impact reads the actual owned AA parent glob level; exact AA child level and AI use/hold order are candidates rather than native original Lua."
+        },
+        {
+          "requirementId": "MK-P05",
+          "status": "source_pending",
+          "detail": "Gobble/Spit special clone/creep-hero bodies, source-loss/reacquisition and all wall/Soulbind flight restrictions retain precise pending scope."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "snapfire-2023",
+            "snap-history"
+          ],
+          "status": "partial",
+          "observation": "Old Scepter Gobble and slow talent identified; exact20burn lineage pending."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "observation": "No-channel custom upgrade is explicit; no invented native provenance for remaining control/death qualifiers."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled final5tiers, without double runtime Super additions.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remain meaningful. Fog/tree/highground are not invented."
+      }
+    },
+    {
+      "id": "custom_drow_ranger_multishot",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+        },
+        {
+          "id": "drow-2023",
+          "url": "https://web.archive.org/web/20230215191655id_/https://dota2.fandom.com/wiki/Drow_Ranger",
+          "accessedOn": "2026-10-30",
+          "observation": "Base .1firstwave/.55wavegap/stagger; native class and immunity differ from explicit AA. Old Marksmanship conditional80is not critical; native aura/launch proc/body filters and half-second linger.",
+          "paraphrase": "Base .1firstwave/.55wavegap/stagger; native class and immunity differ from explicit AA. Old Marksmanship conditional80is not critical; native aura/launch proc/body filters and half-second linger.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191655",
+          "sha256": "a0b383ce3ea1050c966f72c6697faeb4f5037a32e7c26c6271c8e9eb55069e0f"
+        },
+        {
+          "id": "drow-history",
+          "url": "https://liquipedia.net/dota2/Drow_Ranger/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Older+2wave talent exists;7.32e reduces ally agility coefficient without changing self. Later wave/cone descriptions conflict with retained2023 timing.",
+          "paraphrase": "Older+2wave talent exists;7.32e reduces ally agility coefficient without changing self. Later wave/cone descriptions conflict with retained2023 timing.",
+          "versionContext": "Current indexed history only; used to distinguish versions, not to prove an exact AA Super clock."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MS-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "five AA ranks spend exact resources and preserve3x4or5x6counts",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-01 five AA ranks spend exact resources and preserve3x4or5x6counts"
+            }
+          ]
+        },
+        {
+          "id": "MS-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "first base wave follows.1release delay with staggered arrows and.55wave gaps",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-02 first base wave follows.1release delay with staggered arrows and.55wave gaps"
+            }
+          ]
+        },
+        {
+          "id": "MS-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA all-modifier attacks use a guaranteed critical while explicit NoPierce rejects immune targets",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-03 AA all-modifier attacks use a guaranteed critical while explicit NoPierce rejects immune targets"
+            }
+          ]
+        },
+        {
+          "id": "MS-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "effective bonus attack range determines both AI reach and arrow travel",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Effective-range scaling follows AA2x. PublicH10 remains a documented reference/AI default; the actual dynamic value is derived, not edited throughH.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-04 effective bonus attack range determines both AI reach and arrow travel"
+            }
+          ]
+        },
+        {
+          "id": "MS-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "released arrows survive interruption while pending salvos are cancelled",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-05 released arrows survive interruption while pending salvos are cancelled"
+            }
+          ]
+        },
+        {
+          "id": "MS-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "a drafted Frost Arrow avoids duplicate intrinsic slows and receives the extended duration",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Equipped orb path avoids duplicate intrinsic slow. Native AD requires Frost, while AA fallback-without-orb interpretation remains unrecovered.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-06 a drafted Frost Arrow avoids duplicate intrinsic slows and receives the extended duration"
+            }
+          ]
+        },
+        {
+          "id": "MS-07",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Gaben actually grants max native Marksmanship and caster-based ally agility",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Actual native max3grant and caster-based50percent aura pass. AA child rank and pre7.32eallycoefficient are the documented existing version candidate.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-07 Gaben actually grants max native Marksmanship and caster-based ally agility"
+            }
+          ]
+        },
+        {
+          "id": "MS-08",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "actual granted Marksmanship80is postcritical and grants launch TrueStrike",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-08 actual granted Marksmanship80is postcritical and grants launch TrueStrike"
+            }
+          ]
+        },
+        {
+          "id": "MS-09",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "a launched native Marksmanship proc survives Break and provider removal in flight",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-09 a launched native Marksmanship proc survives Break and provider removal in flight"
+            }
+          ]
+        },
+        {
+          "id": "MS-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "obtaining the provider after launch cannot retroactively grant a proc",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-10 obtaining the provider after launch cannot retroactively grant a proc"
+            }
+          ]
+        },
+        {
+          "id": "MS-11",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "hidden invulnerable real heroes disable the aura but illusions do not",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-11 hidden invulnerable real heroes disable the aura but illusions do not"
+            }
+          ]
+        },
+        {
+          "id": "MS-12",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "engine revive fixture restarts no initialization and the native aura clock recovers automatically",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-12 engine revive fixture restarts no initialization and the native aura clock recovers automatically"
+            }
+          ]
+        },
+        {
+          "id": "MS-13",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "a native provider does not proc on buildings or from an engine illusion flag",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-13 a native provider does not proc on buildings or from an engine illusion flag"
+            }
+          ]
+        },
+        {
+          "id": "MS-14",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "ranged recipient classification follows an attack type override rather than its long range number",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Ranged type recipient selection is verified; ability-draft melee self bonus and all creep-hero/ranged-body cases need separate dated evidence.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-14 ranged recipient classification follows an attack type override rather than its long range number"
+            }
+          ]
+        },
+        {
+          "id": "MS-15",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "the native aura excludes illusion recipients and lingers half a second after leaving1200range",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MS-15 the native aura excludes illusion recipients and lingers half a second after leaving1200range"
+            }
+          ]
+        },
+        {
+          "id": "MS-P01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA all-modifiers is explicit, but its precise attack-versus-spell damage category, amp/lifesteal/type-conversion contract is unrecovered. Current attack pipeline is retained and not called native spell parity.",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA1.75duration with5waves/6arrows uses compressed .33wavegap; virtual6fan formula and exact original AA Super extension/stagger arithmetic remain work candidates.",
+          "sourceIds": [
+            "aa",
+            "drow-2023",
+            "drow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Intrinsic55percent fallback without a drafted Frost orb preserves prior AA behavior; native AD requires drafting Frost. Exact AA fallback and in-flight orb qualification remain unknown.",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Native granted max3 and pre7.32eally50percent are current explicit candidates. Later25percent ally aura is not backported.",
+          "sourceIds": [
+            "aa",
+            "drow-2023",
+            "drow-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Agility aura with other percentage multipliers, multiple emitters and melee self-body exact formula needs its own native evidence/results.",
+          "sourceIds": [
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Ward/allied/minimumHP/temporary-skill-loss proc qualification beyond root protocols is not all established by building and illusion result cases.",
+          "sourceIds": [
+            "drow-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MS-P07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Marksmanship Scepter splinters/Glacier are not granted merely by AA granting the base Marksmanship ability.",
+          "sourceIds": [
+            "aa",
+            "drow-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "MS-04",
+          "status": "source_pending",
+          "detail": "Effective-range scaling follows AA2x. PublicH10 remains a documented reference/AI default; the actual dynamic value is derived, not edited throughH."
+        },
+        {
+          "requirementId": "MS-06",
+          "status": "source_pending",
+          "detail": "Equipped orb path avoids duplicate intrinsic slow. Native AD requires Frost, while AA fallback-without-orb interpretation remains unrecovered."
+        },
+        {
+          "requirementId": "MS-07",
+          "status": "source_pending",
+          "detail": "Actual native max3grant and caster-based50percent aura pass. AA child rank and pre7.32eallycoefficient are the documented existing version candidate."
+        },
+        {
+          "requirementId": "MS-14",
+          "status": "source_pending",
+          "detail": "Ranged type recipient selection is verified; ability-draft melee self bonus and all creep-hero/ranged-body cases need separate dated evidence."
+        },
+        {
+          "requirementId": "MS-P01",
+          "status": "source_pending",
+          "detail": "AA all-modifiers is explicit, but its precise attack-versus-spell damage category, amp/lifesteal/type-conversion contract is unrecovered. Current attack pipeline is retained and not called native spell parity."
+        },
+        {
+          "requirementId": "MS-P02",
+          "status": "source_pending",
+          "detail": "AA1.75duration with5waves/6arrows uses compressed .33wavegap; virtual6fan formula and exact original AA Super extension/stagger arithmetic remain work candidates."
+        },
+        {
+          "requirementId": "MS-P03",
+          "status": "source_pending",
+          "detail": "Intrinsic55percent fallback without a drafted Frost orb preserves prior AA behavior; native AD requires drafting Frost. Exact AA fallback and in-flight orb qualification remain unknown."
+        },
+        {
+          "requirementId": "MS-P04",
+          "status": "source_pending",
+          "detail": "Native granted max3 and pre7.32eally50percent are current explicit candidates. Later25percent ally aura is not backported."
+        },
+        {
+          "requirementId": "MS-P05",
+          "status": "source_pending",
+          "detail": "Agility aura with other percentage multipliers, multiple emitters and melee self-body exact formula needs its own native evidence/results."
+        },
+        {
+          "requirementId": "MS-P06",
+          "status": "source_pending",
+          "detail": "Ward/allied/minimumHP/temporary-skill-loss proc qualification beyond root protocols is not all established by building and illusion result cases."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "drow-history"
+          ],
+          "status": "partial",
+          "observation": "Older+2wave talent prototype; exact+2arrows and duration composition remain AA-specific."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "drow-2023"
+          ],
+          "status": "partial",
+          "observation": "Actual native max-level Marksmanship grant, pre7.32eallycoefficient candidate. No Scepter splinters inferred."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled final5tiers, without double runtime Super additions.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remain meaningful. Fog/tree/highground are not invented.",
+        "aaOverrides": "All attack modifiers and No spell-immunity piercing override native2023 no-modifier spell/piercing behavior. Exact mechanism category remains pending.",
+        "dynamicRange": "PublicH10is reference-only. Runtime AI reach and projectile travel derive effective attack range times AA2."
+      }
+    },
+    {
+      "id": "custom_skywrath_mage_mystic_flare",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "paraphrase": "Captured complete AA English base/Super/Gaben clauses and values reread locally, not a fresh HTTP request.",
+          "versionContext": "AA build/Lua/native patch unknown. Explicit AA values/custom differences take priority."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "paraphrase": "Pinned ability KV supplies points/native parameters and talent links; numerical AA overrides remain authoritative.",
+          "versionContext": "2023-02-10 shipped candidate retained in references/dota-20230216; not proof of the captured AA native patch."
+        },
+        {
+          "id": "skywrath-2023",
+          "url": "https://web.archive.org/web/20230215192153id_/https://dota2.fandom.com/wiki/Skywrath_Mage",
+          "accessedOn": "2026-10-30",
+          "observation": "Twenty-two .1pulses prioritize hero bodies then creeps, exclude immune soakers. Secondary search around primary excludes its170field. Old450talent and native Scepter match parts of AA upgrades.",
+          "paraphrase": "Twenty-two .1pulses prioritize hero bodies then creeps, exclude immune soakers. Secondary search around primary excludes its170field. Old450talent and native Scepter match parts of AA upgrades.",
+          "versionContext": "Actual2023-02-15 retained page; before7.33. Read local full capture but tracked files store metadata/short paraphrases only.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215192153",
+          "sha256": "3b53c6694d56b7140fb9f173de9f0627ba654cc321879995c79ff55a86b8ef40"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MF-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "all five AA ranks use.1point zero recovery and22exact pulses",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-01 all five AA ranks use.1point zero recovery and22exact pulses"
+            }
+          ]
+        },
+        {
+          "id": "MF-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "lone ordinary creeps receive fallback damage while immune heroes never soak the split",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-02 lone ordinary creeps receive fallback damage while immune heroes never soak the split"
+            }
+          ]
+        },
+        {
+          "id": "MF-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "clone illusion and creep-hero bodies share the hero pool before ordinary creeps",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-03 clone illusion and creep-hero bodies share the hero pool before ordinary creeps"
+            }
+          ]
+        },
+        {
+          "id": "MF-04",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Super excludes heroes inside the original170field from secondary selection",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-04 Super excludes heroes inside the original170field from secondary selection"
+            }
+          ]
+        },
+        {
+          "id": "MF-05",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "secondary search is around the frozen primary area and rejects invisible or immune candidates",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-05 secondary search is around the frozen primary area and rejects invisible or immune candidates"
+            }
+          ]
+        },
+        {
+          "id": "MF-06",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "primary ground cursor does not follow target movement during its cast point",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-06 primary ground cursor does not follow target movement during its cast point"
+            }
+          ]
+        },
+        {
+          "id": "MF-07",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "a victim dying early in one pulse does not double the later victims allocation",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-07 a victim dying early in one pulse does not double the later victims allocation"
+            }
+          ]
+        },
+        {
+          "id": "MF-08",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Gaben undivided2050reaches each eligible hero without a duplicate secondary field inside170",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-08 Gaben undivided2050reaches each eligible hero without a duplicate secondary field inside170"
+            }
+          ]
+        },
+        {
+          "id": "MF-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "static field survives its caster death and ignores unit SpellBlock",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-09 static field survives its caster death and ignores unit SpellBlock"
+            }
+          ]
+        },
+        {
+          "id": "MF-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "wards buildings and couriers are excluded even when no hero-body damage pool exists",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-10 wards buildings and couriers are excluded even when no hero-body damage pool exists"
+            }
+          ]
+        },
+        {
+          "id": "MF-11",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "main invisible victims remain damageable while a second field never targets an invisible victim",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-11 main invisible victims remain damageable while a second field never targets an invisible victim"
+            }
+          ]
+        },
+        {
+          "id": "MF-12",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "a source with the actual Arcane Bolt Gaben gains one Scion stack per field damage instance",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-12 a source with the actual Arcane Bolt Gaben gains one Scion stack per field damage instance"
+            }
+          ]
+        },
+        {
+          "id": "MF-13",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "real primary and secondary field entities persist for2.2seconds then expire without duplicate damage",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-mist-flare.test.ts",
+              "test": "MF-13 real primary and secondary field entities persist for2.2seconds then expire without duplicate damage"
+            }
+          ]
+        },
+        {
+          "id": "MF-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA+450matches old25talent; undivided damage is an explicit AA custom effect with unidentified native origin.",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MF-P02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Whole-pulse group is frozen to honor equal allocation; all simultaneous kill/absorb/HPLOSS/SR/reflect/Scion combinations are not implied by the ordinary early-death case.",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "MF-P03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Native1200range/.1+0fill AA-unlisted public values as a historical candidate; exact captured AA native patch remains unknown.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "skywrath-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "MF-P01",
+          "status": "source_pending",
+          "detail": "AA+450matches old25talent; undivided damage is an explicit AA custom effect with unidentified native origin."
+        },
+        {
+          "requirementId": "MF-P02",
+          "status": "source_pending",
+          "detail": "Whole-pulse group is frozen to honor equal allocation; all simultaneous kill/absorb/HPLOSS/SR/reflect/Scion combinations are not implied by the ordinary early-death case."
+        },
+        {
+          "requirementId": "MF-P03",
+          "status": "source_pending",
+          "detail": "Native1200range/.1+0fill AA-unlisted public values as a historical candidate; exact captured AA native patch remains unknown."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "passed",
+          "observation": "Old Scepter second field,700from primary and outside170primary area."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "skywrath-2023"
+          ],
+          "status": "partial",
+          "observation": "Old450talent plus custom no-split rule; custom origin unknown."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled final5tiers, without double runtime Super additions.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remain meaningful. Fog/tree/highground are not invented."
+      }
+    }
+  ],
+  "rootC10Integration": {
+    "configurationHash": "e5dd2ce3bd5a192034c8dc59dd965eb1261347cc5da9f44fa85829490bbf1397",
+    "report": "artifacts/r6-c10-unit-tests.json",
+    "passedTests": 65,
+    "meaning": "All named group results re-executed in the parent full suite using the final compiled configuration. Earlier group-local reports remain historical;the final metadata-only update localized two granted names/descriptions with identical numeric configuration. This is not a whole-native-ability certification."
+  }
+}

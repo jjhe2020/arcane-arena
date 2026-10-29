@@ -16,6 +16,8 @@ export interface VisualProjectile extends VisualPoint {
   createdAt: number;
   until: number;
   expiresWithSource?: boolean;
+  /** A real carried body supplies the display transform, including interpolation. */
+  followUnit?:string;
   /** Only set when the actual mechanic has a fixed launch/arrival deadline.
    * Rendering may interpolate this segment; it must not invent a curved arc. */
   origin?: VisualPoint;

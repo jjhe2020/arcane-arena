@@ -13372,81 +13372,37 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "main_upgrades_remaining.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；radius:.1"
-        },
-        {
-          "key": "main_upgrades_remaining.duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ILLUSION BURN PERCENT",
+          "unit": "%",
+          "meaning": "幻象法力损毁比例",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；duration:120"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades_remaining.interval.1",
-          "kind": "program",
+          "key": "MANA VOID COOLDOWN",
           "unit": "ms",
+          "meaning": "Gaben免费法力虚空独立触发冷却",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；interval:.1"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades_remaining.count.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "MANA VOID LEVEL",
+          "unit": "等级",
+          "meaning": "免费法力虚空的真实原生等级",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；count:1"
-        },
-        {
-          "key": "main_upgrades_remaining.attack.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；c.caster.attack*.3"
-        },
-        {
-          "key": "main_upgrades_remaining.lifetime.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；lifetime:7"
-        },
-        {
-          "key": "main_upgrades_remaining.damagetaken.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "承伤倍率",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:25；damageTaken:3"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -13506,92 +13462,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.manadrainlink_duration.1",
-          "kind": "program",
+          "key": "DRAIN INTERVAL",
           "unit": "ms",
+          "meaning": "抽取法力的完整结算间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 法力汲取LINK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:427；length + .001"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SECONDARY SEARCH BUFFER",
+          "unit": "Dota单位",
+          "meaning": "额外链接相对有效施法距离的搜索余量",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:430；c.delay(.1, cleanup)"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收；历史Shard原型；AA额外目标优先级仍待证"
         },
         {
-          "key": "skill_effects_more.delay.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "ADDITIONAL TARGETS",
+          "unit": "个",
+          "meaning": "Gaben额外链接目标数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "DISTRIBUTION RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Super分配所吸法力的友军半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:430；c.delay(.1, cleanup)"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "skill_effects_more.magicimmune_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "DRAINED MANA AS DAMAGE",
+          "unit": "%",
+          "meaning": "Gaben实吸法力转换魔法伤害的比例",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:431；c.status(c.caster, 'magicImmune', .2)"
-        },
-        {
-          "key": "skill_effects_more.magicimmune_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:434；c.status(c.caster, 'magicImmune', .15)"
-        },
-        {
-          "key": "skill_effects_more.visuallink_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 VISUALLINK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:437；c.status(t, 'visualLink', .15, 0, { dispel: 'none', data: { link: token, mode: 'mana', ally: false } })"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:438；slow(c, t, v(c, 'MOVEMENT SLOW'), .2)"
-        },
-        {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:438；drained * 1.5"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收；2023原生天赋候选，AA未给比例"
         }
       ]
     },
@@ -13638,6 +13561,61 @@
           "meaning": "伤害 每 法力",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "SNAKE MANA SPENT",
+          "unit": "法力",
+          "meaning": "Super每次触发异蛇累计消耗的护盾法力",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "SNAKE LEVEL",
+          "unit": "等级",
+          "meaning": "自动秘术异蛇的真实原生等级",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "SNAKE MANA RESTORE",
+          "unit": "%",
+          "meaning": "异蛇按非幻象目标最大法力恢复比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收；AA旧称mana steal沿用2023恢复而不扣敌方法力原型，具体脚本未回收"
+        },
+        {
+          "key": "PETRIFY DURATION",
+          "unit": "ms",
+          "meaning": "Gaben石化持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "PHYSICAL VULNERABILITY",
+          "unit": "%",
+          "meaning": "Gaben石化期间额外物理承伤",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -13653,17 +13631,6 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
@@ -13675,37 +13642,48 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "HOOK SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "肉钩伸出与拉回速度",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:254；c.projectile(c.target,16,t=>{hit(c,t,'DAMAGE','pure');const dx=t.x-c.caster.x,dy=t.y-c.caster.y,d=Math.hypot(dx,dy)||1;c.teleport(t,c.caster.x+dx/d,c.caster.y+dy/d);})"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "HOOK WIDTH",
+          "unit": "Dota单位",
+          "meaning": "肉钩碰撞半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:90；c.projectile(c.target,16,t=>{c.damage(t,v(c,'DAMAGE'),'pure');if(t.dead)return;const seconds=Math.max(1/30,(d(t,c.caster)-1)/16);c.status(t,'stun',seconds,0,{harmful:true,dispel:'s"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades_remaining.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "SIDE HOOK ANGLE",
+          "unit": "弧度",
+          "meaning": "Gaben两侧钩相对中央钩夹角",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:20；speed:16"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收；保留既有工作候选，AA未给角度"
+        },
+        {
+          "key": "RUPTURE LEVEL",
+          "unit": "等级",
+          "meaning": "Super割裂真实原生等级",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -13723,13 +13701,13 @@
         {
           "key": "IMAGE COUNT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "IMAGE 数量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "每档最终镜像数量",
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "IMAGE DAMAGE TAKEN",
@@ -13745,13 +13723,13 @@
         {
           "key": "IMAGE DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "IMAGE 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每档最终镜像攻击比例",
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "IMAGE DURATION",
@@ -13765,81 +13743,37 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "main_upgrades.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BONUS AGILITY",
+          "unit": "敏捷",
+          "meaning": "Super额外敏捷",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:105；c.damage(target,55)"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades.armor_duration.1",
-          "kind": "program",
+          "key": "SPLIT TIME",
           "unit": "ms",
+          "meaning": "释放后无敌隐藏分裂阶段",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:105；c.status(target,'armor',4,-8,{harmful:true})"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "main_upgrades.armor_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:105；c.status(target,'armor',4,-8,{harmful:true})"
-        },
-        {
-          "key": "main_upgrades.agility_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "FORMATION DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "正常24碰撞体的镜像阵型间隔候选",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 敏捷 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:106；c.status(c.caster,'agility',120,25)"
-        },
-        {
-          "key": "main_upgrades.agility_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 敏捷 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:106；c.status(c.caster,'agility',120,25)"
-        },
-        {
-          "key": "main_upgrades.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:106；G(c)?1:0"
-        },
-        {
-          "key": "main_upgrades.attack.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:106；S(c)?.13:0"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -13855,48 +13789,48 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DAMAGE/HEAL",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害/治疗",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA25% wins native50%;20230215 .25+.4, projectile1300. S1000 radius/no self damage."
         },
         {
           "key": "SELF DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "SELF 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA25% wins native50%;20230215 .25+.4, projectile1300. S1000 radius/no self damage."
         },
         {
-          "key": "skill_effects_more.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "弹道飞行速度",
+          "unit": "Dota单位/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:446；c.projectile(target, 13, t => { const targets = superLevel(c) ? (t.side === c.caster.side ? c.allies() : c.enemies()).filter(u => distance(u, t) <= 10) : [t]; for (const u "
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA25% wins native50%;20230215 .25+.4, projectile1300. S1000 radius/no self damage."
+        },
+        {
+          "key": "SUPER RADIUS",
+          "kind": "value",
+          "meaning": "Super溅射范围",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA25% wins native50%;20230215 .25+.4, projectile1300. S1000 radius/no self damage."
         }
       ]
     },
@@ -13972,78 +13906,78 @@
           "key": "BOUNCE RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "BOUNCE 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
           "key": "BOUNCES",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "BOUNCES",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "月刃额外弹射次数",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
           "key": "DAMAGE REDUCTION PER BOUNCE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害 降低 每 BOUNCE",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BUTTERFLY AGILITY",
+          "kind": "value",
+          "meaning": "蝴蝶额外敏捷",
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1107；buff(c, c.caster, 'agility', 35)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BUTTERFLY ATTACK SPEED",
+          "kind": "value",
+          "meaning": "蝴蝶额外攻速",
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1107；buff(c, c.caster, 'attackSpeed', 30)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
+          "key": "BUTTERFLY DAMAGE",
+          "kind": "value",
+          "meaning": "蝴蝶固定攻击力",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1108；buff(c, c.caster, 'attackBonus', 25)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         },
         {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "BUTTERFLY EVASION",
+          "kind": "value",
+          "meaning": "蝴蝶闪避概率",
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1108；buff(c, c.caster, 'evasion', .35)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final S5bounces/30penalty. Old Butterfly values pinned2023. Bounce speed from leading attack snapshot, no unrelated900field."
         }
       ]
     },
@@ -14062,34 +13996,34 @@
           "key": "BURN DPS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "燃烧 每秒伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
           "key": "DAMAGE PER GLOB",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害 每 GLOB",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
           "key": "ENEMY MOVEMENT SLOW",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "ENEMY 移动 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
           "key": "FIRESPIT POOL DURATION",
@@ -14099,107 +14033,129 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "FIRESPIT POOL 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
           "key": "GLOB COUNT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
+          "integer": true,
           "meaning": "GLOB 数量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
           "key": "IMPACT RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "IMPACT 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
+          "key": "LAUNCH DURATION",
+          "kind": "value",
+          "meaning": "完整炮击发射阶段时长",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:454；i + 1"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
-          "key": "skill_effects_more.delay.2",
-          "kind": "program",
+          "key": "MIN RANGE",
+          "kind": "value",
+          "meaning": "最小选定发射距离",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
+        },
+        {
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "弹道飞行速度",
+          "unit": "Dota单位/秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
+        },
+        {
+          "key": "MIN FLIGHT",
+          "kind": "value",
+          "meaning": "最短飞行时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:454；(i + 1) * 5.5"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
-          "key": "skill_effects_more.delay.3",
-          "kind": "program",
+          "key": "MAX FLIGHT",
+          "kind": "value",
+          "meaning": "最长飞行时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:458；c.delay(.6, () => { removeVisualProjectile(c.battle, visual); for (const t of around(c, center.x, center.y, U(v(c, 'IMPACT RADIUS')))) c.damage(t, v(c, 'DAMAGE PER GLOB')); c"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
+          "key": "TURN RATE SLOW",
+          "kind": "value",
+          "meaning": "TURN 速率 减速",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
+        },
+        {
+          "key": "BURN INTERVAL",
+          "kind": "value",
+          "meaning": "灼烧结算间隔",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:459；interval: .2"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
+          "key": "AURA INTERVAL",
+          "kind": "value",
+          "meaning": "光环资格检测间隔",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
+        },
+        {
+          "key": "BURN LINGER",
+          "kind": "value",
+          "meaning": "离开燃烧区后的灼烧残留",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:459；superLevel(c) ? 20 : 0"
-        },
-        {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:459；(v(c, 'BURN DPS') + (superLevel(c) ? 20 : 0)) * .2"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:459；slow(c, t, v(c, 'ENEMY MOVEMENT SLOW') + (superLevel(c) ? 20 : 0), .3)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA final50DPS/45slow S. Native20230215 immediate launch, .8..2flight, .5burn/pool scan/1linger. PublicH30 unique maximum range."
         }
       ]
     },
@@ -14217,24 +14173,24 @@
         {
           "key": "ARROW BASE DAMAGE BONUS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "ARROW 基础 伤害 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
           "key": "ARROW RANGE MULTIPLIER",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "ARROW 距离 倍率",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
           "key": "ARROW SLOW DURATION",
@@ -14244,151 +14200,118 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "ARROW 减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
           "key": "ARROWS PER WAVE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
+          "integer": true,
           "meaning": "ARROWS 每 WAVE",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
           "key": "WAVE COUNT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
+          "integer": true,
           "meaning": "WAVE 数量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
-          "key": "skill_effects_more.delay.1",
-          "kind": "program",
+          "key": "CHANNEL DURATION",
+          "kind": "value",
+          "meaning": "CHANNEL 持续时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:470；wave + 1"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
-          "key": "skill_effects_more.delay.2",
-          "kind": "program",
+          "key": "FIRST WAVE DELAY",
+          "kind": "value",
+          "meaning": "开始引导后首波箭的延迟",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:470；(wave + 1) * 1.75"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:482；[10, 25, 55]"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:482；[10, 25, 55]"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:482；[10, 25, 55]"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:482；Math.min(2, c.skill.points - 1)"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:482；c.skill.points - 1"
-        },
-        {
-          "key": "skill_effects_more.marksmanship_duration.1",
-          "kind": "program",
+          "key": "ARROW INTERVAL",
+          "kind": "value",
+          "meaning": "同波箭矢逐发间隔",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MARKSMANSHIP 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:493；c.status(c.caster, 'marksmanship', .2, .4, { passive: true, data: { bonus: 80 } })"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
-          "key": "skill_effects_more.marksmanship_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 MARKSMANSHIP AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:493；c.status(c.caster, 'marksmanship', .2, .4, { passive: true, data: { bonus: 80 } })"
-        },
-        {
-          "key": "skill_effects_more.agilitypct_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "弹道飞行速度",
+          "unit": "Dota单位/秒",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 敏捷PCT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:496；c.status(ally, 'agilityPct', .2, .5, { passive: true })"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         },
         {
-          "key": "skill_effects_more.agilitypct_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ARROW WIDTH",
+          "kind": "value",
+          "meaning": "箭矢碰撞半径",
+          "unit": "Dota单位",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 敏捷PCT AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:496；c.status(ally, 'agilityPct', .2, .5, { passive: true })"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
+        },
+        {
+          "key": "FAN ANGLE",
+          "kind": "value",
+          "meaning": "整波箭矢总扇形夹角",
+          "unit": "角度",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
+        },
+        {
+          "key": "VIRTUAL ARROW COUNT",
+          "kind": "value",
+          "meaning": "扇形等分采用的虚拟箭数",
+          "unit": "个",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
+        },
+        {
+          "key": "FALLBACK FROST SLOW",
+          "kind": "value",
+          "meaning": "未持冰霜之箭时的减速候选",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；H10 reference-only AI default, actual dynamic selection/travel uses effective attack range x2. AAallmods+NoPierce retained. Gap=(channel-first)/waves .55base/.33S is explicit AA1.75 compression candidate; virtual6 angle formula not fully dated."
         }
       ]
     },
@@ -14407,12 +14330,12 @@
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终伤害",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA damage/mana/CD preserved; range1200/.1+0 dated native candidate where AA unspecified."
         },
         {
           "key": "DURATION",
@@ -14421,53 +14344,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA damage/mana/CD preserved; range1200/.1+0 dated native candidate where AA unspecified."
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA damage/mana/CD preserved; range1200/.1+0 dated native candidate where AA unspecified."
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
+          "kind": "value",
+          "meaning": "伤害结算间隔",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:208；interval:.1"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA damage/mana/CD preserved; range1200/.1+0 dated native candidate where AA unspecified."
         },
         {
-          "key": "skill_effects.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SECONDARY SEARCH RADIUS",
+          "kind": "value",
+          "meaning": "额外区域搜索半径",
+          "unit": "Dota单位",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:208；(v(c,'DAMAGE')+(c.skill.points>=9?450:0))/duration(c)*.1"
-        },
-        {
-          "key": "skill_effects.damage.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:208；c.skill.points>=9?1:count"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；AA damage/mana/CD preserved; range1200/.1+0 dated native candidate where AA unspecified."
         }
       ]
     },
@@ -14486,56 +14398,111 @@
           "key": "HEAL PER SECOND",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "治疗 每 秒",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每个精灵每秒治疗，不是全群总治疗",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "WISPS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "WISPS",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "治疗精灵数",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "DURATION",
+          "kind": "value",
+          "meaning": "效果持续时间",
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:448；EXTRA_WORKING_DEFAULTS.evilWispDamagePerSecond * .5"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "HEAL INTERVAL",
+          "kind": "value",
+          "meaning": "完整治疗跳间隔",
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:451；buff(c, c.caster, 'permanentWisps', 1)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "PERMANENT WISPS",
+          "kind": "value",
+          "meaning": "Gaben治疗精灵本场永久开关（1为启用）",
+          "unit": "个",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "EVIL WISPS",
+          "kind": "value",
+          "meaning": "Gaben邪恶精灵数",
+          "unit": "个",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "EVIL DAMAGE PER SECOND",
+          "kind": "value",
+          "meaning": "每只邪恶精灵每秒伤害",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "EVIL RADIUS",
+          "kind": "value",
+          "meaning": "邪恶精灵搜索半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "EVIL DURATION",
+          "kind": "value",
+          "meaning": "邪恶精灵持续时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         }
       ]
     },
@@ -14553,24 +14520,24 @@
         {
           "key": "TREANT COUNT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "个",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
+          "integer": true,
           "meaning": "TREANT 数量",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "TREANT DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TREANT 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "AA普通树人伤害，普通树人不会被原生AttackDamage覆盖；大树人采用独立原生单位表",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "TREANT DURATION",
@@ -14580,140 +14547,19 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "TREANT 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "TREANT HEALTH",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "TREANT 生命",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:259；range:1"
-        },
-        {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:259；interval:1.5"
-        },
-        {
-          "key": "skill_effects.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:259；speed:2.8"
-        },
-        {
-          "key": "main_upgrades.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；range:1"
-        },
-        {
-          "key": "main_upgrades.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；interval:1.6"
-        },
-        {
-          "key": "main_upgrades.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；speed:3.6"
-        },
-        {
-          "key": "main_upgrades.regen_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 恢复 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；c.status(t,'regen',v(c,'TREANT DURATION'),2.5)"
-        },
-        {
-          "key": "main_upgrades.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；count:1"
-        },
-        {
-          "key": "main_upgrades.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；range:1"
-        },
-        {
-          "key": "main_upgrades.interval.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；interval:1.6"
-        },
-        {
-          "key": "main_upgrades.speed.2",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:114；speed:3.6"
+          "meaning": "AA普通树人生命；大树人独立1650原型",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         }
       ]
     },
@@ -14729,17 +14575,6 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DAMAGE REDUCTION DURATION",
           "kind": "value",
           "unit": "ms",
@@ -14747,41 +14582,52 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害 降低 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "DAMAGE REDUCTION",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害 降低",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终伤害",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "main_upgrades.fear_duration.1",
-          "kind": "program",
+          "key": "FEAR RADIUS",
+          "kind": "value",
+          "meaning": "换位后恐惧搜索半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "FEAR DURATION",
+          "kind": "value",
+          "meaning": "换位后恐惧持续时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 FEAR 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:36；c.status(t,'fear',1.5,0,{harmful:true})"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         }
       ]
     },
@@ -14803,9 +14649,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "MAX DPS DURATION",
@@ -14814,86 +14660,75 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 每秒伤害 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "从首个最小伤害跳到第9跳最高伤害的4秒增长时间",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "MAX DPS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "最大 每秒伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "最终最大DPS，超神190，代码不再+130",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "MIN DPS",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "最小 每秒伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "作用半径",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
+          "kind": "value",
+          "meaning": "伤害结算间隔",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:503；interval: .2"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
+          "key": "AURA LINGER",
+          "kind": "value",
+          "meaning": "光环脱离残留时间",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:506；amount * .2"
-        },
-        {
-          "key": "skill_effects_more.break_duration.1",
-          "kind": "program",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BREAK 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:506；c.status(t, 'break', .3, 0, harmful)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_more.silence_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "弹道飞行速度",
+          "unit": "Dota单位/秒",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 沉默 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:506；c.status(t, 'silence', .3, 0, harmful)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         }
       ]
     },
@@ -14909,37 +14744,26 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外攻击速度",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "DURATION",
@@ -14948,53 +14772,75 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果持续时间",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "SLASH JUMP RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "SLASH JUMP 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
           "key": "SLASHES RATE MULTIPLIER",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "SLASHES 速率 倍率",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "skill_effects_more.trigger_chance.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "NO TARGET GRACE",
+          "kind": "value",
+          "meaning": "无敌期间无目标宽限时长",
+          "unit": "ms",
           "min": 0,
-          "max": 1,
+          "max": 1000000000,
           "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:520；c.random() < .2"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         },
         {
-          "key": "omnislash.trigger_chance.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "JUMP OFFSET",
+          "kind": "value",
+          "meaning": "无敌斩跳到目标旁的偏移候选",
+          "unit": "Dota单位",
           "min": 0,
-          "max": 1,
+          "max": 1000000000,
           "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/combat/omnislash.ts:40；c.random()<.2"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "MINI CHANCE",
+          "kind": "value",
+          "meaning": "Gaben迷你无敌斩攻击触发概率",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
+        },
+        {
+          "key": "MINI DURATION",
+          "kind": "value",
+          "meaning": "迷你无敌斩持续时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；C10历史机制候选；AA明确数值优先"
         }
       ]
     },
@@ -25159,191 +25005,158 @@
       ],
       "params": [
         {
-          "key": "HASSCEPTERUPGRADE",
+          "key": "PETRIFY_DURATION",
+          "unit": "ms",
+          "meaning": "独立异蛇的石化时长；AA父技能按分支覆盖",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "HASSCEPTERUPGRADE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "PHYSICAL_VULNERABILITY",
+          "unit": "%",
+          "meaning": "独立异蛇的物理承伤增幅；AA父技能覆盖",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "RADIUS",
-          "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "meaning": "异蛇下一目标搜索半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "SNAKE_JUMPS",
+          "unit": "个",
+          "meaning": "最大有效命中数",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE JUMPS",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "JUMP_DELAY",
-          "kind": "value",
           "unit": "ms",
+          "meaning": "异蛇命中到下一跳发射的间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "JUMP 延迟",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "SNAKE_DAMAGE",
+          "unit": "伤害",
+          "meaning": "首个有效目标魔法伤害",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SNAKE_DAMAGE_PCT",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE 伤害 PCT",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SNAKE_MANA_STEAL",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE 法力 STEAL",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SNAKE_SCALE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE SCALE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SNAKE_SPEED_SCALE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SNAKE 速度 SCALE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "INITIAL_SPEED",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "INITIAL 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "RETURN_SPEED",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "RETURN 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "STONE_FORM_SCEPTER_BASE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "STONE FORM SCEPTER 基础",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "STONE_FORM_SCEPTER_INCREMENT",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "STONE FORM SCEPTER INCREMENT",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "MOVEMENT_SLOW",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动 减速",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "TURN_SLOW",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "TURN 减速",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SLOW_DURATION",
-          "kind": "value",
-          "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "historical_children.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "SNAKE_MANA_STEAL",
+          "unit": "%",
+          "meaning": "命中非幻象目标最大法力的返还比例",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-children.ts:51；1+count*n(c,'snake_speed_scale')/100"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "SNAKE_SCALE",
+          "unit": "%",
+          "meaning": "每次有效命中后追加首击伤害比例",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "SNAKE_SPEED_SCALE",
+          "unit": "%",
+          "meaning": "每次有效命中后飞行速度乘算增幅",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "INITIAL_SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "初始异蛇飞行速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "RETURN_SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "返回施法者时的飞行速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "MOVEMENT_SLOW",
+          "unit": "%",
+          "meaning": "异蛇降低移动速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "TURN_SLOW",
+          "unit": "%",
+          "meaning": "异蛇降低转身速率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "SLOW_DURATION",
+          "unit": "ms",
+          "meaning": "异蛇移动与转身减速时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -26239,34 +26052,34 @@
           "key": "ARMOR",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "护甲",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 target-only Solar active. No invented inventory stats/owner armor sacrifice; original AA exact interaction pending."
         },
         {
           "key": "MOVEMENT SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "移动 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 target-only Solar active. No invented inventory stats/owner armor sacrifice; original AA exact interaction pending."
         },
         {
           "key": "ATTACK SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "攻击 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 target-only Solar active. No invented inventory stats/owner armor sacrifice; original AA exact interaction pending."
         },
         {
           "key": "DURATION",
@@ -26275,9 +26088,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "效果持续时间",
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 target-only Solar active. No invented inventory stats/owner armor sacrifice; original AA exact interaction pending."
         }
       ]
     },
@@ -26384,180 +26197,15 @@
       ],
       "params": [
         {
-          "key": "PROJECTILE SPEED",
+          "key": "MAX HOLD",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "MIN FLIGHT",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "最小 FLIGHT",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "MAX FLIGHT",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 FLIGHT",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "RADIUS",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "STUN DURATION",
-          "kind": "value",
+          "meaning": "吞噬盟友的最长保留时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "BURN DAMAGE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "燃烧 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "BURN DURATION",
-          "kind": "value",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "燃烧 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "SLOW",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "减速",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "IMPACT DAMAGE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "IMPACT 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "skill_effects_more_children.banished_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BANISHED 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:154；duration + .1"
-        },
-        {
-          "key": "skill_effects_more_children.visualform_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 VISUALFORM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:154；duration + .1"
-        },
-        {
-          "key": "skill_effects_more_children.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:163；c.delay(.3, () => { if (released) return; if (c.caster.dead || ally.dead) { release(); return; } launched = true; start.x = c.caster.x; start.y = c.caster.y; "
-        },
-        {
-          "key": "skill_effects_more_children.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:177；interval: .5"
-        },
-        {
-          "key": "skill_effects_more_children.dot_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DOT 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:177；c.status(t, 'dot', 1, v(c, 'BURN DAMAGE'), { ...H, interval: .5, damageType: 'magical' })"
-        },
-        {
-          "key": "skill_effects_more_children.interval.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:177；interval: .5"
-        },
-        {
-          "key": "skill_effects_more_children.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:177；c.status(t, 'slow', 1, v(c, 'SLOW') / 100, H)"
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 Gobble .3+1.27/native hold3. Source AI still chooses ally or ordinary nonancient creep."
         }
       ]
     },
@@ -28384,53 +28032,41 @@
       "tiers": [
         1,
         2,
-        3,
-        4
+        3
       ],
       "params": [
         {
-          "key": "ABILITYMODIFIERSUPPORTVALUE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "ABILITYMODIFIERSUPPORTVALUE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
           "key": "MANA_VOID_DAMAGE_PER_MANA",
+          "unit": "伤害/法力",
+          "meaning": "每点目标缺失法力造成的魔法伤害",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "法力 VOID 伤害 每 法力",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "MANA_VOID_MINISTUN",
+          "unit": "ms",
+          "meaning": "仅主目标短暂眩晕时间",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "法力 VOID 最小I眩晕",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "MANA_VOID_AOE_RADIUS",
-          "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "meaning": "法力虚空伤害半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "法力 VOID AOE 半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -30571,17 +30207,6 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
           "key": "DURATION",
           "kind": "value",
           "unit": "ms",
@@ -30595,68 +30220,57 @@
         {
           "key": "ILLUSION DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "ILLUSION 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪烁碎片幻象攻击比例",
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
           "key": "ILLUSION DAMAGE TAKEN",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "ILLUSION 承伤",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪烁碎片幻象承伤比例",
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "historical_upgrades.count.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "ILLUSION COUNT",
+          "unit": "个",
+          "meaning": "每次产生碎片幻象数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:63；count:1"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "historical_upgrades.attack.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "CHARGES",
+          "unit": "次",
+          "meaning": "最大独立充能数",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:63；c.caster.attack*.3"
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         },
         {
-          "key": "historical_upgrades.lifetime.1",
-          "kind": "program",
+          "key": "CHARGE RESTORE TIME",
           "unit": "ms",
+          "meaning": "顺序恢复一层充能所需时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:63；lifetime:7"
-        },
-        {
-          "key": "historical_upgrades.damagetaken.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "承伤倍率",
-          "source": "原程序工作数值",
-          "note": "src/combat/historical-upgrades.ts:63；damageTaken:3"
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
         }
       ]
     },
@@ -33184,6 +32798,313 @@
           "note": ""
         }
       ]
+    },
+    "native:naga_siren_rip_tide": {
+      "id": "naga_siren_rip_tide",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "params": [
+        {
+          "key": "DAMAGE",
+          "unit": "伤害",
+          "meaning": "激流魔法伤害",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "ARMOR REDUCTION",
+          "unit": "护甲",
+          "meaning": "激流降低护甲",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "DURATION",
+          "unit": "ms",
+          "meaning": "激流削甲持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "RADIUS",
+          "unit": "Dota单位",
+          "meaning": "每个家族单位的激流半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        },
+        {
+          "key": "ATTACKS",
+          "unit": "次",
+          "meaning": "触发一次家族激流的命中数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C10固定历史Wiki/KV与AA条款，最终有效值",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Anti-Mage；2023固定KV与对应英雄原页，AA明确数值优先，具体冲突/候选见C10验收"
+        }
+      ]
+    },
+    "native:aa_granted_spit_out": {
+      "id": "aa_granted_spit_out",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": [
+        {
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "弹道飞行速度",
+          "unit": "Dota单位/秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "MIN FLIGHT",
+          "kind": "value",
+          "meaning": "最短飞行时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "MAX FLIGHT",
+          "kind": "value",
+          "meaning": "最长飞行时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "RADIUS",
+          "kind": "value",
+          "meaning": "作用半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "STUN DURATION",
+          "kind": "value",
+          "meaning": "眩晕 持续时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "BURN DAMAGE",
+          "kind": "value",
+          "meaning": "灼烧每秒伤害",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "BURN DURATION",
+          "kind": "value",
+          "meaning": "地面燃烧持续时间",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "SLOW",
+          "kind": "value",
+          "meaning": "移速降低百分比",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "BURN INTERVAL",
+          "kind": "value",
+          "meaning": "灼烧结算间隔",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "AURA INTERVAL",
+          "kind": "value",
+          "meaning": "光环资格检测间隔",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "BURN LINGER",
+          "kind": "value",
+          "meaning": "离开燃烧区后的灼烧残留",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        },
+        {
+          "key": "IMPACT DAMAGE",
+          "kind": "value",
+          "meaning": "落地固定伤害",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；New normal Spit Out native1 child. Impact300 is existing maximum AA-parent workingrank candidate, not native unspecified value; runtime takes owned parent currentglobdamage when available."
+        }
+      ]
+    },
+    "native:drow_ranger_marksmanship": {
+      "id": "drow_ranger_marksmanship",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3
+      ],
+      "params": [
+        {
+          "key": "PROC CHANCE",
+          "kind": "value",
+          "meaning": "神射手攻击触发概率",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "PROC DAMAGE",
+          "kind": "value",
+          "meaning": "神射手触发时附加攻击伤害",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "SELF AGILITY",
+          "kind": "value",
+          "meaning": "神射手自身基础敏捷增幅",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "ALLY AGILITY",
+          "kind": "value",
+          "meaning": "神射手友军基础敏捷增幅",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "AURA RADIUS",
+          "kind": "value",
+          "meaning": "光环作用半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "DISABLE RADIUS",
+          "kind": "value",
+          "meaning": "敌方英雄接近时神射手停用半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "AURA LINGER",
+          "kind": "value",
+          "meaning": "光环脱离残留时间",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        },
+        {
+          "key": "UPDATE INTERVAL",
+          "kind": "value",
+          "meaning": "机制刷新间隔",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C10 AA与历史Wiki/KV核验，完整有效参数",
+          "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Enchantress；https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit；https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Viper；https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Juggernaut；20230215 pre7.32e fullally30/40/50 candidate, Gexplicitgrant with current max3 workinglevel. SourceBreak/illusion/hidden enemy filtering; core snapshotsPRD+80conditionalpostcrit."
+        }
+      ]
     }
   },
   "economy": [
@@ -33542,7 +33463,9 @@
     "npc_dota_lich_ice_spire",
     "npc_dota_unit_undying_zombie",
     "npc_dota_item_wraith_pact_totem",
-    "npc_dota_zeus_cloud"
+    "npc_dota_zeus_cloud",
+    "npc_dota_furion_treant_1",
+    "npc_dota_furion_treant_2"
   ],
   "roles": [
     "archer",

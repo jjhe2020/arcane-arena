@@ -2,10 +2,14 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { createBattle, restoreBattle, serializeBattle, stepBattle } from '../src/combat';
 import { activeVisualProjectiles, addVisualProjectile, moveVisualProjectile, visualProjectilePosition } from '../src/combat/visual-state';
+import {movingVisuals} from '../src/visual-bindings';
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 
 const definitions = JSON.parse(readFileSync('public/data/skills.json', 'utf8')) as SkillDefinition[];
-const skillIds = ['custom_drow_ranger_multishot', 'beastmaster_wild_axes', 'custom_shredder_chakram', 'custom_snapfire_mortimer_kisses', 'kunkka_ghostship'];
+const skillIds = ['beastmaster_wild_axes', 'custom_shredder_chakram', 'custom_snapfire_mortimer_kisses', 'kunkka_ghostship'];
+const assets=JSON.parse(readFileSync('public/data/assets.json','utf8'));
+type ActualFlight={id:string;skill:string;x:number;y:number;angle?:number;createdAt:number};
+const actualFlights=(battle:BattleState)=>(battle.projectiles??[]) as ActualFlight[];
 function player(id: number, skill?: string, points = 9): Player {
   return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 5, locked: false, reserve: [], shop: [], heroes: [0, 1].map(i => ({ id: `h${i}`, name: `H${i}`, role: 'archer', skin: 'female', x: i ? 12 : 0, y: i ? -10 : -3.5, persistentStrengthBonus: 100, skills: skill && !i ? [{ id: skill, points }] : [] })) };
 }
@@ -40,15 +44,17 @@ describe('real skill motion metadata', () => {
     }
     expect(mechanics(discarded)).toEqual(mechanics(withMetadata));
   });
-  it('released Multishot arrows survive interruption, but cancelled salvos create no visual flights', () => {
-    const battle = create('custom_drow_ranger_multishot', 3), flights = reachFlight(battle, 'custom_drow_ranger_multishot');
-    const count = battle.nextVisualProjectile;
+  it('swept Multishot projectiles publish finite actual coordinates and reconstruct by replay',()=>{
+    const battle=create('custom_drow_ranger_multishot',3);for(let i=0;i<180&&!actualFlights(battle).some(p=>p.skill==='custom_drow_ranger_multishot');i++)stepBattle(battle,1/30,definitions);
+    const flights=actualFlights(battle).filter(p=>p.skill==='custom_drow_ranger_multishot');expect(flights.length).toBeGreaterThan(0);expect(new Set(flights.map(p=>p.id)).size).toBe(flights.length);expect(flights.every(p=>[p.x,p.y,p.angle,p.createdAt].every(Number.isFinite))).toBe(true);
+    const restored=restoreBattle(serializeBattle(battle),definitions);expect(actualFlights(restored)).toEqual(actualFlights(battle));stepBattle(battle,1.5,definitions);stepBattle(restored,1.5,definitions);expect(restored).toEqual(battle);
+  });
+  it('discarding optional visuals leaves swept Multishot positions damage and random state unchanged',()=>{const a=create('custom_drow_ranger_multishot'),b=create('custom_drow_ranger_multishot');for(let i=0;i<120;i++){stepBattle(a,1/30,definitions);stepBattle(b,1/30,definitions);delete b.visualProjectiles;delete b.nextVisualProjectile;}expect(mechanics(b)).toEqual(mechanics(a));});
+  it('released Multishot arrows survive interruption, but cancelled salvos create no new swept flights', () => {
+    const battle=create('custom_drow_ranger_multishot',3);for(let i=0;i<180&&!actualFlights(battle).some(p=>p.skill==='custom_drow_ranger_multishot');i++)stepBattle(battle,1/30,definitions);const flights=actualFlights(battle).filter(p=>p.skill==='custom_drow_ranger_multishot');expect(flights.length).toBeGreaterThan(0);
     battle.units[0].statuses.push({ kind: 'stun', until: battle.time + 5 });
     stepBattle(battle, 1 / 30, definitions);
-    expect(activeVisualProjectiles(battle).some(p => flights.some(f => f.id === p.id))).toBe(true);
-    stepBattle(battle, 2, definitions);
-    expect(battle.nextVisualProjectile).toBe(count);
-    expect(activeVisualProjectiles(battle).filter(p => p.skill === 'custom_drow_ranger_multishot')).toEqual([]);
+    expect(actualFlights(battle).some(p=>flights.some(f=>f.id===p.id))).toBe(true);const released=new Set(actualFlights(battle).map(p=>p.id));for(let i=0;i<60;i++){stepBattle(battle,1/30,definitions);expect(actualFlights(battle).filter(p=>p.skill==='custom_drow_ranger_multishot').every(p=>released.has(p.id))).toBe(true);}expect(actualFlights(battle).filter(p=>p.skill==='custom_drow_ranger_multishot')).toEqual([]);
   });
   it('Wild Axes continue on actual out-and-back paths after source death and clean up at completion', () => {
     const battle = create('beastmaster_wild_axes', 3), flight = reachFlight(battle, 'beastmaster_wild_axes');
@@ -82,13 +88,13 @@ describe('real skill motion metadata', () => {
   });
   it('Kisses exposes frozen launch and landing coordinates using the real impact deadline', () => {
     const battle = create('custom_snapfire_mortimer_kisses', 3), [flight] = reachFlight(battle, 'custom_snapfire_mortimer_kisses');
-    expect(flight.arrival! - flight.createdAt).toBeCloseTo(.6);
-    const midpoint = visualProjectilePosition(flight, flight.createdAt + .3);
+    expect(flight.arrival! - flight.createdAt).toBeCloseTo(.8);
+    const midpoint = visualProjectilePosition(flight, flight.createdAt + .4);
     expect(midpoint.x).toBeCloseTo((flight.origin!.x + flight.destination!.x) / 2);
     expect(midpoint.y).toBeCloseTo((flight.origin!.y + flight.destination!.y) / 2);
     battle.units[0].dead = true; battle.units[0].hp = 0;
     expect(activeVisualProjectiles(battle).some(p => p.id === flight.id)).toBe(true);
-    stepBattle(battle, .7, definitions);
+    stepBattle(battle, .9, definitions);
     expect(activeVisualProjectiles(battle).some(p => p.id === flight.id)).toBe(false);
   });
   it('the granted Tidal Wave preserves its child identity and selects only the parent wave atlas', () => {
@@ -105,11 +111,11 @@ describe('real skill motion metadata', () => {
     // Keep the parent barrage unaffordable so its channel does not take priority
     // over the independently granted child; retain this fixture in replay data.
     const catalog = definitions.map(d => d.id === 'custom_snapfire_mortimer_kisses' ? { ...d, mana: [1e6] } : d);
-    const battle = createBattle(owner, player(1), 871, catalog), [glob] = reachFlight(battle, 'aa_granted_gobble_up', catalog);
+    const battle = createBattle(owner, player(1), 871, catalog), [glob] = reachFlight(battle, 'aa_granted_spit_out', catalog);
     expect(glob.artSkill).toBe('custom_snapfire_mortimer_kisses'); expect(glob.layer).toBe('projectile');
     stepBattle(battle, .1, catalog);
     const passenger = battle.units.find(u => u.id.endsWith(':h1') && u.side === 0)!;
-    expect({ x: glob.x, y: glob.y }).toEqual({ x: passenger.x, y: passenger.y });
+    expect(glob.followUnit).toBe(passenger.id);const visual=movingVisuals(assets,battle,battle.time).find(v=>v.key.startsWith(`motion:${glob.id}:`))!;expect(visual).toBeDefined();expect({x:visual.x,y:visual.y}).toEqual({x:passenger.x,y:passenger.y});
     const restored = restoreBattle(serializeBattle(battle), catalog);
     expect(activeVisualProjectiles(restored)).toEqual(activeVisualProjectiles(battle));
     stepBattle(battle, 2, catalog); expect(activeVisualProjectiles(battle).some(p => p.id === glob.id)).toBe(false);

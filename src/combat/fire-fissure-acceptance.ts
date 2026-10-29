@@ -2,6 +2,7 @@ import {BATTLE_CONFIG,skillBalance} from '../config';
 import type {CombatUnit} from '../model';
 import {skillValue as v,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
 import {independentFraction} from './damage-rules';
+import {applyMagmaBurn,magmaStatusRemoved} from './magma-burn';
 
 const STEP=1/30,GRIP='custom_bane_fiends_grip',SOUL='custom_lina_fiery_soul',FINGER='custom_lion_finger_of_death',COOKIE='custom_snapfire_firesnap_cookie',FISSURE='custom_earthshaker_fissure';
 const S=(c:C)=>c.skill.points>=6,G=(c:C)=>c.skill.points>=9,configured=(c:C)=>!!skillBalance(c.definition,c.skill.points);
@@ -89,8 +90,8 @@ export function applyFireFissureAcceptance(registry:Record<string,SkillProgram>)
  const cookieEligible=(c:C,t:CombatUnit)=>t.side===c.caster.side&&!t.dead&&!t.ward&&!t.building&&!has(c,t,'banished')&&!has(c,t,'invulnerable')&&t.action!=='channel';
  cookie.targetEligibility=cookieEligible;cookie.canCast=c=>c.enemies().some(t=>distance(t,c.target)<=8);
  cookie.init=c=>{if(S(c)){const n=v(c,'HOLDER HEALTH BONUS',200);c.caster.maxHp+=n;c.caster.hp+=n;}};
- const burns=new WeakMap<CombatUnit,{until:number;next:number;c:C}>();
- const burn=(c:C,target:CombatUnit)=>{const linger=v(c,'BURN LINGER',1),old=burns.get(target);if(old&&old.until>c.battle.time){old.until=c.battle.time+linger;return;}const state={until:c.battle.time+linger,next:c.battle.time,c};burns.set(target,state);const tick=()=>{if(target.dead||burns.get(target)!==state||c.battle.time>state.until+1e-8)return;const interval=v(state.c,'BURN INTERVAL',.5);c.status(target,'slow',Math.max(STEP,state.until-c.battle.time),v(state.c,'KISS SLOW',25)/100,{harmful:true,dispel:'basic',ignoreStatusResistance:true});c.damage(target,v(state.c,'KISS DAMAGE PER SECOND',30)*interval,'magical',false,{flags:{damageOverTime:true}});state.next+=interval;c.delay(Math.max(0,state.next-c.battle.time),tick);};tick();};
+ const burn=(c:C,target:CombatUnit)=>applyMagmaBurn(c,target,{damagePerSecond:v(c,'KISS DAMAGE PER SECOND',30),slow:v(c,'KISS SLOW',25)/100,interval:v(c,'BURN INTERVAL',.5),linger:v(c,'BURN LINGER',1)});
+ const oldCookieRemoval=cookie.onStatusRemoved;cookie.onStatusRemoved=(c,s,reason)=>{oldCookieRemoval?.(c,s,reason);magmaStatusRemoved(c,s,reason);};
  cookie.cast=c=>{const receiver=c.target;const launch=()=>{if(receiver.dead)return;c.projectile(receiver,v(c,'PROJECTILE SPEED',1100)/100,target=>{
    if(!cookieEligible(c,target)||statuses(target).some(s=>String(s.data?.blockedMotionSkills??'').split(',').includes(COOKIE)||(s.skill==='enigma_black_hole'&&s.kind==='stun')))return;
    const seconds=v(c,'HOP DURATION',S(c)?.684:.484),length=(v(c,'HOP DISTANCE')+(!configured(c)&&S(c)?175:0))/100,key=`${c.caster.id}:${COOKIE}:${c.battle.time}`,x=target.x+Math.cos(target.facing)*length,y=target.y+Math.sin(target.facing)*length;let landed=false;
@@ -99,8 +100,8 @@ export function applyFireFissureAcceptance(registry:Record<string,SkillProgram>)
    if(!c.moveContinuous(target,x,y,{duration:seconds,ignoreBarriers:true,respectSoulbind:true,onEnd:land}))land();
   });};launch();if(G(c))for(let i=1;i<=v(c,'EXTRA COOKIE COUNT',3);i++)c.delay(v(c,'EXTRA COOKIE INTERVAL',1)*i,launch);
  };
- cookie.implemented=['Native nondisjointable1100speed allied projectile;self300ms/zero recovery versus ally200ms/570ms recovery','Arrival checks hidden/invulnerable/channel/Chrono/BlackHole;BKB allies remain eligible','Disabled phased forward425/.484hop or Super600/.684;interrupted motion lands exactly once at actual position','Soulbind boundary constrains each hop frame without banning the cast;ordinary root remains allowed;normal Fissure walls are traversed','AA200heal precedes damage/stun and one max-baseAA300impact/30DPS Mortimer glob;overlappingCookie puddles share one first-source burn','Gaben3additional independent cookie projectiles at one-second intervals'];
- cookie.remaining=['AA200maxHP recipient/duration is unspecified;existing once-per-holder battle bonus is retained as editable working policy','AA grantedKiss level is unspecified;existing max-baseAA glob values are retained','Cookie burns share within this mechanism;cross-skill MortimerKisses/SpitOut shared-modifier unification remains unverified'];
+ cookie.implemented=['Native nondisjointable1100speed allied projectile;self300ms/zero recovery versus ally200ms/570ms recovery','Arrival checks hidden/invulnerable/channel/Chrono/BlackHole;BKB allies remain eligible','Disabled phased forward425/.484hop or Super600/.684;interrupted motion lands exactly once at actual position','Soulbind boundary constrains each hop frame without banning the cast;ordinary root remains allowed;normal Fissure walls are traversed','AA200heal precedes damage/stun and one max-baseAA300impact/30DPS Mortimer glob;Cookie/Kisses/Spit puddles share one first-source burn','Gaben3additional independent cookie projectiles at one-second intervals'];
+ cookie.remaining=['AA200maxHP recipient/duration is unspecified;existing once-per-holder battle bonus is retained as editable working policy','AA grantedKiss level is unspecified;existing max-baseAA glob values are retained','Shared magma first-provider behavior is tested;cross-caster status-resistance and every interruption/refresh order retain separate evidence scope'];
 
  const fissure=registry[FISSURE];fissure.pointTarget=true;fissure.backswing=0;fissure.onCast=undefined;
  fissure.cast=c=>{const origin={x:c.caster.x,y:c.caster.y},target=c.castPosition??c.target,angle=Math.atan2(target.y-origin.y,target.x-origin.x),dx=Math.cos(angle),dy=Math.sin(angle),length=(v(c,'FISSURE RANGE')+(!configured(c)&&S(c)?320:0))/100,width=v(c,'DAMAGE RADIUS',225)/100,end={x:origin.x+dx*length,y:origin.y+dy*length},victims=c.battle.units.filter(t=>areaEnemy(c,t)&&distance(t,projection(t,origin,end))<=width).sort((a,b)=>(a.x-origin.x)*dx+(a.y-origin.y)*dy-((b.x-origin.x)*dx+(b.y-origin.y)*dy)||a.id.localeCompare(b.id));

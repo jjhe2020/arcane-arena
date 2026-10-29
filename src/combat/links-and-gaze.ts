@@ -69,7 +69,7 @@ export function applyLinksAndGazeAcceptance(registry:Record<string,SkillProgram>
       c.status(target,'stun',value(c,'STONE DURATION'),0,{harmful:true,dispel:'strong',piercesImmunity:true,data:{gazeToken:token}});
       const stone=statuses(target).find(status=>own(status)&&status.kind==='stun');if(!stone)return;
       const amp=value(c,'BONUS PHYSICAL ATTACK DAMAGE')+(!skillBalance(c.definition,c.skill.points)&&c.skill.points>=6?10:0);
-      c.status(target,'physicalVulnerability',stone.until-c.battle.time,amp/100,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,data:{gazeToken:token}});
+      c.status(target,'physicalVulnerability',stone.until-c.battle.time,amp/100,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,data:{gazeToken:token,stacking:'strongest',uniqueGroup:'stoneGaze'}});
       if(c.skill.points>=9){
         const raw=UNIT_CONFIG.npc_dota_neutral_mud_golem;
         const bodies=c.summon({name:'泥土傀儡',nativeTemplateId:'npc_dota_neutral_mud_golem',count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate,speed:raw.MovementSpeed/100,lifetime:120});

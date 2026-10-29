@@ -6,7 +6,7 @@ import { activeVisualProjectiles, addVisualProjectile, visualProjectilePosition 
 import { bodyPresentation, linePresentations } from './animation';
 import type { AssetManifest, BattleState, CombatEvent, CombatUnit, Player, SkillDefinition, SkillStack } from './model';
 import type { EffectStatus } from './skill-effects';
-import type { VisualSkillArt } from './visual-layers';
+import {selectVisualLayers,type VisualSkillArt} from './visual-layers';
 
 const assets = JSON.parse(readFileSync('public/data/assets.json', 'utf8')) as AssetManifest;
 const definitions = JSON.parse(readFileSync('public/data/skills.json', 'utf8')) as SkillDefinition[];
@@ -256,7 +256,7 @@ describe('portals use actual Dissimilate world geometry', () => {
 });
 
 describe('moving art follows published simulation metadata', () => {
-  it.each(['custom_drow_ranger_multishot', 'beastmaster_wild_axes', 'custom_shredder_chakram', 'custom_snapfire_mortimer_kisses', 'kunkka_ghostship'])('binds %s to its real moving coordinates, time and authored layer', id => {
+  it.each(['beastmaster_wild_axes', 'custom_shredder_chakram', 'custom_snapfire_mortimer_kisses', 'kunkka_ghostship'])('binds %s to its real moving coordinates, time and authored layer', id => {
     const h = setup(id, 3);
     // Kisses has an actual minimum range; keep this fixture beyond it.
     if (id === 'custom_snapfire_mortimer_kisses') { h.caster.y = -3.5; h.target.y = 3.5; }
@@ -276,6 +276,7 @@ describe('moving art follows published simulation metadata', () => {
     h.battle.visualProjectiles = saved; h.battle.finished = true;
     expect(movingVisuals(assets, h.battle, h.battle.time)).toEqual([]);
   });
+  it('published swept Multishot arrows retain finite real coordinates and their own projectile atlas',()=>{const id='custom_drow_ranger_multishot',h=setup(id,3);waitFor(h.battle,()=>((h.battle.projectiles??[]) as {skill:string}[]).some(p=>p.skill===id));const flights=(h.battle.projectiles as {skill:string;id:string;x:number;y:number;angle:number}[]).filter(p=>p.skill===id);expect(flights.length).toBeGreaterThan(0);for(const flight of flights){expect([flight.x,flight.y,flight.angle].every(Number.isFinite)).toBe(true);const resolved=resolveVisualArt(assets,flight,3)!;expect(selectVisualLayers(resolved.art,resolved.points,'projectile').map(layer=>layer.clip)).toEqual([art(id).layers!.arrow]);}});
   it('selects only the actual granted Tidal Wave parent layer while retaining child motion identity', () => {
     const h = setup('kunkka_ghostship', 6);
     waitFor(h.battle, () => activeVisualProjectiles(h.battle).some(v => v.skill === 'aa_granted_tidal_wave'));
