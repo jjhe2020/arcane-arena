@@ -1,4 +1,4 @@
-import {skillBalance,UNIT_CONFIG} from '../config';
+import {skillBalance,UNIT_CONFIG,BATTLE_CONFIG} from '../config';
 import type {CombatUnit} from '../model';
 import {skillValue as v,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
 
@@ -22,15 +22,15 @@ export function applySummonRestorationAcceptance(registry:Record<string,SkillPro
  const nativeBody=(c:C,id:string,name:string,life:number,skills:string[]=[])=>{
   const raw=UNIT_CONFIG[id];if(!raw)throw Error(`Missing configured summon ${id}`);
   const template={...c.caster,sourceUnitType:id,skills:skills.map(id=>({id,points:3}))};
-  const unit=c.summon({name,count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate/(raw.BaseAttackSpeed/100),speed:raw.MovementSpeed/100,lifetime:life,template,inheritsSkills:skills.length>0,initializeInherited:skills.length>0})[0];
+  const unit=c.summon({name,count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate,speed:raw.MovementSpeed/100,lifetime:life,nativeTemplateId:id,template,inheritsSkills:skills.length>0,initializeInherited:skills.length>0})[0];
   unit.sourceUnitType=id;unit.magicResist=raw.MagicalResistance/100;unit.mana=unit.maxMana=raw.StatusMana;
-  c.status(unit,'regen',life,raw.StatusHealthRegen);c.status(unit,'manaRegen',life,raw.StatusManaRegen-3);return unit;
+  c.status(unit,'regen',life,raw.StatusHealthRegen);c.status(unit,'manaRegen',life,raw.StatusManaRegen-BATTLE_CONFIG.baseManaRegen);return unit;
  };
  wild.target='self';wild.pointTarget=false;wild.canCast=c=>!c.caster.beastmasterBoar;
  wild.cast=c=>{
   const life=v(c,'SUMMON DURATION'),boar=c.summon({name:'豪猪',count:v(c,'BOAR COUNT',1),hp:v(c,'BOAR HEALTH'),attack:v(c,'BOAR ATTACK DAMAGE'),armor:v(c,'BOAR ARMOR',0),range:v(c,'BOAR ATTACK RANGE',550)/100,interval:v(c,'BOAR BASE ATTACK TIME',1.25),speed:v(c,'BOAR MOVE SPEED',c.skill.points>=3?350:c.skill.points>=2?330:320)/100,lifetime:life})[0];
   boar.beastmasterBoar=true;boar.magicResist=0;boar.attackPoint=v(c,'BOAR ATTACK POINT',.5);boar.attackBackswing=v(c,'BOAR ATTACK BACKSWING',.47);boar.projectileSpeed=v(c,'BOAR PROJECTILE SPEED',1500)/100;boar.skills=[{...c.skill}];boar.cooldowns=[Infinity];boar.inheritedMode='attackEffects';c.status(boar,'regen',life,v(c,'BEAST REGEN',1.5));
-  const hawks=c.summon({name:'猎鹰',count:v(c,'HAWK COUNT',gaben(c)?3:1),hp:v(c,'HAWK HEALTH'),attack:0,armor:v(c,'HAWK ARMOR',5),range:0,speed:v(c,'HAWK SPEED')/100,lifetime:life});
+  const hawks=c.summon({name:'猎鹰',count:v(c,'HAWK COUNT',gaben(c)?3:1),hp:v(c,'HAWK HEALTH'),attack:0,armor:v(c,'HAWK ARMOR',5),range:0,speed:v(c,'HAWK SPEED')/100,lifetime:life,nativeTemplateId:'npc_dota_beastmaster_hawk_4'});
   for(const hawk of hawks){hawk.beastmasterHawk=true;hawk.magicResist=0;c.status(hawk,'fly',life,1,{dispel:'none'});c.status(hawk,'disarm',life,1,{dispel:'none'});c.status(hawk,'invisible',life,1,{dispel:'none'});c.status(hawk,'regen',life,v(c,'BEAST REGEN',1.5));if(upgraded(c))addSkills(hawk,['beastmaster_hawk_dive']);}
   if(upgraded(c)){
    const warrior=nativeBody(c,'npc_dota_necronomicon_warrior_3','死灵战士',life,['necronomicon_warrior_mana_burn','necronomicon_warrior_last_will']);nativeBody(c,'npc_dota_necronomicon_archer_3','死灵弓手',life,['necronomicon_archer_purge','necronomicon_archer_aoe']);

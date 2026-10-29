@@ -6,7 +6,7 @@ export type DamageType = 'physical' | 'magical' | 'pure';
 export type DamageCategory = 'attack' | 'spell' | 'hpRemoval';
 /** One released attack; opaque data must contain serializable snapshots only. */
 export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number}}
-export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; reflection?:boolean; noSpellLifesteal?:boolean; delayed?:boolean; healthRemoval?:boolean;noAmplification?:boolean;noReflection?:boolean;noDamageHooks?:boolean;nonLethal?:boolean;ignoreDamageBlock?:boolean;bypassGenericMultipliers?:boolean;convertedAttack?:boolean }
+export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; reflection?:boolean; noSpellLifesteal?:boolean; delayed?:boolean; healthRemoval?:boolean;noAmplification?:boolean;noReflection?:boolean;noDamageHooks?:boolean;nonLethal?:boolean;ignoreDamageBlock?:boolean;bypassGenericMultipliers?:boolean;convertedAttack?:boolean;affectsBanished?:boolean;affectsInvulnerable?:boolean }
 export interface Attribution { abilityId:string; rootAbilityId?:string; parentAbilityId?:string; sourceUnitId?:string; ownerUnitId?:string; sourceName?:string; summonAbilityId?:string; skillInstanceId?:string }
 export type DamageAmounts = Record<DamageType,number>;
 export interface AbilityStats { key:string; abilityId:string; rootAbilityId:string; sourceUnitId:string; sourceName:string; damage:number; taken:number; healing:number; absorbed?:number; damageTypes:DamageAmounts; takenTypes:DamageAmounts }
@@ -25,5 +25,6 @@ export interface CombatUnit { id: string; name: string; role: Role; skin: Skin; 
 export interface CombatEvent { time: number; type: 'attack'|'cast'|'hit'|'heal'|'death'|'summon'|'move'|'status'; source: string; target?: string; skill?: string; x: number; y: number; toX?: number; toY?: number; amount?: number; duration?: number; damageType?:DamageType;originDamageType?:DamageType;category?:DamageCategory;flags?:DamageFlags;attribution?:Attribution; [key:string]: unknown }
 export interface BattleState { time: number; round?: number; units: CombatUnit[]; events: CombatEvent[]; finished: boolean; winner: number | null; rng: number; [key: string]: unknown }
 export interface CombatUnit { absorbed?:number }
+export interface CombatUnit {nativeTemplateId?:string;nativeBaseAttackSpeed?:number;attackCapability?:'none'|'melee'|'ranged';attackTargetCategory?:'heroes';heroClone?:boolean}
 export interface AnimationClip { image: string; frames: number; columns: number; frameWidth: number; frameHeight: number; fps: number; pivot?: [number, number]; loop?: boolean; [key:string]: unknown }
 export interface AssetManifest { characters: Record<string, Record<string, AnimationClip>>; skills: Record<string, unknown>; arenas: { name: string; image: string; [key: string]: unknown }[]; projectiles?:Record<string,AnimationClip>; mobileAtlases?:Record<string,Partial<AnimationClip>&{image:string;frameWidth:number;frameHeight:number}>; [key:string]: unknown }

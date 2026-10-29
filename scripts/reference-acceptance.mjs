@@ -11,7 +11,8 @@ export async function referenceFingerprint(base=root){
  await walk('src',name=>/\.(ts|json)$/.test(name));await walk('tests',name=>name.endsWith('.ts'));
  await walk('config',name=>/\.(xlsx|json)$/.test(name));
  await walk('references/dota-wiki/acceptance',name=>name.endsWith('.json'));
- await walk('scripts',name=>/(?:^|\/)(?:reference-acceptance|verify-reference-acceptance|build-reference-acceptance)\.mjs$/.test(name));
+ files.push('public/data/skills.json');
+ await walk('scripts',name=>/(?:^|\/)(?:reference-acceptance|verify-reference-acceptance|build-reference-acceptance|config-compiler|config-schema|config-compile|config-check)\.mjs$/.test(name));
  const hash=createHash('sha256');for(const name of files.sort()){hash.update(name+'\0');const bytes=await fs.readFile(path.join(base,name));hash.update(name.endsWith('.xlsx')?bytes:bytes.toString('utf8').replaceAll('\r\n','\n'));hash.update('\0');}return hash.digest('hex');
 }
 export function evaluateRequirement(requirement,sources,proof,current){

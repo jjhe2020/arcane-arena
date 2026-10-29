@@ -1,0 +1,1527 @@
+{
+  "schemaVersion": 1,
+  "group": "native-unit-profiles",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA authored health/damage/range/speed/lifetime remain explicit caller values. Native profile fields use versioned Wiki first and pinned Valve fields/inheritance when compatible; conflicts are recorded, never silently averaged. Configuration remains the runtime numerical authority. No main skill acceptance count is added by this shared engine ledger.",
+  "sources": [
+    {
+      "id": "valve-units",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Shipped Valve2023-02-10 commit6abdd9d; historical native candidate, not original AA custom runtime.",
+      "observation": "Unit base defaults and explicit include_keys_from inheritance; attack capabilities, separate BaseAttackSpeed and AttackRate, raw attack point, projectile speed, motion and attack range buffer.",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "localEvidence": "references/dota-20230216/parsed/npc_units.json"
+    },
+    {
+      "id": "necro-2023",
+      "url": "https://web.archive.org/web/20230215203000id_/https://dota2.fandom.com/wiki/Necronomicon",
+      "originalUrl": "https://dota2.fandom.com/wiki/Necronomicon",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215203000",
+      "htmlSha256": "825610734e21a1f7ce34822d1f2d4f1aa3a4cf6750482b1166d608d2c246add3",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Warrior105/107/109AS and.75BAT with.56+.44 animation; Archer105/107/109AS and1BAT with.7+.3 animation and900 projectile. Both have.5 turn rate.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "treant-2023",
+      "url": "https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature's_Prophet",
+      "originalUrl": "https://dota2.fandom.com/wiki/Nature's_Prophet",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215192014",
+      "htmlSha256": "04f0022f381c7e89acd6ab1fdeb70582ade94697f72af942b05dd34b2c3fd537",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Treants have100AS,1.6BAT,.467+.533 attack animation, instant melee contact and.5 turn rate.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "hawk-2023",
+      "url": "https://web.archive.org/web/20230215191303id_/https://dota2.fandom.com/wiki/Beastmaster",
+      "originalUrl": "https://dota2.fandom.com/wiki/Beastmaster",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215191303",
+      "htmlSha256": "d74eb6cc83afb3bb35e6282245d875c055f6dc1084f601631c22a7c485490d53",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Historical Hawk is flying and nonattacking, with.6 turn rate. The boar has its own.5+.47 animation and1500 projectile, retained by its existing AA-authored program.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "mud-2022",
+      "url": "https://web.archive.org/web/20221205165935id_/https://dota2.fandom.com/wiki/Mud_Golem",
+      "originalUrl": "https://dota2.fandom.com/wiki/Mud_Golem",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20221205165935",
+      "htmlSha256": "4a82c58100864646004a02534500d6240cf4fc7fc8d6716f9254e136f91f3309",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Mud Golem has150AS,2BAT,.3+.5 animation and.9 turn. Its changelog explicitly attributes the turn change.5 to.9 to7.31.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "ward-2023",
+      "url": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor",
+      "originalUrl": "https://dota2.fandom.com/wiki/Witch_Doctor",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215192255",
+      "htmlSha256": "85a5c8ce9b11e27047f8fc6eb4113e8c4274c5bef4d24e78c26ecbde398750b7",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Death Ward has100AS,.22BAT, zero attack point/backswing,1000 projectile and.5 turn; ward eligibility and spell-like attack behavior are accepted separately by the Death Ward mechanism ledger.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "granite-2022",
+      "url": "https://web.archive.org/web/20220701112441id_/https://dota2.fandom.com/wiki/Ancient_Granite_Golem",
+      "originalUrl": "https://dota2.fandom.com/wiki/Ancient_Granite_Golem",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20220701112441",
+      "htmlSha256": "b60124241e85cfc335014b25127cd59af5fee029ff5e79d829ae1befbdc7cabf",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Granite Golem has150AS,2BAT,.3+.3 animation, instant melee contact and.5 turn. The generic attack-animation overview table contains a different stale backswing and is not selected.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "thunder-2022",
+      "url": "https://web.archive.org/web/20220927090953id_/https://dota2.fandom.com/wiki/Ancient_Thunderhide",
+      "originalUrl": "https://dota2.fandom.com/wiki/Ancient_Thunderhide",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20220927090953",
+      "htmlSha256": "611d9d4c7065f13783efdf7c6a0c5da991383058fac55e2e96bb22e1af09d074",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Thunderhide has120AS,2BAT,.3+.3 animation,1500 projectile and.9 turn. The7.31 changelog dates these attack point/backswing changes.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "dragon-2023",
+      "url": "https://web.archive.org/web/20230227161557id_/https://dota2.fandom.com/wiki/Ancient_Black_Dragon",
+      "originalUrl": "https://dota2.fandom.com/wiki/Ancient_Black_Dragon",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230227161557",
+      "htmlSha256": "d747592b042052fe1c31f6000f3432afd665c6ec3c51f6b41ec24f32a7fbb32d",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Black Dragon has135AS,2BAT,.5+.5 animation,1500 projectile and.9 turn. The7.31 changelog dates its replacement of the old.94+.56 animation.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "shard-2022",
+      "url": "https://web.archive.org/web/20220707081432id_/https://dota2.fandom.com/wiki/Shard_Golem",
+      "originalUrl": "https://dota2.fandom.com/wiki/Shard_Golem",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20220707081432",
+      "htmlSha256": "b641bcd76447c9845379df5e22ed119314b92f5c579acb53d0d6616a15b1f7a4",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Shard Golem has150AS,2BAT,.3+.5 animation, instant melee contact and.5 turn.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "lycan-2023",
+      "url": "https://web.archive.org/web/20230205103458id_/https://dota2.fandom.com/wiki/Lycan",
+      "originalUrl": "https://dota2.fandom.com/wiki/Lycan",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230205103458",
+      "htmlSha256": "dfe1ea62ea8b3d26fe5acd53de30d5b9fe9977159445029c7c0cfa6ec36e27ec",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Historical wolf-family animation.33+.64 and.5 turn corroborate the unchanged wolf model. Selected rank-four BAT.9 is independently present in the pinned template; AA rank-dependent HP/damage/BAT remain explicit caller values.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "greater-728-731d",
+      "url": "https://liquipedia.net/dota2/Greater_Treant_%287.28-7.31d%29",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Explicitly archived7.28-7.31d Greater Treant page, indexed content read2026-10-29; not a direct2023 HTTP capture.",
+      "observation": "Legacy npc_dota_furion_treant_large has1650HP,102-114 damage,100AS,1.4BAT,.467+.533 animation and.5 turn. This version matches the existing selected template rather than the later Greater Treant."
+    },
+    {
+      "id": "animation-2023",
+      "url": "https://web.archive.org/web/20230215192640id_/https://dota2.fandom.com/wiki/Attack_animation",
+      "originalUrl": "https://dota2.fandom.com/wiki/Attack_animation",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215192640",
+      "htmlSha256": "2ded1e8f53a1973ded43a0aaf156a982cc080a4d6bf509f06ae9d3aceafc5d25",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Image-alt formulas give effective attack point=base point*100/totalAS*(1+point manipulation), and backswing=base backswing*100/totalAS. BAT is absent. Cancelled backswing extends idle time instead of granting an earlier next attack.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "speed-2023",
+      "url": "https://web.archive.org/web/20230215192015id_/https://dota2.fandom.com/wiki/Attack_Speed",
+      "originalUrl": "https://dota2.fandom.com/wiki/Attack_Speed",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230215192015",
+      "htmlSha256": "e61b25e89447b7b1bd298d6ba86c0e14a11bc779842767067454a5b38bc2fa1f",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "TotalAS adds BaseAS and flat/current bonuses, then applies percentage multiplier. Attack rate is totalAS/(100*BAT); BaseAS is not folded into BAT.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "turn-2023",
+      "url": "https://web.archive.org/web/20230118144722id_/https://dota2.fandom.com/wiki/Turn_rate",
+      "originalUrl": "https://dota2.fandom.com/wiki/Turn_rate",
+      "accessedOn": "2026-10-29",
+      "httpStatus": 200,
+      "captureTimestamp": "20230118144722",
+      "htmlSha256": "c6c6c85ae2ddc3c7d4e4068bae8f4868169fbe259358f84cf7fdd876e43e34b1",
+      "versionContext": "Direct historical capture before7.33; selected version is explicit and later numeric changes are excluded.",
+      "observation": "Turn rate uses radians per.03 seconds and requires facing before ordinary orders. Native turning ramps to its maximum rather than immediately reaching the cap. The flat engine conversion models the sourced rate unit, not the unrecovered acceleration curve.",
+      "readMethod": "Public HTTPS GET; gzip decompression if magic requires it; inert HTMLParser text and math image-alt inspection. Full copyrighted pages are not retained."
+    },
+    {
+      "id": "project-role-contract",
+      "url": "https://github.com/jjhe2020/arcane-arena/blob/1167e2e0050047a4eb7e3a7b7f46ad3c12bd8c8e/references/dota-wiki/r5-mechanics.json",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Existing project contract retained unchanged by the native summon migration;18rad/s is a user-confirmed custom value, not native Dota equivalence.",
+      "observation": "The existing rules explicitly document the four custom bodies using a configurable18rad/s work value.",
+      "localEvidence": "references/dota-wiki/r5-mechanics.json"
+    },
+    {
+      "id": "project-time-contract",
+      "url": "https://github.com/jjhe2020/arcane-arena/blob/1167e2e0050047a4eb7e3a7b7f46ad3c12bd8c8e/references/dota-wiki/acceptance/mobility-fields.json",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Existing project AA Chronosphere interpretation is explicitly pending native/AA source confirmation. This source supports only preserving the selected time-factor policy.",
+      "observation": "The prior ledger records6.5x as the current project time-factor candidate, with a passing behavior test and an unresolved AA-550 percent interpretation.",
+      "localEvidence": "references/dota-wiki/acceptance/mobility-fields.json"
+    },
+    {
+      "id": "project-creation-contract",
+      "url": "https://github.com/jjhe2020/arcane-arena/blob/1167e2e0050047a4eb7e3a7b7f46ad3c12bd8c8e/src/combat.ts",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Existing deterministic fixed-step and fresh summon/illusion snapshot policy; current narrow native identity fields implement this compatibility contract, not new native eligibility.",
+      "observation": "The existing engine reconstructs deterministic recorded inputs, treats illusions as template snapshots, and initializes fresh summons with independent state.",
+      "localEvidence": "src/combat.ts"
+    },
+    {
+      "id": "aa-custom-wolves",
+      "url": "https://www.abilityarena.com/learn/spells",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Captured AA clauses and values stay authoritative; this profile migration does not substitute vanilla balance numbers.",
+      "observation": "AA Super adds two wolves and Gaben gives a further Big Bad Wolf with fivefold health and damage.",
+      "localEvidence": "config/reference/migration-baseline.json"
+    }
+  ],
+  "skills": [],
+  "engineRequirements": [
+    {
+      "id": "E-NATIVE-CREATE-01",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_beastmaster_hawk_4 receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "hawk-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_beastmaster_hawk_4 is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-02",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_furion_treant_4 receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "treant-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_furion_treant_4 is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-03",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_furion_treant_large receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "greater-728-731d",
+        "treant-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_furion_treant_large is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-04",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_lycan_wolf4 receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "lycan-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_lycan_wolf4 is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-05",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_necronomicon_archer_3 receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "necro-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_necronomicon_archer_3 is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-06",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_necronomicon_warrior_3 receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "necro-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_necronomicon_warrior_3 is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-07",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_neutral_big_thunder_lizard receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "thunder-2022",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_neutral_big_thunder_lizard is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-08",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_neutral_black_dragon receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "dragon-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_neutral_black_dragon is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-09",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_neutral_granite_golem receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "granite-2022",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_neutral_granite_golem is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-10",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_neutral_mud_golem receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "mud-2022",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_neutral_mud_golem is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-11",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_witch_doctor_death_ward receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "ward-2023",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_witch_doctor_death_ward is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-CREATE-12",
+      "kind": "mechanism",
+      "branch": "engine",
+      "rule": "npc_dota_lich_ice_spire receives only its compiled native attack/motion profile on the same frame as an actual registered skill creates it.",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-01 npc_dota_lich_ice_spire is configured on its actual creation frame"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-02",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "Shard Split binds both new native shard profiles immediately on their actual death spawn",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "shard-2022"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-02 Shard Split binds both new native shard profiles immediately on their actual death spawn"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-03",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "native profiles preserve AA summon health damage range movement duration and granted skills",
+      "sourceIds": [
+        "aa-custom-wolves",
+        "valve-units"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-03 native profiles preserve AA summon health damage range movement duration and granted skills"
+        }
+      ],
+      "evidenceScope": "AA custom values remain unchanged"
+    },
+    {
+      "id": "E-NATIVE-PROFILE-04",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "native109 base attack speed adds flat attack speed instead of predividing BAT",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-04 native109 base attack speed adds flat attack speed instead of predividing BAT"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-05",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "a real Archer attack launches after its native scaled point with the independently authored backswing",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-05 a real Archer attack launches after its native scaled point with the independently authored backswing"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-06",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "an Archer missile travels at nine world units per second rather than the hero default fourteen",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-06 an Archer missile travels at nine world units per second rather than the hero default fourteen"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-07",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "no-attack Hawk cannot issue attacks even when disarm is absent and damage and range preconditions would allow them",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "hawk-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-07 no-attack Hawk cannot issue attacks even when disarm is absent and damage and range preconditions would allow them"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-08",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "native melee identity remains melee with a custom long range and native ranged identity remains ranged at short range",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-08 native melee identity remains melee with a custom long range and native ranged identity remains ranged at short range"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-09",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "an actual melee native attack resolves at its point without creating a default-speed projectile",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "treant-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-09 an actual melee native attack resolves at its point without creating a default-speed projectile"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-10",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "BAT replacement changes attack cadence while native attack point and backswing remain governed by total attack speed",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-10 BAT replacement changes attack cadence while native attack point and backswing remain governed by total attack speed"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-11",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "the flat-turn native profile requires facing before its real ordinary attack and never snaps by pi",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023",
+        "turn-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-11 the flat-turn native profile requires facing before its real ordinary attack and never snaps by pi"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-12",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "the inherited native250 attack buffer permits an already winding attack after the victim moves beyond range",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-12 the inherited native250 attack buffer permits an already winding attack after the victim moves beyond range"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-13",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "all four custom hero roles keep their configured profile and the confirmed eighteen-radian default",
+      "sourceIds": [
+        "project-role-contract"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-13 all four custom hero roles keep their configured profile and the confirmed eighteen-radian default"
+        }
+      ],
+      "evidenceScope": "project compatibility, not a native18rad/s claim"
+    },
+    {
+      "id": "E-NATIVE-PROFILE-14",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "a project attack-time factor scales native cadence point and backswing together without changing baseAS",
+      "sourceIds": [
+        "project-time-contract",
+        "animation-2023",
+        "speed-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-14 a project attack-time factor scales native cadence point and backswing together without changing baseAS"
+        }
+      ],
+      "scopeNote": "Project Chronosphere-like time-factor compatibility only, not proof of the unsourced AA-550 percent interpretation.",
+      "evidenceScope": "project compatibility, not acceptance of AA-550 percent"
+    },
+    {
+      "id": "E-NATIVE-PROFILE-15",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "a real Inner Beast aura adds its AA flat forty-five attack speed to the native109 base",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-15 a real Inner Beast aura adds its AA flat forty-five attack speed to the native109 base"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-16",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "flat attack-speed changes during a real native windup rescale its remaining work once",
+      "sourceIds": [
+        "valve-units",
+        "animation-2023",
+        "speed-2023",
+        "necro-2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-16 flat attack-speed changes during a real native windup rescale its remaining work once"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE-PROFILE-17",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "a new ordinary summon made by a native caster does not inherit its native attack identity or baseAS",
+      "sourceIds": [
+        "project-creation-contract"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-17 a new ordinary summon made by a native caster does not inherit its native attack identity or baseAS"
+        }
+      ],
+      "evidenceScope": "project snapshot/creation compatibility"
+    },
+    {
+      "id": "E-NATIVE-PROFILE-18",
+      "kind": "combination",
+      "branch": "engine",
+      "rule": "an actual illusion cast copies its native caster profile snapshot without rereading the template table",
+      "sourceIds": [
+        "project-creation-contract"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-18 an actual illusion cast copies its native caster profile snapshot without rereading the template table"
+        }
+      ],
+      "evidenceScope": "project snapshot/creation compatibility"
+    },
+    {
+      "id": "E-NATIVE-PROFILE-19",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "a real zero-point Death Ward releases on its attack-order tick and damage follows projectile processing",
+      "sourceIds": [
+        "ward-2023",
+        "animation-2023",
+        "project-creation-contract"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-19 a real zero-point Death Ward releases on its attack-order tick and damage follows projectile processing"
+        }
+      ],
+      "scopeNote": "Native zero attack point releases on the order frame. A coincident target is hit by the next30Hz projectile sweep; that quantization is a project physics boundary."
+    },
+    {
+      "id": "E-NATIVE-TURN-ACCELERATION",
+      "kind": "timing",
+      "branch": "engine",
+      "rule": "Native turn acceleration/deceleration and7.29 adjustment are not reconstructed. A flat angular cap converted from sourced units is an explicit model boundary.",
+      "sourceIds": [
+        "turn-2023"
+      ],
+      "status": "pending",
+      "testEvidence": []
+    }
+  ],
+  "validation": {
+    "command": "npx vitest run tests/reference-native-unit-profiles.test.ts",
+    "passedTests": 35,
+    "sharedRegressionCommand": "npx vitest run tests/reference-native-unit-profiles.test.ts tests/combat-clock-prd.test.ts tests/reference-proc-acceptance.test.ts tests/reference-attack-modes.test.ts",
+    "sharedRegressionPassedTests": 141,
+    "verificationNote": "Parent agent ran the native/clock/proc/modes group after the zero-point launch fix and reported all141 passing; final full-repository proof is generated separately.",
+    "typecheck": "npx tsc --noEmit",
+    "baseRevision": "1167e2e0050047a4eb7e3a7b7f46ad3c12bd8c8e",
+    "meaning": "Actual registered skill bodies and orders. Manual status/range/snapshot preconditions are explicit in tests. Five replay cases use original recorded players and are project compatibility evidence, not independent native-source equivalence.",
+    "compiledProfileSnapshotHash": "780f9f9f103fc64724c7791e22e475ae377127fe509f1c55bfa4b981be396beb",
+    "configurationHash": "d726a9bef22ee3f2751db500996c3a75b30d409a4342ddf8d1631d3651e69189",
+    "finalScopedValidation": "Parent ran the frozen C4 source in the final1100-test full suite; current per-test source proof is generated separately."
+  },
+  "extras": {
+    "profiles": [
+      {
+        "id": "npc_dota_beastmaster_hawk_4",
+        "sourceIds": [
+          "valve-units",
+          "hawk-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_beastmaster_hawk_4"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+          "AttackRate": "1.7",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.75",
+          "ProjectileSpeed": "900",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.6"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_beastmaster_hawk_4",
+          "AttackRate": "npc_dota_units_base",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_units_base",
+          "ProjectileSpeed": "npc_dota_units_base",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_beastmaster_hawk_4"
+        },
+        "selectedProfile": {
+          "attackCapability": 0,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.6,
+          "turnRate": 20,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "NO_ATTACK clocks/projectile are normalized to zero and do not certify a usable native attack.",
+        "compiledProfile": {
+          "AttackRate": 0,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 0,
+          "turnRate": 20,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 0
+        }
+      },
+      {
+        "id": "npc_dota_furion_treant_4",
+        "sourceIds": [
+          "valve-units",
+          "treant-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_furion_treant_4"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "1.6",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.467",
+          "ProjectileSpeed": "",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "2.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_furion_treant_4",
+          "AttackRate": "npc_dota_furion_treant_4",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_furion_treant_4",
+          "ProjectileSpeed": "npc_dota_furion_treant_4",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_furion_treant_4"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.467,
+          "attackBackswing": 0.533,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 1.6,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.467,
+          "attackBackswing": 0.533,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_furion_treant_large",
+        "sourceIds": [
+          "valve-units",
+          "greater-728-731d",
+          "treant-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_furion_treant_large"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "1.4",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.467",
+          "ProjectileSpeed": "",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "2.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_furion_treant_large",
+          "AttackRate": "npc_dota_furion_treant_large",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_furion_treant_large",
+          "ProjectileSpeed": "npc_dota_furion_treant_large",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_furion_treant_large"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.467,
+          "attackBackswing": 0.533,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 1.4,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.467,
+          "attackBackswing": 0.533,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_lycan_wolf4",
+        "sourceIds": [
+          "valve-units",
+          "lycan-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_lycan_wolf1",
+          "npc_dota_lycan_wolf4"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "0.9",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.33",
+          "ProjectileSpeed": "0",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_lycan_wolf1",
+          "AttackRate": "npc_dota_lycan_wolf4",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_lycan_wolf1",
+          "ProjectileSpeed": "npc_dota_lycan_wolf1",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_units_base"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.33,
+          "attackBackswing": 0.64,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 0.9,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0.33,
+          "attackBackswing": 0.64,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_necronomicon_archer_3",
+        "sourceIds": [
+          "valve-units",
+          "necro-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_necronomicon_archer_3"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+          "AttackRate": "1",
+          "BaseAttackSpeed": "109",
+          "AttackAnimationPoint": "0.7",
+          "ProjectileSpeed": "900",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_necronomicon_archer_3",
+          "AttackRate": "npc_dota_necronomicon_archer_3",
+          "BaseAttackSpeed": "npc_dota_necronomicon_archer_3",
+          "AttackAnimationPoint": "npc_dota_necronomicon_archer_3",
+          "ProjectileSpeed": "npc_dota_necronomicon_archer_3",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_necronomicon_archer_3"
+        },
+        "selectedProfile": {
+          "attackCapability": 2,
+          "BaseAttackSpeed": 109,
+          "attackPoint": 0.7,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 9,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 1,
+          "BaseAttackSpeed": 109,
+          "attackPoint": 0.7,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 9,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 2
+        }
+      },
+      {
+        "id": "npc_dota_necronomicon_warrior_3",
+        "sourceIds": [
+          "valve-units",
+          "necro-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_necronomicon_warrior_3"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "0.75",
+          "BaseAttackSpeed": "109",
+          "AttackAnimationPoint": "0.56",
+          "ProjectileSpeed": "",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_necronomicon_warrior_3",
+          "AttackRate": "npc_dota_necronomicon_warrior_3",
+          "BaseAttackSpeed": "npc_dota_necronomicon_warrior_3",
+          "AttackAnimationPoint": "npc_dota_necronomicon_warrior_3",
+          "ProjectileSpeed": "npc_dota_necronomicon_warrior_3",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_necronomicon_warrior_3"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 109,
+          "attackPoint": 0.56,
+          "attackBackswing": 0.44,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 0.75,
+          "BaseAttackSpeed": 109,
+          "attackPoint": 0.56,
+          "attackBackswing": 0.44,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_neutral_big_thunder_lizard",
+        "sourceIds": [
+          "valve-units",
+          "thunder-2022"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_neutral_big_thunder_lizard"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+          "AttackRate": "2",
+          "BaseAttackSpeed": "120",
+          "AttackAnimationPoint": "0.3",
+          "ProjectileSpeed": "1500",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.9"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_neutral_big_thunder_lizard",
+          "AttackRate": "npc_dota_neutral_big_thunder_lizard",
+          "BaseAttackSpeed": "npc_dota_neutral_big_thunder_lizard",
+          "AttackAnimationPoint": "npc_dota_neutral_big_thunder_lizard",
+          "ProjectileSpeed": "npc_dota_neutral_big_thunder_lizard",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_neutral_big_thunder_lizard"
+        },
+        "selectedProfile": {
+          "attackCapability": 2,
+          "BaseAttackSpeed": 120,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 15,
+          "nativeTurnRateSourceValue": 0.9,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 2,
+          "BaseAttackSpeed": 120,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 15,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 2
+        }
+      },
+      {
+        "id": "npc_dota_neutral_black_dragon",
+        "sourceIds": [
+          "valve-units",
+          "dragon-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_neutral_black_dragon"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+          "AttackRate": "2",
+          "BaseAttackSpeed": "135",
+          "AttackAnimationPoint": "0.5",
+          "ProjectileSpeed": "1500",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.9"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_neutral_black_dragon",
+          "AttackRate": "npc_dota_neutral_black_dragon",
+          "BaseAttackSpeed": "npc_dota_neutral_black_dragon",
+          "AttackAnimationPoint": "npc_dota_neutral_black_dragon",
+          "ProjectileSpeed": "npc_dota_neutral_black_dragon",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_neutral_black_dragon"
+        },
+        "selectedProfile": {
+          "attackCapability": 2,
+          "BaseAttackSpeed": 135,
+          "attackPoint": 0.5,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 15,
+          "nativeTurnRateSourceValue": 0.9,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 2,
+          "BaseAttackSpeed": 135,
+          "attackPoint": 0.5,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 15,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 2
+        }
+      },
+      {
+        "id": "npc_dota_neutral_granite_golem",
+        "sourceIds": [
+          "valve-units",
+          "granite-2022"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_neutral_granite_golem"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "2",
+          "BaseAttackSpeed": "150",
+          "AttackAnimationPoint": "0.3",
+          "ProjectileSpeed": "0",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_neutral_granite_golem",
+          "AttackRate": "npc_dota_neutral_granite_golem",
+          "BaseAttackSpeed": "npc_dota_neutral_granite_golem",
+          "AttackAnimationPoint": "npc_dota_neutral_granite_golem",
+          "ProjectileSpeed": "npc_dota_neutral_granite_golem",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_units_base"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 2,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.3,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_neutral_mud_golem",
+        "sourceIds": [
+          "valve-units",
+          "mud-2022"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_neutral_mud_golem"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "2",
+          "BaseAttackSpeed": "150",
+          "AttackAnimationPoint": "0.3",
+          "ProjectileSpeed": "0",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_neutral_mud_golem",
+          "AttackRate": "npc_dota_neutral_mud_golem",
+          "BaseAttackSpeed": "npc_dota_neutral_mud_golem",
+          "AttackAnimationPoint": "npc_dota_neutral_mud_golem",
+          "ProjectileSpeed": "npc_dota_neutral_mud_golem",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_units_base"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.9,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 2,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 0,
+          "turnRate": 30.000000000000004,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_neutral_mud_golem_split",
+        "sourceIds": [
+          "valve-units",
+          "shard-2022"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_neutral_mud_golem_split"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+          "AttackRate": "2",
+          "BaseAttackSpeed": "150",
+          "AttackAnimationPoint": "0.3",
+          "ProjectileSpeed": "0",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_neutral_mud_golem_split",
+          "AttackRate": "npc_dota_neutral_mud_golem_split",
+          "BaseAttackSpeed": "npc_dota_neutral_mud_golem_split",
+          "AttackAnimationPoint": "npc_dota_neutral_mud_golem_split",
+          "ProjectileSpeed": "npc_dota_neutral_mud_golem_split",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_units_base"
+        },
+        "selectedProfile": {
+          "attackCapability": 1,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 2,
+          "BaseAttackSpeed": 150,
+          "attackPoint": 0.3,
+          "attackBackswing": 0.5,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 1
+        }
+      },
+      {
+        "id": "npc_dota_witch_doctor_death_ward",
+        "sourceIds": [
+          "valve-units",
+          "ward-2023"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_witch_doctor_death_ward"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+          "AttackRate": "0.22",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.0",
+          "ProjectileSpeed": "1000",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_witch_doctor_death_ward",
+          "AttackRate": "npc_dota_witch_doctor_death_ward",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_witch_doctor_death_ward",
+          "ProjectileSpeed": "npc_dota_witch_doctor_death_ward",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_witch_doctor_death_ward"
+        },
+        "selectedProfile": {
+          "attackCapability": 2,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 10,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "Native type identity is independent of attack range. BAT remains a separate AA caller option; no predivision by BaseAS.",
+        "compiledProfile": {
+          "AttackRate": 0.22,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 10,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 2
+        }
+      },
+      {
+        "id": "npc_dota_lich_ice_spire",
+        "sourceIds": [
+          "valve-units"
+        ],
+        "inheritance": [
+          "npc_dota_units_base",
+          "npc_dota_lich_ice_spire"
+        ],
+        "resolvedRaw": {
+          "AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+          "AttackRate": "1.0",
+          "BaseAttackSpeed": "100",
+          "AttackAnimationPoint": "0.0",
+          "ProjectileSpeed": "0",
+          "AttackRangeBuffer": "250",
+          "MovementTurnRate": "0.5"
+        },
+        "rawFieldOrigins": {
+          "AttackCapabilities": "npc_dota_lich_ice_spire",
+          "AttackRate": "npc_dota_lich_ice_spire",
+          "BaseAttackSpeed": "npc_dota_units_base",
+          "AttackAnimationPoint": "npc_dota_lich_ice_spire",
+          "ProjectileSpeed": "npc_dota_lich_ice_spire",
+          "AttackRangeBuffer": "npc_dota_units_base",
+          "MovementTurnRate": "npc_dota_units_base"
+        },
+        "selectedProfile": {
+          "attackCapability": 0,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 0,
+          "nativeTurnRateSourceValue": 0.5,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5
+        },
+        "note": "NO_ATTACK clocks/projectile are normalized to zero and do not certify a usable native attack. Its HP is the actual AA hit-count setting SPIRE CREEP HITS; this adapter deliberately does not overwrite it from the background native unit row.",
+        "compiledProfile": {
+          "AttackRate": 1,
+          "BaseAttackSpeed": 100,
+          "attackPoint": 0,
+          "attackBackswing": 0,
+          "projectileSpeed": 0,
+          "turnRate": 16.666666666666668,
+          "attackRangeBuffer": 2.5,
+          "attackCapability": 0
+        }
+      }
+    ],
+    "profileCount": 13,
+    "versionConflicts": [
+      {
+        "id": "treant-turn",
+        "raw": "Both selected Treant KV templates explicitly write2.5.",
+        "wiki": "Direct2023 standard Treant and version-specific Greater Treant page give.5.",
+        "decision": "Use Wiki.5 by the user nonnumeric-mechanism reference priority; preserve raw evidence."
+      },
+      {
+        "id": "mud-turn",
+        "raw": "Mud Golem omits MovementTurnRate and inherits.5.",
+        "wiki": "Direct2022 page gives.9 and its7.31 changelog explicitly changes.5 to.9.",
+        "decision": "Use versioned Wiki.9; Shard remains.5."
+      },
+      {
+        "id": "stale-overview-animation",
+        "raw": "2023 KV already has Thunder.3 and Dragon.5 attack points.",
+        "wiki": "Generic current attack-animation overview still contains pre7.31 Thunder.5+.56 and Dragon.94+.56, and a conflicting Granite backswing. Direct historical per-unit pages give Thunder.3+.3, Dragon.5+.5 and Granite.3+.3.",
+        "decision": "Select directly read versioned per-unit pages and corroborating7.31 changes."
+      },
+      {
+        "id": "greater-treant-version",
+        "raw": "Selected template is legacy npc_dota_furion_treant_large with1.4BAT and1650HP.",
+        "wiki": "The explicitly archived7.28-7.31d profile matches that template; modern Greater Treant is a different definition.",
+        "decision": "Keep the existing selected legacy body; do not import modern replacement values."
+      }
+    ],
+    "conversionPolicy": {
+      "nativeDistanceUnit": "100 Dota units =1 world unit",
+      "nativeTurnUnit": "radians per.03s",
+      "flatTurnCandidate": "runtime radians/sec = sourced native T/.03",
+      "customHeroes": "Four custom roles and their confirmed18rad/sec default are untouched.",
+      "noAttack": "NO_ATTACK capability is independent of disarm. Existing Hawk disarm already prevented ordinary attacks before this migration; the test isolates the intrinsic capability without claiming the old Hawk actually attacked."
+    },
+    "replayTests": [
+      {
+        "file": "tests/reference-native-unit-profiles.test.ts",
+        "test": "PROFILE-REPLAY custom_beastmaster_call_of_the_wild recreates native profiles and their attack clocks from recorded inputs"
+      },
+      {
+        "file": "tests/reference-native-unit-profiles.test.ts",
+        "test": "PROFILE-REPLAY custom_furion_force_of_nature recreates native profiles and their attack clocks from recorded inputs"
+      },
+      {
+        "file": "tests/reference-native-unit-profiles.test.ts",
+        "test": "PROFILE-REPLAY custom_lycan_summon_wolves recreates native profiles and their attack clocks from recorded inputs"
+      },
+      {
+        "file": "tests/reference-native-unit-profiles.test.ts",
+        "test": "PROFILE-REPLAY medusa_stone_gaze recreates native profiles and their attack clocks from recorded inputs"
+      },
+      {
+        "file": "tests/reference-native-unit-profiles.test.ts",
+        "test": "PROFILE-REPLAY custom_witch_doctor_death_ward recreates native profiles and their attack clocks from recorded inputs"
+      }
+    ],
+    "unresolved": [
+      "Native turn acceleration/deceleration and exact7.29 timing adjustment remain outside the flat-cap model.",
+      "The legacy Greater Treant template version is explicit; original AA custom selection remains a parent-skill acceptance question.",
+      "This ledger does not certify full ward, poison, ancient spell, AI scouting or every inherited child mechanism."
+    ],
+    "sourcePolicyNotes": [
+      "The unit profile is read only from compiled UNIT_CONFIG. No caller divides BAT by BaseAS.",
+      "All thirteen templates inherit AttackRangeBuffer250 from npc_dota_units_base, with include_keys_from applied first for Wolf4.",
+      "Ordinary basic AI can issue further orders that cancel backswing; this does not certify vanilla creep autonomous-order policy.",
+      "The adapter supplies attack/motion identity only. Skill-authored body health, damage, range, speed, lifetime and child eligibility remain separate authoritative AA behavior."
+    ]
+  }
+}

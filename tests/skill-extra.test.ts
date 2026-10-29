@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { applyDamage, battleGains, createBattle, FIXED_STEP, stepBattle } from '../src/combat';
 import { EXTRA_PROGRAMS, EXTRA_CHILD_PROGRAMS, EXTRA_CHILD_DEFINITIONS, EXTRA_WORKING_DEFAULTS } from '../src/skill-effects-extra';
 import { skillValue } from '../src/skill-effects';
+import {BATTLE_CONFIG} from '../src/config';
 import { activeVisualWorldEffects } from '../src/combat/visual-state';
 import type { EffectContext, EffectStatus, ZoneOptions } from '../src/skill-effects';
 import type { CombatUnit, Player, SkillDefinition, SkillStack } from '../src/model';
@@ -333,14 +334,21 @@ describe('extra skill upgrade behavior', () => {
     expect(h.caster[`${h.ctx.skill.id}:charges`]).toBe(5);
   });
   it('grants a separate Cleanse action with its own three-charge pool and fifty-mana definition', () => {
-    const h = harness('custom_shadow_demon_demonic_purge'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
-    p.init!(h.ctx);
-    expect(h.caster.skills.some(s => s?.id === 'extra_granted_demonic_cleanse')).toBe(true);
-    const child = harness('extra_granted_demonic_cleanse', 1), cp = EXTRA_CHILD_PROGRAMS[child.ctx.skill.id];
-    cp.init!(child.ctx); cp.cast!({ ...child.ctx, target: child.ally });
-    expect(child.grants).toEqual([{ id: 'custom_shadow_demon_demonic_cleanse', points: 3, target: child.ally.id }]);
-    expect(definition(child.ctx.skill.id).mana).toEqual([50]); expect(child.caster[`${child.ctx.skill.id}:charges`]).toBe(2);
-    expect(h.caster[`${h.ctx.skill.id}:availableCharges`]).toBe(3);
+    const parentId='custom_shadow_demon_demonic_purge',childId='extra_granted_demonic_cleanse',a=player(0,[{id:parentId,points:9}]);
+    a.heroes.push({...a.heroes[0],id:'ally',x:1,skills:[]});
+    const b=createBattle(a,player(1),19,catalog),caster=b.units[0],ally=b.units[1];
+    for(const u of b.units){u.hp=u.maxHp=100000;u.nextAttack=1000;u.moveSpeed=0;u.statuses.push({kind:'disarm',until:1000});}
+    ally.hp=100;caster.mana=caster.maxMana=1000;caster.cooldowns[0]=1000;
+    // Isolate spell costs from the arena's ordinary three-mana recovery.
+    caster.statuses.push({kind:'manaRegen',value:-BATTLE_CONFIG.baseManaRegen,until:1000});
+    const childSlot=caster.skills.findIndex(s=>s?.id===childId);expect(childSlot).toBeGreaterThanOrEqual(5);
+    expect(definition(childId).mana).toEqual([50]);advance(b,2);
+    const casts=()=>b.events.filter(e=>e.type==='cast'&&e.source===caster.id&&e.skill===childId);
+    expect(casts()).toHaveLength(3);expect(caster.mana).toBe(850);
+    expect(b.events.filter(e=>e.type==='cast'&&e.source===caster.id&&e.skill==='custom_shadow_demon_demonic_cleanse'&&e.granted)).toHaveLength(3);
+    expect(b.events.some(e=>e.type==='cast'&&e.source===caster.id&&e.skill===parentId)).toBe(false);
+    advance(b,30);expect(casts()).toHaveLength(3);expect(caster.mana).toBe(850);
+    advance(b,30);expect(casts()).toHaveLength(4);expect(caster.mana).toBe(800);
   });
   it('removes Super Enchant Totem mana and cast point while preserving base timing', () => {
     const h = harness('custom_earthshaker_enchant_totem', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];

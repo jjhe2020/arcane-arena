@@ -66,13 +66,14 @@ describe('catalog-driven additional skills', () => {
     expect(disable?.duration).toBeGreaterThan(.01); expect(disable?.duration).toBeLessThan(5.5);
   });
 
-  it('channel interruption expires Death Ward and prevents detached ward damage', () => {
+  it('channel interruption stops Death Ward attacks and leaves its phased shell for five seconds', () => {
     const state = battle('custom_witch_doctor_death_ward'); advance(state, 1);
     const ward = state.units.find(u => u.summoned)!; expect(ward).toBeDefined(); expect(ward.dead).toBe(false);
     state.units[0].statuses.push({ kind: 'stun', until: 10 }); advance(state, .5);
-    expect(ward.dead).toBe(true);
+    expect(ward.dead).toBe(false);expect(ward.statuses.some(s=>s.kind==='disarm')).toBe(true);expect(ward.statuses.some(s=>s.kind==='phased')).toBe(true);
     const hits = state.events.filter(e => e.type === 'hit' && e.source === ward.id).length;
-    advance(state, 2); expect(state.events.filter(e => e.type === 'hit' && e.source === ward.id)).toHaveLength(hits);
+    advance(state, 2); expect(state.events.filter(e => e.type === 'hit' && e.source === ward.id)).toHaveLength(hits);expect(ward.dead).toBe(false);
+    advance(state, 3);expect(ward.dead).toBe(true);
   });
 
   it('Phantasm uses documented 100% output and 325% incoming damage despite swapped numeric labels', () => {
@@ -127,7 +128,7 @@ describe('catalog-driven additional skills', () => {
       advance(state, 1.5);
       const ward = state.units.find(u => u.summoned)!;
       const hits = state.events.filter(e => e.type === 'hit' && e.source === ward.id && (e.amount ?? 0) > 0);
-      if (points === 3) expect(hits).toHaveLength(0);
+      if (points === 3){expect(hits.length).toBeGreaterThan(0);expect(state.events.some(e=>e.type==='hit'&&e.source===ward.id&&e.outcome==='miss')).toBe(true);}
       else expect(new Set(hits.map(e => e.target)).size).toBe(3);
     }
   });

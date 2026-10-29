@@ -3,6 +3,8 @@ import {applyProcAcceptance} from './combat/proc-acceptance';
 import {applySummonRestorationAcceptance} from './combat/summon-restoration-acceptance';
 import {applyMobilityFieldsAcceptance,MOBILITY_FIELDS_CHILD_DEFINITIONS} from './combat/mobility-fields-acceptance';
 import {applyFervorAcceptance} from './combat/fervor-acceptance';
+import {applyControlExecutionAcceptance,CONTROL_EXECUTION_CHILD_DEFINITIONS} from './combat/control-execution-acceptance';
+import {applyDeathDemonicAcceptance} from './combat/death-demonic-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -34,6 +36,7 @@ export const REFERENCE_UNITS_PER_WORLD_UNIT = 100;
 export type DamageType = 'physical' | 'magical' | 'pure';
 export interface EffectStatus extends Status {
   affectsInvulnerable?:boolean;
+  removeOnDeath?:boolean;
   attribution?:import('./model').Attribution;
   points?:number;visualSkill?:string;visualPoints?:number;
   stolenOrigin?: string;
@@ -46,6 +49,7 @@ export interface EffectStatus extends Status {
 }
 export interface SummonOptions {
   name: string; count: number; hp: number; attack: number; armor?: number;
+  nativeTemplateId?:string;
   range?: number; interval?: number; speed?: number; lifetime: number;
   illusion?: boolean; damageTaken?: number; inheritsSkills?: boolean; initializeInherited?:boolean; inheritedMode?:'passives'|'attackEffects'; attackSnapshotIncludesBonuses?:boolean; visualBody?: string; template?:CombatUnit;
 }
@@ -64,6 +68,7 @@ export interface ZoneOptions {
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
+  accuracy?:number;
   attackRecord?:import('./model').AttackRecord;
   /** Internal: launch already applied attack replacements. */
   preparedAttack?:boolean;
@@ -87,6 +92,7 @@ export interface InstantAttackOptions {
 }
 export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
+  reduceCooldowns?(target:CombatUnit,seconds:number,options?:{includeUltimates?:boolean;excludeAbilityId?:string;onlyAbilityId?:string;includeChargeRecharge?:boolean;includeActiveEffect?:boolean}):void;
   attackRecord?:import('./model').AttackRecord;
   attackInstanceKey?:string;
   attackCritical?:boolean;
@@ -147,6 +153,9 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  /** Explicit per-ability targeting exception, including its ordinary checks. */
+  targetEligibility?:(c:EffectContext,target:CombatUnit)=>boolean;
+  reduceRecharge?:(c:EffectContext,seconds:number)=>void;
   procsOnCast?:boolean;
   allowZeroCooldown?:boolean;
   ignoreCastRangeBonuses?:boolean;
@@ -172,7 +181,7 @@ export interface SkillProgram {
   target?: 'enemy' | 'ally' | 'self' | 'any'; range?: number | ((c: EffectContext) => number);
   castPoint?: number | ((c: EffectContext) => number); backswing?: number; channel?: number | ((c: EffectContext) => number);
   requiresFacing?:boolean|((c:EffectContext)=>boolean);
-  spellBlockTiming?:'cast'|'impact';
+  spellBlockTiming?:'cast'|'impact'|'program';
   projectileDisjointable?:boolean;
   projectileDisjointOnInvisibility?:boolean;
   cooldown?: (c: EffectContext) => number; manaCost?: (c: EffectContext) => number;
@@ -505,7 +514,10 @@ applyProcAcceptance(registry);
 applySummonRestorationAcceptance(registry);
 applyMobilityFieldsAcceptance(registry);
 applyFervorAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS];
+applyControlExecutionAcceptance(registry);
+applyDeathDemonicAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS];
+for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;
 export function getSkillProgram(id: string): SkillProgram | undefined { return registry[id]; }

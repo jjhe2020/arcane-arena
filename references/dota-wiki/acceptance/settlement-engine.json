@@ -54,6 +54,55 @@
       "versionContext": "Pinned2023-02-10 shipped units; raw and parsed copies exist in references/dota-20230216. User-confirmed four-role custom values are separate from native summons.",
       "observation": "Native units specify AttackCapabilities independently from range, plus BaseAttackSpeed and projectile fields. The level3 Necronomicon archer has BaseAttackSpeed109 and ProjectileSpeed900. Live Wild9 currently folds109 into BAT and still launches at14world/s; with+100IAS its .458716s differs from the independent-native-base formula .478469s.",
       "entitySha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592"
+    },
+    {
+      "id": "aa-opening-field",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Official230-row snapshot read2026-10-29,sha2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; preserved in references/ability-arena/abilities-acid-seal-20261029.json.",
+      "observation": "AA Gaben Acid Spray is a passive automatic battle-start arena-wide field. It is not a pre-passive free hit against heroes that appear later in the input array."
+    },
+    {
+      "id": "native-passives-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Pinned2023-02-10 Valve KV; source supports constant passive armor/reduction identity,not a native AA initialization event order.",
+      "observation": "Dragon Blood and Dispersion are constant passive defenses. The arena defers immediate initialization-area ticks until all initial constant passive hooks have run; this is a scoped engine invariant,not certification of every startup-trigger priority."
+    },
+    {
+      "id": "critical-strike-2022",
+      "url": "https://web.archive.org/web/20221205135851id_/https://dota2.fandom.com/wiki/Critical_strike",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Direct2022-12-05 archived Wiki,before the pinnedFebruary2023 candidate; HTTP200,sha2562b2a00f42899b968af7edec3d4a0e8c2f2a8c10b997e984f0da12216600b026f.",
+      "observation": "Critical occurrence is determined at attack beginning rather than projectile launch or impact. Post7.30 strongest-first short-circuit and lower-priority PRD preservation are separate rules."
+    },
+    {
+      "id": "time-lock-2023-attacks",
+      "url": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Faceless_Void",
+      "versionContext": "Direct2023-02-15 Wiki,close to pinnedFebruary2023 candidate.",
+      "observation": "Time Lock additional attacks can trigger attack/on-hit effects including Time Lock; they ignore disarm without true strike and ranged attackers release ordinary attack projectiles.",
+      "accessedOn": "2026-10-29"
+    },
+    {
+      "id": "courage-2023-attacks",
+      "url": "https://web.archive.org/web/20230215191421id_/https://dota2.fandom.com/wiki/Legion_Commander",
+      "versionContext": "Direct2023-02-15 Wiki,sha256b1c233ccaed16d92c9fd31d796d4b7654af32dbe5850f2794669dd3ef16f886a.",
+      "observation": "Moment of Courage attacks can apply ordinary attack/on-hit effects without true strike. A nonattacking owner uses a temporary1000attack-speed preparation path rather than always attacking instantly.",
+      "accessedOn": "2026-10-29"
+    },
+    {
+      "id": "specialist-2023-attacks",
+      "url": "https://web.archive.org/web/20230215200510id_/https://dota2.fandom.com/wiki/Specialist%27s_Array",
+      "versionContext": "Direct2023-02-15 Wiki,before later neutral-item changes.",
+      "observation": "Additional projectiles launch with the main attack projectile regardless of its eventual hit,using the ordinary projectile speed and excluding attack modifiers/on-hit effects.",
+      "accessedOn": "2026-10-29"
+    },
+    {
+      "id": "chaos-critical-2023",
+      "url": "https://web.archive.org/web/20230215191324id_/https://dota2.fandom.com/wiki/Chaos_Knight",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Direct2023-02-15 archivedWiki,HTTP200,sha256296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5.",
+      "observation": "Specific Chaos Strike text places determination during its attack point and mentions a distinct attack animation. That phrase may refer to the windup interval and does not independently establish a single exact frame; compare with the generic Critical Strike beginning-of-attack rule."
     }
   ],
   "engineRequirements": [
@@ -300,16 +349,36 @@
       "id": "E-BATTLE-START-PASSIVE-ORDER",
       "kind": "combination",
       "branch": "base",
-      "rule": "C3 initializes all statistics before any init hook and tests both player orders with real Gaben Acid Spray. Startup damage can still precede a later unit's passive-defense initialization: measured initial damage against Dragon Blood3 differs by init order (60.1986755 versus37.1900826). Audit a separate battle-start phase after constant passive initialization before claiming this order is correct; the ledger regression does not certify defensive startup semantics.",
-      "status": "mechanism_missing",
-      "sourceIds": [],
-      "testEvidence": []
+      "rule": "Immediate area ticks created during initial skill hooks wait until every initial unit constant passive has initialized. Real Gaben Acid Spray sees Dragon Blood and Dispersion in either player order,also respects later defensive skill slots,and still hits at time0 with valid replayable accounting. This result does not certify direct non-area init effects or every battle-start trigger priority.",
+      "status": "passed",
+      "sourceIds": [
+        "aa-opening-field",
+        "native-passives-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-battle-start.test.ts",
+          "test": "opening Acid Spray sees custom_dragon_knight_dragon_blood in either player initialization order"
+        },
+        {
+          "file": "tests/reference-battle-start.test.ts",
+          "test": "opening Acid Spray sees custom_spectre_dispersion in either player initialization order"
+        },
+        {
+          "file": "tests/reference-battle-start.test.ts",
+          "test": "opening defenses also initialize before an earlier skill slot creates its area"
+        },
+        {
+          "file": "tests/reference-battle-start.test.ts",
+          "test": "the deferred initial area remains a time-zero hit and replays its ledger exactly"
+        }
+      ]
     },
     {
       "id": "E-NATIVE-SUMMON-ATTACK-PROFILE",
       "kind": "mechanism",
       "branch": "base",
-      "rule": "Bind and verify native summon attack capabilities, BaseAS, BAT, windup, projectile speed and movement turn units separately. Do not pre-divide BAT by nativeBaseAS then multiply bonusIAS again. Live Necronomicon archer has a measured speed/BaseAS mismatch; Hawk is currently disarmed, so missing NO_ATTACK metadata is not falsely reported as an observed Hawk attack. Preserve the four approved custom role profiles.",
+      "rule": "C4 migrates the eleven previously configured native templates plus Death Ward and Frost Spire to creation-time attack/motion identity,flat BaseAS,unfolded BAT and independent animation scaling. Scoped thirteen-template result evidence is in native-unit-profiles.json. This parent requirement stays open for other summon/illusion templates and their remaining inheritance/classification audits; a finite attack-profile result set does not certify every summon.",
       "status": "mechanism_missing",
       "sourceIds": [
         "native-units-2023"
@@ -320,9 +389,13 @@
       "id": "E-INSTANT-ATTACK-PROC-ELIGIBILITY",
       "kind": "combination",
       "branch": "base",
-      "rule": "Review native per-caller proc eligibility and implement explicit exceptions. Existing triggerModifiers:false still permits generic status-based critical providers while suppressing learned criticalAttack callbacks. Time Lock, Moment of Courage and Specialist Array eligibility must not be certified merely because a shared false flag or a callback exists.",
-      "status": "source_pending",
-      "sourceIds": [],
+      "rule": "C5 source audit establishes three actual caller gaps: Time Lock and Moment of Courage incorrectly suppress ordinary attack/on-hit effects; ranged Time Lock lacks its ordinary projectile path; nonattacking Courage lacks its preparation path. Specialist Array currently starts from landed attacks rather than simultaneous launch and its false flag still leaks generic critical/lifesteal providers. Implement explicit per-caller rules and real results instead of certifying triggerModifiers:false as a universal native rule. Historical7.31d/February2023 Time Lock delays its second attack and bonus damage by0.4seconds,while the current caller deals bonus damage immediately and schedules a0.1second follow-up; ranged follow-ups additionally need projectile travel.",
+      "status": "mechanism_missing",
+      "sourceIds": [
+        "time-lock-2023-attacks",
+        "courage-2023-attacks",
+        "specialist-2023-attacks"
+      ],
       "testEvidence": []
     },
     {
@@ -332,6 +405,30 @@
       "rule": "Current shared selection orders a variable critical by its maximum profile, while fixed-count Luminosity probes at point and also advances at impact. The exact variable-versus-fixed native priority and simultaneous in-flight fixed-count behavior still require per-skill evidence and result tests. Existing passing Chaos/PA launch snapshots do not certify these unreviewed matrices.",
       "status": "source_pending",
       "sourceIds": [],
+      "testEvidence": []
+    },
+    {
+      "id": "E-STARTUP-OTHER-INITIALIZATION-EFFECTS",
+      "kind": "combination",
+      "branch": "base",
+      "status": "source_pending",
+      "rule": "Classify remaining direct init effects,spawned aura dependencies and simultaneous startup triggers before certifying a universal native priority. C4 only proves constant initial passives precede deferred immediate area ticks; it does not turn every init hook into a proven native battle-start phase.",
+      "sourceIds": [
+        "aa-opening-field",
+        "native-passives-2023"
+      ],
+      "testEvidence": []
+    },
+    {
+      "id": "E-CRITICAL-ROLL-START",
+      "kind": "timing",
+      "branch": "base",
+      "status": "source_pending",
+      "rule": "Current occurrence snapshots happen at attack-point dispatch. The2022genericcritical page explicitly says beginning rather than projectile launch/impact,while2023Chaos Strike uses the ambiguous phrase during attack point. Resolve the exact per-caller deadline and animation implications before forcing a universal change. Add real windup-time Break,provider-removal,chance-change and launch/impact cases; independent in-flight snapshots alone do not certify the native windup rule.",
+      "sourceIds": [
+        "critical-strike-2022",
+        "chaos-critical-2023"
+      ],
       "testEvidence": []
     }
   ],

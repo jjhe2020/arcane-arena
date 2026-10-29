@@ -29,6 +29,7 @@ function spendCharge(c:C,maximum:number,fallbackReduction=0){
  if(maximum<=1)return;const state=charges(c,maximum);state.count--;
  if(state.next===null){state.recharge=Math.max(STEP,v(c,'CHARGE RESTORE TIME',baseCooldown(c)-fallbackReduction)*Math.max(.1,1-amount(c.caster,'cooldownReduction',c.battle.time)));state.next=c.battle.time+state.recharge;}
 }
+function reduceRecharge(c:C,seconds:number){if(c.skill.points<9)return;const state=charges(c,2);if(state.next===null)return;state.next=Math.max(c.battle.time,state.next-Math.max(0,seconds));charges(c,2);}
 function barrage(c:C){
  spendCharge(c,c.skill.points>=9?2:1);const start={x:c.caster.x,y:c.caster.y},point=c.castPosition??c.target,angle=distance(start,point)>1e-9?Math.atan2(point.y-start.y,point.x-start.x):c.caster.facing;
  const bonusRange=(c.attackRange?.(c.caster)??c.caster.range)-c.caster.range,range=v(c,'RANGE')/100+bonusRange,count=v(c,'ARROWS FIRED')+(!skillBalance(c.definition,c.skill.points)&&c.skill.points>=6?3:0),channel=v(c,'CHANNEL TIME',2);
@@ -205,11 +206,11 @@ export function applyMobilityFieldsAcceptance(registry:Record<string,SkillProgra
  Object.assign(registry,MOBILITY_FIELDS_CHILD_PROGRAMS);
  registry[BARRAGE]=field(barrage,{superImplemented:true,gabenImplemented:true,pointTarget:true,attackProjectile:true,ignoreCastRangeBonuses:true,range:c=>v(c,'RANGE')/100+(c.attackRange?.(c.caster)??c.caster.range)-c.caster.range,dynamicRange:true,channel:c=>v(c,'CHANNEL TIME',2),backswing:0,
   cooldown:c=>c.skill.points>=9?0:baseCooldown(c),
-  init:c=>{if(c.skill.points>=9)charges(c,2);},canCast:c=>c.skill.points<9||charges(c,2).count>0,
+  init:c=>{if(c.skill.points>=9)charges(c,2);},canCast:c=>c.skill.points<9||charges(c,2).count>0,reduceRecharge,
   implemented:['Immediate first arrow; fixed channel cadence; released1200-speed piercing attack arrows continue after interruption','True strike/disarm bypass and target-scoped total outgoing attack multiplier','Super final arrow/damage values and finite sequential Gaben charges'],remaining:['Attack-range bonuses affect arrow travel; spell-range bonuses do not','Searing Arrows application conditional on channel/autocast remains shared modifier work']});
  registry[BURROW]=field(burrow,{superImplemented:true,gabenImplemented:true,pointTarget:true,range:c=>v(c,'CAST RANGE')/100,backswing:.53,spellBlockTiming:'impact',
   cooldown:c=>c.skill.points>=9?0:Math.max(0,baseCooldown(c)-(c.skill.points>=6?2:0)),
-  init:c=>{if(c.skill.points>=9)charges(c,2);},canCast:c=>c.skill.points<9||charges(c,2).count>0,
+  init:c=>{if(c.skill.points>=9)charges(c,2);},canCast:c=>c.skill.points<9||charges(c,2).count>0,reduceRecharge,
   onStatusRemoved:(c,status)=>{if(status.data?.burrowLift)c.damage(c.target,Number(status.data.damage),'magical',true);},
   implemented:['Spikes travel before the skill-authorized terminal warp; no disjoint or invented caster invulnerability','Independent fixed airborne delay, landing damage and per-victim spell block','Strong dispel may end the airborne marker early; Super max-level Caustic with saved death attribution','Finite sequential Gaben charges with final Super recharge'],remaining:['350-unit vertical art is not represented by a3D transform','AA Super travel-speed match to native3000-speed Scepter has no direct AA evidence;2000 retained']});
  registry[CHARGE]=field(charge,{superImplemented:true,gabenImplemented:true,range:50,castPoint:c=>c.skill.points>=6?0:.1,backswing:.5,cooldownStart:'effectEnd',canCast:c=>!chargeState(c).active,

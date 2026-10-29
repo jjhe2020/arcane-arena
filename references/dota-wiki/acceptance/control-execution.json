@@ -1,0 +1,1498 @@
+{
+  "schemaVersion": 1,
+  "group": "control-execution",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AAcapturedcatalogvaluesandcustomclausesfirst;pinned2023ValveanddatedWikiwherecompatible.NoWaybackrequests;noentireHTMLstored.",
+  "validation": {
+    "command": "npx vitest run tests/reference-control-execution.test.ts",
+    "skillGroupTests": 43,
+    "passedTests": 43,
+    "configurationHash": "d726a9bef22ee3f2751db500996c3a75b30d409a4342ddf8d1631d3651e69189",
+    "typecheck": "npx tsc --noEmit passed after the final43-result group suite;whole-project reference proof remains root-owned.",
+    "regressionRuns": [
+      {
+        "command": "npx vitest run tests/reference-control-execution.test.ts tests/skill-extra.test.ts tests/skill-more.test.ts tests/reference-mobility-fields.test.ts tests/combat-upgrades.test.ts",
+        "tests": 258,
+        "passed": 258,
+        "context": "Before the final HZ-06 test-only addition;included42group tests."
+      },
+      {
+        "command": "npx vitest run tests/reference-control-execution.test.ts tests/combat-visual-origin.test.ts",
+        "tests": 49,
+        "passed": 49,
+        "context": "Before the final HZ-06 test-only addition;included42group plus7presentation tests."
+      }
+    ],
+    "finalScopedValidation": "Parent ran the frozen C4 source in the final1100-test full suite; current per-test source proof is generated separately."
+  },
+  "skills": [
+    {
+      "id": "custom_lich_chain_frost",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "paraphrase": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "versionContext": "Official static JSON captured earlier in this task; SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Exact workshop Lua revision unknown. C4 web re-open failed; no new HTTP200 capture is claimed."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "Valve shipped KV commit2023-02-10; numeric candidate only where AA supplies no override. KV cannot establish every hardcoded engine rule."
+        },
+        {
+          "id": "lich-old",
+          "url": "https://dota2.fandom.com/wiki/Lich",
+          "accessedOn": "2026-10-29",
+          "observation": "The retained pre7.35d article gives1050/850speeds,.2pause,initial-plus-jumps,slow-before-damage,primary-only impact block,undisjointable tracking and visible secondary eligibility.",
+          "paraphrase": "The retained pre7.35d article gives1050/850speeds,.2pause,initial-plus-jumps,slow-before-damage,primary-only impact block,undisjointable tracking and visible secondary eligibility.",
+          "versionContext": "Search-indexed older Fandom article retains7.35-era data; these are historical candidates rather than an exact2023snapshot. Blocked-hit increment conflicts with modern Wiki and remains unresolved."
+        },
+        {
+          "id": "lich-history",
+          "url": "https://dota2.fandom.com/wiki/Lich/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "2012-02-16 selects the next target before its pause;2012-09-21 fixes disjoint;7.28 uses spires only as fallback;7.32 introduces5hero/10creep hit-count body.",
+          "paraphrase": "2012-02-16 selects the next target before its pause;2012-09-21 fixes disjoint;7.28 uses spires only as fallback;7.32 introduces5hero/10creep hit-count body.",
+          "versionContext": "Explicit historical dated entries before2023; source also reports target-death bounce fixes without enough timing detail to reconstruct that path."
+        },
+        {
+          "id": "random-wiki",
+          "url": "https://liquipedia.net/dota2/Random_Distribution",
+          "accessedOn": "2026-10-29",
+          "observation": "Chain Frost appears among randomly selected bouncing targets.",
+          "paraphrase": "Chain Frost appears among randomly selected bouncing targets.",
+          "versionContext": "Current Wiki index. Its old575radius is not imported; AA500radius wins."
+        },
+        {
+          "id": "spire-unit",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "npc_dota_lich_ice_spire is a stationary non-attacking ward with10health.",
+          "paraphrase": "npc_dota_lich_ice_spire is a stationary non-attacking ward with10health.",
+          "versionContext": "Pinned2023-02-10 Valve unit data. The ability KV leftover max_hero_attacks2 is not used as2actual hits; unit10health plus7.32Wiki5/10counts define this candidate."
+        },
+        {
+          "id": "lich-current",
+          "url": "https://liquipedia.net/dota2/Lich",
+          "accessedOn": "2026-10-29",
+          "observation": "Modern Frostbound waits for later targets; modern blocked impacts increment damage and7.38spires lose health on bounces.",
+          "paraphrase": "Modern Frostbound waits for later targets; modern blocked impacts increment damage and7.38spires lose health on bounces.",
+          "versionContext": "Current2026Wiki, incompatible newer branches explicitly excluded. No dormant waiting or bounce-damage-to-spire is imported into2023candidate."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CF-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA3/4/5jumps follow the initial hit; damage increases15/20/25per successful unblocked travel.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-01 each AA rank makes the configured number of jumps after its initial hit with increasing damage"
+            }
+          ]
+        },
+        {
+          "id": "CF-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Release uses.3cast point,1.03requested backswing,AA mana/CD and1050initial speed.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-02 launch pays historical cast-point mana and cooldown while the first projectile travels at1050"
+            }
+          ]
+        },
+        {
+          "id": "CF-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Later flight uses850speed after.2pause and retains the hit position as launch origin.",
+          "sourceIds": [
+            "valve",
+            "lich-old",
+            "lich-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-03 later projectiles use850speed and wait.2seconds before leaving the frozen impact position"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-11 the next target is selected before the bounce pause and remains tracked after moving beyond search range"
+            }
+          ]
+        },
+        {
+          "id": "CF-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Released projectiles cannot be disjointed by invisibility; fresh invisible secondary targets are excluded.",
+          "sourceIds": [
+            "lich-old",
+            "lich-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-05 undisjointable released Frost still hits an invisible victim while new bounces ignore invisible units"
+            }
+          ]
+        },
+        {
+          "id": "CF-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Spell-immune bodies can relay Frost without its slow or damage.",
+          "sourceIds": [
+            "valve",
+            "lich-old",
+            "lich-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-06 spell-immune bounce targets are eligible but receive neither damage nor slow"
+            }
+          ]
+        },
+        {
+          "id": "CF-M04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Secondary Shadow Realm and later invulnerable airborne bodies can relay the projectile.",
+          "sourceIds": [
+            "lich-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-12 a secondary Shadow Realm body can be bounced to and a newly invulnerable airborne target passes the chain without taking damage"
+            }
+          ]
+        },
+        {
+          "id": "CF-M05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "A randomly chosen valid enemy takes priority over any spire.",
+          "sourceIds": [
+            "lich-history",
+            "random-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-07 Super chooses an enemy before a closer allied Ice Spire and keeps its final70bonus exactly once"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-10 random bounce choices vary with the seed and unmodified battle input replays exactly"
+            }
+          ]
+        },
+        {
+          "id": "CF-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final AA+70damage and slowing15second spire use2023ward identity and5hero/10basic hits.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "spire-unit",
+            "lich-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-07 Super chooses an enemy before a closer allied Ice Spire and keeps its final70bonus exactly once"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-08 an isolated enemy can bounce via its allied spire while the ward remains immune to spells and dies after five hero attacks"
+            }
+          ]
+        },
+        {
+          "id": "CF-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAunlimited jumps exceed the base cap and released effects survive source death.",
+          "sourceIds": [
+            "aa",
+            "lich-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-09 Gaben continues beyond the base jump cap and an already airborne projectile survives its caster death"
+            }
+          ]
+        },
+        {
+          "id": "CF-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Only the primary impact consumes Spell Block and the chain continues through protected secondary bodies.",
+          "sourceIds": [
+            "lich-old",
+            "lich-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-04 initial impact Spell Block consumes only that instance and keeps bouncing without the older-candidate damage increase"
+            }
+          ]
+        },
+        {
+          "id": "CF-C02",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "Deterministic input replay rebuilds in-flight Frost and bounce choices.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-10 random bounce choices vary with the seed and unmodified battle input replays exactly"
+            }
+          ]
+        },
+        {
+          "id": "CF-P01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Damage increment after a blocked primary differs between older and modern Wiki; older no-increment candidate retained.",
+          "sourceIds": [
+            "lich-old",
+            "lich-current"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-04 initial impact Spell Block consumes only that instance and keeps bouncing without the older-candidate damage increase"
+            }
+          ]
+        },
+        {
+          "id": "CF-P02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "A dead in-flight target currently drops the shared projectile; exact historical bounce continuation timing is unresolved.",
+          "sourceIds": [
+            "lich-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CF-P03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AAspawns a spire but its exact placement is not supplied; existing+100offset retained.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CF-P04",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Shield/Spire restoration is now integrated on existing pulses; exact native pulse deadline and fixed-health versus ordinary-heal amplification/reduction still require Shield review.",
+          "sourceIds": [
+            "lich-history",
+            "lich-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-13 real Frost Shield pulses restore one authored hero hit to Ice Spire even with no enemy damaged"
+            }
+          ]
+        },
+        {
+          "id": "CF-C03",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Each actual Frost Shield pulse restores one authored hero-hit of Ice Spire health even when no enemy receives pulse damage.",
+          "sourceIds": [
+            "lich-old",
+            "lich-history",
+            "spire-unit"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CF-13 real Frost Shield pulses restore one authored hero hit to Ice Spire even with no enemy damaged"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Blocked-primary damage increment has an older/current source conflict.",
+        "In-flight target death loses the projectile; historical continuation deadline is not established.",
+        "AA Ice Spire placement is unspecified.",
+        "Frost Shield/Spire restoration is integrated;native pulse deadlines and fixed-health-versus-ordinary-heal amplification/reduction remain pending."
+      ],
+      "upgradeProvenance": [
+        {
+          "tier": "super",
+          "origin": "Native Ice Spire Shard prototype from7.28,with7.32hit-count body;AAalso adds70damage.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "lich-history",
+            "spire-unit"
+          ]
+        },
+        {
+          "tier": "gaben",
+          "origin": "Native unlimited Chain Frost talent;AAexplicitly grants the same unlimited jump clause.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "Frost Blast death explosion requires a learned Frost Blast; that ability is absent from the current230skill catalog.",
+        "Fog,vision radius,Roshan and couriers are not represented by this flat visible arena.",
+        "Modern dormant Frostbound and modern spire bounce damage are excluded."
+      ]
+    },
+    {
+      "id": "keeper_of_the_light_chakra_magic",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "paraphrase": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "versionContext": "Official static JSON captured earlier in this task; SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Exact workshop Lua revision unknown. C4 web re-open failed; no new HTTP200 capture is claimed."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "Valve shipped KV commit2023-02-10; numeric candidate only where AA supplies no override. KV cannot establish every hardcoded engine rule."
+        },
+        {
+          "id": "aa-s2",
+          "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+          "accessedOn": "2026-10-29",
+          "observation": "Chakra Gaben changes to an independently granted Blinding Light; Haze Super becomes permanent and undispellable.",
+          "paraphrase": "Chakra Gaben changes to an independently granted Blinding Light; Haze Super becomes permanent and undispellable.",
+          "versionContext": "Official2022-11-02 AA Season2 notes, read through web search index."
+        },
+        {
+          "id": "chakra-old",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Old_Abilities",
+          "accessedOn": "2026-10-29",
+          "observation": "7.20–7.27d Chakra affects current charge recharge;pre7.20Chakra provides a15second next-spell buff.",
+          "paraphrase": "7.20–7.27d Chakra affects current charge recharge;pre7.20Chakra provides a15second next-spell buff.",
+          "versionContext": "Historical ability entries. Old native one-next-spell consumption is not evidence for AAplural retroactive wording;15seconds is a labeled editable working prototype."
+        },
+        {
+          "id": "kotl-history",
+          "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "2020-01-26 fixes charge-based spells;7.29talents supply-4ownCD/basic dispel;7.34adds later1.25self multiplier.",
+          "paraphrase": "2020-01-26 fixes charge-based spells;7.29talents supply-4ownCD/basic dispel;7.34adds later1.25self multiplier.",
+          "versionContext": "Dated historical changes. The post7.34self bonus and7.35strong-dispel talent are excluded from AAbasic-dispel semantics."
+        },
+        {
+          "id": "kotl-old",
+          "url": "https://dota2.fandom.com/wiki/Keeper_of_the_Light",
+          "accessedOn": "2026-10-29",
+          "observation": "Chakra affects active-slot basic cooldowns and current charge replenishment;Blinding Light uses non-disabling.6second knockback before blind/damage.",
+          "paraphrase": "Chakra affects active-slot basic cooldowns and current charge replenishment;Blinding Light uses non-disabling.6second knockback before blind/damage.",
+          "versionContext": "Indexed older article includes7.35data. Child2023resources/radius/damage come from pinnedKV,not this later basic-ability rework."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CM-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AArestores80/160/320mana and reduces1/2/4seconds of currently cooling basic abilities on ally and caster.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-01 every AA rank restores both the allied target and caster while reducing only currently cooling basic abilities"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-02 self-casting restores mana once and never shortens Chakras own cooldown"
+            }
+          ]
+        },
+        {
+          "id": "CM-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Chakra pays0mana andAA18/16/12CD at release without shortening its own cooldown.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-01 every AA rank restores both the allied target and caster while reducing only currently cooling basic abilities"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-02 self-casting restores mana once and never shortens Chakras own cooldown"
+            }
+          ]
+        },
+        {
+          "id": "CM-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA Super adds basic dispel,minus4own cooldown and2additional allied reduction;both recipients benefit.",
+          "sourceIds": [
+            "aa",
+            "kotl-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-03 Super basic dispels both recipients and grants the allied target two extra seconds of reduction"
+            }
+          ]
+        },
+        {
+          "id": "CM-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA Gaben includes ultimate cooldowns and independently grants Blinding Light;its exact AA level is tracked separately.",
+          "sourceIds": [
+            "aa",
+            "aa-s2"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-04 Gaben reduces ultimate cooldowns and grants a separately owned historical Blinding Light action"
+            }
+          ]
+        },
+        {
+          "id": "CM-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Real Gaben Windrun and Burrow charge recharge shorten only the current recovery,retaining the following full cycle.",
+          "sourceIds": [
+            "chakra-old",
+            "kotl-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-06 real Gaben Windrun charge recharge is shortened without advancing a future full recharge period"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-08 real Gaben Burrowstrike recharge responds to Chakra while its next full cycle retains its own duration"
+            }
+          ]
+        },
+        {
+          "id": "CM-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "An active Charge of Darkness effect is neither shortened nor forced into its effect-end cooldown.",
+          "sourceIds": [
+            "aa",
+            "chakra-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-07 active Charge of Darkness remains active and does not begin its effect-end cooldown when reduced"
+            }
+          ],
+          "adoptionBoundary": "Currently-on-cooldown rule excludes a cooldown that has not started;exactAAactive-lock implementation not recovered."
+        },
+        {
+          "id": "CM-T02",
+          "kind": "timing",
+          "branch": "gaben-child",
+          "mechanism": "Blinding Light independently pays150mana,18CD,.3point and1.07requested backswing.",
+          "sourceIds": [
+            "valve",
+            "kotl-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-09 granted Blinding Light spends its own native resources and schedules non-disabling motion before blind and damage"
+            }
+          ]
+        },
+        {
+          "id": "CM-G02",
+          "kind": "gaben",
+          "branch": "gaben-child",
+          "mechanism": "Blinding Light schedules400distance/.6second non-disabling movement before40percent blind and180damage.",
+          "sourceIds": [
+            "valve",
+            "kotl-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-09 granted Blinding Light spends its own native resources and schedules non-disabling motion before blind and damage"
+            }
+          ]
+        },
+        {
+          "id": "CM-P01",
+          "kind": "timing",
+          "branch": "base-custom",
+          "mechanism": "AAretroactive window is implemented as15seconds and applies to each newly released ability,without repeatedly reducing unrelated cooldowns.",
+          "sourceIds": [
+            "aa",
+            "chakra-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CM-05 the declared15second retroactive window reduces only the newly released ability and expires cleanly"
+            }
+          ],
+          "workingPolicy": "15second multi-cast candidate;AA specifies neither exactseconds nor consumptioncount."
+        },
+        {
+          "id": "CM-P02",
+          "kind": "combination",
+          "branch": "base-custom",
+          "mechanism": "Retroactive buff response after the original Chakra caster dies has no status-source cast router.",
+          "sourceIds": [
+            "aa",
+            "chakra-old"
+          ],
+          "status": "implementation_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CM-P03",
+          "kind": "gaben",
+          "branch": "gaben-child",
+          "mechanism": "ExactAAgrantedBlindingLight level is unspecified;existing maximum3retained.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CM-P04",
+          "kind": "combination",
+          "branch": "gaben-child",
+          "mechanism": "Zero-center push direction and terrain-only crossing with retained Arena restrictions are unverified.",
+          "sourceIds": [
+            "kotl-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CM-P05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Only charge implementations with a reduceRecharge hook are covered;other charge families are not claimed.",
+          "sourceIds": [
+            "chakra-old"
+          ],
+          "status": "implementation_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "AAretroactive duration and one-shot-versus-multi-cast consumption count are not supplied.",
+        "Originalcaster-death retroactive routing is not implemented.",
+        "ExactAAgrantedBlindingLight level is not supplied;max3candidate retained.",
+        "BlindingLight zero-distance direction and terrain-only crossing exception remain pending.",
+        "Non-hooked charge families require their own recharge integration and result tests."
+      ],
+      "upgradeProvenance": [
+        {
+          "tier": "super",
+          "origin": "Native7.29-4ChakraCD and basic-dispel talents matchAA;extra2allyreduction is explicitAAcustom.",
+          "sourceIds": [
+            "aa",
+            "kotl-history"
+          ]
+        },
+        {
+          "tier": "gaben",
+          "origin": "OfficialAASeason2 grants separate BlindingLight;ultimateCDreduction is explicitAAcustom.",
+          "sourceIds": [
+            "aa",
+            "aa-s2"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "No modern1.25self multiplier or strong dispel is imported.",
+        "Items and inactive stolen ability storage are not certified by the two tested active-slot charge families."
+      ]
+    },
+    {
+      "id": "custom_slardar_amplify_damage",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "paraphrase": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "versionContext": "Official static JSON captured earlier in this task; SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Exact workshop Lua revision unknown. C4 web re-open failed; no new HTTP200 capture is claimed."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "Valve shipped KV commit2023-02-10; numeric candidate only where AA supplies no override. KV cannot establish every hardcoded engine rule."
+        },
+        {
+          "id": "aa-s2",
+          "url": "https://news.abilityarena.com/ability-arena-season-2-0-dev-blog/",
+          "accessedOn": "2026-10-29",
+          "observation": "Chakra Gaben changes to an independently granted Blinding Light; Haze Super becomes permanent and undispellable.",
+          "paraphrase": "Chakra Gaben changes to an independently granted Blinding Light; Haze Super becomes permanent and undispellable.",
+          "versionContext": "Official2022-11-02 AA Season2 notes, read through web search index."
+        },
+        {
+          "id": "aa-s3",
+          "url": "https://news.abilityarena.com/ability-arena-season-3/",
+          "accessedOn": "2026-10-29",
+          "observation": "Haze Super adds repeat stacking and removes the older healing reduction; Culling cast range changes from175to225.",
+          "paraphrase": "Haze Super adds repeat stacking and removes the older healing reduction; Culling cast range changes from175to225.",
+          "versionContext": "Official2022-12-01 AA Season3 notes; exact lines153-154 inspected. Later May2023 upgrades are not substituted for the retained catalog."
+        },
+        {
+          "id": "slardar-old",
+          "url": "https://dota2.fandom.com/wiki/Slardar",
+          "accessedOn": "2026-10-29",
+          "observation": "Base Haze refreshes18seconds and reveals invisibility;water trails use independent puddles at.5second intervals;no Guardian Sprint means no river bonus.",
+          "paraphrase": "Base Haze refreshes18seconds and reveals invisibility;water trails use independent puddles at.5second intervals;no Guardian Sprint means no river bonus.",
+          "versionContext": "Indexed pre7.35article;AAeight-second puddles and pinned2023parameters win over modern durations/innates."
+        },
+        {
+          "id": "slardar-history",
+          "url": "https://liquipedia.net/dota2/Slardar/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.31adds eight-second water trails made of100radius puddles every.5seconds;historical undispellable talent precedesAAcustom permanence.",
+          "paraphrase": "7.31adds eight-second water trails made of100radius puddles every.5seconds;historical undispellable talent precedesAAcustom permanence.",
+          "versionContext": "Explicit pre2023entries. Modern Seaborn Sentinel and later water bonuses are not imported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "HZ-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA armor-10/-15/-20lasts18seconds and True Sight continues revealing a subsequently invisible target.",
+          "sourceIds": [
+            "aa",
+            "slardar-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-01 each AA rank reduces armor for18seconds and reveals a target that turns invisible afterwards"
+            }
+          ]
+        },
+        {
+          "id": "HZ-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Release pays25mana and5CD,.3cast point and.67backswing,including spell-immune recipients.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "slardar-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-02 mana cooldown cast point and backswing are paid at release including spell-immune recipients"
+            }
+          ]
+        },
+        {
+          "id": "HZ-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AApermanent undispellable same-owner armor stacks are uncapped;more than100reapplications keep one trail controller.",
+          "sourceIds": [
+            "aa",
+            "aa-s2",
+            "aa-s3"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-03 Super reapplies independent permanent undispellable armor stacks without an obsolete100stack cap"
+            }
+          ]
+        },
+        {
+          "id": "HZ-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAapplies to enemies within350ofprimary target rather than caster.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-04 Gaben applies350around the primary rather than around the caster and leaves water as independent8second metadata"
+            }
+          ]
+        },
+        {
+          "id": "HZ-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Independent eight-second water metadata follows movement without inventing unowned river bonuses.",
+          "sourceIds": [
+            "aa",
+            "slardar-old",
+            "slardar-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-04 Gaben applies350around the primary rather than around the caster and leaves water as independent8second metadata"
+            }
+          ]
+        },
+        {
+          "id": "HZ-C01",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "A real basic Battle Trance dispel removes base armor/reveal but retains Super permanent armor/reveal.",
+          "sourceIds": [
+            "aa",
+            "slardar-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-05 a real basic dispel removes base armor and reveal together while Super retains both"
+            }
+          ]
+        },
+        {
+          "id": "HZ-P01",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "Different-caster base andSuper stacking priority is not explicitly established by the recoveredAAorhistoricaltext.",
+          "sourceIds": [
+            "aa",
+            "slardar-old"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "HZ-P02",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "AApermanent stacks across target death/revival are not described;existing generic status retention is not claimed as verified.",
+          "sourceIds": [
+            "aa",
+            "aa-s2"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "HZ-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Historical700/800/900rank cast ranges are read from configuration and bound cast initiation.",
+          "sourceIds": [
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "HZ-06 historical700800900rank ranges are consumed from configuration and a farther target cannot begin casting"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "ExactAAcross-caster base/Super stack priority remains unproven.",
+        "AApermanent versus death removal and revival has not been established."
+      ],
+      "upgradeProvenance": [
+        {
+          "tier": "super",
+          "origin": "AASeason2explicitpermanent/undispellable;Season3explicitstacking,not a native armor talent backport.",
+          "sourceIds": [
+            "aa-s2",
+            "aa-s3"
+          ]
+        },
+        {
+          "tier": "gaben",
+          "origin": "AAcustom350area application;does not silently cast another Slardar ability.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "All-visible flat arena has no fog/river/highground simulation. Water metadata does not certify river consumers.",
+        "CurrentcataloghasnoGuardianSprint,so nowater-basedmovementorarmorbonusisadded."
+      ]
+    },
+    {
+      "id": "night_stalker_crippling_fear",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "paraphrase": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "versionContext": "Official static JSON captured earlier in this task; SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Exact workshop Lua revision unknown. C4 web re-open failed; no new HTTP200 capture is claimed."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "Valve shipped KV commit2023-02-10; numeric candidate only where AA supplies no override. KV cannot establish every hardcoded engine rule."
+        },
+        {
+          "id": "ns-history",
+          "url": "https://www.dota2.com/720",
+          "accessedOn": "2026-10-29",
+          "observation": "7.20changesFear to an active silence aura and removes its old50percent nighttime miss chance.",
+          "paraphrase": "7.20changesFear to an active silence aura and removes its old50percent nighttime miss chance.",
+          "versionContext": "Official2018patch;AA Super explicitly restores50percent miss as a custom aura effect. Post7.34FearDPSisnotbackported."
+        },
+        {
+          "id": "ns-old",
+          "url": "https://dota2.fandom.com/wiki/Night_Stalker/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "The7.20aura has.5second linger;oldernightFear50percentblind is the Super prototype.",
+          "paraphrase": "The7.20aura has.5second linger;oldernightFear50percentblind is the Super prototype.",
+          "versionContext": "Historical changelog entries before2023. AA325radius/night3/4/6/.1point override native values."
+        },
+        {
+          "id": "void-722",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.22",
+          "accessedOn": "2026-10-29",
+          "observation": "New2019Scepter increases ordinaryVoidministun from.1to.6;this establishes.1ordinaryministun rather than copying2023scepter_ministun1.",
+          "paraphrase": "New2019Scepter increases ordinaryVoidministun from.1to.6;this establishes.1ordinaryministun rather than copying2023scepter_ministun1.",
+          "versionContext": "2019-05-24historicalpatchWiki. The2023KVonlydeclaresScepterministun1,whichisnotnormalVoid."
+        },
+        {
+          "id": "aa-s45",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "AA Fear introduction describes zero cast point while the retained explicit catalog difference says.1.",
+          "paraphrase": "AA Fear introduction describes zero cast point while the retained explicit catalog difference says.1.",
+          "versionContext": "Official2023-02-01notes versus retainedcatalog;catalog-specific.1wins rather than silently selecting the announcement."
+        },
+        {
+          "id": "ns-legacy-article",
+          "url": "https://dota2.fandom.com/wiki/Night_Stalker",
+          "accessedOn": "2026-10-29",
+          "observation": "Retained7.35article states Fear silence fully affects hidden/invulnerable units;Void backswing is.47withoutHunter and.73withitsnightpassive.",
+          "paraphrase": "Retained7.35article states Fear silence fully affects hidden/invulnerable units;Void backswing is.47withoutHunter and.73withitsnightpassive.",
+          "versionContext": "Indexed retained7.35article. TheFeareligibilitystatementconflictswithcurrentLP;noexact2023introductiondateisclaimed."
+        },
+        {
+          "id": "ns-current-article",
+          "url": "https://liquipedia.net/dota2/Night_Stalker",
+          "accessedOn": "2026-10-29",
+          "observation": "Current Fear notes exclude hidden/invulnerable units;Void still gives.47backswing withoutHunter.",
+          "paraphrase": "Current Fear notes exclude hidden/invulnerable units;Void still gives.47backswing withoutHunter.",
+          "versionContext": "Current2026article;modernFearDPSandVoidnight3.4durationarenotimportedinto2023candidate."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FR-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Always-nightAA3/4/6second silence follows source with.5second linger and immediate first application.",
+          "sourceIds": [
+            "aa",
+            "ns-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-01 every AA rank uses nighttime duration and an immediate silence aura with.5second linger after exit"
+            }
+          ]
+        },
+        {
+          "id": "FR-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "AAexplicit.1castpoint and50mana are preserved rather than announcement zero-point.",
+          "sourceIds": [
+            "aa",
+            "aa-s45"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-01 every AA rank uses nighttime duration and an immediate silence aura with.5second linger after exit"
+            }
+          ]
+        },
+        {
+          "id": "FR-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AAadds50radius,50percentblind andminus5CDonce;no later nativeFearDPS.",
+          "sourceIds": [
+            "aa",
+            "ns-history",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-02 Super adds50radius and50percent blind with final cooldown once and no modern damage-over-time"
+            }
+          ]
+        },
+        {
+          "id": "FR-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Active aura persists while source is silenced/stunned and cannot affect spell-immune recipients.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "ns-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-03 the active aura persists through source silence and stun but cannot affect spell-immune units"
+            }
+          ]
+        },
+        {
+          "id": "FR-C02",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "AAstrong-only recipient debuff survives basic Chakra dispel;real strong dispel clears it until the next aura refresh.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-06 AA strong-dispel-only silence survives allied basic Chakra dispel and is cleared by real Press the Attack until aura reentry"
+            }
+          ]
+        },
+        {
+          "id": "FR-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAfree level4nightVoid every4seconds within550uses320damage/foursecondslow/.1ordinaryministun and child attribution.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "void-722"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-04 Gaben casts a free level-four nighttime Void every4seconds with child attribution and correct effect order"
+            }
+          ]
+        },
+        {
+          "id": "FR-T02",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Void applies slow,damage and ministun in order without paying cast resources.",
+          "sourceIds": [
+            "valve",
+            "void-722"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-04 Gaben casts a free level-four nighttime Void every4seconds with child attribution and correct effect order"
+            }
+          ]
+        },
+        {
+          "id": "FR-P01",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Current Gaben clock stops on death;resurrectionrestart,Break/silence policyandfirst-delay choice are not specified byAA.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "FR-05 the current Gaben clock and active aura cease after source death and leave only their authored linger"
+            }
+          ]
+        },
+        {
+          "id": "FR-P02",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "GabenAoEfreeVoid SpellBlock/on-cast-hook semantics are not recovered fromoriginalAAcode.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "FR-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Fear silence eligibility for hidden/invulnerable units conflicts between retained7.35andcurrentWiki;existing exclusion retained pending a dated historical boundary.",
+          "sourceIds": [
+            "ns-legacy-article",
+            "ns-current-article"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "AApassiveVoidfirst-clock,sourceBreak/silence andrevivalrestart rules remain unproven.",
+        "AA550AoEfreeVoid block/reflect/oncast interaction is not established by the native targeted child alone.",
+        "Fear hidden/invulnerable silence eligibility has an older/current Wiki conflict;the2023boundaryisnotestablished."
+      ],
+      "upgradeProvenance": [
+        {
+          "tier": "super",
+          "origin": "Pre7.20nightFear50percentblind is a traced prototype;AAaddsitaurawideandalsogives50radius/-5CD.",
+          "sourceIds": [
+            "aa",
+            "ns-history",
+            "ns-old"
+          ]
+        },
+        {
+          "tier": "gaben",
+          "origin": "AAfreefour-secondAoEcastingusesnativelevel4nightVoid;notthenativeScepterministunupgrade.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "void-722"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "All-native day/night map cycles are excluded byAAalways-nightdifference.",
+        "Post7.34FearDPSisexcluded.",
+        "Void470ms public backswing is a no-Hunter Wiki candidate only;AApassivefreecastbypassesthepublicactionclockanddoesnotcertifythatunusedfield."
+      ]
+    },
+    {
+      "id": "custom_axe_culling_blade",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "catalogClauseSource": "aa",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "paraphrase": "Official AA English catalog clauses, categories and values for the five stable IDs; local public/data/skills.json.catalog retains the captured source fields.",
+          "versionContext": "Official static JSON captured earlier in this task; SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Exact workshop Lua revision unknown. C4 web re-open failed; no new HTTP200 capture is claimed."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "paraphrase": "Pinned ability flags, speeds, child values and resource clocks inspected in references/dota-20230216/npc_abilities.txt.",
+          "versionContext": "Valve shipped KV commit2023-02-10; numeric candidate only where AA supplies no override. KV cannot establish every hardcoded engine rule."
+        },
+        {
+          "id": "aa-s3",
+          "url": "https://news.abilityarena.com/ability-arena-season-3/",
+          "accessedOn": "2026-10-29",
+          "observation": "Haze Super adds repeat stacking and removes the older healing reduction; Culling cast range changes from175to225.",
+          "paraphrase": "Haze Super adds repeat stacking and removes the older healing reduction; Culling cast range changes from175to225.",
+          "versionContext": "Official2022-12-01 AA Season3 notes; exact lines153-154 inspected. Later May2023 upgrades are not substituted for the retained catalog."
+        },
+        {
+          "id": "axe-wiki",
+          "url": "https://liquipedia.net/dota2/Axe",
+          "accessedOn": "2026-10-29",
+          "observation": "Culling uses.3+.5animation,release-time kill/pure-damage branches and rewards a successful Culling kill.",
+          "paraphrase": "Culling uses.3+.5animation,release-time kill/pure-damage branches and rewards a successful Culling kill.",
+          "versionContext": "CurrentWiki;7.35removed attack-speedbuff andlateraddedarmorareexcluded. AA30attack-speed and30percentmovespeed remain authoritative."
+        },
+        {
+          "id": "axe-history",
+          "url": "https://liquipedia.net/dota2/Version_7.31",
+          "accessedOn": "2026-10-29",
+          "observation": "7.31makesCullingpure/piercing,unifiesdamage/threshold andaddspermanentarmor;+150threshold/+1armor talents matchAA Super prototypes.",
+          "paraphrase": "7.31makesCullingpure/piercing,unifiesdamage/threshold andaddspermanentarmor;+150threshold/+1armor talents matchAA Super prototypes.",
+          "versionContext": "2022-02-23historicalWiki entry and pinned2023KV;AAvalueskeepitsownCD/mana/armor-per-kill."
+        },
+        {
+          "id": "axe-block",
+          "url": "https://www.dota2.com/rekindlingsoul?l=english",
+          "accessedOn": "2026-10-29",
+          "observation": "Culling Blade no longer ignores Linkens Sphere.",
+          "paraphrase": "Culling Blade no longer ignores Linkens Sphere.",
+          "versionContext": "Official2014-09-24RekindlingSoul/6.82patch,not modern conditional Spell Reflection."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CB-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AAinclusive250/350/450release-time threshold grants real-hero kill armor and six-second nearby move/attack speed.",
+          "sourceIds": [
+            "aa",
+            "axe-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-01 every AA rank kills at the inclusive threshold and grants its normal-hero armor and six-second nearby speed"
+            }
+          ]
+        },
+        {
+          "id": "CB-T01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "AA60/100/140mana and75/65/55CDarepaidatrelease;successfulrealherokill resets cooldown.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-01 every AA rank kills at the inclusive threshold and grants its normal-hero armor and six-second nearby speed"
+            },
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-02 a victim healed above threshold during windup receives the full pure damage fallback rather than no effect"
+            }
+          ]
+        },
+        {
+          "id": "CB-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "A victim healed during windup receives the unified pure damage amount instead of no effect.",
+          "sourceIds": [
+            "aa",
+            "axe-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-02 a victim healed above threshold during windup receives the full pure damage fallback rather than no effect"
+            }
+          ]
+        },
+        {
+          "id": "CB-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "An above-threshold amplified pure hit that actually kills still earns kill rewards.",
+          "sourceIds": [
+            "aa",
+            "axe-history",
+            "axe-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-03 above-threshold amplified pure damage can still earn a successful kill reward"
+            }
+          ]
+        },
+        {
+          "id": "CB-S01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AASeason3range225becomes425;Superfinal600threshold and2armorareconsumedonce.",
+          "sourceIds": [
+            "aa",
+            "aa-s3",
+            "axe-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-04 Super consumes final600threshold and2armor once with AA425cast range"
+            }
+          ]
+        },
+        {
+          "id": "CB-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Requestedbackswing.5isreportedat release and remains cancelable by the next ordinary action.",
+          "sourceIds": [
+            "axe-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-04 Super consumes final600threshold and2armor once with AA425cast range"
+            }
+          ]
+        },
+        {
+          "id": "CB-G01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AAglobaltwo-secondphysicalimmunitydoesnotgrantmagicalimmunity;speedstayswithin900.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-05 Gaben grants all living allies two seconds of physical immunity while speed remains limited to900"
+            }
+          ]
+        },
+        {
+          "id": "CB-C01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Below-thresholdSpellBlockstopsCullingandawardsnokillreward.",
+          "sourceIds": [
+            "axe-block"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-06 below-threshold Spell Block is consumed on cast and awards no kill reset armor or immunity"
+            }
+          ]
+        },
+        {
+          "id": "CB-C02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "DirectexecutionbypassescurrentminimumHP,FalsePromise,BattleTrance,shieldandRumstatuseswithoutspelllifesteal.",
+          "sourceIds": [
+            "axe-history",
+            "axe-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-07 direct execution bypasses current minimum-health delay and absorption saves without generating spell lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "CB-C03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Ordinarycreepkillspayresourcesandearnnorealheroarmor/CD/speedreward.",
+          "sourceIds": [
+            "aa",
+            "axe-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-08 ordinary creep executions preserve resources spent but do not award normal-hero cooldown armor or speed rewards"
+            }
+          ]
+        },
+        {
+          "id": "CB-C04",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "Persistentarmorandstatisticsarereconstructedfromunmodifiedserializedbattleinputs.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-09 successful permanent gains retain their skill attribution through deterministic checkpoint restoration"
+            }
+          ]
+        },
+        {
+          "id": "CB-P01",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "2023illusion/clone/creep-heroqualificationforCD,speedandpermanentarmorisnotexplicitlyrecovered;existingreal-hero-onlypolicyretained.",
+          "sourceIds": [
+            "aa",
+            "axe-history",
+            "axe-wiki"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "CB-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AAdoesnotspecifyanindependentabove-thresholddamagefield;native7.31unifieddamage/thresholdisadeclaredcandidate.",
+          "sourceIds": [
+            "aa",
+            "axe-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-control-execution.test.ts",
+              "test": "CB-02 a victim healed above threshold during windup receives the full pure damage fallback rather than no effect"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Exact2023illusion/clone/creep-hero reward qualification remains source_pending rather than copying modern all-hero classifications.",
+        "AAdamage-versus-threshold independent-value semantics are unspecified;native7.31 unified amount is the explicit candidate."
+      ],
+      "upgradeProvenance": [
+        {
+          "tier": "super",
+          "origin": "Native7.31talents+1armor/+150damage-threshold;AAcustom+200range stacks on officialAA225base.",
+          "sourceIds": [
+            "aa",
+            "aa-s3",
+            "axe-history"
+          ]
+        },
+        {
+          "tier": "gaben",
+          "origin": "AAcustomall-alliesphysicalimmunity,resemblingGuardianAngelpropertyonly;itdoesnotcastGuardianAngel.",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ],
+      "scopeBoundaries": [
+        "Modernkillarmorboostreplacingattackspeedisnotimported.",
+        "Conditionalspellreflectionisnotconfusedwith6.82SpellBlock."
+      ]
+    }
+  ]
+}

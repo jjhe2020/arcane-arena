@@ -5,13 +5,14 @@ import {balanceNumber} from '../config';
 import type {CombatUnit} from '../model';
 import {arrayValue,skillValue as v,type EffectContext as C,type SkillProgram} from '../skill-effects';
 import {grantIndependent,historicalValue as h} from './historical-upgrades';
-import units from './historical-unit-data.json';
+import {UNIT_CONFIG} from '../config';
+const units={units:UNIT_CONFIG};
 const S=(c:C)=>c.skill.points>=6,G=(c:C)=>c.skill.points>=9;
 const d=(a:CombatUnit,b:CombatUnit)=>Math.hypot(a.x-b.x,a.y-b.y);
 const near=(c:C,t:CombatUnit,r:number)=>c.enemies().filter(x=>d(x,t)<=r);
 const p=(x:number)=>Math.abs(x)/100;
 const cd=(c:C,minus=0)=>Math.max(.2,arrayValue(c.definition.cooldowns,c.skill.points)-minus);
-function body(c:C,key:keyof typeof units.units,name:string,lifetime=120){const u=units.units[key] as Record<string,number>,unit=c.summon({name,count:1,hp:u.StatusHealth,attack:((u.AttackDamageMin??0)+(u.AttackDamageMax??0))/2,armor:u.ArmorPhysical,range:(u.AttackRange??100)/100,interval:(u.AttackRate??1)/((u.BaseAttackSpeed??100)/100),speed:(u.MovementSpeed??300)/100,lifetime})[0];unit.sourceUnitType=key;unit.magicResist=(u.MagicalResistance??0)/100;unit.mana=unit.maxMana=u.StatusMana??0;c.status(unit,'regen',lifetime,u.StatusHealthRegen??0);return unit;}
+function body(c:C,key:keyof typeof units.units,name:string,lifetime=120){const u=units.units[key] as Record<string,number>,unit=c.summon({name,nativeTemplateId:String(key),count:1,hp:u.StatusHealth,attack:((u.AttackDamageMin??0)+(u.AttackDamageMax??0))/2,armor:u.ArmorPhysical,range:(u.AttackRange??100)/100,interval:u.AttackRate,speed:(u.MovementSpeed??300)/100,lifetime})[0];unit.sourceUnitType=key;unit.magicResist=(u.MagicalResistance??0)/100;unit.mana=unit.maxMana=u.StatusMana??0;c.status(unit,'regen',lifetime,u.StatusHealthRegen??0);return unit;}
 export function applyRemainingUpgrades(r:Record<string,SkillProgram>){
  const update=(id:string,patch:Partial<SkillProgram>,implemented:string[],remaining:string[])=>{Object.assign(r[id],patch);r[id].implemented.push(...implemented);r[id].remaining=remaining;};
  const disrupt=r.custom_shadow_demon_disruption.cast!;update('custom_shadow_demon_disruption',{cast:c=>{if(S(c)&&c.target.side!==c.caster.side)c.castAbility('shadow_demon_soul_catcher',4,c.target);disrupt({...c,summon:options=>c.summon({...options,template:c.target,inheritsSkills:true,initializeInherited:true,inheritedMode:'passives'})});},superImplemented:true},['Super historical max Soul Catcher applies before banishment'],['Victim template and registered-passive inheritance now applied; exact illusion allowlist and ally-target selection remain reference choices']);

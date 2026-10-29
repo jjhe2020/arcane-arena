@@ -3364,158 +3364,103 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "INITIAL PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "首发弹体速度",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:188；c.projectile(target, 8.5, t => { c.damage(t, v(c, 'DAMAGE EACH BOUNCE') + index * v(c, 'INCREMENTAL DAMAGE')); slow(c, t, v(c, 'MOVEMENT SLOW'), v(c, 'SLOW DURATION')); "
+          "integer": false
         },
         {
-          "key": "main_upgrades_remaining.count.1",
-          "kind": "program",
+          "key": "BOUNCE PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "后续弹体速度",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "BOUNCE DELAY",
+          "unit": "ms",
+          "meaning": "每跳后的等待",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SPIRE DURATION",
+          "unit": "ms",
+          "meaning": "Super冰柱持续时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SPIRE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "冰柱减速光环半径",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SPIRE SLOW",
+          "unit": "%",
+          "meaning": "冰柱减速百分数",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SPIRE HERO HITS",
           "unit": "次数",
+          "meaning": "英雄攻击摧毁冰柱次数",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；count:1"
+          "integer": false
         },
         {
-          "key": "main_upgrades_remaining.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SPIRE CREEP HITS",
+          "unit": "次数",
+          "meaning": "非英雄攻击摧毁冰柱次数",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；hp:4"
+          "integer": false
         },
         {
-          "key": "main_upgrades_remaining.lifetime.1",
-          "kind": "program",
+          "key": "SPIRE AURA LINGER",
           "unit": "ms",
+          "meaning": "冰柱减速离场残留",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215id_/https://dota2.fandom.com/wiki/Lich；7.32冰柱改为5英雄/10非英雄次攻击，AA伤害等保留。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；lifetime:15"
-        },
-        {
-          "key": "main_upgrades_remaining.hitcountbody_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 HIT数量BODY 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.status(spire,'hitCountBody',15,0,{data:{heroDamage:2,basicDamage:1,immuneSpells:true}})"
-        },
-        {
-          "key": "main_upgrades_remaining.disarm_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DISARM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.status(spire,'disarm',15)"
-        },
-        {
-          "key": "main_upgrades_remaining.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；radius:7.5"
-        },
-        {
-          "key": "main_upgrades_remaining.duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；duration:15"
-        },
-        {
-          "key": "main_upgrades_remaining.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；interval:.1"
-        },
-        {
-          "key": "main_upgrades_remaining.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.status(t,'slow',.5,.3,{harmful:true})"
-        },
-        {
-          "key": "main_upgrades_remaining.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.status(t,'slow',.5,.3,{harmful:true})"
-        },
-        {
-          "key": "main_upgrades_remaining.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.projectile(target,8,t=>{if(t.side!==c.caster.side){c.damage(t,v(c,'DAMAGE EACH BOUNCE')+(S(c)?70:0)+count*v(c,'INCREMENTAL DAMAGE'));c.status(t,'slow',v(c,'SLOW DURATION'),p(v(c,"
-        },
-        {
-          "key": "main_upgrades_remaining.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；S(c)?70:0"
-        },
-        {
-          "key": "main_upgrades_remaining.delay.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-remaining.ts:27；c.delay(.25,()=>bounce(choices[0],count+1,t))"
+          "integer": false
         }
       ]
     },
@@ -3551,6 +3496,28 @@
           "meaning": "法力 RESTORE",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "BUFF DURATION",
+          "unit": "ms",
+          "meaning": "追溯后续技能的增益窗口；AA待证工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "历史Wiki查克拉魔法；AA retroactive持续15秒是旧pre7.20原型工作候选，尚无AA精确值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "SUPER ALLY REDUCTION",
+          "unit": "ms",
+          "meaning": "Super对友军额外冷却缩减秒数",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "历史Wiki查克拉魔法；AA retroactive持续15秒是旧pre7.20原型工作候选，尚无AA精确值。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -4504,26 +4471,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.armor_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben目标附近作用半径",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki腐蚀雾霭；Gaben水迹为平面环境视觉候选，不额外模拟未证的河道加成。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:169；superTier?1e6:duration(c)"
+          "integer": false
         },
         {
-          "key": "skill_effects.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "PUDDLE DURATION",
+          "unit": "ms",
+          "meaning": "Gaben水迹显示持续；工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki腐蚀雾霭；Gaben水迹为平面环境视觉候选，不额外模拟未证的河道加成。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:169；superTier?100:undefined"
+          "integer": false
+        },
+        {
+          "key": "PUDDLE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben水迹显示半径；工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki腐蚀雾霭；Gaben水迹为平面环境视觉候选，不额外模拟未证的河道加成。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "PUDDLE INTERVAL",
+          "unit": "ms",
+          "meaning": "Gaben水迹更新间隔；工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki腐蚀雾霭；Gaben水迹为平面环境视觉候选，不额外模拟未证的河道加成。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "PUDDLE SPACING",
+          "unit": "Dota单位",
+          "meaning": "创建下一水迹的移动距离；工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki腐蚀雾霭；Gaben水迹为平面环境视觉候选，不额外模拟未证的河道加成。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -4782,9 +4782,9 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "光环 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "Super最终光环半径",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。"
         },
         {
           "key": "DAY DURATION",
@@ -4809,114 +4809,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:588；S(c) ? .5 : 0"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SUPER BLIND",
+          "unit": "%",
+          "meaning": "Super施加致盲概率",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:588；interval: .2"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:589；debuff(c, target, 'blind', .5, .3)"
-        },
-        {
-          "key": "skill_effects_extra.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1187；c.damage(target, 320, 'magical', false)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1188；debuff(c, target, 'slow', .5, 4, { piercesImmunity: false })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1189；debuff(c, target, 'attackSpeed', -50, 4, { piercesImmunity: false })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "AURA INTERVAL",
           "unit": "ms",
+          "meaning": "光环刷新间隔，不快于服务器步长",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:592；debuff(c, target, 'silence', 0, .3)"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
+          "key": "AURA LINGER",
           "unit": "ms",
+          "meaning": "光环残留",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:592；debuff(c, target, 'blind', balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.5), .3)"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_duration.3",
-          "kind": "program",
+          "key": "GABEN INTERVAL",
           "unit": "ms",
+          "meaning": "被动虚空间隔",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1191；debuff(c, target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.5), 4, { piercesImmunity: false })"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_duration.4",
-          "kind": "program",
-          "unit": "ms",
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "被动虚空搜索半径",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "2023Wiki伤残恐惧；AA明确Super半径+50与50%致盲、Gaben每4秒550范围4级夜间虚空；夜间虚空独立native域。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1192；debuff(c, target, 'attackSpeed', balanceNumber(c,'skill_effects_extra.debuff_amount.3',-50), 4, { piercesImmunity: false })"
+          "integer": false
         }
       ]
     },
@@ -4938,9 +4883,9 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "护甲 每 KILL",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次击杀英雄最终永久护甲",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "AA Season3明确基础175→225，Super增加200；AA杀死英雄后最终阈值/永久护甲，Gaben全队物理免疫2秒。"
         },
         {
           "key": "KILL ATTACK SPEED BONUS",
@@ -4993,64 +4938,20 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "KILL THRESHOLD",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "Super最终处决阈值",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "AA Season3明确基础175→225，Super增加200；AA杀死英雄后最终阈值/永久护甲，Gaben全队物理免疫2秒。"
         },
         {
-          "key": "skill_effects.armor_duration.1",
-          "kind": "program",
+          "key": "GABEN IMMUNITY DURATION",
           "unit": "ms",
+          "meaning": "Gaben全队物理免疫时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "AA Season3明确基础175→225，Super增加200；AA杀死英雄后最终阈值/永久护甲，Gaben全队物理免疫2秒。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:173；c.status(c.caster,'armor',1e6,state[key],{dispel:'none'})"
-        },
-        {
-          "key": "skill_effects.physicalimmune_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 PHYSICALIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:174；c.status(ally,'physicalImmune',2)"
-        },
-        {
-          "key": "skill_effects.armor_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 护甲 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:175；c.status(c.caster,'armor',1e6,Number((c.caster.skillState as Record<string,number>|undefined)?.[`${c.skill.id}:armor`]??0),{dispel:'none'})"
-        },
-        {
-          "key": "skill_effects.range.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:175；1.5+(c.skill.points>=6?2:0)"
-        },
-        {
-          "key": "skill_effects.range.2",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "范围或射程",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:175；c.skill.points>=6?2:0"
+          "integer": false
         }
       ]
     },
@@ -5413,48 +5314,15 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "main_upgrades_advanced.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "初始及反弹脉冲弹速",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos；AA原伤害/治疗/800半径保留，Gaben同队伍反弹半径是明确工作候选。",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:15；c.projectile(t,4,u=>{c.damage(u,v(c,'DAMAGE'));if(G(c)){const choices=near(c,u,v(c,'RADIUS')/100).filter(x=>x.id!==u.id),next=choices[Math.floor(c.random()*choices.length)];if(next"
-        },
-        {
-          "key": "main_upgrades_advanced.projectile_speed.2",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:15；c.projectile(next,4,x=>c.damage(x,v(c,'DAMAGE')),u)"
-        },
-        {
-          "key": "main_upgrades_advanced.projectile_speed.3",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:15；c.projectile(t,4,u=>{c.heal(u,v(c,'HEAL')+(S(c)?35:0));if(G(c)){const choices=c.allies().filter(x=>x.id!==u.id&&distance(x,u)<=v(c,'RADIUS')/100),next=choices[Math.floor(c.random()"
-        },
-        {
-          "key": "main_upgrades_advanced.projectile_speed.4",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:15；c.projectile(next,4,x=>c.heal(x,v(c,'HEAL')+35),u)"
+          "integer": false
         }
       ]
     },
@@ -5476,9 +5344,9 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "攻击 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "死亡守卫最终攻击距离",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。"
         },
         {
           "key": "DAMAGE",
@@ -5492,81 +5360,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:162；count: 1"
-        },
-        {
-          "key": "skill_effects_more.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:162；hp: 1"
-        },
-        {
-          "key": "skill_effects_more.interval.1",
-          "kind": "program",
+          "key": "CHANNEL TIME",
           "unit": "ms",
+          "meaning": "最大持续施法时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:162；interval: .22"
+          "integer": false
         },
         {
-          "key": "skill_effects_more.lifetime.1",
-          "kind": "program",
+          "key": "ACCURACY",
+          "unit": "%",
+          "meaning": "普通守卫攻击额外命中率",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben前一目标周围反弹搜索半径",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "BOUNCE PROJECTILE SPEED",
+          "unit": "Dota单位每秒",
+          "meaning": "Gaben反弹弹体速度",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "INACTIVE WARD DURATION",
           "unit": "ms",
+          "meaning": "中断后不攻击守卫的存留时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor；历史物理攻击与50%额外命中率，AA Super最终值只加一次。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "存在时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:162；lifetime: .25"
-        },
-        {
-          "key": "skill_effects_more.invulnerable_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 INVULNERABLE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:163；c.status(ward, 'invulnerable', 8.2)"
-        },
-        {
-          "key": "skill_effects_more.truestrike_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 TRUESTRIKE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:163；c.status(ward, 'trueStrike', 8.2)"
-        },
-        {
-          "key": "skill_effects_more.attack_multiplier.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "普通攻击伤害倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:167；c.attack(next, 1, false)"
+          "integer": false
         }
       ]
     },
@@ -5621,53 +5467,42 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "力量 STEAL",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每个英雄最终偷取力量",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；AA Strong dispel覆盖原生undispellable，Super最终偷取10；Gaben为Macabre Reverberations同地点3秒复发两次。"
         },
         {
-          "key": "skill_effects.maxstacks.1",
-          "kind": "program",
+          "key": "CREEP DAMAGE MULTIPLIER",
+          "unit": "倍率",
+          "meaning": "对普通非英雄单位基础伤害倍率",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；AA Strong dispel覆盖原生undispellable，Super最终偷取10；Gaben为Macabre Reverberations同地点3秒复发两次。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "EXTRA PULSE COUNT",
           "unit": "次数",
+          "meaning": "Gaben额外触发次数",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；AA Strong dispel覆盖原生undispellable，Super最终偷取10；Gaben为Macabre Reverberations同地点3秒复发两次。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:302；maxStacks:100"
+          "integer": false
         },
         {
-          "key": "skill_effects.maxstacks.2",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:302；maxStacks:100"
-        },
-        {
-          "key": "skill_effects.delay.1",
-          "kind": "program",
+          "key": "EXTRA PULSE INTERVAL",
           "unit": "ms",
+          "meaning": "Gaben额外触发间隔",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；AA Strong dispel覆盖原生undispellable，Super最终偷取10；Gaben为Macabre Reverberations同地点3秒复发两次。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:302；c.delay(3,pulse)"
-        },
-        {
-          "key": "skill_effects.delay.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:302；c.delay(6,pulse)"
+          "integer": false
         }
       ]
     },
@@ -5705,26 +5540,37 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:583；buff(c, target, 'demonicCleanse', 1, seconds + .01)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MAX CHARGES",
+          "unit": "次数",
+          "meaning": "Super可用充能上限",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:586；seconds + .01"
+          "integer": false
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "单次顺序充能恢复时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "DISPEL INTERVAL",
+          "unit": "ms",
+          "meaning": "连续基础驱散检查间隔，不快于服务器步长",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -5762,70 +5608,59 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:573；debuff(c, target, 'demonicPurge', 1, seconds + .01, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:576；Math.max(.2, 1 - .8 * time / seconds)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:576；1 - .8 * time / seconds"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:576；.8 * time"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MAX CHARGES",
+          "unit": "次数",
+          "meaning": "Super可用充能上限",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:576；seconds + .01"
+          "integer": false
         },
         {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
+          "key": "CHARGE RESTORE TIME",
           "unit": "ms",
+          "meaning": "单次顺序充能恢复时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:579；debuff(c, target, 'slow', Math.max(balanceNumber(c,'skill_effects_extra.debuff_amount.2',0.2), balanceNumber(c,'skill_effects_extra.debuff_amount.3',1) - balanceNumber(c,'skill_eff"
+          "integer": false
+        },
+        {
+          "key": "DISPEL INTERVAL",
+          "unit": "ms",
+          "meaning": "连续基础驱散检查间隔，不快于服务器步长",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "MAX SLOW",
+          "unit": "%",
+          "meaning": "初始移动速度减缓",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "MIN SLOW",
+          "unit": "%",
+          "meaning": "持续期末移动速度减缓",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA Strong dispel与基础Break自定义优先；逐帧驱散，按剩余modifier累计结算，60秒独立充能时钟。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
         }
       ]
     },
@@ -26582,72 +26417,6 @@
           "meaning": "攻击 速度 降低",
           "source": "固定历史候选",
           "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "ATTACK DAMAGE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击 伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "ATTACK RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "攻击 距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "skill_effects_more_children.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:143；count: 1"
-        },
-        {
-          "key": "skill_effects_more_children.hp.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "生命数值或系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:143；hp: 1"
-        },
-        {
-          "key": "skill_effects_more_children.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:143；.22 / (1 - v(c, 'ATTACK SPEED REDUCTION') / 100)"
-        },
-        {
-          "key": "skill_effects_more_children.interval.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more-children.ts:143；1 - v(c, 'ATTACK SPEED REDUCTION') / 100"
         }
       ]
     },
@@ -27946,7 +27715,41 @@
       "tiers": [
         1
       ],
-      "params": []
+      "params": [
+        {
+          "key": "MAX CHARGES",
+          "unit": "次数",
+          "meaning": "授予技能独立充能上限",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "授予技能单次顺序充能恢复时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "REFERENCE POINT TIER",
+          "unit": "点数",
+          "meaning": "引用主技能AA效果档；保留工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 1,
+          "max": 3,
+          "integer": true
+        }
+      ]
     },
     "native:extra_granted_demonic_purge": {
       "domain": "native",
@@ -27954,7 +27757,41 @@
       "tiers": [
         1
       ],
-      "params": []
+      "params": [
+        {
+          "key": "MAX CHARGES",
+          "unit": "次数",
+          "meaning": "授予技能独立充能上限",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "授予技能单次顺序充能恢复时间",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false
+        },
+        {
+          "key": "REFERENCE POINT TIER",
+          "unit": "点数",
+          "meaning": "引用主技能AA效果档；保留工作候选",
+          "source": "C4逐项历史Wiki/AA核验",
+          "note": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon；AA明确授予Cleanse3充能/50蓝。授予Purge1充能/200蓝与引用3点档保留既有工作候选，非原AA脚本证明。",
+          "kind": "value",
+          "min": 1,
+          "max": 3,
+          "integer": true
+        }
+      ]
     },
     "native:bane_enfeeble": {
       "domain": "native",
@@ -28022,17 +27859,6 @@
         4
       ],
       "params": [
-        {
-          "key": "ABILITYMODIFIERSUPPORTVALUE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "ABILITYMODIFIERSUPPORTVALUE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
         {
           "key": "MISS_RATE",
           "kind": "value",
@@ -33199,6 +33025,70 @@
           "integer": false
         }
       ]
+    },
+    "native:night_stalker_void": {
+      "domain": "native",
+      "id": "night_stalker_void",
+      "tiers": [
+        4
+      ],
+      "params": [
+        {
+          "key": "DAMAGE",
+          "kind": "value",
+          "unit": "数值",
+          "meaning": "四级夜间虚空魔法伤害",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "2023四级夜间虚空与AA Gaben",
+          "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
+        },
+        {
+          "key": "DURATION",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "夜间减速持续时间",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "2023四级夜间虚空与AA Gaben",
+          "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
+        },
+        {
+          "key": "MOVEMENT SLOW",
+          "kind": "value",
+          "unit": "%",
+          "meaning": "移动速度减缓百分比",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "2023四级夜间虚空与AA Gaben",
+          "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
+        },
+        {
+          "key": "ATTACK SLOW",
+          "kind": "value",
+          "unit": "数值",
+          "meaning": "固定攻击速度降低",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "2023四级夜间虚空与AA Gaben",
+          "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
+        },
+        {
+          "key": "MINISTUN",
+          "kind": "value",
+          "unit": "ms",
+          "meaning": "普通虚空短暂眩晕时间",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "2023四级夜间虚空与AA Gaben",
+          "note": "固定Valve night_stalker_void与历史7.22短晕；独立native等级4，按免费被动调用但公共数值保留原生基础参考"
+        }
+      ]
     }
   },
   "economy": [
@@ -33534,6 +33424,11 @@
       "group": "battle",
       "key": "spellLifestealCreepFactor",
       "unit": "倍率"
+    },
+    {
+      "group": "battle",
+      "key": "baseManaRegen",
+      "unit": "数值"
     }
   ],
   "units": [
@@ -33547,7 +33442,9 @@
     "npc_dota_neutral_black_dragon",
     "npc_dota_neutral_granite_golem",
     "npc_dota_neutral_mud_golem",
-    "npc_dota_neutral_mud_golem_split"
+    "npc_dota_neutral_mud_golem_split",
+    "npc_dota_witch_doctor_death_ward",
+    "npc_dota_lich_ice_spire"
   ],
   "roles": [
     "archer",

@@ -1,4 +1,4 @@
-import {balanceNumber,skillBalance,UNIT_CONFIG} from '../config';
+import {balanceNumber,skillBalance,UNIT_CONFIG,BATTLE_CONFIG} from '../config';
 import type {CombatUnit} from '../model';
 import {skillValue as value,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
 
@@ -72,8 +72,8 @@ export function applyLinksAndGazeAcceptance(registry:Record<string,SkillProgram>
       c.status(target,'physicalVulnerability',stone.until-c.battle.time,amp/100,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,data:{gazeToken:token}});
       if(c.skill.points>=9){
         const raw=UNIT_CONFIG.npc_dota_neutral_mud_golem;
-        const bodies=c.summon({name:'泥土傀儡',count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate/(raw.BaseAttackSpeed/100),speed:raw.MovementSpeed/100,lifetime:120});
-        for(const body of bodies){body.sourceUnitType='npc_dota_neutral_mud_golem';body.magicResist=raw.MagicalResistance/100;body.mana=body.maxMana=raw.StatusMana;c.status(body,'regen',120,raw.StatusHealthRegen);c.status(body,'manaRegen',120,raw.StatusManaRegen-3);c.warp(body,target.x,target.y);}
+        const bodies=c.summon({name:'泥土傀儡',nativeTemplateId:'npc_dota_neutral_mud_golem',count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate,speed:raw.MovementSpeed/100,lifetime:120});
+        for(const body of bodies){body.sourceUnitType='npc_dota_neutral_mud_golem';body.magicResist=raw.MagicalResistance/100;body.mana=body.maxMana=raw.StatusMana;c.status(body,'regen',120,raw.StatusHealthRegen);c.status(body,'manaRegen',120,raw.StatusManaRegen-BATTLE_CONFIG.baseManaRegen);c.warp(body,target.x,target.y);}
       }
     }});
   };

@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": 1,
+  "group": "death-demonic",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit values,categories anddifferences remainauthoritative. Direct2023Wiki/pinnedValve supplycompatible mechanisms. Keyword-traced upgrade prototypes do not authorize importing unmentionedAA numeric factors.",
+  "validation": {
+    "command": "npx vitest run tests/reference-death-demonic.test.ts",
+    "passedTests": 45,
+    "configurationHash": "d726a9bef22ee3f2751db500996c3a75b30d409a4342ddf8d1631d3651e69189",
+    "meaning": "Oneofthese5skills has complete reviewedarena clauses;fourretain precise source/engine gaps.45resulttests do not certify all230skills or allnative children."
+  },
+  "skills": [
+    {
+      "id": "custom_necrolyte_death_pulse",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA values retained; hero/summon arena has no fog-of-war or courier gameplay. Rebound target-policy ambiguity is not hidden by passing result tests."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Enemy magical pulses and allied direct healing. AA damage60/110/210,heal60/85/135,radius800;Super+35heal/-2.5sCD;Gaben each pulse bounces once on random target.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA values/categories/differences override native balance and upgrade qualification.",
+          "localEvidence": "references/ability-arena/abilities-death-demonic-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos",
+          "accessedOn": "2026-10-29",
+          "observation": "0+0.77cast,400projectile speed; invisible/fogged units acquired, hidden/invulnerable units excluded; enemy spell immunity excluded but allied spell immunity permits healing. Native heal and radius differ from AA. Death Pulse is nondisjointable.",
+          "versionContext": "Direct historical Dota2Wiki2023-02-15 HTTP200, read as the original archived HTML; current facets and modern damage-type redesigns are excluded.",
+          "sha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "NO_TARGET,castpoint0,projectile_speed400;native CD8/7/6/5 and mana100/130/160/190. Native+32heal and-2.5CD talents provide related upgrade lineage; AA+35 remains authoritative.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10; historical compatible candidate, not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DP-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Separate400-speed enemy/ally packets delay effects until arrival; healing is direct.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse releases400 speed projectiles and delays remote damage and healing until arrival"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-02",
+          "kind": "combination",
+          "branch": "disjoint",
+          "mechanism": "Death Pulse survives actual Chemical Rage projectile disjoint.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse survives a real Chemical Rage projectile disjoint"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-03",
+          "kind": "combination",
+          "branch": "visibility-immunity",
+          "mechanism": "Invisible enemies are affected; hidden and enemy spell-immune bodies are not acquired. Spell-immune allies are healed.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse includes invisible units and heals spell immune allies but excludes spell immune enemies and hidden bodies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-04",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Instant point,770ms cancellable recovery; AA190mana and5sCD commit at release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse instant cast debits190 mana and five second cooldown with770ms recovery"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final170heal and2.5sCD are consumed exactly once.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse Super uses final170 healing and2.5 second cooldown once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Each initial packet generates at most one separate seeded-random bounce. Only bounce count/randomness are source verified; recipient-team/radius policy remains below.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse Gaben creates only one distinct bounce per initial pulse and replay preserves seeded recipients"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DP-07",
+          "kind": "combination",
+          "branch": "configuration",
+          "mechanism": "Editing final Gaben HEAL to333 changes initial and bounced heal to333 without another+35; seeded replay uses original battle inputs.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse changed final healing also reaches Gaben bounce without another Super increment"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Pulse Gaben creates only one distinct bounce per initial pulse and replay preserves seeded recipients"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Combines native heal-talent and-2.5sCD lineage; AA+35 overrides native+32 and later+40/+60values."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "One random rebound is explicit custom AA. No exact same-hero talent/Scepter/Shard/item prototype was recovered for its team/radius rule."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DP-U01",
+          "requirement": "AA does not define which teams can receive a rebound or its search radius. Same team as initial recipient, excluding itself, within AA800radius remains the retained project policy. Keyword search found no exact native Death Pulse bounce upgrade; Death Seeker is a distinct center-spreading ability and is not silently granted.",
+          "blocks": "Complete Gaben target eligibility."
+        }
+      ]
+    },
+    {
+      "id": "custom_witch_doctor_death_ward",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Historical physical Ward model; arena no ground-vision gameplay. Existing shared30Hz attack cadence remains the engine clock; up-to37attacks is a historical ceiling, not fabricated as an exact measured count."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "8s channel,physical damage50/90/130,range700;Super+60damage/+100range and Voodoo Switcheroo;Gaben true strike and closest enemy-hero bounces within650 with no repeat hit.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA values/categories/differences override native balance and upgrade qualification.",
+          "localEvidence": "references/ability-arena/abilities-death-demonic-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192255id_/https://dota2.fandom.com/wiki/Witch_Doctor",
+          "accessedOn": "2026-10-29",
+          "observation": "Death Ward0.35+0,cast600,8s channel,50%accuracy. Hero/clone/illusion targets only;creep-heroes excluded.0.22BAT,zero attack point/back,1000projectile. Main hit ignores damage block. After interrupted channel, ward stops attacking but phased shell remains5s. Scepter bounces are physical spell packets, not instant attacks, without spell amplification/lifesteal. Switcheroo0.1+0.73,3s,150mana/40s,30flatAS penalty,disjoint,hidden/action lock and parent-level/Scepter inheritance.",
+          "versionContext": "Direct historical Dota2Wiki2023-02-15 HTTP200, read as the original archived HTML; current facets and modern damage-type redesigns are excluded.",
+          "sha256": "85a5c8ce9b11e27047f8fc6eb4113e8c4274c5bef4d24e78c26ecbde398750b7"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Death Ward physical,hero targeting with no invis/fog/creep-heroes,0.35point,600cast,8channel,bonus_accuracy50,bounce650. Switcheroo0.1point,3duration,30AS reduction,40CD,150mana.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10; historical compatible candidate, not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "units",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Native ward body135HP,0armor/MR,0.22BAT,AS100,AP0,1000projectile,rawturn0.5. Unit profile applies only native attack/motion identity; AA damage/range remain independent.",
+          "versionContext": "Pinned2023 shipped unit KV plus direct2023Wiki. Raw turn maps through the explicit planar candidateT/0.03, not a claim of native acceleration.",
+          "localEvidence": "references/dota-20230216/parsed/npc_units.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DW-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "350ms point,zero backswing,600cast range,200mana/60sCD and8s channel.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward has350ms point zero backswing600 cast range and debits200 mana on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Native ward has zero attack point/back,1000speed projectile,AS100 and0.22BAT; it does not inherit owner attack speed.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "units"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward uses native zero attack point1000 projectile speed and fixed0.22BAT without inheriting hero attack speed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-03",
+          "kind": "mechanism",
+          "branch": "targeting",
+          "mechanism": "Hero and illusion targets are legal; ordinary and considered-hero creeps are excluded.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward targets heroes and illusions but not ordinary or considered hero creeps"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-04",
+          "kind": "combination",
+          "branch": "accuracy-block-immunity",
+          "mechanism": "Base50%accuracy allows some hits through100%evasion, while Gaben true strike prevents misses; main physical hits ignore flat block and pierce magic immunity.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward base50 percent accuracy lands some attacks through total evasion while Gaben is true strike"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward physical attacks ignore flat block and pierce enemy spell immunity"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super consumes final800range/190damage once and grants a separate real Switcheroo action.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward Super consumes800 range and190 damage once"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Voodoo Switcheroo is a real100ms queued150mana40second action and lasts three full seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Closest unique hero bounces travel as1000-speed physical spell packets; no spell amplification or spell lifesteal, and no c.attack/on-hit application for secondary damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward Gaben bounces travel between unique heroes as physical spells with no amplification or spell lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-07",
+          "kind": "timing",
+          "branch": "channel-end",
+          "mechanism": "Interruption stops attacks and leaves phased shell for5s before removal.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Death Ward interruption stops attacks and leaves a phased nonblocking shell for five seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DW-08",
+          "kind": "combination",
+          "branch": "switcheroo",
+          "mechanism": "Queued100ms/730ms action spends150mana and40sCD;3s hidden action lock,flat30AS slow and parent final190/800stats.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Voodoo Switcheroo is a real100ms queued150mana40second action and lasts three full seconds"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native level20+100range,level25+60damage,and Shard Switcheroo are combined; AA damage replaces native90/150/210."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Matches historical Scepter true strike/infinite unique hero bounce. Modern7.34pure damage and creep-bounce redesigns are excluded."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DW-U01",
+          "requirement": "Historical secondary-projectile disjoint does not mark that unit hit and may continue/retry the chain. Current projectile API removes the packet without a continuation callback, so that chain stops; this branch is not declared native parity.",
+          "blocks": "Complete Gaben disjoint continuation."
+        },
+        {
+          "id": "DW-U02",
+          "requirement": "No manual ward-order/fog interface exists. Nearest eligible hero point placement is the explicit project AI policy; original AA placement AI is not recovered. Native turn acceleration remains the separate profile-engine candidate.",
+          "blocks": "Complete original-AA placement/visibility behavior."
+        }
+      ]
+    },
+    {
+      "id": "custom_undying_decay",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "Current project attribute conversion22HP/strength retained; historical20HP examples are not copied as new numeric balance. No mid-battle skill-point purchasing; dynamic Scepter-acquire stack updates are outside this arena surface."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Base20/50/110damage,325radius,4strength for45s. Strong-dispel-only AA category. Super+6steal/-1sCD;Gaben two further triggers3s apart at original point.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA values/categories/differences override native balance and upgrade qualification.",
+          "localEvidence": "references/ability-arena/abilities-death-demonic-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying",
+          "accessedOn": "2026-10-29",
+          "observation": "0.3+0cast,650range; strength transfer precedes damage. Creeps take2xdamage; illusions cannot lose strength but are damaged as heroes. Independent unlimited stacks,enemy strength floor0 while caster gains full amount; health changes are not healing and current HP is not refunded at expiry. Recipient death restores own strength while giver retains unexpired gain. Native strength regen is0.1per point; project conversion currently lacks this.",
+          "versionContext": "Direct historical Dota2Wiki2023-02-15 HTTP200, read as the original archived HTML; current facets and modern damage-type redesigns are excluded.",
+          "sha256": "c1e8149f8658ff90b208ebb5f858e06b682cf2b97dc3bc05ccacb92cc4adf688"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Magical325radius,650range,point0.3,45s duration,4steal,creep_damage_multiplier2 and native Scepter8steal. AA Super10 and50mana replace native values.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10; historical compatible candidate, not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "labyrinth",
+          "url": "https://web.archive.org/web/20230215194002id_/https://dota2.fandom.com/wiki/Aghanim's_Labyrinth:_The_Continuum_Conundrum",
+          "accessedOn": "2026-10-29",
+          "observation": "Macabre Reverberations repeats Decay twice at the target point3s apart, but the native legendary upgrade also specifies50%damage and50%strength on repeats. AA reproduces the first clause without stating this scaling. Full AA repeats remain unchanged and explicitly unresolved.",
+          "versionContext": "Direct HTTP2002023-02-15 archived Labyrinth page,not a normal hero Scepter upgrade. This source identifies the prototype but does not prove AA retained its50%scaling.",
+          "sha256": "20eb318ff77b1e36e234e96e350b21aa27422954970d7c188d2b6b43d79eddde"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DY-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Strength changes precede the magical hit; ordinary nonhero creeps take2xbase damage, while illusions take normal hero damage without strength loss.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay steals strength before its magical hit and doubles base damage to ordinary creeps"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay cannot steal from an illusion but still damages it as a hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "300ms point,zero backswing,650range;50mana/4sCD at AA3 release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay point cast spends50 mana at300ms with zero backswing and a650 range gate"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-03",
+          "kind": "mechanism",
+          "branch": "stacks",
+          "mechanism": "Independent45s stacks can exceed100;enemy strength is floored at0 and caster receives full ten at Super.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay retains more than one hundred independent strength stacks without the old cap"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay floors enemy strength at zero but awards full Super ten strength"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-04",
+          "kind": "combination",
+          "branch": "health-lifecycle",
+          "mechanism": "At expiry strength-derived max HP changes without refunding enemy current HP or subtracting giver current HP, subject to clamp. Project22HP-per-strength conversion is retained.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay independent stacks expire without refunding enemy current health or subtracting caster current health"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-05",
+          "kind": "combination",
+          "branch": "dispel-death",
+          "mechanism": "Basic dispel leaves AA harmful stack;strong removes enemy strength debuff without healing it. Current caster buff retains native undispellability. Recipient reincarnation clears its own debuff but not giver gain.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay strong enemy dispel removes only debuff strength without refunding health and leaves caster gain"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay dead recipient loses its debuff on reincarnation while the living caster retains gain"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-06",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA Super final ten strength is consumed once; its-1s cooldown is in the compiled3s effective row.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay floors enemy strength at zero but awards full Super ten strength"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay Gaben uses a frozen point for two extra pulses three seconds apart and final ten steal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DY-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Two delayed triggers occur exactly+3/+6s at the frozen point, affecting replacement occupants rather than chasing the first target. Repeat-count/timing verified; full-versus-half scaling is unresolved.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "labyrinth"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay Gaben uses a frozen point for two extra pulses three seconds apart and final ten steal"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Decay later Gaben pulses remain at the original point after the first target leaves it"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native Scepter increased steal and cooldown talent are related prototypes; AA explicitly raises4to10 and reducesCD1s, so native8/-2s are not imported."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "labyrinth"
+          ],
+          "finding": "Direct keyword trace identifies Macabre Reverberations; its additional50%sentence creates a real AA-source gap rather than an excuse to silently halve AA balance."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "DY-U01",
+          "requirement": "Project attribute changes do not yet grant/remove strength-derived0.1HP/s regeneration. Four-profession base restoration is intentionally not modified as part of this batch.",
+          "blocks": "Complete strength-stat settlement."
+        },
+        {
+          "id": "DY-U02",
+          "requirement": "Native Macabre Reverberations repeats at50%damage/strength, while AA only publishes the repetition clause. Full existing AA repeats are preserved until custom-AA evidence determines whether the50%modifier was removed.",
+          "blocks": "Complete Gaben scaling."
+        },
+        {
+          "id": "DY-U03",
+          "requirement": "Native multiple-clone-group random deduplication requires clone-family identity not yet supplied by heroClone alone. Current hero clones are treated individually.",
+          "blocks": "Complete clone-family strength-transfer combination."
+        },
+        {
+          "id": "DY-U04",
+          "requirement": "AA Strong category does not explicitly distinguish the enemy debuff from the self counter. Harmful stack is Strong, while self buff retains native undispellability; exact custom-AA self-counter dispel behavior remains unproved.",
+          "blocks": "Complete self-counter custom dispel interpretation."
+        }
+      ]
+    },
+    {
+      "id": "custom_shadow_demon_demonic_cleanse",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "AA700heal/7s/50mana and Strong dispel override native linked scaling/undispellability. Historical most-recentDisruption wording is not interpreted as an unproved whole-battle singleton restriction."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Cleanse700heal/7s/50mana continuously basic-dispels ally;Super3charges;Gaben grants Purge. Strong-only custom category;Disruption allies explicitly legal.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA values/categories/differences override native balance and upgrade qualification.",
+          "localEvidence": "references/ability-arena/abilities-death-demonic-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon",
+          "accessedOn": "2026-10-29",
+          "observation": "Both0.3+0.6,800range. Continuous basic dispel,exclusive linked modifier,cumulative heal/damage on loss or replacement. Cleanse fully affects invulnerable allies;Purge only applies debuff after dispellable invulnerability is removed. Disruption is an explicit hidden-target exception. Slow100→20%;Break ends before final damage. Native Scepter3sequential60s charges;nativeCleanse ties its values toPurge, unlike AA fixed700/7.",
+          "versionContext": "Direct historical Dota2Wiki2023-02-15 HTTP200, read as the original archived HTML; current facets and modern damage-type redesigns are excluded.",
+          "sha256": "45af6234f51d9d14adafad3e4d514a7b5220b9cbe529a6d3cfa7380a59c6ce2c"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Both800range,0.3point and60s baseCD. Purge max_slow100,min_slow20,max_charges3,restore60;immunity-piercing,originally undispellable. AA Strong and baseBreak overrides are preserved.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10; historical compatible candidate, not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "Official2022-10-05 changes Purge Super to3charges and Gaben toCleanse3charges. This is direct AA upgrade evidence.",
+          "versionContext": "Author-published Ability Arena1.5devblog,actually browsed2026-10-29."
+        },
+        {
+          "id": "aa-workshop",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=17",
+          "accessedOn": "2026-10-29",
+          "observation": "Official workshop page17 fixes grantedCleanse mana from150to50;confirms the independent resource override.",
+          "versionContext": "Direct HTTP200author Steam patch log read2026-10-29;not a community guess.",
+          "sha256": "d0bd1f1909965255f9b2629bbb35ee9ca3bcd841fcd1320cbbb2f1d8ce587f02"
+        },
+        {
+          "id": "status-resistance",
+          "url": "https://web.archive.org/web/20230412001540id_/https://dota2.fandom.com/wiki/Status_resistance",
+          "accessedOn": "2026-10-29",
+          "observation": "Demonic Purge is an affected status-resistance ability with duration/tick adaptation;its full final damage is not lost when the debuff duration contracts.",
+          "versionContext": "Actual redirect is2023-04-12,still7.32e before7.33;not falsely dated2023-02-15. Current-only slow-resistance redesign is excluded.",
+          "sha256": "b198ff42d72c22997457c2e37add9d49bab590c9fc87ff8f0022f25a59dcd5b3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CL-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Continuously basic-dispels negative buffs and delivers700direct heal only at7s endpoint.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse continuously basic dispels and heals700 only at the seven second endpoint"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CL-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "800range,300ms point/600ms recovery,50mana and60sbaseCD at release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge and Cleanse use800 range300ms point600ms recovery and their distinct AA mana at release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CL-03",
+          "kind": "combination",
+          "branch": "AA-dispel",
+          "mechanism": "Basic buff dispel cannot remove AA Strong Cleanse;strong removal settles only elapsed cumulative heal and removes the modifier.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse cannot be removed by basic buff dispel and strong removal heals only elapsed value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CL-04",
+          "kind": "combination",
+          "branch": "invulnerability-disruption",
+          "mechanism": "Invulnerable allies and a real already-Disrupted allied recipient are legal;unrelated banishment is rejected.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse supports invulnerable allies but rejects an unrelated banish source"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse and the granted Cleanse action can start on an ally already hidden by a real enemy Disruption"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CL-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Super has three sequential60-second charges; the same shared charge implementation is exercised with real Purge charge/recharge/Chakra results and Cleanse Gaben3charge action.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "aa15"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge Super restores only one of three charges at the first sequential recharge"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge recharge accepts a real Gaben Chakra reduction and does not repay old generation timers twice"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge Gaben grants a real separate three-charge50mana Cleanse action"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CL-06",
+          "kind": "gaben",
+          "branch": "gaben-policy",
+          "mechanism": "A separate queued one-charge200mana rank3Purge action is retained and executes realPurge Break;its unspecified resources/rank are not claimed as recoveredAA.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse Gaben grants a separate retained one-charge200mana Purge action"
+            }
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "CL-07",
+          "kind": "combination",
+          "branch": "linked-exclusive",
+          "mechanism": "Cleanse replaces opposingPurge,settles old accumulated damage once and leaves no simultaneousPurge components.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse replaces an opposing Purge and settles the old accumulated amount exactly once"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "Native Scepter3charge/60srestore applies to the linked skill;AA explicitly grants3charges asSuper."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "finding": "Reverses nativePurge→ShardCleanse relationship,grantingPurge fromCleanse. No direct evidence justifies automatically making thatPurge three-charge because the reverse grant explicitly states3."
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "CL-U01",
+          "requirement": "AA only says grantsPurge. GrantedPurge one charge,200mana andrank3 are retained explicit working choices;unlike the oppositeGaben,AA does not publish its resource/charge parameters.",
+          "blocks": "Complete Gaben granted-Purge definition."
+        }
+      ]
+    },
+    {
+      "id": "custom_shadow_demon_demonic_purge",
+      "status": "verified_within_arena_scope",
+      "reviewedAllDescriptionClauses": true,
+      "scope": [
+        "Complete publishedAA base/Super/Gaben and named relevantarena combinations. No midbattleitem acquisition,manualcourierorders orfogofwar;the historicalmost-recentDisruption phrase isnot treatedas aproven global singleton."
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Purge5/7/9s and300/400/500magical,60sCD;catalog.differences explicitly applies Break by default. Strong-only custom category. Super3charges;Gaben grants Cleanse3charges/50mana.",
+          "versionContext": "Official English HTTP200 refetched2026-10-29;230rows;SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae. Explicit AA values/categories/differences override native balance and upgrade qualification.",
+          "localEvidence": "references/ability-arena/abilities-death-demonic-20261029.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215192147id_/https://dota2.fandom.com/wiki/Shadow_Demon",
+          "accessedOn": "2026-10-29",
+          "observation": "Both0.3+0.6,800range. Continuous basic dispel,exclusive linked modifier,cumulative heal/damage on loss or replacement. Cleanse fully affects invulnerable allies;Purge only applies debuff after dispellable invulnerability is removed. Disruption is an explicit hidden-target exception. Slow100→20%;Break ends before final damage. Native Scepter3sequential60s charges;nativeCleanse ties its values toPurge, unlike AA fixed700/7.",
+          "versionContext": "Direct historical Dota2Wiki2023-02-15 HTTP200, read as the original archived HTML; current facets and modern damage-type redesigns are excluded.",
+          "sha256": "45af6234f51d9d14adafad3e4d514a7b5220b9cbe529a6d3cfa7380a59c6ce2c"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Both800range,0.3point and60s baseCD. Purge max_slow100,min_slow20,max_charges3,restore60;immunity-piercing,originally undispellable. AA Strong and baseBreak overrides are preserved.",
+          "versionContext": "Pinned Valve shipped KV2023-02-10; historical compatible candidate, not original custom AA Lua.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "aa15",
+          "url": "https://news.abilityarena.com/1-5/",
+          "accessedOn": "2026-10-29",
+          "observation": "Official2022-10-05 changes Purge Super to3charges and Gaben toCleanse3charges. This is direct AA upgrade evidence.",
+          "versionContext": "Author-published Ability Arena1.5devblog,actually browsed2026-10-29."
+        },
+        {
+          "id": "aa-workshop",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=17",
+          "accessedOn": "2026-10-29",
+          "observation": "Official workshop page17 fixes grantedCleanse mana from150to50;confirms the independent resource override.",
+          "versionContext": "Direct HTTP200author Steam patch log read2026-10-29;not a community guess.",
+          "sha256": "d0bd1f1909965255f9b2629bbb35ee9ca3bcd841fcd1320cbbb2f1d8ce587f02"
+        },
+        {
+          "id": "status-resistance",
+          "url": "https://web.archive.org/web/20230412001540id_/https://dota2.fandom.com/wiki/Status_resistance",
+          "accessedOn": "2026-10-29",
+          "observation": "Demonic Purge is an affected status-resistance ability with duration/tick adaptation;its full final damage is not lost when the debuff duration contracts.",
+          "versionContext": "Actual redirect is2023-04-12,still7.32e before7.33;not falsely dated2023-02-15. Current-only slow-resistance redesign is excluded.",
+          "sha256": "b198ff42d72c22997457c2e37add9d49bab590c9fc87ff8f0022f25a59dcd5b3"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "PU-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Applies AA defaultBreak and100→20slow,continuously strips later positive buffs,and defers magical damage.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge starts at100 percent slow and Break and continuously removes later positive buffs"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "800range,300ms point/600ms recovery;AA200mana/60sbaseCDcommit at release.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge and Cleanse use800 range300ms point600ms recovery and their distinct AA mana at release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-03",
+          "kind": "mechanism",
+          "branch": "modifier-settlement",
+          "mechanism": "Strong dispel and recast settle only accumulated damage; old timers cannot produce additional full hits.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge strong removal settles only its accumulated damage and never fires the old full expiry again"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge Super three charges replace the previous modifier instead of scheduling three full future hits"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-04",
+          "kind": "combination",
+          "branch": "resistance-break-order",
+          "mechanism": "Status resistance compresses the clock while preserving full500damage. Break is removed first,so restored25%passive magic resistance reduces the finalhit to375.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "status-resistance"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge status resistance compresses the clock but preserves full final damage and removes Break before that damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Threecharges restore sequentially;only one is restored on the first60srecharge.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "aa15"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge Super restores only one of three charges at the first sequential recharge"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Independent grantedCleanse3charges/50mana uses AA fixed700/7sdefinition;source-reference rank3 is not a different native heal balance.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "aa15",
+            "aa-workshop"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge Gaben grants a real separate three-charge50mana Cleanse action"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse and the granted Cleanse action can start on an ally already hidden by a real enemy Disruption"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-07",
+          "kind": "combination",
+          "branch": "invulnerability-disruption",
+          "mechanism": "Basic dispel removes eligibleinvulnerability before debuff;permanent invulnerability gets initialdispel only. RealDisruption is targetable,otherhidden sources are ineligible.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge initial basic dispel can remove invulnerability but permanent invulnerability receives no debuff"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge can affect a real Disruption banished enemy while a normal hidden enemy is ineligible"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-08",
+          "kind": "combination",
+          "branch": "spell-immunity",
+          "mechanism": "Slow,Break and finalmagical damage pierce enemy spellimmunity.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge pierces spell immunity with Break slow and its final magical damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-09",
+          "kind": "combination",
+          "branch": "exclusive-and-caster-death",
+          "mechanism": "Cleanse/Purge are exclusive acrosssources;replacement settles prior effect once. Released modifier remains bound after original casterdeath.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Cleanse replaces an opposing Purge and settles the old accumulated amount exactly once"
+            },
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge remains modifier bound after the original caster dies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-10",
+          "kind": "combination",
+          "branch": "spell-block",
+          "mechanism": "Enemy spellblock consumesresources but prevents the modifier andBreak.",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge enemy spell block consumes resources but prevents marker and Break"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "PU-11",
+          "kind": "combination",
+          "branch": "charge-reduction",
+          "mechanism": "RealGabenChakra reduces currently restoringcharge;explicit generation invalidates oldtimer so it cannot restore twice.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-death-demonic.test.ts",
+              "test": "Demonic Purge recharge accepts a real Gaben Chakra reduction and does not repay old generation timers twice"
+            }
+          ],
+          "status": "passed"
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "base-break",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "finding": "AA catalog.differences explicitly enablesBreak bydefault;do not incorrectly remove it just because historicalDota requiresScepter."
+        },
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve",
+            "aa15"
+          ],
+          "finding": "Historical Scepter3charges/60srestore is explicitSuper. Modern7.33twocharges andlater5sbase duration are excluded."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "aa15",
+            "aa-workshop",
+            "wiki2023"
+          ],
+          "finding": "NativeShardCleanse lineage plus explicitAA3charges/50mana. AA fixed700heal/7s is referenced as anAA child effect,not replaced with native300/400/500linkedheal."
+        }
+      ],
+      "unresolved": []
+    }
+  ]
+}
