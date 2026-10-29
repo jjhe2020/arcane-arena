@@ -193,7 +193,7 @@ describe('extra skill upgrade behavior', () => {
     EXTRA_PROGRAMS[failed.ctx.skill.id].onIncomingAttackStart!(failed.ctx);
     expect(activeVisualWorldEffects(failed.ctx.battle)).toEqual([]);
   });
-  it('lets Jingu soldiers apply whitelisted attack effects without copying Jingu or owner-only summons', () => {
+  it('lets Jingu soldiers own independent Jingu and eligible attack effects without owner-only recursive summons', () => {
     const id = 'custom_monkey_king_jingu_mastery', a = player(0, [
       { id, points: 9 }, { id: 'custom_drow_ranger_frost_arrows', points: 3 },
       { id: 'crystal_maiden_brilliance_aura', points: 9 }, { id: 'custom_warlock_chaotic_offering', points: 6 },
@@ -203,7 +203,7 @@ describe('extra skill upgrade behavior', () => {
     for (const u of battle.units) { u.moveSpeed = 0; u.nextAttack = 100; u.mana = 0; }
     advance(battle, 3.2); const soldier = battle.units.find(u => u.extraJinguSoldier)!;
     expect(soldier).toBeDefined(); expect(soldier.inheritedInitialized).toBe(true);
-    expect(soldier.skills.filter(Boolean).map(s => s!.id)).toEqual(['custom_drow_ranger_frost_arrows']);
+    expect(soldier.skills.filter(Boolean).map(s => s!.id)).toEqual([id,'custom_drow_ranger_frost_arrows']);
     expect(enemy.statuses.some(s => s.kind === 'hypothermia' && s.source === soldier.id)).toBe(true);
     expect(battle.events.some(e => e.type === 'cast' && e.source === soldier.id)).toBe(false);
     advance(battle, 2.9); const soldiers = battle.units.filter(u => u.extraJinguSoldier);
@@ -403,11 +403,12 @@ describe('extra skill upgrade behavior', () => {
     h.until(3); expect(h.target.hp).toBe(9775); // 6 half-second ticks including two-second linger.
   });
   it('gives Bongo Drums exactly the round-scaled Blessing attack speed and consumes a finite charge', () => {
-    const h = harness('luna_lunar_blessing'); h.ctx.skill.superRound = 3; h.ctx.battle.round = 7;
-    EXTRA_PROGRAMS[h.ctx.skill.id].init!(h.ctx); h.tickZones();
-    expect(status(h.caster, 'attackSpeed')?.value).toBe(56); expect(status(h.caster, 'haste')?.value).toBe(.13);
-    expect(h.caster[`${h.ctx.skill.id}:drumCharges`]).toBe(7);
-    h.tickZones(); expect(h.caster[`${h.ctx.skill.id}:drumCharges`]).toBe(7);
+    const id='luna_lunar_blessing',drum='aa_granted_bongo_drums',battle=createBattle(player(0,[{id,points:9,superRound:3}]),player(1),19,catalog,undefined,7),caster=battle.units[0];
+    for(const u of battle.units){u.moveSpeed=0;u.nextAttack=100;}advance(battle,FIXED_STEP);
+    const child=caster.skills.find(s=>s?.id===drum)!;expect(child).toBeDefined();
+    expect(status(caster,'attackSpeed')?.value).toBe(56);expect(status(caster,'haste')?.value).toBe(.13);
+    expect(caster[`${child.instanceId??child.id}:charges`]).toBe(7);
+    advance(battle,FIXED_STEP);expect(caster[`${child.instanceId??child.id}:charges`]).toBe(7);
   });
   it('performs Heavenly Jump at the same position and caps it at two targets', () => {
     const h = harness('custom_zuus_static_field'), original = { x: h.caster.x, y: h.caster.y };
@@ -430,12 +431,13 @@ describe('extra skill upgrade behavior', () => {
     EXTRA_PROGRAMS[h.ctx.skill.id].onDealDamage!({ ...h.ctx, triggerSkillId: 'test' });
     expect(status(summon, 'castTimePct')).toBeUndefined(); expect(status(h.target, 'castTimePct')).toBeDefined(); expect(status(h.other, 'castTimePct')).toBeDefined();
   });
-  it('uses a bounded delayed Echo strike and honors effective melee stance without recursive double attacks', () => {
-    const h = harness('custom_monkey_king_jingu_mastery', 6), p = EXTRA_PROGRAMS[h.ctx.skill.id];
-    h.ctx.status(h.caster, 'attackRangeOverride', 100, 1.5);h.ctx.status(h.caster, 'attackTypeOverride', 100, 1); p.onAttack!(h.ctx);
-    expect(h.attacks).toHaveLength(0); h.until(.1); expect(h.attacks).toEqual([h.target.id]);
-    p.onAttack!(h.ctx); h.until(.2); expect(h.attacks).toHaveLength(1);
-    expect(status(h.target, 'slow')?.until).toBeCloseTo(.9);
+  it('uses the real Echo attack-speed buff for a bounded ordinary melee follow-up', () => {
+    const id='custom_monkey_king_jingu_mastery',battle=createBattle(player(0,[{id,points:6}]),player(1),19,catalog),[caster,target]=battle.units;
+    for(const u of battle.units){u.moveSpeed=0;u.nextAttack=100;u.hp=u.maxHp=100000;}caster.x=caster.y=0;caster.facing=0;target.x=1;target.y=0;caster.attackCapability='melee';caster.range=1.5;caster.attackPoint=.1;caster.attackBackswing=0;caster.attackInterval=1.7;caster.nextAttack=0;
+    const hits=()=>battle.events.filter(e=>e.type==='hit'&&e.source===caster.id&&e.target===target.id&&!e.skill);
+    advance(battle,.2);expect(hits()).toHaveLength(1);expect(caster.statuses.some(s=>s.kind==='attackSpeed'&&(s as EffectStatus).data?.echoStrike&&s.value===490)).toBe(true);
+    advance(battle,.6);expect(hits()).toHaveLength(2);expect(caster.statuses.some(s=>(s as EffectStatus).data?.echoStrike)).toBe(false);expect(status(target,'slow')?.value).toBe(1);
+    advance(battle,.5);expect(hits()).toHaveLength(2);
   });
   it('limits Gunslinger to a single secondary attack and falls back to the primary target', () => {
     const h = harness('muerta_pierce_the_veil'), p = EXTRA_PROGRAMS[h.ctx.skill.id];

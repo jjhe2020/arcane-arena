@@ -9,7 +9,7 @@
     "passedTests": 58,
     "configurationHash": "2e2760c9c65a5febc198cc2837a0f1973b82b6e0cdd6ea378560177d38e960a4",
     "typecheck": "npx tsc --noEmit",
-    "meaning": "58named actual-engine results. Allfive skills remain partial because exact AA policy/version boundaries and the known native attack-begin snapshot gap are explicitly retained."
+    "meaning": "HistoricalC7baseline58namedactual-engine results under its recorded configuration. C9 main snapshot update below supersedes the earlier leading-main impact snapshot gap; allfive skills remain partial and strict critical random/PRD trial timing remains open."
   },
   "skills": [
     {
@@ -916,6 +916,25 @@
           "accessedOn": "2026-10-30",
           "observation": "Old2013Scepter Global+Curse lineage and its fixes for invulnerability/sleep/creeps were reviewed;2024facet/reverberating Global changes are excluded. The precise AA granted Curse version is not thereby recovered.",
           "versionContext": "Primary Wiki indexed body actually read this round; direct HTTP403. Used only for dated lineage, not claiming a current mechanic is pinned2023."
+        },
+        {
+          "id": "jingu-flat-2023",
+          "url": "https://web.archive.org/web/20230308092705id_/https://dota2.fandom.com/wiki/Monkey_King",
+          "accessedOn": "2026-10-30",
+          "observation": "Dated Jingu Break suppresses an earned buff. Successful hero/clone hits, four charges and35second expiry; Boundless consumes once. Clone Jingu is independent and soldiers cannot attack faster than1.2seconds.",
+          "paraphrase": "Dated Jingu Break suppresses an earned buff. Successful hero/clone hits, four charges and35second expiry; Boundless consumes once. Clone Jingu is independent and soldiers cannot attack faster than1.2seconds.",
+          "versionContext": "Actual redirect capture2023-03-08 after7.32e; not falsely dated February. Candidate mechanics are separated from AA source history.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230308092705",
+          "sha256": "ef070790c42133613f3bf188d042ca68b01716a4b983c4c70fb5174d80f76931"
+        },
+        {
+          "id": "shredder-fixed-2023",
+          "url": "https://dota2.fandom.com/wiki/Snapfire",
+          "accessedOn": "2026-10-30",
+          "paraphrase": "Frozen Shredder describes six-second six-charge buff, BAT1, fixed main attack, consumption on attack execution including misses, armor before damage, stack-duration refresh, recast refresh and full modifiers on random instant multishot attacks.",
+          "versionContext": "Indexed late/frozen page, not direct2023. Its bonus-target count terminology does not alone resolve AA3x as primary+two or primary+three.",
+          "accessMethod": "indexedPrimaryWiki"
         }
       ],
       "requirements": [
@@ -1211,14 +1230,105 @@
         {
           "id": "custom-silencer-glaives-of-wisdom-P1",
           "kind": "gaben",
-          "branch": "source_or_implementation_boundary",
-          "mechanism": "The native leading attack value is sampled at attack begin. Current common attack record supplies a before-mitigation, post-critical impact snapshot, excluding conditional components. Damage changes during flight therefore remain a known implementation difference.",
+          "branch": "attack_begin_main_basis",
+          "mechanism": "Per-attack main numeric basis freezes before windup and same-hit intelligence transfer;the one selected critical and original leading projectile speed are reused by the50percent bounce. Fixed caller damage and attack fractions are retained;conditional Fury/hero bonuses and receiver absorption do not contaminate that basis. Source critical profiles freeze at begin,but cancelled-attack PRD/random trial timing remains the separate open E-CRITICAL-ROLL-START engine requirement.",
           "sourceIds": [
             "aa",
-            "wiki2023"
+            "wiki2023",
+            "jingu-flat-2023",
+            "shredder-fixed-2023"
           ],
-          "testEvidence": [],
-          "status": "actual_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-01 same-hit intelligence steal cannot increase the leading physical or its bounce"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-02 a nonzero windup retains its initial100main despite300attack before release"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-03 flight-time500attack cannot rewrite the independent leading100basis"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-04 a removed source critical profile remains on its already begun attack"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-05 a source critical acquired during windup does not join an existing record"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-06 overlapping attacks retain100and300main even when the newer projectile lands first"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-07 primary absorption does not reduce the separately mitigated physical bounce"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-08 an explicit fixed40instant basis stays40instead of its holders100attack"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-09 a50percent launched attack snapshots its fraction once and bounces25"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-10 real Rebuke includes its ensured critical but excludes conditional hero damage from the bounce"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-11 real Totem at begin remains in that projectile after the dispellable buff is removed"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-12 a real conditional Fury bonus contributes to the primary but not its bounce basis"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-13 real Chemical Rage disjoint prevents the leading hit and all Glaives bounces"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-14 actual unmodified battle inputs rebuild in-flight main snapshots and RNG exactly"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-15 the bounce retains the leading projectile speed after the source changes speed in flight"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-16 actual Coup PRD is sampled once for the leading record and never rerolled for Glaives"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-17 a modifier-disabled fixed attack does not spend orb mana or gain criticals or bounces"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-18 real Focus Fire main reduction stays with the begun shot after its buff is purged"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-19 a failed leading attack spends its orb at point but applies no pure or bounce damage"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-20 an actually earned Jingu flat bonus belongs to the leading main basis and its Glaives bounce"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-21 real fixed Lil Shredder overrides earned Jingu regular attack bonus instead of adding it twice"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-22 Jingu regular flat bonus accepts total main amplification without receiving white-only bonus twice"
+            }
+          ],
+          "status": "passed"
         },
         {
           "id": "custom-silencer-glaives-of-wisdom-P2",
@@ -1276,10 +1386,10 @@
         }
       ],
       "unresolved": [
-        "The native leading attack value is sampled at attack begin. Current common attack record supplies a before-mitigation, post-critical impact snapshot, excluding conditional components. Damage changes during flight therefore remain a known implementation difference.",
         "AA explicitly says one50percent bounce and+15intelligence conversion points.600search radius and oldShard packet details are the compatible historical lineage; exact custom script is not recovered.",
         "Meepo family Prime-only permanent-death deduplication and temporary steal exclusions need a concrete clone-family identity model; current heroClone flag alone is insufficient. Current catalog has no Meepo Prime/DividedWeStand factory.",
-        "Native own-kill credit beyond925radius is not explicitly given by AA. The implementation follows AA925radius; acquired-skill temporary-state lifetime and original orb autocast/manual behavior still need exact AA/old generic reference."
+        "Native own-kill credit beyond925radius is not explicitly given by AA. The implementation follows AA925radius; acquired-skill temporary-state lifetime and original orb autocast/manual behavior still need exact AA/old generic reference.",
+        "Source critical profiles now freeze at begin,while actual random/PRD trials still occur with effectful attack-point preparation. Cancelled-attack trials and interleaved RNG need the E-CRITICAL-ROLL-START protocol;this is not declared native-complete."
       ]
     },
     {
@@ -1532,5 +1642,12 @@
     "semanticComparison": "output/c7-config/semantic-check.json",
     "baselineHash": "03a1b557e041868a4ca59bdb9e426414db89835d6d35a8132c8575a3aac09588",
     "evidenceManifest": "references/dota-wiki/fury-global-20261030.json"
+  },
+  "c9MainSnapshotUpdate": {
+    "command": "npx vitest run tests/reference-attack-main-snapshot.test.ts tests/reference-inner-laser.test.ts tests/reference-instant-attacks.test.ts",
+    "reportInput": "output/c9-flat-bonus-verified.json",
+    "actualTests": 22,
+    "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+    "meaning": "22actual/protocol result tests. Synthetic fixed/fraction/no-modifier callers are named engine fixtures;real registered Glaives/Rebuke/Totem/Focus/Fury/Coup/Rage/Jingu/Shredder and unmodified replay test the resulting behavior. Earned Jingu regular flat bonus is included unless fixed damage overrides it. Strict critical RNG trial timing remains open."
   }
 }

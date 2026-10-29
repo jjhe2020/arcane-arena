@@ -2,7 +2,7 @@
 
 状态：开发中，尚未发布。完整目标仍为230技能的机制、时序和相关组合原作逐项验收；本文件不是完成证明。
 
-当前模拟修订：`arena-2026-10-30-c8-r6`；上一源码检查点为`arena-2026-10-30-c7-r6`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。
+当前模拟修订：`arena-2026-10-30-c9-r6`；上一源码检查点为`arena-2026-10-30-c8-r6`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。
 
 ## 当前实现
 
@@ -100,6 +100,16 @@
 - `config:compile`、`config:check`、类型和构建通过。最终hash`084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34`：230主、79授予、21原生参考、1382档、2655参数、15单位、四职业。19域、1379旧档按白名单核对，新增殉道/停止冲刺/释放冰晶爆轰三个原生1级行，清除77个死参数；14个旧单位、职业和经济未意外改变，经济工作簿字节相同。12表旧样式、行高、冻结零漂移；中文、毫秒/原生距离单位及代表截图已检查。工作簿SHA及QA见`artifacts/r6-c8-config-validation.json`。
 - 构建后4180生产服务通过资源验证（2899图片引用、1330移动图集）、浏览器购买/费用/快照/暂停/恢复/布局、真实购买及有效命中统计、固定账本统计展示、UI完整性8/8和旧档备份下载/新局重载。最终配置下开发模块的冲刺、图腾、冰墙和墨涌桌面/移动八场景通过，见`artifacts/r6-c8-render/report.json`；该观察夹具、固定账本UI及真实引擎证据分开。汇总见`artifacts/r6-c8-validation.json`，构建仍有大代码块提示，未做真机性能终验。
 - 明确保留Grow投掷叠加次序、Belch精确AA资格、旧Heavenly Grace与2023martyr身份差异、辅助技能历史沉默/引导资格、凤凰非匀速轨迹、IceBlast跨来源与FP/Curse/Scythe优先级、IcePath Gaben火线长度、最强光环切换时钟、墨涌跨来源刷新及其它具名来源边界。C7 Glaives攻击开始快照是待修实际缺失，未以绿色工作解释掩盖。无r6 tag或Release。
+
+2026-10-30第九源码检查点（C9）实际通过：
+
+- `npm test`：76文件、2168项通过，报告`artifacts/r6-c9-unit-tests.json`；新增三组64、55、101项及攻击主伤22项。主伤快照/Jingu固定伤害组合与光环复活问题均先复现再修复，未删除断言绕过错误。
+- `npm run reference:verify`：40文件、1680项通过，代码/配置/来源指纹一致。140项已开始、90项未审；1866条技能要求中1463条有来源及当前结果，403条未闭合；57条共用要求中11条未闭合，当前竞技场范围整项通过仍为7项。
+- 三组覆盖Inner Fire/Insatiable Hunger/Jingu Mastery/Kraken Shell/Laser、Leech Seed/Life Break/Life Drain/Lightning Bolt/Lil' Shredder、Living Armor/Lucent Beam/Lunar Blessing/Magic Missile/Magnetic Field。攻击基数、实际执行者、独立原生躯体、分支动作资格、周期恢复及主/子引导均通过真实流程核验，具体结果与来源边界见`docs/r6-c9-progress.md`及三组账本。
+- Glaives攻击开始数值快照缺口已修，涵盖同击偷智、飞行中加攻/弹速、固定攻击和Jingu普通附加攻击力；数值资格冻结与随机试验分开。完整暴击随机试验仍在攻击点，取消攻击/交错随机的原生起点明确改列实际缺失，没有宣称通过。
+- `config:compile`、`config:check`、类型和构建通过。配置hash`f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1`：230主、80授予、21原生参考、1382档、2651参数、16单位、四职业。19域集中迁移，83旧参数及魔法箭重复弹跳半径清理；新增Bongo原生一级与Nimbus单位，移除Wrath不可达原生四级。其余单位、职业、经济及12表旧样式/行高/冻结保持；工作簿SHA及语义/视觉QA见`artifacts/r6-c9-config-validation.json`。
+- 构建后4181生产资源验证（2899图片引用、1330移动图集）、浏览器购买/费用/快照/暂停/恢复/布局、真实购买/有效统计、固定账本展示、UI完整性8/8、旧档备份下载及新局重载均通过。真实开发模块Laser/Nimbus/Jingu石猴/Missile弹跳/Drain主子链桌面和手机10场景通过，连线和统计截图已检查。汇总见`artifacts/r6-c9-validation.json`；构建大代码块提示仍在，未做真机性能终验。
+- 明确保留Laser最大生命及模型叠乘的AA证据、Wukong技能允许清单、Life Break历史屏障资格、AA Shredder多重攻击/二次弹道、跨来源光环/延期账本、原生转身加速度及暴击随机起点等具名边界。光环复活验证为引擎组合夹具，不冒称目录Reincarnation已核验。无r6 tag或Release。
 
 后续变化后的实际状态以[逐项状态](skill-reference-status.md)、`public/data/reference-acceptance.json`和`artifacts/reference-acceptance-proof.json`为准。指纹过期时，分项结果不会沿用为当前通过。
 

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { AnimationClip, AssetManifest, BattleState, CombatEvent, CombatUnit, Hero } from './model';
-import {atlasFrame,bodyPresentation,barrierPresentations,linePresentations,combatTextEvents,recentCombatEvents,COMBAT_TEXT_LIFETIME,basicAttackClip,bodyVisibility,shadowPathPresentations} from './animation';
+import {atlasFrame,bodyPresentation,barrierPresentations,linePresentations,combatTextEvents,recentCombatEvents,COMBAT_TEXT_LIFETIME,basicAttackClip,bodyVisibility,bodyVisualScale,shadowPathPresentations} from './animation';
 import {interpolatedTransform} from './combat/presentation';
 import {DAMAGE_COLORS} from './combat/statistics';
 import type {ShadowPath} from './animation';
@@ -112,7 +112,8 @@ export class ArenaRenderer {
       let clip=clips[action]??clips[aliases[action]]??clips['idle'];
       if(live&&battle){const presentation=bodyPresentation(this.assets,unit,action,battle.time,this.births.get(unit.id)?.skill);clip=presentation.clip??clip;v.group.visible=!presentation.hidden;if(presentation.hidden)this.hiddenBodies.add(unit.id);}else v.group.visible=true;
       const visibility=live?bodyVisibility(unit,viewSide,time):{hidden:false,opacity:1};if(visibility.hidden){v.group.visible=false;this.hiddenBodies.add(unit.id);}if(!clip)return;this.setClip(v,clip);
-      this.frame(v,clipAge,Boolean(clip.loop??(action==='idle'||action==='move')),Number(clip.worldSize??3.6));
+      const bodyScale=live&&battle?bodyVisualScale(unit as CombatUnit,battle.time):1;
+      this.frame(v,clipAge,Boolean(clip.loop??(action==='idle'||action==='move')),Number(clip.worldSize??3.6)*bodyScale);
       v.group.position.set(u.x,u.y,.2+(13-u.y)*.001);v.group.rotation.z=live?unit.facing+Math.PI/2:(heroes.includes(u as Hero)?Math.PI:0);
       const ghost=live&&typeof battle?.ghostSide==='number'&&battle.ghostSide===unit.side;v.mesh.material.opacity=(live&&unit.dead?.valueOf()?0.35:visibility.opacity)*(ghost ? .6 : 1);v.mesh.material.color.set(ghost?'#dcecff':live&&unit.side!==viewSide?'#ffd0b8':'#ffffff');
     });

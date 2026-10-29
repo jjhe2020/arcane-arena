@@ -1,21 +1,20 @@
 # 原作验收接续点
 
-完整目标不变：完成230主技能及其授予效果的机制、动作时序、Super/Gaben和相关组合逐项原作验收。C8源码检查点已开始125项，105项未开始，当前战场范围整项通过7项；准确计数见`public/data/reference-acceptance.json`。不以检查点代替全部目标。
+完整目标不变：完成230主技能及其授予效果的机制、动作时序、Super/Gaben和相关组合逐项原作验收。C9源码检查点已开始140项，90项未开始，当前战场范围整项通过7项；准确计数见`public/data/reference-acceptance.json`。不以检查点代替全部目标。
 
 ## 已明确的后续实现
 
-1. C6基础/共享Feast恢复归属与同击攻击组成已具名核验，C7与Focus的条件伤害组合、Hypothermia/Rain独立来源乘法减疗也有有限结果。其它恢复调用方及延期/HPLOSS例外继续独立审查，不把有限结果当全部迁移完成。
-2. 56条共用要求仍有11条未闭合。C7另补Golem临时属性幻象复制、真正弹体躲避与回调队列重入、源独立减疗；其它召唤继承、转身加速度、初始化优先级、恢复/延期/HP移除仍需核验。有限结果不扩为全引擎通过。
-3. 已审125项的具名未闭合要求继续逐条处理，实际数量见生成报告。C8边界见三组账本及`docs/r6-c8-progress.md`。优先修复Glaives已证实的攻击开始快照缺口：飞行期间主伤变化及主击自身偷智均不能回改弹射基数，固定伤害技能攻击也不能误取持有者面板攻击。尚未实施的已证例外与来源待证必须分开。
-4. C9第一组：Inner Fire、Insatiable Hunger、Jingu Mastery、Kraken Shell、Laser。重点击退/驱散与魔免、治疗和基础攻击加成、攻击计数/条件附伤/吸血、伤害阈值清除、失明与弹射、Super/Gaben实际原型。先读最终注册函数并做真实当前诊断。
-5. C9第二组：Leech Seed、Life Break、Life Drain、Lightning Bolt、Lil' Shredder。重点治疗弹体/受体资格、跳跃与百分比伤害、引导双向恢复/魔法与授予子效果、真视和环境范围边界、攻击次数与修饰资格。
-6. C9第三组：Living Armor、Lucent Beam、Lunar Blessing、Magic Missile、Magnetic Field。重点历史分层护盾/恢复、免费升级原型、光环继承、弹道与控制顺序、内外攻击判定和独立攻击修饰。旧AA数值、当前Wiki与历史版本分开，不能套用统一2023-02版本假设。
+1. 57条共用要求仍有11条未闭合。C9已修Glaives攻击开始数值快照：飞行中主伤/弹速变化、主击偷智、Jingu普通附伤与Shredder固定伤害有真实组合结果。完整暴击随机试验仍在攻击点，取消攻击/交错随机时点为实际缺失，不能把数值快照修复当全部攻击开始机制通过。
+2. 已审140项的403条未闭合技能要求继续逐条处理，实际缺失与待证分开。恢复/延期/HPLOSS、召唤继承、转身加速度、初始化优先级及各组具体边界见账本与`docs/r6-c9-progress.md`。C9引擎复活用例不代表已核验目录Reincarnation。
+3. C10第一组：Mana Break、Mana Drain、Mana Shield、Meat Hook、Mirror Image。只读预研在ignored `output/c10-mana-mirror/`；原生闪烁碎片KV已找到为`antimage_mana_overload`，不得继续宣称历史快照缺失。重点同攻击包条件附伤、魔免/幻象资格、魔抗前法力盾、幻象处决/真视、冻结钩索和原生分身阶段；保留AA数值与自定义。
+4. C10第二组：Mist Coil、Moon Glaives、Mortimer Kisses、Multishot、Mystic Flare。只读预研在ignored `output/c10-mist-flare/`。重点自身消耗与抵挡顺序、攻击快照与重访、火球时序和引导、AA攻击修饰声明、区域受害者资格与独立场域。预研中的Jingu组合缺口已由C9修复，不要重复回退。
+5. C10第三组：Nature's Attendants、Nature's Call（`custom_furion_force_of_nature`）、Nether Swap、Nethertoxin、Omnislash。继续检查原生施法阶段、治疗/召唤继承、显式换位来源、周期/Break及攻击发起技能归属，先取得历史来源并复现当前结果。
 
 ## 已有工作入口
 
-- `src/skill-effects.ts`最终注册会叠加多个`src/combat/main-*`覆写；必须检查最终执行函数。C2新攻击形态最终覆写在`src/combat/attack-modes.ts`。
-- `src/combat.ts`显式点目标、状态移除/区域结束生命周期、运动查询、攻击准备/命中前/攻击点钩子以及独立伤害实例事件，均与统计ID和有效结算账本分离。
-- `npm run reference:verify`执行具名结果并核对代码、配置、逐组来源与实际技能目录/配置编译脚本指纹。文件收集还包含账本引用的非`reference-`测试。C8全量1926项及其后来源专项、构建和生产检查的实际结果见`docs/r6-validation.md`。修改后需要重建证据，不沿用旧绿灯。
+- `src/skill-effects.ts`最终注册会叠加多个`src/combat/main-*`及验收组覆写；必须检查最终执行函数。C9最后三组入口为`applyLivingFieldAcceptance`、`applyInnerLaserAcceptance`、`applyLeechShredderAcceptance`。
+- `src/combat.ts`显式运动、实际执行者、攻击主伤快照、条件附伤、动作资格、状态/区域结束生命周期和独立伤害事件，均与统计ID及有效账本分离。
+- `npm run reference:verify`执行账本实际引用的测试文件并核对代码、配置、逐组来源与实际技能目录/编译脚本指纹。C9全量2168项、来源1680项及构建/生产结果见`docs/r6-validation.md`。修改后重建证据，不沿用旧绿灯。
 - Excel仍是平衡数值唯一编辑入口；同批由一位编辑者集中写入并手动编译，避免相互覆盖。删除的无效旧参数不要重新作为可编辑列加回。配置完整性与来源缺口分别记录。
 
-C8是进行中的源码检查点，尚未创建r6 Release。C9可在忽略目录独立取证，本批源码提交前不继续修改运行代码。后续改变重放行为时更新模拟修订；全部目标或明确完成的开发版本仍须按AGENTS.md完成发布及附件核验。
+C9是进行中的源码检查点，尚未创建r6 Release。后续改变重放行为时更新模拟修订；全部目标或明确完成的开发版本仍须按AGENTS.md完成发布及附件核验。

@@ -1,0 +1,2009 @@
+{
+  "schemaVersion": 1,
+  "group": "inner-laser",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Captured AA base/S/G values/custom clauses win. Fresh distinct Wayback captures returned200 without retry; full HTML stays ignored output only. Modern evidence dates are explicit, no429retry.",
+  "validation": {
+    "command": "npx vitest run tests/reference-inner-laser.test.ts tests/reference-instant-attacks.test.ts tests/reference-attack-modes.test.ts tests/reference-proc-acceptance.test.ts tests/reference-flak-flesh.test.ts --reporter=json --outputFile=output/c9-inner-laser/final-tests.json",
+    "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+    "skillGroupTests": 64,
+    "passedTests": 64,
+    "affectedRegressionTests": 202,
+    "affectedPassedTests": 266,
+    "reportInput": "output/c9-inner-laser/final-tests.json",
+    "typecheck": "npx tsc --noEmit passed. Whole-repository proof owned by parent."
+  },
+  "skills": [
+    {
+      "id": "custom_huskar_inner_fire",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "paraphrase": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "versionContext": "Captured AA build/Lua/native patch remains unidentified. Explicit AA numbers and custom behavior have priority; this is not a fresh HTTP200 claim."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "paraphrase": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "versionContext": "Local references/dota-20230216/npc_abilities.txt,2023-02-10 shipped candidate; AA native patch is not inferred."
+        },
+        {
+          "id": "fire-2023",
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Huskar",
+          "accessedOn": "2026-10-30",
+          "observation": "Fixed400-radius non-disabling push lasts1second. Old Shard has zero animation and disabled-cast eligibility with exceptions, interrupts own channel and uses fixed per-body healing.",
+          "paraphrase": "Fixed400-radius non-disabling push lasts1second. Old Shard has zero animation and disabled-cast eligibility with exceptions, interrupts own channel and uses fixed per-body healing.",
+          "versionContext": "Actual2023-02-15 retained page before7.33; cached response read locally. Exact AA patch remains unproved.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191426",
+          "sha256": "dabba597d43f03ed2a12c9c6cf9b462160c9b3023fea1861fdf064de06dec746"
+        },
+        {
+          "id": "huskar-history",
+          "url": "https://liquipedia.net/dota2/Huskar/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.33 removes disabled Inner Fire casting; the2023 retained page contains the earlier Shard behavior.",
+          "paraphrase": "7.33 removes disabled Inner Fire casting; the2023 retained page contains the earlier Shard behavior.",
+          "versionContext": "Current indexed dated change log, corroborates excluding the7.33 change from this candidate."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "IF-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "five AA ranks keep final damage mana cooldown disarm and native animations",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-01 five AA ranks keep final damage mana cooldown disarm and native animations"
+            }
+          ]
+        },
+        {
+          "id": "IF-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "knockback ends at radius400 including an outer target pulled inward",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-02 knockback ends at radius400 including an outer target pulled inward"
+            }
+          ]
+        },
+        {
+          "id": "IF-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "motion is continuous and never locks a victim ordinary spell",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-03 motion is continuous and never locks a victim ordinary spell"
+            }
+          ]
+        },
+        {
+          "id": "IF-04",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "Super may cast during a strong stun but silence and hex still prohibit it",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-04 Super may cast during a strong stun but silence and hex still prohibit it"
+            }
+          ]
+        },
+        {
+          "id": "IF-05",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Super fires from an actual enemy Fiends Grip and interrupts that control",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-05 Super fires from an actual enemy Fiends Grip and interrupts that control"
+            }
+          ]
+        },
+        {
+          "id": "IF-06",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "casting Super interrupts the casters own real channel instead of preserving it",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-06 casting Super interrupts the casters own real channel instead of preserving it"
+            }
+          ]
+        },
+        {
+          "id": "IF-07",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Super heals a fixed hero amount through full absorption and rejects immune bodies",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "AA says damage dealt while native fixed-per-hit healing survives full absorption. Native behavior is tested but precise AA interpretation needs original implementation.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-07 Super heals a fixed hero amount through full absorption and rejects immune bodies"
+            }
+          ]
+        },
+        {
+          "id": "IF-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "hero illusions heal150 while ordinary and creep-hero summons heal30 each",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-08 hero illusions heal150 while ordinary and creep-hero summons heal30 each"
+            }
+          ]
+        },
+        {
+          "id": "IF-09",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "basic dispel removes the shared disarm slow and heal prevention but not its death-only motion",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-09 basic dispel removes the shared disarm slow and heal prevention but not its death-only motion"
+            }
+          ]
+        },
+        {
+          "id": "IF-10",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "gaining magic immunity ends only the owned active knockback",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-10 gaining magic immunity ends only the owned active knockback"
+            }
+          ]
+        },
+        {
+          "id": "IF-11",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Super casts inside actual Black Hole while the base rank stays disabled",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-11 Super casts inside actual Black Hole while the base rank stays disabled"
+            }
+          ]
+        },
+        {
+          "id": "IF-12",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Gaben healing prohibition rejects ordinary healing and expires with its disarm",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IF-12 Gaben healing prohibition rejects ordinary healing and expires with its disarm"
+            }
+          ]
+        },
+        {
+          "id": "IF-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Source for exact AA Super combination of removed cast point,40slow,50/10heal,+1disarm and-3cooldown; dated Shard/talent prototypes do not prove every AA event qualification.",
+          "sourceIds": [
+            "aa",
+            "fire-2023",
+            "huskar-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IF-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Native provenance of Gaben complete restoration prevention is not identified; no invented Doom/IceBlast clone semantics.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IF-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Roshan/hidden/cyclone/forced-motion casting and controller-priority combinations beyond the actual stun/Grip/BlackHole results need individual evidence.",
+          "sourceIds": [
+            "fire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IF-P04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Fixed heal from hero illusions versus damageTakenMultiplier and exact FP/BT/Refraction restoration ordering are not all proved by the absorption result.",
+          "sourceIds": [
+            "aa",
+            "fire-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "IF-07",
+          "status": "source_pending",
+          "detail": "AA says damage dealt while native fixed-per-hit healing survives full absorption. Native behavior is tested but precise AA interpretation needs original implementation."
+        },
+        {
+          "requirementId": "IF-P01",
+          "status": "source_pending",
+          "detail": "Source for exact AA Super combination of removed cast point,40slow,50/10heal,+1disarm and-3cooldown; dated Shard/talent prototypes do not prove every AA event qualification."
+        },
+        {
+          "requirementId": "IF-P02",
+          "status": "source_pending",
+          "detail": "Native provenance of Gaben complete restoration prevention is not identified; no invented Doom/IceBlast clone semantics."
+        },
+        {
+          "requirementId": "IF-P03",
+          "status": "source_pending",
+          "detail": "Roshan/hidden/cyclone/forced-motion casting and controller-priority combinations beyond the actual stun/Grip/BlackHole results need individual evidence."
+        },
+        {
+          "requirementId": "IF-P04",
+          "status": "source_pending",
+          "detail": "Fixed heal from hero illusions versus damageTakenMultiplier and exact FP/BT/Refraction restoration ordering are not all proved by the absorption result."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "fire-2023",
+            "huskar-history"
+          ],
+          "status": "partial",
+          "observation": "Old Shard provides fixed heal, slow and zero-animation disabled-cast prototype; AA adds1disarm and-3CD. Later7.33disabled removal excluded."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "observation": "Explicit AA restoration prevention; native origin is unidentified."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled five-rank final values; no runtime double-Super arithmetic. AA explicit strong dispel wins for Hunger/Jingu.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remains meaningful. No fog/tree/highground inventions.",
+        "implementation": "src/combat/inner-laser-acceptance.ts final registry override; no generic native all-mechanism completeness claimed."
+      }
+    },
+    {
+      "id": "broodmother_insatiable_hunger",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "paraphrase": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "versionContext": "Captured AA build/Lua/native patch remains unidentified. Explicit AA numbers and custom behavior have priority; this is not a fresh HTTP200 claim."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "paraphrase": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "versionContext": "Local references/dota-20230216/npc_abilities.txt,2023-02-10 shipped candidate; AA native patch is not inferred."
+        },
+        {
+          "id": "brood-2023",
+          "url": "https://web.archive.org/web/20230215191616id_/https://dota2.fandom.com/wiki/Broodmother",
+          "accessedOn": "2026-10-30",
+          "observation": "Hunger is flat attack bonus. Spinner Snare is a forming900x50 wire, hero/clone-only, .25root delay within3second modifier, three100ticks and multi-victim trigger window.",
+          "paraphrase": "Hunger is flat attack bonus. Spinner Snare is a forming900x50 wire, hero/clone-only, .25root delay within3second modifier, three100ticks and multi-victim trigger window.",
+          "versionContext": "Actual2023-02-15 retained page before7.33; cached response read locally. Exact AA patch remains unproved.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191616",
+          "sha256": "cb8dad6d3da6f86dc36679e2f1cbe2b14e2d1e412e5fa1dd4d1600ef380a904f"
+        },
+        {
+          "id": "brood-history",
+          "url": "https://liquipedia.net/dota2/Broodmother/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "Indexed history identifies an older+50damage/+50percent Hunger talent and later flat-to-base-percentage rework.",
+          "paraphrase": "Indexed history identifies an older+50damage/+50percent Hunger talent and later flat-to-base-percentage rework.",
+          "versionContext": "Current search-index history only; direct open returned403. Indexed ordering conflicts with the February snapshot talent list, so exact talent replacement patch is not claimed."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "IH-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "all five ranks use final flat damage lifesteal duration mana and cooldown",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-01 all five ranks use final flat damage lifesteal duration mana and cooldown"
+            }
+          ]
+        },
+        {
+          "id": "IH-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "basic dispel retains the AA buff while strong dispel removes both components",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-02 basic dispel retains the AA buff while strong dispel removes both components"
+            }
+          ]
+        },
+        {
+          "id": "IH-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "real creep attacks lifesteal at full native old percentage and expiration removes both bonuses",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-03 real creep attacks lifesteal at full native old percentage and expiration removes both bonuses"
+            }
+          ]
+        },
+        {
+          "id": "IH-04",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben requires four successful attacks and never plants on the first three",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Four successful landed attacks and an out-of-active-buff counter retain the existing AA working interpretation; AA text does not identify the event or active-only qualification.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-04 Gaben requires four successful attacks and never plants on the first three"
+            }
+          ]
+        },
+        {
+          "id": "IH-05",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "formed wire ignores off-line heroes and creeps and trips multiple real heroes",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Native wire dimensions and hero filters are dated; automatic AA placement uses caster-to-target orientation because the native vector interface is absent from this passive upgrade.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-05 formed wire ignores off-line heroes and creeps and trips multiple real heroes"
+            }
+          ]
+        },
+        {
+          "id": "IH-06",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "snare waits a quarter second before root and deals exactly three100ticks",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-06 snare waits a quarter second before root and deals exactly three100ticks"
+            }
+          ]
+        },
+        {
+          "id": "IH-07",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "dispelling the snare before root cancels its damage without deleting the other victims window",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-07 dispelling the snare before root cancels its damage without deleting the other victims window"
+            }
+          ]
+        },
+        {
+          "id": "IH-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "sixth dormant wire replaces the oldest with only five live controllers",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Per-instance five-wire limit is native, but automatic free-child ownership/placement and overlapping-line rules are not identified in AA Lua.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "IH-08 sixth dormant wire replaces the oldest with only five live controllers"
+            }
+          ]
+        },
+        {
+          "id": "IH-P01",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Older+50/+50talent is a plausible prototype. Search-index replacement date conflicts with archivedFebruary talent list; exact AA inheritance patch is unknown.",
+          "sourceIds": [
+            "aa",
+            "brood-history",
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IH-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Automatic wire direction, overlap-placement prohibition, proc timing and out-of-buff counting are AA implementation gaps in evidence; explicit working choices remain.",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IH-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Snare .25root delay under status resistance and stacking from multiple casters/skill instances need precise native evidence and results.",
+          "sourceIds": [
+            "brood-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "IH-P04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "No Spin Web ability/environment consumer exists for the native web-adjacent global cast extension; free AA child does not fabricate it.",
+          "sourceIds": [
+            "brood-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "IH-04",
+          "status": "source_pending",
+          "detail": "Four successful landed attacks and an out-of-active-buff counter retain the existing AA working interpretation; AA text does not identify the event or active-only qualification."
+        },
+        {
+          "requirementId": "IH-05",
+          "status": "source_pending",
+          "detail": "Native wire dimensions and hero filters are dated; automatic AA placement uses caster-to-target orientation because the native vector interface is absent from this passive upgrade."
+        },
+        {
+          "requirementId": "IH-08",
+          "status": "source_pending",
+          "detail": "Per-instance five-wire limit is native, but automatic free-child ownership/placement and overlapping-line rules are not identified in AA Lua."
+        },
+        {
+          "requirementId": "IH-P01",
+          "status": "source_pending",
+          "detail": "Older+50/+50talent is a plausible prototype. Search-index replacement date conflicts with archivedFebruary talent list; exact AA inheritance patch is unknown."
+        },
+        {
+          "requirementId": "IH-P02",
+          "status": "source_pending",
+          "detail": "Automatic wire direction, overlap-placement prohibition, proc timing and out-of-buff counting are AA implementation gaps in evidence; explicit working choices remain."
+        },
+        {
+          "requirementId": "IH-P03",
+          "status": "source_pending",
+          "detail": "Snare .25root delay under status resistance and stacking from multiple casters/skill instances need precise native evidence and results."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "brood-history"
+          ],
+          "status": "partial",
+          "observation": "Older Hunger damage/lifesteal talent prototype; exact replacement patch is not resolved from conflicting indexed/archive material."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "brood-2023"
+          ],
+          "status": "partial",
+          "observation": "Spinner Snare Scepter prototype becomes AA free attack-triggered child; vector/web/charge UI does not automatically transfer."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled five-rank final values; no runtime double-Super arithmetic. AA explicit strong dispel wins for Hunger/Jingu.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remains meaningful. No fog/tree/highground inventions.",
+        "implementation": "src/combat/inner-laser-acceptance.ts final registry override; no generic native all-mechanism completeness claimed."
+      }
+    },
+    {
+      "id": "custom_monkey_king_jingu_mastery",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "paraphrase": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "versionContext": "Captured AA build/Lua/native patch remains unidentified. Explicit AA numbers and custom behavior have priority; this is not a fresh HTTP200 claim."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "paraphrase": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "versionContext": "Local references/dota-20230216/npc_abilities.txt,2023-02-10 shipped candidate; AA native patch is not inferred."
+        },
+        {
+          "id": "item-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Echo Sabre entry records13strength10intelligence15damage10attackSpeed1.75manaRegen,6cooldown and100percent .8second slow.",
+          "paraphrase": "Echo Sabre entry records13strength10intelligence15damage10attackSpeed1.75manaRegen,6cooldown and100percent .8second slow.",
+          "versionContext": "Local2023 candidate items.txt:5112; the490burst and event timing are absent from KV."
+        },
+        {
+          "id": "monkey-2023",
+          "url": "https://web.archive.org/web/20230308092705id_/https://dota2.fandom.com/wiki/Monkey_King",
+          "accessedOn": "2026-10-30",
+          "observation": "Dated Jingu Break suppresses an earned buff. Successful hero/clone hits, four charges and35second expiry; Boundless consumes once. Clone Jingu is independent and soldiers cannot attack faster than1.2seconds.",
+          "paraphrase": "Dated Jingu Break suppresses an earned buff. Successful hero/clone hits, four charges and35second expiry; Boundless consumes once. Clone Jingu is independent and soldiers cannot attack faster than1.2seconds.",
+          "versionContext": "Actual redirect capture2023-03-08 after7.32e; not falsely dated February. Candidate mechanics are separated from AA source history.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230308092705",
+          "sha256": "ef070790c42133613f3bf188d042ca68b01716a4b983c4c70fb5174d80f76931"
+        },
+        {
+          "id": "echo-current",
+          "url": "https://liquipedia.net/dota2/Echo_Sabre",
+          "accessedOn": "2026-10-30",
+          "observation": "Echo grants490attackSpeed until the next attack point; its second attack is ordinary. The item lists exceptions for instant attacks.",
+          "paraphrase": "Echo grants490attackSpeed until the next attack point; its second attack is ordinary. The item lists exceptions for instant attacks.",
+          "versionContext": "Current indexed Wiki corroboration, not a dated2023 capture. Exact pre2023 exception list remains source_pending; no directHTTP200 claim."
+        },
+        {
+          "id": "monkey-history",
+          "url": "https://liquipedia.net/dota2/Monkey_King/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "The7.38b entry changes Jingu to follow the lifesteal mechanic; modern restoration rules cannot be silently backported.",
+          "paraphrase": "The7.38b entry changes Jingu to follow the lifesteal mechanic; modern restoration rules cannot be silently backported.",
+          "versionContext": "Current indexed change log; original dated2023 restoration flags remain specifically unresolved."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "JM-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "four successful hero hits build four charged attacks with AA five-rank damage and healing",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-01 four successful hero hits build four charged attacks with AA five-rank damage and healing"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-20 an actually earned Jingu flat bonus belongs to the leading main basis and its Glaives bounce"
+            },
+            {
+              "file": "tests/reference-attack-main-snapshot.test.ts",
+              "test": "GMS-21 real fixed Lil Shredder overrides earned Jingu regular attack bonus instead of adding it twice"
+            }
+          ]
+        },
+        {
+          "id": "JM-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "hero clones add counters but illusions and ordinary creeps do not",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-02 hero clones add counters but illusions and ordinary creeps do not"
+            }
+          ]
+        },
+        {
+          "id": "JM-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "misses do not consume earned charges and strong dispel removes the charged bonus",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-03 misses do not consume earned charges and strong dispel removes the charged bonus"
+            }
+          ]
+        },
+        {
+          "id": "JM-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Break prevents new counters and suppresses an already earned dated buff",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-04 Break prevents new counters and suppresses an already earned dated buff"
+            }
+          ]
+        },
+        {
+          "id": "JM-05",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "counter refresh lasts the configured interval and charged buff expires after35seconds",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-05 counter refresh lasts the configured interval and charged buff expires after35seconds"
+            }
+          ]
+        },
+        {
+          "id": "JM-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "actual Boundless applies charged damage to all targets while consuming one charge",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-06 actual Boundless applies charged damage to all targets while consuming one charge"
+            }
+          ]
+        },
+        {
+          "id": "JM-07",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "Super creates a490AS ordinary-attack buff instead of a delayed instant attack",
+          "sourceIds": [
+            "aa",
+            "item-valve",
+            "echo-current"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Ordinary second attack semantics are corroborated by current item documentation; exact2023+490numeric/event qualification not present in pinned KV.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-07 Super creates a490AS ordinary-attack buff instead of a delayed instant attack"
+            }
+          ]
+        },
+        {
+          "id": "JM-08",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "Echo item attributes persist through Break and basic dispel",
+          "sourceIds": [
+            "aa",
+            "item-valve"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-08 Echo item attributes persist through Break and basic dispel"
+            }
+          ]
+        },
+        {
+          "id": "JM-09",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "Gaben creates a nonrecursive clone every2seconds with independent Jingu counters",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-09 Gaben creates a nonrecursive clone every2seconds with independent Jingu counters"
+            }
+          ]
+        },
+        {
+          "id": "JM-10",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "soldier minimum cadence survives extreme IAS and owner death despawns soldiers",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-10 soldier minimum cadence survives extreme IAS and owner death despawns soldiers"
+            }
+          ]
+        },
+        {
+          "id": "JM-11",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "inherited soldiers never copy the owners active charged bonus",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-11 inherited soldiers never copy the owners active charged bonus"
+            }
+          ]
+        },
+        {
+          "id": "JM-12",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "actual melee Echo second attack consumes the490AS buff at its attack point",
+          "sourceIds": [
+            "aa",
+            "item-valve",
+            "echo-current"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "The tested second-attack clock uses current item corroboration; the exact2023 item event and all instant-attack exclusions still need dated evidence.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-12 actual melee Echo second attack consumes the490AS buff at its attack point"
+            }
+          ]
+        },
+        {
+          "id": "JM-13",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Boundless applies Echo slow to every hit without granting its second-attack buff",
+          "sourceIds": [
+            "aa",
+            "item-valve",
+            "echo-current"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Boundless exception exists in the old local accepted protocol and current item list; exact AA Echo exception coverage remains unproven.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-13 Boundless applies Echo slow to every hit without granting its second-attack buff"
+            }
+          ]
+        },
+        {
+          "id": "JM-14",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben never spawns recursively and a fully invisible owner produces no soldiers",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "No invisible spawn is dated. Whether AA Gaben passive should stop under Break, and replenish immediately after invisibility, remains a working choice.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-14 Gaben never spawns recursively and a fully invisible owner produces no soldiers"
+            }
+          ]
+        },
+        {
+          "id": "JM-15",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "stationary melee soldiers require their owner within500of a building but ranged soldiers do not",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-15 stationary melee soldiers require their owner within500of a building but ranged soldiers do not"
+            }
+          ]
+        },
+        {
+          "id": "JM-16",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "soldiers earn their own four-hit Jingu charge pool without changing the owner pool",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-16 soldiers earn their own four-hit Jingu charge pool without changing the owner pool"
+            }
+          ]
+        },
+        {
+          "id": "JM-17",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "native cloned Echo grants attack-speed without its movement slow and still obeys the1.2floor",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-17 native cloned Echo grants attack-speed without its movement slow and still obeys the1.2floor"
+            }
+          ]
+        },
+        {
+          "id": "JM-18",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "actual Global Silence and ordinary unit targeting exclude the hidden soldier body",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-18 actual Global Silence and ordinary unit targeting exclude the hidden soldier body"
+            }
+          ]
+        },
+        {
+          "id": "JM-19",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "engine Reincarnation destroys old soldiers and resumes the surviving passive spawn clock after revival",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "JM-19 engine Reincarnation destroys old soldiers and resumes the surviving passive spawn clock after revival"
+            }
+          ]
+        },
+        {
+          "id": "JM-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA soldier12second lifetime,+400range,120radial spawn offset and six-angle sequence preserve previous project candidates; native Scepter origin does not establish these exact AA body settings.",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Conservative attack-effect allowlist now includes independent Jingu; full arbitrary AA attack modifier/item aura eligibility has not been recovered.",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Pre7.38b Jingu healing amplification, full absorption/overkill/FP and damage-reflection qualification remain unproved. Current regular heal path preserves prior working behavior.",
+          "sourceIds": [
+            "monkey-2023",
+            "monkey-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Exact old Echo instant-attack trigger exclusion list, miss/evade start event and illusion qualifications need dated item evidence; current exceptions are explicitly provisional.",
+          "sourceIds": [
+            "item-valve",
+            "echo-current"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Hidden soldier ordinary selection and actual GlobalSilence exclusion are implemented and tested. Other raw-unit-list abilities and aura eligibility still need individual dated qualification; no universal addStatus immunity is inferred.",
+          "sourceIds": [
+            "monkey-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Exact fourth-hit damage ordering and in-flight attacks spanning Break/skill replacement are not closed by landed counter tests.",
+          "sourceIds": [
+            "monkey-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "JM-P07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Tree Dance/Mischief environment branches and Roshan-specific neutral targeting are outside this arena catalog.",
+          "sourceIds": [
+            "monkey-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "JM-07",
+          "status": "source_pending",
+          "detail": "Ordinary second attack semantics are corroborated by current item documentation; exact2023+490numeric/event qualification not present in pinned KV."
+        },
+        {
+          "requirementId": "JM-12",
+          "status": "source_pending",
+          "detail": "The tested second-attack clock uses current item corroboration; the exact2023 item event and all instant-attack exclusions still need dated evidence."
+        },
+        {
+          "requirementId": "JM-13",
+          "status": "source_pending",
+          "detail": "Boundless exception exists in the old local accepted protocol and current item list; exact AA Echo exception coverage remains unproven."
+        },
+        {
+          "requirementId": "JM-14",
+          "status": "source_pending",
+          "detail": "No invisible spawn is dated. Whether AA Gaben passive should stop under Break, and replenish immediately after invisibility, remains a working choice."
+        },
+        {
+          "requirementId": "JM-P01",
+          "status": "source_pending",
+          "detail": "AA soldier12second lifetime,+400range,120radial spawn offset and six-angle sequence preserve previous project candidates; native Scepter origin does not establish these exact AA body settings."
+        },
+        {
+          "requirementId": "JM-P02",
+          "status": "source_pending",
+          "detail": "Conservative attack-effect allowlist now includes independent Jingu; full arbitrary AA attack modifier/item aura eligibility has not been recovered."
+        },
+        {
+          "requirementId": "JM-P03",
+          "status": "source_pending",
+          "detail": "Pre7.38b Jingu healing amplification, full absorption/overkill/FP and damage-reflection qualification remain unproved. Current regular heal path preserves prior working behavior."
+        },
+        {
+          "requirementId": "JM-P04",
+          "status": "source_pending",
+          "detail": "Exact old Echo instant-attack trigger exclusion list, miss/evade start event and illusion qualifications need dated item evidence; current exceptions are explicitly provisional."
+        },
+        {
+          "requirementId": "JM-P05",
+          "status": "source_pending",
+          "detail": "Hidden soldier ordinary selection and actual GlobalSilence exclusion are implemented and tested. Other raw-unit-list abilities and aura eligibility still need individual dated qualification; no universal addStatus immunity is inferred."
+        },
+        {
+          "requirementId": "JM-P06",
+          "status": "source_pending",
+          "detail": "Exact fourth-hit damage ordering and in-flight attacks spanning Break/skill replacement are not closed by landed counter tests."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "item-valve",
+            "echo-current"
+          ],
+          "status": "partial",
+          "observation": "Echo Sabre named by AA; dated static stats/CD/slow known, current ordinary second-attack clock adopted with exact old event list pending."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "status": "partial",
+          "observation": "Native passive Wukong Scepter soldiers independently Jingu; AA overrides spawn interval to2. Native body/inheritance boundaries are retained explicitly."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled five-rank final values; no runtime double-Super arithmetic. AA explicit strong dispel wins for Hunger/Jingu.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remains meaningful. No fog/tree/highground inventions.",
+        "implementation": "src/combat/inner-laser-acceptance.ts final registry override; no generic native all-mechanism completeness claimed."
+      }
+    },
+    {
+      "id": "tidehunter_kraken_shell",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "paraphrase": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "versionContext": "Captured AA build/Lua/native patch remains unidentified. Explicit AA numbers and custom behavior have priority; this is not a fresh HTTP200 claim."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "paraphrase": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "versionContext": "Local references/dota-20230216/npc_abilities.txt,2023-02-10 shipped candidate; AA native patch is not inferred."
+        },
+        {
+          "id": "kraken-2023",
+          "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Tidehunter",
+          "accessedOn": "2026-10-30",
+          "observation": "Highest ensured block excludes ward-source attacks. Player-controlled damage after reductions accumulates;7second inactivity reset and damage-before-later-debuff strong-dispel order. Illusions block without dispel.",
+          "paraphrase": "Highest ensured block excludes ward-source attacks. Player-controlled damage after reductions accumulates;7second inactivity reset and damage-before-later-debuff strong-dispel order. Illusions block without dispel.",
+          "versionContext": "Actual2023-02-15 retained page before7.33; cached response read locally. Exact AA patch remains unproved.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191602",
+          "sha256": "27c70a26ada997f54ee3f8bbfa9ca5c9b783f9ac45d41910a40032064ec2c24b"
+        },
+        {
+          "id": "kraken-history",
+          "url": "https://liquipedia.net/dota2/Tidehunter/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "History identifies+40Kraken block and-100threshold talent prototypes.",
+          "paraphrase": "History identifies+40Kraken block and-100threshold talent prototypes.",
+          "versionContext": "Current search-index corroboration; direct open403; AA explicit values remain authoritative."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "KS-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "five ranks block exact AA flat damage with a100percent ensured source",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-01 five ranks block exact AA flat damage with a100percent ensured source"
+            }
+          ]
+        },
+        {
+          "id": "KS-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "strongest flat attack block wins and ward attacks bypass Kraken",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-02 strongest flat attack block wins and ward attacks bypass Kraken"
+            }
+          ]
+        },
+        {
+          "id": "KS-03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "ordinary physical spells are not blocked and magical reductions affect the dispel counter",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-03 ordinary physical spells are not blocked and magical reductions affect the dispel counter"
+            }
+          ]
+        },
+        {
+          "id": "KS-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "nested attack and spell instances contribute instead of being lost to recursion-depth filtering",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-04 nested attack and spell instances contribute instead of being lost to recursion-depth filtering"
+            }
+          ]
+        },
+        {
+          "id": "KS-05",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "seven seconds without player damage resets only the accumulated counter",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-05 seven seconds without player damage resets only the accumulated counter"
+            }
+          ]
+        },
+        {
+          "id": "KS-06",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "threshold strong dispel happens between a spell damage packet and its later stun",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-06 threshold strong dispel happens between a spell damage packet and its later stun"
+            }
+          ]
+        },
+        {
+          "id": "KS-07",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Gaben same-type35percent reflection is bounded and excluded from spell lifesteal",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "AA says35percent incoming damage without basis. Effective-HP-loss basis is preserved, not mistaken for native raw BladeMail basis.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-07 Gaben same-type35percent reflection is bounded and excluded from spell lifesteal"
+            }
+          ]
+        },
+        {
+          "id": "KS-08",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Break disables block and counter while illusions retain block without the strong dispel counter",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-08 Break disables block and counter while illusions retain block without the strong dispel counter"
+            }
+          ]
+        },
+        {
+          "id": "KS-09",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "opposing Gaben reflectors produce one return packet and no feedback loop",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-09 opposing Gaben reflectors produce one return packet and no feedback loop"
+            }
+          ]
+        },
+        {
+          "id": "KS-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "all five AA thresholds trigger exactly at600550450350350without spending passive resources",
+          "sourceIds": [
+            "aa",
+            "kraken-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "KS-10 all five AA thresholds trigger exactly at600550450350350without spending passive resources"
+            }
+          ]
+        },
+        {
+          "id": "KS-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA35percent incoming reflection lacks a named native prototype/basis. EffectiveHP loss is a work candidate, not proof of BladeMail raw damage semantics.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "KS-P02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Deferred FP/rum, minimumHP, fully absorbed/zero/HPLOSS and reflection-counter qualification are not all established by positive accepted instances.",
+          "sourceIds": [
+            "kraken-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "KS-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Neutral/charmed unit ownership distinctions and all physical attack-increasing damage-source categories need individual results; player-control inference remains scoped.",
+          "sourceIds": [
+            "kraken-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "KS-07",
+          "status": "source_pending",
+          "detail": "AA says35percent incoming damage without basis. Effective-HP-loss basis is preserved, not mistaken for native raw BladeMail basis."
+        },
+        {
+          "requirementId": "KS-P01",
+          "status": "source_pending",
+          "detail": "AA35percent incoming reflection lacks a named native prototype/basis. EffectiveHP loss is a work candidate, not proof of BladeMail raw damage semantics."
+        },
+        {
+          "requirementId": "KS-P02",
+          "status": "source_pending",
+          "detail": "Deferred FP/rum, minimumHP, fully absorbed/zero/HPLOSS and reflection-counter qualification are not all established by positive accepted instances."
+        },
+        {
+          "requirementId": "KS-P03",
+          "status": "source_pending",
+          "detail": "Neutral/charmed unit ownership distinctions and all physical attack-increasing damage-source categories need individual results; player-control inference remains scoped."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "kraken-history"
+          ],
+          "status": "passed",
+          "observation": "AA+40block/-100threshold correspond to linked native talent prototypes."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "observation": "No exact native35percent reflection source identified; do not silently substitute BladeMail."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled five-rank final values; no runtime double-Super arithmetic. AA explicit strong dispel wins for Hunger/Jingu.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remains meaningful. No fog/tree/highground inventions.",
+        "implementation": "src/combat/inner-laser-acceptance.ts final registry override; no generic native all-mechanism completeness claimed."
+      }
+    },
+    {
+      "id": "custom_tinker_laser",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "paraphrase": "Previously captured English base/Super/Gaben clauses and AA values reread from local public/data/skills.json.catalog.",
+          "versionContext": "Captured AA build/Lua/native patch remains unidentified. Explicit AA numbers and custom behavior have priority; this is not a fresh HTTP200 claim."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "paraphrase": "Pinned native KV independently records cast points and selected ability/talent parameters.",
+          "versionContext": "Local references/dota-20230216/npc_abilities.txt,2023-02-10 shipped candidate; AA native patch is not inferred."
+        },
+        {
+          "id": "laser-2023",
+          "url": "https://web.archive.org/web/20230215192155id_/https://dota2.fandom.com/wiki/Tinker",
+          "accessedOn": "2026-10-30",
+          "observation": "Visible area beams, main-only blind and primary-only block. Instant farthest hero-body bounce. Linked shrink reduces constant max and current health then beam; losing blind restores max/model without current healing.",
+          "paraphrase": "Visible area beams, main-only blind and primary-only block. Instant farthest hero-body bounce. Linked shrink reduces constant max and current health then beam; losing blind restores max/model without current healing.",
+          "versionContext": "Actual2023-02-15 retained page before7.33; cached response read locally. Exact AA patch remains unproved.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215192155",
+          "sha256": "46ce8d7f23f6da77bb28a2f2fe2ac38a44d6c65e329ac6df66397435162d9cff"
+        },
+        {
+          "id": "laser-history",
+          "url": "https://liquipedia.net/dota2/Tinker/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "History identifies older+100Laser damage and+2blind duration talent prototypes, later replaced;7.36 removes old area damage.",
+          "paraphrase": "History identifies older+100Laser damage and+2blind duration talent prototypes, later replaced;7.36 removes old area damage.",
+          "versionContext": "Current search-index corroboration; direct open403. AA keeps100damage rather than replacing it with the pinned native talent amount."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "LA-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "all ranks use AA damage mana cooldown range and native.4plus1animation",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-01 all ranks use AA damage mana cooldown range and native.4plus1animation"
+            }
+          ]
+        },
+        {
+          "id": "LA-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "area damage excludes invisible bodies and blinds only the primary target",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-02 area damage excludes invisible bodies and blinds only the primary target"
+            }
+          ]
+        },
+        {
+          "id": "LA-03",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "primary Spell Block stops the entire ability while a secondary block stays intact",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-03 primary Spell Block stops the entire ability while a secondary block stays intact"
+            }
+          ]
+        },
+        {
+          "id": "LA-04",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben bounces instantly to the farthest visible hero body instead of a farther ordinary creep",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-04 Gaben bounces instantly to the farthest visible hero body instead of a farther ordinary creep"
+            }
+          ]
+        },
+        {
+          "id": "LA-05",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "shrink reduces current health before beam damage without recording a second damage packet",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Native dated max-health shrink is explicit; AA Gaben description mentions current health/size without max, so importing the omitted max component remains a compatibility candidate.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-05 shrink reduces current health before beam damage without recording a second damage packet"
+            }
+          ]
+        },
+        {
+          "id": "LA-06",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "repeated shrink stacks constant max loss with multiplicative current-health reduction",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Native constant max-loss and multiplicative current-loss are dated; AA omitted max-health component remains specifically unproven.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-06 repeated shrink stacks constant max loss with multiplicative current-health reduction"
+            }
+          ]
+        },
+        {
+          "id": "LA-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "basic dispel restores maximum health and model size while preserving reduced current health",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Native dated restoration is clear but AA omitted max component is a compatibility candidate.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-07 basic dispel restores maximum health and model size while preserving reduced current health"
+            }
+          ]
+        },
+        {
+          "id": "LA-08",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "natural expiry restores maximum health without healing and follows actual blind resistance",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Linked modifier duration is tested including status resistance; AA omitted max component and its exact resistance relationship remain candidates.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-08 natural expiry restores maximum health without healing and follows actual blind resistance"
+            }
+          ]
+        },
+        {
+          "id": "LA-09",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "ordinary creeps get the longer blind without shrink while immunity is pierced only by Gaben",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-09 ordinary creeps get the longer blind without shrink while immunity is pierced only by Gaben"
+            }
+          ]
+        },
+        {
+          "id": "LA-10",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "linked max-health restoration does not bypass Ice Blast healing prohibition",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "resultEvidenceStatus": "passed",
+          "evidenceBoundary": "Actual healthFreeze interaction is a local regression result; no dated source explicitly closes this precise combination.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-10 linked max-health restoration does not bypass Ice Blast healing prohibition"
+            }
+          ]
+        },
+        {
+          "id": "LA-11",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "mechanism": "Gaben visible illusion bodies may receive shrink while ordinary creep heroes only receive the bounce blind",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-11 Gaben visible illusion bodies may receive shrink while ordinary creep heroes only receive the bounce blind"
+            }
+          ]
+        },
+        {
+          "id": "LA-12",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "blind health and model modifier all expire together after source death",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-12 blind health and model modifier all expire together after source death"
+            }
+          ]
+        },
+        {
+          "id": "LA-13",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "raw shrink gives no extra damage credit or spell lifesteal beyond the420beam",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-13 raw shrink gives no extra damage credit or spell lifesteal beyond the420beam"
+            }
+          ]
+        },
+        {
+          "id": "LA-14",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "real beam links anchor caster to primary then primary to bounce while damage retains its caster",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-14 real beam links anchor caster to primary then primary to bounce while damage retains its caster"
+            }
+          ]
+        },
+        {
+          "id": "LA-15",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "primary block creates no phantom beam or bounce link",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "passed",
+          "resultEvidenceStatus": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-inner-laser.test.ts",
+              "test": "LA-15 primary block creates no phantom beam or bounce link"
+            }
+          ]
+        },
+        {
+          "id": "LA-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA explicitly names only size/current health. Native max component and hero-only bounce restriction are compatibility candidates, since AA wording says hero-prioritized targets.",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LA-P02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Single model scale.9 is dated; multiplicative.81after two layers is a renderer work rule. The2023 prose says stacks without a model-size arithmetic formula.",
+          "sourceIds": [
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LA-P03",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Overlapping primary/bounce area fields may produce native alternate effect orders; exact full field order/overlap double-hit sequence remains unproved.",
+          "sourceIds": [
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LA-P04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "All HP-freeze/FP/BT/Refraction and source-death/revive max-attribute contribution combinations are not implied by ordinary dispel/expiry tests.",
+          "sourceIds": [
+            "laser-2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LA-P05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Generic spell reflection ability is absent from the current catalog; damage reflection is not a substitute claim.",
+          "sourceIds": [
+            "laser-2023"
+          ],
+          "status": "not_applicable_to_current_catalog",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "requirementId": "LA-05",
+          "status": "source_pending",
+          "detail": "Native dated max-health shrink is explicit; AA Gaben description mentions current health/size without max, so importing the omitted max component remains a compatibility candidate."
+        },
+        {
+          "requirementId": "LA-06",
+          "status": "source_pending",
+          "detail": "Native constant max-loss and multiplicative current-loss are dated; AA omitted max-health component remains specifically unproven."
+        },
+        {
+          "requirementId": "LA-07",
+          "status": "source_pending",
+          "detail": "Native dated restoration is clear but AA omitted max component is a compatibility candidate."
+        },
+        {
+          "requirementId": "LA-08",
+          "status": "source_pending",
+          "detail": "Linked modifier duration is tested including status resistance; AA omitted max component and its exact resistance relationship remain candidates."
+        },
+        {
+          "requirementId": "LA-10",
+          "status": "source_pending",
+          "detail": "Actual healthFreeze interaction is a local regression result; no dated source explicitly closes this precise combination."
+        },
+        {
+          "requirementId": "LA-P01",
+          "status": "source_pending",
+          "detail": "AA explicitly names only size/current health. Native max component and hero-only bounce restriction are compatibility candidates, since AA wording says hero-prioritized targets."
+        },
+        {
+          "requirementId": "LA-P02",
+          "status": "source_pending",
+          "detail": "Single model scale.9 is dated; multiplicative.81after two layers is a renderer work rule. The2023 prose says stacks without a model-size arithmetic formula."
+        },
+        {
+          "requirementId": "LA-P03",
+          "status": "source_pending",
+          "detail": "Overlapping primary/bounce area fields may produce native alternate effect orders; exact full field order/overlap double-hit sequence remains unproved."
+        },
+        {
+          "requirementId": "LA-P04",
+          "status": "source_pending",
+          "detail": "All HP-freeze/FP/BT/Refraction and source-death/revive max-attribute contribution combinations are not implied by ordinary dispel/expiry tests."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "laser-history"
+          ],
+          "status": "partial",
+          "observation": "Old Laser damage/blind talent prototypes; AA100damage/2duration win over native talent value changes."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "laser-2023"
+          ],
+          "status": "partial",
+          "observation": "Native Shrink Ray range/current/max/model/bounce prototype, with explicit AA omission/wording ambiguities separated."
+        }
+      ],
+      "compatibility": {
+        "aaNumbers": "Compiled five-rank final values; no runtime double-Super arithmetic. AA explicit strong dispel wins for Hunger/Jingu.",
+        "environment": "Flat fully-visible arena; invisibility/reveal remains meaningful. No fog/tree/highground inventions.",
+        "implementation": "src/combat/inner-laser-acceptance.ts final registry override; no generic native all-mechanism completeness claimed."
+      }
+    }
+  ],
+  "rootC9Integration": {
+    "reportInput": "output/c9-flat-bonus-verified.json",
+    "groupTests": 64,
+    "mainSnapshotTests": 22,
+    "meaning": "Root migrated charged Jingu regular flat bonus into the pure initial-main property; real earned-charge Glaives and fixed Shredder combinations pass without changing hit counters or Boundless batch consumption."
+  }
+}

@@ -1,0 +1,876 @@
+{
+  "status": "passed",
+  "url": "http://localhost:5173",
+  "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+  "fixtureNote": "Actual development-module createBattle/stepBattle and compiled catalog. Observation heroes have100000HP/4000mana,zero ordinary movement and delayed ordinary attacks; genuine spawned bodies retain native configured HP/actions. Freeze after real Laser, Nimbus, Jingu soldier, Missile bounce or Life Drain links. No injected visual statuses, hits or summons. Cosmetic model-scale composition is not a native-stack formula certification.",
+  "reports": [
+    {
+      "scenario": "laser",
+      "mobile": false,
+      "fixture": {
+        "id": "custom_tinker_laser",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 0.7,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 0.9,
+        "effects": [
+          {
+            "prefix": "link:0:h0-0:1:h1-0:custom_tinker_laser",
+            "image": "/custom_tinker_laser/beam.webp"
+          },
+          {
+            "prefix": "link:1:h1-0:1:h1-1:custom_tinker_laser",
+            "image": "/custom_tinker_laser/beam.webp"
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 15,
+        "triangles": 30,
+        "gpuTextures": 7,
+        "activeImageBytes": 77250560,
+        "cachedImageBytes": 84475904,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:custom_tinker_laser",
+          "link:1:h1-0:1:h1-1:custom_tinker_laser",
+          "s:1:h1-0:0:h0-0:custom_tinker_laser:blind",
+          "s:1:h1-1:0:h0-0:custom_tinker_laser:blind"
+        ],
+        "transientEffects": 3,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/characters/mage-female/idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.24,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "link:0:h0-0:1:h1-0:custom_tinker_laser",
+          "x": 3,
+          "y": 0,
+          "image": "/art/skills/custom_tinker_laser/beam.webp",
+          "opacity": 1
+        },
+        {
+          "key": "link:1:h1-0:1:h1-1:custom_tinker_laser",
+          "x": 6.5,
+          "y": -1,
+          "image": "/art/skills/custom_tinker_laser/beam.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "nimbus",
+      "mobile": false,
+      "fixture": {
+        "id": "zuus_lightning_bolt",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 1.5,
+        "body": "0:h0-0:summon:0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "expectedImage": "/zuus_lightning_bolt/nimbus_",
+        "effects": []
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 6,
+        "activeImageBytes": 79020032,
+        "cachedImageBytes": 86245376,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-female/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/skills/zuus_lightning_bolt/nimbus_idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/skills/zuus_lightning_bolt/nimbus_idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 6,
+        "clipSize": 6
+      },
+      "effects": [],
+      "errors": []
+    },
+    {
+      "scenario": "soldier",
+      "mobile": false,
+      "fixture": {
+        "id": "custom_monkey_king_jingu_mastery",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 2.6,
+        "body": "0:h0-0:summon:0",
+        "bodyPosition": {
+          "x": 1.2,
+          "y": 0
+        },
+        "scale": 1,
+        "expectedImage": "/custom_monkey_king_jingu_mastery/soldier_",
+        "effects": []
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 5,
+        "activeImageBytes": 73711616,
+        "cachedImageBytes": 80936960,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/skills/custom_monkey_king_jingu_mastery/soldier_attack.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/skills/custom_monkey_king_jingu_mastery/soldier_attack.webp",
+        "x": 1.2,
+        "y": 0,
+        "width": 4.8,
+        "clipSize": 4.8
+      },
+      "effects": [],
+      "errors": []
+    },
+    {
+      "scenario": "missile",
+      "mobile": false,
+      "fixture": {
+        "id": "custom_vengefulspirit_magic_missile",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 0.7666666666666666,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "effects": [
+          {
+            "prefix": "p:projectile:1:",
+            "image": "/custom_vengefulspirit_magic_missile/projectile.webp",
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 9,
+        "activeImageBytes": 88162304,
+        "cachedImageBytes": 95387648,
+        "cachedAtlases": 10,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-female/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "p:projectile:1:projectile",
+          "p:projectile:1:trail",
+          "s:1:h1-0:0:h0-0:custom_vengefulspirit_magic_missile:stun"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/characters/mage-female/disabled.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.6,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "p:projectile:1:projectile",
+          "x": 6,
+          "y": 0,
+          "image": "/art/skills/custom_vengefulspirit_magic_missile/projectile.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "drain",
+      "mobile": false,
+      "fixture": {
+        "id": "custom_pugna_life_drain",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 2,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "effects": [
+          {
+            "prefix": "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+            "image": "/custom_pugna_life_drain/link.webp"
+          },
+          {
+            "prefix": "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+            "image": "/custom_pugna_life_drain/link.webp"
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 7,
+        "activeImageBytes": 83591168,
+        "cachedImageBytes": 90816512,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/channel.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+          "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+          "s:1:h1-0:0:h0-0:custom_pugna_life_drain:siphon",
+          "s:1:h1-1:0:h0-0:custom_pugna_life_drain:siphon"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/characters/mage-female/idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.6,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+          "x": 3.1350918,
+          "y": -0.13580423999999996,
+          "image": "/art/skills/custom_pugna_life_drain/link.webp",
+          "opacity": 1
+        },
+        {
+          "key": "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+          "x": 3.6350918,
+          "y": -1.13580424,
+          "image": "/art/skills/custom_pugna_life_drain/link.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "laser",
+      "mobile": true,
+      "fixture": {
+        "id": "custom_tinker_laser",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 0.7,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 0.9,
+        "effects": [
+          {
+            "prefix": "link:0:h0-0:1:h1-0:custom_tinker_laser",
+            "image": "/custom_tinker_laser/beam.webp"
+          },
+          {
+            "prefix": "link:1:h1-0:1:h1-1:custom_tinker_laser",
+            "image": "/custom_tinker_laser/beam.webp"
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 15,
+        "triangles": 30,
+        "gpuTextures": 7,
+        "activeImageBytes": 26673152,
+        "cachedImageBytes": 29884416,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:custom_tinker_laser",
+          "link:1:h1-0:1:h1-1:custom_tinker_laser",
+          "s:1:h1-0:0:h0-0:custom_tinker_laser:blind",
+          "s:1:h1-1:0:h0-0:custom_tinker_laser:blind"
+        ],
+        "transientEffects": 3,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/mobile/characters/mage-female/idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.24,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "link:0:h0-0:1:h1-0:custom_tinker_laser",
+          "x": 3,
+          "y": 0,
+          "image": "/art/mobile/skills/custom_tinker_laser/beam.webp",
+          "opacity": 1
+        },
+        {
+          "key": "link:1:h1-0:1:h1-1:custom_tinker_laser",
+          "x": 6.5,
+          "y": -1,
+          "image": "/art/mobile/skills/custom_tinker_laser/beam.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "nimbus",
+      "mobile": true,
+      "fixture": {
+        "id": "zuus_lightning_bolt",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 1.5,
+        "body": "0:h0-0:summon:0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "expectedImage": "/zuus_lightning_bolt/nimbus_",
+        "effects": []
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 6,
+        "activeImageBytes": 27459584,
+        "cachedImageBytes": 30670848,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-female/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/mobile/skills/zuus_lightning_bolt/nimbus_idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/mobile/skills/zuus_lightning_bolt/nimbus_idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 6,
+        "clipSize": 6
+      },
+      "effects": [],
+      "errors": []
+    },
+    {
+      "scenario": "soldier",
+      "mobile": true,
+      "fixture": {
+        "id": "custom_monkey_king_jingu_mastery",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 2.6,
+        "body": "0:h0-0:summon:0",
+        "bodyPosition": {
+          "x": 1.2,
+          "y": 0
+        },
+        "scale": 1,
+        "expectedImage": "/custom_monkey_king_jingu_mastery/soldier_",
+        "effects": []
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 5,
+        "activeImageBytes": 25100288,
+        "cachedImageBytes": 28311552,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/mobile/skills/custom_monkey_king_jingu_mastery/soldier_attack.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/mobile/skills/custom_monkey_king_jingu_mastery/soldier_attack.webp",
+        "x": 1.2,
+        "y": 0,
+        "width": 4.8,
+        "clipSize": 4.8
+      },
+      "effects": [],
+      "errors": []
+    },
+    {
+      "scenario": "missile",
+      "mobile": true,
+      "fixture": {
+        "id": "custom_vengefulspirit_magic_missile",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 0.7666666666666666,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "effects": [
+          {
+            "prefix": "p:projectile:1:",
+            "image": "/custom_vengefulspirit_magic_missile/projectile.webp",
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 9,
+        "activeImageBytes": 31522816,
+        "cachedImageBytes": 34734080,
+        "cachedAtlases": 10,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-female/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "p:projectile:1:projectile",
+          "p:projectile:1:trail",
+          "s:1:h1-0:0:h0-0:custom_vengefulspirit_magic_missile:stun"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/mobile/characters/mage-female/disabled.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.6,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "p:projectile:1:projectile",
+          "x": 6,
+          "y": 0,
+          "image": "/art/mobile/skills/custom_vengefulspirit_magic_missile/projectile.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scenario": "drain",
+      "mobile": true,
+      "fixture": {
+        "id": "custom_pugna_life_drain",
+        "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "time": 2,
+        "body": "1:h1-0",
+        "bodyPosition": {
+          "x": 6,
+          "y": 0
+        },
+        "scale": 1,
+        "effects": [
+          {
+            "prefix": "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+            "image": "/custom_pugna_life_drain/link.webp"
+          },
+          {
+            "prefix": "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+            "image": "/custom_pugna_life_drain/link.webp"
+          }
+        ]
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 7,
+        "activeImageBytes": 29491200,
+        "cachedImageBytes": 32702464,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/channel.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+          "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+          "s:1:h1-0:0:h0-0:custom_pugna_life_drain:siphon",
+          "s:1:h1-1:0:h0-0:custom_pugna_life_drain:siphon"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "body": {
+        "image": "/art/mobile/characters/mage-female/idle.webp",
+        "x": 6,
+        "y": 0,
+        "width": 3.6,
+        "clipSize": 3.6
+      },
+      "effects": [
+        {
+          "key": "link:0:h0-0:1:h1-0:custom_pugna_life_drain",
+          "x": 3.1350918,
+          "y": -0.13580423999999996,
+          "image": "/art/mobile/skills/custom_pugna_life_drain/link.webp",
+          "opacity": 1
+        },
+        {
+          "key": "link:0:h0-0:1:h1-1:custom_pugna_life_drain",
+          "x": 3.6350918,
+          "y": -1.13580424,
+          "image": "/art/mobile/skills/custom_pugna_life_drain/link.webp",
+          "opacity": 1
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

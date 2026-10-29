@@ -1,0 +1,376 @@
+{
+  "status": "passed",
+  "checkpoint": "r6 C9; not a Release or full native certification",
+  "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+  "configCounts": {
+    "granted": 80,
+    "parameters": 2651,
+    "referenceAbilities": 21,
+    "roles": 4,
+    "skillTiers": 1382,
+    "skills": 230,
+    "units": 16
+  },
+  "simulationRevision": "arena-2026-10-30-c9-r6",
+  "unit": {
+    "files": 76,
+    "tests": 2168,
+    "passed": 2168
+  },
+  "reference": {
+    "tests": 1680,
+    "sourceFingerprint": "1f85d5cfe4b52b0bbb0abd833f5aa060e2e3b78adf6bbf16d256d8dbca356894",
+    "proofCurrent": true,
+    "counts": {
+      "catalog": 230,
+      "reviewStarted": 140,
+      "unreviewed": 90,
+      "fullyReferenceVerified": 7,
+      "requirements": 1866,
+      "resultTestPassed": 1463,
+      "referenceVerifiedRequirements": 1463,
+      "pendingRequirements": 403,
+      "engineRequirements": 57,
+      "enginePending": 11
+    }
+  },
+  "render": {
+    "scenarios": 10,
+    "report": "artifacts/r6-c9-render/report.json",
+    "fixtureNote": "Actual development-module createBattle/stepBattle and compiled catalog. Observation heroes have100000HP/4000mana,zero ordinary movement and delayed ordinary attacks; genuine spawned bodies retain native configured HP/actions. Freeze after real Laser, Nimbus, Jingu soldier, Missile bounce or Life Drain links. No injected visual statuses, hits or summons. Cosmetic model-scale composition is not a native-stack formula certification."
+  },
+  "productionURL": "http://localhost:4181",
+  "checks": {
+    "artifacts/release-assets-check.json": {
+      "sha256": "200535550395b84dea0533adf70bc7c1c9812f88c57c159e97679cfe35cd9321",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-29T21:05:18.130Z",
+        "simulationRevision": "arena-2026-10-30-c9-r6",
+        "configHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+        "configuration": {
+          "granted": 80,
+          "parameters": 2651,
+          "referenceAbilities": 21,
+          "roles": 4,
+          "skillTiers": 1382,
+          "skills": 230,
+          "units": 16
+        },
+        "imageReferences": 2899,
+        "characterAppearances": 8,
+        "mobileAtlases": 1330,
+        "sourceAndProductionDataIdentical": true
+      }
+    },
+    "artifacts/production-release-check.json": {
+      "sha256": "d250944c0a9c07c59088c7a5fbb510271d32826fa2384c1cd8f5e2b74395ea4d",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-29T21:05:19.264Z",
+        "revision": "arena-2026-10-30-c9-r6",
+        "poolSize": 100,
+        "diagnostics": {
+          "drawCalls": 3,
+          "triangles": 6,
+          "gpuTextures": 3,
+          "activeImageBytes": 62799872,
+          "cachedImageBytes": 62799872,
+          "cachedAtlases": 3,
+          "unitBodies": [
+            {
+              "id": "p0-h0",
+              "image": "/art/characters/tank-female/idle.webp",
+              "visible": true
+            }
+          ],
+          "persistentEffects": 0,
+          "persistentEffectKeys": [],
+          "transientEffects": 0,
+          "loadErrors": []
+        },
+        "errors": []
+      }
+    },
+    "artifacts/browser-smoke.json": {
+      "sha256": "9d720fc4d7b1f3e215d52044fb5b1f38b1b10ac3d4528e4e3ea9113c7af01b8b",
+      "result": {
+        "status": "passed",
+        "results": [
+          "本局100技能池、初始4商品及2个禁用God占位",
+          "真实购买扣3金、移入暂存扣1金、暂存重新装备免费",
+          "当前战斗快照与下轮编辑隔离",
+          "暂停冻结模拟时间",
+          "战斗中保存与刷新恢复",
+          "844×390横屏商店与单位/暂存入口",
+          "手机竖屏旋转提示",
+          "4:3与21:9渲染截图"
+        ],
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/engine-report.json": {
+      "sha256": "e5d89f227d7682dba50750edb1749ed280996c08331f7333aeb9c014c5723971",
+      "result": {
+        "status": "passed",
+        "method": "Actual UI new game, real shop purchase, real battle hits, pause, read-only ledger inspection; no injected units or statistics",
+        "purchase": [
+          "custom_windrunner_windrun"
+        ],
+        "evidence": {
+          "time": 3.2333333333333334,
+          "units": [
+            {
+              "id": "5:p5-h0",
+              "name": "远程射手 1",
+              "summoned": false,
+              "damage": 56.25,
+              "taken": 0,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 56.25,
+                  "taken": 0,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  }
+                }
+              ]
+            },
+            {
+              "id": "0:p0-h0",
+              "name": "近战肉盾 1",
+              "summoned": false,
+              "damage": 0,
+              "taken": 56.25,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 0,
+                  "taken": 56.25,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  }
+                }
+              ]
+            }
+          ],
+          "selectedId": "5:p5-h0",
+          "displayLabel": "震荡波",
+          "positiveHits": 1
+        },
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/report.json": {
+      "sha256": "f67cdaa71df8ff245bbbddb43939d7ef9d203cf38486714209181e9166a43cf5",
+      "result": {
+        "status": "passed",
+        "reports": [
+          {
+            "mobile": false,
+            "viewport": "1600×900",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 1600,
+              "viewport": 1600,
+              "panel": {
+                "x": 1313,
+                "y": 88,
+                "width": 268,
+                "height": 601,
+                "top": 88,
+                "right": 1581,
+                "bottom": 689,
+                "left": 1313
+              }
+            },
+            "errors": []
+          },
+          {
+            "mobile": true,
+            "viewport": "844×390",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 844,
+              "viewport": 844,
+              "panel": {
+                "x": 595,
+                "y": 108,
+                "width": 248,
+                "height": 221,
+                "top": 108,
+                "right": 843,
+                "bottom": 329,
+                "left": 595
+              }
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/ui-integrity/report.json": {
+      "sha256": "bac226d3bcb7ab56f9059b22acb7b66349aa03ba32b3b47a181ce184283bc5b6",
+      "result": {
+        "status": "passed",
+        "baseUrl": "http://localhost:4181",
+        "timestamp": "2026-10-29T21:05:50.720Z",
+        "results": [
+          {
+            "name": "storage-getItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "storage-setItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "valid-battle-save-baseline",
+            "status": "passed",
+            "evidence": {
+              "originalBytes": 24633,
+              "restoredBattleCount": 4
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-missing",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 23442,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-seed",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24633,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-participant",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24626,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "live-role-snapshot",
+            "status": "passed",
+            "evidence": {
+              "roles": {
+                "planned": "mage",
+                "live": "tank"
+              },
+              "liveHeading": "近战肉盾 1\n近战肉盾 · 女",
+              "plannedHeading": "远程法师 1\n远程法师 · 女",
+              "correctPortraitAndStats": true
+            },
+            "errors": []
+          },
+          {
+            "name": "granted-skill-details-and-cooldown",
+            "status": "passed",
+            "evidence": {
+              "parent": "dragon_knight_elder_dragon_form",
+              "points": 6,
+              "child": "dragon_knight_fireball",
+              "actualCooldown": 19.9,
+              "displayedCooldown": 20,
+              "dialogTitle": "火焰领域",
+              "fallbackIcon": true
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/recovery-smoke.json": {
+      "sha256": "b634069e9c22a029b91e859c6020d510502b805cab207222cff79a76e607537f",
+      "result": {
+        "status": "passed",
+        "checks": [
+          "旧存档原样保留",
+          "备份下载逐字节一致",
+          "开始新对局后保留原备份",
+          "新版本存档可再次恢复"
+        ],
+        "errors": [],
+        "loadErrors": []
+      }
+    }
+  }
+}

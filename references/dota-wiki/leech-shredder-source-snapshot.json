@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "accessedOn": "2026-10-30",
+  "officialAA": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "status": 200,
+    "accessedOn": "2026-10-30",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "totalRows": 230,
+    "selection": [
+      {
+        "name": "Leech Seed",
+        "id": "custom_treant_leech_seed",
+        "icon": "treant_leech_seed",
+        "tags": [
+          "healing",
+          "magicDamage"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "The caster plants a life-sapping seed in an enemy unit, draining its health, while simultaneously slowing it. The seed heals friendly units around it.",
+        "differences": "Multiple Leech Seed debuffs can be placed on the same unit simultaneously.",
+        "values": [
+          "DAMAGE PER SECOND: 16 / 32 / 64",
+          "DURATION: 5",
+          "MOVEMENT SLOW: -8 / -14 / -26",
+          "RADIUS: 650"
+        ],
+        "cooldowns": [
+          18,
+          16,
+          12
+        ],
+        "manaCost": [
+          80,
+          90,
+          110
+        ],
+        "superUpgrade": "Super: Turns into an area of effect spell where the hero spills a green puddle that leeches in a 300 unit radius. Increases movement slow by 15% and damage/heal per second by 50.",
+        "gabenUpgrade": "Gaben: Leech Seed lasts indefinitely."
+      },
+      {
+        "name": "Life Break",
+        "id": "custom_huskar_life_break",
+        "icon": "huskar_life_break",
+        "tags": [
+          "magicDamage",
+          "mobility",
+          "ultimate"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "The hero draws upon their health to break an enemy's life, leaping at a target to shatter a percentage of their target's current health, and slowing them. While leaping, the hero is Spell Immune.\n\nDISPEL TYPE: Basic Dispel",
+        "differences": "AI: Targets the farthest unit from the hero.",
+        "values": [
+          "DAMAGE DEALT: 32% / 38% / 44%",
+          "DAMAGE TAKEN: 32% / 38% / 44%",
+          "MOVEMENT SLOW: -60%",
+          "SLOW DURATION: 3 / 4 / 5"
+        ],
+        "cooldowns": [
+          16,
+          14,
+          12
+        ],
+        "manaCost": [
+          0,
+          0,
+          0
+        ],
+        "superUpgrade": "Super: Deals 100% of self damage to the target enemy and all units that the hero passes through.",
+        "gabenUpgrade": "Gaben: Life Break taunts the target for 3 seconds. Grants Gaben's Gauntlets, which has the value of 15 Gauntlets of Strength (+45 Strength)."
+      },
+      {
+        "name": "Life Drain",
+        "id": "custom_pugna_life_drain",
+        "icon": "pugna_life_drain",
+        "tags": [
+          "healing",
+          "ultimate"
+        ],
+        "categories": [
+          "ABILITY: Channeled",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "CHANNELED - When cast on an enemy, the caster drains health from the target enemy unit to heal himself and granting vision over the target. If the caster has full HP, and the enemy target is a Hero, Life Drain will restore mana instead.\n\nWhen cast on an ally, the caster will drain his own health into his ally.",
+        "differences": "AI: heals allies if they're low HP, but only if caster is above 90% HP.",
+        "values": [
+          "DRAIN PER SECOND: 150 / 225 / 300"
+        ],
+        "cooldowns": [
+          7
+        ],
+        "manaCost": [
+          75,
+          100,
+          125
+        ],
+        "superUpgrade": "Super: For every 1 seconds of channel, another secondary Life Drain is created targeting another random enemy hero.",
+        "gabenUpgrade": "Gaben: Removes cooldown and increases damage by 200."
+      },
+      {
+        "name": "Lightning Bolt",
+        "id": "zuus_lightning_bolt",
+        "icon": "zuus_lightning_bolt",
+        "tags": [
+          "magicDamage",
+          "stun"
+        ],
+        "categories": [
+          "ABILITY: Unit or Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "description": "Calls down a bolt of lightning to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a 750 radius. Can be cast on the ground, affecting the closest enemy hero in 425 range.",
+        "differences": "",
+        "values": [
+          "CAST RANGE: 700 / 750 / 850",
+          "DAMAGE: 125 / 200 / 350",
+          "MINISTUN DURATION: 0.3",
+          "SIGHT DURATION: 5",
+          "SIGHT RADIUS: 750"
+        ],
+        "cooldowns": [
+          6,
+          6,
+          6
+        ],
+        "manaCost": [
+          120,
+          125,
+          135
+        ],
+        "superUpgrade": "Super: Cast range increased by 1000. Grants Nimbus. Lightning Bolt now stuns for 1 seconds.",
+        "gabenUpgrade": "Gaben: Grants Thundergaben's Wrath."
+      },
+      {
+        "name": "Lil' Shredder",
+        "id": "custom_snapfire_lil_shredder",
+        "icon": "snapfire_lil_shredder",
+        "tags": [
+          "attackSpeed",
+          "damageAmplification",
+          "instantAttack"
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Physical"
+        ],
+        "description": "Heats up a mounted turret to rapidly fire 6 fixed-damage attacks. Each attack reduces the enemy's armor. Provides bonus attack range for the duration.",
+        "differences": "",
+        "values": [
+          "ARMOR LOSS DURATION: 5",
+          "ARMOR LOSS PER STACK: 1",
+          "BONUS ATTACK SPEED: 300",
+          "BONUS RANGE: 75 / 150 / 300",
+          "FIXED DAMAGE PER SHOT: 20 / 45 / 95"
+        ],
+        "cooldowns": [
+          24,
+          20,
+          12
+        ],
+        "manaCost": [
+          50,
+          65,
+          95
+        ],
+        "superUpgrade": "Super: Uses own attack damage.",
+        "gabenUpgrade": "Gaben: 3x multishot."
+      }
+    ]
+  },
+  "pinnedAbilities": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "abilities": {
+      "treant_leech_seed": {
+        "ID": "5435",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Hero_Treant.LeechSeed.Cast",
+        "AbilityCastPoint": "0.3",
+        "AbilityCastRange": "400 450 500 550",
+        "FightRecapLevel": "1",
+        "AbilityCooldown": "18 16 14 12",
+        "AbilityManaCost": "80 90 100 110",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "damage_interval": "1"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "leech_damage": "20 35 50 65",
+            "LinkedSpecialBonus": "special_bonus_unique_treant_2"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "movement_slow": "-8 -14 -20 -26",
+            "LinkedSpecialBonus": "special_bonus_unique_treant_3",
+            "LinkedSpecialBonusOperation": "SPECIAL_BONUS_SUBTRACT"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "650"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "5.0"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "projectile_speed": "450"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "huskar_life_break": {
+        "ID": "5274",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Huskar.Life_Break",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "16 14 12",
+        "AbilityManaCost": "0 0 0",
+        "AbilityCastRange": "550",
+        "AbilityDuration": "3 4 5",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "health_cost_percent": "0.32 0.38 0.44"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "health_damage": "0.32 0.38 0.44",
+            "LinkedSpecialBonus": "special_bonus_unique_huskar"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "charge_speed": "1200"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "tooltip_health_damage": "32 38 44",
+            "LinkedSpecialBonus": "special_bonus_unique_huskar",
+            "LinkedSpecialBonusField": "value2"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "tooltip_health_cost_percent": "32 38 44",
+            "CalculateSpellDamageTooltip": "1",
+            "DamageTypeTooltip": "DAMAGE_TYPE_MAGICAL"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "movespeed": "-60 -60 -60"
+          },
+          "07": {
+            "var_type": "FIELD_FLOAT",
+            "slow_duration_tooltip": "3 4 5",
+            "LinkedSpecialBonus": "special_bonus_unique_huskar_4"
+          },
+          "08": {
+            "var_type": "FIELD_FLOAT",
+            "taunt_duration": "3.0",
+            "RequiresScepter": "1"
+          },
+          "09": {
+            "var_type": "FIELD_INTEGER",
+            "cast_range_bonus": "250",
+            "RequiresScepter": "1"
+          }
+        }
+      },
+      "pugna_life_drain": {
+        "ID": "5189",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "FightRecapLevel": "1",
+        "HasShardUpgrade": "1",
+        "HasScepterUpgrade": "1",
+        "AbilityCastRange": "700",
+        "AbilityCastPoint": "0.2 0.2 0.2",
+        "AbilityChannelTime": "10.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_4",
+        "AbilityManaCost": "125 175 225",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilityValues": {
+          "health_drain": {
+            "value": "160 240 320",
+            "CalculateSpellDamageTooltip": "1",
+            "DamageTypeTooltip": "DAMAGE_TYPE_MAGICAL"
+          },
+          "tick_rate": "0.25 0.25 0.25",
+          "drain_buffer": "200",
+          "shard_damage_pct_from_ward": {
+            "value": "70",
+            "RequiresShard": "1"
+          },
+          "bonus_heal_pct": {
+            "value": "0",
+            "special_bonus_unique_pugna_1": "+20"
+          },
+          "spell_amp_drain_rate": {
+            "value": "0",
+            "special_bonus_scepter": "+8"
+          },
+          "spell_amp_drain_max": {
+            "value": "0",
+            "special_bonus_scepter": "+75"
+          },
+          "spell_amp_drain_rate_ward": {
+            "value": "0",
+            "special_bonus_scepter": "+4"
+          },
+          "spell_amp_drain_duration": {
+            "value": "0",
+            "special_bonus_scepter": "+8"
+          },
+          "max_spell_amp_drain_pct": {
+            "value": "0",
+            "special_bonus_scepter": "+100"
+          },
+          "AbilityCooldown": {
+            "value": "7",
+            "special_bonus_scepter": "-50%"
+          }
+        }
+      },
+      "zuus_lightning_bolt": {
+        "ID": "5111",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Zuus.LightningBolt",
+        "AbilityCastRange": "700 750 800 850",
+        "AbilityCastPoint": "0.3",
+        "AbilityDamage": "125 200 275 350",
+        "AbilityCooldown": "6.0 6.0 6.0 6.0",
+        "AbilityManaCost": "120 125 130 135",
+        "AbilityModifierSupportValue": "0.1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "true_sight_radius": "750"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_day": "750"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_night": "750"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "sight_duration": "5"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "spread_aoe": "325"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "ministun_duration": "0.3",
+            "LinkedSpecialBonus": "special_bonus_unique_zeus_3"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "zuus_cloud": {
+        "ID": "6325",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByScepter": "1",
+        "AbilitySound": "Hero_Zuus.Cloud.Cast",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "45",
+        "AbilityManaCost": "325",
+        "AbilityModifierSupportValue": "0.1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "cloud_duration": "30"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "cloud_bolt_interval": "2.5"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "cloud_radius": "450"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "hits_to_kill_tooltip": "8"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "creep_hits_to_kill_tooltip": "16"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "cloud_bounty_tooltip": "125"
+          }
+        }
+      },
+      "zuus_thundergods_wrath": {
+        "ID": "5113",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Zuus.GodsWrath",
+        "AbilityDraftUltScepterAbility": "zuus_cloud",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "130 125 120",
+        "AbilityManaCost": "300 400 500",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_day": "500"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_night": "500"
+          },
+          "03": {
+            "var_type": "FIELD_FLOAT",
+            "sight_duration": "3.0 3.0 3.0 3.0"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "300 425 550",
+            "LinkedSpecialBonus": "special_bonus_unique_zeus_4"
+          }
+        }
+      },
+      "snapfire_lil_shredder": {
+        "ID": "6488",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Snapfire.ExplosiveShells.Cast",
+        "AbilityCastPoint": "0.0",
+        "AbilityCastRange": "800",
+        "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_3",
+        "AbilityCooldown": "24 20 16 12",
+        "AbilityDuration": "6",
+        "AbilityManaCost": "50 65 80 95",
+        "AbilityValues": {
+          "damage": "20 45 70 95",
+          "buffed_attacks": {
+            "value": "6",
+            "special_bonus_unique_snapfire_2": "+2"
+          },
+          "attack_speed_bonus": "300",
+          "attack_range_bonus": "75 150 225 300",
+          "buff_duration_tooltip": "6",
+          "base_attack_time": "1.0",
+          "armor_reduction_per_attack": "0.5",
+          "armor_duration": "5.0"
+        }
+      },
+      "special_bonus_unique_snapfire_6": {
+        "ID": "382",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "1",
+            "ad_linked_abilities": "snapfire_lil_shredder"
+          }
+        }
+      },
+      "special_bonus_unique_snapfire_8": {
+        "ID": "500",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "3",
+            "ad_linked_abilities": "snapfire_lil_shredder"
+          }
+        }
+      }
+    }
+  },
+  "pinnedEnglish": {
+    "source": {
+      "file": "abilities_english.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt",
+      "sha256": "7099fb24b4e164a1f839a8404d20e0752927f06cccb49e29dfac15cf2411e5cc",
+      "gitBlobSha": "4c7939d76ea6bc733b3926dc0e8e186ad66a9dcb",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "tokens": {
+      "DOTA_Tooltip_ability_zuus_lightning_bolt": "Lightning Bolt",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_Description": "Calls down a bolt of lightning to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a %sight_radius_night% radius. Can be cast on the ground, affecting the closest enemy hero in %spread_aoe% range.",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_abilitycastrange": "CAST RANGE:",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_sight_radius_day": "SIGHT RADIUS:",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_sight_duration": "SIGHT DURATION:",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_ministun_duration": "MINISTUN DURATION:",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_Lore": "A shocking punishment for rebellious heathen.",
+      "DOTA_Tooltip_ability_zuus_lightning_bolt_Note0": "You can interrupt channeling spells and items with this ability.",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath": "Thundergod's Wrath",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_Description": "Strikes all enemy heroes with a bolt of lightning, no matter where they may be.  Thundergod's Wrath also provides True Sight around each hero struck.  If an enemy hero is invisible, it takes no damage, but the True Sight is still created at that hero's location.",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_Lore": "The Lord of Heaven smites all who oppose him, near or far.",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_damage": "DAMAGE:",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_sight_radius_day": "TRUE SIGHT RADIUS:",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_sight_duration": "DURATION:",
+      "DOTA_Tooltip_ability_zuus_thundergods_wrath_abilitydraft_note": "<span class=\"ADWarning\">Nimbus requires <b>Lightning Bolt</b> to be drafted for damage.</span>",
+      "DOTA_Tooltip_ability_zuus_cloud": "Nimbus",
+      "DOTA_Tooltip_ability_zuus_cloud_Description": "Creates a storm cloud anywhere on the map that automatically casts Lightning Bolt on nearby enemies.",
+      "DOTA_Tooltip_ability_zuus_cloud_cloud_duration": "DURATION:",
+      "DOTA_Tooltip_ability_zuus_cloud_cloud_bolt_interval": "LIGHTNING BOLT BASE COOLDOWN:",
+      "DOTA_Tooltip_ability_zuus_cloud_hits_to_kill_tooltip": "HITS TO DESTROY:",
+      "DOTA_Tooltip_ability_zuus_cloud_creep_hits_to_kill_tooltip": "CREEP HITS TO DESTROY:",
+      "DOTA_Tooltip_ability_zuus_cloud_cloud_radius": "RADIUS:",
+      "DOTA_Tooltip_ability_zuus_cloud_Note0": "Grants %cloud_bounty_tooltip% gold if destroyed by an enemy hero.",
+      "DOTA_Tooltip_ability_zuus_cloud_Note1": "Affects the closest enemy unit with strikes from Zeus's current level of Lightning Bolt.",
+      "DOTA_Tooltip_ability_zuus_cloud_Note2": "Towers and creeps do half damage to the Nimbus.",
+      "DOTA_Tooltip_ability_zuus_cloud_lore": "Where the thunder god's ire grows, storm clouds quickly gather.",
+      "DOTA_Tooltip_ability_pugna_life_drain": "Life Drain",
+      "DOTA_Tooltip_ability_pugna_life_drain_Description": "CHANNELED - When cast on an enemy, Pugna drains health from the target enemy unit to heal himself and granting vision over the target. If Pugna has full HP, and the enemy target is a Hero, Life Drain will restore mana instead.\n\nWhen cast on an ally, Pugna will drain his own health into his ally.",
+      "DOTA_Tooltip_ability_pugna_life_drain_shard_description": "Life Drain can target your Nether Ward, causing life drain to refract to all enemy heroes within %abilitycastrange% units of the ward for %shard_damage_pct_from_ward%%% of its normal value. The effect is interrupted if the ward is destroyed.",
+      "DOTA_Tooltip_ability_pugna_life_drain_scepter_description": "Reduces cooldown by %abilitycooldown%s. When targeting an enemy hero, Pugna reduces their outgoing spell damage by %spell_amp_drain_rate%%% per second up to a maximum of %spell_amp_drain_max%%% and increases his own, up to a maximum of %max_spell_amp_drain_pct%%%. When draining through a Nether Ward using Shard, the rate of increase/decrease is %spell_amp_drain_rate_ward%%% instead. Debuff lasts %spell_amp_drain_duration% seconds.",
+      "DOTA_Tooltip_ability_pugna_life_drain_Lore": "Pugna has truly become more powerful than even the grandmaster of Oblivion.",
+      "DOTA_Tooltip_ability_pugna_life_drain_Note0": "Health gained depends on the actual damage dealt.",
+      "DOTA_Tooltip_ability_pugna_life_drain_Note1": "Illusions are destroyed on the first tick of damage.",
+      "DOTA_Tooltip_ability_pugna_life_drain_health_drain": "DRAIN PER SECOND:",
+      "DOTA_Tooltip_ability_pugna_life_drain_abilitycastrange": "CAST RANGE:",
+      "DOTA_Tooltip_ability_pugna_life_drain_abilitychanneltime": "MAX DURATION:",
+      "DOTA_Tooltip_ability_huskar_life_break": "Life Break",
+      "DOTA_Tooltip_ability_huskar_life_break_Description": "Huskar draws upon his health to break an enemy's life, leaping at a target to shatter a percentage of that hero's current health, and slowing them.  While leaping, Huskar is Spell Immune.\n\nDISPEL TYPE: Basic Dispel",
+      "DOTA_Tooltip_ability_huskar_life_break_scepter_description": "Forces the enemy target to attack Huskar and increases cast range.",
+      "DOTA_Tooltip_ability_huskar_life_break_Lore": "No matter the danger, Huskar thrusts himself into melees that only he can survive.",
+      "DOTA_Tooltip_ability_huskar_life_break_Note0": "If Huskar is disabled during the charge or the target moves more than 1400 units in 0.015 seconds, the charge stops.",
+      "DOTA_Tooltip_ability_huskar_life_break_Note1": "Slow works on Spell Immune units.",
+      "DOTA_Tooltip_ability_huskar_life_break_Note2": "Life Break cannot be disjointed.",
+      "DOTA_Tooltip_ability_huskar_life_break_tooltip_health_damage": "%DAMAGE DEALT:",
+      "DOTA_Tooltip_ability_huskar_life_break_tooltip_health_cost_percent": "%DAMAGE TAKEN:",
+      "DOTA_Tooltip_ability_huskar_life_break_movespeed": "%MOVEMENT SLOW:",
+      "DOTA_Tooltip_ability_huskar_life_break_slow_duration_tooltip": "SLOW DURATION:",
+      "DOTA_Tooltip_ability_huskar_life_break_taunt_duration": "TAUNT DURATION:",
+      "DOTA_Tooltip_ability_huskar_life_break_cast_range_bonus": "CAST RANGE BONUS:",
+      "DOTA_Tooltip_ability_treant_leech_seed": "Leech Seed",
+      "DOTA_Tooltip_ability_treant_leech_seed_Description": "Treant plants a life-sapping seed in an enemy unit, draining its health, while simultaneously slowing it. The seed heals friendly units around it.",
+      "DOTA_Tooltip_ability_treant_leech_seed_Lore": "Rooftrellen nurtures the beings under his stewardship, sustained by the lifeforce of trespassers into his sacred ground.",
+      "DOTA_Tooltip_ability_treant_leech_seed_leech_damage": "DAMAGE/HEAL PER SECOND:",
+      "DOTA_Tooltip_ability_treant_leech_seed_movement_slow": "%MOVEMENT SLOW:",
+      "DOTA_Tooltip_ability_treant_leech_seed_slow_duration": "MOVEMENT SLOW DURATION:",
+      "DOTA_Tooltip_ability_treant_leech_seed_radius": "RADIUS:",
+      "DOTA_Tooltip_ability_treant_leech_seed_duration": "DURATION:",
+      "DOTA_Tooltip_ability_treant_leech_seed_AbilityCastRange": "CAST RANGE:",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder": "Lil' Shredder",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_Description": "Snapfire heats up her mounted turret to rapidly fire %buffed_attacks% fixed-damage attacks. Each attack reduces the enemy's armor. Provides bonus attack range for the duration.",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_Note0": "Sets base attack time to %base_attack_time%s for the duration.",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_Note1": "Attack modifiers have a chance to proc on Lil' Shredder attacks.",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_Lore": "Beadie constantly tinkers with a design she first dreamed up plotting an exodus from her old gang.",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_attack_range_bonus": "BONUS RANGE:",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_damage": "FIXED DAMAGE PER SHOT:",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_armor_reduction_per_attack": "ARMOR LOSS PER STACK:",
+      "DOTA_Tooltip_ability_snapfire_lil_shredder_armor_duration": "ARMOR LOSS DURATION:",
+      "DOTA_Tooltip_ability_special_bonus_unique_snapfire_6": "Lil' Shredder Uses Your Attack Damage",
+      "DOTA_Tooltip_ability_special_bonus_unique_snapfire_8": "{s:value}x Lil' Shredder Multishot"
+    }
+  },
+  "pinnedNimbus": {
+    "source": {
+      "file": "npc_units.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "gitBlobSha": "bd39899403639cf1f441f08e5a4a4367845b3f0d",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "body": {
+      "BaseClass": "npc_dota_zeus_cloud",
+      "Model": "models/heroes/zeus/zeus_sigil.vmdl",
+      "SoundSet": "Creep_Good_Range",
+      "Level": "0",
+      "UnitLabel": "zeus_cloud",
+      "wearable": "8640",
+      "Ability1": "",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "Ability5": "",
+      "Ability6": "",
+      "Ability7": "",
+      "Ability8": "",
+      "ArmorPhysical": "0",
+      "MagicalResistance": "0",
+      "AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+      "AttackDamageMin": "0",
+      "AttackDamageMax": "0",
+      "AttackDamageType": "DAMAGE_TYPE_ArmorPhysical",
+      "AttackRate": "1",
+      "AttackAnimationPoint": "0.5",
+      "AttackAcquisitionRange": "800",
+      "AttackRange": "500",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "900",
+      "AttributePrimary": "DOTA_ATTRIBUTE_STRENGTH",
+      "AttributeBaseStrength": "0",
+      "AttributeStrengthGain": "0",
+      "AttributeBaseIntelligence": "0",
+      "AttributeIntelligenceGain": "0",
+      "AttributeBaseAgility": "0",
+      "AttributeAgilityGain": "0",
+      "IgnoreAddSummonedToSelection": "1",
+      "BountyGoldMin": "125",
+      "BountyGoldMax": "125",
+      "BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_NONE",
+      "MovementSpeed": "0",
+      "StatusHealth": "16",
+      "StatusHealthRegen": "0",
+      "StatusMana": "0",
+      "StatusManaRegen": "0",
+      "TeamName": "DOTA_TEAM_GOODGUYS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD",
+      "VisionDaytimeRange": "500",
+      "VisionNighttimeRange": "500",
+      "AttackDesire": "1.5"
+    },
+    "inheritedFields": {
+      "BaseAttackSpeed": null,
+      "AttackAnimationBackswing": null,
+      "MovementTurnRate": null,
+      "AttackRangeBuffer": null
+    }
+  },
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Official five selected AA rows supply complete base/Super/Gaben descriptions, custom differences and numeric arrays; AA custom clauses take precedence over native balance.",
+      "versionContext": "Fresh230-row HTTP200 snapshot reused; whole-response SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "accessMethod": "priorDirectHTTP200Snapshot",
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae"
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Pinned Valve ability KV supplies cast points, spell-immunity targeting, native child ranks, durations, intervals and talent links. AA balance supersedes native arrays.",
+      "versionContext": "2023-02-10 commit6abdd9d13de2f4330ca748082467b9ff6e6cd928; folder20230216 is not the source date. Not established as exact AA build.",
+      "accessMethod": "localPinnedSource",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+    },
+    {
+      "id": "english",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Pinned English notes directly specify Life Drain restoration from actual damage and first-tick illusion destruction, Life Break undisjointability and immunity-piercing slow, Shredder BAT1 and attack-modifier eligibility. The Life Break1400/.015 tooltip conflicts with the captured2440 body description.",
+      "versionContext": "Same pinned2023-02-10 source; stale tooltip conflict is retained rather than silently promoted.",
+      "accessMethod": "localPinnedSource",
+      "sha256": "7099fb24b4e164a1f839a8404d20e0752927f06cccb49e29dfac15cf2411e5cc"
+    },
+    {
+      "id": "treant-old",
+      "url": "https://liquipedia.net/dota2/Treant_Protector/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Older Leech Seed has immediate then one-second pulses; full healing irrespective of damage,450-speed undisjointable healing projectiles, new-target exclusions and continued corpse-origin pulses. It lists0.3+0.2 animation.",
+      "versionContext": "Indexed historical7.27b–7.39e composite, not a direct2023 capture. Later creep healing reduction must be excluded.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "treant-history",
+      "url": "https://liquipedia.net/dota2/Treant_Protector/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "6.78 retains healing after target death;7.37d introduces reduced creep healing, so that reduction is not imported into the2023 candidate. The later Sapling ground facet is not the source of AA Super.",
+      "versionContext": "Dated changelog entries distinguish legacy mechanics from2024 and later changes.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "huskar-2023",
+      "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Huskar",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Captured Life Break specifies0.3+0.5,1200 homing drag, five-second spell-immunity charge, casting without turning,2440 cutoff, impact Spell Block, enemy→self→slow→taunt order and nonlethal magical self damage. Taunt permits autocast attack modifiers and is lower priority than Duel.",
+      "versionContext": "Direct2023-02-15 archived page, compatible with pinned7.32-era data. Reused another agent’s actual HTTP200 response; its Inner Fire terrain text is not Life Break terrain proof.",
+      "accessMethod": "directArchivedHTTP200",
+      "sha256": "dabba597d43f03ed2a12c9c6cf9b462160c9b3023fea1861fdf064de06dec746"
+    },
+    {
+      "id": "huskar-current",
+      "url": "https://liquipedia.net/dota2/Huskar",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Life Break explicitly carries Huskar over impassable terrain and trees. Modern debuff immunity, resistance, damage ordering and initial Spell Block differ from the captured historical rules and are not imported.",
+      "versionContext": "Current indexed7.41 text supports terrain traversal as a compatible Wiki supplement; exact introduction or continuity at2023 remains unverified.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "pugna-old",
+      "url": "https://dota2.fandom.com/wiki/Pugna",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Frozen page describes0.2+0 animation, ten-second channel, quarter-second ticks, range plus200 break distance, True Sight and lethal allied transfer. Its newer flat healing and0.5 mana factor are not used.",
+      "versionContext": "Indexed post7.35 frozen page; only compatible mechanisms supplemented. Exact2023 restoration is locked by pinned English notes and dated changelogs.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "pugna-history",
+      "url": "https://dota2.fandom.com/wiki/Pugna/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.28 Shard adds successive random links and channel survives until no links remain; later timing differs from AA one second.7.33 changes ally healing from actual damage to flat healing;7.33e halves full-health mana. Earlier5.62 notes remaining-illusion-health healing, whose2023 continuity is not fully recovered.",
+      "versionContext": "Dated history; AA150/225/300 and one-second custom upgrade supersede the native contemporary values.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "pugna-history-current",
+      "url": "https://liquipedia.net/dota2/Pugna/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Later7.38 removes first-tick illusion destruction and mana restoration. Those changes are excluded from this historical candidate.",
+      "versionContext": "Modern chronological primary Wiki distinguishes later redesign from pre7.33 behavior.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "patch733e",
+      "url": "https://liquipedia.net/dota2/Version_7.33e",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "The2023-07-13 patch halves the mana restored at full health. The earlier full factor remains the selected branch.",
+      "versionContext": "Dated7.33e, after the pinned February2023 candidate.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "zeus-old",
+      "url": "https://dota2.fandom.com/wiki/Zeus",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Frozen page distinguishes ground versus unit Spell Block, hero-priority ground search and stationary True Sight. Nimbus acts as a separate body, starts ready, strikes closest targets without Spell Block, survives owner death and pauses on ability loss; native ward has4/8/16 hit counts. Wrath excludes unseen invisible heroes from initial damage.",
+      "versionContext": "Indexed late/frozen page, not direct2023. Modern Bolt0.25+0.72 and native325 search are excluded in favor of pinned0.3 and AA425; child backswing and linger remain explicit working values.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "zeus-history",
+      "url": "https://liquipedia.net/dota2/Zeus/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Later7.41 changes Wrath to grant vision before damage. That ordering is not backported to the historical invisible-target exception.",
+      "versionContext": "Dated later-history separation; precise historical Nimbus cooldown-reduction transition not recovered.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "nimbus-official",
+      "url": "https://www.dota2.com/700/gameplay/",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Official7.00 introduces a global Nimbus and4melee/8ranged/16other hit-count defense. Its initial radius, duration and cooldown scaling differ from the later native KV.",
+      "versionContext": "Official2016 introduction is provenance, not authority for February2023 numeric balance.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "unit-kv",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Pinned npc_dota_zeus_cloud is a stationary NO_ATTACK16-health ward. Its actual raw StatusHealth,ArmorPhysical,AttackRange,AttackRate and MovementSpeed fields are the configuration source, with inherited native animation/profile fields.",
+      "versionContext": "Pinned2023-02-10 source. Turn0.5/.03 uses the existing C4 working conversion and does not prove acceleration.",
+      "accessMethod": "localPinnedSource",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592"
+    },
+    {
+      "id": "snapfire-old",
+      "url": "https://dota2.fandom.com/wiki/Snapfire",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "Frozen Shredder describes six-second six-charge buff, BAT1, fixed main attack, consumption on attack execution including misses, armor before damage, stack-duration refresh, recast refresh and full modifiers on random instant multishot attacks.",
+      "versionContext": "Indexed late/frozen page, not direct2023. Its bonus-target count terminology does not alone resolve AA3x as primary+two or primary+three.",
+      "accessMethod": "indexedPrimaryWiki"
+    },
+    {
+      "id": "snapfire-history",
+      "url": "https://dota2.fandom.com/wiki/Snapfire/Changelogs",
+      "accessedOn": "2026-10-30",
+      "paraphrase": "7.29 gives20/45/70/95 fixed damage and7.29c changes buff duration to six.7.34 moves own-attack and3x multishot talents. AA keeps20/45/95 and one armor loss despite intervening native numerical changes.",
+      "versionContext": "Dated talent and value lineage; current5-shot/base-damage-factor redesign is not imported.",
+      "accessMethod": "indexedPrimaryWiki"
+    }
+  ],
+  "archivedMetadata": {
+    "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Huskar",
+    "sha256": "dabba597d43f03ed2a12c9c6cf9b462160c9b3023fea1861fdf064de06dec746",
+    "httpStatus": 200,
+    "accessedOn": "2026-10-30",
+    "reusedLocalArtifact": "output/c9-inner-laser/Huskar.html",
+    "meaning": "Metadata and short paraphrase only; complete third-party page not copied into tracked sources."
+  },
+  "versionSelection": {
+    "LifeDrain": "Pre7.33 actual restoration; full pre7.33e mana factor; old7.28 multiple-link family with AA one-second cadence. Modern flat healing,0.5factor and7.38 removal are excluded.",
+    "LifeBreak": "Captured2023 spell immunity and impact block retained. Modern explicit terrain supplement is implemented, but exact2023 continuity remains source_pending.",
+    "LightningBolt": "AA425/search and+1000 cast range override native325. Pinned0.3 point overrides modern0.25. Nimbus/Wrath remain independent native rank1/rank3.",
+    "LilShredder": "AA original flat values and armor1 retained; native six-second duration/BAT1/modifier and shot consumption complete applicable gaps. AA3x target-count interpretation is qualified."
+  },
+  "preOverrideDiagnostic": {
+    "path": "output/c9-leech-shredder/actual-before.json",
+    "sha256": "5426ac83e4c982ac1fec776a06f6866c2616de5f7aef30c6b84f64e0e0dfe79f",
+    "capturedConfigurationHash": "084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34",
+    "meaning": "Actual earlier engine behavior under controlled preconditions; diagnosis is not an independent native source."
+  }
+}

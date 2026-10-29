@@ -103,6 +103,14 @@
       "accessedOn": "2026-10-29",
       "versionContext": "Direct2023-02-15 archivedWiki,HTTP200,sha256296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5.",
       "observation": "Specific Chaos Strike text places determination during its attack point and mentions a distinct attack animation. That phrase may refer to the windup interval and does not independently establish a single exact frame; compare with the generic Critical Strike beginning-of-attack rule."
+    },
+    {
+      "id": "glaives-main-2023",
+      "url": "https://web.archive.org/web/20230215192140id_/https://dota2.fandom.com/wiki/Silencer",
+      "accessedOn": "2026-10-30",
+      "sha256": "9cddc40233a693eae6c0b9efb030656ff726c347ce6f267f0134d703168bc6e7",
+      "observation": "Glaives steals before pure damage before the physical attack; independent temporary timers, source proportional mana and victim flat mana, floor0temporary/floor1permanent, living-owner/death-category rules. Bounce is a separate50%-lineage physical spell packet with no amplification/lifesteal/onhit and leading attack-begin damage basis. Global has0.3+0.37animation and affects invisible, spell-immune and invulnerable enemies. Arcane Curse has initial damage, independent1secondDOT, silence pause/multiplier and cast penalty.",
+      "versionContext": "Direct archived2023-02Dota2Wiki HTML HTTP200, actually read this round; compatible mechanisms, not current facets/innates."
     }
   ],
   "engineRequirements": [
@@ -460,13 +468,26 @@
       "id": "E-CRITICAL-ROLL-START",
       "kind": "timing",
       "branch": "base",
-      "status": "source_pending",
-      "rule": "Current occurrence snapshots happen at attack-point dispatch. The2022genericcritical page explicitly says beginning rather than projectile launch/impact,while2023Chaos Strike uses the ambiguous phrase during attack point. Resolve the exact per-caller deadline and animation implications before forcing a universal change. Add real windup-time Break,provider-removal,chance-change and launch/impact cases; independent in-flight snapshots alone do not certify the native windup rule.",
+      "status": "actual_missing",
+      "rule": "C9 freezes numeric source critical profiles before windup,but actual chance/PRD trials still run at attack point beside effectful Walrus preparation. The2022generic page requires occurrence at beginning;cancelled attacks and interleaved random/PRD ordering remain a concrete missing stage protocol,not a source-verified native result. Windup profile-removal/acquisition tests prove only that profile values no longer change in flight.",
       "sourceIds": [
         "critical-strike-2022",
         "chaos-critical-2023"
       ],
-      "testEvidence": []
+      "testEvidence": [
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-04 a removed source critical profile remains on its already begun attack"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-05 a source critical acquired during windup does not join an existing record"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-16 actual Coup PRD is sampled once for the leading record and never rerolled for Glaives"
+        }
+      ]
     },
     {
       "id": "E-INSTANT-INCOMING-START",
@@ -479,6 +500,106 @@
         "courage-2023-attacks"
       ],
       "testEvidence": []
+    },
+    {
+      "id": "E-ATTACK-MAIN-BASIS-C9",
+      "kind": "mechanism",
+      "branch": "attack_main_basis",
+      "status": "passed",
+      "rule": "Ordinary and explicit fixed/fractional instant/launch callers keep a record-local initial main numeric basis,including Totem/Focus but excluding conditional bonuses and receiver reductions;real generated Flak/SideGunner records are initialized before travel. One selected critical is reused,without rerolling for a Glaives bounce. This finite property does not close the separate critical trial timing gate.",
+      "sourceIds": [
+        "glaives-main-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-01 same-hit intelligence steal cannot increase the leading physical or its bounce"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-02 a nonzero windup retains its initial100main despite300attack before release"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-03 flight-time500attack cannot rewrite the independent leading100basis"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-04 a removed source critical profile remains on its already begun attack"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-05 a source critical acquired during windup does not join an existing record"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-06 overlapping attacks retain100and300main even when the newer projectile lands first"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-07 primary absorption does not reduce the separately mitigated physical bounce"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-08 an explicit fixed40instant basis stays40instead of its holders100attack"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-09 a50percent launched attack snapshots its fraction once and bounces25"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-10 real Rebuke includes its ensured critical but excludes conditional hero damage from the bounce"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-11 real Totem at begin remains in that projectile after the dispellable buff is removed"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-12 a real conditional Fury bonus contributes to the primary but not its bounce basis"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-13 real Chemical Rage disjoint prevents the leading hit and all Glaives bounces"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-14 actual unmodified battle inputs rebuild in-flight main snapshots and RNG exactly"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-15 the bounce retains the leading projectile speed after the source changes speed in flight"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-16 actual Coup PRD is sampled once for the leading record and never rerolled for Glaives"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-17 a modifier-disabled fixed attack does not spend orb mana or gain criticals or bounces"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-18 real Focus Fire main reduction stays with the begun shot after its buff is purged"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-19 a failed leading attack spends its orb at point but applies no pure or bounce damage"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-20 an actually earned Jingu flat bonus belongs to the leading main basis and its Glaives bounce"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-21 real fixed Lil Shredder overrides earned Jingu regular attack bonus instead of adding it twice"
+        },
+        {
+          "file": "tests/reference-attack-main-snapshot.test.ts",
+          "test": "GMS-22 Jingu regular flat bonus accepts total main amplification without receiving white-only bonus twice"
+        }
+      ]
     }
   ],
   "skills": []

@@ -415,10 +415,13 @@ describe('catalog-driven additional skills', () => {
     }
   });
 
-  it('Life Drain immediately releases its channel and visible links when the primary leaves break range', () => {
+  it('Life Drain keeps a surviving secondary link after the primary leaves and ends when the final link leaves', () => {
     const state = battle('custom_pugna_life_drain', 6, 2), [caster, primary] = state.units;
     advance(state, 1.4); expect(caster.action).toBe('channel'); expect(primary.statuses.some(s => s.kind === 'visualLink')).toBe(true);
     primary.x = 14; primary.y = 12; advance(state, .2);
+    expect(caster.action).toBe('channel');expect(primary.statuses.some(s=>s.kind==='visualLink')).toBe(false);
+    expect(state.units.some(u=>u!==primary&&u.statuses.some(s=>s.kind==='visualLink'&&s.skill==='custom_pugna_life_drain'))).toBe(true);
+    for(const u of state.units.filter(u=>u.side!==caster.side)){u.x=14;u.y=12;}advance(state,.2);
     expect(caster.castUntil).toBeLessThanOrEqual(state.time);
     expect(state.events.some(e => e.status === 'channelEnded')).toBe(true);
     expect(state.units.some(u => u.statuses.some(s => s.kind === 'visualLink' && s.skill === 'custom_pugna_life_drain'))).toBe(false);
@@ -507,7 +510,8 @@ describe('catalog-driven additional skills', () => {
     advance(state, .5); expect(caster.y).toBeGreaterThan(-2); expect(caster.y).toBeLessThan(3); expect(caster.statuses.some(s => s.kind === 'magicImmune')).toBe(true);
     advance(state, .5);
     expect(caster.y).toBeGreaterThan(2); expect(caster.statuses.some(s => s.kind === 'magicImmune')).toBe(false);
-    const hits = state.events.filter(e => e.type === 'hit' && e.skill === 'custom_huskar_life_break');
+    const allHits=state.events.filter(e=>e.type==='hit'&&e.skill==='custom_huskar_life_break'),hits=allHits.filter(e=>e.target!==caster.id);
+    expect(allHits.filter(e=>e.target===caster.id)).toHaveLength(1);expect(allHits.find(e=>e.target===caster.id)?.damageType).toBe('magical');
     expect(new Set(hits.map(e => e.target)).size).toBe(2);
     expect(hits.find(e => e.target === back.id)!.amount).toBeGreaterThan(hits.find(e => e.target === front.id)!.amount!);
   });

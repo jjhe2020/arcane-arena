@@ -5,7 +5,7 @@ export type DamageType = 'physical' | 'magical' | 'pure';
 /** Mechanism category is independent of the ability used for statistics. */
 export type DamageCategory = 'attack' | 'spell' | 'hpRemoval';
 /** One released attack; opaque data must contain serializable snapshots only. */
-export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number}}
+export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number};mainDamageSnapshot?:{stage:'attackBegin';at:number;baseline:number;unscaled:number;fraction:number;beforeCritical:number;damage?:number}}
 export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; reflection?:boolean; noSpellLifesteal?:boolean; delayed?:boolean; healthRemoval?:boolean;noAmplification?:boolean;noReflection?:boolean;noDamageHooks?:boolean;nonLethal?:boolean;ignoreDamageBlock?:boolean;bypassGenericMultipliers?:boolean;convertedAttack?:boolean;affectsBanished?:boolean;affectsInvulnerable?:boolean }
 /** Typed HPLOSS retains armor/MR; direct healthRemoval follows its older path. */
 export interface DamageFlags {healthLoss?:boolean}

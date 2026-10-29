@@ -43,9 +43,9 @@ describe('English-catalog upgrade effects',()=>{
     target.x=13;stepBattle(b,.2,[def]);const frozen=caster.statuses.find(s=>s.kind==='attackSpeed')?.value;
     target.x=0;stepBattle(b,1,[def]);expect(caster.statuses.find(s=>s.kind==='attackSpeed')?.value).toBe(frozen);
   });
-  it('Inner Fire upgraded zero-cast-point effect blocks enemy healing and heals caster by hero damage',()=>{
+  it('Inner Fire upgraded zero-cast-point effect blocks healing and uses the fixed pre-mitigation hero heal',()=>{
     const {b,def,caster}=match('custom_huskar_inner_fire',9,{values:['DAMAGE: 100','RADIUS: 600','DURATION: 2']});caster.hp=500;
-    stepBattle(b,1/30,[def]);expect(caster.hp).toBeCloseTo(537.5);
+    stepBattle(b,1/30,[def]);expect(caster.hp).toBeCloseTo(550);expect(b.events.find(e=>e.type==='hit'&&e.skill===def.id)?.amount).toBe(75);
     expect(b.units[1].statuses.find(s=>s.kind==='healReduction')?.value).toBe(1);
     expect(b.units[1].statuses.find(s=>s.kind==='slow')?.value).toBe(.4);
   });

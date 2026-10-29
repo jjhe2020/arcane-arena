@@ -126,6 +126,7 @@ export function applyDragonEchoAcceptance(registry:Record<string,SkillProgram>):
   c.status(c.caster,'range',seconds,v(c,'BONUS ATTACK RANGE',75)/100,{dispel:'basic',removeOnDeath:true,data:data(c)});
  };
  totem.init=c=>{if(c.skill.points>=9)c.caster.attack+=v(c,'GABEN BASE DAMAGE',60);};
+ totem.attackMainDamage=c=>({baseMultiplier:1+(own(c,c.caster,'enchantTotem')?.value??0)/100});
  totem.attackModifier=c=>({baseMultiplier:1+(own(c,c.caster,'enchantTotem')?.value??0)/100});
  totem.onAttack=c=>{c.caster.statuses=statuses(c.caster).filter(s=>!(s.source===c.caster.id&&s.skill===c.skill.id&&(s.data?.ownerInstance===undefined||s.data.ownerInstance===identity(c))&&['enchantTotem','range'].includes(s.kind)));};
  totem.implemented=['Fourteen-second dispellable single-successful-hit main-damage buff and75range','Miss retains buff,recast refreshes and preserves the cast-time rank value','AA active zero-point zero-mana Super,3.5cooldown and Gaben60base damage'];

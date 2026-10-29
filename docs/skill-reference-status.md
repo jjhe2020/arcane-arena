@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 125 项；完整逐项通过 7 项。
-当前代码下，1271 条具名结果测试要求通过，1271 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 140 项；完整逐项通过 7 项。
+当前代码下，1463 条具名结果测试要求通过，1463 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -102,7 +102,7 @@
 | 怒意狂击 (Fury Swipes) | 审查中 | 4 / 1 / 1 / 1 / 5 | 1 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | G 胖力量 (Gaben's Strength) | 审查中 | 1 / 3 / 1 / 1 / 2 | 1 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 幽灵船 (Ghostship) | 审查中 | 2 / 4 / 1 / 1 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
-| 智慧之刃 (Glaives of Wisdom) | 审查中 | 1 / 3 / 1 / 3 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
+| 智慧之刃 (Glaives of Wisdom) | 审查中 | 1 / 3 / 1 / 4 / 9 | 4 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 全领域静默 (Global Silence) | 审查中 | 1 / 3 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/fury-global.json) |
 | 神之谴戒 (God's Rebuke) | 审查中 | 4 / 1 / 1 / 1 / 10 | 4 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
 | 黄泉颤抖 (Grave Chill) | 审查中 | 3 / 1 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/god-gust.json) |
@@ -120,22 +120,22 @@
 | 阎刃 (Infernal Blade) | 审查中 | 2 / 5 / 0 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
 | 墨涌 (Ink Swell) | 审查中 | 2 / 5 / 3 / 1 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
 | 野性之心 (Inner Beast) | 审查中 | 4 / 3 / 1 / 1 / 7 | 3 | [审查记录](../references/dota-wiki/acceptance/ice-inner.json) |
-| 心炎 (Inner Fire) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 极度饥渴 (Insatiable Hunger) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 如意棒法 (Jingu Mastery) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 海妖外壳 (Kraken Shell) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 激光 (Laser) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 寄生种子 (Leech Seed) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 牺牲 (Life Break) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 生命汲取 (Life Drain) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 雷击 (Lightning Bolt) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 霹雳铁手 (Lil' Shredder) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 活体护甲 (Living Armor) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 月光 (Lucent Beam) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 心炎 (Inner Fire) | 审查中 | 4 / 2 / 0 / 0 / 5 | 5 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
+| 极度饥渴 (Insatiable Hunger) | 审查中 | 0 / 2 / 0 / 0 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
+| 如意棒法 (Jingu Mastery) | 审查中 | 7 / 3 / 0 / 0 / 5 | 10 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
+| 海妖外壳 (Kraken Shell) | 审查中 | 2 / 1 / 0 / 0 / 6 | 4 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
+| 激光 (Laser) | 审查中 | 6 / 2 / 0 / 0 / 2 | 9 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
+| 寄生种子 (Leech Seed) | 审查中 | 3 / 3 / 1 / 1 / 8 | 7 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 牺牲 (Life Break) | 审查中 | 4 / 2 / 1 / 2 / 9 | 6 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 生命汲取 (Life Drain) | 审查中 | 3 / 4 / 2 / 2 / 12 | 6 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 雷击 (Lightning Bolt) | 审查中 | 3 / 1 / 2 / 2 / 12 | 4 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 霹雳铁手 (Lil' Shredder) | 审查中 | 4 / 3 / 2 / 1 / 3 | 9 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 活体护甲 (Living Armor) | 审查中 | 0 / 3 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
+| 月光 (Lucent Beam) | 审查中 | 1 / 3 / 1 / 0 / 3 | 5 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
 | 熠熠生辉 (Luminosity) | 审查中 | 5 / 0 / 1 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
-| 月之祝福 (Lunar Blessing) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 魔法箭 (Magic Missile) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 磁场 (Magnetic Field) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 月之祝福 (Lunar Blessing) | 审查中 | 1 / 1 / 1 / 10 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
+| 魔法箭 (Magic Missile) | 审查中 | 2 / 1 / 1 / 2 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
+| 磁场 (Magnetic Field) | 审查中 | 1 / 2 / 0 / 2 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/living-field.json) |
 | 法力损毁 (Mana Break) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 法力吸取 (Mana Drain) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 魔法护盾 (Mana Shield) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

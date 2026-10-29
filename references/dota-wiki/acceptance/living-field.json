@@ -1,0 +1,1641 @@
+{
+  "schemaVersion": 1,
+  "group": "living-field",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "用户1A：锁定AA的明确数值优先。直接读取的2023Wiki与固定Valve KV补齐兼容机制和原生物品参数；官方具名月光弹跳眩晕修正只用于该非数值规则，不倒灌现代数值、搜索比例或目标优先级。",
+  "validation": {
+    "command": "npx vitest run tests/reference-living-field.test.ts",
+    "passedTests": 54,
+    "configurationHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+    "typecheck": "npx tsc --noEmit",
+    "meaning": "54项真实引擎结果通过。五个技能均因具体的自定义版本或环境边界而保持partial；工作候选测试变绿不等于已证明原作一致。"
+  },
+  "configuration": {
+    "baselineHash": "084467d6c8a4409800764b1e24a1b230392cf1a0a6f0a85b10e60940bf6f9b34",
+    "finalHash": "f6362cf81754cc942077d9ca9d1626ab0e6df1b142d25bb2c0bf2dc531817cb1",
+    "uniqueAuthority": [
+      "Missileprimary/bounceshareeditablepublicrangeplusliverangebonuses,noduplicateBOUNCERADIUS.",
+      "BongoactiveASdynamicparentBlessingdamage,noduplicate45or40cell.",
+      "FinalSuper/GabenAS120/R575/beam400/armor18/HPS30storedonce.",
+      "NativeBongoonlyrank1;Wratherroneousnative4removedseparatelyfromAApurchases."
+    ]
+  },
+  "skills": [
+    {
+      "id": "treant_living_armor",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "已比较完整AA基础、Super、Gaben及差异条款、最终生效程序、五档参数、历史Wiki/KV和升级原型。具名通过条款不代表越过精确未解项的整技能验收。",
+        "平面竞技场无昼夜、战争迷雾及地形视野系统。标志夹具只验证对应单位类型资格，不虚报完整信使/建筑世界工厂。"
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessedOn": "2026-10-30",
+          "observation": "实际读取了本组五技能的完整官方基础说明、差异、类别、数值和Super/Gaben；明确自定义数值保持锁定AA优先。",
+          "versionContext": "Fresh official HTTP200catalog. No currentnative balance replaces AA customvalues.",
+          "localEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191600id_/https://dota2.fandom.com/wiki/Treant_Protector",
+          "accessedOn": "2026-10-30",
+          "sha256": "7138949af23934b456595b4032f183fc4fc1b7229df8215a7d41db60c44763c8",
+          "observation": "2023活体护甲0.3+0.66、全图、普通治疗首1秒及持续时间端点结算；可以作用基础单位、信使和建筑，不能作用守卫、隐藏或无敌单位。大自然的掩护同时放大普通治疗与再生，不能将其混作吸血。",
+          "versionContext": "DirectHTTP2002023-02-15archivedWiki actuallyreadC9;AAexplicitcustomnumbersremainprimary.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Exact historical native castpoints,ranges,baseclocks,traits andupgradevalues were compared. ItemAncientJanggo owns7STR/7INT/20MS/8charges/30CD/6seconds/13percentMS,while AA overridesactiveAS.",
+          "versionContext": "Shipped2023KV pinnedbyexactcommit;native evidence,norecoveredAAcustomscripts.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "aa55",
+          "url": "https://news.abilityarena.com/ability-arena-pantheon-update-season-5-5/",
+          "accessedOn": "2026-10-30",
+          "sha256": "54072fcba44a29c5e48bc897606eb58e039bafeba7a58ff7764b1f35b40721b0",
+          "observation": "OfficialSeason5.5introducesLivingArmorasanadditionalhealingbuff. It doesnotrecoveroriginalAAscript-levelAItyingorrefreshownership.",
+          "versionContext": "OfficialAAnewsHTTP200capturefromthesameworksession,actuallyrereadC9;numericpriorityremainsthelockedcatalog."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "LA-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-01 global Living Armor uses300point660recovery50mana and10second public cooldown",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-01 global Living Armor uses300point660recovery50mana and10second public cooldown"
+            }
+          ]
+        },
+        {
+          "id": "LA-02",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-02 Living Armor first ordinary heal is exactly one second after release and respects heal amplification",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-02 Living Armor first ordinary heal is exactly one second after release and respects heal amplification"
+            }
+          ]
+        },
+        {
+          "id": "LA-03",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-03 one buff heals thirty complete ten-point ticks including its terminal tick",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-03 one buff heals thirty complete ten-point ticks including its terminal tick"
+            }
+          ]
+        },
+        {
+          "id": "LA-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-04 beneficial basic purge removes armor and future periodic healing without a final extra tick",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-04 beneficial basic purge removes armor and future periodic healing without a final extra tick"
+            }
+          ]
+        },
+        {
+          "id": "LA-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "LA-05 Super uses final18armor and30ordinary healing once",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-05 Super uses final18armor and30ordinary healing once"
+            }
+          ]
+        },
+        {
+          "id": "LA-06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "LA-06 Gaben coats the whole eligible team while rejecting hidden and invulnerable allies",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-06 Gaben coats the whole eligible team while rejecting hidden and invulnerable allies"
+            }
+          ]
+        },
+        {
+          "id": "LA-07",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-07 a released allied coat survives original owner death and victim death stops healing",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-07 a released allied coat survives original owner death and victim death stops healing"
+            }
+          ]
+        },
+        {
+          "id": "LA-08",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "LA-08 AA unbuffed-first selection moves to another frontliner after the first target is coated",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "qualification": "无增益及前排优先有AA明文；同排、近500和随机回退的精确顺序仍为平面AI候选。",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-08 AA unbuffed-first selection moves to another frontliner after the first target is coated"
+            }
+          ]
+        },
+        {
+          "id": "LA-P01",
+          "kind": "mechanism",
+          "branch": "explicit_boundary",
+          "mechanism": "AA明确无增益优先、前排、500近邻及随机候选，但未取得原始脚本的同排排序和回退精确规则。当前平面行选择属于已测量的兼容解释。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LA-08 AA unbuffed-first selection moves to another frontliner after the first target is coated"
+            }
+          ]
+        },
+        {
+          "id": "LA-P02",
+          "kind": "combination",
+          "branch": "explicit_boundary",
+          "mechanism": "尚未单独取证同一施法者重施与不同施法者的治疗提供者优先级。当前不叠加护甲及各自治疗时钟不能证明原作全部重施规则。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LA-P03",
+          "kind": "mechanism",
+          "branch": "explicit_boundary",
+          "mechanism": "自动施法界面尚未暴露原生“地面指令选择最近英雄或建筑”的独立订单；单位标志资格测试不等于已经提供信使、建筑的完整世界工厂。",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "status": "actual_missing",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "LA-08",
+        "LA-P01",
+        "LA-P02",
+        "LA-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "observation": "Native+8armorandhealingtalentsaretheprototype;AA+20healingusesitsHPSparameter,andexplicitAAfinal18armor/30HPSarenotnativebalanceimports."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "observation": "AAentire-teamcoatingiscustom;native450AOEtalentisacomparisonprototype,notasubstitutionforglobalteamcast."
+        }
+      ]
+    },
+    {
+      "id": "custom_luna_lucent_beam",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "已比较完整AA基础、Super、Gaben及差异条款、最终生效程序、五档参数、历史Wiki/KV和升级原型。具名通过条款不代表越过精确未解项的整技能验收。",
+        "平面竞技场无昼夜、战争迷雾及地形视野系统。标志夹具只验证对应单位类型资格，不虚报完整信使/建筑世界工厂。"
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessedOn": "2026-10-30",
+          "observation": "实际读取了本组五技能的完整官方基础说明、差异、类别、数值和Super/Gaben；明确自定义数值保持锁定AA优先。",
+          "versionContext": "Fresh official HTTP200catalog. No currentnative balance replaces AA customvalues.",
+          "localEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191811id_/https://dota2.fandom.com/wiki/Luna",
+          "accessedOn": "2026-10-30",
+          "sha256": "91209ecaeb19aa72f38e4a5ecccb9bdbd20ea49ba3325d949083ec953fa3312a",
+          "observation": "2023月光0.4+0.47及800距离，先伤害后强驱散眩晕。瞬时攻击来自月光落点，允许攻击特效、没有必中、忽略缴械、排除不可见隐身；原生两次攻击不覆盖AA明确一次。",
+          "versionContext": "DirectHTTP2002023-02-15archivedWiki actuallyreadC9;AAexplicitcustomnumbersremainprimary.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Exact historical native castpoints,ranges,baseclocks,traits andupgradevalues were compared. ItemAncientJanggo owns7STR/7INT/20MS/8charges/30CD/6seconds/13percentMS,while AA overridesactiveAS.",
+          "versionContext": "Shipped2023KV pinnedbyexactcommit;native evidence,norecoveredAAcustomscripts.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "workshop16",
+          "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+          "accessedOn": "2026-10-30",
+          "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3",
+          "observation": "官方具名AA修正移除月光Gaben的短暂眩晕；仅应用于额外弹跳月光，基础首发仍保留AA0.8秒眩晕。",
+          "versionContext": "OfficialAAhistoricalWorkshop captureHTTP200fromthisworksession,actuallyrereadC9. Boundednonnumericbugfix,notpermissiontoimportlaternumericpatches."
+        },
+        {
+          "id": "luna-history",
+          "url": "https://liquipedia.net/dota2/Luna/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.30c changedLucentShard totheone-attack500search prototype;7.32replacedthatShardwithflatdamagegrowthandmovedtwoinstantattackstoatalent. AAexplicitoneattackandolder3500msCDreductionremaincustomratherthanimporting2023twoattacks.",
+          "versionContext": "ActuallyreadLPdatedchangelogsplusdirect2023Wiki;versionsarecomparedwithoutmixingnewnumericvalues."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "LB-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LB-01 Lucent Beam uses400point470recovery and primary damage before its Strong stun",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-01 Lucent Beam uses400point470recovery and primary damage before its Strong stun"
+            }
+          ]
+        },
+        {
+          "id": "LB-02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "LB-02 Super final400beam70mana2point5cooldown and1125publicrange are paid once",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-02 Super final400beam70mana2point5cooldown and1125publicrange are paid once"
+            }
+          ]
+        },
+        {
+          "id": "LB-03",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "LB-03 Super instant attack still misses100percent evasion while magical beam lands",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-03 Super instant attack still misses100percent evasion while magical beam lands"
+            }
+          ]
+        },
+        {
+          "id": "LB-04",
+          "kind": "combination",
+          "branch": "super",
+          "mechanism": "LB-04 Super instant attack procs ordinary Fury damage without consuming the normal attack clock",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-04 Super instant attack procs ordinary Fury damage without consuming the normal attack clock"
+            }
+          ]
+        },
+        {
+          "id": "LB-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "LB-05 four Gaben bounces decay400by15percent and the named official correction removes only bounce stuns",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16",
+            "luna-history"
+          ],
+          "status": "source_pending",
+          "qualification": "四次弹跳、15%递减及取消弹跳眩晕有明确来源；弹跳是否全部继承Super瞬时攻击及重复目标策略仍待证。",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-05 four Gaben bounces decay400by15percent and the named official correction removes only bounce stuns"
+            }
+          ]
+        },
+        {
+          "id": "LB-06",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "LB-06 a bounce terminates when no other eligible victim is within675",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "source_pending",
+          "qualification": "675搜索半径有AA明文；没有其它目标时终止后续弹跳而不是等后续时刻重试，仍是工作解释。",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-06 a bounce terminates when no other eligible victim is within675"
+            }
+          ]
+        },
+        {
+          "id": "LB-07",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LB-07 unseen invisible candidates never receive a random beam-point instant attack",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-07 unseen invisible candidates never receive a random beam-point instant attack"
+            }
+          ]
+        },
+        {
+          "id": "LB-08",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LB-08 beam-point attackOrigin is inside a magnetic field even when the real caster is outside it",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-08 beam-point attackOrigin is inside a magnetic field even when the real caster is outside it"
+            }
+          ]
+        },
+        {
+          "id": "LB-09",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "LB-09 disarm does not prohibit the released instant attack while100percent blindness still makes it miss",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-09 disarm does not prohibit the released instant attack while100percent blindness still makes it miss"
+            }
+          ]
+        },
+        {
+          "id": "LB-P01",
+          "kind": "super",
+          "branch": "explicit_boundary",
+          "mechanism": "AA一次瞬时攻击借用旧Shard几何及保留的攻击规则；未导入2023两次攻击或现代伤害成长Shard。法术被抵挡时该瞬时攻击是否仍发生，未恢复AA精确规则。",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LB-P02",
+          "kind": "gaben",
+          "branch": "explicit_boundary",
+          "mechanism": "AA小型月蚀的随机优先级、重复受害者选择及每个弹跳是否继承Super瞬时攻击仍待自定义脚本取证。原生月蚀不继承某些天赋，不能单独决定AA自定义弹跳。",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-05 four Gaben bounces decay400by15percent and the named official correction removes only bounce stuns"
+            },
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-06 a bounce terminates when no other eligible victim is within675"
+            }
+          ]
+        },
+        {
+          "id": "LB-P03",
+          "kind": "combination",
+          "branch": "explicit_boundary",
+          "mechanism": "平面棋盘未实现原生地面视野及战争迷雾搜索；隐身候选资格另有独立结果测试。",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "status": "actual_missing",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-07 unseen invisible candidates never receive a random beam-point instant attack"
+            }
+          ]
+        },
+        {
+          "id": "LB-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Primarymagicalbeamdamegeprecedesthe0.8secondStrongstun;laterbouncebeamsdonotapplythatministun.",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-01 Lucent Beam uses400point470recovery and primary damage before its Strong stun"
+            },
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-05 four Gaben bounces decay400by15percent and the named official correction removes only bounce stuns"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "LB-05",
+        "LB-06",
+        "LB-P01",
+        "LB-P02",
+        "LB-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "luna-history",
+            "valve"
+          ],
+          "observation": "Older7.30cShardoneinstantattack/500searchandthenative+100damagetalentexplainpartsoftheupgrade;AA+325range/-50mana/-3.5CDremaincustom."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "workshop16"
+          ],
+          "observation": "SameheroEclipseisthekeywordprototypebutAAexplicit4bounces/675/0.8seconds/15percentdecaydefinecustombehavior;officialnamedfixremovesbounceministuns. NativeEclipsefullbeamcounts/nightdurationarenotimported."
+        }
+      ]
+    },
+    {
+      "id": "luna_lunar_blessing",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "已比较完整AA基础、Super、Gaben及差异条款、最终生效程序、五档参数、历史Wiki/KV和升级原型。具名通过条款不代表越过精确未解项的整技能验收。",
+        "平面竞技场无昼夜、战争迷雾及地形视野系统。标志夹具只验证对应单位类型资格，不虚报完整信使/建筑世界工厂。"
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessedOn": "2026-10-30",
+          "observation": "实际读取了本组五技能的完整官方基础说明、差异、类别、数值和Super/Gaben；明确自定义数值保持锁定AA优先。",
+          "versionContext": "Fresh official HTTP200catalog. No currentnative balance replaces AA customvalues.",
+          "localEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191811id_/https://dota2.fandom.com/wiki/Luna",
+          "accessedOn": "2026-10-30",
+          "sha256": "91209ecaeb19aa72f38e4a5ecccb9bdbd20ea49ba3325d949083ec953fa3312a",
+          "observation": "2023月之祝福是英雄固定攻击力光环，白天1200、夜间全图、残留0.5秒；影响无敌、不影响隐藏，幻象提供光环但不享受攻击力。",
+          "versionContext": "DirectHTTP2002023-02-15archivedWiki actuallyreadC9;AAexplicitcustomnumbersremainprimary.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Exact historical native castpoints,ranges,baseclocks,traits andupgradevalues were compared. ItemAncientJanggo owns7STR/7INT/20MS/8charges/30CD/6seconds/13percentMS,while AA overridesactiveAS.",
+          "versionContext": "Shipped2023KV pinnedbyexactcommit;native evidence,norecoveredAAcustomscripts.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "luna-history",
+          "url": "https://liquipedia.net/dota2/Luna/Changelogs",
+          "accessedOn": "2026-10-30",
+          "observation": "7.30c changedLucentShard totheone-attack500search prototype;7.32replacedthatShardwithflatdamagegrowthandmovedtwoinstantattackstoatalent. AAexplicitoneattackandolder3500msCDreductionremaincustomratherthanimporting2023twoattacks.",
+          "versionContext": "ActuallyreadLPdatedchangelogsplusdirect2023Wiki;versionsarecomparedwithoutmixingnewnumericvalues."
+        },
+        {
+          "id": "drum2023",
+          "url": "https://web.archive.org/web/20230215193850id_/https://dota2.fandom.com/wiki/Drum_of_Endurance",
+          "status": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "c1cc35f4ee09874f7a2353687bb283b1c32acdf93c167a56b1a328692d9e8a4c",
+          "observation": "Native7STR/7INT;20MS1200radius/.5linger nonstacking aura excludinginvul. Endurance8charges/30CD/0+0/0mana/6seconds/13percentMS,nonstackingdurationrefresh. Active affectscontrollednonheroes andinvul,notwards,doesnotinterruptchannels. AA replacesonly45activeASwithcurrentBlessingdamage.",
+          "versionContext": "DirectHTTP2002023-02-15DrumofEndurancearchivedWiki;nativeitemproperties explicitly reusedbyAAexcepttheactiveASsubstitution.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "aura",
+          "url": "https://liquipedia.net/dota2/Aura",
+          "accessedOn": "2026-10-30",
+          "observation": "Auraeligibility,lingerandstrongest-providerbehaviorareseparatefromtheindependentlystackingcomponentsdocumentedonthespecifichero/itempage.",
+          "versionContext": "Currentretainednonnumericmechanicsreference;direct2023specificpagesoverridegeneralrules."
+        },
+        {
+          "id": "item-rules",
+          "url": "https://liquipedia.net/dota2/Silence",
+          "accessedOn": "2026-10-30",
+          "observation": "Silenceblocksordinaryactiveabilities;Muteistheseparateitem-activecounterpart. Bongoitemactionthereforebypassessilence,butnotmuteorharddisables.",
+          "versionContext": "Actuallyreadcurrentretainednonnumericclassreference;datedDrumsourceownsitsclocks/values."
+        },
+        {
+          "id": "spellsteal-items",
+          "url": "https://liquipedia.net/dota2/Spell_Steal_Interactions",
+          "accessedOn": "2026-10-30",
+          "observation": "Itemabilitiesarenotstealable;SpellStealselectstheprecedingvalidenemyspellinstead. ActualGripthenBongothenRubickresultisexercisedwithoutclaimingotherSpellStealmechanics.",
+          "versionContext": "Actuallyreadcurrentretainednonnumericeligibilityreference;no modernRubickspellvaluesareimported."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "LU-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "LU-01 Lunar aura starts immediately,selects one strongest40damage provider and lingers500ms",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-01 Lunar aura starts immediately,selects one strongest40damage provider and lingers500ms"
+            }
+          ]
+        },
+        {
+          "id": "LU-02",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "LU-02 illusions bestow Lunar aura but do not benefit while normal creeps are not eligible heroes",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-02 illusions bestow Lunar aura but do not benefit while normal creeps are not eligible heroes"
+            }
+          ]
+        },
+        {
+          "id": "LU-03",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "LU-03 Lunar aura permits invulnerable heroes but excludes hidden bodies",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-03 Lunar aura permits invulnerable heroes but excludes hidden bodies"
+            }
+          ]
+        },
+        {
+          "id": "LU-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "LU-04 sourceBreak immediately suppresses Lunar copied damage and recovers without stacking",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-04 sourceBreak immediately suppresses Lunar copied damage and recovers without stacking"
+            }
+          ]
+        },
+        {
+          "id": "LU-05",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "LU-05 round growth is four damage per completed round since actual Super acquisition",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-05 round growth is four damage per completed round since actual Super acquisition"
+            }
+          ]
+        },
+        {
+          "id": "BD-01",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-01 Gaben grants a real native1Bongo action with zero mana and30second independent cooldown",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-01 Gaben grants a real native1Bongo action with zero mana and30second independent cooldown"
+            }
+          ]
+        },
+        {
+          "id": "BD-02",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-02 Bongo item active works through silence and sourceBreak while retaining its independent eight-charge counter",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve",
+            "item-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-02 Bongo item active works through silence and sourceBreak while retaining its independent eight-charge counter"
+            }
+          ]
+        },
+        {
+          "id": "BD-03",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-03 itemSwiftness20MS is nonstacking and does not affect invulnerable units",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-03 itemSwiftness20MS is nonstacking and does not affect invulnerable units"
+            }
+          ]
+        },
+        {
+          "id": "BD-04",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-04 Endurance reaches controlled creeps and invulnerable heroes",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-04 Endurance reaches controlled creeps and invulnerable heroes"
+            }
+          ]
+        },
+        {
+          "id": "BD-05",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-05 ordinary beneficial purge removes Endurance while preserving its undispellable passive movement aura",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-05 ordinary beneficial purge removes Endurance while preserving its undispellable passive movement aura"
+            }
+          ]
+        },
+        {
+          "id": "BD-06",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-06 all eight real independent activations consume charges and a ninth automatic action is refused",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-06 all eight real independent activations consume charges and a ninth automatic action is refused"
+            }
+          ]
+        },
+        {
+          "id": "BD-07",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-07 item mute forbids a drum activation without consuming its charges",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve",
+            "item-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-07 item mute forbids a drum activation without consuming its charges"
+            }
+          ]
+        },
+        {
+          "id": "BD-08",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-08 Bongo activates during a real Fiends Grip channel without stopping its subsequent damage ticks",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-08 Bongo activates during a real Fiends Grip channel without stopping its subsequent damage ticks"
+            }
+          ]
+        },
+        {
+          "id": "BD-09",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-09 Endurance is absent from an actual ward while a controlled nonhero can benefit",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-09 Endurance is absent from an actual ward while a controlled nonhero can benefit"
+            }
+          ]
+        },
+        {
+          "id": "BD-10",
+          "kind": "gaben",
+          "branch": "gaben_item",
+          "mechanism": "BD-10 actual Spell Steal skips Bongo item activity and acquires the preceding real Fiends Grip spell",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "drum2023",
+            "valve",
+            "spellsteal-items"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "BD-10 actual Spell Steal skips Bongo item activity and acquires the preceding real Fiends Grip spell"
+            }
+          ]
+        },
+        {
+          "id": "LU-P01",
+          "kind": "mechanism",
+          "branch": "explicit_boundary",
+          "mechanism": "项目无昼夜及视野系统。AA夜间全图月之祝福和自身夜间视野属于实际缺失；原NIGHT VISION保留在AA来源，移除无消费者的可编辑数值列。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "actual_missing",
+          "testEvidence": []
+        },
+        {
+          "id": "LU-P02",
+          "kind": "super",
+          "branch": "explicit_boundary",
+          "mechanism": "每个已过去回合增加4攻击力已有明文与结果。移动、重新获得或窃取技能时Super获得回合的归属规则尚无原始AA脚本。",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LU-05 round growth is four damage per completed round since actual Super acquisition"
+            }
+          ]
+        },
+        {
+          "id": "LU-P03",
+          "kind": "gaben",
+          "branch": "explicit_boundary",
+          "mechanism": "敌人在1200内即自动敲鼓属于项目AI。复制或重购物品、每回合次数重置、与韧鼓升级物品互斥等，未在独立背包系统中证明。",
+          "sourceIds": [
+            "aa",
+            "drum2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        },
+        {
+          "id": "LU-ENGINE-REVIVE",
+          "kind": "combination",
+          "branch": "source_lifecycle",
+          "status": "passed",
+          "mechanism": "The passive aura is absent while its provider is dead and resumes after the engine reincarnation state revives that body; the independent item movement aura resumes too. This tests the engine lifecycle, without claiming an unavailable playable Reincarnation skill exists.",
+          "sourceIds": [
+            "wiki2023",
+            "drum2023",
+            "aura"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "LB-ENGINE-REVIVE passive Blessing and item aura clocks resume after an engine reincarnation"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "LU-P01",
+        "LU-P02",
+        "LU-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa"
+          ],
+          "observation": "AAround-based+4growthhasnonativeDotaequivalent;itreadstherecordedSuperroundwithoutaddinganothereditablefinalbasevalue."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "drum2023",
+            "valve"
+          ],
+          "observation": "FullDrumofEndurancepassive/activeisexplicitlygranted,butnative45ASisreplacedbycurrentBlessingdamage. Realnative1Bongoownsitsuniqueitemclock/8charges/7STR/7INT/20MS/6seconds/13percentMS;noharcodedduplicateactiveAScell."
+        }
+      ]
+    },
+    {
+      "id": "custom_vengefulspirit_magic_missile",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "已比较完整AA基础、Super、Gaben及差异条款、最终生效程序、五档参数、历史Wiki/KV和升级原型。具名通过条款不代表越过精确未解项的整技能验收。",
+        "平面竞技场无昼夜、战争迷雾及地形视野系统。标志夹具只验证对应单位类型资格，不虚报完整信使/建筑世界工厂。"
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessedOn": "2026-10-30",
+          "observation": "实际读取了本组五技能的完整官方基础说明、差异、类别、数值和Super/Gaben；明确自定义数值保持锁定AA优先。",
+          "versionContext": "Fresh official HTTP200catalog. No currentnative balance replaces AA customvalues.",
+          "localEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit",
+          "accessedOn": "2026-10-30",
+          "sha256": "8d5727125070e153ebdd5057cd1d50649c3bede8d1b6aeb9c2fe49f90fd306f7",
+          "observation": "2023魔法箭0.3+0.5、650距离、1350弹速；先眩晕后伤害，主次目标均在命中时检查抵挡，躲避后终止弹跳。次级搜索采用当前施法距离含加成，可选择已隐身或不可选中目标，抵达隐藏/无敌者后终止，同一单位仅一次。",
+          "versionContext": "DirectHTTP2002023-02-15archivedWiki actuallyreadC9;AAexplicitcustomnumbersremainprimary.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Exact historical native castpoints,ranges,baseclocks,traits andupgradevalues were compared. ItemAncientJanggo owns7STR/7INT/20MS/8charges/30CD/6seconds/13percentMS,while AA overridesactiveAS.",
+          "versionContext": "Shipped2023KV pinnedbyexactcommit;native evidence,norecoveredAAcustomscripts.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MM-01",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-01 Magic Missile waits for impact SpellBlock instead of erasing its real projectile at release",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-01 Magic Missile waits for impact SpellBlock instead of erasing its real projectile at release"
+            }
+          ]
+        },
+        {
+          "id": "MM-02",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-02 Missile applies the Strong stun before90damage with300point500recovery",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-02 Missile applies the Strong stun before90damage with300point500recovery"
+            }
+          ]
+        },
+        {
+          "id": "MM-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "MM-03 Super pierces spell immunity with final460magic damage and1point7second Break",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-03 Super pierces spell immunity with final460magic damage and1point7second Break"
+            }
+          ]
+        },
+        {
+          "id": "MM-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "MM-04 Gaben each hop originates at the previous impact point and never repeats a unit",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-04 Gaben each hop originates at the previous impact point and never repeats a unit"
+            }
+          ]
+        },
+        {
+          "id": "MM-05",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-05 native-prototype650bounce search rejects a far victim instead of homing across the arena",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "qualification": "历史原生按当前施法距离搜索有证；AA无限弹跳文字并未单独说明搜索半径及目标优先级。",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-05 native-prototype650bounce search rejects a far victim instead of homing across the arena"
+            }
+          ]
+        },
+        {
+          "id": "MM-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-06 a secondary SpellBlock stops the chain without damaging the blocked unit",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-06 a secondary SpellBlock stops the chain without damaging the blocked unit"
+            }
+          ]
+        },
+        {
+          "id": "MM-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "MM-07 ordinary invisibility disjoints a tracking missile and prevents further Gaben bounces",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-07 ordinary invisibility disjoints a tracking missile and prevents further Gaben bounces"
+            }
+          ]
+        },
+        {
+          "id": "MM-08",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-08 native secondary search may select an already invisible victim without immediate self-disjoint",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-08 native secondary search may select an already invisible victim without immediate self-disjoint"
+            }
+          ]
+        },
+        {
+          "id": "MM-09",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-09 an initially invisible secondary that is revealed then hidden again disjoints the same live hop",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-09 an initially invisible secondary that is revealed then hidden again disjoints the same live hop"
+            }
+          ]
+        },
+        {
+          "id": "MM-10",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-10 one publicH edit controls both the initial900cast gate and the same native-prototype900bounce distance",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-10 one publicH edit controls both the initial900cast gate and the same native-prototype900bounce distance"
+            }
+          ]
+        },
+        {
+          "id": "MM-11",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "MM-11 current percentage and flat cast-range bonuses also extend secondary search without a duplicate base parameter",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-11 current percentage and flat cast-range bonuses also extend secondary search without a duplicate base parameter"
+            }
+          ]
+        },
+        {
+          "id": "MM-P01",
+          "kind": "gaben",
+          "branch": "explicit_boundary",
+          "mechanism": "按当前施法距离搜索及优先英雄来自历史原生原型，AA无限反弹文字本身没有说明精确搜索和优先级。没有导入现代0.75比例、最远优先或排除隐身的规则。",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-05 native-prototype650bounce search rejects a far victim instead of homing across the arena"
+            },
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-10 one publicH edit controls both the initial900cast gate and the same native-prototype900bounce distance"
+            },
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MM-11 current percentage and flat cast-range bonuses also extend secondary search without a duplicate base parameter"
+            }
+          ]
+        },
+        {
+          "id": "MM-P02",
+          "kind": "combination",
+          "branch": "explicit_boundary",
+          "mechanism": "原生逐目标法术反弹需要完整的反弹订单及归因实现，本组未提供；命中抵挡和弹道躲避不能代替法术反弹验证。",
+          "sourceIds": [
+            "wiki2023"
+          ],
+          "status": "actual_missing",
+          "testEvidence": []
+        },
+        {
+          "id": "MM-P03",
+          "kind": "super",
+          "branch": "explicit_boundary",
+          "mechanism": "AA破坏沿最终眩晕时长并穿免疫，但其单独的普通/强驱散分类及信使例外未从AA脚本恢复。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "MM-05",
+        "MM-P01",
+        "MM-P02",
+        "MM-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "observation": "Nativeold+100damagetalentandimmunity-piercingtalentaresourceprototypes;AABreakisitsownexplicitcustomaddition. Native2023+200damagetalentisnotimported."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "observation": "NativeShardone-bouncecurrentcastrangesearchistheprototype;AAexplicitlyreplaceshoplimitwithinfinitebounces/onevictimonce. Search/prioritydifferencesremainqualified."
+        }
+      ]
+    },
+    {
+      "id": "arc_warden_magnetic_field",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": [
+        "已比较完整AA基础、Super、Gaben及差异条款、最终生效程序、五档参数、历史Wiki/KV和升级原型。具名通过条款不代表越过精确未解项的整技能验收。",
+        "平面竞技场无昼夜、战争迷雾及地形视野系统。标志夹具只验证对应单位类型资格，不虚报完整信使/建筑世界工厂。"
+      ],
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "accessedOn": "2026-10-30",
+          "observation": "实际读取了本组五技能的完整官方基础说明、差异、类别、数值和Super/Gaben；明确自定义数值保持锁定AA优先。",
+          "versionContext": "Fresh official HTTP200catalog. No currentnative balance replaces AA customvalues.",
+          "localEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+        },
+        {
+          "id": "wiki2023",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Arc_Warden",
+          "accessedOn": "2026-10-30",
+          "sha256": "5047ff3987622f370dbc39cfc267f54bde0d3584b79656188e849e4bc809bca3",
+          "observation": "2023磁场0.3+0、900距离、残留0.1秒；攻速不叠加、不同闪避区域独立，只影响英雄类单位和建筑。Shard非失能0.3秒推至原生350外圈，40%魔抗独立相乘、30%减速可叠加；AA375/575半径仍按自定义值。",
+          "versionContext": "DirectHTTP2002023-02-15archivedWiki actuallyreadC9;AAexplicitcustomnumbersremainprimary.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Exact historical native castpoints,ranges,baseclocks,traits andupgradevalues were compared. ItemAncientJanggo owns7STR/7INT/20MS/8charges/30CD/6seconds/13percentMS,while AA overridesactiveAS.",
+          "versionContext": "Shipped2023KV pinnedbyexactcommit;native evidence,norecoveredAAcustomscripts.",
+          "localEvidence": "references/dota-wiki/living-field-source-snapshot.json"
+        },
+        {
+          "id": "aura",
+          "url": "https://liquipedia.net/dota2/Aura",
+          "accessedOn": "2026-10-30",
+          "observation": "Auraeligibility,lingerandstrongest-providerbehaviorareseparatefromtheindependentlystackingcomponentsdocumentedonthespecifichero/itempage.",
+          "versionContext": "Currentretainednonnumericmechanicsreference;direct2023specificpagesoverridegeneralrules."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MF-01",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-01 Magnetic Field has300pointzero recovery and its80AS aura is immediate",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-01 Magnetic Field has300pointzero recovery and its80AS aura is immediate"
+            }
+          ]
+        },
+        {
+          "id": "MF-02",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-02 two fields do not stack attack speed but their evasion regions remain independent",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-02 two fields do not stack attack speed but their evasion regions remain independent"
+            }
+          ]
+        },
+        {
+          "id": "MF-03",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-03 only hero-like units and buildings receive Field,not ordinary creeps or invulnerable heroes",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-03 only hero-like units and buildings receive Field,not ordinary creeps or invulnerable heroes"
+            }
+          ]
+        },
+        {
+          "id": "MF-04",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-04 a field buff lingers100ms after leaving rather than the old300ms",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-04 a field buff lingers100ms after leaving rather than the old300ms"
+            }
+          ]
+        },
+        {
+          "id": "MF-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "MF-05 Super120AS40MR30slow are final and Gaben575radius is not added twice",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-05 Super120AS40MR30slow are final and Gaben575radius is not added twice"
+            }
+          ]
+        },
+        {
+          "id": "MF-06",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-06 an attack from outside is evaded while an attacker inside the same field can land",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-06 an attack from outside is evaded while an attacker inside the same field can land"
+            }
+          ]
+        },
+        {
+          "id": "MF-07",
+          "kind": "mechanism",
+          "branch": "super",
+          "mechanism": "MF-07 Super push is continuous,non-disabling and ends50beyond the final radius after300ms",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "qualification": "300毫秒非失能位移有原生来源；AA半径外增加50的映射仍是几何候选。",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-07 Super push is continuous,non-disabling and ends50beyond the final radius after300ms"
+            }
+          ]
+        },
+        {
+          "id": "MF-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "MF-08 Gaben delays the already40MR-reduced60damage by2500ms without reducing it a second time",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-08 Gaben delays the already40MR-reduced60damage by2500ms without reducing it a second time"
+            }
+          ]
+        },
+        {
+          "id": "MF-09",
+          "kind": "mechanism",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-09 an edited complete final AS value affects actual results without old program aliases",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-09 an edited complete final AS value affects actual results without old program aliases"
+            }
+          ]
+        },
+        {
+          "id": "MF-10",
+          "kind": "timing",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-10 natural field expiry removes all aura components after the final100ms linger",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-10 natural field expiry removes all aura components after the final100ms linger"
+            }
+          ]
+        },
+        {
+          "id": "MF-11",
+          "kind": "combination",
+          "branch": "base_or_named_combination",
+          "mechanism": "MF-11 an attacker inside one field but outside the second still misses a hero in their intersection",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-11 an attacker inside one field but outside the second still misses a hero in their intersection"
+            }
+          ]
+        },
+        {
+          "id": "MF-P01",
+          "kind": "super",
+          "branch": "explicit_boundary",
+          "mechanism": "原生半径300推出至350映射为AA375/575额外50缓冲，是兼容几何候选。只声明已证的地形墙穿越，不声明任意技能墙免疫；不同运动控制器冲突仍需逐项核验。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-07 Super push is continuous,non-disabling and ends50beyond the final radius after300ms"
+            }
+          ]
+        },
+        {
+          "id": "MF-P02",
+          "kind": "gaben",
+          "branch": "explicit_boundary",
+          "mechanism": "AA明确延期2.5秒，已实测减免后金额只支付一次。HPLOSS/生命移除、虚妄之诺、延期中获得无敌、来源消失和多提供者的原始先后关系尚无自定义脚本，不能泛称全部免死机制一致。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-living-field.test.ts",
+              "test": "MF-08 Gaben delays the already40MR-reduced60damage by2500ms without reducing it a second time"
+            }
+          ]
+        },
+        {
+          "id": "MF-P03",
+          "kind": "mechanism",
+          "branch": "explicit_boundary",
+          "mechanism": "地面磁场沿既有友军候选AI选点，AA未说明精确最优摆放或来源归属选择。实际效果位置冻结于释放点。",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "status": "source_pending",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        "MF-07",
+        "MF-P01",
+        "MF-P02",
+        "MF-P03"
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "wiki2023",
+            "valve"
+          ],
+          "observation": "Samehero+40AStalentand2023Shard40MR/30slow/non-disablingpusharetheclearprototypes. AA375radiusremainsprimaryovernative300."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki2023"
+          ],
+          "observation": "AA+200radiusand2.5seconddamage-delayareexplicitcustomrules. NativeFalsePromise/Rumarenotfalselyclaimedasthepreciseprototypeforpayment/death-preventionpriority."
+        }
+      ]
+    }
+  ],
+  "rootC9Integration": {
+    "reportInput": "output/c9-final-regression.json",
+    "groupTests": 55,
+    "meaning": "54 existing group results plus1engine-reincarnation lifecycle result. Root fixed a timer returning permanently on provider death; it now skips dead-provider pulses and retains the continuing clock."
+  }
+}

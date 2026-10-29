@@ -5,6 +5,8 @@ import {resolveVisualArt} from './visual-bindings';
 
 export interface BodyPresentation {clip?:AnimationClip;hidden:boolean;skill?:string;prefix?:string}
 export function bodyVisibility(u:CombatUnit,viewSide:number,time:number){const has=(kind:string)=>u.statuses.some(s=>s.kind===kind&&s.until>time),concealed=(has('invisible')&&!has('revealed'))||has('undetectable');return{hidden:u.side!==viewSide&&concealed,opacity:u.side===viewSide&&concealed ? .45 : 1};}
+/** Presentation only: body and socket positions share the same model scale. */
+export function bodyVisualScale(u:CombatUnit,time:number):number{return u.statuses.filter(s=>s.kind==='visualScale'&&s.until>time).reduce((scale,s)=>scale*Math.max(.01,s.value??1),1);}
 export const COMBAT_TEXT_LIFETIME=1.1;
 /** Events are appended in simulation-time order; binary search avoids count truncation. */
 export function recentCombatEvents(events:CombatEvent[],time:number,window=COMBAT_TEXT_LIFETIME):CombatEvent[]{
@@ -36,7 +38,7 @@ const TRANSIENT_FORMS:Record<string,{skill:string;layer:string}>={
  rolling_thunder:{skill:'custom_pangolier_rolling_thunder',layer:'ball'},
  supernova:{skill:'custom_phoenix_sun_ray',layer:'egg_idle'}
 };
-const CHILD_ART:Record<string,string>={aa_granted_voodoo_switcheroo:'custom_witch_doctor_death_ward'};
+const CHILD_ART:Record<string,string>={aa_granted_voodoo_switcheroo:'custom_witch_doctor_death_ward',zuus_cloud:'zuus_lightning_bolt'};
 export function basicAttackClip(assets:AssetManifest,u:CombatUnit,time=0):AnimationClip|undefined{
  if(u.statuses.some(s=>s.kind==='elderDragon'&&s.until>time)){const art=assets.skills.dragon_knight_elder_dragon_form as {layers?:Record<string,AnimationClip>}|undefined;if(art?.layers?.dragon_bolt)return art.layers.dragon_bolt;}
  const sourceId=String(u.sourceSkill??''),id=CHILD_ART[sourceId]??sourceId;
@@ -57,6 +59,8 @@ const SUMMON_PREFIXES:[RegExp,string[]][]=[
  [/skeleton|骷髅/i,['skeleton']],
  [/wolf|狼/i,['wolf']],
  [/serpent|蛇棒|蛇杖/i,['ward','serpent']],
+ [/soldier|石猴|猴兵/i,['soldier']],
+ [/nimbus|雷云/i,['nimbus']],
  [/spider|蜘蛛/i,['spider','spiderling']]
 ];
 function selectAction(layers:Record<string,AnimationClip>,prefix:string,action:string){
@@ -115,7 +119,7 @@ export function actorEmitter(assets:AssetManifest,u:CombatUnit,time:number):{x:n
  if(!socket||!frames?.length)return{x:u.x,y:u.y};
  const index=atlasFrame(action,time-u.actionStart,Boolean(action.loop)).index,point=frames[index]?.[socket];
  if(!point)return{x:u.x,y:u.y};
- const size=Number(action.worldSize??3.6),pivot=action.pivot??[.5,.3888889],x=(point[0]-pivot[0])*size,y=-(point[1]-pivot[1])*size,angle=u.facing+Math.PI/2;
+ const size=Number(action.worldSize??3.6)*bodyVisualScale(u,time),pivot=action.pivot??[.5,.3888889],x=(point[0]-pivot[0])*size,y=-(point[1]-pivot[1])*size,angle=u.facing+Math.PI/2;
  return{x:u.x+x*Math.cos(angle)-y*Math.sin(angle),y:u.y+x*Math.sin(angle)+y*Math.cos(angle)};
 }
 export function linePresentations(assets:AssetManifest,units:CombatUnit[],time:number):LinePresentation[]{

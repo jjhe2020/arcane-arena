@@ -1,0 +1,229 @@
+{
+  "auditedOn": "2026-10-30",
+  "sourcePolicy": "FourdirectHTTP200archived2023heroWiki pages plusoneDrumpage andfreshofficialAAfullcatalogwereactuallyread. PinnedValveKV supplieshistoricalnativevalues,notAALua. CurrentLPsupplementsonlysupportretainednonnumericclasses;modernnumericchangesarenotimported.",
+  "captures": [
+    {
+      "hero": "Arc_Warden",
+      "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Arc_Warden",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "5047ff3987622f370dbc39cfc267f54bde0d3584b79656188e849e4bc809bca3",
+      "observation": "MagneticField .3+0/900/.1linger,nonstackingAS andindependentevasionintersection. Onlyhero-likeunits/buildings,notordinarycreeps/invulnerable. Shard0.3non-disablingpush to350outer with300nativefield;40MRindependentmultiplies,30slowadds. AA375/575radius keeps itsowncustomgeometry."
+    },
+    {
+      "hero": "Vengeful_Spirit",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "8d5727125070e153ebdd5057cd1d50649c3bede8d1b6aeb9c2fe49f90fd306f7",
+      "observation": "MagicMissile .3+.5/650/1350speed,stunbeforedamage. SpellBlock atimpact onprimary/secondary terminates chain;disjointable. Secondary search follows currentcastrange includingbonuses,hero-priority,mayselectinvisible/untargetable;invul/hiddenarrivalstops;onevictimonce. Modern0.75factor/furthest-target/invis-exclusion rules are not imported."
+    },
+    {
+      "hero": "Luna",
+      "url": "https://web.archive.org/web/20230215191811id_/https://dota2.fandom.com/wiki/Luna",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "91209ecaeb19aa72f38e4a5ecccb9bdbd20ea49ba3325d949083ec953fa3312a",
+      "observation": "LucentBeam .4+.47/800,damagebeforeStrongstun. Native2023talent instant attacks originateatbeampoint,procmodifiers,noTrueStrike,ignoredisarm,excludeinvis;native2attacks is NOT imported overAA1. LunarBlessing flat hero damage,day1200/nightglobal,.5linger,invulnerableyes/hiddenno,illusionbestowbutnobenefit. OldShard and currenttalent versions differ."
+    },
+    {
+      "hero": "Treant_Protector",
+      "url": "https://web.archive.org/web/20230215191600id_/https://dota2.fandom.com/wiki/Treant_Protector",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "7138949af23934b456595b4032f183fc4fc1b7229df8215a7d41db60c44763c8",
+      "observation": "LivingArmor .3+.66/global,bonusarmor and periodic ordinary healing. First heal1second,lastatduration;basicdispellable;creeps/couriers/buildings can be targeted,notwards/hidden/invulnerable. Ground-order retargeting and specific AA AI are separate. NatureGuise explicitly increases both healamp andregenamp,notlifesteal."
+    }
+  ],
+  "drum": {
+    "url": "https://web.archive.org/web/20230215193850id_/https://dota2.fandom.com/wiki/Drum_of_Endurance",
+    "status": 200,
+    "accessedOn": "2026-10-30",
+    "sha256": "c1cc35f4ee09874f7a2353687bb283b1c32acdf93c167a56b1a328692d9e8a4c",
+    "observation": "Native7STR/7INT;20MS1200radius/.5linger nonstacking aura excludinginvul. Endurance8charges/30CD/0+0/0mana/6seconds/13percentMS,nonstackingdurationrefresh. Active affectscontrollednonheroes andinvul,notwards,doesnotinterruptchannels. AA replacesonly45activeASwithcurrentBlessingdamage."
+  },
+  "valve": {
+    "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+    "localEvidence": "references/dota-20230216/parsed/npc_abilities.json",
+    "selection": {
+      "treant_living_armor": {
+        "ID": "5436",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Hero_Treant.LivingArmor.Cast",
+        "AbilityCastPoint": "0.3",
+        "FightRecapLevel": "1",
+        "AbilityCooldown": "30 25 20 15",
+        "AbilityManaCost": "50",
+        "AbilityValues": {
+          "heal_per_second": {
+            "value": "3 4 5 6",
+            "special_bonus_unique_treant_8": "+2"
+          },
+          "bonus_armor": {
+            "value": "6 8 10 12",
+            "special_bonus_unique_treant_13": "+8"
+          },
+          "duration": "15 20 25 30"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "luna_lucent_beam": {
+        "ID": "5222",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Luna.LucentBeam.Target",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "800",
+        "AbilityCastPoint": "0.4",
+        "AbilityModifierSupportValue": "0.5",
+        "AbilityValues": {
+          "AbilityCooldown": {
+            "value": "9.0 8.0 7.0 6.0",
+            "special_bonus_unique_luna_2": "-2.0"
+          },
+          "AbilityManaCost": {
+            "value": "90 100 110 120"
+          },
+          "beam_damage": {
+            "value": "80 160 240 320",
+            "special_bonus_unique_luna_1": "+100"
+          },
+          "glaives_fired": {
+            "value": "0",
+            "special_bonus_unique_luna_8": "+2"
+          },
+          "search_radius": {
+            "value": "0"
+          },
+          "attack_radius": {
+            "value": "0",
+            "special_bonus_unique_luna_8": "+500"
+          },
+          "stun_duration": {
+            "value": "0.8",
+            "special_bonus_unique_luna_4": "+0.4"
+          },
+          "damage_buff_duration": {
+            "value": "0",
+            "special_bonus_shard": "+12"
+          },
+          "damage_buff_per_beam": {
+            "value": "0",
+            "special_bonus_shard": "+15"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "luna_lunar_blessing": {
+        "ID": "5224",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "AbilityValues": {
+          "radius": "1200",
+          "bonus_damage": {
+            "value": "6 14 20 28",
+            "special_bonus_unique_luna_3": "+35"
+          },
+          "bonus_night_vision": {
+            "value": "250 500 750 1000"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "vengefulspirit_magic_missile": {
+        "ID": "5122",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_VengefulSpirit.MagicMissile",
+        "HasShardUpgrade": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "12 11 10 9",
+        "AbilityManaCost": "100 110 120 130",
+        "AbilityValues": {
+          "magic_missile_speed": "1350",
+          "magic_missile_stun": "1.4 1.5 1.6 1.7",
+          "magic_missile_damage": {
+            "value": "90 180 270 360",
+            "special_bonus_unique_vengeful_spirit_1": "+200"
+          },
+          "AbilityCastRange": {
+            "value": "650",
+            "special_bonus_unique_vengeful_spirit_missile_castrange": "+125"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "arc_warden_magnetic_field": {
+        "ID": "5678",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_ArcWarden.MagneticField.Cast",
+        "HasShardUpgrade": "1",
+        "AbilityCastAnimation": "ACT_DOTA_AW_MAGNETIC_FIELD",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastPoint": "0.3",
+        "AbilityCooldown": "20",
+        "AbilityManaCost": "50 70 90 110",
+        "AbilityCastRange": "900",
+        "AbilityValues": {
+          "radius": "300",
+          "duration": "3.5 4.5 5.5 6.5",
+          "attack_speed_bonus": {
+            "value": "50 60 70 80",
+            "special_bonus_unique_arc_warden_3": "+40"
+          },
+          "evasion_chance": "100",
+          "shard_magic_resist": {
+            "value": "40",
+            "RequiresShard": "1"
+          },
+          "shard_slow_pct": {
+            "value": "30",
+            "RequiresShard": "1"
+          }
+        }
+      }
+    },
+    "itemAncientJanggo": {
+      "ID": "185",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+      "ItemPermanent": "1",
+      "FightRecapLevel": "1",
+      "AbilityCooldown": "30.0",
+      "ItemCost": "1650",
+      "ItemShopTags": "str;agi;int;damage;move_speed;attack_speed;hard_to_tag",
+      "ItemQuality": "rare",
+      "ItemAliases": "drum of endurance",
+      "ItemInitialCharges": "8",
+      "ItemDisplayCharges": "1",
+      "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS",
+      "ShouldBeSuggested": "1",
+      "AbilityValues": {
+        "aura_movement_speed": "20",
+        "bonus_str": "7",
+        "bonus_int": "7",
+        "bonus_attack_speed_pct": "45",
+        "bonus_movement_speed_pct": "13",
+        "duration": "6",
+        "radius": "1200",
+        "charges_tooltip": "8"
+      }
+    }
+  },
+  "aaEvidence": "references/ability-arena/abilities-living-field-20261030.json"
+}

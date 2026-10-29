@@ -17,6 +17,9 @@ import {applyFrostControlAcceptance,FROST_CONTROL_CHILD_DEFINITIONS} from './com
 import {applyHandIceAcceptance,HAND_ICE_CHILD_DEFINITIONS} from './combat/hand-ice-acceptance';
 import {applyGodGustAcceptance} from './combat/god-gust-acceptance';
 import {applyIceInnerAcceptance} from './combat/ice-inner-acceptance';
+import {applyLivingFieldAcceptance,LIVING_FIELD_CHILD_DEFINITIONS} from './combat/living-field-acceptance';
+import {applyInnerLaserAcceptance} from './combat/inner-laser-acceptance';
+import {applyLeechShredderAcceptance} from './combat/leech-shredder-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -80,6 +83,8 @@ export interface ZoneOptions {
 }
 export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
 export interface InstantAttackOptions {
+  /** Explicit attack geometry; the actual actor and statistical attribution stay unchanged. */
+  attackOrigin?:{x:number;y:number};
   /** Per-projectile speed in world units/second; leaves the body's ordinary speed intact. */
   projectileSpeed?:number;
   /** An attack can split from a hit position while retaining its actual source/owner. */
@@ -156,7 +161,7 @@ export interface EffectContext {
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
-  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void}): void;
+  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;allowInitiallyInvisible?:boolean}): void;
   linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
@@ -185,6 +190,9 @@ export interface EffectContext {
   revive(target: CombatUnit, delay: number, hpFraction: number): void;
   /** Immediate granted cast; caller owns mana, cooldown, charges and animation. */
   castAbility(id: string, points: number, target: CombatUnit, valueOverrides?: Record<string, number>): boolean;
+  /** Released construct casts retain the parent ledger while using their own actual actor. */
+  castAbilityFrom?(source:CombatUnit,id:string,points:number,target:CombatUnit,valueOverrides?:Record<string,number>):boolean;
+  effectiveCastRange?(base:number):number;
   /** Combat-only ownership, initialization and cleanup are managed by the engine. */
   grantAbility?(id: string, points: number): void;
   /** A released grant creates a real ability on the recipient body. */
@@ -192,6 +200,14 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
 }
 export interface SkillProgram {
+  /** Item actions obey mute and ordinary disables, while ignoring spell silence. */
+  itemActive?:boolean;
+  /** A specific zero-point action may be issued under explicitly qualified controls. */
+  canCastWhileDisabled?:(c:EffectContext)=>boolean;
+  /** Automatic attack actions remain eligible during forced attacks, without lifting silence. */
+  canAutocastWhileTaunted?:boolean;
+  /** Pure main-damage property. Do not debit charges, roll procs or emit effects here. */
+  attackMainDamage?:(c:EffectContext)=>{fixedDamage?:number;baseMultiplier?:number;flatBonus?:number};
   /** A native secondary action may report its parent as the last stealable spell. */
   spellStealAs?:string;
   onBeforeDamageResolution?:(c:EffectContext)=>void;
@@ -581,7 +597,10 @@ applyFrostControlAcceptance(registry);
 applyHandIceAcceptance(registry);
 applyGodGustAcceptance(registry);
 applyIceInnerAcceptance(registry);
-export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS];
+applyLivingFieldAcceptance(registry);
+applyInnerLaserAcceptance(registry);
+applyLeechShredderAcceptance(registry);
+export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS];
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;
