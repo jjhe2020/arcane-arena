@@ -216,7 +216,7 @@ describe('explicit upgrade programs',()=>{
     const a=player(0,[{id:acid.id,points:9}]);a.heroes[0].x=-12;a.heroes[0].y=-10;
     const b=createBattle(a,player(1),2,[acid]);b.units.forEach(u=>u.statuses.push({kind:'stun',until:10}));stepBattle(b,1,[acid]);
     expect(b.units[0].mana).toBe(b.units[0].maxMana);expect(b.events.some(e=>e.type==='cast'&&e.skill===acid.id)).toBe(false);
-    expect(b.events.filter(e=>e.type==='hit'&&e.skill===acid.id)).toHaveLength(1);
+    expect(b.events.filter(e=>e.type==='hit'&&e.skill===acid.id).map(e=>e.time)).toEqual([0,1]);
     expect(b.units[1].statuses.find(s=>s.kind==='armor')?.value).toBe(-10.5);
   });
   it('keeps Gaben Decay follow-up pulses at the original target position',()=>{

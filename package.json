@@ -8,6 +8,8 @@
     "dev": "vite --host 0.0.0.0",
     "config:compile": "node scripts/config-compile.mjs",
     "config:check": "node scripts/config-check.mjs",
+    "reference:report": "node scripts/build-reference-acceptance.mjs",
+    "reference:verify": "node scripts/verify-reference-acceptance.mjs",
     "prebuild": "node scripts/config-check.mjs && node scripts/build-mechanics-coverage.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",

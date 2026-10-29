@@ -43,4 +43,9 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   legion_commander_moment_of_courage:['defensiveCounterattack','offensiveCounterattack'],
   custom_windrunner_focusfire:['maelstrom'],
   ursa_overpower:['bash'],
+  // Wiki PRD history dates Tusk's attack-proc talent to 7.22 (2019-05-24).
+  // AA's custom 20% probability is retained independently of the old 12% talent.
+  custom_tusk_walrus_punch:['walrusPunch'],
+  // The 7.30 Anchor Smash attack-proc talent is documented as PRD.
+  tidehunter_anchor_smash:['anchorSmash'],
 };

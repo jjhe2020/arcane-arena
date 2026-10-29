@@ -47,6 +47,9 @@ jobs:
       - name: Run unit tests
         run: npm test
 
+      - name: Verify individually sourced reference requirements
+        run: npm run reference:verify
+
       - name: Build production version
         run: npm run build
 

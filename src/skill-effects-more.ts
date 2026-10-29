@@ -3,7 +3,7 @@ import {defaultMotionDuration} from './config';
 import {configuredValue} from './config';
 import {balanceNumber} from './config';
 import type { CombatUnit } from './model';
-import type { EffectContext, EffectStatus, SkillProgram } from './skill-effects';
+import type { EffectContext, EffectStatus, InstantAttackOptions, SkillProgram } from './skill-effects';
 import { addVisualProjectile, moveVisualProjectile, removeVisualProjectile, addVisualWorldEffect, updateVisualWorldEffect, removeVisualWorldEffect } from './combat/visual-state';
 
 /** Explicit catalog programs. Geometry/timing assumptions are listed per skill;
@@ -42,13 +42,10 @@ function lineTargets(c: EffectContext, start: { x: number; y: number }, end: { x
 function endpoint(c: EffectContext, length: number) {
   const d = direction(c.caster, c.target); return { x: c.caster.x + d.x * length, y: c.caster.y + d.y * length };
 }
-function instantAttack(c: EffectContext, target: CombatUnit, multiplier = 1, bonus = 0, trueStrike = false) {
-  const mark = { kind: 'trueStrike', until: c.battle.time + .01 };
-  c.caster.attack += bonus;
-  if (trueStrike) c.caster.statuses.push(mark);
-  try { c.attack(target, multiplier, true); }
-  finally { c.caster.attack -= bonus; c.caster.statuses = c.caster.statuses.filter(s => s !== mark); }
+function instantAttack(c: EffectContext, target: CombatUnit, multiplier = 1, bonus = 0, trueStrike = false, options:InstantAttackOptions = {}) {
+  return c.attack(target, multiplier, true, undefined, false, {trueStrike,bonusDamage:bonus,...options});
 }
+const effectiveAttackRange = (c:EffectContext) => c.caster.statuses.find(s=>s.kind==='attackRangeOverride'&&s.until>c.battle.time)?.value ?? c.caster.range+c.caster.statuses.filter(s=>s.kind==='range'&&s.until>c.battle.time).reduce((n,s)=>n+(s.value??0),0);
 function clock(c: EffectContext, duration: number, interval: number, effect: (tick: number) => void, channel = false) {
   c.zone({ follow: true, radius: 0, targets: 'all', duration, interval, channel, effect: (t, tick) => { if (t.id === c.caster.id) effect(tick); } });
 }
@@ -70,36 +67,49 @@ const programs: Record<string, SkillProgram> = {};
 const put = (id: string, program: SkillProgram) => { programs[id] = program; };
 
 put('hoodwink_acorn_shot', active(c => {
-  const count = v(c, 'BOUNCE COUNT') + (superLevel(c) ? 2 : 0);
-  const bounce = (target: CombatUnit, number: number) => c.projectile(target, balanceNumber(c,'skill_effects_more.projectile_speed.1',10), t => {
-    instantAttack(c, t, P(v(c, 'BASE DAMAGE')) + (superLevel(c) ? .5 : 0));
-    c.damage(t, v(c, 'BONUS DAMAGE'), 'physical', true); slow(c, t, v(c, 'MOVEMENT SLOW'), v(c, 'SLOW DURATION'));
-    if (number < count) { const next = c.enemies().filter(e => e.id !== t.id && distance(e, t) <= 5).sort((a, b) => distance(a, t) - distance(b, t))[0]; if (next) bounce(next, number + 1); }
-  }); bounce(c.target, 0);
-}, ['bouncing attack projectile', 'attack modifiers', 'brief slow', 'Super damage/bounces', 'Gaben base attack and armor debuff'], ['Point-target tree creation', 'Bounce radius/speed and bonus-damage modifier order'], {
-  range: c => c.caster.range + U(v(c, 'BONUS ATTACK RANGE')),
+  const compiled=!!skillBalance(c.definition,c.skill.points),count=v(c,'BOUNCE COUNT')+(!compiled&&superLevel(c)?2:0);
+  const bounce = (target: CombatUnit, number: number, origin?:{x:number;y:number}) => c.projectile(target, number===0?U(v(c,'FIRST PROJECTILE SPEED',2200)):Number(c.caster.projectileSpeed??14)*v(c,'BOUNCE PROJECTILE SPEED MULTIPLIER',.5), t => {
+    instantAttack(c,t,P(v(c,'BASE DAMAGE'))+(!compiled&&superLevel(c)?.5:0),v(c,'BONUS DAMAGE'));
+    // The spell slow is independent of whether its attack missed.
+    slow(c,t,v(c,'MOVEMENT SLOW'),v(c,'SLOW DURATION'));
+    const impact={x:t.x,y:t.y};
+    if(number<count)c.delay(v(c,'BOUNCE DELAY',.1),()=>{
+      const next=c.enemies().filter(e=>e.id!==t.id&&!e.ward&&(c.canTarget?.(e,true)??true)&&distance(e,impact)<=U(v(c,'BOUNCE RADIUS',525))).sort((a,b)=>distance(a,impact)-distance(b,impact)||a.id.localeCompare(b.id))[0];
+      if(next)bounce(next,number+1,impact);
+    });
+  },origin); bounce(c.target,0);
+}, ['one attack combines attack fraction and fixed bonus before critical/lifesteal', 'independent slow even on miss', '2200-speed initial projectile; delayed half-attack-projectile-speed bounces from previous impact', 'Super final damage/bounce parameters', 'Gaben historical Stygian Desolator corrosion before the current successful attack'], ['Point-target trees/fog/disjoint continuation absent from arena', 'Nearest eligible bounce selection is deterministic project AI; native random selection not certified', 'Multiple corruption providers sharing one native item debuff group unverified'], {
+  dynamicRange:true,range:c=>effectiveAttackRange(c)+U(v(c,'BONUS ATTACK RANGE')),
   init: c => { if (gabenLevel(c)) c.caster.attack += 60; },
-  onAttack: c => { if (gabenLevel(c)) c.status(c.target, 'armor', balanceNumber(c,'skill_effects_more.armor_duration.1',7), balanceNumber(c,'skill_effects_more.armor_amount.1',-10), harmful); }, superImplemented: true, gabenImplemented: true,
+  beforeAttackDamage:c=>{if(gabenLevel(c))c.status(c.target,'armor',balanceNumber(c,'skill_effects_more.armor_duration.1',7),balanceNumber(c,'skill_effects_more.armor_amount.1',-10),harmful);},superImplemented:true,gabenImplemented:true,
 }));
 
 function anchor(c: EffectContext) {
   if (c.caster.anchorBusy) return; c.caster.anchorBusy = true;
-  try { for (const t of near(c, U(v(c, 'RADIUS')))) { instantAttack(c, t, 1, v(c, 'ATTACK BONUS DAMAGE') + (superLevel(c) ? 100 : 0)); c.status(t, 'attackDamageReduction', v(c, 'DURATION'), Math.min(1, P(v(c, 'DAMAGE REDUCTION')) + (superLevel(c) ? .2 : 0)), harmful); } }
+  try { for (const t of near(c,U(v(c,'RADIUS'))).filter(t=>!t.ward&&!t.statuses.some(s=>s.kind==='magicImmune'))) { const compiled=!!skillBalance(c.definition,c.skill.points);c.status(t,'baseAttackDamageReduction',v(c,'DURATION'),Math.min(1,P(v(c,'DAMAGE REDUCTION'))+(!compiled&&superLevel(c)?.2:0)),harmful);instantAttack(c,t,1,v(c,'ATTACK BONUS DAMAGE')+(!compiled&&superLevel(c)?100:0),true,{noCleave:true,allowInvisibleTarget:true}); } }
   finally { c.caster.anchorBusy = false; }
 }
-put('tidehunter_anchor_smash', active(anchor, ['area instant attacks', 'attack damage reduction', 'Super numerical upgrades', 'bounded Gaben attack-triggered casts'], ['Precise attack modifier ordering'], {
+put('tidehunter_anchor_smash', active(anchor, ['debuff precedes True Strike instant attacks', 'attack modifiers except cleave', 'Super final numerical parameters', 'bounded Gaben PRD attack-triggered casts with AA 40%'], ['Buildings and terrain absent from the combat plane', 'Anchor damage-block behavior differs between pre-instant-attack changelog and later attack semantics; exact selected patch remains unverified'], {
   target: 'self', canCast: c => near(c, U(v(c, 'RADIUS'))).length > 0,
-  cooldown: c => cooldown(c, superLevel(c) ? 1 : 0), onAttack: c => { if (gabenLevel(c) && !c.caster.anchorBusy && c.random() < balanceNumber(c,'skill_effects_more.trigger_chance.1',0.4)) anchor(c); }, superImplemented: true, gabenImplemented: true,
+  cooldown:c=>cooldown(c,superLevel(c)?1:0),onAttack:c=>{if(!gabenLevel(c)||c.caster.anchorBusy)return;const probability=balanceNumber(c,'skill_effects_more.trigger_chance.1',.4);if(c.chance?.(probability,'anchorSmash')??c.random()<probability)anchor(c);},superImplemented:true,gabenImplemented:true,
 }));
 
 put('custom_skywrath_mage_arcane_bolt', active(c => {
-  const targets = [c.target, ...(superLevel(c) ? c.enemies().filter(t => t.id !== c.target.id && distance(t, c.target) <= 7).slice(0, 2) : [])];
+  const damage=v(c,'BASE DAMAGE')+Number(c.caster.intelligence??0)*v(c,'INT DAMAGE MULTIPLIER');
+  const available=c.enemies().filter(t=>t.id!==c.target.id&&!t.ward&&distance(t,c.target)<=7&&(c.canTarget?.(t,true)??true)&&!t.statuses.some(s=>s.kind==='magicImmune'));
+  const targets=[c.target];for(let i=0;superLevel(c)&&i<2&&available.length;i++){
+    // The native upgrade treats illusions as heroes, but creep-heroes such as
+    // the Spirit Bear remain in the ordinary-unit fallback pool.
+    const heroes=available.filter(t=>!t.summoned||t.illusion),pool=heroes.length?heroes:available;
+    const target=pool[Math.floor(c.random()*pool.length)];targets.push(target);available.splice(available.indexOf(target),1);
+  }
   for (const target of targets) c.projectile(target, balanceNumber(c,'skill_effects_more.projectile_speed.1',5), t => {
-    const intelligence = Number(c.caster.intelligence ?? 0);
-    c.damage(t, v(c, 'BASE DAMAGE') + intelligence * v(c, 'INT DAMAGE MULTIPLIER'));
+    c.damage(t,damage);
   });
 }, ['slow homing bolt', 'catalog flat damage', 'effective intelligence coefficient', 'Super extra targets', 'independent Gaben armor/intelligence stacks'], ['Four-class attribute mapping is a project rule pending AA calibration', 'Projectile speed verification'], {
-  onDealDamage: c => { if (gabenLevel(c) && c.triggerSkillId && c.target.side !== c.caster.side) { c.status(c.caster, 'armor', balanceNumber(c,'skill_effects_more.armor_duration.1',35), balanceNumber(c,'skill_effects_more.armor_amount.1',0.5), { maxStacks: balanceNumber(c,'skill_effects_more.maxstacks.1',500) }); c.status(c.caster, 'intelligence', balanceNumber(c,'skill_effects_more.intelligence_duration.1',35), balanceNumber(c,'skill_effects_more.intelligence_amount.1',2), { maxStacks: balanceNumber(c,'skill_effects_more.maxstacks.2',500) }); } }, superImplemented: true, gabenImplemented: true,
+  projectileDisjointable:false,spellBlockTiming:'impact',
+  targetSelector:(c,candidates)=>candidates.filter(t=>!t.ward&&!t.statuses.some(s=>s.kind==='magicImmune')).sort((a,b)=>distance(a,c.caster)-distance(b,c.caster)||a.id.localeCompare(b.id))[0],
+  onAbilityDamageEvent: c => { if (gabenLevel(c) && c.triggerSkillId && c.target.side !== c.caster.side&&!c.caster.illusion) { c.status(c.caster, 'armor', balanceNumber(c,'skill_effects_more.armor_duration.1',35), balanceNumber(c,'skill_effects_more.armor_amount.1',0.5), { maxStacks: balanceNumber(c,'skill_effects_more.maxstacks.1',500),dispel:'none' }); c.status(c.caster, 'intelligence', balanceNumber(c,'skill_effects_more.intelligence_duration.1',35), balanceNumber(c,'skill_effects_more.intelligence_amount.1',2), { maxStacks: balanceNumber(c,'skill_effects_more.maxstacks.2',500),dispel:'none' }); } }, superImplemented: true, gabenImplemented: true,
 }));
 
 put('void_spirit_astral_step', active(c => {
@@ -121,11 +131,14 @@ put('techies_suicide', active(c => {
 }, ['delayed leap', 'area explosion and silence', 'nonlethal current-health cost', 'Super stun/range/cooldown', 'Gaben immediate cast/radius/invulnerability'], ['Reference leap and base cast times', 'Health-cost event accounting'], { castPoint: c => gabenLevel(c) ? 0 : .3, range: c => balanceNumber(c,'skill_effects_more.range.1',7) + (superLevel(c) ? balanceNumber(c,'skill_effects_more.range.2',3) : 0), cooldown: c => cooldown(c, superLevel(c) ? 15 : 0), superImplemented: true, gabenImplemented: true }));
 
 put('custom_monkey_king_boundless_strike', active(c => {
-  const start = { x: c.caster.x, y: c.caster.y }, end = endpoint(c, U(v(c, 'DISTANCE')));
-  const targets = lineTargets(c, start, end, 1);
-  if (superLevel(c)) { const dir = direction(start, end); for (const t of lineTargets(c, { x: end.x - dir.y * 5.5, y: end.y + dir.x * 5.5 }, { x: end.x + dir.y * 5.5, y: end.y - dir.x * 5.5 }, 1)) if (!targets.includes(t)) targets.push(t); }
-  for (const t of targets) { instantAttack(c, t, P(v(c, 'CRITICAL DAMAGE')) + (superLevel(c) ? .75 : 0), 0, true); stun(c, t, v(c, 'STUN DURATION') + (superLevel(c) ? balanceNumber(c,'skill_effects_more.stun_duration.1',0.3) : 0)); if (gabenLevel(c)) c.castAbility('aa_granted_bloodthorn', 1, t); }
-}, ['line attacks', 'true strike', 'critical damage', 'stun', 'Super perpendicular strike and bonuses', 'Gaben historical Bloodthorn active on each hit unit'], ['Line width and perpendicular extent', 'Bloodthorn child uses historical Dota 2023-02-10 baseline pending AA version verification'], { range: c => U(v(c, 'DISTANCE')), superImplemented: true, gabenImplemented: true }));
+  const compiled=!!skillBalance(c.definition,c.skill.points),start={x:c.caster.x,y:c.caster.y},end=endpoint(c,U(v(c,'DISTANCE'))),width=U(v(c,'STRIKE RADIUS',150));
+  // Shared transient batch, with per-Jingu-slot snapshots filled by its hooks.
+  // Charges are consumed once by the following onCast hooks, including empty casts.
+  c.caster.statuses.push({kind:'boundlessJinguBatch',source:c.caster.id,until:c.battle.time+MOTION_STEP,data:{}} as EffectStatus);
+  const targets=lineTargets(c,start,end,width);
+  if(superLevel(c)){const dir=direction(start,end),extent=U(v(c,'DISTANCE'))/2;for(const t of lineTargets(c,{x:end.x-dir.y*extent,y:end.y+dir.x*extent},{x:end.x+dir.y*extent,y:end.y-dir.x*extent},width))if(!targets.includes(t))targets.push(t);}
+  for(const t of targets.filter(t=>!t.ward&&!t.statuses.some(s=>s.kind==='magicImmune'))){instantAttack(c,t,1,0,true,{criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))+(!compiled&&superLevel(c)?.75:0),noCleave:true,allowInvisibleTarget:true});stun(c,t,v(c,'STUN DURATION')+(!compiled&&superLevel(c)?balanceNumber(c,'skill_effects_more.stun_duration.1',.3):0));if(gabenLevel(c))c.castAbility('aa_granted_bloodthorn',1,t);}
+}, ['150-radius True Strike line instant attacks without cleave', 'ensured critical competes with other criticals', 'stun independent of damage', 'Jingu one-charge cast batch; Echo slow without extra attack', 'Super perpendicular strike and final values', 'Gaben historical Bloodthorn child'], ['Exact line end caps/backward start differ across Wiki revisions', 'Perpendicular overlap deduplication is a project interpretation', 'Bloodthorn historical child AA grant rank/item patch match unverified', 'Immediate granted Boundless casts bypass ordinary onCast hooks; no current grant uses this route'], {range:c=>U(v(c,'DISTANCE')),superImplemented:true,gabenImplemented:true}));
 
 put('clinkz_strafe', active(c => {
   const start = { x: c.caster.x, y: c.caster.y }, end = endpoint(c, U(v(c, 'RANGE'))), count = v(c, 'ARROWS FIRED') + (superLevel(c) ? 3 : 0);
@@ -241,7 +254,7 @@ put('rubick_fade_bolt', active(c => {
   const visited = new Set<string>();
   const bounce = (target: CombatUnit, hop: number) => c.projectile(target, balanceNumber(c,'skill_effects_more.projectile_speed.1',12), t => {
     visited.add(t.id); c.damage(t, v(c, 'DAMAGE') * Math.pow(1 - P(v(c, 'JUMP REDUCTION')), hop));
-    c.status(t, 'attackDamageReduction', v(c, 'DEBUFF DURATION'), P(v(c, 'DAMAGE REDUCTION')), harmful);
+    c.status(t, 'baseAttackDamageReduction', v(c, 'DEBUFF DURATION'), P(v(c, 'DAMAGE REDUCTION')), harmful);
     if (superLevel(c)) instantAttack(c, t);
     if (gabenLevel(c)) c.status(c.caster, 'attackBonus', v(c, 'DEBUFF DURATION'), t.attack * P(v(c, 'DAMAGE REDUCTION')), { maxStacks: balanceNumber(c,'skill_effects_more.maxstacks.1',1000) });
     const next = c.enemies().filter(e => !visited.has(e.id) && distance(e, t) <= 4.4).sort((a, b) => distance(a, t) - distance(b, t))[0];
@@ -643,12 +656,22 @@ put('custom_riki_tricks_of_the_trade', active(c => {
   }, true);
 }, ['invulnerable channel', 'seeded random hero attacks', 'Super extra attack and target', 'Gaben native fourth-level two-second Smoke Screen'], ['ATTACK RATE interpreted as total attack count over duration', 'Backstab orientation/passive interactions', 'Historical Dota 2023-02-10 Smoke Screen radius/miss rate need AA version validation'], { target: 'self', channel: c => v(c, 'DURATION'), canCast: c => near(c, U(v(c, 'RADIUS'))).some(t => !t.summoned), cooldown: c => cooldown(c, superLevel(c) ? 4 : 0), superImplemented: true, gabenImplemented: true }));
 
-function walrus(c: EffectContext) {
-  if (c.caster.walrusBusy) return; c.caster.walrusBusy = true;
-  try { instantAttack(c, c.target, P(v(c, 'CRITICAL DAMAGE'))); const air = v(c, 'AIR TIME') + (superLevel(c) ? .4 : 0); stun(c, c.target, air, true); c.delay(air, () => { slow(c, c.target, v(c, 'MOVEMENT SLOW'), v(c, 'SLOW DURATION')); if (superLevel(c)) c.status(c.target, 'break', v(c, 'SLOW DURATION'), 0, { harmful: true, piercesImmunity: true }); }); }
-  finally { c.caster.walrusBusy = false; }
+const inSnowball=(c:EffectContext)=>c.caster.statuses.some(s=>s.until>c.battle.time&&s.kind==='visualForm'&&(s as EffectStatus).data?.form==='snowball');
+function walrusEffects(c:EffectContext){
+  const air=v(c,'AIR TIME')+(!skillBalance(c.definition,c.skill.points)&&superLevel(c)?.4:0);stun(c,c.target,air,true);
+  c.delay(air,()=>{slow(c,c.target,v(c,'MOVEMENT SLOW'),v(c,'SLOW DURATION'));if(superLevel(c))c.status(c.target,'break',v(c,'SLOW DURATION'),0,{harmful:true,piercesImmunity:true});});
 }
-put('custom_tusk_walrus_punch', active(walrus, ['critical instant attack', 'air-time disable', 'landing slow', 'Super break/free cast/cooldown/air time', 'bounded Gaben attack proc'], ['Airborne presentation/target rules', 'Exact attack-modifier critical stacking'], { range: c => c.caster.range, manaCost: c => superLevel(c) ? 0 : c.definition.mana[Math.min(2, c.skill.points - 1, c.definition.mana.length - 1)] ?? 0, cooldown: c => cooldown(c, superLevel(c) ? 4 : 0), onAttack: c => { if (gabenLevel(c) && !c.caster.walrusBusy && c.random() < balanceNumber(c,'skill_effects_more.trigger_chance.1',0.2)) walrus(c); }, superImplemented: true, gabenImplemented: true }));
+function walrus(c:EffectContext){
+  if(c.caster.walrusBusy)return;c.caster.walrusBusy=true;
+  try{if(instantAttack(c,c.target,1,0,true,{criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))}).landed)walrusEffects(c);}
+  finally{c.caster.walrusBusy=false;}
+}
+put('custom_tusk_walrus_punch',active(walrus,['attack-point factor .6 and ordinary attack cadence', 'True Strike ensured critical competes with other criticals', 'air disable then historical landing slow', 'Super final air/free cast/cooldown and landing break', 'Gaben PRD replaces this attack without extra attack, mana or cooldown'],['Exact airborne presentation', 'AA Super break begins at landing as existing interpretation; native equivalent not established', 'Autocast/silence interaction and passive eligibility on every secondary attack require historical AA evidence'],{
+  dynamicRange:true,range:effectiveAttackRange,attackCastPointFactor:c=>v(c,'ATTACK POINT FACTOR',.6),canCast:c=>!inSnowball(c),
+  manaCost:c=>superLevel(c)?0:c.definition.mana[Math.min(2,c.skill.points-1,c.definition.mana.length-1)]??0,cooldown:c=>cooldown(c,superLevel(c)?4:0),
+  prepareAttack:c=>{if(!gabenLevel(c)||c.caster.walrusBusy||c.caster.illusion||inSnowball(c))return;const probability=balanceNumber(c,'skill_effects_more.trigger_chance.1',.2);if(!(c.chance?.(probability,'walrusPunch')??c.random()<probability))return;c.caster.statuses.push({kind:'walrusPrepared',source:c.caster.id,skill:c.skill.id,until:c.battle.time+MOTION_STEP,data:{target:c.target.id,attackSourceSkill:c.attackSourceSkill??'basic_attack'}} as EffectStatus);return{trueStrike:true,criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))};},
+  onAttack:c=>{const mark=[...c.caster.statuses].reverse().find(s=>s.kind==='walrusPrepared'&&(s as EffectStatus).data?.target===c.target.id&&(s as EffectStatus).data?.attackSourceSkill===(c.attackSourceSkill??'basic_attack'));if(mark){c.caster.statuses=c.caster.statuses.filter(s=>s!==mark);walrusEffects(c);}},superImplemented:true,gabenImplemented:true,
+}));
 
 put('vengefulspirit_wave_of_terror', active(c => {
   const start = { x: c.caster.x, y: c.caster.y }, end = endpoint(c, 14);
@@ -886,11 +909,12 @@ put('custom_phoenix_sun_ray', active(c => {
 
 function swash(c: EffectContext, passive = false) {
   const dir = passive ? { x: Math.cos(c.caster.facing), y: Math.sin(c.caster.facing) } : direction(c.caster, c.target);
-  if (!passive) { const dash = Math.min(U(v(c, 'DASH RANGE')), Math.max(0, distance(c.caster, c.target) - 2)); c.moveContinuous(c.caster,c.caster.x + dir.x * dash,c.caster.y + dir.y * dash,{duration:defaultMotionDuration()}); }
-  const start = { x: c.caster.x, y: c.caster.y }, end = { x: start.x + dir.x * U(v(c, 'SLASH RANGE')), y: start.y + dir.y * U(v(c, 'SLASH RANGE')) }, count = gabenLevel(c) ? 6 : v(c, 'STRIKES');
-  for (let i = 0; i < (passive ? Math.ceil(count / 2) : count); i++) c.delay(i * .1, () => { if (c.caster.dead) return; for (const t of lineTargets(c, start, end, U(v(c, 'SLASH WIDTH')))) c.attack(t, 1, true, v(c, 'DAMAGE PER STRIKE')); });
+  const dash=passive?0:Math.min(U(v(c,'DASH RANGE')),Math.max(0,distance(c.caster,c.target)-2)),travel=dash/Math.max(.01,U(v(c,'DASH SPEED',2000))),interval=v(c,'SLASH INTERVAL',.1),count=skillBalance(c.definition,c.skill.points)?v(c,'STRIKES'):(gabenLevel(c)?6:v(c,'STRIKES')),strikes=passive?Math.ceil(count/2):count;
+  const begin=()=>{if(c.caster.dead)return;const start={x:c.caster.x,y:c.caster.y},end={x:start.x+dir.x*U(v(c,'SLASH RANGE')),y:start.y+dir.y*U(v(c,'SLASH RANGE'))},slash=()=>{if(c.caster.dead)return;for(const t of lineTargets(c,start,end,U(v(c,'SLASH WIDTH'))))c.attack(t,1,true,v(c,'DAMAGE PER STRIKE'),false,{trueStrike:true,ignoreDamageBlock:true,allowInvisibleTarget:true});};for(let i=0;i<strikes;i++)if(i)c.delay(i*interval,slash);else slash();};
+  if(!passive)c.status(c.caster,'selfStun',travel+Math.max(0,strikes-1)*interval+MOTION_STEP,0,{dispel:'none'});
+  if(dash>0){c.moveContinuous(c.caster,c.caster.x+dir.x*dash,c.caster.y+dir.y*dash,{duration:travel,ignoreBarriers:true});c.delay(travel,begin);}else begin();
 }
-put('pangolier_swashbuckle', active(c => swash(c), ['dash followed by line strikes', 'fixed base strike damage with attack modifiers', 'Super periodic breakable half-count slash', 'Gaben six strikes'], ['Direction choice/AI dash destination', 'Slash timing and fixed-damage modifier ordering'], { range: c => U(v(c, 'DASH RANGE') + v(c, 'SLASH RANGE')), init: c => { if (superLevel(c)) clock(c, 120, 6, () => { if (!c.caster.statuses.some(s => s.kind === 'break')) swash(c, true); }); }, superImplemented: true, gabenImplemented: true }));
+put('pangolier_swashbuckle',active(c=>swash(c),['2000-speed continuous dash finishes before .1-second slash series', 'True Strike fixed-base instant attacks ignore flat damage block and allow cleave/attack effects', 'active action lock during dash and slash series', 'Super periodic breakable half-count slash', 'Gaben final six-strike profile'],['AI stops two world units short of target; no player ground targeting', 'Precise active sequence interruption and unusual fixed-damage/base-attack-buff interactions need further coverage', 'Modern slow and extra dash attack are excluded from the historical 2023 model'],{range:c=>U(v(c,'DASH RANGE')+v(c,'SLASH RANGE')),init:c=>{if(superLevel(c))clock(c,120,6,()=>{if(!c.caster.statuses.some(s=>s.kind==='break'))swash(c,true);});},superImplemented:true,gabenImplemented:true}));
 
 put('beastmaster_wild_axes', active(c => {
   const start = { x: c.caster.x, y: c.caster.y }, end = { x: c.target.x, y: c.target.y }, dir = direction(start, end), length = distance(start, end), hit = [new Set<string>(), new Set<string>()], old = [{ ...start }, { ...start }];

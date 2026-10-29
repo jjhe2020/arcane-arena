@@ -1,0 +1,909 @@
+{
+  "schemaVersion": 1,
+  "group": "auras-and-growth",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit custom clauses/numbers first. Wiki mechanisms are compared with fixed Valve2023-02-10; conflicts remain pending. A passing result requirement is not complete skill acceptance.",
+  "validation": {
+    "command": "npx vitest run tests/reference-auras-and-growth.test.ts",
+    "passedTests": 21,
+    "regressionCommand": "npx vitest run tests/reference-auras-and-growth.test.ts tests/reference-instant-attacks.test.ts tests/skill-more.test.ts tests/skill-extra.test.ts",
+    "regressionPassedTests": 199
+  },
+  "skills": [
+    {
+      "id": "crystal_maiden_brilliance_aura",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Global mana regeneration and owner on-cast burst; Super+80 restored mana and25% healing; Gaben25% cooldown aura. Six mana-related keys coexist ambiguously.",
+          "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "config/reference/migration-baseline.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden",
+          "accessedOn": "2026-10-29",
+          "observation": "Mana regeneration is an aura with .5s linger. Allies/illusions can receive it; proximity and self bonuses exist. Modern self amplification differs from historical factor.",
+          "versionContext": "Current Wiki read2026-10-29; current balance/facets do not override explicit AA values.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ACrystal_Maiden",
+          "accessedOn": "2026-10-29",
+          "observation": "Archived aura is global, undispellable and disabled by Break.",
+          "versionContext": "Archive contains mixed later balance; nonnumeric aura properties compared with pinned2023.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Crystal_Maiden/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.35 changes self factor6→7;7.36 adds a mana-cost-based on-cast facet. Neither establishes AA flat on-cast formula.",
+          "versionContext": "Post2023 changes explicitly excluded.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "break",
+          "url": "https://liquipedia.net/dota2/Break",
+          "accessedOn": "2026-10-29",
+          "observation": "Aura buffs remain present but their effects are disabled when the emitter is broken.",
+          "versionContext": "Current mechanism; tested as source-linked suppression rather than delayed expiration.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "brilliance_aura: global base .4/.6/.8/1, self factor6, proximity factor3 andradius1200. These differ from the AA custom keys and cannot silently replace them.",
+          "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CA-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Continuous mana aura; duplicate owners do not add twice.",
+          "sourceIds": [
+            "wiki",
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Arcane Aura regenerates mana continuously before the first whole second and does not stack duplicate owners"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CA-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Aura regeneration works before the first whole second.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Arcane Aura regenerates mana continuously before the first whole second and does not stack duplicate owners"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CA-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final160 mana burst and40 health after completed cast.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Arcane Aura Super emits the final 160 mana and 40 health burst to allies on a completed cast"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CA-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Immediately applied25% cooldown aura affects allied casts.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Arcane Aura Gaben supplies its cooldown aura immediately and reduces an ally cast cooldown by one quarter"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CA-05",
+          "kind": "combination",
+          "branch": "Break",
+          "mechanism": "Source Break immediately suppresses foreign regeneration/CDR.",
+          "sourceIds": [
+            "break",
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Arcane Aura Break suppresses foreign mana regeneration and cooldown reduction immediately"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CA-P1",
+          "kind": "mechanism",
+          "branch": "mana-keys",
+          "mechanism": "Resolve contradictory global/close/self keys against original AA Lua.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "AA says caster gains extra regeneration but top-tier MANA REGEN6 and SELF MANA REGEN6 are equal. CLOSE MANA REGEN3,SELF FACTOR2 andALLY FACTOR1 introduce duplicate/ambiguous meanings. Existing explicit global/self values are retained; proximity/factor semantics are unaccepted.",
+        "Burst healing currently uses nominal restored amount; behavior at full mana, mana restoration amplification and hidden units needs original AA Lua/result tests.",
+        "AA flat cast burst and25% global cooldown aura have no established exact native predecessor; current Cold Comfort is a later percentage-of-cost facet.",
+        "Aura numerical stacks/dispels beyond strongest-provider grouping and source Break require further coverage."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "history"
+          ],
+          "classification": "AA custom on-cast flat burst/healing",
+          "decision": "Keep+80 and25%; do not import later mana-cost facet."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki"
+          ],
+          "classification": "AA custom global cooldown aura",
+          "decision": "25% kept; no unsupported exact item/talent equivalence claimed."
+        }
+      ]
+    },
+    {
+      "id": "custom_abyssal_underlord_atrophy_aura",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA reduction5/15/35%, death bonus2/4/8 creeps or30/35/45 heroes; Super+15points/global; Gaben shares100% of acquired bonus. Strong-dispel category differs from Valve.",
+          "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "config/reference/migration-baseline.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Underlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Main attack damage reduction; independent temporary death stacks. Illusion/ward/zombie deaths excluded. Break stops aura/new stacks while existing bonus remains.",
+          "versionContext": "Current Wiki read2026-10-29; current balance/facets do not override explicit AA values.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Underlord/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.27b duration becomes30/45/60/75;7.06 grants half bonus to allies via scepter and retains self bonus on death.",
+          "versionContext": "Historical2020/2017 mechanics; current duration/numerical changes excluded.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "atrophy_aura contains900 radius,30/45/60/75 duration,+15reduction talent,+50% ally-sharing talent. AA1/2/3 maps to native1/2/4, giving30/45/75seconds.",
+          "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AT-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Reduction affects main attack damage, preserving flat bonuses.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy reduces only main attack damage, not the flat attack bonus, and Super extends across the arena"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Death stacks expire independently at historical tier duration.",
+          "sourceIds": [
+            "wiki",
+            "valve",
+            "history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy gains separate temporary death stacks with independent historical expiry"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-03",
+          "kind": "mechanism",
+          "branch": "death-eligibility",
+          "mechanism": "Aura linger admits a recently exited body; illusion/ward deaths grant nothing.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy death eligibility follows lingering aura membership and excludes illusion and ward deaths"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final50% reduction reaches across the arena.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy reduces only main attack damage, not the flat attack bonus, and Super extends across the arena"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Share currently unexpired bonus and remove it on expiry.",
+          "sourceIds": [
+            "aa",
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy creep death grants the creep amount and Gaben shares only currently unexpired bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-06",
+          "kind": "combination",
+          "branch": "Break",
+          "mechanism": "Broken emitter stops reduction/new gains; existing temporary bonus persists.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Atrophy Break disables the enemy aura and new gains while preserving existing temporary bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AT-P1",
+          "kind": "combination",
+          "branch": "dispel",
+          "mechanism": "AA strong-dispel category needs exact bonus/debuff interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "AA category says strong dispels only while historical Valve says undispellable; code follows AA strong category for temporary bonus/debuff, but exact original buff/debuff coverage is unproven.",
+        "Neutral creeps, fog/vision ownership and Meepo-clone death grouping are not modeled.",
+        "Illusion emitters and attribution/harvest routing to their owner are not fully accepted; death exemptions are tested separately.",
+        "Gaben ally radius/category differs from historical50% hero-only sharing; AA100% and arena scope remain the explicit custom interpretation."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "classification": "Historical+15% reduction talent plus AA global radius",
+          "decision": "Keep final50% at6/9 and custom arena range."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "history"
+          ],
+          "classification": "Related historical ally-sharing scepter/talent; AA100% custom factor",
+          "decision": "Share100% without importing native50% or old scepter duration extension."
+        }
+      ]
+    },
+    {
+      "id": "custom_dragon_knight_dragon_blood",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Passive3/6/12armor and health regeneration; Super+12each. Gaben15% max-level Breathe Fire when attacked.",
+          "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "config/reference/migration-baseline.json"
+        },
+        {
+          "id": "archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ADragon_Knight",
+          "accessedOn": "2026-10-29",
+          "observation": "Dragon Blood is disabled by Break. Illusions gain regeneration but not passive bonus armor.",
+          "versionContext": "Archived4/7/10/13values differ from AA and are not imported.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "fire",
+          "url": "https://liquipedia.net/dota2/Dragon_Knight",
+          "accessedOn": "2026-10-29",
+          "observation": "Breathe Fire travels as a cone; reduction affects main plus flat bonus, excluding conditional damage.",
+          "versionContext": "Current reduction percentages/range are newer; historical30%/750/1050 remain selected candidate.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Dragon Blood links a+12armor/regen talent. Breathe Fire native rank4 damage320, reduction30%, duration11s, speed1050 and750travel range.",
+          "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "DB-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Passive armor and regeneration are suppressed by Break.",
+          "sourceIds": [
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood Break removes both effective armor and healing while its passive buffs survive ordinary dispels"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Regeneration heals continuously over half a second.",
+          "sourceIds": [
+            "archive",
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood Super grants its final 24 armor and regeneration without repeated upgrades"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final24armor/regen does not add12 twice.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood Super grants its final 24 armor and regeneration without repeated upgrades"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Incoming landed attacks can invoke rank4 traveling flame.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood Gaben reacts with max-level traveling Breathe Fire and separate pre-conditional damage reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-05",
+          "kind": "combination",
+          "branch": "illusions",
+          "mechanism": "Real Phantasm inherits regeneration without passive armor.",
+          "sourceIds": [
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood inherited by real Phantasm illusions grants regeneration without passive bonus armor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-06",
+          "kind": "combination",
+          "branch": "Breathe-Fire",
+          "mechanism": "Flame debuff is distinct from main-only aura reduction.",
+          "sourceIds": [
+            "fire",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Dragon Blood Gaben reacts with max-level traveling Breathe Fire and separate pre-conditional damage reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "DB-P1",
+          "kind": "gaben",
+          "branch": "proc-clock",
+          "mechanism": "Missed/blocked incoming-attack timing and PRD qualification need original AA evidence.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "The exact15% reactive-fire native predecessor was not established; it remains an explicit AA custom proc, with independent seeded uniform draws rather than invented PRD qualification.",
+        "Missed/projectile-disjoint incoming attacks, zero-damage contact, lethal source death and exact reactive trigger phase need additional result cases.",
+        "Native flame cone end caps/trees and AA-patch match remain unresolved; no tree geometry exists.",
+        "Source says when attacked; current onAttacked means successful contact, whose old-AA timing is not proven."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "classification": "Direct+12Dragon Blood talent match",
+          "decision": "AA baseline12 becomes24 rather than historical13→25."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "fire",
+            "valve"
+          ],
+          "classification": "AA reactive grant of same-hero Breathe Fire",
+          "decision": "Use explicit maximum native rank4; no ordinary cast mana/cooldown or modern talents."
+        }
+      ]
+    },
+    {
+      "id": "custom_lycan_feral_impulse",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Owner/controlled bodies gain10/20/40% damage and1/3/7regen. Super+25points/+10regen. Gaben attacks apply stacking-1armor; duration unspecified.",
+          "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "config/reference/migration-baseline.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Lycan",
+          "accessedOn": "2026-10-29",
+          "observation": "Global owned-unit aura, .5s linger, current main-damage based bonus. Illusions receive regeneration only; wards/invulnerable bodies excluded.",
+          "versionContext": "Current Wiki read2026-10-29; current balance/facets do not override explicit AA values.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ALycan",
+          "accessedOn": "2026-10-29",
+          "observation": "Feral Impulse is disabled by Break; historical regeneration1/3/5/7.",
+          "versionContext": "Historic mechanics compared to Valve, current2/4/6/8regen excluded.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Lycan/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "Older talents modify Feral damage and regeneration; later regen values changed. None establishes AA stacking armor duration.",
+          "versionContext": "Related same-hero talents, not an exact whole-package equivalence.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "Feral bonus10/20/30/40,1/3/5/7regen and+25damage talent. AA uses1/2/4rank mapping plus custom+10regen.",
+          "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FI-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Owned bodies receive aura; controlled illusions receive regeneration only.",
+          "sourceIds": [
+            "aa",
+            "wiki",
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Feral Impulse affects the owner and controlled bodies, and grants only regeneration to controlled illusions"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Source death stops refresh; only half-second aura linger remains.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Feral source Break suppresses controlled-unit bonuses immediately and source death leaves only the aura linger"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final65% main damage and17regen leave flat bonus unamplified.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Feral Impulse Super reads final 65 percent main damage and 17 regeneration, excluding flat attack bonuses"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Successful owner/affected-body attacks stack-1armor; misses do not.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Feral Gaben stacks armor reduction from successful owner and aura-affected controlled-unit attacks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-05",
+          "kind": "combination",
+          "branch": "Break",
+          "mechanism": "Broken source immediately disables controlled-unit bonuses.",
+          "sourceIds": [
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Feral source Break suppresses controlled-unit bonuses immediately and source death leaves only the aura linger"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FI-P1",
+          "kind": "gaben",
+          "branch": "armor-duration",
+          "mechanism": "Original armor debuff duration/grouping and dispel type are unknown.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Stacking-1armor has no recovered duration; existing120-second battle-duration working value remains exposed, not certified.",
+        "Multiple aura owners, ownership transfer and negative armor grouping are not exhausted.",
+        "Native flat-from-main versus additive percentage buff interaction with other main-damage manipulations needs broader cases; ordinary flat bonuses are tested.",
+        "Gaben source/passive inheritance by illusions and specialized no-attack-body targets needs original AA qualification evidence."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "history"
+          ],
+          "classification": "Related+25damage and historical regeneration talents; AA custom+10regen",
+          "decision": "Use AA65/17final, not current native regen."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa"
+          ],
+          "classification": "AA custom stacking armor attack effect",
+          "decision": "Preserve explicit-1stack; record unsupported duration instead of claiming an item equivalence."
+        }
+      ]
+    },
+    {
+      "id": "troll_warlord_fervor",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "AA attack speed10/17/31per stack,max12. Super+15each; Gaben retains stacks on target changes; strong-dispel category.",
+          "versionContext": "Official230-row English SHA2561014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; current response matches retained catalog; exact Workshop patch unknown.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "config/reference/migration-baseline.json"
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Troll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Current Fervor gains on successful projectile impact, not miss/disjoint. Break disables new stacks and existing speed.",
+          "versionContext": "Current Wiki read2026-10-29; current balance/facets do not override explicit AA values.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ATroll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Archive displays12max stacks and native15/20/25/30speed.",
+          "versionContext": "Archived candidate; AA keeps custom10/17/31, not current maximum10.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "older",
+          "url": "https://liquipedia.net/dota2/Siltbreaker/Troll_Warlord",
+          "accessedOn": "2026-10-29",
+          "observation": "Older event documentation instead counts at attack point, including misses/disjoints.",
+          "versionContext": "2017event mechanics; explicitly a version conflict, not certified as AA implementation.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Troll_Warlord/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.27b talent changes to+5per-stack speed;7.36c reduces12max to10.",
+          "versionContext": "AA+15 and12max retained; modern shard/innate attack effects excluded.",
+          "readMethod": "Liquipedia search-index page excerpts; direct pages may return HTTP403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "fervor max12, native speed15/20/25/30,+5talent and undispellable flag. AA has its own+15upgrade andstrong-dispel category.",
+          "versionContext": "Valve shipped KV commit2023-02-10. Historical candidate; not proof of AA engine patch.",
+          "readMethod": "Pinned local Valve raw/parsed data, not floating master.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "FE-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Repeat successful-hit stacks cap at12.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor gains capped stacks on successful repeated hits and its Super speed per stack is final"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-P1",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Current landed-hit behavior is tested; old attack-point equivalence remains unresolved.",
+          "sourceIds": [
+            "wiki",
+            "older"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor keeps the current landed-hit rule for blind and projectile timing without inventing historical equivalence"
+            }
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "FE-02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final46per-stack speed is not added twice.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor gains capped stacks on successful repeated hits and its Super speed per stack is final"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Gaben retains the accumulated count across target changes.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor target switches reset ordinary stacks while Gaben retains them"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-04",
+          "kind": "combination",
+          "branch": "Break",
+          "mechanism": "Break suppresses both stored speed and further gains.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-auras-and-growth.test.ts",
+              "test": "Fervor Break suppresses existing speed and new stack gain; the AA strong-dispel counter can reset cleanly"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "FE-P2",
+          "kind": "mechanism",
+          "branch": "switch-and-dispel",
+          "mechanism": "First new-target stack and AA strong-purge semantics need original-script evidence.",
+          "sourceIds": [
+            "aa",
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Historical attack-point/miss counting conflicts with current landed-hit behavior; no trustworthy AA patch transition recovered. Existing landed-hit rule is retained and tested, not promoted to verified timing.",
+        "Ordinary target switch currently starts a new count1; some descriptions imply the switching hit yields0, so that exact boundary remains pending.",
+        "Strong-dispel category differs from native no-dispel; counter/bonus are configured strong and explicit-removal reset is tested, but a real enemy strong-purge combination is not yet exercised.",
+        "Gaben no-reset is AA custom; no exact same-hero native predecessor established.",
+        "Death/reincarnation and unit-target redirection stack semantics are not fully covered."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "history"
+          ],
+          "classification": "Related native+5speed talent; AA custom+15",
+          "decision": "Final31+15=46per stack; keep12max."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki"
+          ],
+          "classification": "AA custom target-switch retention",
+          "decision": "Do not import modern shard extra projectile or innate/facet rules."
+        }
+      ]
+    }
+  ]
+}

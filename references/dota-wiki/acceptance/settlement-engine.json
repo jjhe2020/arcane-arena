@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "group": "settlement-engine",
+  "sources": [
+    {
+      "id": "spell-lifesteal-2022",
+      "url": "https://web.archive.org/web/20221205165955id_/https://dota2.fandom.com/wiki/Spell_lifesteal",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Archived 2022-12-05 page before pinned February 2023 candidate; does not apply the 7.38 pure-damage changes.",
+      "observation": "Spell lifesteal is capped by victim remaining HP, has a reduced creep coefficient and excludes Rum repayment and False Promise resolution.",
+      "entitySha256": "9d0dbdade7b10b83abe87e38df26602420d896f44a9714fa8b7f4185afdddf44"
+    },
+    {
+      "id": "oracle-2023",
+      "url": "https://web.archive.org/web/20230215192050id_/https://dota2.fandom.com/wiki/Oracle",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Archived 2023-02-15, close to pinned candidate. Modern Oracle barrier ordering is different.",
+      "observation": "False Promise negates original damage and settles health removal without ordinary multipliers. In this historical model it precedes Aphotic Shield and interacts separately with Borrowed Time.",
+      "entitySha256": "5e830981cdafa1a3ded70e3b34fe44c56930cd32449409037827bb2d9630fd4d"
+    },
+    {
+      "id": "kunkka-2023",
+      "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+      "accessedOn": "2026-10-29",
+      "versionContext": "Archived 2023-02-15, close to pinned candidate.",
+      "observation": "Rum reduces ordinary incoming damage. Repayment is nonlethal health setting, rather than a new spell damage instance that can lifesteal.",
+      "entitySha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d"
+    }
+  ],
+  "engineRequirements": [
+    {
+      "id": "E-LS-FP",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Negated False Promise damage and its final health-removal settlement do not grant spell lifesteal, while final effective damage keeps original source attribution.",
+      "status": "passed",
+      "sourceIds": ["spell-lifesteal-2022", "oracle-2023"],
+      "testEvidence": [
+        {"file":"tests/reference-deferred-lifesteal.test.ts","test":"False Promise neither the negated original hit nor the final HP removal grants spell lifesteal"},
+        {"file":"tests/reference-deferred-lifesteal.test.ts","test":"False Promise retains damage ownership without reviving an expired provider at settlement"}
+      ]
+    },
+    {
+      "id": "E-LS-RUM",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Rum repayment does not trigger spell lifesteal a second time, and its effective repayment remains attributed to original abilities.",
+      "status": "passed",
+      "sourceIds": ["spell-lifesteal-2022", "kunkka-2023"],
+      "testEvidence": [{"file":"tests/reference-lightning-bolt-edges.test.ts","test":"AR-E11 does not spell-lifesteal from rum repayment while preserving its original damage attribution"}]
+    },
+    {
+      "id": "E-FP-SHIELD-ORDER",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Historical False Promise must record damage before consuming Aphotic Shield. Current engine still consumes shields first; modern ordering cannot certify this historical combination.",
+      "status": "mechanism_missing",
+      "sourceIds": ["oracle-2023"],
+      "testEvidence": []
+    },
+    {
+      "id": "E-FP-BORROWED-ORDER",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "Historical False Promise also records damage when Borrowed Time converts it into deferred healing. Current Borrowed Time early return prevents recording that damage.",
+      "status": "mechanism_missing",
+      "sourceIds": ["oracle-2023"],
+      "testEvidence": []
+    },
+    {
+      "id": "E-SPELL-LIFESTEAL-CREEPS",
+      "kind": "mechanism",
+      "branch": "base",
+      "rule": "Historical generic spell lifesteal uses a 0.2 creep coefficient with source/type exceptions. Engine currently lacks a general native victim-class coefficient; per-illusion and summon inheritance still needs explicit eligibility review.",
+      "status": "mechanism_missing",
+      "sourceIds": ["spell-lifesteal-2022"],
+      "testEvidence": []
+    }
+  ],
+  "skills": []
+}

@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {spawn} from 'node:child_process';
+import {root,referenceFingerprint,buildReferenceAcceptance} from './reference-acceptance.mjs';
+const before=await referenceFingerprint();await fs.mkdir(path.join(root,'artifacts'),{recursive:true});
+const reportPath=path.join(root,'output/reference-acceptance-tests.vitest.json');await fs.mkdir(path.dirname(reportPath),{recursive:true});
+const testFiles=(await fs.readdir(path.join(root,'tests'))).filter(name=>/^reference-.*\.test\.ts$/.test(name)).map(name=>`tests/${name}`).sort();
+if(!testFiles.length)throw Error('No individually authored reference tests exist.');
+const result=await new Promise((resolve,reject)=>{const child=spawn(process.execPath,[path.join(root,'node_modules/vitest/vitest.mjs'),'run',...testFiles,'--reporter=default','--reporter=json',`--outputFile=${reportPath}`],{cwd:root,stdio:'inherit',windowsHide:true});child.on('error',reject);child.on('exit',code=>resolve(code));});
+const vitest=JSON.parse(await fs.readFile(reportPath,'utf8')),after=await referenceFingerprint();
+const tests=vitest.testResults.flatMap(file=>file.assertionResults.map(test=>({file:path.relative(root,file.name).replaceAll('\\','/'),title:test.title,fullName:test.fullName,status:test.status})));
+const proof={schemaVersion:1,sourceFingerprint:before,sourceUnchanged:before===after,passed:result===0&&before===after&&vitest.success===true,executedTests:tests.length,command:'npm run reference:verify',tests};
+await fs.writeFile(path.join(root,'artifacts/reference-acceptance-proof.json'),JSON.stringify(proof,null,2)+'\n');
+const report=await buildReferenceAcceptance();console.log(JSON.stringify({proofCurrent:report.proofCurrent,...report.counts}));
+if(!proof.passed)process.exitCode=1;

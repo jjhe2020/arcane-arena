@@ -1,6 +1,7 @@
 import { createServer } from 'vite';
 import { readFile,writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import {buildReferenceAcceptance} from './reference-acceptance.mjs';
 
 const server=await createServer({server:{middlewareMode:true},optimizeDeps:{noDiscovery:true,include:[],entries:[]}});
 try{
@@ -10,7 +11,9 @@ try{
  // Known simplifications must not disappear into a generic "needs validation"
  // bucket just because the ability has all three registered branches.
  const classify=text=>/tree cutting absent|tree destruction|no board tree geometry|no fog of war/i.test(text)?'environment_not_modeled':/backswing\/channel durations are unchanged|circular neighbor approximation|do not copy arbitrary other attack modifiers|bounce uses base attack damage|per-hit damage variance is not modeled|not (yet )?(implemented|attached)|incomplete|still lacks|remains missing|not swept|not supported|requires.*implementation/i.test(text)?'mechanism_missing':/default|interpretation|provisional|placeholder|fallback|candidate|currently|uses? .*instead/i.test(text)?'working_default':/absent|omits|missing.*(field|value|data)|source.*missing/i.test(text)?'parameter_source_missing':'reference_validation';
- const skills=getMechanicCoverage(JSON.parse(catalog)).map(s=>({...s,remainingDetails:s.remaining.map(description=>({category:classify(description),description}))}));
+ const acceptance=await buildReferenceAcceptance();
+ const accepted=new Map(acceptance.skills.map(s=>[s.id,s]));
+ const skills=getMechanicCoverage(JSON.parse(catalog)).map(s=>({...s,status:accepted.get(s.id)?.status==='reference_verified'?'reference_verified':s.status,verifiedAgainstReference:accepted.get(s.id)?.status==='reference_verified',referenceAcceptance:accepted.get(s.id)?.byDimension,acceptanceFile:accepted.get(s.id)?.auditFile,remainingDetails:s.remaining.map(description=>({category:classify(description),description}))}));
  const referenceResearch=JSON.parse(await readFile('references/dota-wiki/r5-mechanics.json','utf8'));
  const compiled=JSON.parse(await readFile('src/generated/game-config.json','utf8'));
  const engineAudit=[
@@ -33,6 +36,10 @@ try{
  const skillMechanismGaps=skills.flatMap(s=>s.remainingDetails.filter(x=>x.category==='mechanism_missing').map(x=>({id:s.id,...x})));
  const report={generatedAt:new Date().toISOString(),simulationRevision:SIMULATION_REVISION,targetSkillCount:230,referencePatch:'unknown',referenceSnapshot:'2026-10-26',catalogSha256:createHash('sha256').update(catalog).digest('hex'),historicalCandidate:{commit:'6abdd9d13de2f4330ca748082467b9ff6e6cd928',date:'2023-02-10',matchedToAA:false},strictReferenceVerifiedCount:0,engineMechanismGaps,skillMechanismGaps,engineWorkingDefaults:[{id:'spell_steal_lifecycle',description:'Stolen initialization, private caster counters, child action slots, direct init bonuses and maintained effects use explicit origins. Expiry removes these; already completed casts finish naturally. Copied permanent charges are temporary snapshots and never write rewards to a purchased skill instance.'},{id:'hero_summon_classification',description:'Official FAQ excludes ordinary summons from default hero attacks. Forced targeting and spell targeting remain possible; real heroes, their scheduled revivals and hero illusions determine survival. Hero-illusion classification is an explicit engine interpretation.'}],engineReferenceValidation:['Original-version status/immune/dispel ordering, illusion inheritance allowlists and aura stacking groups remain unverified.','Non-caster custom program counters require per-effect collision tests; Spell Steal does not generically sandbox arbitrary writes into battle or target objects.'],counts:{partial:skills.filter(s=>s.status==='partial').length,unimplemented:skills.filter(s=>s.status==='unimplemented').length,superBranches:skills.filter(s=>s.super).length,gabenBranches:skills.filter(s=>s.gaben).length,grantedOnly:GRANTED_SKILL_DEFINITIONS.length},projectAttributeModel:{baseTotalsAlreadyIncludeBaseAttributes:true,formula:'Changes only; not recovered AA hero values',conversions:ATTRIBUTE_CONVERSION},limitations:['Registered base and upgrade branch flags report working behavior, not full fidelity or original-engine verification.','Remaining classifications are conservative text routing; the full original description remains authoritative.','Historical granted definitions never enter the 230-entry purchasable catalog.'],unimplementedIds:skills.filter(s=>!s.base).map(s=>s.id),grantedOnlySkills:GRANTED_SKILL_DEFINITIONS.map(d=>({id:d.id,historicalSource:d.historicalSource})),skills};
  report.probabilityModel=probabilityModel;
+ report.strictReferenceVerifiedCount=acceptance.counts.fullyReferenceVerified;
+ report.counts.referenceVerified=acceptance.counts.fullyReferenceVerified;
+ report.referenceAcceptance={...acceptance.counts,proofCurrent:acceptance.proofCurrent,report:'data/reference-acceptance.json'};
+ report.engineMechanismGaps.push(...acceptance.engineRequirements.filter(q=>q.status==='mechanism_missing').map(q=>({id:q.id,status:'mechanism_missing',description:q.rule,sourceIds:q.sourceIds})));
  report.configHash=compiled.hash;
  const configReport=JSON.parse(await readFile('public/data/config-report.json','utf8'));
  report.configurationCoverage={mainSkills:configReport.counts.skills,grantedSkills:configReport.counts.granted,referenceAbilities:configReport.counts.referenceAbilities??0,aaPointTiers:[1,2,3,6,9],nativeRanksSeparated:true};
@@ -41,7 +48,7 @@ try{
  report.environmentPolicy={mode:'flat_visible_arena',excluded:['fog_of_war','day_night_map_vision','trees','elevation','uphill_miss'],retained:['invisibility','true_sight','undetectable'],note:'Unmodeled environmental branches are explicit exclusions, not invented damage or targeting substitutes.'};
  for(const skill of report.skills){skill.configuration={aaTiers:Object.keys(compiled.skills[skill.id]??{}).map(Number),sourcePolicy:'AA overrides > compatible historical Valve fields > explicitly labeled working defaults'};}
  report.engineWorkingDefaults.push({id:'responsive_action_clocks',description:'Attack animation/cadence and cast windup/backswing retain completed progress when explicit time scales change. Chronosphere channels, cooldowns, periodic effects and projectiles remain on world time; channel scaling is not stated by the AA text.'},{id:'attack_inheritance_and_geometry',description:'Jingu soldiers use an explicit seven-skill attack-effect allowlist without recursive Jingu. Moon Glaives use the impact-time base attack snapshot and serial bounces. Skeletons sample their declared damage interval. Empower uses the historical taper, with Super +200 interpreted as ending half-width.'});
- report.engineReferenceValidation.push('The calibrated PRD model and its four-skill trigger allowlist are project working rules; native AA eligibility, initial counters and coefficient conventions have not been reference-matched.');
+ report.engineReferenceValidation.push('Four legacy PRD entries retain working eligibility. Walrus Punch and Anchor Smash additionally have historical Wiki changelog eligibility evidence; exact AA initial counters and coefficient conventions still need comparison.');
  await writeFile('public/data/mechanics-coverage.json',JSON.stringify(report,null,2)+'\n');
- console.log(JSON.stringify({simulationRevision:SIMULATION_REVISION,...report.counts,strictReferenceVerified:0}));
+ console.log(JSON.stringify({simulationRevision:SIMULATION_REVISION,...report.counts,strictReferenceVerified:report.strictReferenceVerifiedCount,referenceAcceptance:report.referenceAcceptance}));
 }finally{await server.close();}

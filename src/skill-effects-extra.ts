@@ -138,17 +138,17 @@ function child(id: string, values: string[], cooldown: number, mana: number, pro
 }
 
 programs.crystal_maiden_brilliance_aura = passive({
-  init: c => periodic(c, FOREVER, SECOND, () => {
-    for (const ally of c.allies()) {
-      c.mana(ally, value(c, ally.id === c.caster.id ? 'SELF MANA REGEN' : 'MANA REGEN'));
-      if (G(c)) buff(c, ally, 'cooldownReduction', balanceNumber(c,'skill_effects_extra.buff_amount.1',0.25), balanceNumber(c,'skill_effects_extra.buff_duration.1',1.1));
-    }
-  }),
-  onCast: c => { const restored = value(c, 'MANA RESTORED PER CAST') + (S(c) ? 80 : 0);
+  init:c=>c.zone({follow:true,radius:1000,duration:FOREVER,interval:.1,immediate:true,targets:'allies',effect:ally=>{
+    if(c.caster.dead||ally.statuses.some(s=>s.kind==='invulnerable'||s.kind==='banished'))return;
+    const options={dispel:'none' as const,data:{stacking:'strongest',uniqueGroup:'arcaneAura',suppressWithSourceBreak:true}};
+    buff(c,ally,'manaRegen',value(c,ally.id===c.caster.id?'SELF MANA REGEN':'MANA REGEN'),value(c,'AURA LINGER',.5),options);
+    if(G(c))buff(c,ally,'cooldownReduction',balanceNumber(c,'skill_effects_extra.buff_amount.1',.25),value(c,'AURA LINGER',.5),{...options,data:{...options.data,uniqueGroup:'arcaneAuraCooldown'}});
+  }}),
+  onCast: c => { const restored = value(c, 'MANA RESTORED PER CAST') + (!skillBalance(c.definition,c.skill.points)&&S(c) ? 80 : 0);
     for (const ally of c.allies()) { c.mana(ally, restored); if (S(c)) c.heal(ally, restored * balanceNumber(c,'skill_effects_extra.heal.1',0.25)); }
   }
-}, ['global ally mana regeneration', 'cast-triggered mana burst', 'Super +80 burst and healing', 'Gaben cooldown-reduction aura'],
-['Close/self mana regen fields conflict in the captured text; SELF MANA REGEN used for caster and MANA REGEN for allies']);
+}, ['continuous global ally mana-regeneration aura rather than one-second restoration pulses', 'cast-triggered mana burst', 'Super final burst and healing', 'Gaben strongest-provider cooldown-reduction aura'],
+['Close/self mana regen fields conflict in AA; explicit SELF MANA REGEN and MANA REGEN retained rather than importing modern values', 'AA burst healing uses nominal restored amount; missing original Lua prevents certifying full-mana target behavior']);
 
 programs.bloodseeker_bloodrage = active(c => {
   const duration = value(c, 'DURATION');
@@ -315,10 +315,18 @@ programs.custom_dawnbreaker_luminosity = passive({ attackModifier: c => {
 } }, ['every-fourth attack critical and area healing', 'Super one fewer attack and critical bonus', 'Gaben five-second double attack'],
 ['Gaben +150% lifesteal interpreted as percentage points pending reference verification', 'Proc counter interaction with secondary attacks']);
 
+const BOUNDLESS_ID='custom_monkey_king_boundless_strike';
+const jinguBatch=(c:C)=>c.caster.statuses.find(s=>s.kind==='boundlessJinguBatch'&&s.until>c.battle.time) as EffectStatus|undefined;
+const jinguBatchKey=(c:C)=>`charges:${c.skill.instanceId??String((c.skill as unknown as {stolenOrigin?:string}).stolenOrigin??c.skill.id)}`;
+function jinguCharges(c:C):number{
+  if(c.attackSourceSkill!==BOUNDLESS_ID)return readState(c,'charges');
+  const batch=jinguBatch(c);if(!batch)return readState(c,'charges');
+  const data=(batch.data??={}),key=jinguBatchKey(c);if(data[key]===undefined)data[key]=readState(c,'charges');return Number(data[key]);
+}
 programs.custom_monkey_king_jingu_mastery = passive({
-  attackModifier: c => ({ bonus: readState(c, 'charges') > 0 ? (skillBalance(c.definition,c.skill.points)?value(c,"BONUS DAMAGE"):(((value(c, 'BONUS DAMAGE') + (S(c) ? 130 : 0))))) : 0 }),
+  attackModifier: c => ({ bonus: jinguCharges(c) > 0 ? (skillBalance(c.definition,c.skill.points)?value(c,"BONUS DAMAGE"):(((value(c, 'BONUS DAMAGE') + (S(c) ? 130 : 0))))) : 0 }),
   onAttack: c => {
-    if (readState(c, 'charges') > 0) { setState(c, 'charges', readState(c, 'charges') - 1); c.heal(c.caster, (c.amount ?? 0) * P(value(c, 'BONUS LIFESTEAL'))); return; }
+    if(jinguCharges(c)>0){if(c.attackSourceSkill!==BOUNDLESS_ID)setState(c,'charges',readState(c,'charges')-1);c.heal(c.caster,(c.amount??0)*P(value(c,'BONUS LIFESTEAL')));return;}
     if (c.target.summoned) return;
     const old = c.target.statuses.find(s => s.kind === 'jinguHits' && s.source === c.caster.id)?.value ?? 0, n = old + 1;
     debuff(c, c.target, 'jinguHits', n, value(c, 'COUNTER DURATION'));
@@ -327,7 +335,8 @@ programs.custom_monkey_king_jingu_mastery = passive({
       const generation = readState(c, 'jinguGeneration') + 1; setState(c, 'jinguGeneration', generation);
       c.delay(balanceNumber(c,'skill_effects_extra.delay.1',35), () => { if (readState(c, 'jinguGeneration') === generation) setState(c, 'charges', 0); });
     }
-  }
+  },
+  onCast:c=>{if(c.triggerSkillId!==BOUNDLESS_ID)return;const batch=jinguBatch(c),key=jinguBatchKey(c),charges=Number(batch?.data?.[key]??readState(c,'charges'));if(charges>0)setState(c,'charges',Math.max(0,readState(c,'charges')-1));}
 }, ['per-enemy hit counters with expiry', 'four charged bonus-damage/lifesteal attacks', 'Super +130 damage'], ['Super Echo Sabre', 'Gaben stone soldiers', 'Charged attack lifetime absent in catalog']);
 
 programs.custom_luna_moon_glaive = passive({ onAttack: c => {
@@ -404,20 +413,20 @@ programs.custom_abaddon_curse_of_avernus = passive({ onAttack: c => {
 } }, ['four-hit curse/silence', 'basic and curse slows', 'Super three-hit threshold', 'Gaben can stack during existing curse'],
 ['Super -50% slow wording requires reference interpretation']);
 
-programs.custom_abyssal_underlord_atrophy_aura = passive({ init: c => {
-  periodic(c, FOREVER, .25, () => {
-    const radius = S(c) ? 1000 : U(value(c, 'RADIUS'));
-    for (const enemy of nearby(c, c.caster, radius)) debuff(c, enemy, 'attackPct', -(P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.15) : 0)), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.35));
-    buff(c, c.caster, 'attackBonus', readState(c, 'bonus'));
-    if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), balanceNumber(c,'skill_effects_extra.buff_duration.1',0.35));
-  });
-}, onUnitDeath: c => {
-  if (c.target.side === c.caster.side || distance(c.target, c.caster) > (S(c) ? 1000 : U(value(c, 'RADIUS')))) return;
-  setState(c, 'bonus', readState(c, 'bonus') + value(c, c.target.summoned ? 'BONUS DAMAGE(CREEP)' : 'BONUS DAMAGE(HERO)'));
-  buff(c, c.caster, 'attackBonus', readState(c, 'bonus'));
-  if (G(c)) for (const ally of c.allies().filter(t => t.id !== c.caster.id)) buff(c, ally, 'attackBonus', readState(c, 'bonus'), balanceNumber(c,'skill_effects_extra.buff_duration.2',0.35));
-} }, ['enemy base-damage reduction aura', 'nearby death bonus damage', 'Super global aura', 'Gaben shares acquired bonus with allies'],
-['Temporary damage-bonus duration absent: currently lasts until battle ends']);
+function atrophyShare(c:C){
+  if(!G(c)||c.caster.dead)return;
+  const bonus=c.caster.statuses.filter(s=>s.kind==='attackBonus'&&s.source===c.caster.id&&s.skill===c.skill.id&&s.until>c.battle.time).reduce((sum,s)=>sum+(s.value??0),0);
+  for(const ally of c.allies().filter(t=>t.id!==c.caster.id&&!t.ward&&!t.statuses.some(s=>s.kind==='invulnerable'||s.kind==='banished')))buff(c,ally,'attackBonus',bonus,value(c,'AURA LINGER',.5),{dispel:'none',data:{stacking:'strongest',uniqueGroup:'atrophySharedBonus',suppressWithSourceBreak:true}});
+}
+programs.custom_abyssal_underlord_atrophy_aura=passive({init:c=>{
+  const pulse=()=>{if(c.caster.dead)return;const radius=S(c)?1000:U(value(c,'RADIUS'));for(const enemy of nearby(c,c.caster,radius).filter(t=>!t.ward))debuff(c,enemy,'baseAttackDamageReduction',P(value(c,'DAMAGE REDUCTION'))+(!skillBalance(c.definition,c.skill.points)&&S(c)?balanceNumber(c,'skill_effects_extra.debuff_amount.1',.15):0),value(c,'AURA LINGER',.5),{dispel:'strong',ignoreStatusResistance:true,data:{stacking:'strongest',uniqueGroup:'atrophyReduction',suppressWithSourceBreak:true}});atrophyShare(c);};
+  pulse();periodic(c,FOREVER,.1,pulse);
+},onUnitDeath:c=>{
+  if(c.target.side===c.caster.side||c.target.illusion||c.target.ward||String(c.target.sourceUnitType??'').startsWith('npc_dota_unit_undying_zombie'))return;
+  if(!c.target.statuses.some(s=>s.kind==='baseAttackDamageReduction'&&s.source===c.caster.id&&s.skill===c.skill.id&&s.until>c.battle.time))return;
+  const amount=value(c,c.target.summoned&&!c.target.consideredHero?'BONUS DAMAGE(CREEP)':'BONUS DAMAGE(HERO)'),duration=value(c,'BONUS DURATION',[30,45,75][Math.min(2,c.skill.points-1)]);
+  buff(c,c.caster,'attackBonus',amount,duration,{passive:false,dispel:'strong',maxStacks:10000});atrophyShare(c);
+}},['main attack reduction with source aura membership and linger', 'independent historical-duration death-damage stacks survive Break', 'illusion/ward/zombie deaths excluded', 'Super final reduction and arena-wide coverage', 'Gaben shares current unexpired bonus with strongest-provider grouping'],['AA strong-dispel category overrides historical undispellable bonus; exact buff/debuff category coverage needs original Lua', 'Vision-dependent aura eligibility and clone-specific one-stack grouping have no arena equivalent']);
 
 programs.huskar_berserkers_blood = passive({ init: c => {
   if (G(c)) buff(c, c.caster, 'strength', balanceNumber(c,'skill_effects_extra.buff_amount.1',60), FOREVER, { dispel: 'none' });
@@ -435,9 +444,9 @@ programs.custom_slark_dark_pact = active(c => {
     for (const unit of [c.caster, ...allies]) {
       if (unit.dead) continue;
       const own = unit.id === c.caster.id, damage = own ? (((skillBalance(c.definition,c.skill.points)?value(c,"DAMAGE"):((value(c, 'DAMAGE') + (S(c) ? 150 : 0)))) / 10)) : (skillBalance(c.definition,c.skill.points)?value(c,'ALLY COPY DAMAGE')/10:value(c,'DAMAGE')*.05);
-      c.dispel(unit, true);
       for (const enemy of nearby(c, unit, U(value(c, 'RADIUS')) + (own && S(c) ? 1.5 : 0))) { c.damage(enemy, damage); if (own && S(c)) c.dispel(enemy, false, false); }
-      unit.hp = Math.max(1, unit.hp - damage * P(value(c, 'SELF DAMAGE')));
+      c.dispel(unit, true);
+      c.damage(unit, damage * P(value(c, 'SELF DAMAGE')), 'magical', false, {flags:{nonLethal:true}});
     }
   });
 }, ['delayed strong self dispel and radial damage', 'ten .1-second purge/damage pulses', 'self-health cost', 'Super area/damage and enemy buff purge', 'Gaben allied normal-pact copies'],
@@ -657,7 +666,7 @@ programs.custom_earthshaker_enchant_totem = active(c => { buff(c, c.caster, 'enc
 ['one empowered attack', 'temporary bonus range', 'Gaben +60 base attack damage'], ['Super mana cost and cooldown reduction', 'Buff timeout absent from catalog'], {
   target: 'self', castPoint: .3, canCast: c => !has(c, c.caster, 'enchantTotem'),
   init: c => { if (G(c)) c.caster.attack += 60; },
-  attackModifier: c => ({ multiplier: has(c, c.caster, 'enchantTotem') ? 1 + P(value(c, 'BONUS')) : 1 }),
+  attackModifier: c => ({ baseMultiplier: has(c, c.caster, 'enchantTotem') ? 1 + P(value(c, 'BONUS')) : 1 }),
   onAttack: c => { if (has(c, c.caster, 'enchantTotem')) { clear(c, c.caster, 'enchantTotem'); clear(c, c.caster, 'range'); } }
 });
 
@@ -1129,6 +1138,8 @@ appendInit('custom_monkey_king_jingu_mastery', c => {
   buff(c, c.caster, 'attackBonus', balanceNumber(c,'skill_effects_extra.buff_amount.3',15)); buff(c, c.caster, 'attackSpeed', balanceNumber(c,'skill_effects_extra.buff_amount.4',10)); buff(c, c.caster, 'manaRegen', balanceNumber(c,'skill_effects_extra.buff_amount.5',1.75));
 });
 appendAttack('custom_monkey_king_jingu_mastery', c => {
+  // Boundless applies Echo's slow but cannot trigger its extra regular attack.
+  if(S(c)&&effectiveRange(c)<=2&&c.attackSourceSkill===BOUNDLESS_ID){debuff(c,c.target,'slow',balanceNumber(c,'skill_effects_extra.debuff_amount.1',1),balanceNumber(c,'skill_effects_extra.debuff_duration.1',.8));return;}
   if (!S(c) || effectiveRange(c) > 2 || c.battle.time < readState(c, 'echoReady')) return;
   setState(c, 'echoReady', c.battle.time + 6);
   debuff(c, c.target, 'slow', balanceNumber(c,'skill_effects_extra.debuff_amount.1',1), balanceNumber(c,'skill_effects_extra.debuff_duration.1',0.8));
@@ -1144,8 +1155,9 @@ programs.custom_monkey_king_jingu_mastery.remaining = programs.custom_monkey_kin
 appendInit('custom_monkey_king_jingu_mastery', c => {
   if (!G(c) || c.caster.extraJinguSoldier) return;
   periodic(c, FOREVER, 2, () => {
-    const attack = (c.caster.attack + (readState(c, 'charges') > 0 ? value(c, 'BONUS DAMAGE') + (skillBalance(c.definition,c.skill.points)?0:130) : 0) + c.caster.statuses.filter(s => s.kind === 'attackBonus' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0)) *
-      (1 + c.caster.statuses.filter(s => s.kind === 'attackPct' && s.until > c.battle.time).reduce((sum, s) => sum + (s.value ?? 0), 0));
+    const attack = c.caster.attack * (1+c.caster.statuses.filter(s=>s.kind==='attackPct'&&s.until>c.battle.time).reduce((sum,s)=>sum+(s.value??0),0)) *
+      (1-Math.min(1,Math.max(0,c.caster.statuses.filter(s=>s.kind==='baseAttackDamageReduction'&&s.until>c.battle.time).reduce((sum,s)=>sum+(s.value??0),0)))) +
+      (readState(c,'charges')>0?value(c,'BONUS DAMAGE')+(skillBalance(c.definition,c.skill.points)?0:130):0) + c.caster.statuses.filter(s=>s.kind==='attackBonus'&&s.until>c.battle.time).reduce((sum,s)=>sum+(s.value??0),0);
     const template = { ...c.caster, skills: c.caster.skills.filter(skill => !!skill && JINGU_ATTACK_EFFECT_IDS.has(skill.id)) };
     const soldiers = c.summon({ name: '石猴战士', count: balanceNumber(c,'skill_effects_extra.count.1',1), hp: balanceNumber(c,'skill_effects_extra.hp.1',1), attack, armor: 0, range: effectiveRange(c) + balanceNumber(c,'skill_effects_extra.range.1',4), interval: balanceNumber(c,'skill_effects_extra.interval.1',1.2), speed: 0,
       lifetime: EXTRA_WORKING_DEFAULTS.soldierLifetime, template, inheritsSkills: true, initializeInherited: true,
@@ -1433,7 +1445,7 @@ const completedWithWorkingDefaults: Record<string, { implemented: string[]; rema
   custom_monkey_king_jingu_mastery: { implemented: ['Super queued .1s Echo second strike with normal attack modifiers', 'Gaben stationary invulnerable 12-second stone soldiers every two seconds, snapshot damage and +400 range', 'Soldiers inherit an explicit seven-skill attack-effect allowlist with init and attack snapshot deduplication; Jingu itself and owner-only summons are excluded', 'Historical 35-second Jingu charge expiry'], remaining: ['JINGU_ATTACK_EFFECT_IDS is a conservative project allowlist, not recovered AA eligibility; other attack effects remain excluded', 'Six radial spawn offsets at 1.2 units and .1s Echo interval are working choices'] },
   custom_storm_spirit_overload: { implemented: ['Gaben sequential two unique-target 500-range bounces at 1200 reference units/second carrying the captured charge burst'], remaining: ['Each jump carries full captured burst and a normal attack without secondary modifiers; radius/speed/propagation are working defaults'] },
   custom_abaddon_curse_of_avernus: { implemented: ['Super three-hit threshold and +50 percentage-point curse slow, bounded by movement minimum'], remaining: ['+50 applies to curse slow, not initial slow; percentage-point interpretation remains a working rule'] },
-  custom_slark_dark_pact: { implemented: ['Gaben real allied heroes copy ten half-strength normal pulses, with synchronized delay, strong dispels and nonlethal self-cost'], remaining: ['Summons/illusions excluded; self-cost is direct HP removal and therefore bypasses mitigation/False Promise by explicit working rule'] },
+  custom_slark_dark_pact: { implemented: ['Gaben real allied heroes copy ten half-strength normal pulses, with synchronized delay, strong dispels and nonlethal self-cost'], remaining: ['Summons/illusions excluded; self-cost is nonlethal magical damage; copy-source amplification semantics still need matching AA implementation'] },
   custom_enchantress_natures_attendants: { implemented: ['Gaben 13 evil wisps, each 36 magical DPS, half-second target distribution for 12 seconds in 275 radius'], remaining: ['Evil wisp values mirror the chosen Super swarm as an explicit balance default; no AA source supplied their numbers'] },
   dazzle_shadow_wave: { implemented: ['Gaben granted historical active Bad Juju with per-cast/per-target armor stacks and independently queued stack-scaled healing/damage'], remaining: ['Working 2023 version/level 3; active preserves stacks; effects without damage/healing use actual cast target'] },
   custom_shadow_demon_demonic_purge: { implemented: ['Gaben queued three-charge Cleanse with separate mana/cooldowns and CDR-aware sequential recharge'], remaining: ['Granted basic level 3, 700 range and .3s cast point are working choices; targeting banished allies still follows shared engine eligibility'] },

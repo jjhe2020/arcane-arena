@@ -55,6 +55,28 @@
           "meaning": "半径",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "立即首跳后的伤害间隔",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "https://liquipedia.net/dota2/Alchemist/Changelogs；7.28；Valve alchemist_acid_spray.tick_rate"
+        },
+        {
+          "key": "ARMOR LINGER",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "离场后护甲削弱残留",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "https://liquipedia.net/dota2/Alchemist；Aura Linger Duration，历史版本一致性仍待逐补丁核对"
         }
       ]
     },
@@ -136,17 +158,6 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_more.projectile_speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "弹体速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:69；c.projectile(target, 10, t => { instantAttack(c, t, P(v(c, 'BASE DAMAGE')) + (superLevel(c) ? .5 : 0)); c.damage(t, v(c, 'BONUS DAMAGE'), 'physical', true); slow(c, t, v(c,"
-        },
-        {
           "key": "skill_effects_more.armor_duration.1",
           "kind": "program",
           "unit": "ms",
@@ -167,6 +178,50 @@
           "meaning": "程序参数 护甲 AMOUNT",
           "source": "原程序工作数值",
           "note": "src/skill-effects-more.ts:77；c.status(c.target, 'armor', 7, -10, harmful)"
+        },
+        {
+          "key": "FIRST PROJECTILE SPEED",
+          "kind": "value",
+          "unit": "Dota单位每秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "首发弹体速度",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve hoodwink_acorn_shot.projectile_speed；https://liquipedia.net/dota2/Hoodwink"
+        },
+        {
+          "key": "BOUNCE PROJECTILE SPEED MULTIPLIER",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "后续弹体相对施法者攻击弹速倍率",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve hoodwink_acorn_shot.projectile_speed_percent；https://liquipedia.net/dota2/Hoodwink"
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "后续目标搜索半径",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve hoodwink_acorn_shot.bounce_range；https://liquipedia.net/dota2/Hoodwink"
+        },
+        {
+          "key": "BOUNCE DELAY",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "每次命中后等待间隔",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve hoodwink_acorn_shot.bounce_delay；https://liquipedia.net/dota2/Hoodwink"
         }
       ]
     },
@@ -272,37 +327,37 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.magicresist_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "SECONDARY SEARCH RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MAGICRESIST 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:168；c.status(c.caster,'magicResist',1e6,.16,{maxStacks:100,dispel:'none'})"
+          "meaning": "Super副目标搜索半径",
+          "source": "AA英文升级条款",
+          "note": "https://www.abilityarena.com/learn/spells；魔抗与冷却为固定升级，只有回蓝以死亡为条件"
         },
         {
-          "key": "skill_effects.magicresist_amount.1",
-          "kind": "program",
+          "key": "MANA RESTORE PERCENT",
+          "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 MAGICRESIST AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:168；c.status(c.caster,'magicResist',1e6,.16,{maxStacks:100,dispel:'none'})"
-        },
-        {
-          "key": "skill_effects.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:168；maxStacks:100"
+          "integer": false,
+          "meaning": "Gaben死亡时回复最大法力百分数",
+          "source": "AA英文升级条款",
+          "note": "https://www.abilityarena.com/learn/spells；魔抗与冷却为固定升级，只有回蓝以死亡为条件"
+        },
+        {
+          "key": "SECONDARY TARGET COUNT",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Super额外目标数量",
+          "source": "AA英文升级条款",
+          "note": "https://www.abilityarena.com/learn/spells；魔抗与冷却为固定升级，只有回蓝以死亡为条件"
         }
       ]
     },
@@ -384,6 +439,50 @@
           "meaning": "JUMPS",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "BOUNCE RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "逐跳搜索半径",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "https://liquipedia.net/dota2/Archive%3AZeus；Valve zuus_arc_lightning.radius"
+        },
+        {
+          "key": "BOUNCE INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "逐跳结算间隔",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "https://liquipedia.net/dota2/Archive%3AZeus；Valve zuus_arc_lightning.jump_delay"
+        },
+        {
+          "key": "SPELL AMPLIFICATION",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben法术增强百分数",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "AA Gaben原文20%"
+        },
+        {
+          "key": "SPELL LIFESTEAL",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "Gaben技能吸血百分数",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "AA Gaben原文20%"
         }
       ]
     },
@@ -487,15 +586,15 @@
           "note": "src/skill-effects-extra.ts:141；restored * .25"
         },
         {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "AURA LINGER",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:140；buff(c, ally, 'cooldownReduction', balanceNumber(c,'skill_effects_extra.buff_amount.1',0.25), 1.1)"
+          "meaning": "离开或失去光环后的残留时间",
+          "source": "Wiki机制与固定历史KV候选",
+          "note": "https://liquipedia.net/dota2/Crystal_Maiden；Aura Linger Duration0.5秒，AA精确版本待证"
         }
       ]
     },
@@ -1192,48 +1291,26 @@
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:403；S(c) ? .15 : 0"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "AURA LINGER",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:406；debuff(c, enemy, 'attackPct', -(P(value(c, 'DAMAGE REDUCTION')) + (S(c) ? balanceNumber(c,'skill_effects_extra.debuff_amount.1',0.15) : 0)), .35)"
+          "meaning": "离开或失去光环后的残留时间",
+          "source": "Wiki机制与固定历史KV候选",
+          "note": "https://liquipedia.net/dota2/Underlord；Aura Linger Duration0.5秒，AA精确版本待证"
         },
         {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "BONUS DURATION",
+          "kind": "value",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:408；buff(c, ally, 'attackBonus', readState(c, 'bonus'), .35)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:414；buff(c, ally, 'attackBonus', readState(c, 'bonus'), .35)"
+          "meaning": "每次敌方死亡获得的独立临时加攻持续时间",
+          "source": "Wiki机制与固定历史KV候选",
+          "note": "Valve2023-02-10 abyssal_underlord_atrophy_aura.bonus_damage_duration；https://liquipedia.net/dota2/Underlord/Changelogs；1/2/3档取30/45/75秒，6/9继承75秒"
         }
       ]
     },
@@ -2547,6 +2624,17 @@
           "meaning": "程序参数 眩晕 持续时间",
           "source": "原程序工作数值",
           "note": "src/skill-effects-more.ts:120；superLevel(c) ? .3 : 0"
+        },
+        {
+          "key": "STRIKE RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "打击线半宽",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve monkey_king_boundless_strike.strike_radius；https://liquipedia.net/dota2/Monkey_King"
         }
       ]
     },
@@ -7432,6 +7520,17 @@
           "meaning": "触发间隔",
           "source": "原程序工作数值",
           "note": "src/combat/main-upgrades.ts:103；interval:.1"
+        },
+        {
+          "key": "AURA LINGER",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "离开或失去光环后的残留时间",
+          "source": "Wiki机制与固定历史KV候选",
+          "note": "https://liquipedia.net/dota2/Archive%3ALycan；Aura Linger Duration0.5秒，AA精确版本待证"
         }
       ]
     },
@@ -21871,6 +21970,28 @@
           "meaning": "STRIKES",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "DASH SPEED",
+          "kind": "value",
+          "unit": "Dota单位每秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "突进速度",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve pangolier_swashbuckle.dash_speed；https://liquipedia.net/dota2/Archive%3APangolier"
+        },
+        {
+          "key": "SLASH INTERVAL",
+          "kind": "value",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "连斩间隔",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "Valve pangolier_swashbuckle.attack_interval；https://liquipedia.net/dota2/Archive%3APangolier"
         }
       ]
     },
@@ -23931,6 +24052,17 @@
           "meaning": "效果触发概率",
           "source": "原程序工作数值",
           "note": "src/skill-effects-more.ts:641；c.random() < .2"
+        },
+        {
+          "key": "ATTACK POINT FACTOR",
+          "kind": "value",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "meaning": "主动攻击前摇倍率",
+          "source": "Wiki机制与2023-02-10 Valve字段",
+          "note": "https://liquipedia.net/dota2/Tusk；attack point reduced by 40%"
         }
       ]
     },

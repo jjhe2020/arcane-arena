@@ -1,0 +1,1016 @@
+{
+  "schemaVersion": 1,
+  "group": "instant-attacks",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA explicit custom values/clauses first. Non-numeric Wiki mechanisms compared with fixed Valve2023-02-10; unrelated modern facets/additions excluded. Passed requirements certify only the named exercised clauses.",
+  "validation": {
+    "command": "npx vitest run tests/reference-instant-attacks.test.ts",
+    "passedTests": 30,
+    "regressionCommand": "npx vitest run tests/reference-instant-attacks.test.ts tests/skill-more.test.ts tests/skill-extra.test.ts",
+    "regressionPassedTests": 178,
+    "meaning": "Named engine-result tests pass. Each of these five skills remains partial with specific unresolved source/geometry/combination requirements."
+  },
+  "skills": [
+    {
+      "id": "hoodwink_acorn_shot",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "Retain 75% attack fraction, 50/80/140 fixed bonus, 2/3/5 bounces, +2/+50 percentage-point Super, +60 main attack damage and -10 armor for seven seconds at Gaben.",
+          "versionContext": "Imported AA English snapshot abilities.en.json SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; precise Workshop patch unknown. Local unchanged catalog is retained in config/reference/migration-baseline.json.",
+          "readMethod": "Compared captured catalog/catalogEn fields; no claim that a current website refetch proves the historical AA patch."
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Hoodwink",
+          "accessedOn": "2026-10-29",
+          "observation": "First projectile uses 2200 speed; later bounces wait .1s and use half current attack-projectile speed within 525 radius. Initial hit is additional to bounce count. The attack can miss; spell slow is independent.",
+          "versionContext": "Current Wiki observed 2026-10-29; numeric modern changes are not imported into AA.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "hoodwink_acorn_shot: .2 cast point, 2200 projectile speed, .1 bounce delay, radius525, 75% attack fraction and spell-immunity piercing; historical fixed bonuses differ from AA.",
+          "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Hoodwink/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.32 sets first projectile speed2200; 7.32e changes fixed bonuses to50/80/110/140. Later slow/balance changes are excluded.",
+          "versionContext": "Historical 2022-08-24 / 2023-03-07 changes compared to pinned2023-02-10 and AA.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "stygian",
+          "url": "https://liquipedia.net/dota2/Stygian_Desolator",
+          "accessedOn": "2026-10-29",
+          "observation": "Corruption precedes attack damage; reapplication refreshes. Its7.38 change removed60 damage and changed10 armor reduction to13, confirming the older item match.",
+          "versionContext": "Older pre7.38 item candidate. AA explicitly grants main attack damage; this is retained instead of silently converting to item flat damage.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "items",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "item_desolator_2 supplies60 damage,10 armor reduction and7-second duration.",
+          "versionContext": "Pinned2023-02-10; mechanics order needs Wiki, not KV alone.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/items.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AC-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Fractional attack plus fixed bonus share one accuracy/critical/lifesteal resolution.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn combines its fixed bonus into one critical attack and lifesteals that same damage"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn misses under evasion yet still applies its independent slow without damage or lifesteal"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AC-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Apply historical cast point and serial impact-origin projectile clock; body-contact collision and30Hz quantization are project tolerances.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn, Anchor and Boundless release only after their historical spell cast points"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn bounces from the prior impact with delay and can revisit an earlier target"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AC-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Consume final125% fraction and7 bounce configuration once.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn Super final profiles add two bounces and fifty percentage points exactly once"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AC-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Historical Stygian corrosion is applied before this successful hit; misses cannot apply it.",
+          "sourceIds": [
+            "aa",
+            "stygian",
+            "items"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn Gaben corrosion affects the first successful hit and a missed hit applies no corrosion"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AC-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Use wielder current attack range plus AA bonus; retain physical piercing and critical/lifesteal composition.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn and Walrus use the actual wielder attack range rather than the captured hero range"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor and Boundless exclude spell-immune bodies while Acorn and Swash retain historical immunity piercing"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn combines its fixed bonus into one critical attack and lifesteals that same damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AC-P1",
+          "kind": "mechanism",
+          "branch": "ground-target",
+          "mechanism": "Point-target planted trees, fog vision and disjoint tree continuation are absent.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Ground targeting, planted trees, fog/vision and tree-on-primary-disjoint continuation require arena support.",
+        "Native bounce selection randomness is not recovered; nearest eligible target is an explicit deterministic AI policy.",
+        "Homing impact uses generic arena body contact, so exact native center-arrival timestamps are not certified.",
+        "Melee stolen/reflected Acorn distance-induced misses and unusual reflection/projectile models need result tests.",
+        "Native shared corrosion groups across multiple providers, dispels and multiple casters remain unverified.",
+        "Backswing .2s remains a project value, distinct from the current Hoodwink1.37s; only .2s cast point is checked."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "history",
+            "valve"
+          ],
+          "classification": "AA custom values; bounce talent is related but not proof of the full+50% package",
+          "decision": "Keep final AA numbers; never import current80% attack fraction."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "stygian",
+            "items"
+          ],
+          "classification": "Historical Stygian Desolator match",
+          "decision": "Adopt successful-hit corruption ordering and historical60/-10/7, keeping AA explicit main-damage wording."
+        }
+      ]
+    },
+    {
+      "id": "tidehunter_anchor_smash",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "AA retains175 top-tier attack bonus and60% base reduction. Super adds100 damage,20 percentage points and-1 cooldown. Gaben uses40% attack-proc chance.",
+          "versionContext": "Imported AA English snapshot abilities.en.json SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; precise Workshop patch unknown. Local unchanged catalog is retained in config/reference/migration-baseline.json.",
+          "readMethod": "Compared captured catalog/catalogEn fields; no claim that a current website refetch proves the historical AA patch."
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Tidehunter",
+          "accessedOn": "2026-10-29",
+          "observation": "Debuff precedes a True Strike instant attack, which applies attack effects except cleave. Reduction affects main attack damage; invisible units are affected, spell-immune bodies and wards excluded.",
+          "versionContext": "Current Wiki observed 2026-10-29; numeric modern changes are not imported into AA.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Tidehunter/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.30 documents PRD attack-proc talent;7.32 replaces old+75/-1 shard.7.41 changes fixed375 radius to range-dependent radius; retain historical375.",
+          "versionContext": "Historical2021/2022 sources;2026 range change explicitly excluded.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "tidehunter_anchor_smash: .4 cast point;40/85/130/175 bonus; -30/-40/-50/-60 main reduction for6s; radius375; spell immunity not pierced.",
+          "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AN-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Apply main attack reduction before True Strike area attack, excluding cleave.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor has True Strike, applies base attack reduction before damage, and never cleaves"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AN-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Release after historical .4-second spell point.",
+          "sourceIds": [
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn, Anchor and Boundless release only after their historical spell cast points"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AN-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final275 bonus and80% reduction have no second upgrade addition.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor Super reads final bonus and reduction once without adding its upgrades a second time"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AN-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "PRD attack-triggered cast is independent of active mana/cooldown and cannot recursively trigger itself.",
+          "sourceIds": [
+            "aa",
+            "history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor Gaben PRD casts remain bounded and independent of active mana and cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AN-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Main reduction leaves flat attack bonuses intact; accuracy, critical and immunity/visibility policies compose.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor reduction changes only the victim main attack damage and leaves its flat bonus intact"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor has True Strike, applies base attack reduction before damage, and never cleaves"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor and Boundless exclude spell-immune bodies while Acorn and Swash retain historical immunity piercing"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Area instant attacks hit an invisible body after release and retain their distinct block policies"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AN-P1",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Damage-block interaction of the selected instant-attack version needs precise historical confirmation.",
+          "sourceIds": [
+            "history"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Generic .2s backswing differs from modern .3s; selected historical backswing remains unverified.",
+        "Pre6.84 physical-spell damage-block changelog cannot alone prove later instant-attack damage-block eligibility; current implementation retains ordinary block.",
+        "Buildings/Roshan/couriers and their talent exceptions do not exist as modeled arena categories.",
+        "Multi-caster debuff grouping and historical attack-proc timing on missed/secondary attacks need dedicated tests."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "history",
+            "valve"
+          ],
+          "classification": "Related old shard and damage/reduction talents; AA custom package",
+          "decision": "Keep+100/+20pp/-1; do not replace with native+75 or talent25pp."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "history"
+          ],
+          "classification": "Historical level25 on-attack talent with AA custom chance",
+          "decision": "Reuse documented PRD qualification; AA40%, not native50%."
+        }
+      ]
+    },
+    {
+      "id": "custom_monkey_king_boundless_strike",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "AA Super adds perpendicular endpoint strike,+.3s stun,+75 critical percentage points; Gaben applies Bloodthorn to each affected body.",
+          "versionContext": "Imported AA English snapshot abilities.en.json SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; precise Workshop patch unknown. Local unchanged catalog is retained in config/reference/migration-baseline.json.",
+          "readMethod": "Compared captured catalog/catalogEn fields; no claim that a current website refetch proves the historical AA patch."
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Monkey_King",
+          "accessedOn": "2026-10-29",
+          "observation": "True Strike attack excludes cleave; strongest ensured critical wins. Jingu consumes one charge per cast, including empty casts, and benefits all targets. Spell-immune bodies are excluded.",
+          "versionContext": "Current mechanism notes cross-checked with historical KV; new shards/facets/flat damage not imported.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "monkey_king_boundless_strike: .4 cast point, strike radius150, range1100, crit135/165/195/225 and stun1/1.2/1.4/1.6; +.3 stun talent; spell immunity not pierced.",
+          "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Monkey_King/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.36 added flat bonus damage and changed criticals; those modern additions do not belong to AA baseline.",
+          "versionContext": "Historical7.36 boundary,2024-05-22.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "echo",
+          "url": "https://liquipedia.net/dota2/Echo_Sabre",
+          "accessedOn": "2026-10-29",
+          "observation": "Boundless cannot trigger the extra regular attack, but applies Echo slow to all hit units. Current item stats/CD changed in7.35.",
+          "versionContext": "Mechanism exception read now; pre7.35 stats/CD retained by existing historical Jingu upgrade.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "items",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "item_bloodthorn historical active supplies silence,soul burn and target critical support.",
+          "versionContext": "Pinned2023-02-10 item candidate; modern Bloodthorn changed later.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/items.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BO-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "True Strike ensured critical competes by maximum and area attack excludes cleave.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless selects the strongest critical rather than multiplying critical sources and excludes cleave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Historical spell point is .4 seconds.",
+          "sourceIds": [
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn, Anchor and Boundless release only after their historical spell cast points"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final300% critical and1.9s stun consumed once; perpendicular AA custom shape retained as interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless Super uses final critical and stun values and Gaben applies its Bloodthorn child"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Each hit invokes the historical Bloodthorn child, with silence evidenced in actual engine.",
+          "sourceIds": [
+            "aa",
+            "items"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless Super uses final critical and stun values and Gaben applies its Bloodthorn child"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-05",
+          "kind": "combination",
+          "branch": "Jingu",
+          "mechanism": "Snapshot charges for the whole cast; consume one even on empty cast; newly earned charges cannot buff later bodies in this batch.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless consumes one Jingu charge while granting the bonus and lifesteal to every target"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless consumes a Jingu charge on an empty cast and does not consume charges earned during its batch"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-06",
+          "kind": "combination",
+          "branch": "Echo-Sabre",
+          "mechanism": "Slow all targets without queuing the excluded Echo attack.",
+          "sourceIds": [
+            "echo"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Boundless with Super Jingu applies Echo slow to each target without queuing an Echo attack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Invisible bodies remain eligible; spell-immune bodies excluded; blocked damage does not remove independent stun.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Area instant attacks hit an invisible body after release and retain their distinct block policies"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor and Boundless exclude spell-immune bodies while Acorn and Swash retain historical immunity piercing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "BO-P1",
+          "kind": "super",
+          "branch": "perpendicular",
+          "mechanism": "Exact overlap and endpoint geometry of AA perpendicular strike require original script evidence.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        },
+        {
+          "id": "BO-P2",
+          "kind": "gaben",
+          "branch": "Bloodthorn",
+          "mechanism": "Historical child full delayed burn/dispel/target-critical sequencing and AA item rank not yet accepted.",
+          "sourceIds": [
+            "aa",
+            "items"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "Wiki revisions disagree about backward offset and maximum endpoint reach; current capsule endpoints are not native-geometry certification.",
+        "Super perpendicular extent uses half DISTANCE and deduplicates intersection bodies; exact AA overlap behavior unproven.",
+        "Bloodthorn silence invocation is tested; full burn/dispel/critical settlement and precise AA item version remain pending.",
+        "Immediate granted Boundless bypasses ordinary onCast hook batch completion; no current grant follows this path.",
+        "Historical .5/current .38 backswing conflicts with project .2s and remains uncalibrated.",
+        "Jingu melee/ranged stolen eligibility and Break preserving pre-existing charges remain separate unresolved passive semantics."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "classification": "Stun talent related; perpendicular attack and+75crit remain AA custom",
+          "decision": "Retain AA final values and clearly label geometry interpretation."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "items"
+          ],
+          "classification": "Explicit historical Bloodthorn item grant",
+          "decision": "Reuse historical child; no modern added magical damage or present-day item stats."
+        }
+      ]
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "AA crit200/300/400; Super free active,-4 cooldown,+.4air and break for debuff. Gaben20% punch proc; no present-day flat bonus imported.",
+          "versionContext": "Imported AA English snapshot abilities.en.json SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; precise Workshop patch unknown. Local unchanged catalog is retained in config/reference/migration-baseline.json.",
+          "readMethod": "Compared captured catalog/catalogEn fields; no claim that a current website refetch proves the historical AA patch."
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Tusk",
+          "accessedOn": "2026-10-29",
+          "observation": "Active range follows current attack range; attack point factor .6. True Strike and strongest critical; passive proc modifies same attack, uses no mana/cooldown/on-cast, fails for illusions and during Snowball.",
+          "versionContext": "Current non-numeric notes compared with old attack-behavior KV; exact older ranged/secondary-attack eligibility still pending.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "prd",
+          "url": "https://liquipedia.net/dota2/Pseudo_Random_Distribution",
+          "accessedOn": "2026-10-29",
+          "observation": "Version history identifies Walrus passive talent PRD since7.22.",
+          "versionContext": "2019-05-24 historical PRD qualification; coefficient table itself remains the project calibrated PRD model.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "history",
+          "url": "https://liquipedia.net/dota2/Tusk/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "Later patches add flat damage and remove landing slow; historical AA landing slow and custom criticals are retained.",
+          "versionContext": "Changes after pinned2023-02-10, including7.35/7.36, excluded.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "tusk_walrus_punch has ATTACK behavior, zero spell point, magic-immunity piercing, air1s, landing slow2/3/4s; native300/350/400 differs from AA200/300/400.",
+          "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "WA-01",
+          "kind": "mechanism",
+          "branch": "active",
+          "mechanism": "Guaranteed True Strike critical competes without multiplying other critical sources.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus active True Strikes and selects its ensured critical without multiplying a stronger critical"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WA-02",
+          "kind": "timing",
+          "branch": "active",
+          "mechanism": "Use attack-point*.6 at effective attack speed; keep ordinary attack cadence.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus attack point is multiplied by .6 and scales with attack speed while preserving attack cadence"
+          },
+          {
+            "file": "tests/reference-instant-attacks.test.ts",
+            "test": "Walrus waits for a preceding ordinary attack cycle instead of granting a free extra active attack"
+          },
+          {
+            "file": "tests/reference-instant-attacks.test.ts",
+            "test": "Walrus remaining attack windup follows mid-action attack speed and ignores spell cast-speed bonuses"
+          },
+          {
+            "file": "tests/reference-instant-attacks.test.ts",
+            "test": "Walrus cannot start its active attack while disarmed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WA-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Final1.4air precedes historical slow and current AA landing-break interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus zero-damage landed attacks still disable and its final Super air time precedes landing slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WA-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "20% PRD strengthens the same hit without active mana/cooldown/on-cast.",
+          "sourceIds": [
+            "aa",
+            "wiki",
+            "prd"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus Gaben PRD replaces the same attack and spends neither mana nor active cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WA-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Use actual wielder range; a landed shielded attack still applies the independent air disable.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Acorn and Walrus use the actual wielder attack range rather than the captured hero range"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus zero-damage landed attacks still disable and its final Super air time precedes landing slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "WA-P1",
+          "kind": "super",
+          "branch": "break",
+          "mechanism": "Precise start/end of custom Break, and native counterpart, remain unproven.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        },
+        {
+          "id": "WA-P2",
+          "kind": "combination",
+          "branch": "secondary-attacks",
+          "mechanism": "Autocast, silence, ranged projectile and historical secondary-attack eligibility require further tests.",
+          "sourceIds": [
+            "wiki"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "AA Break wording does not establish whether break starts at punch or landing; existing landing-through-slow interpretation is retained explicitly.",
+        "Passive attack-point eligibility on all secondary attacks is a current Wiki rule; exact AA-patch script needs corroboration.",
+        "Autocast UI, silence overrides, ranged punch projectile timing and airborne height/rotation/death exceptions are not implemented or accepted.",
+        "PRD uses calibrated project coefficients, not a recovered Valve coefficient table.",
+        "Snowball/illusion/Break conditions are coded from Wiki but lack a complete dedicated result-test matrix.",
+        "A passive proc taking priority over a simultaneously ordered active punch is not modeled: the active busy guard prevents a second roll; resource/cooldown precedence remains pending."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "history"
+          ],
+          "classification": "Air-time talent related; Break/freecast/-4 package AA custom",
+          "decision": "Retain+0.4, not historical native+.5; exclude modern flat bonus/removal of slow."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "wiki",
+            "prd"
+          ],
+          "classification": "Historical Walrus talent with custom20% chance",
+          "decision": "PRD same-attack replacement; no separate extra punch."
+        }
+      ]
+    },
+    {
+      "id": "pangolier_swashbuckle",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "accessedOn": "2026-10-29",
+          "observation": "AA fixed25/45/85 damage,3 active strikes. Super half-count rounded up every6seconds facing forward and breakable; Gaben6 strikes.",
+          "versionContext": "Imported AA English snapshot abilities.en.json SHA256 1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; precise Workshop patch unknown. Local unchanged catalog is retained in config/reference/migration-baseline.json.",
+          "readMethod": "Compared captured catalog/catalogEn fields; no claim that a current website refetch proves the historical AA patch."
+        },
+        {
+          "id": "archive",
+          "url": "https://liquipedia.net/dota2/Archive%3APangolier",
+          "accessedOn": "2026-10-29",
+          "observation": "Dash speed2000, followed by .1-second slashes; attacks True Strike through blind/evasion/disarm and do not hit ethereal units.",
+          "versionContext": "Archive mixes some newer values; only corroborated older mechanics imported, AA numbers stay authoritative.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "wiki",
+          "url": "https://liquipedia.net/dota2/Pangolier",
+          "accessedOn": "2026-10-29",
+          "observation": "Fixed-attack slashes still trigger conditional modifiers/cleave, ignore damage block, and lock actions across dash/slashes. Modern slow/dash-through extra attack not imported.",
+          "versionContext": "Current7.41d page; later additions explicitly separated from historical candidate.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-29",
+          "observation": "pangolier_swashbuckle: cast point0, dash speed2000, interval.1, fixed25/45/65/85,4 strikes,width125, magic-immunity piercing. AA overrides strike count and selected rank mapping.",
+          "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
+          "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
+          "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "scepter",
+          "url": "https://liquipedia.net/dota2/Aghanim%27s_Scepter",
+          "accessedOn": "2026-10-29",
+          "observation": "Related Shield Crash upgrade produces two Swash attacks in four directions; it is not proof of AA six-second facing-direction passive.",
+          "versionContext": "Historical related mechanic, not treated as an exact equivalence.",
+          "readMethod": "Liquipedia search-index full-page excerpts; direct requests can return HTTP 403."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SW-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Fixed attack strikes ignore ordinary attack stat, blind/evasion/disarm and flat block while preserving cleave.",
+          "sourceIds": [
+            "wiki",
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash fixed strikes True Strike through blind, ignore flat block, and still trigger cleave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SW-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Complete continuous2000-speed dash before first slash, then .1-second intervals.",
+          "sourceIds": [
+            "valve",
+            "archive"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash finishes its continuous dash before slashing at .1-second intervals"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SW-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Every6s facing-only passive emits ceil(strikes/2) with no dash and is suppressed by Break.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash Super fires facing-direction periodic slashes with half the tier strike count rounded up"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash Gaben final profile has six strikes and Super periodic half-count slashes remain breakable"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SW-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Final six active strikes; passive still halved.",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash Gaben final profile has six strikes and Super periodic half-count slashes remain breakable"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash Super fires facing-direction periodic slashes with half the tier strike count rounded up"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SW-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Fixed set damage excludes Enchant Totem main-damage amplification, consumes its attack buff, and honors area visibility/immunity policies.",
+          "sourceIds": [
+            "wiki",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Swash ignores Enchant Totem base-damage amplification while still consuming the attack buff"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Area instant attacks hit an invisible body after release and retain their distinct block policies"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Anchor and Boundless exclude spell-immune bodies while Acorn and Swash retain historical immunity piercing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "SW-P1",
+          "kind": "combination",
+          "branch": "interruptions",
+          "mechanism": "Cancellation, forced-motion priority changes and active/passive overlap need exact native/AA result matrix.",
+          "sourceIds": [
+            "archive",
+            "wiki"
+          ],
+          "testEvidence": [],
+          "status": "pending"
+        }
+      ],
+      "unresolved": [
+        "No player vector targeting; deterministic AI stops two world units short of current enemy.",
+        "Exact active interruption/external forced-movement/terrain-boundary behavior and overlapping passive series remain pending.",
+        "Shield Crash scepter is only a related mechanic, not origin proof for the six-second AA passive.",
+        "Modern extra dash-through attack, slow and attack-scaling talent deliberately excluded.",
+        "Fixed .2s fallback backswing differs from archived0; dash/slash self lock now governs active sequence, exact recovery still pending.",
+        "Conditional damage/buff combinations beyond the authored critical/cleave/Enchant Totem tests are not exhaustively accepted."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "sourceIds": [
+            "aa",
+            "scepter"
+          ],
+          "classification": "AA custom periodic facing-direction slashes; related Shield Crash scepter only",
+          "decision": "Implement exact AA six-second/count/break clauses, no unsolicited four-direction cast."
+        },
+        {
+          "branch": "gaben",
+          "sourceIds": [
+            "aa",
+            "valve"
+          ],
+          "classification": "AA explicit total6strikes, related historical strike-count talent",
+          "decision": "Use final six row, passive ceil(6/2)=3; do not add to historical4."
+        }
+      ]
+    }
+  ]
+}

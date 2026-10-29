@@ -18,6 +18,8 @@
 
 验证：`npm test` 包含经济/库存、战斗时序与恢复、230项目录执行稳定性和三难度整局测试；构建后运行 `node scripts/serve.mjs` 与 `node scripts/browser-smoke.mjs` 验证生产版本操作和比例布局。其余手机、故障恢复及高负载脚本见`scripts/`。构建前会自动刷新机制覆盖报告。目录稳定性测试不证明每项技能机制已与原作逐项核验。
 
+原作逐项验收正在持续进行：运行 `npm run reference:verify`，按实际来源和具名结果测试更新[230项状态](docs/skill-reference-status.md)。[验收规则](docs/reference-acceptance.md)说明版本依据、Super/Gaben来源和完整放行条件；开发中的r6检查点不代表230项已全部通过。
+
 图片库包含约373MB桌面图集和186MB移动图集，按设备、技能和动作加载，不会开局一次下载全部图片。移动档保留全部动画帧；纹理缓存会释放不再使用的图集。素材导入说明见 `public/data/README.md`，美术母版保留在独立来源项目。
 
 - [已确认的首版范围](docs/v1-scope.md)：用户于2026-10-28选择 `1A、2A、3C、4A、5B、6A、7A`。

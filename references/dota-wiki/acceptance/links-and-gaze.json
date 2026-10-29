@@ -1,0 +1,1025 @@
+{
+  "schemaVersion": 1,
+  "group": "links-and-gaze",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "AA numbers and explicit custom upgrades first; Wiki mechanics cross-checked against pinned Valve 2023-02-10. Current and historical conflicts are retained explicitly.",
+  "validation": {
+    "command": "npx vitest run tests/reference-links-and-gaze.test.ts",
+    "passedTests": 25,
+    "regressionCommand": "npx vitest run tests/reference-links-and-gaze.test.ts tests/main-gaps.test.ts tests/combat-upgrades.test.ts tests/main-summon-gaps.test.ts tests/combat-skill-motion.test.ts",
+    "regressionPassedTests": 62,
+    "meaning": "Passed means the named implementation result is tested, not entire-skill original-engine verification."
+  },
+  "skills": [
+    {
+      "id": "custom_razor_static_link",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "sl-wiki",
+          "url": "https://liquipedia.net/dota2/Razor",
+          "accessedOn": "2026-10-29",
+          "observation": "Links break permanently on death or distance; buffs persist after the connection ends. Independent targets may be linked simultaneously.",
+          "paraphrase": "Links break permanently on death or distance; buffs persist after the connection ends. Independent targets may be linked simultaneously.",
+          "versionContext": "Current article read 2026-10-29; current numeric balance is not imported.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sl-history",
+          "url": "https://liquipedia.net/dota2/Razor/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.32d changed the drain interval to 0.1 seconds; 7.32 replaced a talent with attack-speed stealing. 7.32 permits a retained debuff target but still excludes a currently active connection.",
+          "paraphrase": "7.32d changed the drain interval to 0.1 seconds; 7.32 replaced a talent with attack-speed stealing. 7.32 permits a retained debuff target but still excludes a currently active connection.",
+          "versionContext": "Historical changes through 2022-11-29.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sl-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L5339",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned fields supply 550 cast range, 250 drain buffer, +5 drain talent and attack-speed factor talent.",
+          "paraphrase": "Pinned fields supply 550 cast range, 250 drain buffer, +5 drain talent and attack-speed factor talent.",
+          "versionContext": "Valve shipped KV commit 6abdd9d, 2023-02-10; AA version unproven.",
+          "readMethod": "Read local references/dota-20230216/npc_abilities.txt and compared pinned source metadata."
+        },
+        {
+          "id": "sl-aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Imported AA catalog entry for custom_razor_static_link; description, Super and Gaben text are the retained balance/custom-rule authority.",
+          "paraphrase": "Super: +5 damage drain rate. Gaben: Steals attack speed at the same drain rate.",
+          "versionContext": "Local imported 230-skill catalog snapshot recorded 2026-10-26; source_patch unknown, not a live execution specification.",
+          "readMethod": "Read repository public/data/skills.json catalog, descriptionEn, superEn, gabenEn and values fields; original URL recorded in docs/skill-extra-evidence-gaps.md."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SL-01",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "0.1-second historical drain and AA retained-buff lifetime.",
+          "timing": "0.1-second historical drain and AA retained-buff lifetime.",
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-01 starts historical 0.1-second drain after cast and retains AA buffs after the full link ends"
+            }
+          ],
+          "sourceIds": [
+            "sl-history",
+            "sl-valve",
+            "sl-aa"
+          ]
+        },
+        {
+          "id": "SL-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "A broken connection cannot resume when the target returns.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-02 retains drained damage after a permanent range break and does not resume on re-entry"
+            }
+          ],
+          "sourceIds": [
+            "sl-wiki"
+          ]
+        },
+        {
+          "id": "SL-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA +5 drain remains authoritative.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-03 preserves the AA Super rate and Gaben equal attack-speed transfer"
+            }
+          ],
+          "sourceIds": [
+            "sl-aa",
+            "sl-valve"
+          ]
+        },
+        {
+          "id": "SL-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Attack-speed transfer matches the drained damage amount.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-03 preserves the AA Super rate and Gaben equal attack-speed transfer"
+            }
+          ],
+          "sourceIds": [
+            "sl-aa",
+            "sl-history",
+            "sl-valve"
+          ]
+        },
+        {
+          "id": "SL-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Soulbind copies maintain additive per-target ledgers.",
+          "timing": null,
+          "combinations": "Soulbind copies maintain additive per-target ledgers.",
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-04 sums independent link ledgers when Soulbind duplicates the cast"
+            }
+          ],
+          "sourceIds": [
+            "sl-wiki",
+            "sl-aa"
+          ]
+        },
+        {
+          "id": "SL-06",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Attack while moving, native order priority and attack-launch animation parity.",
+          "timing": null,
+          "combinations": null,
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sl-wiki",
+            "sl-aa"
+          ]
+        },
+        {
+          "id": "SL-07",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "AA strong-dispel category versus native nondispellability; linked-target invisibility/invulnerability combinations.",
+          "timing": null,
+          "combinations": "AA strong-dispel category versus native nondispellability; linked-target invisibility/invulnerability combinations.",
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sl-wiki",
+            "sl-aa"
+          ]
+        },
+        {
+          "id": "SL-08",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "An active link excludes its current target after cooldown reset; another eligible hero can receive a separate link.",
+          "timing": null,
+          "combinations": null,
+          "sourceIds": [
+            "sl-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SL-05 avoids recasting an active link but can choose another nearby hero after a reset"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "Current Razor page describes 1-second gain steps while its historical changelog records 0.1 seconds; this implementation explicitly preserves the pinned historical interval.",
+        "AA strong-dispel label conflicts with native nondispellable modifiers; no speculative dispel/rebind policy was introduced.",
+        "Cast-range bonuses and the AA minimum-cast-range adaptation have not been proven to alter break distance."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Razor drain-rate talent",
+          "sourceIds": [
+            "sl-valve",
+            "sl-aa"
+          ],
+          "aaOverride": "+5 retained from AA."
+        },
+        {
+          "branch": "gaben",
+          "origin": "Razor level-25 Static Link steals attack speed talent",
+          "sourceIds": [
+            "sl-history",
+            "sl-valve",
+            "sl-aa"
+          ],
+          "aaOverride": "AA unlocks it at Gaben; equal transfer factor retained."
+        }
+      ],
+      "reviewedAllDescriptionClauses": false
+    },
+    {
+      "id": "custom_grimstroke_soul_bind",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "sb-wiki",
+          "url": "https://liquipedia.net/dota2/Grimstroke",
+          "accessedOn": "2026-10-29",
+          "observation": "Primary-target binding can reacquire another hero; the leash prevents mobility. Most redirected abilities apply secondary effects first.",
+          "paraphrase": "Primary-target binding can reacquire another hero; the leash prevents mobility. Most redirected abilities apply secondary effects first.",
+          "versionContext": "Current article; modern reflection/debuff-immunity changes are not silently backported.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sb-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L38964",
+          "accessedOn": "2026-10-29",
+          "observation": "Native Soulbind specifies a 600 latch radius, 700 break distance and Scepter child Dark Portrait.",
+          "paraphrase": "Native Soulbind specifies a 600 latch radius, 700 break distance and Scepter child Dark Portrait.",
+          "versionContext": "Pinned 2023-02-10 KV.",
+          "readMethod": "Local pinned Valve file."
+        },
+        {
+          "id": "sb-portrait",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L38728",
+          "accessedOn": "2026-10-29",
+          "observation": "Dark Portrait has 25-second lifetime, 150% output, 350% incoming damage and 30% move-speed bonus.",
+          "paraphrase": "Dark Portrait has 25-second lifetime, 150% output, 350% incoming damage and 30% move-speed bonus.",
+          "versionContext": "Pinned 2023-02-10 values; current Wiki has later changes.",
+          "readMethod": "Local pinned Valve file."
+        },
+        {
+          "id": "sb-version",
+          "url": "https://liquipedia.net/dota2/Grimstroke/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.33 changed Dark Portrait to a strong illusion and debuff immunity.",
+          "paraphrase": "7.33 changed Dark Portrait to a strong illusion and debuff immunity.",
+          "versionContext": "Historical version distinction after the pinned snapshot.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sb-aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Imported AA catalog entry for custom_grimstroke_soul_bind; description, Super and Gaben text are the retained balance/custom-rule authority.",
+          "paraphrase": "Super: Grants Dark Portrait. Gaben: Binds 3 units.",
+          "versionContext": "Local imported 230-skill catalog snapshot recorded 2026-10-26; source_patch unknown, not a live execution specification.",
+          "readMethod": "Read repository public/data/skills.json catalog, descriptionEn, superEn, gabenEn and values fields; original URL recorded in docs/skill-extra-evidence-gaps.md."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SB-01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Bound units cannot cast root-disabled mobility, but ordinary spells remain available.",
+          "timing": null,
+          "combinations": "Bound units cannot cast root-disabled mobility, but ordinary spells remain available.",
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SB-01 blocks historical root-disabled mobility while ordinary targeted casting remains available"
+            }
+          ],
+          "sourceIds": [
+            "sb-wiki",
+            "sb-valve"
+          ]
+        },
+        {
+          "id": "SB-02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Dark Portrait remains a separate granted ability with pinned body protection and incoming multiplier.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SB-02 grants a separately owned historical Dark Portrait at Super"
+            }
+          ],
+          "sourceIds": [
+            "sb-aa",
+            "sb-portrait",
+            "sb-version"
+          ]
+        },
+        {
+          "id": "SB-03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA binds three units and replaces a dead secondary without restarting expiry.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SB-03 keeps the AA three-unit Gaben group and replaces a dead secondary without resetting duration"
+            }
+          ],
+          "sourceIds": [
+            "sb-aa",
+            "sb-wiki"
+          ]
+        },
+        {
+          "id": "SB-04",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Nearest replacement and late-entrant behavior.",
+          "timing": null,
+          "combinations": null,
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sb-wiki"
+          ]
+        },
+        {
+          "id": "SB-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Independent status resistance, strong dispel, illusion primaries, secondary Spell Block and copied-channel termination.",
+          "timing": null,
+          "combinations": "Independent status resistance, strong dispel, illusion primaries, secondary Spell Block and copied-channel termination.",
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sb-wiki",
+            "sb-aa"
+          ]
+        },
+        {
+          "id": "SB-06",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Secondary-first duplicate resolution and exact launch/charge/reflection ordering.",
+          "timing": "Secondary-first duplicate resolution and exact launch/charge/reflection ordering.",
+          "combinations": null,
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sb-wiki"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Existing tests/main-gaps.test.ts covers late entrants and replacement, but this group does not claim independent original-engine timing acceptance for them.",
+        "The current star-group lifetime follows the primary anchor; independent victim status resistance remains unresolved.",
+        "AA strong-dispel categories conflict with native nondispellability.",
+        "Dark Portrait inheritance allowlists and basic-versus-strong illusion behavior are not fully accepted."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Grimstroke Aghanim's Scepter Dark Portrait",
+          "sourceIds": [
+            "sb-valve",
+            "sb-portrait",
+            "sb-version",
+            "sb-aa"
+          ],
+          "aaOverride": "AA grants this child at Super; pinned 2023 child baseline is used, not current 125%/275% values."
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA custom capacity increase",
+          "sourceIds": [
+            "sb-valve",
+            "sb-aa"
+          ],
+          "aaOverride": "Native maximum two becomes AA maximum three; no claim of a corresponding native talent."
+        }
+      ],
+      "reviewedAllDescriptionClauses": false
+    },
+    {
+      "id": "wisp_tether",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "te-wiki",
+          "url": "https://liquipedia.net/dota2/Io",
+          "accessedOn": "2026-10-29",
+          "observation": "Tether transfers restoration, slows attack speed by a flat amount, and its 1000-speed latch crosses terrain. Talent attacks require attack eligibility. The talent follows the ally attack point, permits attack modifiers without True Strike, and excludes Io-owned illusions and disabled/disarmed Io.",
+          "paraphrase": "Tether transfers restoration, slows attack speed by a flat amount, and its 1000-speed latch crosses terrain. Talent attacks require attack eligibility. The talent follows the ally attack point, permits attack modifiers without True Strike, and excludes Io-owned illusions and disabled/disarmed Io.",
+          "versionContext": "Current page; modern transfer percentages and attack factor do not replace AA values.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "te-history",
+          "url": "https://liquipedia.net/dota2/Io/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.21 enabled over-restoration transfer; 7.22 made latch disable-interruptible. Old Shard contact effects had a seven-second victim cooldown.",
+          "paraphrase": "7.21 enabled over-restoration transfer; 7.22 made latch disable-interruptible. Old Shard contact effects had a seven-second victim cooldown.",
+          "versionContext": "Historical mechanics lineage predating the pinned snapshot.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "te-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L30753",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned Tether defines 1000 break distance, 700 latch threshold, 1000 latch speed, flat slow and restoration factors.",
+          "paraphrase": "Pinned Tether defines 1000 break distance, 700 latch threshold, 1000 latch speed, flat slow and restoration factors.",
+          "versionContext": "2023-02-10 shipped KV.",
+          "readMethod": "Local pinned Valve file."
+        },
+        {
+          "id": "te-aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Imported AA catalog entry for wisp_tether; description, Super and Gaben text are the retained balance/custom-rule authority.",
+          "paraphrase": "Super: Enemies crossing the tether also get stunned for 1.75 seconds and receive 150 magic damage. +12% movement speed. Gaben: The caster attacks their tethered ally's target whenever their ally attacks.",
+          "versionContext": "Local imported 230-skill catalog snapshot recorded 2026-10-26; source_patch unknown, not a live execution specification.",
+          "readMethod": "Read repository public/data/skills.json catalog, descriptionEn, superEn, gabenEn and values fields; original URL recorded in docs/skill-extra-evidence-gaps.md."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "TE-01",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Overheal transfers before the self-health cap while self effective-heal statistics remain capped.",
+          "timing": null,
+          "combinations": "Overheal transfers before the self-health cap while self effective-heal statistics remain capped.",
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-01 transfers an overheal at full Io health without counting the capped self heal"
+            }
+          ],
+          "sourceIds": [
+            "te-wiki",
+            "te-history"
+          ]
+        },
+        {
+          "id": "TE-02",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Positive full-mana restoration transfers before the Io mana cap.",
+          "timing": null,
+          "combinations": "Positive full-mana restoration transfers before the Io mana cap.",
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-02 transfers a full-mana restore through Tether before the Io mana cap"
+            }
+          ],
+          "sourceIds": [
+            "te-wiki",
+            "te-history"
+          ]
+        },
+        {
+          "id": "TE-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "AA attack-speed slow is flat rather than percentage-based.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-03 slows attack speed by a flat AA value and applies the old Shard per-target cooldown"
+            }
+          ],
+          "sourceIds": [
+            "te-wiki",
+            "te-aa"
+          ]
+        },
+        {
+          "id": "TE-04",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "Old Shard crossing damage/stun has a seven-second per-victim cooldown within the current link.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-03 slows attack speed by a flat AA value and applies the old Shard per-target cooldown"
+            }
+          ],
+          "sourceIds": [
+            "te-history",
+            "te-aa"
+          ]
+        },
+        {
+          "id": "TE-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Disarmed or disabled Io does not perform the talent follow-up attack.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-04 suppresses the Gaben follow-up attack while Io is disarmed or stunned"
+            }
+          ],
+          "sourceIds": [
+            "te-wiki"
+          ]
+        },
+        {
+          "id": "TE-06",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "A long-distance latch stops on stun and does not resume abandoned movement.",
+          "timing": "A long-distance latch stops on stun and does not resume abandoned movement.",
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-05 interrupts the long-distance latch on stun and does not resume the abandoned pull"
+            }
+          ],
+          "sourceIds": [
+            "te-history",
+            "te-wiki"
+          ]
+        },
+        {
+          "id": "TE-07",
+          "kind": "timing",
+          "branch": "gaben",
+          "mechanism": "The linked ally attack point triggers one follow-up before ranged flight or accuracy; impact does not trigger it twice and a later miss or disjoint cannot retract it.",
+          "timing": "At ally attack-point release, before projectile flight and accuracy.",
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-06 follows the linked ranged attack at launch before impact and does not copy its later hit again"
+            },
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-07 keeps the Gaben follow-up when the linked ranged attack later misses"
+            },
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-08 keeps the launch follow-up when actual Sproink disjoints the linked ranged projectile"
+            }
+          ],
+          "sourceIds": [
+            "te-wiki",
+            "te-aa"
+          ]
+        },
+        {
+          "id": "TE-08",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "False Promise, regeneration sampling, target-speed matching and source-isolated multiple links.",
+          "timing": null,
+          "combinations": "False Promise, regeneration sampling, target-speed matching and source-isolated multiple links.",
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "te-wiki",
+            "te-history"
+          ]
+        },
+        {
+          "id": "TE-09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "Only the linked ally can trigger the talent, and an illusion owned by Io is excluded.",
+          "timing": null,
+          "combinations": null,
+          "sourceIds": [
+            "te-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-09 excludes an unlinked ally and an Io-owned illusion from the attack talent"
+            }
+          ]
+        },
+        {
+          "id": "TE-10",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "The implemented ordinary-proc instant-attack path follows Lucent Beam Super and suppresses recursive Tether-generated point events; original-engine eligibility and mutual-Io ordering for every instant-attack family remain unproven.",
+          "timing": null,
+          "combinations": "The implemented ordinary-proc instant-attack path follows Lucent Beam Super and suppresses recursive Tether-generated point events; original-engine eligibility and mutual-Io ordering for every instant-attack family remain unproven.",
+          "sourceIds": [
+            "te-wiki",
+            "te-aa"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-10 emits one Gaben follow-up for a real Lucent Beam Super instant attack"
+            },
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TE-11 prevents two mutually tethered Gaben units from recursively copying the same attack"
+            }
+          ]
+        }
+      ],
+      "unresolved": [
+        "The old-Shard cooldown has a per-cast map; persistence across breaking and recasting has not been proved.",
+        "Io-to-target movement-speed matching, the extended break distance during latch, root versus stun behavior and regeneration sampling need further acceptance.",
+        "Deferred False Promise healing reaches its ledger before Tether transfer; this combination remains unresolved.",
+        "Secondary instant-attack family eligibility and mutual-Io copied-attack ordering have not been fully proved against the original engine; tests pin the nonrecursive current policy without declaring native parity."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Old Io Aghanim's Shard contact stun/damage",
+          "sourceIds": [
+            "te-history",
+            "te-aa"
+          ],
+          "aaOverride": "AA retains 150 magical damage and 1.75-second stun; its +12% movement bonus supersedes the old Shard bonus."
+        },
+        {
+          "branch": "gaben",
+          "origin": "Io attack-tethered-target talent; pinned special_bonus_unique_wisp_5",
+          "sourceIds": [
+            "te-wiki",
+            "te-valve",
+            "te-aa"
+          ],
+          "aaOverride": "AA full follow-up attack retained; modern 0.5 factor is not imported."
+        }
+      ],
+      "reviewedAllDescriptionClauses": false
+    },
+    {
+      "id": "medusa_stone_gaze",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "sg-wiki",
+          "url": "https://liquipedia.net/dota2/Medusa",
+          "accessedOn": "2026-10-29",
+          "observation": "Facing cone is about 85 degrees; attack-speed slow is flat, turn rate is reduced, facing is cumulative and can restart after petrification.",
+          "paraphrase": "Facing cone is about 85 degrees; attack-speed slow is flat, turn rate is reduced, facing is cumulative and can restart after petrification.",
+          "versionContext": "Current page; AA durations/amplification retained.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sg-history",
+          "url": "https://liquipedia.net/dota2/Medusa/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "An earlier rework allowed repeated petrification and inactive slow while facing away.",
+          "paraphrase": "An earlier rework allowed repeated petrification and inactive slow while facing away.",
+          "versionContext": "Historical mechanic transition; the exact old patch heading was not used as a numeric baseline.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sg-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L31560",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned fields confirm face_duration 2 and vision_cone 0.08715, the cosine of 85 degrees.",
+          "paraphrase": "Pinned fields confirm face_duration 2 and vision_cone 0.08715, the cosine of 85 degrees.",
+          "versionContext": "Pinned 2023-02-10 KV.",
+          "readMethod": "Local pinned Valve file."
+        },
+        {
+          "id": "sg-golem",
+          "url": "https://liquipedia.net/dota2/Mud_Golem",
+          "accessedOn": "2026-10-29",
+          "observation": "Mud Golems have Hurl Boulder and split into shard golems on death.",
+          "paraphrase": "Mud Golems have Hurl Boulder and split into shard golems on death.",
+          "versionContext": "Current child identity only; body/child numbers remain pinned pre-7.33 candidates.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "sg-aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Imported AA catalog entry for medusa_stone_gaze; description, Super and Gaben text are the retained balance/custom-rule authority.",
+          "paraphrase": "Super: +1s duration, and +10% bonus physical damage amplification. Gaben: Spawns a Mud Golem for every unit stunned by Stone Gaze.",
+          "versionContext": "Local imported 230-skill catalog snapshot recorded 2026-10-26; source_patch unknown, not a live execution specification.",
+          "readMethod": "Read repository public/data/skills.json catalog, descriptionEn, superEn, gabenEn and values fields; original URL recorded in docs/skill-extra-evidence-gaps.md."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "SG-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "85-degree eligibility uses flat attack-speed and percentage turn-rate slow.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SG-01 excludes 87 degrees, includes 84 degrees and applies flat attack/turn slow"
+            }
+          ],
+          "sourceIds": [
+            "sg-wiki",
+            "sg-valve"
+          ]
+        },
+        {
+          "id": "SG-02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Intermittent facing accumulates; expiry of stone allows a new facing timer.",
+          "timing": "Intermittent facing accumulates; expiry of stone allows a new facing timer.",
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SG-02 accumulates intermittent facing and can petrify again after the old stone expires"
+            }
+          ],
+          "sourceIds": [
+            "sg-wiki",
+            "sg-history",
+            "sg-aa"
+          ]
+        },
+        {
+          "id": "SG-03",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA Super amplification remains +10 percentage points.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SG-03 applies the AA Super amp and spawns one Boulder/splitting Golem per actual Gaben petrification"
+            }
+          ],
+          "sourceIds": [
+            "sg-aa"
+          ]
+        },
+        {
+          "id": "SG-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "One actual petrification creates one Golem carrying Boulder and split programs.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "SG-03 applies the AA Super amp and spawns one Boulder/splitting Golem per actual Gaben petrification"
+            }
+          ],
+          "sourceIds": [
+            "sg-aa",
+            "sg-golem"
+          ]
+        },
+        {
+          "id": "SG-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Neutral/illusion exceptions, independent resistance, dispel, overlapping casts and magic-immunity ordering.",
+          "timing": null,
+          "combinations": "Neutral/illusion exceptions, independent resistance, dispel, overlapping casts and magic-immunity ordering.",
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "sg-wiki",
+            "sg-history",
+            "sg-aa"
+          ]
+        }
+      ],
+      "unresolved": [
+        "The arena has no Fog of War; the enemy-vision prerequisite is outside current environment scope.",
+        "Exact aura linger and all neutral/illusion exceptions remain unaccepted.",
+        "Golem location and 120-second safeguard are existing AA project defaults, not proven original-AA summon placement/lifetime.",
+        "Child ability presence is accepted here; full Boulder/split AI and every interaction are separate requirements."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Duration overlaps Medusa's native Stone Gaze talent; amplification increase is AA-specific here",
+          "sourceIds": [
+            "sg-valve",
+            "sg-wiki",
+            "sg-aa"
+          ],
+          "aaOverride": "AA +1 second and +10 percentage points override native talent values."
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA custom Mud Golem spawn; native neutral child chain",
+          "sourceIds": [
+            "sg-golem",
+            "sg-valve",
+            "sg-aa"
+          ],
+          "aaOverride": "No native Medusa Mud Golem upgrade is claimed."
+        }
+      ],
+      "reviewedAllDescriptionClauses": false
+    },
+    {
+      "id": "faceless_void_time_walk",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "tw-wiki",
+          "url": "https://liquipedia.net/dota2/Faceless_Void",
+          "accessedOn": "2026-10-29",
+          "observation": "Time Walk restores recorded reduced damage, moves at 3000 speed with travel invulnerability, and does not disjoint projectiles.",
+          "paraphrase": "Time Walk restores recorded reduced damage, moves at 3000 speed with travel invulnerability, and does not disjoint projectiles.",
+          "versionContext": "Current page travel mechanics; modern Scepter/Shard upgrades are excluded unless named by AA.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "tw-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L12823",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned Time Walk gives speed 3000, two-second backtrack and a root-disabled directional movement flag.",
+          "paraphrase": "Pinned Time Walk gives speed 3000, two-second backtrack and a root-disabled directional movement flag.",
+          "versionContext": "2023-02-10 KV.",
+          "readMethod": "Local pinned Valve file."
+        },
+        {
+          "id": "tw-talents",
+          "url": "https://liquipedia.net/dota2/Talents",
+          "accessedOn": "2026-10-29",
+          "observation": "Void has a damage-timer extension and Backtrack talent.",
+          "paraphrase": "Void has a damage-timer extension and Backtrack talent.",
+          "versionContext": "Current talent identity; AA 20% temporary/40% passive behavior is its own adaptation.",
+          "readMethod": "Web search-index page content; direct Liquipedia open returned HTTP 403 where attempted"
+        },
+        {
+          "id": "tw-aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Imported AA catalog entry for faceless_void_time_walk; description, Super and Gaben text are the retained balance/custom-rule authority.",
+          "paraphrase": "Super: Reduces cooldown by 1.5 seconds, +0.5 backtrack duration, 20% chance to dodge damage for 2 seconds after casting.  Gaben: Passive 40% damage dodge chance.",
+          "versionContext": "Local imported 230-skill catalog snapshot recorded 2026-10-26; source_patch unknown, not a live execution specification.",
+          "readMethod": "Read repository public/data/skills.json catalog, descriptionEn, superEn, gabenEn and values fields; original URL recorded in docs/skill-extra-evidence-gaps.md."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "TW-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Release heals recorded loss; continuous 3000-speed travel is invulnerable and preserves released projectiles.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TW-01 heals recorded loss on release, travels at native speed with invulnerability and leaves released projectiles intact"
+            }
+          ],
+          "sourceIds": [
+            "tw-wiki",
+            "tw-valve",
+            "tw-aa"
+          ]
+        },
+        {
+          "id": "TW-02",
+          "kind": "super",
+          "branch": "super",
+          "mechanism": "AA temporary 20% avoidance expires after two seconds.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TW-02 keeps Super temporary 20 percent and Gaben passive 40 percent as separate AA branches"
+            }
+          ],
+          "sourceIds": [
+            "tw-aa"
+          ]
+        },
+        {
+          "id": "TW-03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "mechanism": "AA passive 40% avoidance remains after the temporary window.",
+          "timing": null,
+          "combinations": null,
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TW-02 keeps Super temporary 20 percent and Gaben passive 40 percent as separate AA branches"
+            }
+          ],
+          "sourceIds": [
+            "tw-aa",
+            "tw-talents"
+          ]
+        },
+        {
+          "id": "TW-04",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "Deterministic battle-input replay reconstructs the travel program.",
+          "timing": null,
+          "combinations": "Deterministic battle-input replay reconstructs the travel program.",
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-links-and-gaze.test.ts",
+              "test": "TW-03 reconstructs the travel program deterministically from saved battle inputs"
+            }
+          ],
+          "sourceIds": [
+            "tw-wiki",
+            "tw-valve"
+          ]
+        },
+        {
+          "id": "TW-05",
+          "kind": "combination",
+          "branch": "base",
+          "mechanism": "HP-removal counter exclusion, exact heal manipulation, Backtrack PRD and post-mitigation ordering.",
+          "timing": null,
+          "combinations": "HP-removal counter exclusion, exact heal manipulation, Backtrack PRD and post-mitigation ordering.",
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "tw-wiki",
+            "tw-talents"
+          ]
+        },
+        {
+          "id": "TW-06",
+          "kind": "timing",
+          "branch": "super",
+          "mechanism": "Exact extended damage-history cutoff and cooldown reduction under external resets.",
+          "timing": "Exact extended damage-history cutoff and cooldown reduction under external resets.",
+          "combinations": null,
+          "status": "pending",
+          "testEvidence": [],
+          "sourceIds": [
+            "tw-aa",
+            "tw-valve"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Autonomous endpoint selection remains an AA project policy.",
+        "Avoidance currently uses engine damageDodge; native Backtrack PRD and priority are not accepted.",
+        "Travel protection may differ by one fixed tick because controller starts and status expiry use 30-Hz scheduling.",
+        "The +0.5 history window and -1.5 cooldown are retained AA code paths but do not yet have exact-boundary tests in this group."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Void backtrack timer talent plus an AA temporary adaptation of Backtrack",
+          "sourceIds": [
+            "tw-valve",
+            "tw-talents",
+            "tw-aa"
+          ],
+          "aaOverride": "+0.5 seconds, -1.5-second cooldown and temporary 20% for two seconds are AA values."
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA enhancement of Backtrack damage avoidance",
+          "sourceIds": [
+            "tw-talents",
+            "tw-aa"
+          ],
+          "aaOverride": "40% is AA custom, not claimed as a native current talent value."
+        }
+      ],
+      "reviewedAllDescriptionClauses": false
+    }
+  ]
+}

@@ -44,7 +44,7 @@ function harness(id: string, points = 9) {
     delay: (seconds, callback) => { timers.push({ due: battle.time + seconds, callback }); },
     zone: zone => { zones.push(zone); }, barrier: () => {}, disjoint: () => {}, endChannel: () => {}, movementSpeed: unit => unit.moveSpeed, summon: () => [], teleport: (u, x, y) => { u.x = x; u.y = y; },
     warp: (u, x, y) => { u.x = x; u.y = y; }, moveContinuous: (u, x, y) => { u.x = x; u.y = y; return true; },
-    attack: (u, multiplier = 1) => { attacks.push(u.id); u.hp -= caster.attack * multiplier; }, revive: () => {},
+    attack: (u, multiplier = 1) => { attacks.push(u.id); const damage=caster.attack*multiplier;u.hp-=damage;return {landed:true,damage}; }, revive: () => {},
     castAbility: (grantedId, level, u) => { grants.push({ id: grantedId, points: level, target: u.id }); return true; },
   };
   function until(time: number) {
@@ -86,9 +86,9 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
     caster.range = 1.5; caster.attackInterval = 100; caster.nextAttack = 0;
     caster.statuses.push({ kind: 'attackBonus', value: 45, until: 100 }, { kind: 'attackPct', value: .5, until: 100 });
     advance(battle, .6);
-    expect(10000 - battle.units[1].hp).toBeCloseTo(165); expect(battle.units[2].hp).toBe(10000); expect(battle.units[3].hp).toBe(10000);
+    expect(10000 - battle.units[1].hp).toBeCloseTo(142.5); expect(battle.units[2].hp).toBe(10000); expect(battle.units[3].hp).toBe(10000);
     advance(battle, 1.2);
-    expect(10000 - battle.units[2].hp).toBeCloseTo(165 * .62); expect(10000 - battle.units[3].hp).toBeCloseTo(165 * .62 ** 2);
+    expect(10000 - battle.units[2].hp).toBeCloseTo(142.5 * .62); expect(10000 - battle.units[3].hp).toBeCloseTo(142.5 * .62 ** 2);
     const hits = battle.events.filter(e => e.type === 'hit' && e.source === caster.id);
     expect(hits).toHaveLength(3); expect(hits[1].time - hits[0].time).toBeGreaterThan(.2); expect(hits[2].time - hits[1].time).toBeGreaterThan(.2);
   });
@@ -203,8 +203,8 @@ describe('extra skill upgrade behavior', () => {
     const a = player(0, [{ id: 'custom_monkey_king_jingu_mastery', points: 9 }, { id: 'custom_luna_moon_glaive', points: 9 }]);
     const battle = createBattle(a, player(1), 77, catalog), caster = battle.units[0];
     for (const u of battle.units) { u.moveSpeed = 0; u.nextAttack = 100; }
-    const snapshot = (caster.attack + caster.statuses.filter(s => s.kind === 'attackBonus').reduce((n, s) => n + (s.value ?? 0), 0)) *
-      (1 + caster.statuses.filter(s => s.kind === 'attackPct').reduce((n, s) => n + (s.value ?? 0), 0));
+    const snapshot = caster.attack * (1 + caster.statuses.filter(s => s.kind === 'attackPct').reduce((n, s) => n + (s.value ?? 0), 0)) +
+      caster.statuses.filter(s => s.kind === 'attackBonus').reduce((n, s) => n + (s.value ?? 0), 0);
     advance(battle, 2.1); const soldier = battle.units.find(u => u.extraJinguSoldier)!;
     expect(soldier.attack).toBe(snapshot); expect(soldier.skills.some(s => s?.id === 'custom_luna_moon_glaive')).toBe(true);
     expect(soldier.statuses.some(s => s.source === soldier.id && ['attackBonus', 'attackPct'].includes(s.kind))).toBe(false);
@@ -422,7 +422,7 @@ describe('extra skill upgrade behavior', () => {
     const h = harness('muerta_pierce_the_veil'), p = EXTRA_PROGRAMS[h.ctx.skill.id];
     h.target.x = h.caster.x + 1; h.target.y = h.caster.y; h.other.x = h.caster.x + 2; h.other.y = h.caster.y;
     const targets: string[] = [];
-    h.ctx.attack = unit => { targets.push(unit.id); p.onAttack!({ ...h.ctx, target: unit }); };
+    h.ctx.attack = unit => { targets.push(unit.id); p.onAttack!({ ...h.ctx, target: unit });return {landed:true,damage:0}; };
     p.onAttack!(h.ctx); expect(targets).toEqual([h.other.id]);
     h.other.dead = true; p.onAttack!(h.ctx); expect(targets).toEqual([h.other.id, h.target.id]);
   });

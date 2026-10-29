@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "group": "defense-and-dispel",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "sourcePolicy": "Retain AA balance and explicit custom Super/Gaben clauses. Use Wiki for mechanism candidates and pinned Valve 2023-02-10 fields for historical cross-checks. Conflicts without a dated transition remain unresolved; a passing result test does not prove whole-skill equivalence.",
+  "validation": {
+    "command": "npx vitest run tests/reference-defense-and-dispel.test.ts tests/combat-advanced.test.ts tests/skill-extra.test.ts",
+    "passedTests": 106,
+    "referenceTests": 19,
+    "meaning": "Real createBattle/applyDamage/stepBattle results. A separate explicitly labelled test documents the present Gaben aura startup boundary without claiming that boundary is original-game verified."
+  },
+  "skills": [
+    {
+      "id": "custom_abaddon_aphotic_shield",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "shield-wiki",
+          "url": "https://liquipedia.net/dota2/Abaddon",
+          "accessedOn": "2026-10-29",
+          "observation": "Shield strongly dispels, absorbs mitigated damage and bursts for full capacity on removal/replacement. The burst excludes unseen invisible units while allowing Shadow Realm.",
+          "paraphrase": "Capacity and burst are separate from actual remaining barrier health; the area target filter differs from a normal unrestricted AoE.",
+          "versionContext": "Current 7.41d article; current numerical balance and modern Shard reflection are not imported.",
+          "readMethod": "Web search-index full article content."
+        },
+        {
+          "id": "abaddon-history",
+          "url": "https://liquipedia.net/dota2/Abaddon/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "The 2013-07-10 test update fixed recast explosions and shield damage affecting invisible/fogged enemies. 6.84 allowed disabled Borrowed Time activation; 6.85 changed its old Scepter redirect percentage.",
+          "paraphrase": "The recast and visibility rules predate the pinned 2023 candidate; old redirect upgrades should not be replaced by the current Mist Coil upgrade.",
+          "versionContext": "Dated historical changes, with current abilities kept distinct from retired upgrades.",
+          "readMethod": "Web search-index full changelog content."
+        },
+        {
+          "id": "shield-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L34297",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned Aphotic Shield KV identifies ally targeting, magical burst and a dispellable barrier; its native numbers are candidate context rather than AA balance authority.",
+          "paraphrase": "Use the pinned shipped ability as the historical mechanical comparison, not a replacement for AA duration/capacity.",
+          "versionContext": "Valve commit 6abdd9d, 2023-02-10; matching AA patch is unproven.",
+          "readMethod": "Local references/dota-20230216/npc_abilities.txt."
+        },
+        {
+          "id": "shield-aa",
+          "url": "https://liquipedia.net/dota2game/Abaddon",
+          "accessedOn": "2026-10-29",
+          "observation": "The preserved AA migration baseline specifies capacity 60/90/150, duration 15, radius 575, Super additional self shield and Gaben +400 capacity.",
+          "paraphrase": "AA custom balance and targeting extensions remain authoritative in the compiled configuration.",
+          "versionContext": "Previously captured AA baseline in config/reference/migration-baseline.json; live AA page was not independently re-read during this five-skill audit.",
+          "readMethod": "Local preserved baseline, not a claim of a successful fresh HTTP fetch."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AS-01", "kind": "combination", "branch": "base",
+          "rule": "Strong dispel removes a strong-dispellable stun; barrier capacity is consumed after resistance, with overflow applied to health and full-capacity magical burst.",
+          "sourceIds": ["shield-wiki", "shield-valve", "shield-aa"], "status": "passed",
+          "testEvidence": [{"file":"tests/reference-defense-and-dispel.test.ts","test":"strong-dispels the ally and consumes capacity after mitigation, then bursts for full capacity"}]
+        },
+        {
+          "id": "AS-02", "kind": "timing", "branch": "base",
+          "rule": "Expiration and replacement each produce one burst even if the old shield had unused capacity.",
+          "sourceIds": ["shield-wiki", "abaddon-history"], "status": "passed",
+          "testEvidence": [{"file":"tests/reference-defense-and-dispel.test.ts","test":"replacing or expiring an incompletely consumed shield still bursts once for full capacity"}]
+        },
+        {
+          "id": "AS-03", "kind": "combination", "branch": "base",
+          "rule": "Unrevealed invisibility prevents burst targeting; revealed invisibility and Shadow Realm remain eligible.",
+          "sourceIds": ["shield-wiki", "abaddon-history"], "status": "passed",
+          "testEvidence": [{"file":"tests/reference-defense-and-dispel.test.ts","test":"burst skips unrevealed invisibility but can hit revealed invisibility and Shadow Realm"}]
+        },
+        {
+          "id": "AS-04", "kind": "super", "branch": "super+gaben",
+          "rule": "Ally and caster receive independent shields; the compiled Gaben +400 is applied exactly once to each.",
+          "sourceIds": ["shield-aa"], "status": "passed",
+          "testEvidence": [{"file":"tests/reference-defense-and-dispel.test.ts","test":"Super gives the ally and caster one independent shield; Gaben adds its configured capacity once"}]
+        }
+      ],
+      "unresolved": [
+        {"id":"AS-U1","rule":"Exact same-tick barrier application versus strong-dispel order is not established for AA; modern effect-order wording is insufficient historical proof.","status":"unresolved"},
+        {"id":"AS-U2","rule":"Bearer death removal/burst semantics require dated mainline evidence and a dedicated result test.","status":"unresolved"},
+        {"id":"AS-U3","rule":"Fog targeting cannot be tested because this arena has no fog-of-war model; visibility test covers invisibility only.","status":"out_of_scope"}
+      ],
+      "upgradeProvenance": [
+        {"branch":"super","origin":"AA custom simultaneous ally/self shields","sourceIds":["shield-aa"],"confidence":"explicit AA clause; no unsupported vanilla equivalence asserted"},
+        {"branch":"gaben","origin":"AA custom +400 barrier/burst capacity","sourceIds":["shield-aa"],"confidence":"explicit AA clause; modern reflection Shard deliberately excluded"}
+      ]
+    },
+    {
+      "id": "custom_dark_willow_cursed_crown",
+      "status": "partial",
+      "sources": [
+        {
+          "id": "crown-wiki",
+          "url": "https://liquipedia.net/dota2/Dark_Willow",
+          "accessedOn": "2026-10-29",
+          "observation": "Base Crown's initial debuff can be dispelled to cancel its stun. Four brambles are centered 175 units away, facing-aligned; Bedlam uses moving orbits and repeated nearby attacks.",
+          "paraphrase": "The delayed debuff, final stun and independent upgrade effects need separate lifetimes and immunity checks.",
+          "versionContext": "Current hero article. Modern full-stun-on-dispel Shard behavior is not projected back onto AA.",
+          "readMethod": "Web search-index full article content."
+        },
+        {
+          "id": "crown-728",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.28",
+          "accessedOn": "2026-10-29",
+          "observation": "The 2020-12-17 Shard introduction created four brambles when the Crown counter ended regardless of how it ended.",
+          "paraphrase": "Early removal can cancel base stun while still creating the historical upgrade's brambles.",
+          "versionContext": "Historical 7.28 upgrade, before the pinned 2023 candidate.",
+          "readMethod": "Web search-index changelog content."
+        },
+        {
+          "id": "crown-history",
+          "url": "https://liquipedia.net/dota2/Dark_Willow/Changelogs",
+          "accessedOn": "2026-10-29",
+          "observation": "7.29 added Shard delay reduction; 7.38 removed that reduction and added newer premature-detonation behavior. Later Bedlam duration changes are distinct from AA's five-second custom wisp.",
+          "paraphrase": "AA Super resembles the old Shard rather than the current one, while Gaben reuses a same-hero Bedlam mechanism.",
+          "versionContext": "Dated changelog separates 2021 candidate mechanics from 2025 changes.",
+          "readMethod": "Web search-index changelog content."
+        },
+        {
+          "id": "crown-status-resistance",
+          "url": "https://liquipedia.net/dota2/Status_Resistance",
+          "accessedOn": "2026-10-29",
+          "observation": "Effect delays, explicitly including the initial Crown countdown, do not scale with status resistance; the eventual stun does.",
+          "paraphrase": "Separate the fixed effect-delay marker from the resistance-scaled stun.",
+          "versionContext": "Current mechanics reference; no conflicting dated Crown rule was found in this audit.",
+          "readMethod": "Web search-index full article content."
+        },
+        {
+          "id": "crown-valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L38466",
+          "accessedOn": "2026-10-29",
+          "observation": "Pinned Crown is dispellable and stores four Shard brambles at radius 175, with delay reduction one. Neighboring Bramble Maze/Bedlam KV supply historical child-skill candidates.",
+          "paraphrase": "The historical parameters support bramble placement and same-hero child mechanics while AA determines its own delay and stun.",
+          "versionContext": "Valve 2023-02-10; native child rank is not proof of an AA grant rank.",
+          "readMethod": "Local pinned KV: Crown 38466, Bramble 38204, Bedlam 38287."
+        },
+        {
+          "id": "crown-aa",
+          "url": "https://liquipedia.net/dota2game/Dark_Willow",
+          "accessedOn": "2026-10-29",
+          "observation": "Preserved AA baseline: delay three, stun 1.5/2/3, radius 400; Super delay minus one and four brambles; Gaben five-second wisp on each stunned enemy.",
+          "paraphrase": "AA upgrades keep their explicit target and lifetime clauses even when the reused vanilla skill differs.",
+          "versionContext": "Local migration baseline; live AA page was not independently re-read in this audit.",
+          "readMethod": "config/reference/migration-baseline.json."
+        }
+      ],
+      "requirements": [
+        {
+          "id":"CC-01","kind":"timing","branch":"base",
+          "rule":"Initial countdown is fixed while the later stun scales with victim status resistance.",
+          "sourceIds":["crown-status-resistance","crown-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"does not shorten the initial countdown with status resistance, but shortens the eventual stun"}]
+        },
+        {
+          "id":"CC-02","kind":"combination","branch":"base+super",
+          "rule":"A real Dark Pact strong purge cancels base stun. Super still creates four facing-aligned 175-distance brambles when the marker ends early.",
+          "sourceIds":["crown-wiki","crown-728","crown-history","crown-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"a real Dark Pact purge cancels base stun and preserves removal brambles only for Super (tier 3)"},{"file":"tests/reference-defense-and-dispel.test.ts","test":"a real Dark Pact purge cancels base stun and preserves removal brambles only for Super (tier 6)"}]
+        },
+        {
+          "id":"CC-03","kind":"gaben","branch":"gaben",
+          "rule":"Crown survives source death; only victims actually receiving the final stun receive Gaben wisps, excluding a magic-immune primary while permitting an eligible nearby enemy.",
+          "sourceIds":["crown-wiki","crown-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"survives caster death and only creates Gaben wisps on units actually stunned"}]
+        }
+      ],
+      "unresolved":[
+        {"id":"CC-U1","rule":"Bramble and Bedlam maximum native child ranks are historical candidates; exact AA child rank/damage override is unproven.","status":"unresolved"},
+        {"id":"CC-U2","rule":"Early marker removal is observed within one fixed simulation tick. Exact native event ordering, replacement timing and simultaneous death removal remain unverified.","status":"unresolved"},
+        {"id":"CC-U3","rule":"Full orbit motion, attack interval, hidden primary and all bramble root/DOT combinations are not fully covered by this group's result tests.","status":"unresolved"}
+      ],
+      "upgradeProvenance":[
+        {"branch":"super","origin":"Historical 7.28/7.29 Cursed Crown Shard four brambles and delay reduction, with AA custom base values","sourceIds":["crown-728","crown-history","crown-valve","crown-aa"],"confidence":"mechanism traced; exact AA native child rank unproven"},
+        {"branch":"gaben","origin":"Same-hero Bedlam wisp with AA per-stunned-victim targeting and five-second lifetime","sourceIds":["crown-wiki","crown-valve","crown-aa"],"confidence":"same-hero mechanism candidate; custom grant rank unresolved"}
+      ]
+    },
+    {
+      "id":"custom_slark_dark_pact",
+      "status":"partial",
+      "sources":[
+        {
+          "id":"pact-wiki","url":"https://liquipedia.net/dota2/Slark","accessedOn":"2026-10-29",
+          "observation":"Dark Pact waits before ten 0.1-second pulses. Each pulse damages enemies, strongly dispels the caster, then applies nonlethal magical self damage.",
+          "paraphrase":"Self cost is a damage event with resistance/barrier interactions, not direct health assignment; the delayed pulse sequence remains active after cast control changes.",
+          "versionContext":"Current mechanics article; AA numerical values are retained.","readMethod":"Web search-index full article content."
+        },
+        {
+          "id":"pact-history","url":"https://liquipedia.net/dota2/Slark/Changelogs","accessedOn":"2026-10-29",
+          "observation":"7.31c changed Dark Pact damage to 90/160/230/300, matching the preserved AA first/second/maximum values.",
+          "paraphrase":"The 2022 damage progression supports the candidate rank mapping without importing modern balance.",
+          "versionContext":"2022-05-04 historical change.","readMethod":"Web search-index changelog content."
+        },
+        {
+          "id":"pact-valve","url":"https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L31175","accessedOn":"2026-10-29",
+          "observation":"Pinned fields specify magical type, delay 1.5, duration one, ten pulses at 0.1 seconds and self-damage factor 30 percent.",
+          "paraphrase":"The pinned pulse timing agrees with the Wiki mechanism and AA delay/cost.",
+          "versionContext":"Valve 2023-02-10; AA patch match unproven.","readMethod":"Local pinned KV lines 31175-31238."
+        },
+        {
+          "id":"pact-aa","url":"https://liquipedia.net/dota2game/Slark","accessedOn":"2026-10-29",
+          "observation":"Preserved AA baseline: damage 90/160/300, delay 1.5, radius 325, self cost 30%; Super enemy dispel/+150 radius/+150 damage/-1 cooldown; Gaben allies emit half normal damage without Super bonuses.",
+          "paraphrase":"Gaben ally pulses must read the ordinary tier-three damage rather than half the upgraded caster damage.",
+          "versionContext":"Local migration baseline; live AA page was not independently re-read in this audit.","readMethod":"config/reference/migration-baseline.json."
+        }
+      ],
+      "requirements":[
+        {
+          "id":"DP-01","kind":"timing","branch":"base",
+          "rule":"Ten pulses start after the AA 1.5-second delay. The first enemy damage precedes removal of a negative spell-amplification debuff; repeated strong dispels remove later stuns.",
+          "sourceIds":["pact-wiki","pact-valve","pact-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"starts after the AA delay, damages first, then strongly dispels, over ten pulses"}]
+        },
+        {
+          "id":"DP-02","kind":"combination","branch":"base",
+          "rule":"Self cost is nonlethal magical damage and is reduced by magic resistance or absorbed by barriers, including proper absorption statistics.",
+          "sourceIds":["pact-wiki","pact-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"uses nonlethal magical self damage, including resistance and barriers rather than HP removal"}]
+        },
+        {
+          "id":"DP-03","kind":"gaben","branch":"super+gaben",
+          "rule":"Caster emits the effective upgraded 450 total while an ally copy emits half normal tier-three damage (150) and does not gain Super offensive dispel.",
+          "sourceIds":["pact-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"Gaben copies use half the normal tier-three damage and omit Super offensive dispel"}]
+        }
+      ],
+      "unresolved":[
+        {"id":"DP-U1","rule":"Exact AA ally-copy amplification ownership, self-cost ownership and simultaneous multiple-caster copy stacking require original custom implementation evidence.","status":"unresolved"},
+        {"id":"DP-U2","rule":"Self-damage amplification and Borrowed Time/Carapace combinations beyond barriers are not exhaustively original-engine verified.","status":"unresolved"}
+      ],
+      "upgradeProvenance":[
+        {"branch":"super","origin":"Explicit AA offensive dispel and numeric upgrades","sourceIds":["pact-aa"],"confidence":"custom clause; no unsupported current Shard equivalence"},
+        {"branch":"gaben","origin":"Explicit AA allied half-normal Dark Pact copies","sourceIds":["pact-aa"],"confidence":"custom clause; same-hero Depth Shroud is a different ability and is not substituted"}
+      ]
+    },
+    {
+      "id":"nyx_assassin_spiked_carapace",
+      "status":"partial",
+      "sources":[
+        {
+          "id":"carapace-wiki","url":"https://liquipedia.net/dota2/Nyx_Assassin","accessedOn":"2026-10-29",
+          "observation":"Carapace negates before barriers, once per enemy source. Friendly damage, HP Removal and reflected damage do not trigger it. The current article describes a pre-reduction reflection basis.",
+          "paraphrase":"Source identity and damage flags matter independently from recursion depth; current reflection-basis wording needs historical dating.",
+          "versionContext":"Current 7.41-era mechanics; modern innate mana burn is not imported.","readMethod":"Web search-index full article content."
+        },
+        {
+          "id":"carapace-old-wiki","url":"https://dota2.fandom.com/wiki/Nyx_Assassin","accessedOn":"2026-10-29",
+          "observation":"The older cached hero article instead describes Carapace reflection after reductions.",
+          "paraphrase":"This is conflict evidence only; no dated change was found proving which basis applies to AA.",
+          "versionContext":"Cached older approximately 7.35-era article; direct robots-blocked. Not an independent proof of the AA version.","readMethod":"Web search-index cached article content."
+        },
+        {
+          "id":"carapace-history","url":"https://liquipedia.net/dota2/Archive%3ANyx_Assassin/Changelog","accessedOn":"2026-10-29",
+          "observation":"6.79 changed interaction with summoned attackers so the summon is stunned rather than its owner.",
+          "paraphrase":"Keep individual attacking unit identity rather than aggregating the once-per-source trigger by hero owner.",
+          "versionContext":"Dated historical behavior, older than the pinned candidate.","readMethod":"Web search-index changelog content."
+        },
+        {
+          "id":"carapace-valve","url":"https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L29163","accessedOn":"2026-10-29",
+          "observation":"Pinned Carapace is immediate and undispellable, with 100 percent reflection. Native stun/duration differ from explicit AA balance.",
+          "paraphrase":"The stance must not be removable by a basic or strong dispel; numeric upgrades remain AA values.",
+          "versionContext":"Valve 2023-02-10; reflection basis is not encoded in these KV fields.","readMethod":"Local pinned KV lines 29163-29199."
+        },
+        {
+          "id":"carapace-aa","url":"https://liquipedia.net/dota2game/Nyx_Assassin","accessedOn":"2026-10-29",
+          "observation":"Preserved AA baseline: duration 1.5, stun 0.3/0.7/1.5, reflection 100%; Super +1.5 stun and Gaben +300 percentage points reflection.",
+          "paraphrase":"Maximum AA reflection is 400%, independent from modern Nyx innate effects.",
+          "versionContext":"Local migration baseline; live AA page was not independently re-read in this audit.","readMethod":"config/reference/migration-baseline.json."
+        }
+      ],
+      "requirements":[
+        {
+          "id":"SC-01","kind":"combination","branch":"base",
+          "rule":"An enemy's first nested independent damage instance is negated/reflected before shield consumption; its second instance damages the shield while a second enemy independently triggers protection.",
+          "sourceIds":["carapace-wiki","carapace-history"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"protects once per enemy source, including nested independent spell damage, before consuming shields"}]
+        },
+        {
+          "id":"SC-02","kind":"mechanism","branch":"base",
+          "rule":"The stance is undispellable and does not trigger on friendly damage, health-removal flags or reflection flags.",
+          "sourceIds":["carapace-wiki","carapace-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"does not reflect allies, HP removal or reflection, and keeps an undispellable stance"}]
+        },
+        {
+          "id":"SC-03","kind":"gaben","branch":"super+gaben",
+          "rule":"Preserve AA three-second Super stun and 400% Gaben reflection without modern innate mana burn.",
+          "sourceIds":["carapace-aa","carapace-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"retains AA Super stun and Gaben reflection values without modern innate mana burn"}]
+        }
+      ],
+      "unresolved":[
+        {"id":"SC-U1","rule":"Reflection currently retains the existing post-mitigation basis. Modern Wiki pre-reduction and older cached after-reduction descriptions conflict without a dated transition; no full-equivalence acceptance is claimed.","sourceIds":["carapace-wiki","carapace-old-wiki"],"status":"unresolved"},
+        {"id":"SC-U2","rule":"Invisible casting/Vendetta preservation and special ward/building classifications require dedicated shared-engine support and results.","status":"unresolved"}
+      ],
+      "upgradeProvenance":[
+        {"branch":"super","origin":"AA custom larger stun increase; resembles same-hero Carapace stun talent concept without adopting its native number","sourceIds":["carapace-aa","carapace-valve"],"confidence":"AA magnitude explicit; native talent equivalence not asserted"},
+        {"branch":"gaben","origin":"AA custom reflection multiplier","sourceIds":["carapace-aa"],"confidence":"explicit AA clause, not current vanilla balance"}
+      ]
+    },
+    {
+      "id":"abaddon_borrowed_time",
+      "status":"partial",
+      "sources":[
+        {
+          "id":"borrowed-wiki","url":"https://liquipedia.net/dota2/Abaddon","accessedOn":"2026-10-29",
+          "observation":"Automatic activation follows real nonlethal damage below threshold, preserves channels and is disabled by break. HP removal/setting health do not trigger it. Current conversion uses pre-reduction damage, after Mana Shield.",
+          "paraphrase":"An automatic activation is not an ability cast; current negation order cannot establish the older AA order.",
+          "versionContext":"Current 7.41d article; current Mist Coil Scepter is not substituted for the old AA redirect upgrade.","readMethod":"Web search-index full article content."
+        },
+        {
+          "id":"borrowed-history","url":"https://liquipedia.net/dota2/Abaddon/Changelogs","accessedOn":"2026-10-29",
+          "observation":"6.84 allowed casting while disabled; old Scepter redirected ally damage before its later Mist Coil redesign.",
+          "paraphrase":"Both historical disabled use and retired redirect upgrades are relevant, but AA's duration/radius/percentage remain explicit custom values.",
+          "versionContext":"2015 changes and later upgrade history; not proof of exact AA modifier ordering.","readMethod":"Web search-index changelog content."
+        },
+        {
+          "id":"borrowed-siltbreaker","url":"https://liquipedia.net/dota2/Siltbreaker/Abaddon","accessedOn":"2026-10-29",
+          "observation":"The older Siltbreaker variant describes post-reduction conversion and a redirect aura.",
+          "paraphrase":"This non-mainline variant records a conflicting older interpretation; it does not settle AA's mainline rules.",
+          "versionContext":"Siltbreaker variant, explicitly not a proof of 2023 mainline behavior.","readMethod":"Web search-index full variant article."
+        },
+        {
+          "id":"borrowed-valve","url":"https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt#L34385","accessedOn":"2026-10-29",
+          "observation":"Pinned Borrowed Time is immediate/undispellable, costs zero mana and has threshold 400. Its cooldown talent is minus eight; native/Scepter durations are not AA's durations.",
+          "paraphrase":"Automatic use shares the real slot's configured cooldown and has no cast point.",
+          "versionContext":"Valve 2023-02-10; AA patch match unproven.","readMethod":"Local pinned KV lines 34385-34437."
+        },
+        {
+          "id":"borrowed-aa","url":"https://liquipedia.net/dota2game/Abaddon","accessedOn":"2026-10-29",
+          "observation":"Preserved AA baseline: duration 1/1.5/2 and threshold 400; Super duration +2/cooldown -8; Gaben 40% allied damage reduction in radius 500 and redirected healing to caster.",
+          "paraphrase":"The old-style custom redirect clause is retained rather than replaced with modern Scepter Mist Coil accumulation.",
+          "versionContext":"Local migration baseline; live AA page was not independently re-read in this audit.","readMethod":"config/reference/migration-baseline.json."
+        }
+      ],
+      "requirements":[
+        {
+          "id":"BT-01","kind":"combination","branch":"base+super",
+          "rule":"A nonlethal damage event crossing below 400 immediately activates through silence/stun, strongly dispels and starts the real slot cooldown; a following same-tick hit heals.",
+          "sourceIds":["borrowed-wiki","borrowed-valve","borrowed-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"activates immediately after a nonlethal hit across the threshold, even while silenced and stunned"}]
+        },
+        {
+          "id":"BT-02","kind":"mechanism","branch":"base",
+          "rule":"Setting health, health removal, break and lethal single hits from above threshold do not automatically activate Borrowed Time.",
+          "sourceIds":["borrowed-wiki","borrowed-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"does not trigger on setting HP, HP removal, break, or a lethal hit from above the threshold"}]
+        },
+        {
+          "id":"BT-03","kind":"combination","branch":"base",
+          "rule":"Automatic activation preserves an actual Freezing Field channel and emits no Borrowed Time cast; the shared cooldown prevents reactivation when the short AA buff ends.",
+          "sourceIds":["borrowed-wiki","borrowed-valve"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"automatic activation preserves an already running channel and uses the same slot cooldown"}]
+        },
+        {
+          "id":"BT-04","kind":"gaben","branch":"gaben",
+          "rule":"After aura acquisition, nearby ally takes 60% of an eligible hit and caster is healed by the prevented 40%.",
+          "sourceIds":["borrowed-aa"],"status":"passed",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"Gaben reduces eligible nearby ally damage by 40% and heals for the redirected portion"},{"file":"tests/combat-advanced.test.ts","test":"Borrowed Time automatically activates while stunned and redirects an ally injury"}]
+        },
+        {
+          "id":"BT-05","kind":"timing","branch":"gaben",
+          "rule":"Current implementation acquires the ally redirect at the first 0.1-second aura pulse; there is no same-tick allied protection at activation.",
+          "sourceIds":["borrowed-aa"],"status":"partial",
+          "testEvidence":[{"file":"tests/reference-defense-and-dispel.test.ts","test":"documents the current Gaben aura first-pulse boundary at 0.1 seconds"}]
+        }
+      ],
+      "unresolved":[
+        {"id":"BT-U1","rule":"Conversion basis and barrier/Mana Shield ordering retain the current working implementation. Modern mainline pre-reduction and older non-mainline post-reduction evidence do not establish AA's dated behavior.","sourceIds":["borrowed-wiki","borrowed-siltbreaker"],"status":"unresolved"},
+        {"id":"BT-U2","rule":"Manual disabled casting and exact exceptions (stun versus silence/hex) need shared command-policy support and separate results; automatic disabled activation is covered.","sourceIds":["borrowed-history","borrowed-wiki"],"status":"unresolved"},
+        {"id":"BT-U3","rule":"Whether AA's Gaben aura protects allies on the activation frame instead of the first 0.1-second pulse is unproven. BT-05 documents this gap rather than accepting it as original behavior.","status":"unresolved"},
+        {"id":"BT-U4","rule":"Nested redirect/lifesteal/amplification, post-activation break, multiple overlapping redirect auras and health-removal bypass during the active buff are not exhaustively validated here.","status":"unresolved"}
+      ],
+      "upgradeProvenance":[
+        {"branch":"super","origin":"AA +2 duration and -8 cooldown; historical cooldown talent and extended-duration Borrowed Time are related same-hero mechanisms","sourceIds":["borrowed-aa","borrowed-valve"],"confidence":"AA numbers explicit; no exact native Scepter-duration equivalence asserted"},
+        {"branch":"gaben","origin":"Old Borrowed Time damage-redirection Scepter concept with custom AA 40% and 500 radius","sourceIds":["borrowed-aa","borrowed-history"],"confidence":"historical mechanism traced, AA exact redirect order remains unresolved"}
+      ]
+    }
+  ]
+}

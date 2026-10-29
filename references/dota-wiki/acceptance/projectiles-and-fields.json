@@ -1,0 +1,2126 @@
+{
+  "schemaVersion": 1,
+  "group": "projectiles-and-fields",
+  "auditedOn": "2026-10-29",
+  "overallStatus": "partial",
+  "skills": [
+    {
+      "id": "custom_alchemist_acid_spray",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Fresh official 230-row English catalog matches all 2530 compared baseline fields; AA numbers and custom upgrade clauses are retained.",
+          "paraphrase": "Fresh official 230-row English catalog matches all 2530 compared baseline fields; AA numbers and custom upgrade clauses are retained.",
+          "versionContext": "HTTP200; Last-Modified 2026-09-01. Current website data is not proof of an AA workshop implementation version.",
+          "readMethod": "Direct HTTPS static JSON read; source page /learn/spells and its 254.0a9e82c9.js fetch path inspected without executing downloaded code.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-acid-seal-20261029.json",
+          "catalogComparison": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "observation": "Fields read for each relevant native ability, including cast points, projectile speed and chain interval/radius.",
+          "versionContext": "Pinned shipped data, 2023-02-10; not a proof of the exact AA patch.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Pinned local Valve KV; source metadata checked"
+        },
+        {
+          "id": "acid-wiki",
+          "url": "https://liquipedia.net/dota2/Alchemist",
+          "observation": "Physical spell damage and armor reduction are separate; damage stops outside the area while armor can linger.",
+          "versionContext": "Current mechanics excerpt; modern numbers are not copied. Full-duration endpoint and pre-7.28 AA-era interactions remain under review.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "acid-history",
+          "url": "https://liquipedia.net/dota2/Alchemist/Changelogs",
+          "observation": "7.28 changed damage to aura-based, starts damage immediately and stops damage when leaving.",
+          "versionContext": "7.28, 2020-12-17. AA keeps older damage numbers explicitly.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "acid-old-wiki",
+          "url": "https://dota2.fandom.com/wiki/Alchemist",
+          "accessedOn": "2026-10-29",
+          "observation": "Damage from overlapping sprays stacks; enemy armor reduction does not. Damage is independent of the 0.5-second armor aura.",
+          "paraphrase": "Damage from overlapping sprays stacks; enemy armor reduction does not. Damage is independent of the 0.5-second armor aura.",
+          "versionContext": "Cached older ~7.35b article, directly indexed text; native numerical values ignored.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "acid-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3AAlchemist",
+          "accessedOn": "2026-10-29",
+          "observation": "Archived Acid Spray lists cast range 900 and backswing 0.8; the modern point is 0.1.",
+          "paraphrase": "Archived Acid Spray lists cast range 900 and backswing 0.8; the modern point is 0.1.",
+          "versionContext": "Archive has post-7.33 point/duration values. Its 0.8 backswing was superseded for this implementation by the directly read 2023-02-15 page's 0.7; do not mix the modern point/backswing pair with the historical pair.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "acid-733",
+          "url": "https://liquipedia.net/dota2/Version_7.33",
+          "accessedOn": "2026-10-29",
+          "observation": "7.33 changed point 0.2 to 0.1 and duration 16 to 15, with no recorded change to pulse phase or backswing.",
+          "paraphrase": "7.33 changed point 0.2 to 0.1 and duration 16 to 15, with no recorded change to pulse phase or backswing.",
+          "versionContext": "2023-04-20 historical update.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "aura-rules",
+          "url": "https://liquipedia.net/dota2/Aura",
+          "accessedOn": "2026-10-29",
+          "observation": "Aura debuffs generally cannot be dispelled; common same-kind auras do not stack. Negative auras can affect invisible units but generally exclude invulnerable or hidden units.",
+          "paraphrase": "Aura debuffs generally cannot be dispelled; common same-kind auras do not stack. Negative auras can affect invisible units but generally exclude invulnerable or hidden units.",
+          "versionContext": "General aura behavior; Acid-specific damage overlap exception takes priority.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "cast-animation",
+          "url": "https://liquipedia.net/dota2/Cast_Animation",
+          "accessedOn": "2026-10-29",
+          "observation": "Effects, mana and cooldown commit at cast point; interruption before that cancels them. Backswing can be canceled after effect release.",
+          "paraphrase": "Effects, mana and cooldown commit at cast point; interruption before that cancels them. Backswing can be canceled after effect release.",
+          "versionContext": "General casting semantics; this game maps spell properties onto its four-class bodies.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "acid-20230215",
+          "url": "https://web.archive.org/web/20230215191306id_/https://dota2.fandom.com/wiki/Alchemist",
+          "originalUrl": "https://dota2.fandom.com/wiki/Alchemist",
+          "accessedOn": "2026-10-29",
+          "httpStatus": 200,
+          "htmlSha256": "3b64233718c9d34c7b615c59c9d0d24dd138154d1f9252f2552cc47795f27247",
+          "observation": "Historical Acid has cast animation 0.2+0.7, range900 and duration16. One-second pulses start immediately and can total17; multiple fields stack damage but not armor reduction.",
+          "paraphrase": "The historical point/backswing pair and endpoint count are now directly sourced instead of inferred from modern values.",
+          "versionContext": "Actual archived Wiki page from2023-02-15, contemporary with the pinned Valve candidate; native damage numbers are not imported.",
+          "readMethod": "Successfully read public Wayback id_ HTML via HTTPS, decoded gzip and used Python HTMLParser for static text. No downloaded scripts executed.",
+          "localEvidence": "artifacts/alchemist-wayback-2023-excerpts.json"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AC-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Apply armor reduction before immediate physical damage; leaving stops damage.",
+          "sourceIds": [
+            "acid-wiki",
+            "acid-history",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Acid Spray applies armor before immediate physical damage and stops damage outside its area"
+            }
+          ]
+        },
+        {
+          "id": "AC-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "A newly entering victim begins damage immediately rather than waiting for the cast global damage phase.",
+          "sourceIds": [
+            "acid-wiki",
+            "acid-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Acid Spray starts a newly entering victim immediately and has no lingering damage outside its radius"
+            }
+          ]
+        },
+        {
+          "id": "AC-03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Super damage and armor use final 1.5x AA values once.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Acid Spray Super uses effective Excel values without applying its multiplier twice"
+            }
+          ]
+        },
+        {
+          "id": "AC-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Battle-start global field does not require an active cast.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Acid Spray Gaben is present at battle start and persists after its caster dies while an ally survives"
+            }
+          ]
+        },
+        {
+          "id": "AC-05",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "An already created arena field continues after the caster dies while an ally remains.",
+          "sourceIds": [
+            "aa",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Acid Spray Gaben is present at battle start and persists after its caster dies while an ally survives"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "AA duration 16 retains the compatible immediate pulse rule including the endpoint: 17 full pulses at offsets 0..16; no pulse after the area ends.",
+          "sourceIds": [
+            "aa",
+            "acid-wiki",
+            "acid-733",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-01 has seventeen full pulses at 0 through 16 seconds and no eighteenth pulse"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The endpoint remains an in-area check and does not apply an out-of-area terminal hit.",
+          "sourceIds": [
+            "acid-history",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-02 a victim leaving before the final boundary receives no out-of-area terminal pulse"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Leaving stops damage immediately; reentry restarts a per-victim immediate pulse clock rather than inheriting the cast global phase.",
+          "sourceIds": [
+            "acid-history",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-03 exit immediately stops damage and reentry starts a new per-victim pulse clock"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-04",
+          "kind": "combination",
+          "branch": "base+super",
+          "rule": "Separate casters retain separate damage pulses but their armor reductions do not add; this implementation selects the strongest active reduction.",
+          "sourceIds": [
+            "acid-old-wiki",
+            "aura-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-04 overlapping casters stack physical pulses but use one strongest armor reduction"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-05",
+          "kind": "combination",
+          "branch": "base+super",
+          "rule": "Each source retains an independent aura linger; a stronger expired source cannot keep overriding a weaker surviving one.",
+          "sourceIds": [
+            "acid-old-wiki",
+            "aura-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-05 the stronger armor source expires independently when only the weaker field still reaches the victim"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Real repeated Dark Pact strong dispels cannot remove an undispellable aura debuff.",
+          "sourceIds": [
+            "aura-rules",
+            "acid-old-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-06 a real Dark Pact strong dispel cannot remove armor supplied by the undispellable aura"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Explicit AA non-piercing immunity prevents damage and new armor acquisition; eligibility restored in an active field receives an immediate first pulse.",
+          "sourceIds": [
+            "aa",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-07 spell immunity excludes damage and aura acquisition; losing it restarts immediately"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Invisible bodies remain eligible; invulnerable and hidden/banished bodies do not acquire the aura.",
+          "sourceIds": [
+            "aura-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-08 invisibility is affected while invulnerability and banishment do not acquire the aura"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "An already created stationary field continues after caster death or break and retains its original damage source.",
+          "sourceIds": [
+            "aa",
+            "aura-rules"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-09 a stationary normal field survives source death and break and retains its damage owner"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA Gaben creates its entire-arena field at battle initialization without active cast, mana or cooldown cost.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-10 Gaben starts without cast, mana or cooldown cost and covers all arena positions"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-11",
+          "kind": "combination",
+          "branch": "base+super",
+          "rule": "An actual two-caster field sequence reconstructs its per-victim clocks and source-preserving armor aggregation across a saved-battle replay.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-11 active per-victim clocks and unique armor sources reconstruct deterministically on replay"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-12",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Direct historical Wiki 0.2-second point commits configured resources; its 0.7-second backswing follows release.",
+          "sourceIds": [
+            "valve",
+            "acid-20230215",
+            "cast-animation"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-12 applies the historical 0.2-second cast point before committing resources and the sourced backswing afterward"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-13",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The unit turns continuously from behind before beginning its 0.2-second windup.",
+          "sourceIds": [
+            "cast-animation"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-13 turning from behind precedes windup and is continuous under the turn-rate limit"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "An actual Lucent Beam stun landing during a cast-time-slowed windup cancels Acid with no field, mana use or cooldown.",
+          "sourceIds": [
+            "cast-animation"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-14 an actual Lucent Beam stun during windup cancels the field with no mana or cooldown cost"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-15",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "A cast-range bonus enables a ground cast beyond its sourced 900-reference-unit range.",
+          "sourceIds": [
+            "valve",
+            "acid-archive"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-15 cast-range bonus enables an otherwise out-of-range ground order"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-16",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Cast-time manipulation scales windup and backswing; field pulse cadence remains one second.",
+          "sourceIds": [
+            "cast-animation",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-16 a cast-time debuff scales windup and backswing but leaves pulse cadence unchanged"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "The ground cursor freezes at windup and does not follow the AI candidate moving away; another body at the original area is hit.",
+          "sourceIds": [
+            "aa",
+            "acid-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-17 freezes the ground cursor when the original enemy moves out during windup"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-18",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Original candidate death or invisibility cannot cancel an already ordered point-target spell.",
+          "sourceIds": [
+            "aa",
+            "acid-wiki",
+            "cast-animation"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-18 original enemy death or invisibility cannot cancel the already ordered ground cast"
+            }
+          ]
+        },
+        {
+          "id": "AC-EDGE-19",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Armor aura linger ignores status resistance; physical spell pulses use spell amplification and armor without attack damage bonus or attack block.",
+          "sourceIds": [
+            "acid-old-wiki",
+            "aura-rules",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "AC-EDGE-19 armor linger ignores status resistance and physical spell pulses bypass attack damage block"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA custom 1.5 multiplier",
+          "sourceIds": [
+            "aa"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA custom arena-wide battle-start passive",
+          "sourceIds": [
+            "aa"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Damage stacking and armor non-stacking are directly documented, but exact native priority between overlapping different-level Acid auras is not directly specified. Strongest-active selection is an explicit compatibility decision supported by result tests, not a falsely claimed native observation."
+      ],
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "scope": {
+        "description": "All explicit AA base/Super/Gaben description clauses and the finite listed arena mechanism/timing/interaction matrix have been reviewed. This is not a claim of full binary AA-engine equivalence.",
+        "complete": false,
+        "clausesReviewed": true,
+        "excluded": [
+          "Fog-of-war visibility, couriers and buildings are absent from the arena.",
+          "Original AA body-specific animation capture is not asserted; the directly documented2023 ability clock is configured."
+        ]
+      },
+      "compatibilityDecisions": [
+        {
+          "rule": "Use immediate entry/reentry and no outside damage despite the AA damage numbers predating 7.28.",
+          "basis": "User policy retains AA numbers and uses compatible Wiki non-numeric mechanics; the fresh AA description does not override pulse timing."
+        },
+        {
+          "rule": "Use endpoint-inclusive pulses: AA16 seconds gives17 pulses.",
+          "basis": "The directly read2023-02-15 Wiki explicitly gives16 seconds and17 possible pulses."
+        },
+        {
+          "rule": "Use0.7-second backswing and900 range with historical0.2 point.",
+          "basis": "Direct2023-02-15 Wiki states the whole0.2+0.7 pair and900range, superseding the earlier mixed-era0.2+0.8 candidate."
+        }
+      ],
+      "validation": {
+        "edgeCommand": "npx vitest run tests/reference-acid-seal-edges.test.ts",
+        "edgeTests": 19,
+        "sourcePolicy": "Requirements marked passed are tested implementation results bound to the cited adopted rule; unresolved native priority remains explicit."
+      }
+    },
+    {
+      "id": "custom_zuus_arc_lightning",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "observation": "The preserved English catalog description and Super/Gaben clauses are the AA authority; numbers remain AA values.",
+          "versionContext": "Local immutable catalog fields and config/reference/migration-baseline.json; AA patch unknown.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Read preserved public/data/skills.json descriptionEn, superEn, gabenEn and config/reference/migration-baseline.json; not a claim of executing the original AA Lua."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "observation": "Fields read for each relevant native ability, including cast points, projectile speed and chain interval/radius.",
+          "versionContext": "Pinned shipped data, 2023-02-10; not a proof of the exact AA patch.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Pinned local Valve KV; source metadata checked"
+        },
+        {
+          "id": "arc-wiki",
+          "url": "https://liquipedia.net/dota2/Archive%3AZeus",
+          "observation": "Arc Lightning has a quarter-second bounce interval, a 500 radius and unique victims; hidden/invisible bounce candidates are excluded.",
+          "versionContext": "Archived article includes later debuff-immunity wording; only compatible mechanisms cross-checked with 2023 KV.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "arc-history",
+          "url": "https://liquipedia.net/dota2/Zeus/Changelogs",
+          "observation": "The 24 Jun 2011 change states the chain correctly selects the nearest unit.",
+          "versionContext": "Historical nearest-neighbor behavior predates the pinned AA candidate; modern random-search description is not silently adopted.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "unselectable",
+          "url": "https://liquipedia.net/dota2/Untargetable",
+          "observation": "Most secondary unit-target searches treat unselectable units like invisible units; Shadow Realm grants unselectability. Listed exceptions do not include Arc Lightning or Arcane Bolt.",
+          "paraphrase": "Most secondary unit-target searches treat unselectable units like invisible units; Shadow Realm grants unselectability. Listed exceptions do not include Arc Lightning or Arcane Bolt.",
+          "versionContext": "Current 2026 mechanics article; explicit secondary-target rule applied with existing flat-arena concealment states.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "visibility",
+          "url": "https://liquipedia.net/dota2/Invisibility",
+          "observation": "Arc Lightning and upgraded Arcane Bolt do not select invisible secondary units. Revealed invisible units are targetable; visibility loss after release generally leaves effects active apart from disjointable projectiles.",
+          "paraphrase": "Arc Lightning and upgraded Arcane Bolt do not select invisible secondary units. Revealed invisible units are targetable; visibility loss after release generally leaves effects active apart from disjointable projectiles.",
+          "versionContext": "Current mechanics excerpt; preserves undisjointable Bolt rather than converting every visibility loss into target invalidation.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "disjoint-mechanic",
+          "url": "https://liquipedia.net/dota2/Disjoint",
+          "observation": "Invulnerability or hiding does not itself disjoint: the projectile continues homing but its effects may fail on impact. Individual abilities can separately disjoint incoming projectiles.",
+          "paraphrase": "Invulnerability or hiding does not itself disjoint: the projectile continues homing but its effects may fail on impact. Individual abilities can separately disjoint incoming projectiles.",
+          "versionContext": "Current general mechanic, compatible with pinned 2023 undisjointable Bolt behavior; no modern damage numbers imported.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-reflection",
+          "url": "https://liquipedia.net/dota2/Spell_Reflection",
+          "observation": "Spell Reflection casts the enemy spell back, unlike damage reflection. Secondary hits do not normally reflect; projectile spells normally reflect at impact; Arc Lightning and Arcane Bolt are listed as reflectable.",
+          "paraphrase": "Spell Reflection casts the enemy spell back, unlike damage reflection. Secondary hits do not normally reflect; projectile spells normally reflect at impact; Arc Lightning and Arcane Bolt are listed as reflectable.",
+          "versionContext": "Current article; 7.38 changed reflected-upgrade ownership. No generic spell-reflection provider is currently authored in this 230-skill arena.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-immunity",
+          "url": "https://liquipedia.net/dota2/Spell_Immunity/Enemy_Interactions",
+          "observation": "Non-attack bounce abilities ignore ward units; Arcane Bolt cannot directly target spell-immune enemies without its specific immunity-piercing upgrade.",
+          "paraphrase": "Non-attack bounce abilities ignore ward units; Arcane Bolt cannot directly target spell-immune enemies without its specific immunity-piercing upgrade.",
+          "versionContext": "Historical spell-immunity mechanics page; retains the project pre-debuff-immunity model rather than importing modern BKB damage rules.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "arc-current",
+          "url": "https://liquipedia.net/dota2/Zeus",
+          "observation": "Arc Lightning has a 0.2+0.63 animation, a 0.25 bounce interval, unique victims and excludes hidden/invisible/invulnerable targets. Five hits over one second means the listed count includes the initial hit. Primary Spell Block stops the whole cast.",
+          "paraphrase": "Arc Lightning has a 0.2+0.63 animation, a 0.25 bounce interval, unique victims and excludes hidden/invisible/invulnerable targets. Five hits over one second means the listed count includes the initial hit. Primary Spell Block stops the whole cast.",
+          "versionContext": "Current 7.41e page; numeric damage/radius/count remain AA values. The current random-search wording conflicts with the older nearest-unit changelog and is not adopted.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "arc-count-check",
+          "url": "https://liquipedia.net/dota2/Siltbreaker/Zeus",
+          "observation": "The independent mode entry lists six hits, total damage equal to six times single-hit damage, and 1.25 seconds total at 0.25 intervals. This cross-check supports count including the primary hit.",
+          "paraphrase": "The independent mode entry lists six hits, total damage equal to six times single-hit damage, and 1.25 seconds total at 0.25 intervals. This cross-check supports count including the primary hit.",
+          "versionContext": "Siltbreaker variant is used only as a count/interval semantic cross-check; variant balance is not imported.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "bounce-737",
+          "url": "https://liquipedia.net/dota2/Version_7.37",
+          "observation": "The bounce-ability standardization limits Spell Block and Reflection to the primary target and lets subsequent bounces continue without triggering those effects. Arc Lightning is listed; its Shard attack casts do not trigger either.",
+          "paraphrase": "The bounce-ability standardization limits Spell Block and Reflection to the primary target and lets subsequent bounces continue without triggering those effects. Arc Lightning is listed; its Shard attack casts do not trigger either.",
+          "versionContext": "7.37, 2024-07-31; selected Wiki nonnumeric behavior is identified explicitly and is not misdated as executable 2023 AA evidence.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-lifesteal",
+          "url": "https://liquipedia.net/dota2/Spell_Lifesteal",
+          "observation": "Spell lifesteal is a distinct post-reduction spell-damage heal. The generic source excludes self, ward/building damage and damage sourced to another summoned body; common creep multipliers differ from hero values.",
+          "paraphrase": "Spell lifesteal is a distinct post-reduction spell-damage heal. The generic source excludes self, ward/building damage and damage sourced to another summoned body; common creep multipliers differ from hero values.",
+          "versionContext": "Current general mechanic; AA grants 20 percent, while creature scaling and delayed-payback interactions still need selected historical-version acceptance.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-lifesteal-rum",
+          "url": "https://liquipedia.net/dota2/Spell_lifesteal",
+          "observation": "The Ghostship footnote excludes rum wear-off health loss from triggering spell lifesteal.",
+          "paraphrase": "The Ghostship footnote excludes rum wear-off health loss from triggering spell lifesteal.",
+          "versionContext": "Current footnote read 2026-10-29; core repayment integration is tracked as an unresolved combination.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "arc-wiki-20230215",
+          "url": "https://web.archive.org/web/20230215192015id_/https://dota2.fandom.com/wiki/Zeus",
+          "originalUrl": "https://dota2.fandom.com/wiki/Zeus",
+          "archiveTimestamp": "20230215192015",
+          "accessedOn": "2026-10-29",
+          "sha256": "12b3d928f7d8a031a9d49c811fed07ae337436911b8d308220b838843d8a1edc",
+          "hashScope": "Decoded HTTP entity bytes after gzip decompression; no HTML is stored or executed.",
+          "htmlBytes": 494981,
+          "observation": "The 2023 Arc Lightning entry explicitly restricts full blocking to the primary target, and lists the 0.2+0.63 clock and N-1 bounce intervals.",
+          "paraphrase": "The 2023 entry documents full block only on the primary, a 0.2-second cast point, 0.63-second backswing and initial-inclusive bounce count.",
+          "necessaryExcerpt": "Blocked fully only when primary target.",
+          "versionContext": "Wayback capture 2023-02-15 19:20:15 UTC, close to the pinned Valve 2023-02-10 candidate; predates 7.37 standardization.",
+          "readMethod": "Direct Internet Archive CDX discovery and archived HTML read via standard urllib/HTMLParser; no script execution."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AR-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Each cast damages a victim at most once; future jumps search live eligible units.",
+          "sourceIds": [
+            "aa",
+            "arc-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arc Lightning searches current positions and skips hidden, immune and already-hit units at the next jump"
+            }
+          ]
+        },
+        {
+          "id": "AR-02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "First hit occurs on release, subsequent hits occur at the historical quarter-second interval rounded to simulation ticks.",
+          "sourceIds": [
+            "arc-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arc Lightning damages one new victim per historical bounce interval instead of all on release"
+            }
+          ]
+        },
+        {
+          "id": "AR-03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Historical chain chooses the nearest eligible victim.",
+          "sourceIds": [
+            "arc-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arc Lightning chooses the nearest eligible jump rather than a random farther unit"
+            }
+          ]
+        },
+        {
+          "id": "AR-04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA damage increase is part of the effective 250 damage at final ranks.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arc Lightning Gaben amplification and spell lifesteal use the effective compiled damage once"
+            }
+          ]
+        },
+        {
+          "id": "AR-05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "20% amplification and 20% spell lifesteal apply once to actual damage.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arc Lightning Gaben amplification and spell lifesteal use the effective compiled damage once"
+            }
+          ]
+        },
+        {
+          "id": "AR-06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Delayed chains and ability stacks replay deterministically with Blink.",
+          "sourceIds": [
+            "valve",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "real catalog chains, stacks and blink replay identically across a mid-battle save"
+            }
+          ]
+        },
+        {
+          "id": "AR-E01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "The AA JUMPS limit includes the first victim and has exactly N-1 delayed gaps; each victim is hit at most once.",
+          "sourceIds": [
+            "aa",
+            "arc-current",
+            "arc-count-check",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E01 counts the first victim inside the AA jump limit and never revisits a unit"
+            }
+          ]
+        },
+        {
+          "id": "AR-E02",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The first magical hit occurs at the 0.2-second release, not at windup start.",
+          "sourceIds": [
+            "arc-current",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E02 uses the native 0.2-second cast point before the first immediate magical hit"
+            }
+          ]
+        },
+        {
+          "id": "AR-E03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Secondary searches skip unselectable/undetectable/invisible/invulnerable/spell-immune bodies; revealed invisible units remain eligible.",
+          "sourceIds": [
+            "arc-current",
+            "unselectable",
+            "visibility",
+            "spell-immunity",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E03 excludes unselectable, undetectable, invisible, invulnerable and immune secondary victims but admits a revealed invisible unit"
+            }
+          ]
+        },
+        {
+          "id": "AR-E04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "The next jump uses live positions and can continue from a previously struck dead victim.",
+          "sourceIds": [
+            "arc-history",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E04 searches current live positions and continues after the previously struck victim dies"
+            }
+          ],
+          "referenceInference": "The 9 Aug 2012 death-target bounce fix plus per-target bounce search supports continuation from the previous hit location."
+        },
+        {
+          "id": "AR-E05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Primary Spell Block cancels the cast; secondary Spell Block is not consumed and does not stop the chain.",
+          "sourceIds": [
+            "arc-wiki-20230215"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E05 consumes only a primary spell block and leaves secondary blocks untouched"
+            }
+          ],
+          "adoptedVersion": "Direct 2023-02-15 Wiki snapshot; current primary-full-block/secondary-unconsumed behavior is consistent with this historical entry."
+        },
+        {
+          "id": "AR-E06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "An already released chain continues after Carapace kills/disables its caster; the current result is tested, but original-engine death timing needs a direct source or execution trace.",
+          "sourceIds": [
+            "aa",
+            "arc-wiki"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E06 keeps an already released chain after Carapace reflects lethal damage and stuns the caster"
+            }
+          ]
+        },
+        {
+          "id": "AR-E07",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "A new cast can run independently before the previous chain finishes bouncing.",
+          "sourceIds": [
+            "arc-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E07 resumes independent casts while an older chain is still bouncing"
+            }
+          ]
+        },
+        {
+          "id": "AR-E08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "The primary selector avoids spell-immune targets and ward bodies.",
+          "sourceIds": [
+            "spell-immunity",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E08 skips primary wards and spell-immune units instead of spending a cast on an invalid body"
+            }
+          ]
+        },
+        {
+          "id": "AR-E09",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Intrinsic Gaben amplification and spell lifesteal survive a real dispel and affect another spell once.",
+          "sourceIds": [
+            "aa",
+            "spell-lifesteal"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E09 keeps the intrinsic Gaben bonuses after real Demonic Purge and applies both to another spell"
+            }
+          ]
+        },
+        {
+          "id": "AR-E10",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The effective compiled action clock uses 0.63-second backswing after release.",
+          "sourceIds": [
+            "arc-current"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E10 reads the native 0.63-second backswing from the effective configuration after release"
+            }
+          ]
+        },
+        {
+          "id": "AR-E11",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Rum repayment does not spell-lifesteal again; original damage statistics and attribution remain with the original ability. Initial Rum lifesteal basis is not claimed by this test.",
+          "sourceIds": [
+            "spell-lifesteal-rum"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AR-E11 does not spell-lifesteal from rum repayment while preserving its original damage attribution"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA +110 damage clause; historical Zeus damage-talent family is related but exact +110 talent rank is not asserted.",
+          "sourceIds": [
+            "aa",
+            "arc-history"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA composite 20 percent spell amplification and spell lifesteal; native item/talent systems explain the mechanisms, not a one-to-one upgrade identity.",
+          "sourceIds": [
+            "aa",
+            "spell-lifesteal"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Direct native death-of-caster chain timing still lacks an explicit skill-specific source; current Carapace-lethal continuation has a named result test.",
+        "Gaben spell-lifesteal creature scaling, initial Rum basis and False Promise phases still need historical acceptance; rum repayment repeat-healing is fixed and separately tested."
+      ],
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "validation": {
+        "command": "npx vitest run tests/reference-lightning-bolt-edges.test.ts tests/reference-projectiles-and-fields.test.ts",
+        "newEdgeTestsPassed": 30,
+        "edgeFile": "tests/reference-lightning-bolt-edges.test.ts"
+      },
+      "scopeExclusions": [
+        "Fog, terrain elevation and projectile vision are outside the user-confirmed flat fully-visible arena."
+      ],
+      "catalogApplicability": {
+        "spellReflection": {
+          "status": "not_applicable_to_current_catalog",
+          "reason": "No Counterspell, Lotus Orb or Mirror Shield spell-reflection provider is authored in the preserved 230-skill snapshot. Dispersion, Carapace and Kraken reflect damage instead; they do not create a reflected cast."
+        },
+        "fogAndTerrain": {
+          "status": "excluded_by_user",
+          "reason": "Flat fully visible arena; no trees, Fog of War or elevation."
+        }
+      }
+    },
+    {
+      "id": "custom_skywrath_mage_arcane_bolt",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "observation": "The preserved English catalog description and Super/Gaben clauses are the AA authority; numbers remain AA values.",
+          "versionContext": "Local immutable catalog fields and config/reference/migration-baseline.json; AA patch unknown.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Read preserved public/data/skills.json descriptionEn, superEn, gabenEn and config/reference/migration-baseline.json; not a claim of executing the original AA Lua."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "observation": "Fields read for each relevant native ability, including cast points, projectile speed and chain interval/radius.",
+          "versionContext": "Pinned shipped data, 2023-02-10; not a proof of the exact AA patch.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Pinned local Valve KV; source metadata checked"
+        },
+        {
+          "id": "sky-wiki",
+          "url": "https://liquipedia.net/dota2/Skywrath_Mage",
+          "observation": "Arcane Bolt snapshots intelligence at release, travels at 500 and checks each target spell block on impact. Ancient Seal secondary application has no independent cast cost or cast proc.",
+          "versionContext": "Current page, cross-checked with 2023 cast-point/projectile/scepter-radius KV; modern damage values ignored.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "sky-history",
+          "url": "https://liquipedia.net/dota2/Skywrath_Mage/Changelogs",
+          "observation": "The 7.32 shard grants independent 2 intelligence/0.5 armor stacks per damage instance. Historical Ancient Seal talents reduce cooldown and increase enemy resistance reduction.",
+          "versionContext": "7.32 shard, 2022-08-24, plus historical talent changes; AA any-ability-damage wording overrides native magical/enemy-hero restrictions.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "scion-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ASkywrath_Mage",
+          "observation": "Old Shield of the Scion stacks are independent, undispellable, unaffected by break and do not function on illusion owners.",
+          "versionContext": "Archived old shard, 2 intelligence/0.5 armor/35 seconds; current innate redesign is not imported.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "bolt-disjoint",
+          "url": "https://dota2.fandom.com/wiki/Skywrath_Mage/Guide",
+          "observation": "Arcane Bolt keeps pursuing targets that blink away or become invisible.",
+          "versionContext": "Archived Dota2 Wiki guide indexed 2026-10-29; direct fetch unavailable. Detailed modern/historical exception review continues.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "unselectable",
+          "url": "https://liquipedia.net/dota2/Untargetable",
+          "observation": "Most secondary unit-target searches treat unselectable units like invisible units; Shadow Realm grants unselectability. Listed exceptions do not include Arc Lightning or Arcane Bolt.",
+          "paraphrase": "Most secondary unit-target searches treat unselectable units like invisible units; Shadow Realm grants unselectability. Listed exceptions do not include Arc Lightning or Arcane Bolt.",
+          "versionContext": "Current 2026 mechanics article; explicit secondary-target rule applied with existing flat-arena concealment states.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "visibility",
+          "url": "https://liquipedia.net/dota2/Invisibility",
+          "observation": "Arc Lightning and upgraded Arcane Bolt do not select invisible secondary units. Revealed invisible units are targetable; visibility loss after release generally leaves effects active apart from disjointable projectiles.",
+          "paraphrase": "Arc Lightning and upgraded Arcane Bolt do not select invisible secondary units. Revealed invisible units are targetable; visibility loss after release generally leaves effects active apart from disjointable projectiles.",
+          "versionContext": "Current mechanics excerpt; preserves undisjointable Bolt rather than converting every visibility loss into target invalidation.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "disjoint-mechanic",
+          "url": "https://liquipedia.net/dota2/Disjoint",
+          "observation": "Invulnerability or hiding does not itself disjoint: the projectile continues homing but its effects may fail on impact. Individual abilities can separately disjoint incoming projectiles.",
+          "paraphrase": "Invulnerability or hiding does not itself disjoint: the projectile continues homing but its effects may fail on impact. Individual abilities can separately disjoint incoming projectiles.",
+          "versionContext": "Current general mechanic, compatible with pinned 2023 undisjointable Bolt behavior; no modern damage numbers imported.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-reflection",
+          "url": "https://liquipedia.net/dota2/Spell_Reflection",
+          "observation": "Spell Reflection casts the enemy spell back, unlike damage reflection. Secondary hits do not normally reflect; projectile spells normally reflect at impact; Arc Lightning and Arcane Bolt are listed as reflectable.",
+          "paraphrase": "Spell Reflection casts the enemy spell back, unlike damage reflection. Secondary hits do not normally reflect; projectile spells normally reflect at impact; Arc Lightning and Arcane Bolt are listed as reflectable.",
+          "versionContext": "Current article; 7.38 changed reflected-upgrade ownership. No generic spell-reflection provider is currently authored in this 230-skill arena.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "spell-immunity",
+          "url": "https://liquipedia.net/dota2/Spell_Immunity/Enemy_Interactions",
+          "observation": "Non-attack bounce abilities ignore ward units; Arcane Bolt cannot directly target spell-immune enemies without its specific immunity-piercing upgrade.",
+          "paraphrase": "Non-attack bounce abilities ignore ward units; Arcane Bolt cannot directly target spell-immune enemies without its specific immunity-piercing upgrade.",
+          "versionContext": "Historical spell-immunity mechanics page; retains the project pre-debuff-immunity model rather than importing modern BKB damage rules.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "scion-old",
+          "url": "https://liquipedia.net/dota2/Skywrath_Mage/Old_Abilities",
+          "observation": "Pre-7.35d Scion grants independent stacks per accepted ability damage instance, including zero/negative instances and Spell Reflection procs. It lists item, zero-cooldown, no-on-cast and HP-removal exclusions; Ability Draft permits other drafted abilities.",
+          "paraphrase": "Pre-7.35d Scion grants independent stacks per accepted ability damage instance, including zero/negative instances and Spell Reflection procs. It lists item, zero-cooldown, no-on-cast and HP-removal exclusions; Ability Draft permits other drafted abilities.",
+          "versionContext": "Historical pre-7.35d section. AA any-ability damage explicitly broadens damage type/victim category. The page also retains an inconsistent pre-cast ordering sentence; AA damage-trigger wording governs timing here.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "damage-instance",
+          "url": "https://liquipedia.net/dota2/Damage_Instance",
+          "observation": "Both zero original input and fully mitigated zero damage can yield instances; negative values end as zero rather than healing. Set-health, health cost, forced kill and HP-removal do not yield instances.",
+          "paraphrase": "Both zero original input and fully mitigated zero damage can yield instances; negative values end as zero rather than healing. Set-health, health cost, forced kill and HP-removal do not yield instances.",
+          "versionContext": "Current mechanics stub; used for zero-instance semantics only, not as proof of every older AA exception.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "barrier-zero",
+          "url": "https://liquipedia.net/dota2/Damage_Barrier",
+          "observation": "A fully absorbing damage barrier still registers a zero damage instance even though most ordinary on-damage effects do not trigger.",
+          "paraphrase": "A fully absorbing damage barrier still registers a zero damage instance even though most ordinary on-damage effects do not trigger.",
+          "versionContext": "Current barrier mechanic; dedicated ability-instance hook does not open the effective-damage hooks.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "attack-spell",
+          "url": "https://liquipedia.net/dota2/Damage_Types",
+          "observation": "Damage type and attack-versus-spell category are separate axes; attacks can deal nonphysical damage and ability-driven instant attacks remain attack damage.",
+          "paraphrase": "Damage type and attack-versus-spell category are separate axes; attacks can deal nonphysical damage and ability-driven instant attacks remain attack damage.",
+          "versionContext": "Current mechanic; statistics attribution is not used as a substitute for native damage category.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "bolt-archive",
+          "url": "https://liquipedia.net/dota2/Archive%3ASkywrath_Mage",
+          "observation": "The old Arcane Bolt upgrade prefers heroes, uses a 700-radius secondary search and is not disjointable. The old extra-bolt talent and Scepter could combine for three total bolts.",
+          "paraphrase": "The old Arcane Bolt upgrade prefers heroes, uses a 700-radius secondary search and is not disjointable. The old extra-bolt talent and Scepter could combine for three total bolts.",
+          "versionContext": "Archived pre-rework rules; AA explicitly supplies two additional targets, while the pinned 2023 talent special_bonus_unique_skywrath_2 adds one.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "aa-bolt-introduction",
+          "url": "https://news.abilityarena.com/ability-arena-season-4-5/",
+          "observation": "The official Season 4.5 announcement introduced Arcane Bolt as a repeatable magic spell scaling with intelligence. It does not specify every Scion damage-event exception.",
+          "paraphrase": "The official Season 4.5 announcement introduced Arcane Bolt as a repeatable magic spell scaling with intelligence. It does not specify every Scion damage-event exception.",
+          "versionContext": "Official AA announcement, 2023-02-01; no missing execution rules are inferred from the promotional text.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki search-index full article section read with web search; direct Liquipedia requests may return HTTP403"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AB-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Intelligence-derived damage is captured at release, before later independent stack gains.",
+          "sourceIds": [
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arcane Bolt snapshots intelligence at launch so later Gaben stacks do not amplify an in-flight bolt"
+            }
+          ]
+        },
+        {
+          "id": "AB-02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Each primary or secondary projectile checks the current spell block on impact.",
+          "sourceIds": [
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arcane Bolt checks independently acquired spell block on impact for both primary and extra bolts"
+            }
+          ]
+        },
+        {
+          "id": "AB-03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Extra bolts use different eligible visible nonimmune targets in the AA radius.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arcane Bolt Super cannot select an invisible or spell-immune secondary target"
+            }
+          ]
+        },
+        {
+          "id": "AB-04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Independent old-shard armor/intelligence stacks are undispellable and do not function on illusion owners; AA damage eligibility is retained.",
+          "sourceIds": [
+            "aa",
+            "scion-archive",
+            "sky-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Arcane Bolt Gaben carries independent undispellable stacks and excludes illusion owners"
+            }
+          ]
+        },
+        {
+          "id": "AB-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Blink preserves undisjointable Arcane Bolt while disjointing an ordinary Magic Missile.",
+          "sourceIds": [
+            "bolt-disjoint"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Blink disjoints a Magic Missile while an undisjointable Arcane Bolt keeps pursuing"
+            }
+          ]
+        },
+        {
+          "id": "AB-E01",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Both extra slots prefer real heroes and hero illusions over creep heroes.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki",
+            "bolt-archive"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E01 prioritizes heroes and hero illusions before creep heroes in both Super extra slots"
+            }
+          ]
+        },
+        {
+          "id": "AB-E02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Extra slots fall back to ordinary units, without repeating the primary or another secondary target.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E02 fills remaining Super slots with ordinary units without repeating the primary or another bolt target"
+            }
+          ]
+        },
+        {
+          "id": "AB-E03",
+          "kind": "mechanism",
+          "branch": "super",
+          "rule": "The secondary search excludes hidden/unselectable/immune bodies while admitting revealed invisible units.",
+          "sourceIds": [
+            "visibility",
+            "unselectable",
+            "spell-immunity",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E03 skips hidden or immune secondary bodies but keeps a revealed invisible unit eligible"
+            }
+          ]
+        },
+        {
+          "id": "AB-E04",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "An already released undisjointable Bolt continues through invisibility or Shadow Realm and hits its original unit.",
+          "sourceIds": [
+            "bolt-archive",
+            "disjoint-mechanic",
+            "visibility"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E04 follows an invisible or Shadow Realm target after release without losing the undisjointable bolt"
+            }
+          ]
+        },
+        {
+          "id": "AB-E05",
+          "kind": "mechanism",
+          "branch": "super",
+          "rule": "When one selected victim dies, only that projectile is removed; it does not select a replacement victim.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki",
+            "visibility"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E05 discards only the projectile whose target dies and does not retarget an extra bolt"
+            }
+          ],
+          "referenceInference": "A selected unit-target projectile retains its original target; unlike explicitly listed retargeting abilities, Bolt has no retarget-on-death component."
+        },
+        {
+          "id": "AB-E06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Invulnerability or newly acquired spell immunity at impact consumes the bolt without damage or a Scion event.",
+          "sourceIds": [
+            "disjoint-mechanic",
+            "spell-immunity",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E06 consumes the impact bolt on temporary invulnerability or newly acquired spell immunity without a damage stack"
+            }
+          ]
+        },
+        {
+          "id": "AB-E07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Released bolts continue after caster death; per-victim current result is tested, while a skill-specific original-engine death trace remains unaccepted.",
+          "sourceIds": [
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E07 preserves released bolts after the caster dies and retains per-victim independent damage"
+            }
+          ]
+        },
+        {
+          "id": "AB-E08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA any-ability damage includes physical/pure spell damage and nonhero victims, but not ordinary attacks; Scion is not disabled by Break.",
+          "sourceIds": [
+            "aa",
+            "scion-archive",
+            "attack-spell"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E08 excludes ordinary basic attacks from Scion but accepts AA physical and pure ability damage to nonheroes while broken"
+            }
+          ]
+        },
+        {
+          "id": "AB-E09",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "Each Scion stack expires independently after 35 seconds.",
+          "sourceIds": [
+            "aa",
+            "scion-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E09 expires each Scion stack independently without removing a newer stack"
+            }
+          ]
+        },
+        {
+          "id": "AB-E10",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Zero and negative original inputs yield one stack each without HP healing or effective damage credit.",
+          "sourceIds": [
+            "scion-old",
+            "damage-instance"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E10 grants one Scion stack for zero or negative original ability damage without healing or effective damage credit"
+            }
+          ]
+        },
+        {
+          "id": "AB-E11",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Full absorption by actual Aphotic Shield or Refraction yields one Scion stack and zero effective damage.",
+          "sourceIds": [
+            "scion-old",
+            "damage-instance",
+            "barrier-zero"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E11 grants one Scion stack when a real Aphotic Shield or Refraction absorbs the entire ability hit"
+            }
+          ]
+        },
+        {
+          "id": "AB-E12",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Physical immunity and actual Borrowed Time conversion retain a zero ability-damage event.",
+          "sourceIds": [
+            "damage-instance",
+            "scion-old"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E12 counts physical immunity and real Borrowed Time conversion as accepted zero-damage ability events"
+            }
+          ]
+        },
+        {
+          "id": "AB-E13",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "rule": "Invalid target immunity, HP removal, ordinary attacks and explicit hook suppression do not grant Scion.",
+          "sourceIds": [
+            "damage-instance",
+            "scion-old",
+            "attack-spell"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E13 rejects Scion events for invalid targets, HP removal, ordinary attacks and explicitly suppressed damage hooks"
+            }
+          ]
+        },
+        {
+          "id": "AB-E14",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "The original hit under actual False Promise grants one Scion stack and settlement does not duplicate that instance.",
+          "sourceIds": [
+            "aa",
+            "scion-old",
+            "damage-instance"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E14 grants one Scion event for an actual False Promise deferred hit and no second stack at settlement"
+            }
+          ],
+          "referenceInference": "Original accepted instance and its deferred HP settlement are tracked separately so a delayed result cannot create a second source ability instance."
+        },
+        {
+          "id": "AB-E15",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Delay and rum repayment cannot emit the original Scion instance twice.",
+          "sourceIds": [
+            "aa",
+            "scion-old",
+            "damage-instance"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E15 does not replay the original Scion event for damage-delay settlement or rum repayment"
+            }
+          ]
+        },
+        {
+          "id": "AB-E16",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Real Boundless Strike attack damage does not become spell damage because its statistics carry an ability id.",
+          "sourceIds": [
+            "attack-spell",
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E16 keeps attack attribution separate from spell-damage eligibility for real Boundless Strike"
+            }
+          ]
+        },
+        {
+          "id": "AB-E17",
+          "kind": "mechanism",
+          "branch": "gaben",
+          "rule": "A magical ordinary attack does not qualify as a spell damage instance.",
+          "sourceIds": [
+            "attack-spell"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E17 does not classify a magical ordinary attack as an ability damage event"
+            }
+          ]
+        },
+        {
+          "id": "AB-E18",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "The 0.1-second release and 0.9-second recovery precede the delayed projectile impact.",
+          "sourceIds": [
+            "sky-wiki",
+            "bolt-archive",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E18 uses a 0.1-second release and 0.9-second backswing without applying projectile damage on cast"
+            }
+          ]
+        },
+        {
+          "id": "AB-E19",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Temporary invulnerability that ends before impact does not destroy the undisjointable projectile.",
+          "sourceIds": [
+            "disjoint-mechanic",
+            "bolt-archive"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lightning-bolt-edges.test.ts",
+              "test": "AB-E19 keeps tracking through temporary invulnerability that expires before impact"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "AA two-extra-bolt clause parallels historical Scepter plus the +1-bolt talent; native latest Shard ownership is not backported as AA item ownership.",
+          "sourceIds": [
+            "aa",
+            "bolt-archive",
+            "valve",
+            "sky-history"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "Historical 7.32 Aghanim Shard Shield of the Scion with independent armor/intelligence stacks; AA any-ability wording broadens original magical/enemy-hero restrictions.",
+          "sourceIds": [
+            "aa",
+            "sky-history",
+            "scion-archive",
+            "scion-old"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Scion native zero-cooldown/no-on-cast/item exclusions versus the broader AA any-ability clause need actual AA execution evidence; no item system or generic item classification has been certified.",
+        "Damage-reflection event qualification is not proved by the old page Spell Reflection wording; current reflection-flag sources are intentionally excluded.",
+        "Released projectile behavior after caster death has a named current result test but no direct skill-specific native execution source.",
+        "Arbitrary stolen-ability/clone and source-specific lifesteal interactions beyond the named tests remain unaccepted."
+      ],
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "validation": {
+        "command": "npx vitest run tests/reference-lightning-bolt-edges.test.ts tests/reference-projectiles-and-fields.test.ts",
+        "newEdgeTestsPassed": 30,
+        "edgeFile": "tests/reference-lightning-bolt-edges.test.ts"
+      },
+      "scopeExclusions": [
+        "Fog, terrain elevation and projectile vision are outside the user-confirmed flat fully-visible arena."
+      ],
+      "catalogApplicability": {
+        "spellReflection": {
+          "status": "not_applicable_to_current_catalog",
+          "reason": "No Counterspell, Lotus Orb or Mirror Shield spell-reflection provider is authored in the preserved 230-skill snapshot. Dispersion, Carapace and Kraken reflect damage instead; they do not create a reflected cast."
+        },
+        "fogAndTerrain": {
+          "status": "excluded_by_user",
+          "reason": "Flat fully visible arena; no trees, Fog of War or elevation."
+        }
+      }
+    },
+    {
+      "id": "custom_skywrath_mage_ancient_seal",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Fresh official 230-row English catalog matches all 2530 compared baseline fields; AA numbers and custom upgrade clauses are retained.",
+          "paraphrase": "Fresh official 230-row English catalog matches all 2530 compared baseline fields; AA numbers and custom upgrade clauses are retained.",
+          "versionContext": "HTTP200; Last-Modified 2026-09-01. Current website data is not proof of an AA workshop implementation version.",
+          "readMethod": "Direct HTTPS static JSON read; source page /learn/spells and its 254.0a9e82c9.js fetch path inspected without executing downloaded code.",
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "localEvidence": "references/ability-arena/abilities-acid-seal-20261029.json",
+          "catalogComparison": "artifacts/aa-official-catalog-20261029-audit.json"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "observation": "Fields read for each relevant native ability, including cast points, projectile speed and chain interval/radius.",
+          "versionContext": "Pinned shipped data, 2023-02-10; not a proof of the exact AA patch.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Pinned local Valve KV; source metadata checked"
+        },
+        {
+          "id": "sky-wiki",
+          "url": "https://liquipedia.net/dota2/Skywrath_Mage",
+          "observation": "Arcane Bolt snapshots intelligence at release, travels at 500 and checks each target spell block on impact. Ancient Seal secondary application has no independent cast cost or cast proc.",
+          "versionContext": "Current page, cross-checked with 2023 cast-point/projectile/scepter-radius KV; modern damage values ignored.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "sky-history",
+          "url": "https://liquipedia.net/dota2/Skywrath_Mage/Changelogs",
+          "observation": "The 7.32 shard grants independent 2 intelligence/0.5 armor stacks per damage instance. Historical Ancient Seal talents reduce cooldown and increase enemy resistance reduction.",
+          "versionContext": "7.32 shard, 2022-08-24, plus historical talent changes; AA any-ability-damage wording overrides native magical/enemy-hero restrictions.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "sky-pre737",
+          "url": "https://liquipedia.net/dota2/Version_7.37",
+          "accessedOn": "2026-10-29",
+          "observation": "7.37 explicitly changed secondary Ancient Seal Scepter applications to independent block/reflection handling.",
+          "paraphrase": "7.37 explicitly changed secondary Ancient Seal Scepter applications to independent block/reflection handling.",
+          "versionContext": "2024-07-31; retain pre-7.37 secondary bypass for the adopted 2023 candidate instead of importing this later change.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "aa-cn",
+          "url": "https://www.abilityarena.com/data/abilities_cn.json",
+          "accessedOn": "2026-10-29",
+          "observation": "Fresh Chinese catalog moves the death condition ahead of all Gaben clauses and says caster magic resistance, conflicting with the English resistance-reduction wording.",
+          "paraphrase": "Fresh Chinese catalog moves the death condition ahead of all Gaben clauses and says caster magic resistance, conflicting with the English resistance-reduction wording.",
+          "versionContext": "English authoritative catalog is used: fixed cooldown/reduction upgrades; only mana refill requires affected death.",
+          "readMethod": "Direct HTTPS static JSON read; no downloaded JS execution.",
+          "localEvidence": "references/ability-arena/abilities_cn-acid-seal-20261029.json"
+        },
+        {
+          "id": "cast-animation",
+          "url": "https://liquipedia.net/dota2/Cast_Animation",
+          "accessedOn": "2026-10-29",
+          "observation": "A pre-point disable cancels effect and resources; effect/cooldown/mana commit at release.",
+          "paraphrase": "A pre-point disable cancels effect and resources; effect/cooldown/mana commit at release.",
+          "versionContext": "General cast rules, checked with real engine results.",
+          "readMethod": "Web search-index article content actually read 2026-10-29"
+        },
+        {
+          "id": "seal-20230205",
+          "url": "https://web.archive.org/web/20230205103457id_/https://dota2.fandom.com/wiki/Skywrath_Mage",
+          "originalUrl": "https://dota2.fandom.com/wiki/Skywrath_Mage",
+          "accessedOn": "2026-10-29",
+          "httpStatus": 200,
+          "htmlSha256": "b9117c55aaad6e23964b3741b771f47121181f2c059ff25a487477fd857539a2",
+          "observation": "Historical Seal resistance reduction excludes creeps, including illusions and creep-heroes. Secondary selection instead prioritizes illusions/clones as heroes. Repeated casts on one victim refresh; caster qualification is not specified.",
+          "paraphrase": "Effect eligibility differs from hero-like target-selection tags, and the current article's hero qualifier must not be transferred onto silence.",
+          "versionContext": "Actual2023-02-05 archived Wiki, contemporary with pinned Valve Note0.",
+          "readMethod": "Public Wayback id_ HTML successfully read via HTTPS, gzip decoded and static HTMLParser text extracted; no script execution.",
+          "localEvidence": "artifacts/skywrath_mage-wayback-2023-excerpts.json"
+        },
+        {
+          "id": "seal-valve-note0",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/resource/localization/abilities_english.txt#L6715",
+          "accessedOn": "2026-10-29",
+          "observation": "Ancient Seal Note0 specifically excludes creeps from magic-resistance reduction, not from silence.",
+          "paraphrase": "The shipped tooltip identifies which component has the creep exception.",
+          "versionContext": "Pinned Valve localization2023-02-10, line6715.",
+          "readMethod": "Local references/dota-20230216/abilities_english.txt read directly."
+        },
+        {
+          "id": "seal-illusion-exception",
+          "url": "https://liquipedia.net/dota2/Illusions",
+          "accessedOn": "2026-10-29",
+          "observation": "Ancient Seal is explicitly listed among magic-resistance sources that do not affect illusions, despite illusions generally being treated as heroes.",
+          "paraphrase": "Its specific effect exception takes precedence over the general hero tag.",
+          "versionContext": "Current general illusion notes agree with the directly read2023 hero notes.",
+          "readMethod": "Web search-index article content actually read2026-10-29."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ASL-01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Magic resistance reduction multiplies with independent resistance rather than physical/pure amplification.",
+          "sourceIds": [
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Ancient Seal reduction multiplies with independent resistance without amplifying physical or pure damage"
+            }
+          ]
+        },
+        {
+          "id": "ASL-02",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Adopt pre-7.37 candidate behavior: a secondary application bypasses spell block without a second cast, cost or cast proc.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "sky-pre737"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Ancient Seal secondary application bypasses spell block without generating a second cast"
+            }
+          ]
+        },
+        {
+          "id": "ASL-03",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Authoritative official English gives fixed cooldown-8 and target resistance-reduction+16 percentage points; only the mana refill is conditional on affected death. The contrary Chinese paraphrase is corrected in the local catalog.",
+          "sourceIds": [
+            "aa",
+            "aa-cn",
+            "sky-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Ancient Seal Gaben has fixed cooldown and stronger victim reduction before any kill and refills mana only on affected death"
+            }
+          ]
+        },
+        {
+          "id": "ASL-04",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Affected-death reward does not incorrectly grant caster magic resistance or reduce cooldown again.",
+          "sourceIds": [
+            "aa",
+            "sky-history"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Ancient Seal Gaben has fixed cooldown and stronger victim reduction before any kill and refills mana only on affected death"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Silence, resistance reduction and death-credit marker share the same status-resistance-scaled expiration.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-01 all three components have the same resistance-scaled expiration"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-02",
+          "kind": "combination",
+          "branch": "base+gaben",
+          "rule": "An actual Super Chakra basic dispel removes every Seal component, preventing a later death reward.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-02 a real basic dispel removes silence, resistance reduction and affected-death credit together"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-03",
+          "kind": "combination",
+          "branch": "base+gaben",
+          "rule": "An actual Dark Pact strong dispel also removes all components including hidden death credit.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-03 a real strong dispel also removes every component rather than leaving hidden death credit"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-04",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Same-caster reapplication refreshes one linked debuff lifetime without compounding resistance reduction.",
+          "sourceIds": [
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-04 same-caster reapplication refreshes one debuff without compounding reduction"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Source death does not remove an already applied timed Seal while battle remains active.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-05 an existing seal persists after source death while a surviving ally keeps battle active"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "The random secondary excludes invisible, immune and untargetable candidates.",
+          "sourceIds": [
+            "aa",
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-06 Super selects one eligible secondary and skips immune, invisible and untargetable units"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Affected death credits its sealing caster even if an ally gets the kill; it does not grant caster resistance or reduce cooldown again.",
+          "sourceIds": [
+            "aa",
+            "aa-cn"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-07 Gaben mana refill credits the sealing caster even when an ally gets the actual kill"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "A death after the active debuff expires cannot refill the caster mana.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-08 expired seals cannot grant Gaben mana refill on a later kill"
+            }
+          ]
+        },
+        {
+          "id": "ASL-EDGE-09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "A stun during the cast point cancels Seal before effect or mana/cooldown commit.",
+          "sourceIds": [
+            "valve",
+            "sky-wiki",
+            "cast-animation"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-acid-seal-edges.test.ts",
+              "test": "ASL-EDGE-09 a stun during cast point cancels Seal before effect, mana and cooldown commit"
+            }
+          ]
+        },
+        {
+          "id": "ASL-HERO-COMPONENT",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "A real hero receives silence and resistance reduction. Actual ordinary summons, hero illusions and creep-hero Spirit Bears receive silence/death marker without resistance reduction.",
+          "sourceIds": ["seal-valve-note0", "seal-20230205", "seal-illusion-exception"],
+          "status": "passed",
+          "testEvidence": [
+            {"file":"tests/reference-acid-seal-edges.test.ts","test":"ASL-EDGE-10 a real hero receives silence and magic resistance reduction"},
+            {"file":"tests/reference-acid-seal-edges.test.ts","test":"ASL-EDGE-11 a real ordinary summon is silenced without receiving the hero-only resistance reduction"},
+            {"file":"tests/reference-acid-seal-edges.test.ts","test":"ASL-EDGE-11 a real hero illusion is silenced without receiving the hero-only resistance reduction"},
+            {"file":"tests/reference-acid-seal-edges.test.ts","test":"ASL-EDGE-11 a real creep hero is silenced without receiving the hero-only resistance reduction"}
+          ]
+        },
+        {
+          "id": "ASL-MULTI-C",
+          "kind": "combination",
+          "branch": "base+gaben",
+          "rule": "Establish whether different casters native Seal modifiers coexist/multiply or one refreshes the other, including resulting affected-death reward ownership.",
+          "sourceIds": [
+            "sky-wiki",
+            "valve"
+          ],
+          "status": "pending",
+          "testEvidence": []
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "origin": "Historical Skywrath scepter second Ancient Seal family with explicit AA random target/radius",
+          "sourceIds": [
+            "aa",
+            "sky-wiki",
+            "valve"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "origin": "AA composite of historical Ancient Seal talents and custom affected-death mana refill; English source interpretation retained against ambiguous Chinese translation",
+          "sourceIds": [
+            "aa",
+            "sky-history"
+          ]
+        }
+      ],
+      "unresolved": [
+        "Different-caster same-name modifier behavior is not proven by the generic MULTIPLE flag definition or same-caster refresh text; existing independent-source semantics remain unchanged pending direct ability/engine evidence."
+      ],
+      "status": "partial",
+      "reviewedAllDescriptionClauses": true,
+      "scope": {
+        "complete": false,
+        "clausesReviewed": true,
+        "description": "AA base/Super/Gaben English clauses reviewed against fresh official source. Same-caster timing/dispel/reward and actual hero/summon/illusion/creepHero components are tested; exact cross-caster stacking remains pending."
+      },
+      "sourceConflicts": [
+        {
+          "topic": "Nonhero effect component",
+          "currentArticle": "Current Skywrath hero article attaches the hero qualifier to silence, unlike its own general illusion notes and the2023page.",
+          "adopted": "2023 Valve Note0 plus contemporary Wiki: silence applies to enemy units; resistance reduction excludes creeps/illusions/creep-heroes.",
+          "reason": "Direct contemporaneous shipped tooltip and mechanism notes outweigh the conflicting current summary; community tester observation is corroboration only."
+        }
+      ],
+      "validation": {
+        "edgeCommand": "npx vitest run tests/reference-acid-seal-edges.test.ts",
+        "edgeTests": 13
+      }
+    },
+    {
+      "id": "custom_queenofpain_blink",
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/learn/spells",
+          "observation": "The preserved English catalog description and Super/Gaben clauses are the AA authority; numbers remain AA values.",
+          "versionContext": "Local immutable catalog fields and config/reference/migration-baseline.json; AA patch unknown.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "observation": "Fields read for each relevant native ability, including cast points, projectile speed and chain interval/radius.",
+          "versionContext": "Pinned shipped data, 2023-02-10; not a proof of the exact AA patch.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Pinned local Valve KV; source metadata checked"
+        },
+        {
+          "id": "blink-wiki",
+          "url": "https://liquipedia.net/dota2/Queen_of_Pain",
+          "observation": "Blink disjoints incoming disjointable projectiles; the old shard sonic booms affect units in both endpoint areas independently.",
+          "versionContext": "Current page mechanisms; AA numerical sonic-boom and upgrade clauses remain authoritative.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        },
+        {
+          "id": "bolt-disjoint",
+          "url": "https://dota2.fandom.com/wiki/Skywrath_Mage/Guide",
+          "observation": "Arcane Bolt keeps pursuing targets that blink away or become invisible.",
+          "versionContext": "Archived Dota2 Wiki guide indexed 2026-10-29; direct fetch unavailable. Detailed modern/historical exception review continues.",
+          "accessedOn": "2026-10-29",
+          "readMethod": "Wiki indexed page content read via web search; direct Liquipedia requests may return HTTP403"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "BL-01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "True teleport disjoints eligible incoming missiles, without discarding undisjointable Arcane Bolt.",
+          "sourceIds": [
+            "blink-wiki",
+            "bolt-disjoint"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-projectiles-and-fields.test.ts",
+              "test": "Blink disjoints a Magic Missile while an undisjointable Arcane Bolt keeps pursuing"
+            }
+          ]
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "base",
+          "origin": "Native Blink plus old Aghanim Shard endpoint sonic booms explicitly described by AA",
+          "sourceIds": [
+            "aa",
+            "blink-wiki"
+          ]
+        }
+      ],
+      "unresolved": [
+        "This entry verifies projectile interaction only; full targeting, range clamps, sonic-boom timing, Super/Gaben and all relevant combinations remain to be audited."
+      ],
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false
+    }
+  ]
+}
