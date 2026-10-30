@@ -141,6 +141,16 @@
 - `config:check`、类型与生产构建通过；prebuild首次遇Windows临时文件占用，顺序重试通过。生产4184完成资源/浏览器/有效统计/固定账本/UI完整性8例/恢复，共7报告。54个真实开发模块桌面/横屏场景通过，净化保护空档、腐烂早期无肢解装饰及短弹道首帧均有实际检查。根代理抽查代表PNG和配置范围。大代码块与真机性能边界保留。
 - 汇总`artifacts/r6-c12-validation.json`、全仓`artifacts/r6-c12-unit-tests.json`。历史429与复用来源如实记录，未伪称新原页读取成功；AA Lua/驱散冲突、引导抗性压缩、Scythe事件施法者语义、完整继承/反射/吸血/护盾组合、手动Stop槽、陨星50%冲突及地图范围外分支继续开放。没有r6发布tag或Release。
 
+2026-10-30第十三源码检查点（C13）实际通过：
+
+- `npm test`：92文件、3246项通过；`reference:verify`：56文件、2755项通过。源指纹`3e4f7382fdff745f2af8de166441ff0807a34439647c387898ec89a4d5c9c232`保持当前。200技能已开始、30未审，整项通过仍7；2925条技能要求中2217具备来源和当前结果、708未闭合。89条共用要求中14条未闭合，原12条未关闭，另两项恢复组工程解释门继续开放。
+- 完成Sidekick/SpiritLink/SoulRip/ShadowWave/SpiritSiphon、Snowball/Torrent/SplitEarth/WildAxes/Waveform、TagTeam/VengeanceAura/Warcry/Warpath/Goo三组15项，全部保持partial；专项118/111/57，根协议46。供体非致死SetHealth、排自身贡献护甲查询、Crimson指定格挡组/PRD、同包Tag附伤/死后租期、Source限定承伤加法、真实运动分段与Soulbind单主目标、面板魔抗同实际筛选均有有限结果。未据此泛放所有吸血/继承/控制/格挡组合。
+- 真实Phantasm复制熊形态剩余期限、近战225/BAT/护甲并避免重复生命加成，到原期限仅扣一次并还原；不自动开放幻象Entangle资格。黑洞不再对拒绝的无敌/隐藏雪球建立抓取和拉拽。原生旧神杖野性之斧0CD仍等返回，AA原Lua并行意图保留待证。完整条款、效果顺序及版本边界见`docs/r6-c13-progress.md`和三个新账本。
+- 纠正C12 Hairball“Goo目录外”错误，补已学习/未学习/替换真实来源的发球分支；原始历史SHA不变。补AA明确Quill即使无人范围也冷却就绪施放，以及Goo取消前摇/提高距离，保基线0/700而非误倒灌native.3/650。原始AA完整字段及89条非空differences已另作索引，未因此宣称全目录全部差异已通过。
+- 最终配置hash`f90bd827844472d5a4ed12630e312bdcea12c99c7d02b6e33843925f5553b7b8`：230主、93授予、19原生参考、1418档、2648参数、20单位、四职业。24域白名单、93新增语义参数/78旧死字段删除、4新ID12native行及TrueForm/BadJuju补4行，Storm参考域晋升授予。12表既有样式/行高/冻结/列宽/表头保持。三xlsx补6+4+2个真实autoFilter节点，其他ZIPentry原文不变；该格式修复不改变canonicalhash。单位/经济本仅筛选格式字节变化，未错误称整本字节同基线。41真实SHA及配置图见`artifacts/r6-c13-config-validation.json`。
+- 最终66场实际开发模块桌面/横屏通过（恢复22、运动24、光环20），明确正反例无提前guard/fear/speed或miss攻击画面；8个同时到达IceShards分别显示56实段/8组/8墙体。root抽查代表PNG与配置图。生产4185资源/浏览器/有效统计/固定账本/UI完整性8例/恢复共7报告通过，类型和构建通过；大代码块与真机性能边界保持。
+- 汇总`artifacts/r6-c13-validation.json`，全仓`artifacts/r6-c13-unit-tests.json`。明确保留AA过量共享/多召唤聚合/未知Lua与偷技生命周期、不可达原版外部技能组合、Torrent私有预警、全屏障/反射/HPLOSS/吸血顺序及普通暴击试验起点等开放项；没有r6 tag或Release。C14后续仅ignored只读预检，不污染本指纹。
+
 后续变化后的实际状态以[逐项状态](skill-reference-status.md)、`public/data/reference-acceptance.json`和`artifacts/reference-acceptance-proof.json`为准。指纹过期时，分项结果不会沿用为当前通过。
 
 ## 发布边界

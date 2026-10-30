@@ -26704,36 +26704,42 @@
     {
       "id": "lone_druid_true_form",
       "name": "真熊形态",
-      "nameEn": "lone_druid_true_form",
+      "nameEn": "True Form",
+      "description": "独立原生等级的真熊形态分量。",
+      "descriptionEn": "Independent native-rank True Form component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_link.webp",
       "tags": [],
-      "description": "历史参考授予技能",
-      "descriptionEn": "Historical Valve 2023-02-10 fallback; AA execution parity is unverified",
       "super": "",
       "gaben": "",
       "values": [
-        "BONUS ARMOR: 10",
-        "BONUS HP: 1000",
-        "DURATION: 40"
+        "BONUS ARMOR: 8 / 10 / 12",
+        "BONUS HP: 500 / 1000 / 1500",
+        "DURATION: 40",
+        "ATTACK RANGE: 225",
+        "BASE ATTACK TIME: 1.7",
+        "DEMOLISH MAGIC RESISTANCE: 33",
+        "NO BEAR ENTANGLE LEVEL: 4"
       ],
       "cooldowns": [
+        100,
+        100,
         100
       ],
       "mana": [
+        200,
+        200,
         200
       ],
       "categories": [
+        "ABILITY: No Target",
         "PIERCES SPELL IMMUNITY: No"
       ],
-      "icon": "",
       "passive": false,
-      "ultimate": false,
+      "ultimate": true,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "id": "lone_druid_true_form"
-      }
+      "sourceMaximumLevel": 3,
+      "visualParentId": "custom_lone_druid_spirit_link",
+      "balanceDomain": "native"
     },
     {
       "id": "enchantress_bunny_hop",
@@ -26773,35 +26779,38 @@
     {
       "id": "dazzle_bad_juju",
       "name": "邪能",
-      "nameEn": "dazzle_bad_juju",
+      "nameEn": "Bad Juju",
+      "description": "独立原生等级的邪能分量。",
+      "descriptionEn": "Independent native-rank Bad Juju component.",
+      "icon": "/art/icons/dazzle_shadow_wave.webp",
       "tags": [],
-      "description": "历史参考授予技能",
-      "descriptionEn": "Historical Valve 2023-02-10 fallback; AA execution parity is unverified",
       "super": "",
       "gaben": "",
       "values": [
-        "RADIUS: 1200",
-        "DAMAGE/HEAL PER STACK: 60"
+        "ARMOR PER STACK: 1 / 2 / 3",
+        "STACK DURATION: 8 / 10 / 12",
+        "DAMAGE/HEAL PER STACK: 40 / 50 / 60"
       ],
       "cooldowns": [
+        15,
+        15,
         15
       ],
       "mana": [
+        50,
+        75,
         100
       ],
       "categories": [
+        "ABILITY: No Target",
         "PIERCES SPELL IMMUNITY: No"
       ],
-      "icon": "",
       "passive": false,
-      "ultimate": false,
+      "ultimate": true,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "id": "dazzle_bad_juju"
-      }
+      "sourceMaximumLevel": 3,
+      "visualParentId": "dazzle_shadow_wave",
+      "balanceDomain": "native"
     },
     {
       "id": "extra_granted_demonic_cleanse",
@@ -29236,32 +29245,16 @@
     },
     {
       "id": "kunkka_torrent_storm",
-      "name": "待补中文名",
-      "nameEn": "kunkka_torrent_storm",
-      "description": "仅用于已有程序读取的固定历史参考字段",
-      "descriptionEn": "Historical numeric reference; not a castable or purchasable ability.",
-      "tags": [],
-      "super": "",
-      "gaben": "",
+      "name": "洪流风暴",
+      "nameEn": "Torrent Storm",
+      "icon": "/art/icons/kunkka_torrent.webp",
+      "description": "在施法者周围连续生成洪流。每次洪流读取当前持有的洪流参数，风暴频率和区域独立配置。",
+      "descriptionEn": "Creates repeated Torrents around the caster using the currently owned Torrent values;storm timing and region are independent.",
       "values": [
-        "ID: 319",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
-        "AbilityUnitDamageType: DAMAGE_TYPE_MAGICAL",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "SpellDispellableType: SPELL_DISPELLABLE_NO",
-        "MaxLevel: 1",
-        "FightRecapLevel: 1",
-        "IsGrantedByScepter: 1",
-        "HasScepterUpgrade: 1",
-        "AbilitySound: Ability.Torrent",
-        "AbilityCastPoint: 0.4",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_1",
-        "AbilityCooldown: 70",
-        "AbilityManaCost: 250",
-        "torrent_interval: 0.25",
-        "torrent_duration: 5.0",
-        "torrent_min_distance: 300",
-        "torrent_max_distance: 1100"
+        "TORRENT INTERVAL: 0.25",
+        "STORM DURATION: 5",
+        "MIN SPAWN RADIUS: 300",
+        "MAX SPAWN RADIUS: 1100"
       ],
       "cooldowns": [
         70
@@ -29269,11 +29262,31 @@
       "mana": [
         250
       ],
-      "categories": [],
-      "icon": "",
-      "passive": true,
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical"
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
       "ultimate": false,
-      "referenceOnly": true
+      "grantedOnly": true,
+      "balanceDomain": "native",
+      "sourceMaximumLevel": 1,
+      "visualParentId": "kunkka_torrent",
+      "historicalSource": {
+        "id": "kunkka_torrent_storm",
+        "maxLevel": 1,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.4,
+        "backswing": 0.53,
+        "range": 0
+      }
     },
     {
       "id": "tusk_walrus_punch",
@@ -30472,6 +30485,168 @@
       "grantedOnly": true,
       "sourceMaximumLevel": 1,
       "visualParentId": "custom_pangolier_rolling_thunder"
+    },
+    {
+      "id": "aa_granted_snowball_ice_shards",
+      "name": "雪球冰片",
+      "nameEn": "Snowball Ice Shards",
+      "icon": "/art/icons/custom_tusk_snowball.webp",
+      "description": "独立历史原生授予能力。父技能免费效果保留原归因并显式覆盖AA专属值。",
+      "descriptionEn": "Independent historical native child;parent free effects retain provenance and explicitly override AA values.",
+      "values": [
+        "SHARD DAMAGE: 75 / 150 / 225 / 300",
+        "RADIUS: 200",
+        "SHARD DURATION: 4 / 5 / 6 / 7",
+        "PROJECTILE SPEED: 1200",
+        "SHARD SPAWN RADIUS: 200",
+        "SHARD COUNT: 7",
+        "SHARD ANGLE: 40",
+        "SHARD COLLISION RADIUS: 67"
+      ],
+      "cooldowns": [
+        23,
+        20,
+        17,
+        14
+      ],
+      "mana": [
+        100
+      ],
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: Point Target",
+        "DAMAGE TYPE: Magical"
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "balanceDomain": "native",
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_tusk_snowball",
+      "historicalSource": {
+        "id": "tusk_ice_shards",
+        "maxLevel": 4,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.1,
+        "backswing": 0,
+        "range": 18
+      }
+    },
+    {
+      "id": "dazzle_good_juju",
+      "name": "善能",
+      "nameEn": "Good Juju",
+      "description": "独立原生等级的善能分量。",
+      "descriptionEn": "Independent native-rank Good Juju component.",
+      "icon": "/art/icons/dazzle_shadow_wave.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "COOLDOWN REDUCTION: 1 / 1.5 / 2"
+      ],
+      "cooldowns": [
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        0,
+        0,
+        0
+      ],
+      "categories": [
+        "ABILITY: Passive",
+        "PIERCES SPELL IMMUNITY: No"
+      ],
+      "passive": true,
+      "ultimate": true,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 3,
+      "visualParentId": "dazzle_shadow_wave"
+    },
+    {
+      "id": "item_crimson_guard",
+      "name": "赤红甲",
+      "nameEn": "Crimson Guard",
+      "description": "独立原生等级的赤红甲分量。",
+      "descriptionEn": "Independent native-rank Crimson Guard component.",
+      "icon": "/art/icons/custom_undying_soul_rip.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "BONUS HEALTH: 250",
+        "BONUS HEALTH REGEN: 12",
+        "BONUS ARMOR: 8",
+        "PASSIVE BLOCK MELEE: 75",
+        "PASSIVE BLOCK RANGED: 50",
+        "PASSIVE BLOCK CHANCE: 60",
+        "ACTIVE BLOCK: 75",
+        "ACTIVE BLOCK CHANCE: 100",
+        "ACTIVE DURATION: 12",
+        "REAPPLY LOCK: 34"
+      ],
+      "cooldowns": [
+        35
+      ],
+      "mana": [
+        0
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "PIERCES SPELL IMMUNITY: No"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_undying_soul_rip"
+    },
+    {
+      "id": "lone_druid_spirit_bear_entangle",
+      "name": "缠绕之爪",
+      "nameEn": "Entangling Claws",
+      "description": "独立原生等级的缠绕之爪分量。",
+      "descriptionEn": "Independent native-rank Entangling Claws component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_link.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "DAMAGE PER SECOND: 30 / 40 / 50 / 60",
+        "DURATION: 1 / 1.6 / 2.2 / 2.8",
+        "TRUE FORM PROC CHANCE: 30",
+        "CREEP DAMAGE MULTIPLIER: 3",
+        "DAMAGE INTERVAL: 0.2"
+      ],
+      "cooldowns": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "mana": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "categories": [
+        "ABILITY: Effect Only",
+        "PIERCES SPELL IMMUNITY: No"
+      ],
+      "passive": false,
+      "ultimate": true,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_lone_druid_spirit_link"
     }
   ],
   "roles": {

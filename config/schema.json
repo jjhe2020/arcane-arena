@@ -18148,56 +18148,67 @@
           "key": "DAMAGE RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每个暗影波治疗点伤害半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA235(not native185)"
         },
         {
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次暗影波的基础治疗量与物理伤害",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA DAMAGE (not native base135)"
         },
         {
           "key": "HEAL ARC RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "治疗 ARC 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "暗影波跳跃搜索半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA475 / native bounce_radius"
         },
         {
           "key": "MAX HEAL TARGETS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 治疗 TARGETS",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "含施法者的最多治疗目标总数",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA4/5/7 total incl caster / native tooltip_max_targets_inc_dazzle"
         },
         {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
+          "key": "HEX DURATION",
           "unit": "ms",
+          "meaning": "超级妖术持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:550；debuff(c, enemy, 'hex', 0, 2)"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Super2"
+        },
+        {
+          "key": "BAD JUJU LEVEL",
+          "unit": "原生等级",
+          "meaning": "授予邪能原生等级",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. MAX HEAL TARGETS is total including caster,consistent with AA4/5/7;do not add an extra caster over this explicit numeric field.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：Existing working max native3 retained;AA exact grant rank not published"
         }
       ]
     },
@@ -18651,12 +18662,12 @@
           "key": "BONUS DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "固定攻击附加伤害",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Native self-cast0+0chooses nearest eligible hero within common H700;no duplicate SEARCH RADIUS. Ally-target0.54backswing is not used by this self-cast AI.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA BONUS DAMAGE / native bonus_damage"
         },
         {
           "key": "DURATION",
@@ -18666,30 +18677,30 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Native self-cast0+0chooses nearest eligible hero within common H700;no duplicate SEARCH RADIUS. Ally-target0.54backswing is not used by this self-cast AI.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA DURATION / native buff_duration"
         },
         {
           "key": "LIFESTEAL",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "吸血",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "main_upgrades.magicimmune_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "unit": "%",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 MAGICIMMUNE 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:111；c.status(t,'magicImmune',1.5)"
+          "meaning": "攻击吸血比例",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Native self-cast0+0chooses nearest eligible hero within common H700;no duplicate SEARCH RADIUS. Ally-target0.54backswing is not used by this self-cast AI.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA LIFESTEAL plus explicit Super25 folded final"
+        },
+        {
+          "key": "SPELL IMMUNITY DURATION",
+          "unit": "ms",
+          "meaning": "施放时技能免疫时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Native self-cast0+0chooses nearest eligible hero within common H700;no duplicate SEARCH RADIUS. Ally-target0.54backswing is not used by this self-cast AI.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Super1.5 / historical Sidekick talent1.5"
         }
       ]
     },
@@ -18797,46 +18808,46 @@
         {
           "key": "BASE DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "基础 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "雪球基础伤害（Super最终380）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "BONUS DAMAGE PER ALLY",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害 每 ALLY",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每位有效同伴英雄额外伤害",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "GATHER RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "GATHER 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "自动收集同伴半径（AA200）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "SNOWBALL SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "Dota单位/秒",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SNOWBALL 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "雪球移动速度",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "STUN DURATION",
@@ -18845,42 +18856,108 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "眩晕时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:599；superLevel(c) ? 120 : 0"
-        },
-        {
-          "key": "skill_effects_more.attackspeed_duration.1",
-          "kind": "program",
+          "key": "MAX CHASE DURATION",
           "unit": "ms",
+          "meaning": "雪球发射后最长追逐时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击速度 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:602；c.status(unit, 'attackSpeed', 2, 60)"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_more.attackspeed_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "DAMAGE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "伤害/接触半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击速度 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:602；c.status(unit, 'attackSpeed', 2, 60)"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "RADIUS GROWTH PER SECOND",
+          "unit": "Dota单位/秒",
+          "meaning": "雪球每秒碰撞半径增量",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "EXIT ATTACK SPEED",
+          "unit": "数值",
+          "meaning": "离开雪球的英雄攻击速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "EXIT BUFF DURATION",
+          "unit": "ms",
+          "meaning": "离开雪球攻速增益时长",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD COUNT",
+          "unit": "个",
+          "meaning": "放射冰片道数/冰墙块数（依所属技能）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD DAMAGE",
+          "unit": "伤害",
+          "meaning": "冰片伤害（父雪球覆盖为AA280）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD LEVEL",
+          "unit": "等级",
+          "meaning": "放射冰片独立原生等级（工作候选）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD TRAVEL DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "放射冰片目标距离（既有工作值）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -18899,177 +18976,67 @@
           "key": "DAMAGE/HEAL PER UNIT",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害/治疗 每 UNIT",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每个供体的伤害或治疗系数",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA per-unit row plus Super25"
         },
         {
           "key": "MAX UNITS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 UNITS",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "供体单位数量上限",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA MAX UNITS"
         },
         {
           "key": "RIP RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "RIP 半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "以施法者为中心的供体搜索半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA RIP RADIUS / native radius"
         },
         {
           "key": "TOMBSTONE HEAL",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次数",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "TOMBSTONE 治疗",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "恢复墓碑可承受的英雄攻击次数",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA TOMBSTONE HEAL / native tombstone_heal"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1198；buff(c, c.caster, 'regen', 12)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1198；buff(c, c.caster, 'armor', 8)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1200；c.caster.range > 2"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1200；c.caster.range > 2 ? 50 : 75"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1200；c.caster.range > 2 ? 50 : 75"
-        },
-        {
-          "key": "skill_effects_extra.chance.1",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "GABEN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Gaben受益与受损区域半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1200；chance: .6"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Gaben500AOE"
         },
         {
-          "key": "skill_effects_extra.buff_amount.6",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1204；buff(c, ally, 'crimsonActive', 1, 12)"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.7",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1204；buff(c, ally, 'attackDamageBlock', 75, 12, { data: { chance: 1 } })"
-        },
-        {
-          "key": "skill_effects_extra.chance.2",
-          "kind": "program",
-          "unit": "倍率",
+          "key": "CRIMSON GUARD LEVEL",
+          "unit": "原生等级",
+          "meaning": "授予赤红甲原生等级",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1204；chance: 1"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1203；buff(c, c.caster, 'attackDamageBlock', c.caster.range > balanceNumber(c,'skill_effects_extra.buff_amount.3',2) ? balanceNumber(c,'skill_effects_extra.buff_amount.4',50) : balanceNu"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1207；buff(c, ally, 'crimsonActive', balanceNumber(c,'skill_effects_extra.buff_amount.6',1), 12)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1207；buff(c, ally, 'attackDamageBlock', balanceNumber(c,'skill_effects_extra.buff_amount.7',75), 12, { data: { chance: balanceNumber(c,'skill_effects_extra.chance.2',1) } })"
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Gmixed area uses existing one-pool/primary-target exclusion interpretation;exact Gdonor reuse/count semantics remain pending,not silently asserted native.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA gainCrimsonGuard / native single-rank item"
         }
       ]
     },
@@ -19713,101 +19680,46 @@
         {
           "key": "BONUS ATTACK SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "攻速点",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 攻击 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外攻击速度",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Main is passive. Per-tick armor refresh is an engine sampling choice,not an invented editable gameplay interval. Full effective armor excludes only same source+skill contribution. Existing Gnative2TrueForm preserved.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA BONUS ATTACK SPEED plus Super30"
         },
         {
           "key": "SHARED ARMOR",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "SHARED 护甲",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "共享护甲比例",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Main is passive. Per-tick armor refresh is an engine sampling choice,not an invented editable gameplay interval. Full effective armor excludes only same source+skill contribution. Existing Gnative2TrueForm preserved.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA SHARED ARMOR / native armor_sharing"
         },
         {
           "key": "SHARED LIFESTEAL",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "SHARED 吸血",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:934；S(c) ? .2 : 0"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "unit": "%",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:933；buff(c, c.caster, 'attackSpeed', (configuredValue(c,'EFFECTIVE_BONUS_ATTACK_SPEED_1')??(value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1'"
+          "meaning": "召唤物攻击恢复施法者比例",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Main is passive. Per-tick armor refresh is an engine sampling choice,not an invented editable gameplay interval. Full effective armor excludes only same source+skill contribution. Existing Gnative2TrueForm preserved.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA SHARED LIFESTEAL plus Super20"
         },
         {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
+          "key": "TRUE FORM LEVEL",
+          "unit": "原生等级",
+          "meaning": "授予真熊形态原生等级",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:934；buff(c, c.caster, 'armor', summons.reduce((sum, t) => sum + t.armor, 0) * shared, .35)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:936；buff(c, summon, 'armor', c.caster.armor * shared, .35)"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.4",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:936；buff(c, summon, 'attackSpeed', (configuredValue(c,'EFFECTIVE_BONUS_ATTACK_SPEED_2')??(value(c, 'BONUS ATTACK SPEED') + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.2',3"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.5",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:937；buff(c, summon, 'ownerLifesteal', P(value(c, 'SHARED LIFESTEAL')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.3',0.2) : 0), .35, { data: { ownerId: c.caster.id } })"
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Main is passive. Per-tick armor refresh is an engine sampling choice,not an invented editable gameplay interval. Full effective armor excludes only same source+skill contribution. Existing Gnative2TrueForm preserved.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Gaben Level2"
         }
       ]
     },
@@ -19826,12 +19738,12 @@
           "key": "DAMAGE",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每跳或每秒伤害，按技能说明",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA25/50/100 / native damage rank1/2/4"
         },
         {
           "key": "DURATION",
@@ -19841,63 +19753,96 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA6 / native haunt_duration"
         },
         {
-          "key": "skill_effects_more.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:834；target.maxHp * .035"
-        },
-        {
-          "key": "skill_effects_more.damage.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:834；(v(c, 'DAMAGE') + (superLevel(c) ? target.maxHp * .035 : 0)) * .1"
-        },
-        {
-          "key": "skill_effects_more.slow_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 减速 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:834；slow(c, target, 20, .2)"
-        },
-        {
-          "key": "skill_effects_more.slow_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MAX HEALTH DRAIN",
+          "unit": "%",
+          "meaning": "每秒目标最大生命值吸取比例",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 减速 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:834；slow(c, target, 20, .2)"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Super3.5percent"
         },
         {
-          "key": "skill_effects_more.fear_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "MOVEMENT SLOW",
+          "unit": "%",
+          "meaning": "移动速度降低比例",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 FEAR 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:835；c.status(target, 'fear', 1.5, 0, harmful)"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Super20percent"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "伤害脉冲间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：HistoricalWiki0.25"
+        },
+        {
+          "key": "LINK BREAK BUFFER",
+          "unit": "Dota单位",
+          "meaning": "实际施法距离以外的断链容差",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：native siphon_buffer250"
+        },
+        {
+          "key": "CHARGES",
+          "unit": "次数",
+          "meaning": "最大充能次数",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：native AbilityCharges1/2/3/4 mapped AA1/2/4 plusG1"
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "单次顺序充能恢复时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：native AbilityChargeRestoreTime38 / explicit AA Super-20"
+        },
+        {
+          "key": "FEAR DELAY",
+          "unit": "ms",
+          "meaning": "连续连接至恐惧的时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：native shard_consecutive_siphon_duration3"
+        },
+        {
+          "key": "FEAR DURATION",
+          "unit": "ms",
+          "meaning": "恐惧持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet；https://www.abilityarena.com/data/abilities.json；AA explicit numeric values unchanged;dated2023Wiki/pinned KV fills missing public/native fields. Official AA cooldown[0]restored at rank1(previous generated38was a fallback error);38/18lives uniquely in recharge field. Historical source capture2023-03-01is before7.32e,not falsely labeled Feb15. Initial full AA capacity retained as current custom policy rather than native first-learn1charge.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100.；字段对应：AA Gaben1.5 / native shard_fear_duration"
         }
       ]
     },
@@ -19915,24 +19860,24 @@
         {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "STUN DELAY",
@@ -19941,9 +19886,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 延迟",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "撕裂大地释放后延迟",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "STUN DURATION",
@@ -19952,31 +19897,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "眩晕时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "main_upgrades.delay.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "REPEAT COUNT",
+          "unit": "次",
+          "meaning": "撕裂大地额外重复次数",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:51；i*5"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "main_upgrades_advanced.delay.1",
-          "kind": "program",
+          "key": "REPEAT INTERVAL",
           "unit": "ms",
+          "meaning": "撕裂大地重复间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:41；i*5"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "RADIUS PER REPEAT",
+          "unit": "Dota单位",
+          "meaning": "每次重复半径增加（AA75）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "LIGHTNING STORM LEVEL",
+          "unit": "等级",
+          "meaning": "独立闪电风暴原生等级",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -21976,13 +21943,13 @@
         {
           "key": "BONUS DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每次合格攻击的同击附加物理攻击伤害",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "DEBUFF DURATION",
@@ -21991,18 +21958,18 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "DEBUFF 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效协同进攻光环持续时间",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "MOVEMENT SLOW",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 减速",
+          "meaning": "移动速度减缓比例",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
@@ -22010,12 +21977,12 @@
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效敌方光环作用半径",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "SLOW DURATION",
@@ -22024,75 +21991,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
+          "meaning": "减速持续时间",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects.interval.1",
-          "kind": "program",
+          "key": "AURA INTERVAL",
+          "kind": "value",
+          "meaning": "敌方光环重新检测间隔候选",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:335；interval:.1"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。沿旧0.1秒工程时钟，历史页未给精确扫描频率。"
         },
         {
-          "key": "skill_effects.tagteam_duration.1",
-          "kind": "program",
+          "key": "AURA LINGER",
+          "kind": "value",
+          "meaning": "敌人离开光环后的标记残留时间",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 TAGTEAM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:335；c.status(t,'tagTeam',.2,v(c,'BONUS DAMAGE'),{harmful:true,data:{slow:percent(v(c,'MOVEMENT SLOW')),slowDuration:v(c,'SLOW DURATION')}})"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。2023Tusk原页明确0.5秒。"
         },
         {
-          "key": "main_upgrades.radius.1",
-          "kind": "program",
-          "unit": "Dota单位(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "作用半径",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:40；G(c)?4:0"
-        },
-        {
-          "key": "main_upgrades.duration.1",
-          "kind": "program",
+          "key": "GABEN STUN DURATION",
+          "kind": "value",
+          "meaning": "超神每次合格命中施加的眩晕时长",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:40；S(c)?5:0"
-        },
-        {
-          "key": "main_upgrades.interval.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:40；interval:.1"
-        },
-        {
-          "key": "main_upgrades.tagteam_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 TAGTEAM 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:40；c.status(t,'tagTeam',.2,v(c,'BONUS DAMAGE')+(S(c)?25:0),{harmful:true,data:{slow:p(v(c,'MOVEMENT SLOW')),slowDuration:v(c,'SLOW DURATION'),stunDuration:G(c)?.2:0}})"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         }
       ]
     },
@@ -22582,13 +22516,13 @@
         {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "DELAY",
@@ -22597,31 +22531,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "延迟",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "洪流释放后延迟（AA减少为1秒）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "MOVE SLOW",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MOVE 减速",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "移动减速（原始负号）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "效果半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "SLOW DURATION",
@@ -22630,9 +22564,9 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "额外减速时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "STUN DURATION",
@@ -22641,53 +22575,42 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "眩晕 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "眩晕时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "main_upgrades.damage.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "伤害数值或伤害公式系数",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:53；S(c)?100:0"
-        },
-        {
-          "key": "main_upgrades.stun_duration.1",
-          "kind": "program",
+          "key": "DAMAGE INTERVAL",
           "unit": "ms",
+          "meaning": "洪流伤害间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades.ts:53；S(c)?.4:0"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "main_upgrades_advanced.delay.1",
-          "kind": "program",
+          "key": "KNOCKUP TAIL",
           "unit": "ms",
+          "meaning": "眩晕比升空多出的尾段",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:42；i*.25"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "main_upgrades_advanced.stun_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "STORM LEVEL",
+          "unit": "等级",
+          "meaning": "洪流风暴原生等级",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 眩晕 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/combat/main-upgrades-advanced.ts:42；v(c,'STUN DURATION')+.4"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -23665,13 +23588,13 @@
         {
           "key": "BASE DAMAGE BONUS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "基础 伤害 加成",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效的基础攻击伤害光环比例",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "RADIUS",
@@ -23680,64 +23603,86 @@
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
+          "meaning": "作用半径",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:176；S(c) ? .16 : 0"
-        },
-        {
-          "key": "skill_effects_extra.count.1",
-          "kind": "program",
-          "unit": "次数",
-          "min": 0,
-          "max": 1000000000,
-          "integer": true,
-          "meaning": "数量",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:179；count: 1"
-        },
-        {
-          "key": "skill_effects_extra.speed.1",
-          "kind": "program",
-          "unit": "Dota单位每秒(程序)",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "移动速度",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:180；c.caster.moveSpeed * 1.12"
-        },
-        {
-          "key": "skill_effects_extra.damagetaken.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "承伤倍率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:181；damageTaken: 1"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
+          "key": "AURA INTERVAL",
+          "kind": "value",
+          "meaning": "复仇光环受益者重新检测间隔候选",
           "unit": "ms",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:179；buff(c, ally, 'attackPct', P(value(c, 'BASE DAMAGE BONUS')) + (S(c) ? balanceNumber(c,'skill_effects_extra.buff_amount.1',0.16) : 0), .35)"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。沿旧0.25秒工作时钟，非Wiki精确扫描频率。"
+        },
+        {
+          "key": "AURA LINGER",
+          "kind": "value",
+          "meaning": "友军离开复仇光环后的残留时长",
+          "unit": "ms",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "ILLUSION COUNT",
+          "kind": "value",
+          "meaning": "超神原持有者死亡时创建的强幻象数量",
+          "unit": "个",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "ILLUSION DAMAGE",
+          "kind": "value",
+          "meaning": "超神强幻象攻击输出比例",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "ILLUSION DAMAGE TAKEN",
+          "kind": "value",
+          "meaning": "超神强幻象承受伤害比例",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "ILLUSION MOVE SPEED",
+          "kind": "value",
+          "meaning": "超神强幻象额外移动速度比例",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "ILLUSION SPAWN DISTANCE",
+          "kind": "value",
+          "meaning": "超神强幻象沿四正方向出生的距离",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         }
       ]
     },
@@ -23889,33 +23834,33 @@
         {
           "key": "ARMOR LOSS PER STACK",
           "kind": "value",
-          "unit": "数值",
+          "unit": "护甲",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "护甲 LOSS 每 层数",
+          "meaning": "每层鼻涕增加的护甲降低",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
           "key": "BASE ARMOR LOSS",
           "kind": "value",
-          "unit": "数值",
+          "unit": "护甲",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "基础 护甲 LOSS",
+          "meaning": "鼻涕基础护甲降低",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
           "key": "BASE MOVEMENT SLOW",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "基础 移动 减速",
+          "meaning": "鼻涕基础移动速度减缓",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
@@ -23933,24 +23878,46 @@
         {
           "key": "MOVE SLOW PER STACK",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "MOVE 减速 每 层数",
+          "meaning": "每层鼻涕增加的移动速度减缓",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
           "key": "STACK LIMIT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "层",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "meaning": "完整有效鼻涕最大层数",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "CREEP DURATION",
+          "kind": "value",
+          "meaning": "普通单位鼻涕持续时间（英雄型单位用主持续时间）",
+          "unit": "ms",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "层数 LIMIT",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。固定2023KV goo_duration_creep10；AA DURATION5仍是英雄主参数，不修改其原值。"
+        },
+        {
+          "key": "PROJECTILE SPEED",
+          "kind": "value",
+          "meaning": "鼻涕追踪弹体的飞行速度",
+          "unit": "Dota单位/秒",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         }
       ]
     },
@@ -24047,24 +24014,24 @@
         {
           "key": "BONUS ARMOR",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "护甲",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 护甲",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效战吼护甲加成",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "BONUS SPEED",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 速度",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效战吼移动速度加成",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "DURATION",
@@ -24073,53 +24040,53 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效战吼持续时间",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "完整有效战吼作用半径",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
-          "key": "skill_effects.armor_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "SELF ARMOR DAMAGE MULTIPLIER",
+          "kind": "value",
+          "meaning": "超神施法者护甲转攻击的倍率",
+          "unit": "倍率",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 护甲 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:240；s?10:0"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。保持已有施放时总护甲快照，原AA是否持续重算尚无脚本来源。"
         },
         {
-          "key": "skill_effects.attackbonus_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ALLY ARMOR DAMAGE MULTIPLIER",
+          "kind": "value",
+          "meaning": "超神其他受益者护甲转攻击的倍率",
+          "unit": "倍率",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击加成 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:240；t.id===c.caster.id?4:2"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。先施加本次护甲，再按当时总护甲计算；动态重算与快照冲突已记录。"
         },
         {
-          "key": "skill_effects.attackbonus_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "AI ENEMY RADIUS",
+          "kind": "value",
+          "meaning": "自动施放战吼的敌人检测半径候选",
+          "unit": "Dota单位",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 攻击加成 AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects.ts:240；t.id===c.caster.id?4:2"
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。保留旧10世界单位AI策略，非Dota施法限制。"
         }
       ]
     },
@@ -24137,33 +24104,33 @@
         {
           "key": "DAMAGE PER STACK",
           "kind": "value",
-          "unit": "数值",
+          "unit": "伤害",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 层数",
+          "meaning": "每层战意增加的攻击伤害",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
         {
           "key": "MAX STACKS",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "层",
+          "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "最大 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "integer": true,
+          "meaning": "完整有效战意最大层数",
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         },
         {
           "key": "MOVEMENT PER STACK",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "移动 每 层数",
+          "meaning": "每层战意增加的移动速度比例",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
         },
@@ -24174,9 +24141,31 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "层数 持续时间",
+          "meaning": "每层战意独立持续时间",
           "source": "AA英文快照",
           "note": "https://www.abilityarena.com/learn/spells"
+        },
+        {
+          "key": "STACKS PER CAST",
+          "kind": "value",
+          "meaning": "每次合格实际施法得到的战意层数",
+          "unit": "层",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
+        },
+        {
+          "key": "LIFESTEAL PER STACK",
+          "kind": "value",
+          "meaning": "超级每层战意提供的攻击吸血比例",
+          "unit": "%",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。"
         }
       ]
     },
@@ -24381,26 +24370,59 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "WAVE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "波浪形态移动速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "DAMAGE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "伤害/接触半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "CHARGES",
+          "unit": "次",
+          "meaning": "充能上限",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "CHARGE RESTORE TIME",
+          "unit": "ms",
+          "meaning": "单次充能恢复时长",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -24416,37 +24438,26 @@
       ],
       "params": [
         {
-          "key": "CAST RANGE",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "施法 距离",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
-        },
-        {
           "key": "DAMAGE AMP PER STACK",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "%",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 AMP 每 层数",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每层伤害放大（Super最终16）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "DAMAGE PER AXE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害 每 AXE",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "每斧伤害",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "DEBUFF DURATION",
@@ -24455,31 +24466,75 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "DEBUFF 持续时间",
-          "source": "AA英文快照",
-          "note": "https://www.abilityarena.com/learn/spells"
+          "meaning": "整组叠层刷新时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_more.sourcedamageamp_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 SOURCE伤害AMP AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:895；superLevel(c) ? .04 : 0"
-        },
-        {
-          "key": "skill_effects_more.maxstacks.1",
-          "kind": "program",
-          "unit": "次数",
+          "key": "AXE RADIUS",
+          "unit": "Dota单位",
+          "meaning": "每把飞斧伤害碰撞半径",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": true,
-          "meaning": "程序参数 最大层数",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-more.ts:895；maxStacks: 1000"
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "AXE SPREAD",
+          "unit": "Dota单位",
+          "meaning": "双斧最大间距",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "MIN TRAVEL DISTANCE",
+          "unit": "Dota单位",
+          "meaning": "双斧最短交会距离",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "AXE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "飞斧标称速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "MIN THROW DURATION",
+          "unit": "ms",
+          "meaning": "单程最短飞行时间（KV候选）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "MAX THROW DURATION",
+          "unit": "ms",
+          "meaning": "单程最长飞行时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；AA五档均为最终有效参数；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -26740,30 +26795,32 @@
       "domain": "native",
       "id": "lone_druid_true_form",
       "tiers": [
-        1
+        1,
+        2,
+        3
       ],
       "params": [
         {
           "key": "BONUS ARMOR",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 护甲",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "固定额外护甲",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "BONUS HP",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "加成 HP",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "形态额外最大与当前生命",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "DURATION",
@@ -26773,206 +26830,52 @@
           "max": 1000000000,
           "integer": false,
           "meaning": "持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_extra.buff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
+          "key": "ATTACK RANGE",
+          "unit": "Dota单位",
+          "meaning": "形态近战攻击距离",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1301；buff(c, c.caster, 'trueForm', 1, 40, { dispel: 'none' })"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_extra.buff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1301；buff(c, c.caster, 'armor', 10, 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1302；buff(c, c.caster, 'attackRangeOverride', 1.5, 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.4",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1302；buff(c, c.caster, 'baseAttackTime', 1.7, 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_amount.5",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1303；buff(c, c.caster, 'magicResist', .33, 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.delay.1",
-          "kind": "program",
+          "key": "BASE ATTACK TIME",
           "unit": "ms",
+          "meaning": "形态基础攻击间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "效果延迟或脉冲间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1304；c.delay(40, () => { c.caster.maxHp -= 1000; c.caster.hp = Math.min(c.caster.hp, c.caster.maxHp); })"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_extra.trigger_chance.1",
-          "kind": "program",
-          "unit": "倍率",
-          "min": 0,
-          "max": 1,
-          "integer": false,
-          "meaning": "效果触发概率",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1307；c.random() >= .3"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.1",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1309；60 * (c.target.summoned ? 3 : 1)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.2",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1309；c.target.summoned ? 3 : 1"
-        },
-        {
-          "key": "skill_effects_extra.debuff_amount.3",
-          "kind": "program",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF AMOUNT",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1309；c.target.summoned ? 3 : 1"
-        },
-        {
-          "key": "skill_effects_extra.interval.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "DEMOLISH MAGIC RESISTANCE",
+          "unit": "%",
+          "meaning": "粉碎被动魔法抗性",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "触发间隔",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1309；interval: 1"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "skill_effects_extra.buff_duration.1",
-          "kind": "program",
-          "unit": "ms",
+          "key": "NO BEAR ENTANGLE LEVEL",
+          "unit": "原生等级",
+          "meaning": "未拥有熊灵技能时的缠绕原生等级候选",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1304；buff(c, c.caster, 'trueForm', balanceNumber(c,'skill_effects_extra.buff_amount.1',1), 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1304；buff(c, c.caster, 'armor', balanceNumber(c,'skill_effects_extra.buff_amount.2',10), 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.3",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1305；buff(c, c.caster, 'attackRangeOverride', balanceNumber(c,'skill_effects_extra.buff_amount.3',1.5), 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.4",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1305；buff(c, c.caster, 'baseAttackTime', balanceNumber(c,'skill_effects_extra.buff_amount.4',1.7), 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.buff_duration.5",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 BUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1306；buff(c, c.caster, 'magicResist', balanceNumber(c,'skill_effects_extra.buff_amount.5',0.33), 40, { dispel: 'none' })"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.1",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1312；debuff(c, c.target, 'root', 0, 2.8)"
-        },
-        {
-          "key": "skill_effects_extra.debuff_duration.2",
-          "kind": "program",
-          "unit": "ms",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "程序参数 DEBUFF 持续时间",
-          "source": "原程序工作数值",
-          "note": "src/skill-effects-extra.ts:1312；debuff(c, c.target, 'dot', balanceNumber(c,'skill_effects_extra.debuff_amount.1',60) * (c.target.summoned ? balanceNumber(c,'skill_effects_extra.debuff_amount.2',3) : balanceNumber"
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Existing definition actually had only1row containing rank2values;restore native1-3. AA Workshop16 removes transformation time;keep0. No-Bear Entangle4is legacy candidate,not proven original AAlevel.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -27077,30 +26980,43 @@
       "domain": "native",
       "id": "dazzle_bad_juju",
       "tiers": [
-        1
+        1,
+        2,
+        3
       ],
       "params": [
-        {
-          "key": "RADIUS",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
         {
           "key": "DAMAGE/HEAL PER STACK",
           "kind": "value",
           "unit": "数值",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "伤害/治疗 每 层数",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "邪能主动每层伤害或治疗",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Public H1200is sole active effect radius;remove duplicate RADIUS key. Native Dazzle-only trigger rule,independent stacks,own active stack before damage;linked GoodJuju native1-3. AA exact grant rank unpublished;prior native3default retained as named working level.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "ARMOR PER STACK",
+          "unit": "数值",
+          "meaning": "每层增益或削弱的护甲",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Public H1200is sole active effect radius;remove duplicate RADIUS key. Native Dazzle-only trigger rule,independent stacks,own active stack before damage;linked GoodJuju native1-3. AA exact grant rank unpublished;prior native3default retained as named working level.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "STACK DURATION",
+          "unit": "ms",
+          "meaning": "各独立层持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Public H1200is sole active effect radius;remove duplicate RADIUS key. Native Dazzle-only trigger rule,independent stacks,own active stack before damage;linked GoodJuju native1-3. AA exact grant rank unpublished;prior native3default retained as named working level.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -27413,35 +27329,35 @@
         {
           "key": "DAMAGE",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "伤害",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
           "meaning": "伤害",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "JUMP_COUNT",
           "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
+          "unit": "次",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "JUMP 数量",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪电风暴总命中次数（含首击）",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "RADIUS",
           "kind": "value",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "半径",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "效果半径",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "JUMP_DELAY",
@@ -27450,20 +27366,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "JUMP 延迟",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪电风暴相邻命中间隔",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "SLOW_MOVEMENT_SPEED",
           "kind": "value",
-          "unit": "数值",
+          "unit": "%",
           "min": -1000000000,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 移动 速度",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪电风暴移动减速",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
           "key": "SLOW_DURATION",
@@ -27472,31 +27388,20 @@
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "减速 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "meaning": "闪电风暴减速时长",
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "INTERVAL_SCEPTER",
-          "kind": "value",
+          "key": "EFFECT DELAY",
           "unit": "ms",
+          "meaning": "闪电风暴首击独立延迟",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "间隔 SCEPTER",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "RADIUS_SCEPTER",
-          "kind": "value",
-          "unit": "Dota单位",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "半径 SCEPTER",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -28553,6 +28458,17 @@
           "meaning": "每次落地释放的刺针扫射次数",
           "source": "C12AA完整有效档与固定历史原型",
           "note": "https://www.abilityarena.com/data/abilities.json；pinnedValve2023与Wiki机制，锁定AA明确数值优先；历史网页429访问失败如实记录，旧保留页面的候选范围见pulverize-ravage验收"
+        },
+        {
+          "key": "GOO RADIUS",
+          "kind": "value",
+          "meaning": "毛团落地搜索已学习鼻涕目标的独立原生半径",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13完整有效AA档与固定历史机制",
+          "note": "https://www.abilityarena.com/data/abilities.json；完整AA明确数值优先，非数值按Wiki；固定Valve2023与具名历史原型，非已读AA Lua。只有实际仍持有对应鼻涕技能对象时生效；与父刺针可编辑半径独立，原生一发鼻涕不再递归施放AA范围或友方反向分支。"
         }
       ]
     },
@@ -30672,59 +30588,48 @@
       ],
       "params": [
         {
-          "key": "HASSCEPTERUPGRADE",
-          "kind": "value",
-          "unit": "数值",
-          "min": -1000000000,
-          "max": 1000000000,
-          "integer": false,
-          "meaning": "HASSCEPTERUPGRADE",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
-        },
-        {
-          "key": "TORRENT_INTERVAL",
-          "kind": "value",
+          "key": "TORRENT INTERVAL",
           "unit": "ms",
+          "meaning": "洪流风暴生成间隔",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TORRENT 间隔",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "TORRENT_DURATION",
-          "kind": "value",
+          "key": "STORM DURATION",
           "unit": "ms",
+          "meaning": "洪流风暴生成持续时间",
+          "kind": "value",
           "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TORRENT 持续时间",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "TORRENT_MIN_DISTANCE",
-          "kind": "value",
+          "key": "MIN SPAWN RADIUS",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "meaning": "洪流风暴最小生成半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TORRENT 最小 距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         },
         {
-          "key": "TORRENT_MAX_DISTANCE",
-          "kind": "value",
+          "key": "MAX SPAWN RADIUS",
           "unit": "Dota单位",
-          "min": -1000000000,
+          "meaning": "洪流风暴最大生成半径",
+          "kind": "value",
+          "min": 0,
           "max": 1000000000,
           "integer": false,
-          "meaning": "TORRENT 最大 距离",
-          "source": "固定历史候选",
-          "note": "Valve KV 2023-02-10；与AA补丁匹配未核验"
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
         }
       ]
     },
@@ -33061,6 +32966,314 @@
         1
       ],
       "params": []
+    },
+    "native:aa_granted_snowball_ice_shards": {
+      "id": "aa_granted_snowball_ice_shards",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "params": [
+        {
+          "key": "SHARD DAMAGE",
+          "unit": "伤害",
+          "meaning": "冰片伤害（父雪球覆盖为AA280）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "RADIUS",
+          "unit": "Dota单位",
+          "meaning": "效果半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD DURATION",
+          "unit": "ms",
+          "meaning": "冰墙持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "PROJECTILE SPEED",
+          "unit": "Dota单位/秒",
+          "meaning": "冰片投射物速度",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD SPAWN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "冰墙环半径/前移量",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD COUNT",
+          "unit": "个",
+          "meaning": "放射冰片道数/冰墙块数（依所属技能）",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": true,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD ANGLE",
+          "unit": "度",
+          "meaning": "相邻冰墙夹角",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "SHARD COLLISION RADIUS",
+          "unit": "Dota单位",
+          "meaning": "单块冰墙碰撞半径",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Every main row is final;public times seconds/ranges world,raw distance params divide100.；All five oldprogram fields will be unused and deleted by final overrides.；WildAxes/Waveform duplicateCAST RANGEremoved fromruntime params:publicHsole authority;capturedAAstrings remain preserved.；Do not importmodernWaveform facet no-modifier rule:the actual2023talent explicitly procsfullmodifiers/onhit.；SplitEarthAAhalfpoint.35and75radiusgrowthoverride dated.7and60;backswing.67native.；Existing parent-only freechildren consume no extra public mana/CD/point;ordinary native child slots retain their independent public rows.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        }
+      ]
+    },
+    "native:dazzle_good_juju": {
+      "id": "dazzle_good_juju",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3
+      ],
+      "params": [
+        {
+          "key": "COOLDOWN REDUCTION",
+          "unit": "ms",
+          "meaning": "每次合格施法减少其他技能冷却",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Passive linked grant only;unrelated Scepter item-refresh active/250range/.2point is not granted. Excludes items,0CD and procsOnCast:false;does not change charge recharge.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        }
+      ]
+    },
+    "native:item_crimson_guard": {
+      "id": "item_crimson_guard",
+      "domain": "native",
+      "tiers": [
+        1
+      ],
+      "params": [
+        {
+          "key": "BONUS HEALTH",
+          "unit": "数值",
+          "meaning": "物品额外生命",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "BONUS HEALTH REGEN",
+          "unit": "生命/秒",
+          "meaning": "物品每秒额外生命恢复",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "BONUS ARMOR",
+          "unit": "数值",
+          "meaning": "固定额外护甲",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "PASSIVE BLOCK MELEE",
+          "unit": "数值",
+          "meaning": "近战佩戴者被动物理攻击格挡值",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "PASSIVE BLOCK RANGED",
+          "unit": "数值",
+          "meaning": "远程佩戴者被动物理攻击格挡值",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "PASSIVE BLOCK CHANCE",
+          "unit": "%",
+          "meaning": "被动物理格挡触发概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "ACTIVE BLOCK",
+          "unit": "数值",
+          "meaning": "赤红甲主动保证格挡值",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "ACTIVE BLOCK CHANCE",
+          "unit": "%",
+          "meaning": "赤红甲主动物理格挡概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "ACTIVE DURATION",
+          "unit": "ms",
+          "meaning": "赤红甲主动效果持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "REAPPLY LOCK",
+          "unit": "ms",
+          "meaning": "受益单位不可重复获得主动的时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard；Independent native rank,not parent AA points. True itemActive slot;H1200sole effect radius,no duplicate RADIUS. Actual2023item KV and datedWiki;Wiki reapplylock34=CD35minus1contrasts raw tooltip35,record exact conflict. PRD key crimsonGuardBlock;wearer/provider instance;item passive not disabled by Break.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        }
+      ]
+    },
+    "native:lone_druid_spirit_bear_entangle": {
+      "id": "lone_druid_spirit_bear_entangle",
+      "domain": "native",
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "params": [
+        {
+          "key": "DAMAGE PER SECOND",
+          "unit": "伤害/秒",
+          "meaning": "缠绕魔法伤害每秒",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Effect-only TrueFormproc component,no extra active slot. Parent reads public CD5for gate and declared30%hero PRD(entanglingClaws);nativeBear20%is raw provenance,not unused editable field. First immediate DOT,0.2interval inclusive endpoint;ordinary creep3x,ancient excluded.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "DURATION",
+          "unit": "ms",
+          "meaning": "持续时间",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Effect-only TrueFormproc component,no extra active slot. Parent reads public CD5for gate and declared30%hero PRD(entanglingClaws);nativeBear20%is raw provenance,not unused editable field. First immediate DOT,0.2interval inclusive endpoint;ordinary creep3x,ancient excluded.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "TRUE FORM PROC CHANCE",
+          "unit": "%",
+          "meaning": "真熊形态缠绕触发概率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Effect-only TrueFormproc component,no extra active slot. Parent reads public CD5for gate and declared30%hero PRD(entanglingClaws);nativeBear20%is raw provenance,not unused editable field. First immediate DOT,0.2interval inclusive endpoint;ordinary creep3x,ancient excluded.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "CREEP DAMAGE MULTIPLIER",
+          "unit": "倍率",
+          "meaning": "普通非英雄单位缠绕伤害倍率",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Effect-only TrueFormproc component,no extra active slot. Parent reads public CD5for gate and declared30%hero PRD(entanglingClaws);nativeBear20%is raw provenance,not unused editable field. First immediate DOT,0.2interval inclusive endpoint;ordinary creep3x,ancient excluded.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "伤害脉冲间隔",
+          "kind": "value",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C13锁定AA与具名历史原型",
+          "note": "Independent native rank,not parent AA points. Effect-only TrueFormproc component,no extra active slot. Parent reads public CD5for gate and declared30%hero PRD(entanglingClaws);nativeBear20%is raw provenance,not unused editable field. First immediate DOT,0.2interval inclusive endpoint;ordinary creep3x,ancient excluded.；；独立真实原生等级，不套用AA点数档；Every main row is final;public times seconds/ranges world,raw distance params divide100."
+        }
+      ]
     }
   },
   "economy": [

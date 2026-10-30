@@ -29,6 +29,9 @@ import {applyOverchargeCaskAcceptance,OVERCHARGE_CASK_CHILD_DEFINITIONS} from '.
 import {applyPulverizeRavageAcceptance,PULVERIZE_RAVAGE_CHILD_DEFINITIONS} from './combat/pulverize-ravage-acceptance';
 import {applyReactiveRefractionAcceptance,REACTIVE_REFRACTION_CHILD_DEFINITIONS} from './combat/reactive-refraction-acceptance';
 import {applyResonantArrowAcceptance,RESONANT_ARROW_CHILD_DEFINITIONS} from './combat/resonant-arrow-acceptance';
+import {applyAuraArmorAcceptance,AURA_ARMOR_CHILD_DEFINITIONS} from './combat/aura-armor-acceptance';
+import {applyMotionReleaseAcceptance,MOTION_RELEASE_CHILD_DEFINITIONS} from './combat/motion-release-acceptance';
+import {applyRestorationLinkAcceptance,RESTORATION_LINK_CHILD_DEFINITIONS} from './combat/restoration-link-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -187,6 +190,10 @@ export interface EffectContext {
   damageFrom?(source:CombatUnit,target:CombatUnit,amount:number,type?:DamageType,piercesImmunity?:boolean,options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}):number;
   heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal',options?:{lifestealAmplificationSource?:CombatUnit}): number;
   mana(target: CombatUnit, amount: number): number;
+  /** Explicit nonlethal SetHealth; no damage, restoration or deferred ledger packet. */
+  setHealth?(target:CombatUnit,nextHp:number,options:{nonLethal:true}):number;
+  /** Pure effective-armor read. Both exclusion fields together identify one contribution. */
+  armor?(target:CombatUnit,options?:{excludeSourceId?:string;excludeSkillId?:string}):number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
   projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean;visualProjectile?:string}): void;
@@ -250,6 +257,8 @@ export interface SkillProgram {
   /** Accepted modifier-enabled contact, after miss checks and before attacker effects. */
   onBeforeAttackDamageReceived?:(c:EffectContext)=>void;
   onAllyBeforeAttackDamage?:(c:EffectContext)=>void;
+  /** Only this contact hook can observe its already-issued lease after source death. */
+  onAllyBeforeAttackDamageAfterDeath?:boolean;
   onBeforeAbilityEffect?:(c:EffectContext)=>void;
   onAbilityExecuted?:(c:EffectContext)=>void;
   /** Explicit per-ability targeting exception, including its ordinary checks. */
@@ -285,6 +294,8 @@ export interface SkillProgram {
   castPoint?: number | ((c: EffectContext) => number); backswing?: number; channel?: number | ((c: EffectContext) => number);
   requiresFacing?:boolean|((c:EffectContext)=>boolean);
   spellBlockTiming?:'cast'|'impact'|'program';
+  /** Explicit unit-target exceptions only affect the primary Soulbind target. */
+  soulbindCopies?:boolean;
   projectileDisjointable?:boolean;
   projectileDisjointOnInvisibility?:boolean;
   cooldown?: (c: EffectContext) => number; manaCost?: (c: EffectContext) => number;
@@ -643,8 +654,11 @@ applyOverchargeCaskAcceptance(registry);
 applyPulverizeRavageAcceptance(registry);
 applyReactiveRefractionAcceptance(registry);
 applyResonantArrowAcceptance(registry);
+applyAuraArmorAcceptance(registry);
+applyMotionReleaseAcceptance(registry);
+applyRestorationLinkAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
-for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
+for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

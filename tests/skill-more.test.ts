@@ -156,14 +156,16 @@ describe('catalog-driven additional skills', () => {
     }
   });
 
-  it('Waveform traverses intermediate positions, hits each crossed unit once and locks actions in transit', () => {
+  it('Waveform traverses intermediate positions, hits each crossed unit once and permits another spell order in transit', () => {
     const state = battle('morphling_waveform');
     state.units[0].skills.push({ id: 'custom_vengefulspirit_magic_missile', points: 3 });
     advance(state, .5);
     const caster = state.units[0];
     expect(caster.y).toBeGreaterThan(-2); expect(caster.y).toBeLessThan(2.5);
     expect(caster.statuses.some(s => s.kind === 'visualForm' && (s as { data?: { form?: string } }).data?.form === 'waveform')).toBe(true);
-    expect(caster.statuses.some(s => s.kind === 'silence')).toBe(true);
+    expect(caster.statuses.some(s => s.kind === 'silence')).toBe(false);
+    expect(caster.statuses.some(s => s.kind === 'motionRoot')).toBe(true);
+    expect(state.events.some(e=>e.type==='status'&&e.status==='castWindup'&&e.skill==='custom_vengefulspirit_magic_missile')).toBe(true);
     expect(caster.statuses.some(s => s.kind === 'invulnerable')).toBe(true);
     expect(state.events.filter(e => e.type === 'cast' && e.source === caster.id)).toHaveLength(1);
     advance(state, .3);
@@ -177,7 +179,9 @@ describe('catalog-driven additional skills', () => {
     const state = createBattle(player(0, 'custom_tusk_snowball', 3, 2), player(1), 6, defs);
     for (const unit of state.units) { unit.maxHp = unit.hp = 100000; unit.moveSpeed = 0; }
     const [caster, passenger] = state.units;
-    advance(state, .5);
+    for(let i=0;i<60&&!state.events.some(e=>e.type==='cast'&&e.skill==='custom_tusk_snowball');i++)advance(state,1/30);
+    expect(state.events.some(e=>e.type==='cast'&&e.skill==='custom_tusk_snowball')).toBe(true);
+    advance(state, .1);
     expect(caster.y).toBeGreaterThan(-2); expect(caster.y).toBeLessThan(2);
     expect(passenger.x).toBeCloseTo(caster.x); expect(passenger.y).toBeCloseTo(caster.y);
     expect(passenger.statuses.some(s => s.kind === 'visualForm' && (s as { data?: { passenger?: boolean } }).data?.passenger)).toBe(true);
@@ -223,7 +227,7 @@ describe('catalog-driven additional skills', () => {
     caster.statuses.push({ kind: 'disarm', until: 200 }); advance(state, 8);
     const casts = () => state.events.filter(e => e.type === 'cast' && e.skill === 'death_prophet_spirit_siphon');
     expect(casts()).toHaveLength(1);
-    expect((caster['charges:death_prophet_spirit_siphon'] as { count: number }).count).toBe(0);
+    expect(state.units.filter(u=>u.side===1).some(u=>u.statuses.some(s=>s.kind==='spiritSiphon'))).toBe(false);
     advance(state, 31); expect(casts()).toHaveLength(2);
     expect(casts()[1].time - casts()[0].time).toBeGreaterThanOrEqual(38 - 1e-8);
   });
@@ -234,8 +238,12 @@ describe('catalog-driven additional skills', () => {
     caster.statuses.push({ kind: 'disarm', until: 200 }); advance(state, 2);
     const links = state.units.filter(u => u.side === 1).map(u => u.statuses.filter(s => s.kind === 'spiritSiphon'));
     expect(links.every(a => a.length === 1)).toBe(true);
-    const charges = caster['charges:death_prophet_spirit_siphon'] as { count: number; maximum: number; next: number };
-    expect(charges.maximum).toBe(5); expect(charges.count).toBe(0); expect(charges.next).toBeLessThan(19);
+    const casts=()=>state.events.filter(e=>e.type==='cast'&&e.skill==='death_prophet_spirit_siphon');
+    expect(casts()).toHaveLength(5);expect(new Set(casts().map(e=>e.target)).size).toBe(5);
+    advance(state,15);expect(casts()).toHaveLength(5);
+    advance(state,2);expect(casts()).toHaveLength(6);
+    expect(casts()[5].time-casts()[0].time).toBeGreaterThanOrEqual(18-1e-8);
+    expect(casts()[5].time-casts()[0].time).toBeLessThan(18.5);
   });
 
   it('Riki Gaben uses native fourth-level Smoke Screen with the AA two-second duration override', () => {

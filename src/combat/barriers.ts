@@ -15,6 +15,8 @@ function segmentDistance(a:Point,b:Point,c:Point,d:Point):number{
   return Math.min(pointDistance(a,c,d),pointDistance(b,c,d),pointDistance(c,a,b),pointDistance(d,a,b));
 }
 export function barriers(b:BattleState):BattleBarrier[]{return (b.barriers??[]) as BattleBarrier[];}
+/** Shared geometry/art family; the barrier retains its actual child ability ID. */
+export function barrierSkillFamily(skill:string):string{return skill==='aa_granted_snowball_ice_shards'?'custom_tusk_ice_shards':skill;}
 // Phasing through units and flight do not grant blanket immunity to ability walls.
 function phased(u:CombatUnit){return u.statuses.some(s=>s.kind==='barrierPhased'||s.kind==='banished');}
 /** Explicit historical-AA work policy: unit phasing is not free pathing.
@@ -23,7 +25,7 @@ export function barrierBlocksUnit(u:CombatUnit,wall:BattleBarrier):boolean{
   if(wall.skill==='mars_arena_of_blood'&&u.statuses.some(s=>s.kind==='magicImmune'))return false;
   if(phased(u)||wall.blocks==='enemies'&&wall.side===u.side)return false;
   const flying=u.statuses.some(s=>s.kind==='fly'||s.kind==='flying'),free=flying||u.statuses.some(s=>s.kind==='freePathing');
-  if(['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(wall.skill)&&free)return false;
+  if(['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(barrierSkillFamily(wall.skill))&&free)return false;
   if(wall.skill==='mars_arena_of_blood'&&flying)return false;
   return true;
 }
@@ -63,7 +65,7 @@ export function routeAroundBarriers(b:BattleState,u:CombatUnit,target:Point):Poi
   if(previous[1]<0)return {x:u.x,y:u.y};let next=1;while(previous[next]>0)next=previous[next];return points[next];
 }
 function blocksMotion(u:CombatUnit,wall:BattleBarrier,ignoreTerrainBarriers:boolean):boolean{
-  return barrierBlocksUnit(u,wall)&&!(ignoreTerrainBarriers&&['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(wall.skill));
+  return barrierBlocksUnit(u,wall)&&!(ignoreTerrainBarriers&&['custom_earthshaker_fissure','custom_tusk_ice_shards'].includes(barrierSkillFamily(wall.skill)));
 }
 export function constrainBarrierMotion(b:BattleState,u:CombatUnit,to:Point,ignoreTerrainBarriers=false):Point{
   if(phased(u))return clamp(to);

@@ -1,5 +1,6 @@
 import type {AnimationClip,AssetManifest,CombatUnit,CombatEvent,DamageType} from './model';
 import type {BattleBarrier} from './combat/barriers';
+import {barrierSkillFamily} from './combat/barriers';
 import {selectVisualLayers} from './visual-layers';
 import {resolveVisualArt} from './visual-bindings';
 
@@ -72,7 +73,7 @@ function selectAction(layers:Record<string,AnimationClip>,prefix:string,action:s
 export function bodyPresentation(assets:AssetManifest,u:CombatUnit,action:string,time:number,sourceSkill?:string):BodyPresentation{
  const visibleStatuses=u.statuses.filter(s=>s.until>time);
  const hex=visibleStatuses.find(s=>s.kind==='hex');
- if(hex){const spec=assets.skills[hex.skill??'custom_shadow_shaman_voodoo'] as {layers?:Record<string,AnimationClip>}|undefined;const clip=selectAction(spec?.layers??{},'critter',action==='move'?'move':'idle');if(clip)return{clip,hidden:false,skill:hex.skill,prefix:'critter'};}
+ if(hex){const spec=assets.skills[hex.skill??'custom_shadow_shaman_voodoo'] as {layers?:Record<string,AnimationClip>}|undefined,prefix=hex.skill==='dazzle_shadow_wave'?'hex':'critter';const clip=selectAction(spec?.layers??{},prefix,action==='move'?'move':'idle');if(clip)return{clip,hidden:false,skill:hex.skill,prefix};}
  const visual=visibleStatuses.find(s=>s.kind==='visualForm');
  if(visual){const data=(visual as unknown as {data?:Record<string,unknown>}).data;if(data?.passenger===true||data?.hidden===true)return{hidden:true};const form=TRANSIENT_FORMS[String(data?.form??'')];if(form){const spec=assets.skills[form.skill] as {layers?:Record<string,AnimationClip>}|undefined;const clip=spec?.layers?.[form.layer];if(clip)return{clip,hidden:false,skill:form.skill,prefix:form.layer};}}
  for(const [id,form] of Object.entries(FORM_SKILLS)){
@@ -157,7 +158,7 @@ export function barrierPresentations(assets:AssetManifest,walls:BattleBarrier[],
  const result:BarrierPresentation[]=[],groups=new Set<string>();
  for(const wall of walls){
   if(wall.until<=time)continue;
-  const spec=assets.skills[wall.skill] as {layers?:Record<string,AnimationClip>}|undefined;
+  const spec=assets.skills[barrierSkillFamily(wall.skill)] as {layers?:Record<string,AnimationClip>}|undefined;
   const clip=Object.values(spec?.layers??{}).find(c=>c.role==='ground_barrier'||c.role==='world_prop');
   if(!clip)continue;
   if(wall.visual){

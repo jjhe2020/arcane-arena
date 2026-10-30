@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyDamage, battleGains, createBattle, FIXED_STEP, stepBattle } from '../src/combat';
+import { applyDamage, battleGains, createBattle, FIXED_STEP, stepBattle,isRangedAttackType } from '../src/combat';
 import { EXTRA_PROGRAMS, EXTRA_CHILD_PROGRAMS, EXTRA_CHILD_DEFINITIONS, EXTRA_WORKING_DEFAULTS } from '../src/skill-effects-extra';
 import { skillValue,GRANTED_SKILL_DEFINITIONS,getSkillProgram } from '../src/skill-effects';
 import {BATTLE_CONFIG} from '../src/config';
@@ -676,7 +676,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     advance(battle, .2);
     const slot = caster.skills.findIndex(s => s?.id === 'lone_druid_true_form');
     expect(slot).toBeGreaterThanOrEqual(5); expect(caster.skills[slot]?.points).toBe(2);
-    expect(caster.maxHp).toBe(baseHp + 1000); expect(status(caster, 'attackRangeOverride')?.value).toBe(1.5);
+    expect(caster.maxHp).toBe(baseHp + 1000); expect(status(caster, 'attackRangeOverride')?.value).toBe(2.25);expect(isRangedAttackType(caster)).toBe(false);
     expect(caster.statuses.filter(s => s.kind === 'armor').reduce((sum, s) => sum + (s.value ?? 0), 0)).toBe(10);
     expect(caster.cooldowns[slot]).toBeGreaterThan(100); expect(caster.mana).toBeGreaterThanOrEqual(800); expect(caster.mana).toBeLessThan(805);
     advance(battle, 40); expect(caster.maxHp).toBe(baseHp); expect(caster.hp).toBeLessThanOrEqual(baseHp);
@@ -735,15 +735,16 @@ describe('extra skill integration with combat and persistent gains', () => {
     expect(applyDamage(battle, enemy, soldiers[0], 9999, 'pure')).toBe(0);
     advance(battle, 10); expect(soldiers[0].dead).toBe(true); expect(battle.units.filter(u => u.extraJinguSoldier && !u.dead)).toHaveLength(6);
   });
-  it('deduplicates Bad Juju armor per affected target and prevents its active from recursively creating stacks', () => {
+  it('Bad Juju counts separate Wave contacts and one active contact without recursively producing stacks', () => {
     const roster = player(0, [{ id: 'dazzle_shadow_wave', points: 9 }]); roster.heroes.push({ ...structuredClone(roster.heroes[0]), id: 'ally', x: 1, skills: [] });
     const battle = createBattle(roster, player(1), 7, catalog), caster = battle.units[0], ally = battle.units.find(u => u.side === caster.side && u.id !== caster.id)!, enemy = battle.units.find(u => u.side !== caster.side)!;
     caster.x = 0; caster.y = 0; ally.x = 1; ally.y = 0; enemy.x = .5; enemy.y = 0; ally.hp /= 2; enemy.hp = enemy.maxHp = 100000;
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; } caster.mana = 1000;
     advance(battle, 1.5);
-    expect(enemy.statuses.filter(s => s.kind === 'badJuju')).toHaveLength(1); expect(ally.statuses.filter(s => s.kind === 'badJuju')).toHaveLength(1);
-    expect(enemy.statuses.filter(s => s.kind === 'armor').reduce((n, s) => n + (s.value ?? 0), 0)).toBe(-3);
-    expect(battle.events.some(e => e.type === 'cast' && e.skill === 'dazzle_bad_juju')).toBe(true);
+    expect(enemy.statuses.filter(s => s.kind === 'badJuju')).toHaveLength(3); expect(ally.statuses.filter(s => s.kind === 'badJuju')).toHaveLength(2);
+    expect(enemy.statuses.filter(s => s.kind === 'armor').reduce((n, s) => n + (s.value ?? 0), 0)).toBe(-9);
+    expect(ally.statuses.filter(s => s.kind === 'armor').reduce((n, s) => n + (s.value ?? 0), 0)).toBe(6);
+    expect(battle.events.filter(e => e.type === 'cast' && e.skill === 'dazzle_bad_juju')).toHaveLength(1);
   });
 });
 

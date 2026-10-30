@@ -1,0 +1,3222 @@
+{
+  "schemaVersion": 1,
+  "group": "restoration-link",
+  "accessedOn": "2026-10-30",
+  "policy": "Metadata/hash,independent paraphrases and selected official structured AA/Valve only. No full third-party HTML committed. Explicit AA numbers/custom descriptions retained;Wiki nonnumeric rules take priority over metadata-only categories.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Selected complete AA base,differences,Super/Gaben and numerical arrays retained. Category metadata alone does not establish custom nonnumeric behavior.",
+      "versionContext": "Fresh230-row official JSON read2026-10-30,identical SHA to earlier intake;exact AA server revision not proven."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Pinned original ability public clocks,level domains,behavior,immunity/dispels and linked prototypes. All TrueForm,BadJuju,GoodJuju and Entangle AbilityType fields actually say ULTIMATE.",
+      "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder name20230216is not source date and is not proof of the exact AA patch."
+    },
+    {
+      "id": "items-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+      "paraphrase": "Crimson Guard native health,regen,armor,melee/ranged passive,guaranteed active and its independent item action domain. Raw reapplication tooltip35conflicts with dated Wiki34.",
+      "versionContext": "Same pinned2023-02-10Valve data;Wiki mechanism is used for the34recipient lock while cooldown35is retained."
+    },
+    {
+      "id": "marci-2023",
+      "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+      "originalUrl": "https://dota2.fandom.com/wiki/Marci",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191449",
+      "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+      "paraphrase": "Sidekick selfcast searches nearby eligible hero bodies;flat bonus/normal lifesteal;Super prototype applies buff,basic purge,then1.5immunity. Non-hitcount wards allow lifesteal;allied/building damage does not.",
+      "versionContext": "Direct historical Wiki capture 20230215191449. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "undying-2023",
+      "url": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying",
+      "originalUrl": "https://dota2.fandom.com/wiki/Undying",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191615",
+      "sha256": "c1e8149f8658ff90b208ebb5f858e06b682cf2b97dc3bc05ccacb92cc4adf688",
+      "paraphrase": "Soul Rip selects random caster-centered donors,excludes caster/recipient,and sets donor health nonlethally. Invisible/immune enemy exclusions differ from allies. Full nominal recovery,block still pays cost;Tombstone repairs hit capacity without healing.",
+      "versionContext": "Direct historical Wiki capture 20230215191615. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "dazzle-2023",
+      "url": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle",
+      "originalUrl": "https://dota2.fandom.com/wiki/Dazzle",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191657",
+      "sha256": "e6a6fb50e00a2a70a25a956ea929777dc55160a4d3c89cf9cde035dfd7e82eaa",
+      "paraphrase": "Wave resolves simultaneous independent physical bursts before corresponding heals. BadJuju reacts only to Dazzle spells,adds stacks before effects and keeps independent expiries;Wave overlap gives multiple enemy stacks. Active first adds its own stack;GoodJuju is linked and excludes item,zero-CD and noncast triggers.",
+      "versionContext": "Direct historical Wiki capture 20230215191657. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "lone-druid-2023",
+      "url": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid",
+      "originalUrl": "https://dota2.fandom.com/wiki/Lone_Druid",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191727",
+      "sha256": "d0e23f8096d41e4a3ffe9d18ccc4e7c6335c71478467c1e195d8de04cfcb9ccc",
+      "paraphrase": "Link shares signed current armor excluding its own feedback;Break affects lifesteal alone,and owner LS amplification applies. TrueForm sets HP,melee225/BAT1.7,persists death,and copies remaining form to new illusions. Entangle is PRD,immediate0.2pulses,root/reveal before attack;ancients excluded.",
+      "versionContext": "Direct historical Wiki capture 20230215191727. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "death-prophet-2023",
+      "url": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet",
+      "originalUrl": "https://dota2.fandom.com/wiki/Death_Prophet",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230301011014",
+      "sha256": "c5ab99b40c9921cdf9705f5a47956db6592a75b1b979eaf2c08c466454298714",
+      "paraphrase": "Siphon has independent per-cast target/source components,24quarter-second packets,damage then full raw self-heal,and range-increasing break distance. Link ends only on target death/range loss;fear depends on source buff at3seconds,not target debuff. Native learns only one charge;first stolen acquisition fills capacity.",
+      "versionContext": "Direct historical Wiki capture 20230301011014. March1capture,not February15;before7.32e.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "crimson-2023",
+      "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard",
+      "originalUrl": "https://dota2.fandom.com/wiki/Crimson_Guard",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215192213",
+      "sha256": "488552ffed695a330aaf6b161dcfa225574230381ffd2d321702c76d89ad888b",
+      "paraphrase": "Native passive is60percent wearer PRD,75melee/50ranged. Active100percent75block supersedes weaker providers,excludes ward attacks,interrupts channel,affects hero/illusion/building including hidden/invulnerable,and rejects creepHeroes. Active12and recipient reapplication lock34.",
+      "versionContext": "Direct historical Wiki capture 20230215192213. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "illusions-2023",
+      "url": "https://web.archive.org/web/20230215191946id_/https://dota2.fandom.com/wiki/Illusions",
+      "originalUrl": "https://dota2.fandom.com/wiki/Illusions",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191946",
+      "sha256": "0cdd765e2269ccefb1647fda36d69c1540cb9bdf4ef31c36532071915411d124",
+      "paraphrase": "TrueForm is explicitly in the copied-buff list. The form-specific dated hero page supplies the matching remaining duration;this does not establish every proc ability on illusions.",
+      "versionContext": "Direct historical Wiki capture 20230215191946. February2023rules,not modern text silently backported.",
+      "accessMethod": "Raw successful archive HTTP or existing successful cache;decompressed HTML SHA revalidated. Full third-party HTML stays ignored."
+    },
+    {
+      "id": "aa-workshop16",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+      "status": 200,
+      "sha256": "1bb90dbc9392eae7bdd92dfb2ffffe6f4a55f416c05bd9d062e33433584dc5e3",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Official AA change record reduces Link values to14/28/56AS and7/14/28lifesteal,changes Super to+20lifesteal,removes Gaben TrueForm transformation time,and fixes Link affecting illusions. AA Super AS+30retained.",
+      "versionContext": "Direct official workshop change page16previously read and cached;this is an AA-specific override to native Bear-only and1.933transformation rules."
+    }
+  ],
+  "officialAA": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "totalRows": 230,
+    "selection": [
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          36,
+          28,
+          12
+        ],
+        "description": "Marci's loyalty helps ensure survival, imbuing a chosen allied hero and herself with lifesteal and attack damage.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Buffed heroes also heal from their partner's Sidekick lifesteal.",
+        "icon": "marci_guardian",
+        "id": "marci_guardian",
+        "manaCost": [
+          45,
+          40,
+          30
+        ],
+        "name": "Sidekick",
+        "superUpgrade": "Super: +25% lifesteal. Buffed heroes also gain Spell Immunity for 1.5 seconds.",
+        "tags": [
+          "attackDamage",
+          "buff",
+          "lifesteal",
+          "magicImmunity"
+        ],
+        "values": [
+          "BONUS DAMAGE: 20 / 35 / 65",
+          "DURATION: 7",
+          "LIFESTEAL: 30% / 35% / 45%"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Passive"
+        ],
+        "cooldowns": [],
+        "description": "Links caster and their summons, sharing a percentage of their armor with each other, increasing the attack speed of both and causing damage dealt by the summons to heal the caster.",
+        "differences": "Works with all summons on the caster with reduced attack speed and shared lifesteal.",
+        "gabenUpgrade": "Gaben: Grants level 2 True Form.",
+        "icon": "lone_druid_spirit_link",
+        "id": "custom_lone_druid_spirit_link",
+        "manaCost": [],
+        "name": "Spirit Link",
+        "superUpgrade": "Super: +20% shared Lifesteal, +30 attack speed.",
+        "tags": [
+          "buff",
+          "lifesteal",
+          "passive",
+          "stats",
+          "summons"
+        ],
+        "values": [
+          "BONUS ATTACK SPEED: 14 / 28 / 56",
+          "SHARED ARMOR: 8% / 12% / 20%",
+          "SHARED LIFESTEAL: 7% / 14% / 28%"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "cooldowns": [
+          24,
+          18,
+          6
+        ],
+        "description": "The caster rips health away from all nearby units and uses it to heal an ally, or damage an enemy. Soul Rip can also be used to heal Tombstone. ",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Becomes a 500 AOE spell (can work on allies & enemies at the same time). Gain Crimson Guard.",
+        "icon": "undying_soul_rip",
+        "id": "custom_undying_soul_rip",
+        "manaCost": [
+          85,
+          100,
+          130
+        ],
+        "name": "Soul Rip",
+        "superUpgrade": "Super: +25 damage/heal per unit. ",
+        "tags": [],
+        "values": [
+          "DAMAGE/HEAL PER UNIT: 19 / 26 / 40",
+          "MAX UNITS: 8 / 9 / 11",
+          "RIP RADIUS: 1300",
+          "TOMBSTONE HEAL: 4 / 8 / 16"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "cooldowns": [
+          9,
+          8,
+          6
+        ],
+        "description": "Sends out a bolt of power that arcs between allies, healing them while damaging any enemy units standing nearby. Dazzle is always healed by Shadow Wave.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: Grants Bad Juju.",
+        "icon": "dazzle_shadow_wave",
+        "id": "dazzle_shadow_wave",
+        "manaCost": [
+          90
+        ],
+        "name": "Shadow Wave",
+        "superUpgrade": "Super: Shadow Wave hexes affected enemies for 2 seconds.",
+        "tags": [],
+        "values": [
+          "DAMAGE RADIUS: 235",
+          "DAMAGE: 60 / 100 / 180",
+          "HEAL ARC RADIUS: 475",
+          "MAX HEAL TARGETS: 4 / 5 / 7"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          0
+        ],
+        "description": "Creates a spirit link between Death Prophet and an enemy unit, draining health from the enemy.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: +1 charges. Causes enemies continuously siphoned for 3 seconds to gain fear for 1.5 seconds.",
+        "icon": "death_prophet_spirit_siphon",
+        "id": "death_prophet_spirit_siphon",
+        "manaCost": [
+          80
+        ],
+        "name": "Spirit Siphon",
+        "superUpgrade": "Super: Now also siphons 3.5% of the target's max health per second. -20s charge replenish time, applies a 20% movement slow.",
+        "tags": [],
+        "values": [
+          "DAMAGE: 25 / 50 / 100",
+          "DURATION: 6"
+        ]
+      }
+    ]
+  },
+  "pinnedValve": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "abilities": {
+      "marci_guardian": {
+        "ID": "8234",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Marci.Guardian.Applied",
+        "AbilityCastRange": "700",
+        "AbilityCastPoint": "0.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCooldown": "36 28 20 12",
+        "AbilityManaCost": "45 40 35 30",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "buff_duration": "7"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "lifesteal_pct": "30 35 40 45",
+            "LinkedSpecialBonus": "special_bonus_unique_marci_guardian_lifesteal"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_damage": "20 35 50 65",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_attack_range": "0"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "nearest_ally_search_range": "700"
+          }
+        }
+      },
+      "lone_druid_spirit_link": {
+        "ID": "7309",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_LoneDruid.Rabid",
+        "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_2",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityValues": {
+          "bonus_attack_speed": {
+            "value": "16 32 48 64",
+            "LinkedSpecialBonus": "special_bonus_unique_lone_druid_6"
+          },
+          "lifesteal_percent": "20 35 50 65",
+          "armor_sharing": "8 12 16 20"
+        }
+      },
+      "undying_soul_rip": {
+        "ID": "5443",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_CUSTOM",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_CUSTOM",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Undying.SoulRip.Cast",
+        "AbilityCastAnimation": "ACT_DOTA_UNDYING_SOUL_RIP",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastPoint": "0.3",
+        "AbilityCastRange": "750",
+        "AbilityCooldown": "18 14 10 6",
+        "AbilityManaCost": "90 100 110 120",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "damage_per_unit": "15 25 35 45",
+            "LinkedSpecialBonus": "special_bonus_unique_undying_6"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "max_units": "10"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "1300"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "tombstone_heal": "4 8 12 16"
+          }
+        }
+      },
+      "dazzle_shadow_wave": {
+        "ID": "5235",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "AbilitySound": "Hero_Dazzle.Shadow_Wave",
+        "AbilityCastRange": "800",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "12 11 10 9",
+        "AbilityManaCost": "90",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "bounce_radius": "475"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "damage_radius": "185",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "max_targets": "3 4 5 6"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "tooltip_max_targets_inc_dazzle": "4 5 6 7"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "60 85 110 135",
+            "LinkedSpecialBonus": "special_bonus_unique_dazzle_2"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "death_prophet_spirit_siphon": {
+        "ID": "5685",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_DeathProphet.SpiritSiphon.Cast",
+        "HasShardUpgrade": "1",
+        "AbilityCastAnimation": "ACT_DOTA_DP_SPIRIT_SIPHON",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "500",
+        "AbilityCastPoint": "0.1",
+        "AbilityCooldown": "0",
+        "AbilityCharges": "1 2 3 4",
+        "AbilityManaCost": "80",
+        "AbilityValues": {
+          "damage": {
+            "value": "25 50 75 100",
+            "special_bonus_unique_death_prophet_3": "+30"
+          },
+          "damage_pct": "0",
+          "haunt_duration": "6",
+          "siphon_buffer": "250",
+          "AbilityChargeRestoreTime": {
+            "value": "38",
+            "special_bonus_unique_death_prophet_5": "-20"
+          },
+          "shard_bonus_charges": {
+            "value": "1",
+            "RequiresShard": "1"
+          },
+          "shard_fear_duration": {
+            "value": "1.5",
+            "RequiresShard": "1"
+          },
+          "shard_consecutive_siphon_duration": {
+            "value": "3",
+            "RequiresShard": "1"
+          }
+        }
+      },
+      "lone_druid_true_form": {
+        "ID": "5415",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySound": "Hero_LoneDruid.TrueForm.Cast",
+        "AbilityCooldown": "100",
+        "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastPoint": "0 0 0",
+        "AbilityManaCost": "200",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_armor": "8 10 12"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_hp": "500 1000 1500",
+            "LinkedSpecialBonus": "special_bonus_unique_lone_druid_7"
+          },
+          "03": {
+            "var_type": "FIELD_FLOAT",
+            "base_attack_time": "1.7"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "40"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "transformation_time": "1.933"
+          }
+        }
+      },
+      "dazzle_bad_juju": {
+        "ID": "7304",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityDraftPreAbility": "dazzle_good_juju",
+        "LinkedAbility": "dazzle_good_juju",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Dazzle.Weave",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastRange": "1200",
+        "AbilityCooldown": "15",
+        "AbilityManaCost": "50 75 100",
+        "AbilityValues": {
+          "armor_reduction": {
+            "value": "1 2 3",
+            "LinkedSpecialBonus": "special_bonus_unique_dazzle_4"
+          },
+          "duration": "8 10 12",
+          "radius": "1200",
+          "heal_damage": {
+            "value": "40 50 60",
+            "CalculateSpellDamageTooltip": "1"
+          }
+        }
+      },
+      "dazzle_good_juju": {
+        "ID": "933",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "LinkedAbility": "dazzle_bad_juju",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastRange": "250",
+        "AbilityValues": {
+          "cooldown_reduction": "1 1.5 2",
+          "item_cooldown_reduction": {
+            "value": "50",
+            "RequiresScepter": "1"
+          },
+          "scepter_mana_cost": "250",
+          "scepter_cooldown": "180"
+        }
+      },
+      "lone_druid_spirit_bear_entangle": {
+        "ID": "5419",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "LoneDruid_SpiritBear.Entangle",
+        "AbilityDamage": "60",
+        "AbilityCooldown": "5.0",
+        "AbilityValues": {
+          "damage": "30 40 50 60",
+          "entangle_chance": "20",
+          "hero_duration": "1 1.6 2.2 2.8",
+          "creep_damage_multiplier": "3",
+          "hero_entangle_chance": "30"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      }
+    },
+    "itemsSource": {
+      "file": "items.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+      "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+      "gitBlobSha": "9e257199f59aa8290f336fe3e61543e10cf0d50b",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "items": {
+      "item_crimson_guard": {
+        "ID": "242",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilityCooldown": "35.0",
+        "AbilityCastRange": "1200",
+        "ItemCost": "3600",
+        "ItemShopTags": "armor;boost_armor;regen_health;block;health_pool",
+        "ItemQuality": "epic",
+        "ItemAlertable": "1",
+        "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS",
+        "ShouldBeSuggested": "1",
+        "AbilityValues": {
+          "bonus_health": "250",
+          "bonus_health_regen": "12",
+          "bonus_armor": "8",
+          "block_damage_melee": "75",
+          "block_damage_ranged": "50",
+          "block_chance": "60",
+          "duration": "12",
+          "bonus_aoe_radius": "1200",
+          "block_damage_melee_active": "75",
+          "block_damage_ranged_active": "75",
+          "block_chance_active": "100",
+          "tooltip_reapply_time": "35"
+        }
+      }
+    }
+  },
+  "verifiedHistoricalCaches": [
+    {
+      "sourceId": "marci-2023",
+      "ignoredPath": "output/c12-reactive-refraction/Marci.html",
+      "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+      "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+      "capture": "20230215191449"
+    },
+    {
+      "sourceId": "undying-2023",
+      "ignoredPath": "output/c4-death-demonic/Undying.html",
+      "sha256": "c1e8149f8658ff90b208ebb5f858e06b682cf2b97dc3bc05ccacb92cc4adf688",
+      "url": "https://web.archive.org/web/20230215191615id_/https://dota2.fandom.com/wiki/Undying",
+      "capture": "20230215191615"
+    },
+    {
+      "sourceId": "dazzle-2023",
+      "ignoredPath": "output/c13-restoration-link/Dazzle.html",
+      "sha256": "e6a6fb50e00a2a70a25a956ea929777dc55160a4d3c89cf9cde035dfd7e82eaa",
+      "url": "https://web.archive.org/web/20230215191657id_/https://dota2.fandom.com/wiki/Dazzle",
+      "capture": "20230215191657"
+    },
+    {
+      "sourceId": "lone-druid-2023",
+      "ignoredPath": "output/c13-restoration-link/Lone_Druid.html",
+      "sha256": "d0e23f8096d41e4a3ffe9d18ccc4e7c6335c71478467c1e195d8de04cfcb9ccc",
+      "url": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid",
+      "capture": "20230215191727"
+    },
+    {
+      "sourceId": "death-prophet-2023",
+      "ignoredPath": "output/c13-restoration-link/Death_Prophet.html",
+      "sha256": "c5ab99b40c9921cdf9705f5a47956db6592a75b1b979eaf2c08c466454298714",
+      "url": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Death_Prophet",
+      "capture": "20230301011014"
+    },
+    {
+      "sourceId": "crimson-2023",
+      "ignoredPath": "output/c13-restoration-link/crimson/Crimson_Guard.html",
+      "sha256": "488552ffed695a330aaf6b161dcfa225574230381ffd2d321702c76d89ad888b",
+      "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Crimson_Guard",
+      "capture": "20230215192213"
+    },
+    {
+      "sourceId": "illusions-2023",
+      "ignoredPath": "output/c11-phantom-ward/Illusions.html",
+      "sha256": "0cdd765e2269ccefb1647fda36d69c1540cb9bdf4ef31c36532071915411d124",
+      "url": "https://web.archive.org/web/20230215191946id_/https://dota2.fandom.com/wiki/Illusions",
+      "capture": "20230215191946"
+    }
+  ],
+  "fullOfficialFieldAudit": {
+    "ignoredPath": "output/c13-restoration-link/aa-complete-field-audit.json",
+    "sha256": "78f0fc22b4a591035a3fecdbbf0eb75b3aa4a3c99f85aa74af7622de2492a0fe",
+    "meaning": "All official fields compared for all5;no AI/notes fields exist in original rows;only Link differences is nonempty and preserved."
+  },
+  "historicalSectionsRead": [
+    "Sidekick",
+    "Spirit Link",
+    "True Form",
+    "Demolish icon Break metadata",
+    "Entangling Claws",
+    "Soul Rip",
+    "Shadow Wave",
+    "Bad Juju",
+    "Good Juju",
+    "Spirit Siphon",
+    "Crimson Guard active/passive",
+    "Illusions copied-buff table"
+  ],
+  "differencesAndConflicts": [
+    "AA SpiritLink all summons/zero TrueForm transform/no Link illusions overrides native Bear-only/1.933transform;direct official workshop16supplies evidence.",
+    "AA damage/LS/armor/cooldown/target cap values preserved;native four ranks are not directly assigned to AAfive tiers.",
+    "AA SpiritSiphon StrongOnly category conflicts with dated Death target modifier/Any source buff;category alone does not establish custom Lua.",
+    "Crimson native raw tooltip35reapply conflicts with dated Wiki34;use Wiki34lock and actualCD35.",
+    "TrueForm/BJ/GJ/Entangle AbilityTypeULTIMATE is actual pinned metadata;effect-only/passive do not automatically change it."
+  ],
+  "preImplementationDiagnostic": {
+    "localPath": "output/c13-restoration-link/actual-before.json",
+    "sha256": "ac35df56c008435c39ca3445b6dd9f9d79dd6d511c9adcbee8b012b0f662c022",
+    "checkpoint": "7b2122b038e7ceac0bbc3a752b74938fb223ffe1",
+    "configurationHash": "522ffaf25b6f2f8e32e55f2f3af6d3e472d469a9c3144da426d5fbed53915211",
+    "observations": [
+      {
+        "name": "SIDE01 ordinary creep is wrongly selected as nearest Sidekick partner",
+        "buffed": [
+          {
+            "id": "0:h0",
+            "bonus": 65,
+            "lifesteal": 0.45
+          },
+          {
+            "id": "0:h1",
+            "summoned": true,
+            "bonus": 65,
+            "lifesteal": 0.45
+          },
+          {
+            "id": "0:h2",
+            "bonus": 0,
+            "lifesteal": 0
+          }
+        ]
+      },
+      {
+        "name": "SIDE02 ally beyond native700search still receives Sidekick",
+        "buffed": [
+          {
+            "id": "0:h0",
+            "x": 0,
+            "bonus": 65
+          },
+          {
+            "id": "0:h1",
+            "x": 10,
+            "bonus": 65
+          },
+          {
+            "id": "0:h2",
+            "x": 12,
+            "bonus": 0
+          }
+        ]
+      },
+      {
+        "name": "SIDE03 Super lacks the documented basic dispel before immunity",
+        "partner": [
+          {
+            "kind": "slow",
+            "value": 0.4,
+            "until": 200,
+            "harmful": true,
+            "dispel": "basic"
+          },
+          {
+            "kind": "magicImmune",
+            "until": 1.5333333333333334,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "marci_guardian",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": true,
+            "points": 6,
+            "visualSkill": "marci_guardian",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "marci_guardian",
+              "rootAbilityId": "marci_guardian",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "appliedAt": 0.03333333333333333
+          }
+        ]
+      },
+      {
+        "name": "SIDE04 Gaben transfer loses attacker lifesteal amplification and is recorded as generic heal",
+        "events": [
+          {
+            "type": "heal",
+            "time": 0.1,
+            "sequence": 13,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 230.99999999999997,
+            "lifesteal": true
+          },
+          {
+            "type": "heal",
+            "time": 0.1,
+            "sequence": 14,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 115.49999999999999,
+            "lifesteal": false
+          }
+        ],
+        "hits": []
+      },
+      {
+        "name": "SIDE05 Super spell immunity applies even to an invulnerable selected partner",
+        "partner": [
+          {
+            "id": "0:h0",
+            "bonus": 65
+          },
+          {
+            "id": "0:h1",
+            "bonus": 65
+          },
+          {
+            "id": "0:h2",
+            "bonus": 0
+          }
+        ]
+      },
+      {
+        "name": "RIP01 count includes caster and target;donors lose no HP",
+        "before": [
+          {
+            "id": "0:h0",
+            "hp": 100000
+          },
+          {
+            "id": "0:h1",
+            "hp": 100
+          },
+          {
+            "id": "0:h2",
+            "hp": 100000
+          },
+          {
+            "id": "1:h0",
+            "hp": 100000
+          },
+          {
+            "id": "1:h1",
+            "hp": 100000
+          }
+        ],
+        "after": [
+          {
+            "id": "0:h0",
+            "hp": 100000
+          },
+          {
+            "id": "0:h1",
+            "hp": 300
+          },
+          {
+            "id": "0:h2",
+            "hp": 100000
+          },
+          {
+            "id": "1:h0",
+            "hp": 100000
+          },
+          {
+            "id": "1:h1",
+            "hp": 100000
+          }
+        ],
+        "events": [
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 0,
+            "source": "0:h0",
+            "target": "0:h1",
+            "status": "castWindup"
+          },
+          {
+            "type": "cast",
+            "time": 0.03333333333333333,
+            "sequence": 1,
+            "source": "0:h0",
+            "target": "0:h1"
+          },
+          {
+            "type": "heal",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 200,
+            "lifesteal": false
+          }
+        ]
+      },
+      {
+        "name": "RIP02 invisible/immune enemy and ward donors are incorrectly counted",
+        "heals": [
+          {
+            "type": "heal",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 200,
+            "lifesteal": false
+          }
+        ],
+        "donors": [
+          {
+            "id": "0:h0",
+            "hp": 100000
+          },
+          {
+            "id": "0:h1",
+            "hp": 300
+          },
+          {
+            "id": "0:h2",
+            "hp": 100000
+          },
+          {
+            "id": "1:h0",
+            "hp": 100000
+          },
+          {
+            "id": "1:h1",
+            "hp": 100000
+          }
+        ]
+      },
+      {
+        "name": "RIP03 Gaben mixed area still uses a count including all affected targets and does not set donor HP",
+        "events": [
+          {
+            "type": "status",
+            "time": 0,
+            "sequence": 0,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 12,
+            "status": "regen"
+          },
+          {
+            "type": "status",
+            "time": 0,
+            "sequence": 1,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 8,
+            "status": "armor"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "0:h1",
+            "status": "castWindup"
+          },
+          {
+            "type": "cast",
+            "time": 0.03333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "0:h1"
+          },
+          {
+            "type": "heal",
+            "time": 0.03333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 325,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 325,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 325,
+            "damageType": "magical"
+          }
+        ],
+        "units": [
+          {
+            "id": "0:h0",
+            "hp": 100000,
+            "taken": 0
+          },
+          {
+            "id": "0:h1",
+            "hp": 425,
+            "taken": 0
+          },
+          {
+            "id": "0:h2",
+            "hp": 100000,
+            "taken": 0
+          },
+          {
+            "id": "1:h0",
+            "hp": 99675,
+            "taken": 325
+          },
+          {
+            "id": "1:h1",
+            "hp": 99675,
+            "taken": 325
+          }
+        ]
+      },
+      {
+        "name": "RIP04 Gaben Crimson Guard is hidden polling not a real active inventory/ability slot",
+        "skills": [
+          {
+            "id": "custom_undying_soul_rip",
+            "points": 9
+          }
+        ],
+        "events": [],
+        "blocks": [
+          {
+            "id": "0:h0",
+            "blocks": [
+              {
+                "kind": "attackDamageBlock",
+                "until": 12.1,
+                "value": 75,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "data": {
+                  "chance": 1
+                },
+                "appliedAt": 0.1
+              },
+              {
+                "kind": "crimsonActive",
+                "until": 12.1,
+                "value": 1,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "appliedAt": 0.1
+              }
+            ]
+          },
+          {
+            "id": "0:h1",
+            "blocks": [
+              {
+                "kind": "crimsonActive",
+                "until": 12.1,
+                "value": 1,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "appliedAt": 0.1
+              },
+              {
+                "kind": "attackDamageBlock",
+                "until": 12.1,
+                "value": 75,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "data": {
+                  "chance": 1
+                },
+                "appliedAt": 0.1
+              }
+            ]
+          },
+          {
+            "id": "0:h2",
+            "blocks": [
+              {
+                "kind": "crimsonActive",
+                "until": 12.1,
+                "value": 1,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "appliedAt": 0.1
+              },
+              {
+                "kind": "attackDamageBlock",
+                "until": 12.1,
+                "value": 75,
+                "source": "0:h0",
+                "skill": "custom_undying_soul_rip",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": false,
+                "piercesImmunity": false,
+                "points": 9,
+                "visualSkill": "custom_undying_soul_rip",
+                "visualPoints": 9,
+                "attribution": {
+                  "abilityId": "custom_undying_soul_rip",
+                  "rootAbilityId": "custom_undying_soul_rip",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "data": {
+                  "chance": 1
+                },
+                "appliedAt": 0.1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "LINK01 shared armor ignores current bonus armor on both bodies",
+        "owner": {
+          "attack": 100,
+          "armor": 11.2,
+          "attackInterval": 1.0897435897435896,
+          "range": 5.5,
+          "moveSpeed": 0,
+          "magicResist": 0
+        },
+        "bear": {
+          "id": "0:h0:summon:0",
+          "rawArmor": 6,
+          "effective": {
+            "attack": 28,
+            "armor": 16,
+            "attackInterval": 0.9294871794871794,
+            "range": 1.5,
+            "moveSpeed": 0,
+            "magicResist": 0
+          }
+        },
+        "linkArmor": [
+          {
+            "id": "0:h0",
+            "values": [
+              {
+                "kind": "armor",
+                "until": 0.85,
+                "value": 1.2000000000000002,
+                "source": "0:h0",
+                "skill": "custom_lone_druid_spirit_link",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": true,
+                "piercesImmunity": false,
+                "points": 3,
+                "visualSkill": "custom_lone_druid_spirit_link",
+                "visualPoints": 3,
+                "attribution": {
+                  "abilityId": "custom_lone_druid_spirit_link",
+                  "rootAbilityId": "custom_lone_druid_spirit_link",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "appliedAt": 0.5
+              }
+            ]
+          },
+          {
+            "id": "0:h1",
+            "values": []
+          },
+          {
+            "id": "0:h2",
+            "values": []
+          },
+          {
+            "id": "1:h0",
+            "values": []
+          },
+          {
+            "id": "1:h1",
+            "values": []
+          },
+          {
+            "id": "0:h0:summon:0",
+            "values": [
+              {
+                "kind": "armor",
+                "until": 0.85,
+                "value": 0,
+                "source": "0:h0",
+                "skill": "custom_lone_druid_spirit_link",
+                "harmful": false,
+                "dispel": "basic",
+                "passive": true,
+                "piercesImmunity": false,
+                "points": 3,
+                "visualSkill": "custom_lone_druid_spirit_link",
+                "visualPoints": 3,
+                "attribution": {
+                  "abilityId": "custom_lone_druid_spirit_link",
+                  "rootAbilityId": "custom_lone_druid_spirit_link",
+                  "sourceUnitId": "0:h0",
+                  "ownerUnitId": "0:h0",
+                  "sourceName": "H"
+                },
+                "category": "spell",
+                "appliedAt": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "LINK02 Break wrongly removes armor and attack speed along with shared lifesteal",
+        "before": [
+          {
+            "id": "0:h0",
+            "as": 56,
+            "armor": 1.2000000000000002
+          },
+          {
+            "id": "0:h1",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "0:h2",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "1:h0",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "1:h1",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "0:h0:summon:0",
+            "as": 56,
+            "armor": 6
+          }
+        ],
+        "after": [
+          {
+            "id": "0:h0",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "0:h1",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "0:h2",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "1:h0",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "1:h1",
+            "as": 0,
+            "armor": 0
+          },
+          {
+            "id": "0:h0:summon:0",
+            "as": 0,
+            "armor": 6
+          }
+        ]
+      },
+      {
+        "name": "LINK03 shared owner restoration is generic healing without owner lifesteal amplification",
+        "heals": [
+          {
+            "type": "heal",
+            "time": 0.5,
+            "sequence": 13,
+            "source": "0:h0:summon:0",
+            "target": "0:h0",
+            "amount": 7.840000000000001
+          }
+        ],
+        "hits": [
+          {
+            "amount": 28,
+            "time": 0.5
+          }
+        ]
+      },
+      {
+        "name": "LINK04 granted native2TrueForm uses150range instead of dated225and retains original ranged capability",
+        "skills": [
+          {
+            "id": "custom_lone_druid_spirit_link",
+            "points": 9
+          },
+          null,
+          null,
+          null,
+          null,
+          {
+            "id": "lone_druid_true_form",
+            "points": 2,
+            "statParentId": "custom_lone_druid_spirit_link",
+            "statRootId": "custom_lone_druid_spirit_link",
+            "visualParentId": "custom_lone_druid_spirit_link",
+            "visualParentPoints": 9,
+            "nativeGrant": true
+          }
+        ],
+        "range": 1.5,
+        "attackCapability": "ranged",
+        "rangeOverride": [
+          {
+            "kind": "attackRangeOverride",
+            "until": 40.03333333333333,
+            "value": 1.5,
+            "source": "0:h0",
+            "skill": "lone_druid_true_form",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 2,
+            "visualSkill": "custom_lone_druid_spirit_link",
+            "visualPoints": 9,
+            "attribution": {
+              "abilityId": "lone_druid_true_form",
+              "parentAbilityId": "custom_lone_druid_spirit_link",
+              "rootAbilityId": "custom_lone_druid_spirit_link",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "appliedAt": 0.03333333333333333
+          }
+        ]
+      },
+      {
+        "name": "WAVE01 heal precedes the physical damage contrary to historical ordering",
+        "events": [
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "physical"
+          },
+          {
+            "type": "heal",
+            "time": 0.03333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 180,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "physical"
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "physical"
+          }
+        ]
+      },
+      {
+        "name": "WAVE02 Gaben multiple nearby bursts give only one enemy armor stack and apply it after first damage",
+        "events": [
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 1,
+            "status": "badJuju"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 3,
+            "status": "armor"
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 180,
+            "damageType": "physical"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 1,
+            "status": "badJuju"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": -3,
+            "status": "armor"
+          },
+          {
+            "type": "heal",
+            "time": 0.03333333333333333,
+            "sequence": 8,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 180,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 9,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 1,
+            "status": "badJuju"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 10,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 3,
+            "status": "armor"
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 11,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 207.45762711864407,
+            "damageType": "physical"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 13,
+            "source": "0:h0",
+            "target": "0:h2",
+            "amount": 1,
+            "status": "badJuju"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 14,
+            "source": "0:h0",
+            "target": "0:h2",
+            "amount": 3,
+            "status": "armor"
+          },
+          {
+            "type": "hit",
+            "time": 0.03333333333333333,
+            "sequence": 15,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 207.45762711864407,
+            "damageType": "physical"
+          }
+        ],
+        "enemyStacks": [
+          {
+            "kind": "badJuju",
+            "until": 12.033333333333333,
+            "value": 1,
+            "source": "0:h0",
+            "skill": "dazzle_shadow_wave",
+            "harmful": true,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 9,
+            "visualSkill": "dazzle_shadow_wave",
+            "visualPoints": 9,
+            "attribution": {
+              "abilityId": "dazzle_shadow_wave",
+              "rootAbilityId": "dazzle_shadow_wave",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "maxStacks": 100,
+            "appliedAt": 0.03333333333333333
+          },
+          {
+            "kind": "armor",
+            "until": 12.033333333333333,
+            "value": -3,
+            "source": "0:h0",
+            "skill": "dazzle_shadow_wave",
+            "harmful": true,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 9,
+            "visualSkill": "dazzle_shadow_wave",
+            "visualPoints": 9,
+            "attribution": {
+              "abilityId": "dazzle_shadow_wave",
+              "rootAbilityId": "dazzle_shadow_wave",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "maxStacks": 100,
+            "appliedAt": 0.03333333333333333
+          }
+        ]
+      },
+      {
+        "name": "WAVE03 Gaben grants Bad Juju but lacks the native linked Good Juju passive",
+        "skills": [
+          {
+            "id": "dazzle_shadow_wave",
+            "points": 9
+          },
+          null,
+          null,
+          null,
+          null,
+          {
+            "id": "dazzle_bad_juju",
+            "points": 3,
+            "statParentId": "dazzle_shadow_wave",
+            "statRootId": "dazzle_shadow_wave",
+            "visualParentId": "dazzle_shadow_wave",
+            "visualParentPoints": 9,
+            "nativeGrant": true
+          }
+        ]
+      },
+      {
+        "name": "WAVE04 native Bad Juju active does not add its own stack before damage",
+        "before": 1,
+        "after": 1,
+        "events": [
+          {
+            "type": "status",
+            "time": 0.06666666666666667,
+            "sequence": 17,
+            "source": "0:h0",
+            "target": "0:h0",
+            "status": "castWindup"
+          },
+          {
+            "type": "cast",
+            "time": 0.06666666666666667,
+            "sequence": 18,
+            "source": "0:h0",
+            "target": "0:h0"
+          },
+          {
+            "type": "hit",
+            "time": 0.06666666666666667,
+            "sequence": 19,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 69.15254237288136,
+            "damageType": "physical"
+          },
+          {
+            "type": "heal",
+            "time": 0.06666666666666667,
+            "sequence": 20,
+            "source": "0:h0",
+            "target": "0:h1",
+            "amount": 60,
+            "lifesteal": false
+          }
+        ]
+      },
+      {
+        "name": "SIPHON01 first pulse is0.1instead of0.25and restoration is reduced by victim MR",
+        "cast": {
+          "type": "cast",
+          "source": "0:h0",
+          "target": "1:h0",
+          "skill": "death_prophet_spirit_siphon",
+          "x": 0,
+          "y": 0,
+          "toX": 1,
+          "toY": 0,
+          "duration": 0.2,
+          "points": 3,
+          "visualSkill": "death_prophet_spirit_siphon",
+          "visualPoints": 3,
+          "time": 0.03333333333333333,
+          "sequence": 1
+        },
+        "events": [
+          {
+            "type": "hit",
+            "time": 0.13333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 5,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.13333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 5,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.23333333333333334,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 5,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.23333333333333334,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 5,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.3333333333333333,
+            "sequence": 7,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 5,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.3333333333333333,
+            "sequence": 8,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 5,
+            "lifesteal": false
+          }
+        ]
+      },
+      {
+        "name": "SIPHON02 strong target dispel cancels self-heal and future fear instead of retaining independent caster buff",
+        "dispelAt": 0.5333333333333333,
+        "events": [
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 0,
+            "source": "0:h0",
+            "target": "1:h0",
+            "status": "castWindup"
+          },
+          {
+            "type": "cast",
+            "time": 0.03333333333333333,
+            "sequence": 1,
+            "source": "0:h0",
+            "target": "1:h0"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0,
+            "status": "spiritSiphon"
+          },
+          {
+            "type": "hit",
+            "time": 0.13333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 360.00000000000006,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.13333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 360.00000000000006,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.13333333333333333,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0.2,
+            "status": "slow"
+          },
+          {
+            "type": "hit",
+            "time": 0.23333333333333334,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 360.00000000000006,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.23333333333333334,
+            "sequence": 7,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 360.00000000000006,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.23333333333333334,
+            "sequence": 8,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0.2,
+            "status": "slow"
+          },
+          {
+            "type": "hit",
+            "time": 0.3333333333333333,
+            "sequence": 9,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 360.00000000000006,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.3333333333333333,
+            "sequence": 10,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 360.00000000000006,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.3333333333333333,
+            "sequence": 11,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0.2,
+            "status": "slow"
+          },
+          {
+            "type": "hit",
+            "time": 0.43333333333333335,
+            "sequence": 12,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 360.00000000000006,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.43333333333333335,
+            "sequence": 13,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 360.00000000000006,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.43333333333333335,
+            "sequence": 14,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0.2,
+            "status": "slow"
+          },
+          {
+            "type": "hit",
+            "time": 0.5333333333333333,
+            "sequence": 15,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 360.00000000000006,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.5333333333333333,
+            "sequence": 16,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 360.00000000000006,
+            "lifesteal": false
+          },
+          {
+            "type": "status",
+            "time": 0.5333333333333333,
+            "sequence": 17,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 0.2,
+            "status": "slow"
+          }
+        ],
+        "sourceBuff": []
+      },
+      {
+        "name": "SIPHON03 full duration has60tiny packets instead of24native packets",
+        "cast": {
+          "type": "cast",
+          "source": "0:h0",
+          "target": "1:h0",
+          "skill": "death_prophet_spirit_siphon",
+          "x": 0,
+          "y": 0,
+          "toX": 1,
+          "toY": 0,
+          "duration": 0.2,
+          "points": 3,
+          "visualSkill": "death_prophet_spirit_siphon",
+          "visualPoints": 3,
+          "time": 0.03333333333333333,
+          "sequence": 1
+        },
+        "hits": [
+          {
+            "type": "hit",
+            "time": 0.13333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.23333333333333334,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.3333333333333333,
+            "sequence": 7,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.43333333333333335,
+            "sequence": 9,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.5333333333333333,
+            "sequence": 11,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.6333333333333333,
+            "sequence": 13,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.7333333333333333,
+            "sequence": 15,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.8333333333333334,
+            "sequence": 17,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 0.9333333333333333,
+            "sequence": 19,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.0333333333333332,
+            "sequence": 21,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.1333333333333333,
+            "sequence": 23,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.2333333333333334,
+            "sequence": 25,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.3333333333333333,
+            "sequence": 27,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.4333333333333333,
+            "sequence": 29,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.5333333333333332,
+            "sequence": 31,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.6333333333333333,
+            "sequence": 33,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.7333333333333334,
+            "sequence": 35,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.8333333333333333,
+            "sequence": 37,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 1.9333333333333333,
+            "sequence": 39,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.033333333333333,
+            "sequence": 41,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.1333333333333333,
+            "sequence": 43,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.2333333333333334,
+            "sequence": 45,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.3333333333333335,
+            "sequence": 47,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.433333333333333,
+            "sequence": 49,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.533333333333333,
+            "sequence": 51,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.6333333333333333,
+            "sequence": 53,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.7333333333333334,
+            "sequence": 55,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.8333333333333335,
+            "sequence": 57,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 2.933333333333333,
+            "sequence": 59,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.033333333333333,
+            "sequence": 61,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.1333333333333333,
+            "sequence": 63,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.2333333333333334,
+            "sequence": 65,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.3333333333333335,
+            "sequence": 67,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.433333333333333,
+            "sequence": 69,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.533333333333333,
+            "sequence": 71,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.6333333333333333,
+            "sequence": 73,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.7333333333333334,
+            "sequence": 75,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.8333333333333335,
+            "sequence": 77,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 3.933333333333333,
+            "sequence": 79,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.033333333333333,
+            "sequence": 81,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.133333333333333,
+            "sequence": 83,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.233333333333333,
+            "sequence": 85,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.333333333333333,
+            "sequence": 87,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.433333333333334,
+            "sequence": 89,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.533333333333333,
+            "sequence": 91,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.633333333333333,
+            "sequence": 93,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.733333333333333,
+            "sequence": 95,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.833333333333333,
+            "sequence": 97,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 4.933333333333334,
+            "sequence": 99,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.033333333333333,
+            "sequence": 101,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.133333333333333,
+            "sequence": 103,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.233333333333333,
+            "sequence": 105,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.333333333333333,
+            "sequence": 107,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.433333333333334,
+            "sequence": 109,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.533333333333333,
+            "sequence": 111,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.633333333333333,
+            "sequence": 113,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.733333333333333,
+            "sequence": 115,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.833333333333333,
+            "sequence": 117,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "hit",
+            "time": 5.933333333333334,
+            "sequence": 119,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 10,
+            "damageType": "magical"
+          }
+        ],
+        "heals": [
+          {
+            "type": "heal",
+            "time": 0.13333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.23333333333333334,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.3333333333333333,
+            "sequence": 8,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.43333333333333335,
+            "sequence": 10,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.5333333333333333,
+            "sequence": 12,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.6333333333333333,
+            "sequence": 14,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.7333333333333333,
+            "sequence": 16,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.8333333333333334,
+            "sequence": 18,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 0.9333333333333333,
+            "sequence": 20,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.0333333333333332,
+            "sequence": 22,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.1333333333333333,
+            "sequence": 24,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.2333333333333334,
+            "sequence": 26,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.3333333333333333,
+            "sequence": 28,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.4333333333333333,
+            "sequence": 30,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.5333333333333332,
+            "sequence": 32,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.6333333333333333,
+            "sequence": 34,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.7333333333333334,
+            "sequence": 36,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.8333333333333333,
+            "sequence": 38,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 1.9333333333333333,
+            "sequence": 40,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.033333333333333,
+            "sequence": 42,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.1333333333333333,
+            "sequence": 44,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.2333333333333334,
+            "sequence": 46,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.3333333333333335,
+            "sequence": 48,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.433333333333333,
+            "sequence": 50,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.533333333333333,
+            "sequence": 52,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.6333333333333333,
+            "sequence": 54,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.7333333333333334,
+            "sequence": 56,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.8333333333333335,
+            "sequence": 58,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 2.933333333333333,
+            "sequence": 60,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.033333333333333,
+            "sequence": 62,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.1333333333333333,
+            "sequence": 64,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.2333333333333334,
+            "sequence": 66,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.3333333333333335,
+            "sequence": 68,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.433333333333333,
+            "sequence": 70,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.533333333333333,
+            "sequence": 72,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.6333333333333333,
+            "sequence": 74,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.7333333333333334,
+            "sequence": 76,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.8333333333333335,
+            "sequence": 78,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 3.933333333333333,
+            "sequence": 80,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.033333333333333,
+            "sequence": 82,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.133333333333333,
+            "sequence": 84,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.233333333333333,
+            "sequence": 86,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.333333333333333,
+            "sequence": 88,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.433333333333334,
+            "sequence": 90,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.533333333333333,
+            "sequence": 92,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.633333333333333,
+            "sequence": 94,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.733333333333333,
+            "sequence": 96,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.833333333333333,
+            "sequence": 98,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 4.933333333333334,
+            "sequence": 100,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.033333333333333,
+            "sequence": 102,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.133333333333333,
+            "sequence": 104,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.233333333333333,
+            "sequence": 106,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.333333333333333,
+            "sequence": 108,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.433333333333334,
+            "sequence": 110,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.533333333333333,
+            "sequence": 112,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.633333333333333,
+            "sequence": 114,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.733333333333333,
+            "sequence": 116,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.833333333333333,
+            "sequence": 118,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "heal",
+            "time": 5.933333333333334,
+            "sequence": 120,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          }
+        ]
+      },
+      {
+        "name": "SIPHON04 increasing cast range does not increase the break distance",
+        "events": [
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 0,
+            "source": "0:h0",
+            "target": "1:h1",
+            "status": "castWindup"
+          },
+          {
+            "type": "cast",
+            "time": 0.03333333333333333,
+            "sequence": 1,
+            "source": "0:h0",
+            "target": "1:h1"
+          },
+          {
+            "type": "status",
+            "time": 0.03333333333333333,
+            "sequence": 2,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 0,
+            "status": "spiritSiphon"
+          },
+          {
+            "type": "hit",
+            "time": 0.13333333333333333,
+            "sequence": 3,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.13333333333333333,
+            "sequence": 4,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.23333333333333334,
+            "sequence": 5,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.23333333333333334,
+            "sequence": 6,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.3333333333333333,
+            "sequence": 7,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.3333333333333333,
+            "sequence": 8,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.43333333333333335,
+            "sequence": 9,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.43333333333333335,
+            "sequence": 10,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          },
+          {
+            "type": "hit",
+            "time": 0.5333333333333333,
+            "sequence": 11,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "type": "heal",
+            "time": 0.5333333333333333,
+            "sequence": 12,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "lifesteal": false
+          }
+        ],
+        "links": []
+      }
+    ]
+  },
+  "narrowAdditionalDiagnostic": {
+    "localPath": "output/c13-restoration-link/true-form-illusion-before.json",
+    "sha256": "d7177923c8796c1a3b52b32fbb5e39144043c89e471a44531ba99393316b91e5",
+    "evidence": {
+      "configurationHash": "93b6bfbc46e4e913cdf7d3d8d4d73f3f22fa14ec11f435b93a93abd0f0dacab6",
+      "before": {
+        "range": 2.25,
+        "ranged": false,
+        "form": [
+          {
+            "kind": "trueForm",
+            "until": 40.03333333333333,
+            "value": 1,
+            "source": "0:h0",
+            "skill": "lone_druid_true_form",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 2,
+            "visualSkill": "custom_lone_druid_spirit_link",
+            "visualPoints": 9,
+            "attribution": {
+              "abilityId": "lone_druid_true_form",
+              "parentAbilityId": "custom_lone_druid_spirit_link",
+              "rootAbilityId": "custom_lone_druid_spirit_link",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "removeOnDeath": false,
+            "data": {
+              "formRun": "0:h0:0:h0:slot:5:lone_druid_true_form:1",
+              "instanceKey": "0:h0:0:h0:slot:5:lone_druid_true_form:1"
+            },
+            "appliedAt": 0.03333333333333333
+          }
+        ]
+      },
+      "images": [
+        {
+          "id": "0:h0:summon:0",
+          "range": 5.5,
+          "ranged": true,
+          "form": [],
+          "skills": [
+            "custom_lone_druid_spirit_link",
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "0:h0:summon:1",
+          "range": 5.5,
+          "ranged": true,
+          "form": [],
+          "skills": [
+            "custom_lone_druid_spirit_link",
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "0:h0:summon:2",
+          "range": 5.5,
+          "ranged": true,
+          "form": [],
+          "skills": [
+            "custom_lone_druid_spirit_link",
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "redResult": {
+      "localReport": "output/c13-restoration-link/true-form-illusion-red.json",
+      "passed": 116,
+      "failed": 2,
+      "meaning": "TF06form copy and TF07matching-expiry/maxHP results failed before the narrow copy hook;TF08/09negative controls passed."
+    }
+  }
+}

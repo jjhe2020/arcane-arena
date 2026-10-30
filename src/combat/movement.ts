@@ -16,6 +16,8 @@ export interface ContinuousMoveOptions {
   cancelOnRoot?:boolean;
   /** A released leap can finish its existing trajectory after its body dies. */
   continueAfterDeath?:boolean;
+  /** Actual nonzero segment, after its transform is recorded and before termination. */
+  onMove?:(from:MotionPoint,to:MotionPoint)=>void;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 export interface MotionController {
@@ -32,6 +34,7 @@ export interface MotionController {
   respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
   continueAfterDeath?:boolean;
+  onMove?:(from:MotionPoint,to:MotionPoint)=>void;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 

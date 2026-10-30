@@ -21,6 +21,12 @@ function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,sk
  if(skillId==='void_spirit_resonant_pulse'&&layer.id==='immune')return kind==='magicimmune';
  if(skillId==='pudge_rot'&&layer.id==='dismember')return status.skill==='pudge_dismember'&&kind==='dismemberhold'&&status.harmful===true;
  if(skillId==='pudge_rot'&&layer.id==='sick')return status.skill==='pudge_rot'&&['slow','healreduction'].includes(kind)&&status.harmful===true;
+ if(skillId==='marci_guardian'&&layer.id==='buff')return kind==='sidekick'&&status.harmful!==true;
+ if(skillId==='marci_guardian'&&layer.id==='immunity')return kind==='magicimmune';
+ if(skillId==='custom_undying_soul_rip'&&layer.id==='guard')return status.skill==='item_crimson_guard'&&kind==='crimsonactive';
+ if(skillId==='custom_tusk_snowball'&&layer.id==='speed')return kind==='attackspeed'&&status.harmful!==true;
+ if(skillId==='death_prophet_spirit_siphon'&&layer.id==='fear')return kind==='fear'&&status.harmful===true;
+ if(skillId==='death_prophet_spirit_siphon'&&layer.id==='drain')return ['spiritsiphon','slow'].includes(kind)&&status.harmful===true;
  if(skillId==='custom_sven_gods_strength')return layer.id==='immune'?kind==='magicimmune':layer.id==='strength'?kind==='attackpct':false;
  if(skillId==='dragon_knight_elder_dragon_form')return status.skill===skillId&&(layer.id==='poison'?kind==='dot':layer.id==='frost_slow'?kind==='slow':false);
  if(skillId==='templar_assassin_refraction'&&layer.id==='shield')return kind==='refraction'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
@@ -138,6 +144,7 @@ export function eventVisuals(assets:AssetManifest,event:CombatEvent,units:Combat
  const resolved=resolveVisualArt(assets,{skill:event.skill,points,visualSkill:typeof event.visualSkill==='string'?event.visualSkill:undefined,visualPoints:Number(event.visualPoints??points)},points);if(!resolved)return[];
  let layers=event.type==='cast'?selectVisualLayers(resolved.art,resolved.points,'cast'):event.type==='hit'?selectVisualLayers(resolved.art,resolved.points,'hit'):event.type==='heal'?selectVisualLayers(resolved.art,resolved.points,'heal'):[];
  if(resolved.id==='pudge_rot'&&event.skill!=='pudge_dismember')layers=layers.filter(layer=>layer.id!=='clamp');
+ if(resolved.id==='morphling_waveform'&&event.type==='hit')layers=layers.filter(layer=>layer.id==='attack'?event.category==='attack':layer.id==='splash'?event.category==='spell':true);
  if(event.type==='heal')layers.push(...selectVisualLayers(resolved.art,resolved.points,'proc').filter(l=>l.role==='caster_feedback'));
  // Enter effects belong to a successful modifier application, including
  // acquired transformations, rather than merely owning the ability.

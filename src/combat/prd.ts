@@ -62,4 +62,8 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   drow_ranger_marksmanship:['marksmanship'],
   // The dated 2023 Gunslinger notes explicitly name PRD.
   muerta_pierce_the_veil:['gunslinger'],
+  // Dated2023 Crimson Guard passive block explicitly uses PRD; its active guarantee never rolls.
+  item_crimson_guard:['crimsonGuardBlock'],
+  // Dated2023 Entangling Claws explicitly uses PRD; True Form owns this trial.
+  lone_druid_true_form:['entanglingClaws'],
 };

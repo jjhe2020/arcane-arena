@@ -1,0 +1,604 @@
+{
+  "schemaVersion": 1,
+  "group": "aura-armor",
+  "auditedOn": "2026-10-30",
+  "sourcePolicy": "Locked AA numeric clauses;non-numeric native Wiki priority;category alone is not a custom-Lua proof.",
+  "configurationHash": "f90bd827844472d5a4ed12630e312bdcea12c99c7d02b6e33843925f5553b7b8",
+  "aaSelected": [
+    {
+      "id": "tusk_tag_team",
+      "base": "Temporarily applies a negative debuff aura around you, causing enemies that are attacked under it to take bonus physical damage and reduced movement speed. Lasts 5 seconds.",
+      "super": "Super: Increases bonus damage by 25 and duration by 5.",
+      "gaben": "Gaben: Increases radius by 400 and attacked units are stunned for 0.2s.",
+      "values": [
+        "BONUS DAMAGE: 25 / 50 / 100",
+        "DEBUFF DURATION: 5",
+        "MOVEMENT SLOW: 75",
+        "RADIUS: 350",
+        "SLOW DURATION: 0.5"
+      ],
+      "differences": ""
+    },
+    {
+      "id": "vengefulspirit_command_aura",
+      "base": "Vengeful Spirit's presence increases the damage of nearby friendly heroes.",
+      "super": "Super: Increases bonus damage by 16%.",
+      "gaben": "Gaben: Upon death, creates a strong illusion of the owner that deals and takes full damage and can cast all of their abilities (except passives that do not work on illusions). Illusion has 12% movement speed bonus.",
+      "values": [
+        "BASE DAMAGE BONUS: 11 / 18 / 32",
+        "RADIUS: 1200"
+      ],
+      "differences": ""
+    },
+    {
+      "id": "custom_sven_warcry",
+      "base": "The hero's Warcry heartens their allied heroes for battle, increasing their armor and movement speed. Lasts 9 seconds.",
+      "super": "Super: +10 bonus armor, +3s duration, +20% movement speed, and +400 radius.",
+      "gaben": "Gaben: Warcry is now undispellable. Units affected by Warcry gain damage equal to 2x their armor (2x the effect on caster).",
+      "values": [
+        "BONUS ARMOR: 4 / 8 / 16",
+        "BONUS SPEED: 10 / 14 / 22",
+        "DURATION: 9",
+        "RADIUS: 1000"
+      ],
+      "differences": ""
+    },
+    {
+      "id": "bristleback_warpath",
+      "base": "Bristleback works himself up into a fury every time he casts a spell, increasing his movement speed and damage.",
+      "super": "Super: Grants 5% lifesteal per stack.",
+      "gaben": "Gaben: +5 max stacks, and gains an extra Warpath stack per cast.",
+      "values": [
+        "DAMAGE PER STACK: 20 / 25 / 30",
+        "MAX STACKS: 6 / 8 / 10",
+        "MOVEMENT PER STACK: 3 / 4 / 5",
+        "STACK DURATION: 16 / 18 / 20"
+      ],
+      "differences": ""
+    },
+    {
+      "id": "custom_bristleback_viscous_nasal_goo",
+      "base": "Covers a target in snot, causing it to have reduced armor and movement speed. Multiple casts stack and refresh the duration.",
+      "super": "Super: Becomes a no target area of effect ability, applying to all enemies within range. Increases Stack Limit to 7.",
+      "gaben": "Gaben: Also applies to allies, gaining the reverse effect.",
+      "values": [
+        "ARMOR LOSS PER STACK: 1.5 / 2 / 3",
+        "BASE ARMOR LOSS: 2",
+        "BASE MOVEMENT SLOW: 15",
+        "DURATION: 5",
+        "MOVE SLOW PER STACK: 3 / 6 / 12",
+        "STACK LIMIT: 4"
+      ],
+      "differences": "Cast point removed. Increased cast range."
+    }
+  ],
+  "diagnosticInterpretationCorrections": [
+    "OriginalGoo probe correctly observedAA0point;initialnative0.3expectation waswrong. Trial0.3/650wasrevertedto0/700beforefinalproof. Actualmissing wasinstantapplication insteadofhoming.",
+    "Increasedcast range hasnoexactofficialamount;baseline700isexplicitworkingvalue,not anewWiki650calibration."
+  ],
+  "nativeSelected": {
+    "tusk_tag_team": {
+      "ID": "7322",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySound": "Hero_Tusk.FrozenSigil",
+      "AbilityCastPoint": "0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCooldown": "24 21 18 15",
+      "AbilityManaCost": "70",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage": "20 45 70 95",
+          "LinkedSpecialBonus": "special_bonus_unique_tusk_3"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "movement_slow": "75"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "slow_duration": "0.5"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "debuff_duration": "5"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "350"
+        }
+      }
+    },
+    "vengefulspirit_command_aura": {
+      "ID": "5123",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "AbilityCastRange": "1200",
+      "HasScepterUpgrade": "1",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_base_damage": "11 18 25 32",
+          "LinkedSpecialBonus": "special_bonus_unique_vengeful_spirit_2"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "aura_radius": "1200"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "scepter_illusion_damage_out_pct": "100",
+          "RequiresScepter": "1"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "scepter_illusion_damage_in_pct": "100",
+          "RequiresScepter": "1"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "scepter_illusion_ms_bonus_pct": "12",
+          "RequiresScepter": "1"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+    },
+    "sven_warcry": {
+      "ID": "5096",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "AbilitySound": "Hero_Sven.WarCry",
+      "HasShardUpgrade": "1",
+      "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_3",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+      "AbilityCooldown": "32 28 24 20",
+      "AbilityManaCost": "30 35 40 45",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "movespeed": "10 14 18 22",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_6"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_armor": "6 9 12 15",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_7"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "700"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "duration": "9",
+          "LinkedSpecialBonus": "special_bonus_unique_sven_5"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "shard_passive_armor": "6",
+          "RequiresShard": "1"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "shard_radius": "1200",
+          "RequiresShard": "1"
+        }
+      }
+    },
+    "bristleback_warpath": {
+      "ID": "5551",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityDuration": "10.0 10.0 10.0",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "damage_per_stack": "20 25 30",
+          "LinkedSpecialBonus": "special_bonus_unique_bristleback_3"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "move_speed_per_stack": "3 4 5"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "stack_duration": "16.0 18.0 20.0"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "max_stacks": "6 8 10"
+        }
+      }
+    },
+    "bristleback_viscous_nasal_goo": {
+      "ID": "5548",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Bristleback.ViscousGoo.Cast",
+      "HasScepterUpgrade": "1",
+      "AbilityCastPoint": "0.3",
+      "AbilityCooldown": "1.75",
+      "AbilityManaCost": "12 16 20 24",
+      "AbilityValues": {
+        "goo_speed": "1000",
+        "goo_duration": "5.0",
+        "base_armor": "2",
+        "armor_per_stack": {
+          "value": "1.5 2.0 2.5 3.0",
+          "special_bonus_unique_bristleback_4": "+0.75"
+        },
+        "base_move_slow": "15",
+        "move_slow_per_stack": "3 6 9 12",
+        "stack_limit": {
+          "value": "4",
+          "special_bonus_scepter": "+3"
+        },
+        "goo_duration_creep": "10.0",
+        "AbilityCastRange": {
+          "value": "650",
+          "special_bonus_unique_bristleback_5": "+150"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "bristleback_hairball": {
+      "ID": "643",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "1500",
+      "AbilityCastPoint": "0.1",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "20",
+      "AbilityManaCost": "100",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "projectile_speed": "1200"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "700"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "quill_stacks": "2"
+        }
+      }
+    }
+  },
+  "cacheRereads": [
+    {
+      "hero": "Tusk",
+      "file": "output/c8-ice-inner/Tusk.html",
+      "url": "https://web.archive.org/web/20230215191616id_/https://dota2.fandom.com/wiki/Tusk",
+      "sha256": "5741da45387f96cea559fec1553c23d12727ad2bb70206afd9e89215db028bfb",
+      "accessedOn": "2026-10-30",
+      "accessMethod": "Actually reread cached full raw page and selected ability section,not new HTTP",
+      "paraphrase": "Reread complete cached2023TagTeam section:0+0/channel interrupt,0.5linger,hero and owner-controlled unit qualifications,illusion slow-only,slow-before-damage,conditional bonus withcrit/LS/cleave/oneblock. Modern percentage/ordering text is not substituted."
+    },
+    {
+      "hero": "Vengeful_Spirit",
+      "file": "output/c9-living-field/Vengeful_Spirit.html",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit",
+      "sha256": "8d5727125070e153ebdd5057cd1d50649c3bede8d1b6aeb9c2fe49f90fd306f7",
+      "accessedOn": "2026-10-30",
+      "accessMethod": "Actually reread cached full raw page and selected ability section,not new HTTP",
+      "paraphrase": "Reread complete cached2023VengeanceAura section:base-only aura,invulnerable recipients,illusion bestow versus benefit,Break does not prevent deathillusion,108cardinalspawn/fullHPMP/freshcooldowns/heroactives/noitems/no recursive copy."
+    },
+    {
+      "hero": "Sven",
+      "file": "output/c7-fury-global/Sven.html",
+      "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Sven",
+      "sha256": "52deace762b3cdcdac7f2e42241f1cbd88d78626c8beafc03cdf4e520ed660ba",
+      "accessedOn": "2026-10-30",
+      "accessMethod": "Actually reread cached full raw page and selected ability section,not new HTTP",
+      "paraphrase": "Reread complete cached2023Warcry section:0+0/channel interrupt,hero-body mask/basic dispel,Shard undispellable active versus separate passivearmor component. AA does not expressly grant that extra passive aura;no invented6armor."
+    }
+  ],
+  "unavailableBristleArchive": {
+    "hero": "Bristleback",
+    "accessedOn": "2026-10-30",
+    "cdxUrl": "https://web.archive.org/cdx/search/cdx?url=dota2.fandom.com%2Fwiki%2FBristleback&output=json&filter=statuscode%3A200&from=2022&to=20230301&collapse=timestamp%3A6",
+    "policy": "One discovery request and at most one exact capture;no retry after429.",
+    "cdxStatus": 200,
+    "captures": [
+      [
+        "urlkey",
+        "timestamp",
+        "original",
+        "mimetype",
+        "statuscode",
+        "digest",
+        "length"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20220214100657",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "QLA37VZUO6RXSGVTYVXE5CEENKDX7IUI",
+        "138889"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20220518153434",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "EFRVG5OFU7CUZWYNOGUC4BFFXU4B727G",
+        "153308"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20220708125259",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "6JKIQ2VCVG6GQESLGLFYI3HWUCGDOYOW",
+        "141741"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20220819193746",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "WYM7T7ZHIAUQS3CKWK7KQVZVTNDB2AQL",
+        "154266"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20221101114259",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "CMBAXJG4JUD64CJFR3IEXQ5CD7SVADT5",
+        "156222"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20221205135903",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "66TMZP4XUVJTZOXBSYOLWUQ5IOTFAA7H",
+        "157233"
+      ],
+      [
+        "com,fandom,dota2)/wiki/bristleback",
+        "20230215191326",
+        "https://dota2.fandom.com/wiki/Bristleback",
+        "text/html",
+        "200",
+        "XORYAFL4WMIJARENG3BCPFVO2CKIVURL",
+        "159347"
+      ]
+    ],
+    "requestedUrl": "https://web.archive.org/web/20230215191326id_/https://dota2.fandom.com/wiki/Bristleback",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "webSources": [
+    {
+      "id": "spellImmuneInteractions",
+      "url": "https://liquipedia.net/dota2/Spell_Immunity/Enemy_Interactions",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actually read C13 through web search full indexed section;retained spell-immunity interaction table,not a newly retrieved2023capture.",
+      "observation": "TagTeam is explicitly listed under NotPiercing;that section states area effects ignore spell-immune units. The slow-inactive sentence belongs to SpectralDagger,not TagTeam."
+    },
+    {
+      "id": "bristleChangelog",
+      "url": "https://dota2.fandom.com/wiki/Bristleback/Changelogs",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actually read C13 web-indexed historical changelog clauses;the separate2023hero archive returned429 and was not rerequested.",
+      "observation": "Historical entries establish independent spell-cast stacks/noitems and the2013oldest-at-cap refresh fix;7.33passiveQuillWarpath and7.34Hairball stack change are later versions and are not imported."
+    },
+    {
+      "id": "bristleRetained",
+      "url": "https://dota2.fandom.com/wiki/Bristleblood",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C13 web-indexed retained post7.34Wiki,with explicit version qualification;not2023HTML200.",
+      "observation": "Compared Goo0.3+0/1000projectile,stack refresh and hero/creep treatment;modern conicalBristleback/changedHairball are excluded. Old700/oneGoo/twoQuills comes from pinnedKV instead."
+    },
+    {
+      "id": "shadowRealm",
+      "url": "https://dota2.fandom.com/wiki/Dark_Willow",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C13 web-indexed retainedWiki;generic untargetability clause only,no direct oldScepterGoo proof.",
+      "observation": "ShadowRealm is untargetable/phased,not ordinary invisibility. This alone does not prove every homing area exception;the existing visible areaGoo compatibility is retained and qualified."
+    }
+  ],
+  "beforeDiagnosis": [
+    {
+      "case": "TAG01 native conditional participates in critical one block and attacker lifesteal",
+      "hits": [
+        {
+          "amount": 150,
+          "type": "physical",
+          "category": "attack"
+        },
+        {
+          "skill": "tusk_tag_team",
+          "amount": 100,
+          "type": "physical",
+          "category": "spell"
+        }
+      ],
+      "healed": 75,
+      "expectedNativeSinglePacket": 350,
+      "expectedLifeSteal": 175
+    },
+    {
+      "case": "TAG02 slow occurs before a successful completely blocked attack",
+      "slow": 0,
+      "expectedSlow": 0.75
+    },
+    {
+      "case": "TAG03 native aura0.5linger versus current0.2mark",
+      "mark": [],
+      "expectedStillLingers": true
+    },
+    {
+      "case": "AURA01 sourceBreak must disable allied aura",
+      "before": 0.32,
+      "after": 0,
+      "expectedAfter": 0
+    },
+    {
+      "case": "AURA02 native undispellable recipient survives positiveStrong",
+      "aura": 0,
+      "expected": 0.32
+    },
+    {
+      "case": "AURA03 real Gstrongillusion copied active ability life cycle",
+      "image": {
+        "id": "0:p0h0:summon:0",
+        "strong": true,
+        "skills": [
+          {
+            "id": "vengefulspirit_command_aura",
+            "points": 9
+          },
+          {
+            "id": "custom_luna_lucent_beam",
+            "points": 3
+          }
+        ],
+        "cooldowns": [
+          null,
+          6.633333333333333
+        ],
+        "dead": false,
+        "health": 100000,
+        "mana": 9882.000000000007
+      },
+      "casts": [
+        {
+          "skill": "custom_luna_lucent_beam",
+          "points": 3
+        }
+      ],
+      "source": "native full resource/offCD creation and allspells but notitems;namedAApassiveallowlist must remain bounded"
+    },
+    {
+      "case": "CRY01 native active hero-only mask excludes normalcreeps",
+      "allyArmor": 16,
+      "expected": 0
+    },
+    {
+      "case": "CRY02 Garmor-to-attack snapshot vs dynamic exactAAmeaning unresolved",
+      "initial": 144,
+      "after": 144,
+      "currentArmor": 56,
+      "qualification": "Do not declare dynamic required without nativeitem/AAprovenance;initial full armor must include casterWarcrybeforecompute."
+    },
+    {
+      "case": "PATH01 distinct cast times should have independent stack deadlines",
+      "first": 0.13333333333333333,
+      "current": 2.1666666666666665,
+      "stacks": [
+        {
+          "kind": "warpath",
+          "value": 2,
+          "until": 22.166666666666668
+        },
+        {
+          "kind": "attackBonus",
+          "value": 60,
+          "until": 22.166666666666668
+        },
+        {
+          "kind": "haste",
+          "value": 0.1,
+          "until": 22.166666666666668
+        },
+        {
+          "kind": "lifesteal",
+          "value": 0.1,
+          "until": 22.166666666666668
+        }
+      ],
+      "source": "oldWikiindividualexpiry;capmustrefresholdestatcap"
+    },
+    {
+      "case": "PATH02 Death-only stacks and allbenefits survive positiveStrong",
+      "states": [],
+      "expected": "warpath/attackBonus/haste/lifesteal remain"
+    },
+    {
+      "case": "GOO01 native0.3castpoint and1000homing travel notinstant",
+      "castTime": 0.03333333333333333,
+      "currentMarks": [
+        {
+          "kind": "nasalGoo",
+          "value": 1
+        },
+        {
+          "kind": "armor",
+          "value": -5
+        },
+        {
+          "kind": "slow",
+          "value": 0.27
+        }
+      ],
+      "projectiles": 0,
+      "expectedNoMarkAtRelease": true
+    },
+    {
+      "case": "GOO02 ordinary creep duration10vs hero5",
+      "states": [
+        {
+          "kind": "nasalGoo",
+          "remaining": 5
+        },
+        {
+          "kind": "armor",
+          "remaining": 5
+        },
+        {
+          "kind": "slow",
+          "remaining": 5
+        }
+      ],
+      "expected": 10
+    },
+    {
+      "case": "GOO03 realHairballwithactuallyownedGoo failsdependentGoo component",
+      "goo": [],
+      "quills": [
+        85,
+        138
+      ],
+      "expectedOneFreeGooStack": true
+    }
+  ],
+  "beforeReport": {
+    "file": "output/c13-aura-armor/red-tests.json",
+    "sha256": "d75abdce34fcc0c4badd4147682ae3b0dc9b8a826d1a0756b7e294916c5e1ec2",
+    "passed": 3,
+    "total": 13
+  },
+  "caution": "A full2023Bristleback hero capture was not read successfully. CDX discovery200is not heroHTML200;the actual capture429stopped retries. Modern retained pages are version-qualified."
+}

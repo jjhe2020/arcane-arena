@@ -673,7 +673,7 @@
           "url": "https://dota2.fandom.com/wiki/Bristleblood",
           "accessedOn": "2026-10-30",
           "observation": "Quill calculates damage from existing stacks then increments; each stack independently expires. Hairball is fixed-ground delivery whose Quill component depends on the actual learned Quill.",
-          "versionContext": "Indexed retained Bristleback alias page after7.34: its modern one-Quill/two-Goo counts are not imported over pinned2023two-Quill native1. Goo requires separately learned Goo absent from this catalog."
+          "versionContext": "Indexed retained Bristleback alias page after7.34: its modern one-Quill/two-Goo counts are not imported over pinned2023two-Quill native1. Goo requires separately learned Goo,which exists in the AA catalog. The C12 catalog-absence inference was erroneous;C13 audits that actual learned-skill dependency without changing the raw source response or its SHA."
         },
         {
           "id": "changes",
@@ -835,14 +835,43 @@
           "id": "QS-P02",
           "kind": "super",
           "branch": "boundary",
-          "mechanism": "Historical Hairball Quill depends on the owner’s Quill; its independent native700geometry is linked to owning AA radius for one editable runtime authority as an explicit custom compatibility choice. Separately learned Goo is absent from this230catalog, so no invented Goo is emitted. Full learn/unlearn/Goo interactions are outside current catalog.",
+          "mechanism": "C13 corrects the C12 erroneous catalog-absence statement:custom_bristleback_viscous_nasal_goo exists,and a real Hairball impact now emits one free single-target Goo only when that exact learned skill is still owned. Unlearned and replaced source cases are exercised. Native Goo700geometry is independent;Quill radius still follows its owning editable AA parent as a declared compatibility policy. Full original-AA cross-Super/Gaben propagation and arbitrary learn/unlearn transitions are not recovered,so this broader boundary remains open.",
           "status": "source_pending",
           "sourceIds": [
             "aa",
             "valve",
             "wikiRetained"
           ],
-          "testEvidence": []
+          "testEvidence": [
+            {
+              "file": "tests/reference-aura-armor.test.ts",
+              "test": "GOO-03 real granted Hairball also emits one free Goo when its owner actually learned Goo"
+            },
+            {
+              "file": "tests/reference-aura-armor.test.ts",
+              "test": "GOO-09 a Hairball owner without currently learned Goo does not synthesize the missing ability"
+            },
+            {
+              "file": "tests/reference-aura-armor.test.ts",
+              "test": "GOO-11 replacing the actually learned Goo invalidates a remembered Hairball context"
+            }
+          ]
+        },
+        {
+          "id": "QS-AA-DIFF01",
+          "kind": "mechanism",
+          "branch": "explicit_aa_custom",
+          "mechanism": "AA full catalog differences explicitly says Quills always cast off cooldown even with no enemy in range. C13 removes the incorrectly introduced C12 enemy-in-radius canCast gate;ordinary mana/control/cooldown gates remain. No empty-area cast manufactures a hit or damage.",
+          "status": "passed",
+          "sourceIds": [
+            "aa"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-c13-engine.test.ts",
+              "test": "C13-E40 real Quill Spray casts off cooldown without inventing an enemy-in-range requirement"
+            }
+          ]
         }
       ],
       "unresolved": [
