@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "baseUrl": "http://127.0.0.1:5173",
+  "timestamp": "2026-10-30T08:36:02.279Z",
+  "results": [
+    {
+      "name": "storage-getItem-denied",
+      "status": "passed",
+      "evidence": {
+        "elapsed": 0.5333333333333333,
+        "savedBattleCount": 4,
+        "retrySaved": true
+      },
+      "errors": []
+    },
+    {
+      "name": "storage-setItem-denied",
+      "status": "passed",
+      "evidence": {
+        "elapsed": 0.5333333333333333,
+        "savedBattleCount": 4,
+        "retrySaved": true
+      },
+      "errors": []
+    },
+    {
+      "name": "valid-battle-save-baseline",
+      "status": "passed",
+      "evidence": {
+        "originalBytes": 24669,
+        "restoredBattleCount": 4
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-missing",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 23469,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-seed",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 24669,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-participant",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 24662,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "live-role-snapshot",
+      "status": "passed",
+      "evidence": {
+        "roles": {
+          "planned": "mage",
+          "live": "tank"
+        },
+        "liveHeading": "近战肉盾 1 Lv 1\n近战肉盾 · 女",
+        "plannedHeading": "远程法师 1 Lv 2\n远程法师 · 女",
+        "correctPortraitAndStats": true,
+        "cpuThrottle": 4,
+        "pausedControlIdentityStable": true
+      },
+      "errors": []
+    },
+    {
+      "name": "granted-skill-details-and-cooldown",
+      "status": "passed",
+      "evidence": {
+        "parent": "dragon_knight_elder_dragon_form",
+        "points": 6,
+        "deployments": 1,
+        "instanceId": "ability:1",
+        "child": "dragon_knight_fireball",
+        "actualCooldown": 19.633333333333333,
+        "displayedCooldown": 20,
+        "dialogTitle": "火焰领域",
+        "fallbackIcon": true,
+        "cpuThrottle": 4,
+        "pausedControlIdentityStable": true
+      },
+      "errors": []
+    }
+  ]
+}

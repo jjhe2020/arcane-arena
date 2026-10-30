@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 
 const URL = process.env.ARENA_TEST_URL ?? 'http://localhost:5173', SAVE = 'arcane-arena.save.v1';
-const output = 'artifacts/ui-integrity', results = [];
+const output = process.env.ARENA_UI_INTEGRITY_OUTPUT ?? 'artifacts/ui-integrity', results = [];
 await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 async function run(name, test) {
@@ -106,6 +106,10 @@ try {
 
   await run('live-role-snapshot', async page => {
     await fresh(page); await page.locator('#ready').click(); await page.locator('[data-action=pause]').click();
+    const cdp = await page.context().newCDPSession(page); await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    const roleButton = await page.locator('#infoContent [data-action=reselect]').elementHandle();
+    await page.waitForTimeout(750);
+    assert(await roleButton.evaluate(element => element.isConnected && element === document.querySelector('#infoContent [data-action=reselect]')), 'Paused role control must survive repeated info refreshes');
     const readInfo = () => page.evaluate(() => ({
       heading: document.querySelector('#infoContent .unit-heading').innerText,
       portrait: document.querySelector('#infoContent .portrait-img').style.backgroundImage,
@@ -123,7 +127,7 @@ try {
     assert.match(planned.heading, /远程法师/); assert.equal(planned.label, '下轮计划');
     assert.notEqual(planned.portrait, before.portrait); assert.notEqual(planned.stats, before.stats);
     await page.locator('[data-action=live]').click(); assert.deepEqual(await readInfo(), before);
-    return { roles, liveHeading: before.heading, plannedHeading: planned.heading, correctPortraitAndStats: true };
+    return { roles, liveHeading: before.heading, plannedHeading: planned.heading, correctPortraitAndStats: true, cpuThrottle: 4, pausedControlIdentityStable: true };
   });
 
   await run('granted-skill-details-and-cooldown', async page => {
@@ -172,6 +176,9 @@ try {
     await page.waitForFunction(id => window.arena.battles.some(b => b.events.some(e => e.type === 'cast' && e.skill === id && b.units.find(u => u.id === e.source)?.side === 0)), child);
     await page.locator('[data-action=pause]').click();
     const slot = page.locator(`#infoContent .equipped-list [data-detail="${child}"]`);
+    const cdp = await page.context().newCDPSession(page); await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    const slotNode = await slot.elementHandle(); await page.waitForTimeout(750);
+    assert(await slotNode.evaluate(element => element.isConnected && element === document.querySelector('#infoContent [data-detail="dragon_knight_fireball"]')), 'Paused granted skill must survive repeated info refreshes');
     assert.equal(await slot.count(), 1); assert.equal(await slot.locator('.skill-letter').count(), 1);
     assert.doesNotMatch(await slot.getAttribute('aria-label'), /undefined/);
     const cooldown = await page.evaluate(id => {
@@ -185,7 +192,7 @@ try {
     assert.match(await page.locator('#dialogBody').innerText(), /升级授予效果/);
     assert.match(await page.locator('#dialogFooter').innerText(), /由技能升级授予/);
     return { parent, points: acquired.points, deployments: acquired.deployments, instanceId: acquired.instanceId, child, actualCooldown: cooldown, displayedCooldown: displayed,
-      dialogTitle: await page.locator('#dialogTitle').innerText(), fallbackIcon: true };
+      dialogTitle: await page.locator('#dialogTitle').innerText(), fallbackIcon: true, cpuThrottle: 4, pausedControlIdentityStable: true };
   });
 } finally {
   await browser.close();

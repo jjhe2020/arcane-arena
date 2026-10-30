@@ -1,0 +1,93 @@
+{
+  "status": "failed",
+  "baseUrl": "http://127.0.0.1:4189",
+  "timestamp": "2026-10-30T08:35:18.423Z",
+  "results": [
+    {
+      "name": "storage-getItem-denied",
+      "status": "passed",
+      "evidence": {
+        "elapsed": 0.5333333333333333,
+        "savedBattleCount": 4,
+        "retrySaved": true
+      },
+      "errors": []
+    },
+    {
+      "name": "storage-setItem-denied",
+      "status": "passed",
+      "evidence": {
+        "elapsed": 0.5333333333333333,
+        "savedBattleCount": 4,
+        "retrySaved": true
+      },
+      "errors": []
+    },
+    {
+      "name": "valid-battle-save-baseline",
+      "status": "passed",
+      "evidence": {
+        "originalBytes": 24669,
+        "restoredBattleCount": 4
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-missing",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 23469,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-seed",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 24669,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "damaged-battle-participant",
+      "status": "passed",
+      "evidence": {
+        "corruptedBytes": 24662,
+        "backupExact": true,
+        "newBattleElapsed": 0.5333333333333333,
+        "newSaveReloaded": true
+      },
+      "errors": []
+    },
+    {
+      "name": "live-role-snapshot",
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: Paused role control must survive repeated info refreshes\n    at file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:112:5\n    at async run (file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:15:22)\n    at async file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:107:3",
+      "ui": {
+        "phase": "battle",
+        "dialog": "ARCANE ARENA对局菜单×混搭技能，构筑你的五人队伍。购买重复技能积累点数，解锁Super与Gaben。对局难度1.0× · 标准1.1×1.2×1.3×1.4×1.5× · 挑战1.6×1.7×1.8×1.9×2.0× · 极限2.1×2.2×2.3×2.4×2.5×AI 每轮金币倍率，1.0–2.5×随机种子 本地单机 · 1玩家＋7AI · 备战不限时点击技能后点击槽位分配；长按或右键查看说明。继续当前对局开始新对局 →",
+        "toast": "第一回合 · 选择技能，打造你的阵容",
+        "badge": "未保存 · 点击重试"
+      },
+      "errors": []
+    },
+    {
+      "name": "granted-skill-details-and-cooldown",
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: Paused granted skill must survive repeated info refreshes\n    at file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:181:5\n    at async run (file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:15:22)\n    at async file:///D:/Documents/ChatGPT/%E6%8A%80%E8%83%BD%E5%B0%8F%E4%B9%B1%E6%96%97/scripts/ui-integrity-smoke.mjs:133:3",
+      "ui": {
+        "phase": "battle",
+        "dialog": "ARCANE ARENA更换职业与皮肤×保留当前四个技能。更换职业免费；男女皮肤属性一致。英雄等级跟随回合，当前预览 Lv 1。远程射手Lv 1 · 生命552 · 攻击53每级 力量＋1.9 · 敏捷＋2.9 · 智力＋1.4近战刺客Lv 1 · 生命618 · 攻击55每级 力量＋2 · 敏捷＋3.2 · 智力＋1.4远程法师Lv 1 · 生命574 · 攻击47每级 力量＋2.2 · 敏捷＋1.6 · 智力＋3.3近战肉盾Lv 1 · 生命794 · 攻击64每级 力量＋4 · 敏捷＋1 · 智力＋1.6当前女性皮肤切换性别皮肤战斗中更改于下一轮生效返回",
+        "toast": "第一回合 · 选择技能，打造你的阵容",
+        "badge": "未保存 · 点击重试"
+      },
+      "errors": []
+    }
+  ]
+}

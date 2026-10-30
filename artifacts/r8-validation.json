@@ -1,0 +1,533 @@
+{
+  "status": "passed",
+  "version": "v0.1.1-r8",
+  "qualification": "Six additional user requests implemented and validated; playable development build, not full native mechanism certification",
+  "baselineCommit": "f98cbd9b600dd074c2082b8329495dd44682e01f",
+  "configurationHash": "b66448385b8795ff430ec120ac14a2265a2bb948a06b6fdf237436adaa92a017",
+  "configCounts": {
+    "granted": 109,
+    "parameters": 2629,
+    "referenceAbilities": 18,
+    "roles": 4,
+    "skillTiers": 1455,
+    "skills": 230,
+    "units": 33
+  },
+  "simulationRevision": "arena-2026-10-30-shop-heroes-r8",
+  "unit": {
+    "files": 109,
+    "tests": 4010,
+    "passed": 4010,
+    "report": "artifacts/r8-unit-tests.json",
+    "sha256": "380ff3849f6d8159df35dde9deeeb9bca3cf7203637616820f3f5837bdccd8f7"
+  },
+  "reference": {
+    "files": 71,
+    "tests": 3457,
+    "sourceFingerprint": "be53010d7f711000624dbcac0c9c269c34f00a7848719b4c3ff0d509d2440e57",
+    "proofCurrent": true,
+    "counts": {
+      "catalog": 230,
+      "reviewStarted": 230,
+      "unreviewed": 0,
+      "fullyReferenceVerified": 7,
+      "requirements": 3453,
+      "resultTestPassed": 2619,
+      "referenceVerifiedRequirements": 2619,
+      "pendingRequirements": 834,
+      "engineRequirements": 189,
+      "enginePending": 52
+    }
+  },
+  "configQA": {
+    "report": "artifacts/r7-config/qa-summary.json",
+    "files": 12,
+    "images": 6
+  },
+  "panelRegression": "artifacts/r8-panel-regression/summary.json",
+  "failedPriorActions": "https://github.com/jjhe2020/arcane-arena/actions/runs/41025775273",
+  "ultimateIcons": {
+    "count": 75,
+    "main": 62,
+    "granted": 13,
+    "sourceAndDistSHA256Checked": true
+  },
+  "rootVisualReview": [
+    "shop-menu-smoke/mobile-level-next",
+    "shop-menu-smoke/desktop-full-reserve"
+  ],
+  "productionURL": "http://127.0.0.1:4189",
+  "checks": {
+    "artifacts/release-assets-check.json": {
+      "sha256": "e8ba34120f8601cdd029e86abf3b7337fb1a7f8379968f71a45d70a6759e0c08",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-30T08:38:55.401Z",
+        "simulationRevision": "arena-2026-10-30-shop-heroes-r8",
+        "configHash": "b66448385b8795ff430ec120ac14a2265a2bb948a06b6fdf237436adaa92a017",
+        "configuration": {
+          "granted": 109,
+          "parameters": 2629,
+          "referenceAbilities": 18,
+          "roles": 4,
+          "skillTiers": 1455,
+          "skills": 230,
+          "units": 33
+        },
+        "imageReferences": 2974,
+        "characterAppearances": 8,
+        "mobileAtlases": 1330,
+        "sourceAndProductionDataIdentical": true
+      }
+    },
+    "artifacts/production-release-check.json": {
+      "sha256": "c2ad0c07b92b38d002f4afe3c7d9dd4c00a1b881ee566c5b72b3efd12b27761a",
+      "result": {
+        "status": "passed",
+        "generatedAt": "2026-10-30T08:38:56.086Z",
+        "revision": "arena-2026-10-30-shop-heroes-r8",
+        "poolSize": 100,
+        "diagnostics": {
+          "drawCalls": 3,
+          "triangles": 6,
+          "gpuTextures": 3,
+          "activeImageBytes": 62799872,
+          "cachedImageBytes": 62799872,
+          "cachedAtlases": 3,
+          "unitBodies": [
+            {
+              "id": "p0-h0",
+              "image": "/art/characters/tank-female/idle.webp",
+              "visible": true
+            }
+          ],
+          "persistentEffects": 0,
+          "persistentEffectKeys": [],
+          "transientEffects": 0,
+          "loadErrors": []
+        },
+        "errors": []
+      }
+    },
+    "artifacts/browser-smoke.json": {
+      "sha256": "e3ef0087189411ba9832dff3c3a9b2d202b1c030889e645d80254912358d6d62",
+      "result": {
+        "status": "passed",
+        "results": [
+          "本局100技能池、初始4商品及2个禁用God占位",
+          "真实购买扣3金仅入暂存、UI首次部署免费、移入暂存扣1金、暂存重新装备免费",
+          "当前战斗快照与下轮编辑隔离",
+          "暂停冻结模拟时间",
+          "战斗中保存与刷新恢复",
+          "844×390横屏商店与单位/暂存入口",
+          "手机竖屏旋转提示",
+          "4:3与21:9渲染截图"
+        ],
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/engine-report.json": {
+      "sha256": "7b5f620b986099d76e5cfe86b191c94fe9156a3cffcb07b3642dd88ef2a47735",
+      "result": {
+        "status": "passed",
+        "method": "Actual UI new game, real shop purchase into reserve, free UI deployment, real battle hits, pause, read-only ledger inspection; no injected units or statistics",
+        "purchase": [
+          "custom_windrunner_windrun"
+        ],
+        "reserved": {
+          "stack": {
+            "id": "custom_windrunner_windrun",
+            "points": 1,
+            "instanceId": "ability:1"
+          },
+          "gold": 3,
+          "reserveCount": 1,
+          "equipped": 0
+        },
+        "deployed": {
+          "stack": {
+            "id": "custom_windrunner_windrun",
+            "points": 1,
+            "instanceId": "ability:1"
+          },
+          "reserve": null,
+          "gold": 3
+        },
+        "evidence": {
+          "time": 2.8333333333333335,
+          "units": [
+            {
+              "id": "5:p5-h0",
+              "name": "远程射手 1",
+              "summoned": false,
+              "damage": 56.25,
+              "taken": 0,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 56.25,
+                  "taken": 0,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  }
+                }
+              ]
+            },
+            {
+              "id": "0:p0-h0",
+              "name": "近战肉盾 1",
+              "summoned": false,
+              "damage": 0,
+              "taken": 56.25,
+              "healing": 0,
+              "absorbed": 0,
+              "abilityStats": [
+                {
+                  "key": "[\"custom_magnataur_shockwave\",\"custom_magnataur_shockwave\",\"5:p5-h0\",\"ability:11\"]",
+                  "abilityId": "custom_magnataur_shockwave",
+                  "rootAbilityId": "custom_magnataur_shockwave",
+                  "sourceUnitId": "5:p5-h0",
+                  "sourceName": "远程射手 1",
+                  "damage": 0,
+                  "taken": 56.25,
+                  "healing": 0,
+                  "absorbed": 0,
+                  "damageTypes": {
+                    "physical": 0,
+                    "magical": 0,
+                    "pure": 0
+                  },
+                  "takenTypes": {
+                    "physical": 0,
+                    "magical": 56.25,
+                    "pure": 0
+                  }
+                }
+              ]
+            }
+          ],
+          "selectedId": "5:p5-h0",
+          "displayLabel": "震荡波",
+          "positiveHits": 1
+        },
+        "errors": []
+      }
+    },
+    "artifacts/skill-stats/report.json": {
+      "sha256": "f67cdaa71df8ff245bbbddb43939d7ef9d203cf38486714209181e9166a43cf5",
+      "result": {
+        "status": "passed",
+        "reports": [
+          {
+            "mobile": false,
+            "viewport": "1600×900",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 1600,
+              "viewport": 1600,
+              "panel": {
+                "x": 1313,
+                "y": 88,
+                "width": 268,
+                "height": 601,
+                "top": 88,
+                "right": 1581,
+                "bottom": 689,
+                "left": 1313
+              }
+            },
+            "errors": []
+          },
+          {
+            "mobile": true,
+            "viewport": "844×390",
+            "fixture": "Deterministic UI ledger fixture in a real paused battle; engine verified separately",
+            "checks": [
+              "unit and summon ability expansion",
+              "three labeled damage colors",
+              "incoming abilities and separate summon received damage",
+              "effective healing",
+              "shield absorption",
+              "expansion survives refresh",
+              "no horizontal overflow"
+            ],
+            "geometry": {
+              "scrollWidth": 844,
+              "viewport": 844,
+              "panel": {
+                "x": 595,
+                "y": 108,
+                "width": 248,
+                "height": 221,
+                "top": 108,
+                "right": 843,
+                "bottom": 329,
+                "left": 595
+              }
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/ui-integrity/report.json": {
+      "sha256": "8cb62a7307bf142002922cc0a2d627405daca9a106dc0b0ac7bfc9715504fea4",
+      "result": {
+        "status": "passed",
+        "baseUrl": "http://127.0.0.1:4189",
+        "timestamp": "2026-10-30T08:39:29.865Z",
+        "results": [
+          {
+            "name": "storage-getItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "storage-setItem-denied",
+            "status": "passed",
+            "evidence": {
+              "elapsed": 0.5333333333333333,
+              "savedBattleCount": 4,
+              "retrySaved": true
+            },
+            "errors": []
+          },
+          {
+            "name": "valid-battle-save-baseline",
+            "status": "passed",
+            "evidence": {
+              "originalBytes": 24669,
+              "restoredBattleCount": 4
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-missing",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 23469,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-seed",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24669,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "damaged-battle-participant",
+            "status": "passed",
+            "evidence": {
+              "corruptedBytes": 24662,
+              "backupExact": true,
+              "newBattleElapsed": 0.5333333333333333,
+              "newSaveReloaded": true
+            },
+            "errors": []
+          },
+          {
+            "name": "live-role-snapshot",
+            "status": "passed",
+            "evidence": {
+              "roles": {
+                "planned": "mage",
+                "live": "tank"
+              },
+              "liveHeading": "近战肉盾 1 Lv 1\n近战肉盾 · 女",
+              "plannedHeading": "远程法师 1 Lv 2\n远程法师 · 女",
+              "correctPortraitAndStats": true,
+              "cpuThrottle": 4,
+              "pausedControlIdentityStable": true
+            },
+            "errors": []
+          },
+          {
+            "name": "granted-skill-details-and-cooldown",
+            "status": "passed",
+            "evidence": {
+              "parent": "dragon_knight_elder_dragon_form",
+              "points": 6,
+              "deployments": 1,
+              "instanceId": "ability:1",
+              "child": "dragon_knight_fireball",
+              "actualCooldown": 19.9,
+              "displayedCooldown": 20,
+              "dialogTitle": "火焰领域",
+              "fallbackIcon": true,
+              "cpuThrottle": 4,
+              "pausedControlIdentityStable": true
+            },
+            "errors": []
+          }
+        ]
+      }
+    },
+    "artifacts/recovery-smoke.json": {
+      "sha256": "b634069e9c22a029b91e859c6020d510502b805cab207222cff79a76e607537f",
+      "result": {
+        "status": "passed",
+        "checks": [
+          "旧存档原样保留",
+          "备份下载逐字节一致",
+          "开始新对局后保留原备份",
+          "新版本存档可再次恢复"
+        ],
+        "errors": [],
+        "loadErrors": []
+      }
+    },
+    "artifacts/shop-menu-smoke/report.json": {
+      "sha256": "da27e1d145afe4209c65916fa3cdd2bc41587482941edee60eb0fb9f56eeb951",
+      "result": {
+        "status": "passed",
+        "actualURL": "http://127.0.0.1:4189",
+        "browserClosed": true,
+        "fixture": "Only initial gold is funded. All skill acquisition, duplicate offers, moves and sales use the existing UI/game handlers.",
+        "results": [
+          {
+            "name": "desktop",
+            "status": "passed",
+            "selectedDifficulties": [
+              "1.0",
+              "1.1",
+              "1.2",
+              "1.3",
+              "1.4",
+              "1.5",
+              "1.6",
+              "1.7",
+              "1.8",
+              "1.9",
+              "2.0",
+              "2.1",
+              "2.2",
+              "2.3",
+              "2.4",
+              "2.5"
+            ],
+            "restoredDifficulty": "2.5",
+            "icons": {
+              "standalone": 75,
+              "main": 62
+            },
+            "ultimate": "custom_doom_bringer_doom",
+            "ownedSkill": "troll_warlord_fervor",
+            "rerolls": 3,
+            "detailsInput": "right-click",
+            "highlight": [
+              "hero",
+              "reserve-only",
+              "while-scouting",
+              "removed-after-sale"
+            ],
+            "fullReserve": [
+              "new-skill-rejected-atomically",
+              "duplicate-upgraded-in-place"
+            ],
+            "levels": {
+              "current": 1,
+              "next": 2,
+              "currentBattleUnchanged": true
+            },
+            "border": {
+              "color": "rgb(255, 220, 87)",
+              "overlay": "rgb(255, 220, 87)"
+            },
+            "bounds": {
+              "width": 1600,
+              "viewport": 1600
+            },
+            "errors": []
+          },
+          {
+            "name": "mobile",
+            "status": "passed",
+            "selectedDifficulties": [
+              "1.0",
+              "2.5"
+            ],
+            "restoredDifficulty": "2.5",
+            "icons": {
+              "standalone": 75,
+              "main": 62
+            },
+            "ultimate": "custom_doom_bringer_doom",
+            "ownedSkill": "troll_warlord_fervor",
+            "rerolls": 3,
+            "detailsInput": "real-touch-long-press",
+            "highlight": [
+              "hero",
+              "reserve-only",
+              "while-scouting",
+              "removed-after-sale"
+            ],
+            "fullReserve": [
+              "new-skill-rejected-atomically",
+              "duplicate-upgraded-in-place"
+            ],
+            "levels": {
+              "current": 1,
+              "next": 2,
+              "currentBattleUnchanged": true
+            },
+            "border": {
+              "color": "rgb(255, 220, 87)",
+              "overlay": "rgb(255, 220, 87)"
+            },
+            "bounds": {
+              "width": 844,
+              "viewport": 844
+            },
+            "errors": []
+          }
+        ]
+      }
+    }
+  },
+  "boundaries": [
+    "Hero templates are user-confirmed historical mappings, not proven original AA role values.",
+    "Initial role attack-speed baseline remains100; later AGI growth contributes normally.",
+    "No new fog,trees,elevation or compensation effects.",
+    "C16 64 rendered scenarios were not rerun or represented as current r7 captures.",
+    "Native per-skill acceptance remains incomplete as quantified above.",
+    "Browser mobile emulation does not establish real-device performance; main bundle still exceeds Vite500kB warning."
+  ]
+}
