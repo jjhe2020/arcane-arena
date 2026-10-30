@@ -1,0 +1,59 @@
+import {chromium} from '@playwright/test';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const url=process.env.ARENA_TEST_URL??'http://localhost:5173',output=process.env.ARENA_RENDER_OUTPUT??'artifacts/r6-c14-attack-render';
+const configurationHash=JSON.parse(await fs.readFile('public/data/config-report.json','utf8')).hash;
+const scenarios=process.env.ARENA_RENDER_SCENARIOS?.split(',')??['searing-flight','searing-pierce','searing-no-pierce','army-native','dance-active','dance-break','dance-passive-tail','depth-field','sleight-mark','spear-drag','spear-pin-fire','lance-flight','lance-images'];
+const browser=await chromium.launch({headless:true}),reports=[];await fs.mkdir(output,{recursive:true});
+try{for(const mobile of[false,true])for(const scenario of scenarios){
+ const page=await browser.newPage({viewport:mobile?{width:844,height:390}:{width:1600,height:900},isMobile:mobile,hasTouch:mobile}),errors=[];
+ page.on('pageerror',error=>errors.push(error.message));await page.goto(url);await page.waitForFunction(()=>window.arena?.renderer);await page.locator('[data-action=close]').last().click();if(mobile)await page.locator('.mobile-nav [data-action=cinema]').tap();
+ const fixture=await page.evaluate(async scenario=>{
+  const{createBattle,stepBattle,FIXED_STEP}=await import('/src/combat.ts'),arena=window.arena;
+  const ARROW='clinkz_searing_arrows',DANCE='slark_shadow_dance',FIST='ember_spirit_sleight_of_fist',SPEAR='custom_mars_spear_of_mars',LANCE='custom_phantom_lancer_spirit_lance',ARMY='clinkz_burning_army',SHROUD='slark_depth_shroud',MKB='item_monkey_king_bar',TOXIN='viper_nethertoxin';
+  const id=scenario.startsWith('searing')||scenario==='army-native'?ARROW:scenario.startsWith('dance')||scenario==='depth-field'?DANCE:scenario.startsWith('spear')?SPEAR:scenario.startsWith('sleight')?FIST:LANCE;
+  const points=scenario==='searing-flight'||scenario==='spear-drag'?3:scenario.startsWith('lance')||scenario.startsWith('dance')?6:9;
+  const player=side=>({id:side,name:`C14QA${side}`,hp:100,gold:0,shopLevel:5,locked:false,reserve:[],shop:[],heroes:[0,1,2].map(i=>({id:`h${side}-${i}`,name:`QA${side}-${i}`,role:'mage',skin:i?'male':'female',x:i?10:0,y:i?-10:-2,skills:side===0&&i===0?[{id,points}]:side===1&&i===0&&scenario==='dance-break'?[{id:TOXIN,points:3}]:[]}))});
+  const battle=createBattle(player(0),player(1),1414,arena.definitions),caster=battle.units[0],foes=battle.units.filter(u=>u.side===1),allies=battle.units.filter(u=>u.side===0),target=foes[0];
+  for(const body of battle.units){body.hp=body.maxHp=100000;body.mana=body.maxMana=10000;body.moveSpeed=0;body.armor=body.magicResist=0;body.attack=body.attackMin=body.attackMax=100;body.nextAttack=99999;body.cooldowns=body.skills.map(()=>99999);}
+  caster.x=caster.y=0;caster.facing=0;target.x=5;target.y=0;target.facing=Math.PI;foes[1].x=6;foes[1].y=0;foes[2].x=7;foes[2].y=.5;allies[1].x=.9;allies[1].y=.2;allies[2].x=1.4;allies[2].y=-.2;
+  const enable=(unit,skill)=>{const slot=unit.skills.findIndex(s=>s?.id===skill);if(slot<0)throw Error('Missing genuine slot '+skill);unit.cooldowns[slot]=0;};
+  const step=seconds=>stepBattle(battle,seconds,arena.definitions),live=(u,kind)=>u.statuses.some(s=>s.kind===kind&&s.until>battle.time),casts=skill=>battle.events.filter(e=>e.type==='cast'&&e.skill===skill),hits=skill=>battle.events.filter(e=>e.type==='hit'&&e.skill===skill&&Number(e.amount)>0);
+  const effects=[],forms=[],noImages=[],proof={};
+  if(scenario.startsWith('searing')){
+   caster.range=7;caster.attackPoint=.1;caster.attackBackswing=.1;caster.attackInterval=1.7;caster.projectileSpeed=7;caster.mana=caster.maxMana=0;
+   if(scenario==='searing-flight'){caster.nextAttack=0;step(.3);if(!battle.projectiles.some(p=>p.source===caster.id&&p.visualSkill===ARROW))throw Error('No actual zero-mana Searing attack projectile');effects.push({image:`/${ARROW}/arrow.webp`});noImages.push(`/${ARROW}/mkb.webp`);}
+   else{let found=false;for(let i=0;i<20;i++){const before=battle.events.length;caster.nextAttack=battle.time;step(.95);caster.nextAttack=99999;const actual=battle.events.slice(before),orb=actual.find(e=>e.type==='hit'&&e.skill===ARROW&&Number(e.amount)>0),pierce=actual.some(e=>e.type==='hit'&&e.skill===MKB&&Number(e.amount)>0);if(orb&&pierce===(scenario==='searing-pierce')){found=true;proof.proc={trial:i+1,pierce,actual:actual.filter(e=>e.type==='hit').map(e=>({skill:e.skill,amount:e.amount,time:e.time}))};break;}step(.8);}if(!found)throw Error('No genuine requested Pierce outcome');effects.push({image:`/${ARROW}/hit.webp`});if(scenario==='searing-pierce')effects.push({image:`/${ARROW}/mkb.webp`});else noImages.push(`/${ARROW}/mkb.webp`);}
+  }
+  if(scenario==='army-native'){enable(caster,ARMY);step(2.3);const bodies=battle.units.filter(u=>u.sourceSkill===ARMY&&!u.dead);if(bodies.length!==5||!bodies.every(u=>u.nativeTemplateId==='npc_dota_clinkz_skeleton_archer'&&u.attackInterval===1.6))throw Error('No actual five native Skeletons');forms.push(...bodies.map(u=>({id:u.id,image:`/${ARROW}/skeleton_`})));proof.nativeBodies=bodies.map(u=>({id:u.id,hp:u.maxHp,interval:u.attackInterval,projectile:u.projectileSpeed,capability:u.attackCapability}));}
+  if(scenario.startsWith('dance')){
+   caster.hp=10000;if(scenario==='dance-break'){target.x=2;enable(target,TOXIN);step(.7);if(!live(caster,'break'))throw Error('No real Nethertoxin Break');}
+   enable(caster,DANCE);step(scenario==='dance-passive-tail'?5.65:.9);
+   if(!casts(DANCE).length)throw Error('No actual Dance');
+   if(scenario==='dance-passive-tail'){if(live(caster,'undetectable')||!live(caster,'regen'))throw Error('No genuine0.5second passive tail');effects.push({image:`/${DANCE}/passive_regen.webp`});noImages.push(`/${DANCE}/shroud.webp`);}
+   else{if(!live(caster,'undetectable'))throw Error('No active Dance concealment');effects.push({image:`/${DANCE}/shroud.webp`});if(scenario==='dance-break'){if(!live(caster,'break'))throw Error('Break already ended');noImages.push(`/${DANCE}/passive_regen.webp`);}else effects.push({image:`/${DANCE}/passive_regen.webp`});}
+  }
+  if(scenario==='depth-field'){caster.hp=10000;allies[1].hp=10000;enable(caster,SHROUD);step(.4);if(!casts(SHROUD).length||!live(allies[1],'undetectable')||live(caster,'shadowDanceActive'))throw Error('No genuine independent Shroud');effects.push({image:`/${DANCE}/depth.webp`},{image:`/${DANCE}/shroud.webp`});proof.field=battle.zones.filter(z=>z.skill===SHROUD);}
+  if(scenario==='sleight-mark'){enable(caster,FIST);step(.2);if(!casts(FIST).length||!hits(FIST).length||!live(caster,'sleightActive'))throw Error('No actual marked instant attack lifecycle');effects.push({prefix:'world:',image:`/${FIST}/mark.webp`},{image:`/${FIST}/slash.webp`});proof.hits=hits(FIST).map(e=>({time:e.time,target:e.target}));}
+  if(scenario.startsWith('spear')){
+   enable(caster,SPEAR);step(scenario==='spear-drag'?.85:1.5);
+   if(!casts(SPEAR).length||!hits(SPEAR).length)throw Error('No genuine spear contact');
+   if(scenario==='spear-drag'){if(!live(target,'spearImpaled')||live(target,'stun'))throw Error('Not in actual drag phase');effects.push({image:`/${SPEAR}/spear.webp`});noImages.push(`/${SPEAR}/pin.webp`,`/${SPEAR}/stun.webp`);}
+   else{if(!target.statuses.some(s=>s.kind==='stun'&&s.data?.spearPin))throw Error('No genuine wall pin');effects.push({prefix:'world:',image:`/${SPEAR}/pin.webp`},{image:`/${SPEAR}/stun.webp`},{prefix:'world:',image:`/${SPEAR}/fire.webp`});proof.pin=target.statuses.filter(s=>s.data?.spearPin);}
+  }
+  if(scenario.startsWith('lance')){
+   enable(caster,LANCE);step(scenario==='lance-flight'?.5:1.4);
+   if(!casts(LANCE).length)throw Error('No genuine Lance release');
+   if(scenario==='lance-flight'){if(!battle.projectiles.some(p=>p.skill===LANCE)||hits(LANCE).length)throw Error('Not in genuine tracking flight');effects.push({image:`/${LANCE}/lance.webp`});noImages.push(`/${LANCE}/slow.webp`);}
+   else{const images=battle.units.filter(u=>u.sourceSkill===LANCE&&u.illusion&&!u.dead);if(images.length!==2||!live(target,'slow'))throw Error('Missing real hit/bounce/images');effects.push({image:`/${LANCE}/slow.webp`});proof.images=images.map(u=>({id:u.id,hp:u.hp,attack:u.attack,original:u.owner,sourceSkill:u.sourceSkill}));}
+  }
+  const bodies=[caster,target,allies[1],...battle.units.filter(u=>u.owner===caster.id&&!u.dead)].map(u=>({id:u.id,x:u.x,y:u.y}));
+  const draw=arena.renderer.draw.bind(arena.renderer);window.qaC14AttackBattle=battle;arena.renderer.mode='spectate';arena.renderer.layout();arena.renderer.draw=(_a,_b,_c,_d,dt)=>draw([],[],window.qaC14AttackBattle,0,dt);
+  return{scenario,id,time:battle.time,configurationHash:arena.definitions.find(d=>d.id===id)?.configHash,effects,forms,noImages,bodies,snapshot:JSON.stringify(battle),actual:{casts:battle.events.filter(e=>e.type==='cast').map(e=>({source:e.source,skill:e.skill,time:e.time})),proof}};
+ },scenario);
+ const ready=await page.waitForFunction(f=>{const r=window.arena.renderer,fx=[...[...r.persistentFx].map(([key,v])=>({...v,key})),...r.fx.map(e=>({...e.visual,key:e.key}))];return f.bodies.every(b=>r.visuals.get(b.id)?.mesh.material.map?.image)&&f.forms.every(b=>r.visuals.get(b.id)?.clip?.image?.includes(b.image))&&f.effects.every(e=>fx.some(v=>(!e.prefix||v.key.startsWith(e.prefix))&&v.clip?.image?.includes(e.image)&&v.mesh.material.map?.image));},fixture,{timeout:10000}).catch(async error=>{await fs.writeFile(`${output}/${scenario}-failure.json`,JSON.stringify(await page.evaluate(()=>({fx:[...window.arena.renderer.persistentFx].map(([k,v])=>[k,v.clip?.image]),events:window.arena.renderer.fx.map(v=>[v.key,v.visual.clip?.image]),bodies:[...window.arena.renderer.visuals].map(([k,v])=>[k,v.clip?.image]),diagnostics:window.arena.renderer.diagnostics()})),null,2));throw error;});await ready.dispose();
+ const actual=await page.evaluate(f=>{const r=window.arena.renderer,fx=[...[...r.persistentFx].map(([key,v])=>({...v,key})),...r.fx.map(e=>({...e.visual,key:e.key}))];return{snapshot:JSON.stringify(window.qaC14AttackBattle),diagnostics:r.diagnostics(),bodies:f.bodies.map(b=>{const v=r.visuals.get(b.id);return{id:b.id,x:v.group.position.x,y:v.group.position.y,image:v.clip?.image};}),effects:f.effects.map(e=>{const v=fx.find(v=>(!e.prefix||v.key.startsWith(e.prefix))&&v.clip?.image?.includes(e.image));return{key:v.key,image:v.clip.image,x:v.group.position.x,y:v.group.position.y,opacity:v.mesh.material.opacity};}),forbiddenImages:fx.filter(v=>f.noImages.some(image=>v.clip?.image?.includes(image))).map(v=>({key:v.key,image:v.clip.image}))};},fixture);
+ assert.equal(actual.snapshot,fixture.snapshot);assert.equal(fixture.configurationHash,configurationHash);assert.deepEqual(errors,[]);assert.deepEqual(actual.diagnostics.loadErrors,[]);assert.deepEqual(actual.forbiddenImages,[]);fixture.bodies.forEach((b,i)=>assert(Math.abs(actual.bodies[i].x-b.x)<1e-6&&Math.abs(actual.bodies[i].y-b.y)<1e-6));actual.effects.forEach(e=>assert(e.opacity>0));
+ await page.screenshot({path:`${output}/${scenario}${mobile?'-mobile':''}.png`});const{snapshot:_,...evidence}=fixture;delete actual.snapshot;reports.push({scenario,mobile,fixture:evidence,...actual,errors});await page.close();
+ }await fs.writeFile(`${output}/report.json`,JSON.stringify({status:'passed',configurationHash,url,fixtureNote:'Actual final compiled engine actions and ordinary attack records;real wearer PRD success/failure,real Nethertoxin Break and native child generation. Only initial stats/positions/clocks and genuine slot availability controlled;no injected statuses,damage,FX or summons. Immutable simulation snapshot across actual renderer draw. Development visual intake,not full native acceptance.',reports},null,2)+'\n');console.log(JSON.stringify({status:'passed',scenarios:reports.length,configurationHash}));
+}finally{await browser.close();}

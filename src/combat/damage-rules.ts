@@ -4,13 +4,13 @@
 export function independentFraction(values:readonly number[],minimum=0,maximum=1):number {
   return 1-values.reduce((remaining,value)=>remaining*(1-Math.max(minimum,Math.min(maximum,Number.isFinite(value)?value:0))),1);
 }
-export interface CriticalRoll { key:string; multiplier:number; roll:()=>boolean; lifesteal?:number }
+export interface CriticalRoll { key:string; multiplier:number; roll:()=>boolean; lifesteal?:number;priority?:number;onSelected?:()=>void }
 /** Since 7.30 chance-based criticals roll strongest first and stop on success.
- * Fixed-count attack modifiers are evaluated separately so their counters still
- * advance even when a stronger critical wins. */
+ * Counter consumption belongs to each caller's contact hook. This selector
+ * does not establish native ready-counter or variable-versus-fixed ordering. */
 export function selectCritical(choices:CriticalRoll[]):{multiplier:number;lifesteal:number;key?:string} {
-  for(const choice of [...choices].sort((a,b)=>b.multiplier-a.multiplier||a.key.localeCompare(b.key))) {
-    if(choice.multiplier>1&&choice.roll())return{multiplier:choice.multiplier,lifesteal:choice.lifesteal??0,key:choice.key};
+  for(const choice of [...choices].sort((a,b)=>b.multiplier-a.multiplier||(b.priority??0)-(a.priority??0)||a.key.localeCompare(b.key))) {
+    if(choice.multiplier>1&&choice.roll()){choice.onSelected?.();return{multiplier:choice.multiplier,lifesteal:choice.lifesteal??0,key:choice.key};}
   }
   return{multiplier:1,lifesteal:0};
 }

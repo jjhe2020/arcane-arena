@@ -1,0 +1,299 @@
+{
+  "auditedOn": "2026-10-30",
+  "sourceReview": {
+    "scope": "Read-only C14intake,no new acceptance claim or fresh archive retrieval.",
+    "sources": [
+      {
+        "id": "critical-generic-2022",
+        "url": "https://web.archive.org/web/20221205135851id_/https://dota2.fandom.com/wiki/Critical_strike",
+        "capture": "20221205135851",
+        "httpStatus": 200,
+        "sha256": "2b2a00f42899b968af7edec3d4a0e8c2f2a8c10b997e984f0da12216600b026f",
+        "accessedOn": "2026-10-29",
+        "availableEvidence": "Already read complete page in C5;this pass re-read saved source metadata/excerpts. Full original HTML not presently found locally;no fresh retrieval or fresh HTML SHA claim.",
+        "paraphrase": "Generic chance-critical occurrence at beginning,not launch/landing. Fixed source rolls descend and stop on success;lower cooldown-based crit remains unused under stronger winner. Exact equal/variable or fixed-count consumption is not specified."
+      },
+      {
+        "id": "chaos-2023",
+        "url": "https://web.archive.org/web/20230215191324id_/https://dota2.fandom.com/wiki/Chaos_Knight",
+        "httpStatus": 200,
+        "sha256": "296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5",
+        "accessedOn": "2026-10-30",
+        "cache": "output/c11-phantom-ward/Chaos_Knight.html",
+        "cacheShaRevalidated": true,
+        "paraphrase": "Caller says occurrence determined during attack point and describes special attack animation. This does not establish whether first frame or terminal release is intended. Older multiple-proc wording is not silently conflated with generic strongest-first."
+      },
+      {
+        "id": "tusk-2023",
+        "url": "https://web.archive.org/web/20230215191616id_/https://dota2.fandom.com/wiki/Tusk",
+        "httpStatus": 200,
+        "sha256": "5741da45387f96cea559fec1553c23d12727ad2bb70206afd9e89215db028bfb",
+        "accessedOn": "2026-10-30",
+        "cache": "output/c8-ice-inner/Tusk.html",
+        "cacheShaRevalidated": true,
+        "paraphrase": "Passive talent procs during ordinary attacks,works on cooldown,and pays no mana/CD/on-cast effects. Passive proc takes priority during manual/autocast order,also free. Manual has separate animation bonus;exact first-frame trial and passive-win animation are not stated."
+      },
+      {
+        "id": "dawn-2023",
+        "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+        "httpStatus": 200,
+        "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864",
+        "accessedOn": "2026-10-29",
+        "availableEvidence": "Already read complete C5page;current pass uses preserved exact-clause metadata. No new HTTP/HTML verification claimed.",
+        "paraphrase": "Qualifying successful attacks charge Luminosity;ready state grants ensured critical,LS and ally recovery;Break preserves already ready critical but suppresses recovery/new charging. Higher-provider consumption and multiple ranged missiles are not directly settled."
+      }
+    ],
+    "sourceStrength": [
+      {
+        "claim": "CPA generic begin eligibility/profile snapshot and fixed descending stop",
+        "strength": "direct generic mechanism;CPA caller use follows its ordinary fixed critical type"
+      },
+      {
+        "claim": "Cancelled accepted attack does not erase its sampled trial",
+        "strength": "derived from occurrence atbegin;new direct native cancellation capture would strengthen it"
+      },
+      {
+        "claim": "Chaos first frame versus release",
+        "strength": "source terminology unresolved;keep explicit caller qualification"
+      },
+      {
+        "claim": "Walrus manual passive priority/freeCD/nooncast",
+        "strength": "direct caller rule;phase atbegin and animation on passive-win are separate inference"
+      },
+      {
+        "claim": "Walrus+CPA combined suppresses lower passive effects",
+        "strength": "generic fixed critical ordering plus Tusk proc model;combined native secondary-control observation absent"
+      },
+      {
+        "claim": "Luminosity stronger-provider consumption/variable competition",
+        "strength": "not settled;do not infer from cooldown-based MortalStrike example"
+      }
+    ]
+  },
+  "before": [
+    {
+      "id": "custom_phantom_assassin_coup_de_grace",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": true,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_phantom_assassin_coup_de_grace",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": false,
+      "beginPrd": {},
+      "afterPrd": {
+        "0:h0:slot:0:custom_phantom_assassin_coup_de_grace:critical": {
+          "probability": 0.15,
+          "failures": 0,
+          "trials": 1,
+          "successes": 1
+        }
+      }
+    },
+    {
+      "id": "custom_chaos_knight_chaos_strike",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": true,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_chaos_knight_chaos_strike",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": false,
+      "beginPrd": {},
+      "afterPrd": {
+        "0:h0:slot:0:custom_chaos_knight_chaos_strike:critical": {
+          "probability": 0.3333,
+          "failures": 0,
+          "trials": 1,
+          "successes": 1
+        }
+      }
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": true,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "ordinary",
+      "seed": 1,
+      "cancel": false,
+      "beginPrd": {},
+      "afterPrd": {
+        "0:h0:slot:0:custom_tusk_walrus_punch:walrusPunch": {
+          "probability": 0.2,
+          "failures": 0,
+          "trials": 1,
+          "successes": 1
+        }
+      }
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "manual+actualFierySoul",
+      "seed": 1,
+      "cancel": true,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "manual+actualFierySoul",
+      "seed": 1,
+      "cancel": false,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "manual+actualFierySoul",
+      "seed": 123456,
+      "cancel": true,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "custom_tusk_walrus_punch",
+      "mode": "manual+actualFierySoul",
+      "seed": 123456,
+      "cancel": false,
+      "beginPrd": {},
+      "afterPrd": {}
+    },
+    {
+      "id": "CPA450+passiveWalrus400",
+      "mode": "ordinary",
+      "seed": 1,
+      "beginPrd": {},
+      "afterPrd": {
+        "0:h0:slot:1:custom_tusk_walrus_punch:walrusPunch": {
+          "probability": 0.2,
+          "failures": 0,
+          "trials": 1,
+          "successes": 1
+        },
+        "0:h0:slot:0:custom_phantom_assassin_coup_de_grace:critical": {
+          "probability": 0.15,
+          "failures": 0,
+          "trials": 1,
+          "successes": 1
+        }
+      }
+    },
+    {
+      "id": "ChaosVariable120to245+LumEnsured180",
+      "mode": "ordinary-after-three-genuine-hits",
+      "seed": 3,
+      "afterPrd": {
+        "0:h0:slot:0:custom_chaos_knight_chaos_strike:critical": {
+          "probability": 0.3333,
+          "failures": 0,
+          "trials": 4,
+          "successes": 2
+        }
+      },
+      "selectedDamage": 134.03648368432187
+    }
+  ],
+  "interpretation": "C14 implements a once-only attack-begin occurrence resolver for accepted ordinary and attack-based active records,including cancelled attacks,fixed strongest-first PRD short-circuit and the manual Walrus passive-priority precommit branch. Those finite protocols have native sources and actual results. Chaos uses an explicitly inferred beginning-of-foreswing interpretation;equal-provider ordering,variable-versus-fixed priority,ready Luminosity consumption/ranged reservations and manual-passive-win animation timing still lack exact historical qualification. The concrete old point-only missing implementation is removed without claiming this entire native matrix complete.",
+  "implementedTests": [
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-01 actual Coup trials once at accepted attack beginning before release"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-02 cancelled ordinary windup retains its occurrence without contact or reroll"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-03 stronger Coup success suppresses the lower Walrus trial and its control"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-04 failed stronger Coup allows the lower Walrus candidate once"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-05 manual passive priority leaves cooldown and actual Fiery Soul unused"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-06 failed manual passive falls back to one genuine execution and Fiery Soul"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-07 cancelled manual seed1 retains only its trial"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-07 cancelled manual seed123456 retains only its trial"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-08 ordinary passive remains available while the active is cooling down"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-09 a removed provider retains the selected critical through release"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-10 a provider acquired during windup cannot join the accepted record"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-11 Break acquired after beginning does not rewrite a selected Coup"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-12 Break already present suppresses the passive Walrus profile"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-13 ranged release and flight retain the same occurrence and record"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-14 Walrus contact applies native stun and full slow before primary damage"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-15 replacement of an accepted active slot cannot debit or execute its successor"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-16 Chaos samples once during the windup interval under the documented begin interpretation"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-17 actual unmodified critical battles reconstruct their PRD and pending records"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-18 passive-priority protocol waives a nonzero configured cost and all execution hooks"
+    },
+    {
+      "file": "tests/reference-critical-occurrence.test.ts",
+      "test": "CO-19 actual Array secondary records spend no critical trials or learned modifiers"
+    }
+  ],
+  "currentConfigurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+  "directFetchThisPass": {
+    "attackPoint": 403,
+    "criticalStrike": 403
+  },
+  "qualification": "Historical captures previously read;source-review differentiates complete local body rehash from metadata-only re-reading. Current index terminology is corroboration,not a new historical entity."
+}

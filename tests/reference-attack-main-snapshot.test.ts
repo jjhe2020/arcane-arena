@@ -18,7 +18,7 @@ function setup(){
  const b=createBattle(player(0,[{id:GLAIVES,points:9},{id:OBS,points:1}]),player(1,[{id:OBS,points:1}],2),2717,catalog),c=b.units[0],foes=b.units.filter(u=>u.side===1),t=foes[0],secondary=foes[1];
  for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=10000;u.armor=u.magicResist=u.moveSpeed=0;u.nextAttack=99999;u.statuses.push({kind:'manaRegen',value:-BATTLE_CONFIG.baseManaRegen,until:500});}
  c.x=c.y=0;c.facing=0;c.attack=c.attackMin=c.attackMax=100;c.attackCapability='ranged';c.attackPoint=.3;c.attackBackswing=0;c.projectileSpeed=2;c.range=10;t.x=4;t.y=0;secondary.x=5;secondary.y=1;
- const step=(s:number)=>stepBattle(b,s,catalog),begin=()=>{c.nextAttack=0;step(FIXED_STEP);c.nextAttack=99999;},point=()=>{const id=[...records.values()].filter(r=>r.source===c.id).at(-1)?.id;for(let i=0;i<60&&!records.get(id??'')?.critical;i++)step(FIXED_STEP);};
+ const step=(s:number)=>stepBattle(b,s,catalog),begin=()=>{c.nextAttack=0;step(FIXED_STEP);c.nextAttack=99999;},point=()=>{const id=[...records.values()].filter(r=>r.source===c.id).at(-1)?.id;for(let i=0;i<60&&records.get(id??'')?.data.attackPointAt===undefined;i++)step(FIXED_STEP);};
  const physical=(u:CombatUnit)=>b.events.filter(e=>e.type==='hit'&&e.source===c.id&&e.target===u.id&&e.damageType==='physical'&&Number(e.amount)>0);
  const add=(id:string,points=3)=>{c.skills.push({id,points});c.cooldowns.push(0);};
  const cast=(id:string)=>{for(let i=0;i<100&&!b.events.some(e=>e.type==='cast'&&e.source===c.id&&e.skill===id);i++)step(FIXED_STEP);expect(b.events.some(e=>e.type==='cast'&&e.source===c.id&&e.skill===id)).toBe(true);c.cooldowns.fill(99999);};

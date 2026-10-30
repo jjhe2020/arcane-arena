@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 200 项；完整逐项通过 7 项。
-当前代码下，2217 条具名结果测试要求通过，2217 条同时具备逐条来源绑定；另有14项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 215 项；完整逐项通过 7 项。
+当前代码下，2423 条具名结果测试要求通过，2423 条同时具备逐条来源绑定；另有14项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -34,7 +34,7 @@
 | 回光返照 (Borrowed Time) | 审查中 | 1 / 0 / 0 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
 | 棒击大地 (Boundless Strike) | 审查中 | 1 / 1 / 1 / 1 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 蚀脑 (Brain Sap) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/bash-battery-buffs.json) |
-| 炽烈火雨 (Burning Barrage) | 审查中 | 0 / 1 / 1 / 1 / 7 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
+| 炽烈火雨 (Burning Barrage) | 审查中 | 0 / 1 / 1 / 1 / 6 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
 | 沸血之矛 (Burning Spear) | 审查中 | 4 / 2 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
 | 掘地穿刺 (Burrowstrike) | 审查中 | 0 / 1 / 1 / 1 / 8 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
 | 野性呼唤 (Call of the Wild) | 审查中 | 2 / 1 / 2 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
@@ -182,22 +182,22 @@
 | 滚雷 (Rolling Thunder) | 审查中 | 5 / 5 / 2 / 4 / 2 | 7 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
 | 腐烂 (Rot) | 审查中 | 9 / 2 / 5 / 13 / 1 | 9 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
 | 月神之箭 (Sacred Arrow) | 审查中 | 6 / 4 / 6 / 3 / 1 | 7 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
-| 灼热之箭 (Searing Arrows) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 暗影之舞 (Shadow Dance) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 暗影之境 (Shadow Realm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 灼热之箭 (Searing Arrows) | 审查中 | 8 / 0 / 4 / 6 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
+| 暗影之舞 (Shadow Dance) | 审查中 | 6 / 4 / 1 / 6 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
+| 暗影之境 (Shadow Realm) | 审查中 | 2 / 5 / 0 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 暗影波 (Shadow Wave) | 审查中 | 7 / 3 / 2 / 8 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
-| 变身 (Shapeshift) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 一箭穿心 (Sharpshooter) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 变身 (Shapeshift) | 审查中 | 1 / 1 / 1 / 1 / 1 | 5 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
+| 一箭穿心 (Sharpshooter) | 审查中 | 5 / 6 / 1 / 2 / 5 | 6 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 震荡波 (Shockwave) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 健体术 (Sidekick) | 审查中 | 10 / 0 / 3 / 1 / 0 | 4 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
-| 无影拳 (Sleight of Fist) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 无影拳 (Sleight of Fist) | 审查中 | 4 / 1 / 1 / 0 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
 | 雪球 (Snowball) | 审查中 | 6 / 2 / 1 / 1 / 5 | 4 | [审查记录](../references/dota-wiki/acceptance/motion-release.json) |
 | 噬魂 (Soul Rip) | 审查中 | 10 / 2 / 1 / 7 / 4 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 缚魂 (Soulbind) | 审查中 | 0 / 0 / 1 / 1 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
-| 战神迅矛 (Spear of Mars) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 技能窃取 (Spell Steal) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 战神迅矛 (Spear of Mars) | 审查中 | 10 / 3 / 4 / 1 / 0 | 6 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
+| 技能窃取 (Spell Steal) | 审查中 | 2 / 3 / 0 / 1 / 8 | 5 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 尖刺外壳 (Spiked Carapace) | 审查中 | 1 / 0 / 0 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
-| 灵魂之矛 (Spirit Lance) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 灵魂之矛 (Spirit Lance) | 审查中 | 7 / 2 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
 | 幽魂链接 (Spirit Link) | 审查中 | 7 / 2 / 1 / 6 / 7 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 吸魂巫术 (Spirit Siphon) | 审查中 | 6 / 5 / 1 / 4 / 5 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 撕裂大地 (Split Earth) | 审查中 | 2 / 3 / 1 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/motion-release.json) |
@@ -207,11 +207,11 @@
 | 静电连接 (Static Link) | 审查中 | 2 / 1 / 1 / 1 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
 | 粘性燃油 (Sticky Napalm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 石化凝视 (Stone Gaze) | 审查中 | 1 / 1 / 1 / 1 / 0 | 4 | [审查记录](../references/dota-wiki/acceptance/links-and-gaze.json) |
-| 召唤佣兽 (Summon Familiars) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 熊灵伙伴 (Summon Spirit Bear) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 召狼 (Summon Wolves) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 召唤佣兽 (Summon Familiars) | 审查中 | 4 / 5 / 1 / 2 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
+| 熊灵伙伴 (Summon Spirit Bear) | 审查中 | 5 / 6 / 1 / 3 / 10 | 6 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
+| 召狼 (Summon Wolves) | 审查中 | 3 / 2 / 1 / 2 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
 | 烈日炙烤 (Sun Ray) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 魂断 (Sunder) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 魂断 (Sunder) | 审查中 | 1 / 2 / 0 / 1 / 7 | 2 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 虚张声势 (Swashbuckle) | 审查中 | 1 / 1 / 1 / 1 / 1 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 摔角行家 (Tag Team) | 审查中 | 0 / 5 / 1 / 2 / 8 | 3 | [审查记录](../references/dota-wiki/acceptance/aura-armor.json) |
 | 瞄准 (Take Aim) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
@@ -225,12 +225,12 @@
 | 绝杀秘技 (Tricks of the Trade) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 怒拳破 (Unleash) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 咤 (Uproar) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 真空 (Vacuum) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 吸血灵魂 (Vampiric Spirit) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 真空 (Vacuum) | 审查中 | 2 / 4 / 1 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
+| 吸血灵魂 (Vampiric Spirit) | 审查中 | 2 / 3 / 1 / 3 / 1 | 5 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
 | 复仇光环 (Vengeance Aura) | 审查中 | 4 / 0 / 1 / 4 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/aura-armor.json) |
 | 瘴气 (Venomous Gale) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 粘稠鼻液 (Viscous Nasal Goo) | 审查中 | 3 / 1 / 0 / 0 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/aura-armor.json) |
-| 海象神拳！ (Walrus PUNCH!) | 审查中 | 1 / 1 / 1 / 1 / 1 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
+| 海象神拳！ (Walrus PUNCH!) | 审查中 | 1 / 1 / 1 / 1 / 2 | 6 | [审查记录](../references/dota-wiki/acceptance/instant-attacks.json) |
 | 战吼 (Warcry) | 审查中 | 1 / 4 / 1 / 2 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/aura-armor.json) |
 | 战意 (Warpath) | 审查中 | 3 / 2 / 1 / 2 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/aura-armor.json) |
 | 恐怖波动 (Wave of Terror) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

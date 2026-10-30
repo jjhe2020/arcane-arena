@@ -54,6 +54,18 @@
           "observation": "Valve historical cast point.2, backswing0, channel2, arrow speed1200, radius200. The captured AA arrays remain authoritative: six arrows and40/45/55 percent; Super adds35 percentage points and three arrows.",
           "versionContext": "Pinned Valve2023-02-10 commit6abdd9d. Folder name20230216 is not its source date.",
           "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "url": "https://web.archive.org/web/20230215191632id_/https://dota2.fandom.com/wiki/Clinkz",
+          "originalUrl": "https://dota2.fandom.com/wiki/Clinkz",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "capture": "20230215191632",
+          "sha256": "34ae72cc8e794cad62163671515e95d6229ebbb149e10b3bc9668eefc45ac82a",
+          "id": "c14-searing-historical",
+          "paraphrase": "Searing is independent physical spell damage,spell amplification/spell lifesteal eligible,not attack critical. Army native body/spawn/attack inheritance. Same-page Barrage total/one-instance notes conflict with independent-orb wording.",
+          "versionContext": "Direct historical Wiki capture 20230215191632;no silent import of post7.33behavior.",
+          "accessMethod": "Successful raw archive fetch. Decompressed HTML SHA revalidated from ignored cache;no full third-party HTML committed."
         }
       ],
       "requirements": [
@@ -187,17 +199,18 @@
           "id": "BARRAGE-R08",
           "kind": "combination",
           "branch": "all",
-          "rule": "a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction",
+          "rule": "Current working behavior scales the main attack critical and separately attributed Searing physical spell once by the arrow fraction. The same historicalClinkz page calls Searing an independent noncritical physical spell but describes Barrage as a single instance including conditional/Searing effects;that combo conflict is not resolved by the standalone orb rule. The result test protects the selected implementation and is not native-combination acceptance.",
           "sourceIds": [
             "aa",
             "archive",
-            "valve"
+            "valve",
+            "c14-searing-historical"
           ],
-          "status": "passed",
+          "status": "source_pending",
           "testEvidence": [
             {
               "file": "tests/reference-mobility-fields.test.ts",
-              "test": "BARRAGE-08 a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction"
+              "test": "BARRAGE-08 Searing Arrows is an independent physical spell outside the main attack critical"
             }
           ]
         },

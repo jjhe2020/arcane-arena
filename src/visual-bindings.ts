@@ -13,7 +13,7 @@ export function resolveVisualArt(assets:AssetManifest,source:VisualSource,fallba
  const art=id?assets.skills[id] as VisualSkillArt|undefined:undefined;
  return art&&id?{id,art,points:id===source.skill?source.points??(source.visualSkill===source.skill?source.visualPoints:undefined)??fallbackPoints:source.visualPoints??source.points??fallbackPoints}:undefined;
 }
-function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,skillId:string){
+function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,skillId:string,source?:CombatUnit){
  const role=layer.role,kind=status.kind.toLowerCase(),self=status.source===unit.id;
  if(skillId==='custom_storm_spirit_overload'&&layer.id==='ready')return self&&kind==='overloadcharges'&&(status.value??0)>0;
  if(skillId==='omniknight_purification'&&layer.id==='guard')return kind==='damagereduction'&&(status.value??0)>0;
@@ -30,6 +30,12 @@ function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,sk
  if(skillId==='custom_sven_gods_strength')return layer.id==='immune'?kind==='magicimmune':layer.id==='strength'?kind==='attackpct':false;
  if(skillId==='dragon_knight_elder_dragon_form')return status.skill===skillId&&(layer.id==='poison'?kind==='dot':layer.id==='frost_slow'?kind==='slow':false);
  if(skillId==='templar_assassin_refraction'&&layer.id==='shield')return kind==='refraction'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
+ if(skillId==='slark_shadow_dance'&&layer.id==='shroud')return kind==='undetectable'&&(status.skill==='slark_shadow_dance'||status.skill==='slark_depth_shroud');
+ if(skillId==='slark_shadow_dance'&&layer.id==='passive_regen')return kind==='regen'&&(status.value??0)>0&&!(status.data?.suppressWithSourceBreak&&source?.statuses.some(s=>s.kind==='break'));
+ if(skillId==='custom_mars_spear_of_mars'&&layer.id==='stun')return kind==='stun'&&typeof status.data?.spearPin==='string';
+ if(skillId==='custom_phantom_lancer_spirit_lance'&&layer.id==='slow')return kind==='slow'&&status.harmful===true;
+ if(skillId==='custom_visage_summon_familiars'&&layer.id==='stone_shell')return ['visage_summon_familiars_stone_form','aa_granted_visage_stone_form'].includes(status.skill??'')&&typeof status.data?.stoneRun==='string'&&['selfstun','invulnerable'].includes(kind);
+ if(skillId==='custom_visage_summon_familiars'&&layer.id==='silent')return status.skill==='visage_silent_as_the_grave'&&kind==='invisible'&&typeof status.data?.silentRun==='string';
  if(role==='permanent_stat_mark')return status.skill?.endsWith(':persistent')===true&&status.harmful!==true&&/strength|agility|intelligence/.test(kind)&&(status.value??0)>0;
  if(/^summon_/.test(role))return !!unit.summoned;
  if(/^target_stun$|^stun$/.test(role))return /stun|chrono|petrif/.test(kind);
@@ -60,11 +66,13 @@ export function statusVisuals(assets:AssetManifest,units:CombatUnit[],time:numbe
    const source=units.find(u=>u.id===status.source),points=source?.skills.find(s=>s?.id===status.skill)?.points??1;
    const resolved=resolveVisualArt(assets,{...status,skill:status.skill},points);if(!resolved)continue;
    for(const layer of selectVisualLayers(resolved.art,resolved.points,'status')){
-    if(!semanticStatus(layer,status,unit,resolved.id))continue;
+    if(!semanticStatus(layer,status,unit,resolved.id,source))continue;
     const key=`s:${unit.id}:${status.source}:${resolved.id}:${layer.id}`;
     result.set(key,{key,clip:layer.clip,x:unit.x,y:unit.y,age:time,size:Number(layer.clip.worldSize??3.6),angle:/weapon_|attack_buff/.test(layer.role)?unit.facing+Math.PI/2:0,z:.6,loop:true});
    }
   }
+  const memories=((unit.stolenAbilities??[]) as {id:string;slot:number;until:number}[]).filter(entry=>entry.until>time&&unit.skills[entry.slot]?.id===entry.id);
+  if(memories.length){const id='custom_rubick_spell_steal',art=assets.skills[id] as VisualSkillArt|undefined,points=unit.skills.find(s=>s?.id===id)?.points??1;if(art)for(const layer of selectVisualLayers(art,points,'status',['memory'])){const key=`s:${unit.id}:${unit.id}:${id}:memory`;result.set(key,{key,clip:layer.clip,x:unit.x,y:unit.y,age:time,size:Number(layer.clip.worldSize??3.6),angle:0,z:.6,loop:true});}}
   for(const skill of unit.skills){if(!skill)continue;
    if(skill.id==='custom_monkey_king_jingu_mastery'&&Number(unit[`${skill.id}:charges`]??0)>0){const art=assets.skills[skill.id] as VisualSkillArt|undefined;if(art)for(const layer of selectVisualLayers(art,skill.points,'status',['charged'])){const key=`s:${unit.id}:${unit.id}:${skill.id}:${layer.id}`;result.set(key,{key,clip:layer.clip,x:unit.x,y:unit.y,age:time,size:Number(layer.clip.worldSize??3.6),angle:unit.facing+Math.PI/2,z:.6,loop:true});}}
    if(skill.id==='custom_troll_warlord_berserkers_rage'){
@@ -145,6 +153,8 @@ export function eventVisuals(assets:AssetManifest,event:CombatEvent,units:Combat
  let layers=event.type==='cast'?selectVisualLayers(resolved.art,resolved.points,'cast'):event.type==='hit'?selectVisualLayers(resolved.art,resolved.points,'hit'):event.type==='heal'?selectVisualLayers(resolved.art,resolved.points,'heal'):[];
  if(resolved.id==='pudge_rot'&&event.skill!=='pudge_dismember')layers=layers.filter(layer=>layer.id!=='clamp');
  if(resolved.id==='morphling_waveform'&&event.type==='hit')layers=layers.filter(layer=>layer.id==='attack'?event.category==='attack':layer.id==='splash'?event.category==='spell':true);
+ if(resolved.id==='clinkz_searing_arrows'&&event.type==='hit')layers=layers.filter(layer=>layer.id==='mkb'?event.skill==='item_monkey_king_bar':event.skill!=='item_monkey_king_bar');
+ if(resolved.id==='custom_mars_spear_of_mars'&&event.type==='hit')layers=layers.filter(layer=>layer.id!=='pin');
  if(event.type==='heal')layers.push(...selectVisualLayers(resolved.art,resolved.points,'proc').filter(l=>l.role==='caster_feedback'));
  // Enter effects belong to a successful modifier application, including
  // acquired transformations, rather than merely owning the ability.

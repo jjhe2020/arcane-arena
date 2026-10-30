@@ -665,6 +665,13 @@
           "versionContext": "Valve shipped KV, actual commit 2023-02-10 (6abdd9d). Folder name 20230216 is not its source date; AA patch match remains unproven.",
           "readMethod": "Pinned local Valve raw/parsed files, source SHA256 recorded in references/dota-20230216/sources.json.",
           "localEvidence": "references/dota-20230216/parsed/npc_abilities.json"
+        },
+        {
+          "id": "c14-tusk-2023",
+          "url": "https://web.archive.org/web/20230215191616id_/https://dota2.fandom.com/wiki/Tusk",
+          "accessedOn": "2026-10-30",
+          "versionContext": "2023-02-15 full archived entity,existing complete capture locally rehashed this pass;SHA256 5741da45387f96cea559fec1553c23d12727ad2bb70206afd9e89215db028bfb",
+          "observation": "Passive Walrus can take priority during a manual order without mana,cooldown or cast triggers;contact applies knockback/stun and the full airborne-plus-postlanding slow before main damage. The custom AA Break landing policy remains separate."
         }
       ],
       "requirements": [
@@ -697,18 +704,18 @@
             {
               "file": "tests/reference-instant-attacks.test.ts",
               "test": "Walrus attack point is multiplied by .6 and scales with attack speed while preserving attack cadence"
-          },
-          {
-            "file": "tests/reference-instant-attacks.test.ts",
-            "test": "Walrus waits for a preceding ordinary attack cycle instead of granting a free extra active attack"
-          },
-          {
-            "file": "tests/reference-instant-attacks.test.ts",
-            "test": "Walrus remaining attack windup follows mid-action attack speed and ignores spell cast-speed bonuses"
-          },
-          {
-            "file": "tests/reference-instant-attacks.test.ts",
-            "test": "Walrus cannot start its active attack while disarmed"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus waits for a preceding ordinary attack cycle instead of granting a free extra active attack"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus remaining attack windup follows mid-action attack speed and ignores spell cast-speed bonuses"
+            },
+            {
+              "file": "tests/reference-instant-attacks.test.ts",
+              "test": "Walrus cannot start its active attack while disarmed"
             }
           ],
           "status": "passed"
@@ -717,15 +724,16 @@
           "id": "WA-03",
           "kind": "super",
           "branch": "super",
-          "mechanism": "Final1.4air precedes historical slow and current AA landing-break interpretation.",
+          "mechanism": "Final1.4air and5.4total slow are applied before damage;custom Break at landing remains an explicit separate unproven interpretation.",
           "sourceIds": [
             "aa",
-            "valve"
+            "valve",
+            "c14-tusk-2023"
           ],
           "testEvidence": [
             {
               "file": "tests/reference-instant-attacks.test.ts",
-              "test": "Walrus zero-damage landed attacks still disable and its final Super air time precedes landing slow"
+              "test": "Walrus zero-damage landed attacks apply full slow before damage and final Super break at landing"
             }
           ],
           "status": "passed"
@@ -764,7 +772,7 @@
             },
             {
               "file": "tests/reference-instant-attacks.test.ts",
-              "test": "Walrus zero-damage landed attacks still disable and its final Super air time precedes landing slow"
+              "test": "Walrus zero-damage landed attacks apply full slow before damage and final Super break at landing"
             }
           ],
           "status": "passed"
@@ -790,6 +798,42 @@
           ],
           "testEvidence": [],
           "status": "pending"
+        },
+        {
+          "id": "WA-C14-PASSIVE-PRIORITY",
+          "kind": "combination",
+          "branch": "gaben",
+          "mechanism": "Actual manual Walrus shares one begin record with its released attack. A selected passive path skips mana,CD,cast event,before-effect/executed/onCast hooks;its failed passive falls back to one genuine manual execution. Cancelled manual windup has no contact or costs;ordinary passive works while the active cools down. The nonzero75cost stimulus is a protocol fixture,not an AA default numeric change. Passive-win animation-factor and native active incoming-start notifications remain open.",
+          "sourceIds": [
+            "c14-tusk-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-05 manual passive priority leaves cooldown and actual Fiery Soul unused"
+            },
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-06 failed manual passive falls back to one genuine execution and Fiery Soul"
+            },
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-07 cancelled manual seed1 retains only its trial"
+            },
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-07 cancelled manual seed123456 retains only its trial"
+            },
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-08 ordinary passive remains available while the active is cooling down"
+            },
+            {
+              "file": "tests/reference-critical-occurrence.test.ts",
+              "test": "CO-18 passive-priority protocol waives a nonzero configured cost and all execution hooks"
+            }
+          ],
+          "status": "passed"
         }
       ],
       "unresolved": [
@@ -798,7 +842,7 @@
         "Autocast UI, silence overrides, ranged punch projectile timing and airborne height/rotation/death exceptions are not implemented or accepted.",
         "PRD uses calibrated project coefficients, not a recovered Valve coefficient table.",
         "Snowball/illusion/Break conditions are coded from Wiki but lack a complete dedicated result-test matrix.",
-        "A passive proc taking priority over a simultaneously ordered active punch is not modeled: the active busy guard prevents a second roll; resource/cooldown precedence remains pending."
+        "C14 implements passive-priority precommit and cancellation;the inherited .6manual attack-factor timing when a passive wins and manual incoming-start callback eligibility remain explicit historical evidence boundaries."
       ],
       "upgradeProvenance": [
         {

@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { applyDamage, createBattle, stepBattle } from '../src/combat';
+import { applyDamage, BATTLE_BOUNDS, createBattle, stepBattle } from '../src/combat';
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import { MORE_PROGRAMS } from '../src/skill-effects-more';
 import { MORE_CHILD_DEFINITIONS } from '../src/skill-effects-more-children';
-import {skillBalance} from '../src/config';
+import {BATTLE_CONFIG,skillBalance} from '../src/config';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
 function player(id: number, skill?: string, points = 3, count = 1): Player {
@@ -628,16 +628,17 @@ describe('catalog-driven additional skills', () => {
     expect(state.events.filter(e => e.type === 'hit' && e.source === caster.id && e.target === target.id && (e.amount ?? 0) > 0)).toHaveLength(1);
   });
 
-  it('Spear of Mars damages on contact and carries a hero continuously instead of waiting then teleporting', () => {
+  it('Spear of Mars damages on contact and carries a hero continuously to the arena wall before pinning', () => {
     const state = battle('custom_mars_spear_of_mars', 3), [caster, target] = state.units;
     caster.statuses.push({ kind: 'disarm', until: 200 }); target.x = 0; target.y = 2;
     advance(state, .7);
     expect(state.events.filter(e => e.type === 'hit' && e.skill === 'custom_mars_spear_of_mars')).toHaveLength(1);
     expect(target.y).toBeGreaterThan(2); expect(target.y).toBeLessThan(10);
     expect(target.statuses.some(s => s.kind === 'selfStun' && s.skill === 'custom_mars_spear_of_mars')).toBe(true);
-    advance(state, .6);
-    expect(target.y).toBeCloseTo(10);
-    expect(target.statuses.some(s => ['stun', 'selfStun'].includes(s.kind) && s.skill === 'custom_mars_spear_of_mars')).toBe(false);
+    advance(state, .9);
+    expect(target.y).toBeCloseTo(BATTLE_BOUNDS.y-BATTLE_CONFIG.bodyRadius);
+    expect(target.statuses.some(s => s.kind==='stun' && s.skill === 'custom_mars_spear_of_mars')).toBe(true);
+    expect(target.statuses.some(s => s.kind==='selfStun' && s.skill === 'custom_mars_spear_of_mars')).toBe(false);
   });
 
   it('Gaben Spear pins both Super passengers at the wall before its projectile bounces away', () => {

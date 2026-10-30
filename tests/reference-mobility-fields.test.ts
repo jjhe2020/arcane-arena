@@ -45,8 +45,8 @@ describe('Burning Barrage historical reference results',()=>{
  it('BARRAGE-07 the real attack arrow is stopped at an enemy Arena boundary',()=>{
   const{b,t}=match(BARRAGE);t.y=4;b.arenas=[{source:t.id,side:1,x:0,y:4,radius:2,until:100}];castOnce(b,BARRAGE);advance(b,3);expect(hits(b,BARRAGE,t)).toHaveLength(0);expect(b.events.filter(e=>e.skill===BARRAGE&&e.outcome==='arenaBlocked')).toHaveLength(6);
  });
- it('BARRAGE-08 a learned Searing Arrows modifier and guaranteed critical are both included before the arrow fraction',()=>{
-  const{b,u,t}=match(BARRAGE);t.y=-1;u.skills.push({id:'clinkz_searing_arrows',points:3});u.cooldowns.push(1000);t.statuses.push({kind:'targetCritMultiplier',value:3,until:100});castOnce(b,BARRAGE);advance(b,2.5);expect(hits(b,BARRAGE,t)).toHaveLength(6);for(const hit of hits(b,BARRAGE,t))expect(hit.amount).toBeCloseTo((100+80)*3*.55);
+ it('BARRAGE-08 Searing Arrows is an independent physical spell outside the main attack critical',()=>{
+  const{b,u,t}=match(BARRAGE);t.y=-1;u.skills.push({id:'clinkz_searing_arrows',points:3});u.cooldowns.push(1000);t.statuses.push({kind:'targetCritMultiplier',value:3,until:100});castOnce(b,BARRAGE);advance(b,2.5);expect(hits(b,BARRAGE,t)).toHaveLength(6);for(const hit of hits(b,BARRAGE,t))expect(hit.amount).toBeCloseTo(100*3*.55);const orb=hits(b,'clinkz_searing_arrows',t);expect(orb).toHaveLength(6);for(const hit of orb){expect(hit.amount).toBeCloseTo(80*.55);expect(hit.category).toBe('spell');expect(hit.damageType).toBe('physical');}
  });
  it('BARRAGE-09 source death preserves an emitted arrow and prevents the remaining channel releases',()=>{
   const{b,u,t}=match(BARRAGE,3,2);t.y=5;castOnce(b,BARRAGE);applyDamage(b,t,u,2e6,'pure','fixture');advance(b,1);expect(hits(b,BARRAGE,t)).toHaveLength(1);

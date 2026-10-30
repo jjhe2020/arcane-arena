@@ -111,7 +111,7 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
       caster.x = caster.y = 0; caster.mana = caster.maxMana = 1000; caster.moveSpeed = 0; caster.nextAttack = 100;
       enemy.x = 0; enemy.y = 10; enemy.hp = enemy.maxHp = 100000; enemy.armor = 0; enemy.moveSpeed = 0; enemy.nextAttack = 100;
       advance(battle, 2.2); const bone = battle.units.find(u => u.extraVampiricSkeleton)!;
-      expect(bone.attackMin).toBe(22); expect(bone.attackMax).toBe(27);
+      expect(bone.attackMin).toBe(22+(points>=6?24:0)); expect(bone.attackMax).toBe(27+(points>=6?24:0));
       for (const u of battle.units.filter(u => u !== enemy)) { u.x = -10; u.y = -10; u.moveSpeed = 0; u.nextAttack = 100; }
       bone.x = 0; bone.y = 9; bone.nextAttack = battle.time;
       const start = battle.time; advance(battle, 8);
@@ -635,7 +635,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     advance(battle, .7); const bear = battle.units.find(u => u.extraSpiritBear)!;
     expect(bear).toBeDefined(); expect(bear.attack).toBe(28); expect(bear.maxHp).toBe(3000);
     expect(bear.strength).toBe(0); expect(bear.agility).toBe(0); expect(bear.intelligence).toBe(0);
-    expect(status(bear, 'attackBonus')?.value).toBe(59); expect(status(bear, 'attackSpeed')?.value).toBe(80);
+    expect(bear.statuses.filter(s=>s.kind==='attackBonus').reduce((sum,s)=>sum+(s.value??0),0)).toBe(59); expect(bear.statuses.filter(s=>s.kind==='attackSpeed').reduce((sum,s)=>sum+(s.value??0),0)).toBe(80);
   });
   it('summons eight upgraded skeletons and revives them indefinitely without extending their lifetime', () => {
     const id = 'custom_skeleton_king_vampiric_aura', battle = createBattle(player(0, [{ id, points: 9 }]), player(1), 7, catalog);
@@ -645,7 +645,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; }
     const bone = bones[0], expires = bone.expiresAt;
     for (let death = 0; death < 2; death++) { applyDamage(battle, enemy, bone, 9999, 'pure'); expect(bone.dead).toBe(true); advance(battle, 3.1); expect(bone.dead).toBe(false); }
-    expect(bone.extraSkeletonLives).toBe(2); expect(bone.expiresAt).toBe(expires);
+    expect(battle.events.filter(e=>e.type==='death'&&e.target===bone.id)).toHaveLength(2);expect(battle.events.filter(e=>e.type==='status'&&e.status==='revived'&&e.source===bone.id)).toHaveLength(2); expect(bone.expiresAt).toBe(expires);
   });
   it('applies friendly Purifying Flames nonlethality after magic resistance rather than reducing its raw damage', () => {
     const id = 'custom_oracle_fortunes_end', a = player(0, [{ id, points: 6 }]); a.heroes[0].x = 0; a.heroes[0].y = 0;

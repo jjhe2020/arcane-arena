@@ -2,7 +2,7 @@
 
 状态：开发中，尚未发布。完整目标仍为230技能的机制、时序和相关组合原作逐项验收；本文件不是完成证明。
 
-当前模拟修订：`arena-2026-10-30-c10-r6`；上一源码检查点为`arena-2026-10-30-c9-r6`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。非数值机制优先核对Wiki；AA类别标签本身不被当作已确认的自定义Lua。
+当前模拟修订：`arena-2026-10-30-c14-r6`；本批基线为 C13 提交 `cc20fe438c1ec657b85f77ec22c2a033ce1a42d9`。AA网页230项原始英文目录已重新取得并与保留快照逐字段比较；数值和升级英文条款没有被现代Dota数值覆盖。具体证据见`artifacts/aa-official-catalog-20261029-audit.json`。非数值机制优先核对Wiki；AA类别标签本身不被当作已确认的自定义Lua。
 
 ## 当前实现
 
@@ -150,6 +150,15 @@
 - 最终配置hash`f90bd827844472d5a4ed12630e312bdcea12c99c7d02b6e33843925f5553b7b8`：230主、93授予、19原生参考、1418档、2648参数、20单位、四职业。24域白名单、93新增语义参数/78旧死字段删除、4新ID12native行及TrueForm/BadJuju补4行，Storm参考域晋升授予。12表既有样式/行高/冻结/列宽/表头保持。三xlsx补6+4+2个真实autoFilter节点，其他ZIPentry原文不变；该格式修复不改变canonicalhash。单位/经济本仅筛选格式字节变化，未错误称整本字节同基线。41真实SHA及配置图见`artifacts/r6-c13-config-validation.json`。
 - 最终66场实际开发模块桌面/横屏通过（恢复22、运动24、光环20），明确正反例无提前guard/fear/speed或miss攻击画面；8个同时到达IceShards分别显示56实段/8组/8墙体。root抽查代表PNG与配置图。生产4185资源/浏览器/有效统计/固定账本/UI完整性8例/恢复共7报告通过，类型和构建通过；大代码块与真机性能边界保持。
 - 汇总`artifacts/r6-c13-validation.json`，全仓`artifacts/r6-c13-unit-tests.json`。明确保留AA过量共享/多召唤聚合/未知Lua与偷技生命周期、不可达原版外部技能组合、Torrent私有预警、全屏障/反射/HPLOSS/吸血顺序及普通暴击试验起点等开放项；没有r6 tag或Release。C14后续仅ignored只读预检，不污染本指纹。
+
+2026-10-30第十四源码检查点（C14）实际通过：
+
+- 全仓97文件、3568/3568；来源专项61文件、3077/3077。当前指纹`1f16c6a20f9e6d82475170a2780b3cc60ce56622eae7bd4d9c7f29cccaf4deaa`。215已开始、15未审、整项7通过；3196技能要求中2423有来源和当前结果、773未闭合，100共用要求中14未闭合。11条新增有限协议不代替全原生矩阵。
+- 完成召唤谱系、目标控制、攻击状态三组15项的本批实现与审查，全部保留partial；专项63/109/94，根协议56。攻击开始统一抽取暴击、取消不退已发生判定、固定倍率强者先试和Walrus免费被动优先均有真结果；Chaos准确首帧、变量/固定/蓄力暴击和特殊偷技状态仍单独待证。
+- 修正熊灵原生模板继承漏合并、摧毁建筑条件附伤与身体自身Break；保AA28基攻和独立物品59。重召/返回/石化、真空强驱散与Waveform、Sunder魂缚轮换、Sharpshooter非引导瞄准、Realm释放快照、Searing独立包、Dance半秒得失、Sleight真实充能、Spear连续钉墙及Lance实际弹跳/原目标订单均有有限来源与结果。Barrage同页合包、Spear首跳和总额冲突如实降为待证，没有改时钟凑数。
+- 最终hash`fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e`：230主、104授予、18参考、1439档、2637参数、30单位、4职业。34域白名单、1329旧档未动、21新增原生行、187旧参数删除；旧20单位/职业/规则不变、经济本字节同基线。12页样式/冻结/表头/行高/列宽和12实际筛选通过，33真实SHA及21范围配置图记录于配置验证artifact。
+- 76场最终开发模块desktop/mobile实际画面全部通过，含MKB真成败、Dance真实Break/仅恢复尾期、拖拽无提前pin、真钉墙、石像、独立大坏狼和真正敌方狼杀骷髅后的重生。修复Army错用角色图集、BigWolf无独立身体绑定；NormalFamiliar没有GheroShell是正确tier差异。旧失败诊断不沿用为最终画面。
+- `config:check`、类型、生产构建和4186端口共7生产报告通过；2899图/1330移动图集、UI完整性8例、统计分类与恢复通过。首次prebuild写报告遇Windows临时文件占用，顺序重试通过。完整记录为`docs/r6-c14-progress.md`、`artifacts/r6-c14-validation.json`；大代码块、真机性能、未知AA Lua/历史页及复杂伤害/继承等边界保留，未创建r6tag或Release。
 
 后续变化后的实际状态以[逐项状态](skill-reference-status.md)、`public/data/reference-acceptance.json`和`artifacts/reference-acceptance-proof.json`为准。指纹过期时，分项结果不会沿用为当前通过。
 

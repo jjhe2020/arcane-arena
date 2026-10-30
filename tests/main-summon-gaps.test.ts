@@ -73,14 +73,14 @@ describe('historical summon behavior gaps', () => {
   });
   it('makes Standard wolves invisible, reveals attacks, and fades again two seconds after their last attack', () => {
     const h = setup('custom_lycan_summon_wolves', 3); advance(h.battle, .6);
-    const wolf = h.battle.units.find(u => u.wolfCripple)!; wolf.moveSpeed = 0; wolf.nextAttack = 100;
+    const wolf = h.battle.units.find(u => u.sourceSkill === 'custom_lycan_summon_wolves')!; wolf.moveSpeed = 0; wolf.nextAttack = 100;
     expect(status(wolf, 'invisible')).toBeDefined();
     wolf.x = h.enemy.x; wolf.y = h.enemy.y - 1; wolf.nextAttack = h.battle.time; advance(h.battle, .5); wolf.nextAttack = 100;
     expect(status(wolf, 'invisible')).toBeUndefined(); advance(h.battle, 2.1); expect(status(wolf, 'invisible')).toBeDefined();
     wolf.statuses.push({ kind: 'break', source: h.enemy.id, skill: 'test', until: h.battle.time + .3 });
     advance(h.battle, .1); expect(status(wolf, 'invisible')).toBeUndefined(); advance(h.battle, .4); expect(status(wolf, 'invisible')).toBeDefined();
     const rankTwo = setup('custom_lycan_summon_wolves', 2); advance(rankTwo.battle, .6);
-    expect(rankTwo.battle.units.filter(u => u.wolfCripple).every(u => !status(u, 'invisible'))).toBe(true);
+    expect(rankTwo.battle.units.filter(u => u.sourceSkill === 'custom_lycan_summon_wolves').every(u => !status(u, 'invisible'))).toBe(true);
   });
   it('pulls Tether continuously from beyond break range to 300 without breaking the newly established link', () => {
     const h = setup('wisp_tether', 3, 23, true); h.friend!.x = 12; h.friend!.y = 0;

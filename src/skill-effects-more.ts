@@ -677,18 +677,23 @@ put('custom_riki_tricks_of_the_trade', active(c => {
 const inSnowball=(c:EffectContext)=>c.caster.statuses.some(s=>s.until>c.battle.time&&s.kind==='visualForm'&&(s as EffectStatus).data?.form==='snowball');
 function walrusEffects(c:EffectContext){
   const air=v(c,'AIR TIME')+(!skillBalance(c.definition,c.skill.points)&&superLevel(c)?.4:0);stun(c,c.target,air,true);
-  c.delay(air,()=>{slow(c,c.target,v(c,'MOVEMENT SLOW'),v(c,'SLOW DURATION'));if(superLevel(c))c.status(c.target,'break',v(c,'SLOW DURATION'),0,{harmful:true,piercesImmunity:true});});
+  slow(c,c.target,v(c,'MOVEMENT SLOW'),air+v(c,'SLOW DURATION'));
+  c.delay(air,()=>{if(superLevel(c))c.status(c.target,'break',v(c,'SLOW DURATION'),0,{harmful:true,piercesImmunity:true});});
 }
+const walrusRecordKey=(c:EffectContext)=>`walrus:${c.attackInstanceKey??c.skill.instanceId??c.skill.id}`;
 function walrus(c:EffectContext){
   if(c.caster.walrusBusy)return;c.caster.walrusBusy=true;
-  try{if(instantAttack(c,c.target,1,0,true,{criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))}).landed)walrusEffects(c);}
+  try{if(c.attackRecord)c.attackRecord.data[walrusRecordKey(c)]=true;instantAttack(c,c.target,1,0,true,{criticalMultiplier:P(v(c,'CRITICAL DAMAGE')),attackRecord:c.attackRecord});}
   finally{c.caster.walrusBusy=false;}
 }
-put('custom_tusk_walrus_punch',active(walrus,['attack-point factor .6 and ordinary attack cadence', 'True Strike ensured critical competes with other criticals', 'air disable then historical landing slow', 'Super final air/free cast/cooldown and landing break', 'Gaben PRD replaces this attack without extra attack, mana or cooldown'],['Exact airborne presentation', 'AA Super break begins at landing as existing interpretation; native equivalent not established', 'Autocast/silence interaction and passive eligibility on every secondary attack require historical AA evidence'],{
+put('custom_tusk_walrus_punch',active(walrus,['attack-point factor .6 and ordinary attack cadence', 'True Strike ensured critical competes with other criticals', 'contact stun and full airborne-plus-postlanding slow precede damage', 'Super final air/free cast/cooldown and landing break', 'Gaben PRD replaces this attack without extra attack, mana or cooldown'],['Exact airborne presentation', 'AA Super break begins at landing as existing interpretation; native equivalent not established', 'Autocast/silence interaction and passive eligibility on every secondary attack require historical AA evidence'],{
   dynamicRange:true,range:effectiveAttackRange,attackCastPointFactor:c=>v(c,'ATTACK POINT FACTOR',.6),canCast:c=>!inSnowball(c),
+  attackCastOptions:c=>({trueStrike:true,criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))}),
+  attackCastIsPassive:c=>!!c.attackRecord?.data[`${walrusRecordKey(c)}:passive`],
   manaCost:c=>superLevel(c)?0:c.definition.mana[Math.min(2,c.skill.points-1,c.definition.mana.length-1)]??0,cooldown:c=>cooldown(c,superLevel(c)?4:0),
-  prepareAttack:c=>{if(!gabenLevel(c)||c.caster.walrusBusy||c.caster.illusion||inSnowball(c))return;const probability=balanceNumber(c,'skill_effects_more.trigger_chance.1',.2);if(!(c.chance?.(probability,'walrusPunch')??c.random()<probability))return;if(c.attackRecord)c.attackRecord.data[`walrus:${c.attackInstanceKey??c.skill.instanceId??c.skill.id}`]=true;return{trueStrike:true,criticalMultiplier:P(v(c,'CRITICAL DAMAGE'))};},
-  onAttack:c=>{const key=`walrus:${c.attackInstanceKey??c.skill.instanceId??c.skill.id}`;if(c.attackRecord?.data[key]){delete c.attackRecord.data[key];walrusEffects(c);}},superImplemented:true,gabenImplemented:true,
+  criticalAttack:c=>!gabenLevel(c)||c.caster.walrusBusy||c.caster.illusion||inSnowball(c)||c.caster.statuses.some(s=>s.kind==='break'&&s.until>c.battle.time)?undefined:{chance:balanceNumber(c,'skill_effects_more.trigger_chance.1',.2),multiplier:P(v(c,'CRITICAL DAMAGE')),prdKey:'walrusPunch',priority:1,onSelected:record=>{record.data[walrusRecordKey(c)]=true;record.data[`${walrusRecordKey(c)}:passive`]=true;}},
+  prepareAttack:c=>c.attackRecord?.data[walrusRecordKey(c)]?{trueStrike:true}:undefined,
+  beforeAttackDamage:c=>{const key=walrusRecordKey(c);if(c.attackRecord&&(c.attackRecord.data[key]||c.attackSourceSkill===c.skill.id)){delete c.attackRecord.data[key];walrusEffects(c);}},superImplemented:true,gabenImplemented:true,
 }));
 
 put('vengefulspirit_wave_of_terror', active(c => {

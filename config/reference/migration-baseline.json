@@ -26243,20 +26243,27 @@
     {
       "id": "hoodwink_hunters_boomerang",
       "name": "猎人回旋镖",
-      "nameEn": "hoodwink_hunters_boomerang",
+      "nameEn": "Hunter's Boomerang",
       "description": "升级授予的历史基线附属效果",
-      "descriptionEn": "Valve shipped KV 2023-02-10, SteamTracking 6abdd9d13de2f4330ca748082467b9ff6e6cd928; AA version match unverified",
-      "super": "",
-      "gaben": "",
-      "tags": [],
+      "descriptionEn": "Independent historical native effect;free parent calls retain root attribution.",
+      "icon": "/art/icons/custom_hoodwink_sharpshooter.webp",
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: Unit Target",
+        "ABILITY: Point Target",
+        "DAMAGE TYPE: Magical"
+      ],
       "values": [
+        "DAMAGE: 200",
         "SPEED: 900",
         "RADIUS: 150",
-        "DAMAGE: 200",
+        "SPREAD: 400",
+        "MIN TRAVEL DISTANCE: 400",
         "MARK DURATION: 7",
         "SLOW: 20",
         "SPELL AMP: 20",
-        "SPREAD: 400",
         "MIN THROW DURATION: 0.5",
         "MAX THROW DURATION: 1.2"
       ],
@@ -26266,17 +26273,22 @@
       "mana": [
         125
       ],
-      "categories": [
-        "ABILITY: Point Target"
-      ],
-      "icon": "",
+      "super": "",
+      "gaben": "",
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_hoodwink_sharpshooter",
       "historicalSource": {
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "date": "2023-02-10",
-        "id": "hoodwink_hunters_boomerang"
+        "id": "hoodwink_hunters_boomerang",
+        "maxLevel": 1,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.2,
+        "backswing": 1.07,
+        "range": 9
       }
     },
     {
@@ -26672,14 +26684,15 @@
       "id": "slark_depth_shroud",
       "name": "深海护罩",
       "nameEn": "slark_depth_shroud",
-      "tags": [],
       "description": "历史参考授予技能",
-      "descriptionEn": "Historical Valve 2023-02-10 fallback; AA execution parity is unverified",
+      "descriptionEn": "Independent native Depth Shroud component.",
       "super": "",
       "gaben": "",
       "values": [
         "RADIUS: 250",
-        "DURATION: 3"
+        "DURATION: 3",
+        "AURA LINGER: 0.5",
+        "AURA INTERVAL: 0.03333333333333333"
       ],
       "cooldowns": [
         75
@@ -26688,18 +26701,15 @@
         75
       ],
       "categories": [
-        "PIERCES SPELL IMMUNITY: No"
+        "ABILITY: Point Target"
       ],
-      "icon": "",
+      "tags": [],
+      "icon": "/art/icons/slark_shadow_dance.webp",
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "id": "slark_depth_shroud"
-      }
+      "sourceMaximumLevel": 1,
+      "visualParentId": "slark_shadow_dance"
     },
     {
       "id": "lone_druid_true_form",
@@ -27740,80 +27750,57 @@
     },
     {
       "id": "visage_summon_familiars_stone_form",
-      "name": "石像形态",
-      "nameEn": "visage_summon_familiars_stone_form",
-      "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
+      "name": "石化（佣兽）",
+      "nameEn": "Stone Form (Familiar)",
+      "description": "石化（佣兽）的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Stone Form (Familiar) action/component.",
+      "icon": "/art/icons/custom_visage_summon_familiars.webp",
       "tags": [],
       "super": "",
       "gaben": "",
-      "icon": "",
       "values": [
-        "ID: 5484",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN",
-        "AbilityUnitDamageType: DAMAGE_TYPE_MAGICAL",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "SpellDispellableType: SPELL_DISPELLABLE_YES_STRONG",
-        "AbilityCastRange: 160",
-        "AbilityCastPoint: 0.0",
-        "MaxLevel: 3",
-        "AbilitySound: Visage_Familiar.StoneForm.Cast",
-        "AbilityCooldown: 14.0",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_5",
-        "stun_radius: 375",
-        "stun_delay: 0.55",
-        "stun_damage: 60 100 140",
-        "stun_duration: 1.0 1.25 1.5",
-        "stone_duration: 6.0",
-        "hp_regen: 150 175 200"
+        "STUN RADIUS: 375",
+        "STUN DELAY: 0.55",
+        "STUN DAMAGE: 60 / 100 / 140",
+        "STUN DURATION: 1 / 1.25 / 1.5",
+        "STONE DURATION: 6",
+        "HP REGEN: 150 / 175 / 200",
+        "AI HEALTH THRESHOLD: 70"
       ],
       "cooldowns": [
+        14,
+        14,
         14
       ],
-      "mana": [],
+      "mana": [
+        0,
+        0,
+        0
+      ],
       "categories": [
         "ABILITY: No Target"
       ],
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "visage_summon_familiars_stone_form"
-      }
+      "sourceMaximumLevel": 3,
+      "visualParentId": "custom_visage_summon_familiars"
     },
     {
       "id": "visage_silent_as_the_grave",
-      "name": "陵卫斗篷潜行",
-      "nameEn": "visage_silent_as_the_grave",
-      "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
+      "name": "陵卫斗篷",
+      "nameEn": "Silent as the Grave",
+      "description": "陵卫斗篷的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Silent as the Grave action/component.",
+      "icon": "/art/icons/custom_visage_summon_familiars.webp",
       "tags": [],
       "super": "",
       "gaben": "",
-      "icon": "",
       "values": [
-        "ID: 683",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "SpellDispellableType: SPELL_DISPELLABLE_NO",
-        "MaxLevel: 1",
-        "IsGrantedByScepter: 1",
-        "AbilityCastPoint: 0.0",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_5",
-        "AbilityCastGestureSlot: DEFAULT",
-        "AbilityCooldown: 45.0",
-        "AbilityManaCost: 100",
-        "bonus_duration: 4",
-        "bonus_damage: 25",
-        "invis_duration: 35.0",
-        "movespeed_bonus: 20"
+        "INVIS DURATION: 35",
+        "BONUS DAMAGE: 25",
+        "BONUS DURATION: 4",
+        "MOVESPEED BONUS: 20"
       ],
       "cooldowns": [
         45
@@ -27827,16 +27814,8 @@
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "visage_silent_as_the_grave"
-      }
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_visage_summon_familiars"
     },
     {
       "id": "bristleback_hairball",
@@ -27952,32 +27931,19 @@
       "name": "燃烧之军",
       "nameEn": "clinkz_burning_army",
       "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
-      "tags": [],
+      "descriptionEn": "Independent native Burning Army component.",
       "super": "",
       "gaben": "",
-      "icon": "",
       "values": [
-        "ID: 7319",
-        "AbilityType: DOTA_ABILITY_TYPE_BASIC",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
-        "AbilityUnitDamageType: DAMAGE_TYPE_PHYSICAL",
-        "MaxLevel: 1",
-        "FightRecapLevel: 1",
-        "IsGrantedByScepter: 1",
-        "HasScepterUpgrade: 1",
-        "AbilitySound: Hero_Clinkz.DeathPact",
-        "AbilityCastRange: 1200",
-        "AbilityCastPoint: 0",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_4",
-        "AbilityCooldown: 80",
-        "AbilityManaCost: 150",
-        "range: 1300",
-        "duration: 30",
-        "count: 5",
-        "attack_rate: 1.6",
-        "damage_percent: 30",
-        "spawn_interval: 0.5"
+        "COUNT: 5",
+        "DURATION: 30",
+        "SPAWN INTERVAL: 0.5",
+        "SPAWN SPACING: 312.5",
+        "ATTACK DAMAGE PERCENT: 30",
+        "MINIMUM ATTACK RANGE: 500",
+        "HERO HIT DAMAGE: 750",
+        "BASIC HIT DAMAGE: 150",
+        "REFRESH INTERVAL: 0.03333333333333333"
       ],
       "cooldowns": [
         80
@@ -27986,21 +27952,15 @@
         150
       ],
       "categories": [
-        "ABILITY: No Target"
+        "ABILITY: Point Target"
       ],
+      "tags": [],
+      "icon": "/art/icons/clinkz_searing_arrows.webp",
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
-      "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "clinkz_burning_army"
-      }
+      "sourceMaximumLevel": 1,
+      "visualParentId": "clinkz_searing_arrows"
     },
     {
       "id": "shadow_demon_soul_catcher",
@@ -28294,50 +28254,56 @@
     {
       "id": "dark_seer_normal_punch",
       "name": "普通一拳",
-      "nameEn": "dark_seer_normal_punch",
+      "nameEn": "Normal Punch",
       "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
-      "tags": [],
-      "super": "",
-      "gaben": "",
-      "icon": "",
+      "descriptionEn": "Independent historical native effect;free parent calls retain root attribution.",
+      "icon": "/art/icons/dark_seer_vacuum.webp",
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: Passive",
+        "DAMAGE TYPE: Magical"
+      ],
       "values": [
-        "ID: 687",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
-        "AbilityUnitTargetTeam: DOTA_UNIT_TARGET_TEAM_ENEMY",
-        "AbilityUnitTargetType: DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "MaxLevel: 1",
-        "IsGrantedByScepter: 1",
-        "AbilityCooldown: 9",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_3",
-        "max_stun: 2.25",
-        "recent_duration: 3.0",
-        "max_distance: 900",
-        "knockback_distance: 350",
-        "illusion_duration: 6.0",
-        "max_damage: 450",
-        "normal_punch_illusion_delay: 0.25"
+        "MIN DAMAGE: 50",
+        "MAX DAMAGE: 450",
+        "MIN STUN: 0.2",
+        "MAX STUN: 2.25",
+        "MIN KNOCKBACK: 50",
+        "MAX KNOCKBACK: 350",
+        "MIN KNOCKBACK DURATION: 0.1",
+        "MAX KNOCKBACK DURATION: 1.125",
+        "RECENT DURATION: 3",
+        "MAX DISTANCE: 900",
+        "TELEPORT DISTANCE CAP: 600",
+        "ILLUSION DELAY: 0.25",
+        "ILLUSION DURATION: 6",
+        "ILLUSION DAMAGE: 80",
+        "ILLUSION DAMAGE TAKEN: 200"
       ],
       "cooldowns": [
         9
       ],
-      "mana": [],
-      "categories": [
-        "ABILITY: No Target"
+      "mana": [
+        0
       ],
-      "passive": false,
+      "super": "",
+      "gaben": "",
+      "passive": true,
       "ultimate": false,
       "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "dark_seer_vacuum",
       "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "dark_seer_normal_punch"
+        "id": "dark_seer_normal_punch",
+        "maxLevel": 1,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0,
+        "backswing": 0,
+        "range": 0
       }
     },
     {
@@ -28860,31 +28826,31 @@
     },
     {
       "id": "lycan_summon_wolves_invisibility",
-      "name": "战狼隐身",
-      "nameEn": "lycan_summon_wolves_invisibility",
-      "description": "历史参考召唤物被动",
-      "descriptionEn": "Pinned Valve 2023-02-10 candidate; original AA execution unverified",
-      "tags": [
-        "passive"
-      ],
+      "name": "永久隐身（狼）",
+      "nameEn": "Invisibility (Wolf)",
+      "description": "永久隐身（狼）的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Invisibility (Wolf) action/component.",
+      "icon": "/art/icons/custom_lycan_summon_wolves.webp",
+      "tags": [],
       "super": "",
       "gaben": "",
-      "values": [],
-      "cooldowns": [],
-      "mana": [],
+      "values": [
+        "FADE DELAY: 2"
+      ],
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
       "categories": [
         "ABILITY: Passive"
       ],
-      "icon": "",
       "passive": true,
       "ultimate": false,
       "grantedOnly": true,
-      "historicalSource": {
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "file": "npc_abilities.txt",
-        "id": "lycan_summon_wolves_invisibility"
-      }
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lycan_summon_wolves"
     },
     {
       "id": "sandking_caustic_finale",
@@ -29389,33 +29355,36 @@
     },
     {
       "id": "lycan_summon_wolves_critical_strike",
-      "name": "待补中文名",
-      "nameEn": "lycan_summon_wolves_critical_strike",
-      "description": "仅用于已有程序读取的固定历史参考字段",
-      "descriptionEn": "Historical numeric reference; not a castable or purchasable ability.",
+      "name": "致残",
+      "nameEn": "Cripple",
+      "description": "致残的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Cripple action/component.",
+      "icon": "/art/icons/custom_lycan_summon_wolves.webp",
       "tags": [],
       "super": "",
       "gaben": "",
       "values": [
-        "ID: 5399",
-        "MaxLevel: 1",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_PASSIVE",
-        "SpellDispellableType: SPELL_DISPELLABLE_YES",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_1",
-        "maim_chance: 20",
-        "maim_duration: 4.0",
-        "maim_movement_speed: 15",
-        "maim_attack_speed: 60",
-        "maim_damage: 8"
+        "PROC CHANCE: 20",
+        "DAMAGE PER SECOND: 8",
+        "DAMAGE INTERVAL: 1",
+        "DURATION: 4",
+        "MOVEMENT SLOW: 15",
+        "ATTACK SLOW: 60"
       ],
-      "cooldowns": [],
-      "mana": [],
-      "categories": [],
-      "icon": "",
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
+      "categories": [
+        "ABILITY: Effect Only"
+      ],
       "passive": true,
       "ultimate": false,
-      "referenceOnly": true
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lycan_summon_wolves"
     },
     {
       "id": "treant_natures_grasp",
@@ -30647,6 +30616,368 @@
       "grantedOnly": true,
       "sourceMaximumLevel": 4,
       "visualParentId": "custom_lone_druid_spirit_link"
+    },
+    {
+      "id": "aa_granted_visage_stone_form",
+      "name": "石化（英雄）",
+      "nameEn": "Stone Form (Hero)",
+      "description": "石化（英雄）的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Stone Form (Hero) action/component.",
+      "icon": "/art/icons/custom_visage_summon_familiars.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "MAX HEALTH RESTORATION: 25",
+        "FAMILIAR LEVEL: 3",
+        "AI HEALTH THRESHOLD: 70"
+      ],
+      "cooldowns": [
+        65
+      ],
+      "mana": [
+        125
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_visage_summon_familiars"
+    },
+    {
+      "id": "lone_druid_spirit_bear_return",
+      "name": "回归",
+      "nameEn": "Return",
+      "description": "回归的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Return action/component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_bear.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "CHANNEL TIME: 3",
+        "AI RETURN DISTANCE: 1600"
+      ],
+      "cooldowns": [
+        30
+      ],
+      "mana": [
+        0
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lone_druid_spirit_bear"
+    },
+    {
+      "id": "item_mjollnir",
+      "name": "雷神之锤",
+      "nameEn": "Mjollnir",
+      "description": "雷神之锤的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Mjollnir action/component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_bear.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "BONUS DAMAGE: 24",
+        "BONUS ATTACK SPEED: 70",
+        "CHAIN CHANCE: 30",
+        "CHAIN DAMAGE: 180",
+        "CHAIN TARGETS: 12",
+        "CHAIN RADIUS: 650",
+        "CHAIN DELAY: 0.25",
+        "CHAIN COOLDOWN: 0.2",
+        "STATIC DURATION: 15",
+        "STATIC CHANCE: 20",
+        "STATIC DAMAGE: 225",
+        "STATIC TARGETS: 4",
+        "MINIMUM DAMAGE: 5",
+        "STATIC PRIMARY RADIUS: 600",
+        "STATIC RADIUS: 900",
+        "STATIC COOLDOWN: 1"
+      ],
+      "cooldowns": [
+        35
+      ],
+      "mana": [
+        50
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lone_druid_spirit_bear"
+    },
+    {
+      "id": "item_mask_of_madness",
+      "name": "疯狂面具",
+      "nameEn": "Mask of Madness",
+      "description": "疯狂面具的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Mask of Madness action/component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_bear.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "BONUS DAMAGE: 10",
+        "BONUS ATTACK SPEED: 10",
+        "LIFESTEAL: 24",
+        "CREEP LIFESTEAL FACTOR: 0.5",
+        "BERSERK ATTACK SPEED: 110",
+        "BERSERK MOVE SPEED: 30",
+        "ARMOR REDUCTION: 8",
+        "DURATION: 6"
+      ],
+      "cooldowns": [
+        16
+      ],
+      "mana": [
+        25
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lone_druid_spirit_bear"
+    },
+    {
+      "id": "item_basher",
+      "name": "碎颅锤",
+      "nameEn": "Skull Basher",
+      "description": "碎颅锤的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Skull Basher action/component.",
+      "icon": "/art/icons/custom_lone_druid_spirit_bear.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "BONUS DAMAGE: 25",
+        "MELEE CHANCE: 25",
+        "RANGED CHANCE: 10",
+        "STUN DURATION: 1.5",
+        "BASH DAMAGE: 100"
+      ],
+      "cooldowns": [
+        2.3
+      ],
+      "mana": [
+        0
+      ],
+      "categories": [
+        "ABILITY: Passive"
+      ],
+      "passive": true,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_lone_druid_spirit_bear"
+    },
+    {
+      "id": "skeleton_king_hellfire_blast",
+      "name": "冥火爆击",
+      "nameEn": "Wraithfire Blast",
+      "description": "冥火爆击的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Wraithfire Blast action/component.",
+      "icon": "/art/icons/custom_skeleton_king_vampiric_aura.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "DAMAGE: 75 / 90 / 105 / 120",
+        "STUN DURATION: 1.1 / 1.4 / 1.7 / 2",
+        "DAMAGE PER SECOND: 20 / 40 / 60 / 80",
+        "DURATION: 2",
+        "SLOW: 20",
+        "PROJECTILE SPEED: 1200",
+        "DAMAGE INTERVAL: 1"
+      ],
+      "cooldowns": [
+        17,
+        14,
+        11,
+        8
+      ],
+      "mana": [
+        95,
+        110,
+        125,
+        140
+      ],
+      "categories": [
+        "ABILITY: Effect Only"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_skeleton_king_vampiric_aura"
+    },
+    {
+      "id": "lycan_wolf_bite",
+      "name": "恶狼撕咬",
+      "nameEn": "Wolf Bite",
+      "description": "恶狼撕咬的独立原生操作或触发分量。",
+      "descriptionEn": "Independent native Wolf Bite action/component.",
+      "icon": "/art/icons/lycan_shapeshift.webp",
+      "tags": [],
+      "super": "",
+      "gaben": "",
+      "values": [
+        "LIFESTEAL: 30",
+        "SHARED LIFESTEAL: 30",
+        "LIFESTEAL RADIUS: 1200",
+        "ATTACK RANGE: 150"
+      ],
+      "cooldowns": [
+        125,
+        110,
+        95
+      ],
+      "mana": [
+        150,
+        150,
+        150
+      ],
+      "categories": [
+        "ABILITY: Effect Only"
+      ],
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 3,
+      "visualParentId": "lycan_shapeshift"
+    },
+    {
+      "id": "item_monkey_king_bar",
+      "name": "金箍棒",
+      "nameEn": "Monkey King Bar",
+      "description": "独立原生等级的金箍棒分量",
+      "descriptionEn": "Independent native Monkey King Bar component.",
+      "super": "",
+      "gaben": "",
+      "values": [
+        "BONUS DAMAGE: 40",
+        "BONUS ATTACK SPEED: 45",
+        "PIERCE CHANCE: 80",
+        "PIERCE DAMAGE: 70"
+      ],
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
+      "categories": [
+        "ABILITY: Passive"
+      ],
+      "tags": [],
+      "icon": "/art/icons/clinkz_searing_arrows.webp",
+      "passive": true,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "clinkz_searing_arrows"
+    },
+    {
+      "id": "aa_granted_sunder_dagon",
+      "name": "达贡之神力（分魂授予）",
+      "nameEn": "Dagon",
+      "description": "独立历史原生附属效果；父技能免费触发保留根归因，原生等级不与AA点数混用。",
+      "descriptionEn": "Independent historical native effect;free parent calls retain root attribution.",
+      "icon": "/art/icons/terrorblade_sunder.webp",
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: Unit Target",
+        "DAMAGE TYPE: Magical"
+      ],
+      "values": [
+        "DAMAGE: 400 / 500 / 600 / 700 / 800"
+      ],
+      "cooldowns": [
+        35,
+        30,
+        25,
+        20,
+        15
+      ],
+      "mana": [
+        120,
+        140,
+        160,
+        180,
+        200
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 5,
+      "visualParentId": "terrorblade_sunder",
+      "historicalSource": {
+        "id": "item_dagon_5",
+        "maxLevel": 5,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0,
+        "backswing": 0,
+        "range": 9
+      }
+    },
+    {
+      "id": "aa_granted_sharpshooter_release",
+      "name": "释放狙杀",
+      "nameEn": "End Sharpshooter",
+      "description": "独立历史原生附属效果；父技能免费触发保留根归因，原生等级不与AA点数混用。",
+      "descriptionEn": "Independent historical native effect;free parent calls retain root attribution.",
+      "icon": "/art/icons/custom_hoodwink_sharpshooter.webp",
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "values": [],
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": true,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 3,
+      "visualParentId": "custom_hoodwink_sharpshooter",
+      "historicalSource": {
+        "id": "hoodwink_sharpshooter_release",
+        "maxLevel": 3,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0,
+        "backswing": 0,
+        "range": 0
+      }
     }
   ],
   "roles": {

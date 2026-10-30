@@ -73,7 +73,7 @@ export function applyProcAcceptance(registry:Record<string,SkillProgram>):void {
  coup.criticalAttack=c=>enemy(c,c.target)?{chance:value(c,'CRITICAL CHANCE')/100,multiplier:value(c,'CRITICAL DAMAGE')/100,prdKey:'critical'}:undefined;
  coup.init=c=>init?.(c);
  coup.onAttack=c=>{if(c.skill.points>=9&&c.attackCritical)c.castAbility('phantom_assassin_fan_of_knives',1,c.caster);};
- coup.implemented=['Pre7.34 direct critical rather than DeadlyFocus;attack-point PRD snapshot and native target restrictions','AA+7percent chance and independently granted historicalFanOfKnives','AA literal every successful critical triggers a freeFan including another critical provider'];
+ coup.implemented=['Pre7.34 direct critical rather than DeadlyFocus;attack-begin PRD snapshot and native target restrictions','AA+7percent chance and independently granted historicalFanOfKnives','AA literal every successful critical triggers a freeFan including another critical provider'];
  coup.remaining=['AA EveryCrit interpretation includes other critical sources;original modifiedLua has not been recovered'];
  const fan=registry.phantom_assassin_fan_of_knives;
  fan.canCast=c=>c.enemies().some(t=>enemy(c,t)&&distance(t,c.caster)<=value(c,'radius',550)/100);

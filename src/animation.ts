@@ -39,7 +39,7 @@ const TRANSIENT_FORMS:Record<string,{skill:string;layer:string}>={
  rolling_thunder:{skill:'custom_pangolier_rolling_thunder',layer:'ball'},
  supernova:{skill:'custom_phoenix_sun_ray',layer:'egg_idle'}
 };
-const CHILD_ART:Record<string,string>={aa_granted_voodoo_switcheroo:'custom_witch_doctor_death_ward',zuus_cloud:'zuus_lightning_bolt'};
+const CHILD_ART:Record<string,string>={aa_granted_voodoo_switcheroo:'custom_witch_doctor_death_ward',zuus_cloud:'zuus_lightning_bolt',clinkz_burning_army:'clinkz_searing_arrows'};
 export function basicAttackClip(assets:AssetManifest,u:CombatUnit,time=0):AnimationClip|undefined{
  if(u.statuses.some(s=>s.kind==='elderDragon'&&s.until>time)){const art=assets.skills.dragon_knight_elder_dragon_form as {layers?:Record<string,AnimationClip>}|undefined;if(art?.layers?.dragon_bolt)return art.layers.dragon_bolt;}
  const sourceId=String(u.sourceSkill??''),id=CHILD_ART[sourceId]??sourceId;
@@ -91,7 +91,8 @@ export function bodyPresentation(assets:AssetManifest,u:CombatUnit,action:string
    if(clip)return{clip:{...clip,worldSize:Number(clip.worldSize??6.4)*(u.sourceUnitType==='npc_dota_neutral_mud_golem_split'?.42:.7)},hidden:false,skill:id,prefix:'golem'};
   }
   const sourceId=String(u.sourceSkill??sourceSkill??''),id=CHILD_ART[sourceId]??sourceId;const spec=assets.skills[id] as {layers?:Record<string,AnimationClip>}|undefined;const layers=spec?.layers??{};
-  const explicit=typeof u.visualBody==='string'?u.visualBody:undefined;
+  if(id==='custom_visage_summon_familiars'&&visibleStatuses.some(s=>s.kind==='selfStun'&&s.skill==='visage_summon_familiars_stone_form'&&typeof(s as typeof s&{data?:Record<string,unknown>}).data?.stoneRun==='string')&&layers.familiar_stone)return{clip:layers.familiar_stone,hidden:false,skill:id,prefix:'familiar_stone'};
+  const explicit=id==='custom_lycan_summon_wolves'&&u.bigBadWolf?'bigwolf':typeof u.visualBody==='string'?u.visualBody:undefined;
   if(explicit&&layers[explicit]?.role==='world_prop')return{clip:layers[explicit],hidden:false,skill:id,prefix:explicit};
   const named=SUMMON_PREFIXES.filter(([name])=>name.test(u.name)).flatMap(([,prefixes])=>prefixes);
   for(const prefix of [...(explicit?[explicit]:[]),...named]){const clip=selectAction(layers,prefix,action);if(clip)return{clip,hidden:false,skill:id,prefix};}

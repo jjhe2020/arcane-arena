@@ -66,4 +66,11 @@ export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>=
   item_crimson_guard:['crimsonGuardBlock'],
   // Dated2023 Entangling Claws explicitly uses PRD; True Form owns this trial.
   lone_druid_true_form:['entanglingClaws'],
+  // Dated2023 Monkey King Bar explicitly uses PRD for Pierce.
+  item_monkey_king_bar:['mkbPierce'],
+  custom_lone_druid_spirit_bear:['entangle'],
+  lycan_shapeshift:['shapeshift'],
+  lycan_summon_wolves_critical_strike:['cripple'],
+  item_mjollnir:['chain','staticCharge'],
+  item_basher:['bash'],
 };

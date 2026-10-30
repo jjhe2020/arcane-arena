@@ -9,7 +9,7 @@ export function charged(program:SkillProgram,unlock:(c:C)=>boolean,maximum:numbe
   program.canCast=c=>(!unlock(c)||state(c).count>0)&&(!canCast||canCast(c));
   program.cooldown=c=>unlock(c)?0:normalCd(c);
   program.reduceRecharge=(c,seconds)=>{if(!unlock(c))return;const s=state(c);if(!s.queue.length)return;const reduction=Math.min(Math.max(0,seconds),Math.max(0,s.queue[0]-c.battle.time));s.queue=s.queue.map(due=>due-reduction);refresh(c,s);schedule(c,s);};
-  program.cast=c=>{if(unlock(c)){const s=state(c);if(s.count<=0)return;s.count--;const reduction=c.caster.statuses.filter(x=>x.kind==='cooldownReduction').reduce((n,x)=>n+(x.value??0),0),recharge=Math.max(.2,(rechargeOverride?.(c)??normalCd(c))*(1-Math.min(.9,Math.max(0,reduction))));s.queue.push(Math.max(c.battle.time,s.next??c.battle.time)+recharge);s.next=s.queue.at(-1)!;schedule(c,s);}original(c);};
+  program.cast=c=>{if(unlock(c)){const s=state(c);if(s.count<=0)return;s.count--;const reduction=c.caster.statuses.filter(x=>x.kind==='cooldownReduction').reduce((n,x)=>n+(x.value??0),0),recharge=Math.max(.2,Math.max(0,(rechargeOverride?.(c)??normalCd(c))-(c.stolenCooldownReduction??0))*(1-Math.min(.9,Math.max(0,reduction))));s.queue.push(Math.max(c.battle.time,s.next??c.battle.time)+recharge);s.next=s.queue.at(-1)!;schedule(c,s);}original(c);};
   program.implemented.push(`${typeof maximum==='number'?maximum:'Configured'} charges with sequential recharge from source cooldown and current cooldown reduction`);
 }
 

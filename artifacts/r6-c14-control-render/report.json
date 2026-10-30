@@ -1,0 +1,3090 @@
+{
+  "status": "passed",
+  "url": "http://localhost:5173",
+  "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+  "fixtureNote": "Actual compiled createBattle/stepBattle on desktop/mobile. HP/mana100000/10000, zero ordinary movement, ordinary attacks delayed,100attack, zero armor/MR, starting positions and AI cooldown gates are explicit observation fixtures. No status/damage/effect/program/summon injection. Real spells earn every modifier, stolen slot, projectile and replica. Snapshot equality includes the battle/RNG state. Finite loaded-clip evidence does not certify whole native abilities or physical-device performance.",
+  "boundaries": [
+    "Source/version gaps remain in control-target acceptance; finite render checks do not close them.",
+    "Private manual aim indicator/ground-target Boomerang remain explicit missing features, not substituted by a generic line.",
+    "Invisible/FoW is not assigned to visible-but-untargetable Realm bodies."
+  ],
+  "reports": [
+    {
+      "scenario": "steal-return",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_rubick_spell_steal",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_rubick_spell_steal",
+            "layer": "steal",
+            "image": "/custom_rubick_spell_steal/steal.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:steal",
+            "x": 2.8000000000000003,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4666666666666667,
+          "time": 0.5666666666666667,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 7,
+        "activeImageBytes": 77250560,
+        "cachedImageBytes": 84475904,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "p:projectile:0:steal",
+          "s:1:h1-0:1:h1-0:ursa_overpower:claws"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_rubick_spell_steal",
+          "layer": "steal",
+          "image": "/custom_rubick_spell_steal/steal.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:steal",
+          "x": 2.8000000000000003,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:steal",
+              "image": "/art/skills/custom_rubick_spell_steal/steal.webp",
+              "x": 2.8000000000000003,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "steal-memory",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_rubick_spell_steal",
+        "points": 3,
+        "time": 0.9,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "custom_rubick_spell_steal",
+            "layer": "memory",
+            "image": "/custom_rubick_spell_steal/memory.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "world",
+            "art": "custom_rubick_spell_steal",
+            "layer": "learn",
+            "image": "/custom_rubick_spell_steal/learn.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:learn",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4666666666666667,
+          "time": 0.9,
+          "hits": [],
+          "borrowed": "ursa_overpower"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 7,
+        "activeImageBytes": 77840384,
+        "cachedImageBytes": 85065728,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "world:visual-world:0:learn",
+          "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+          "s:1:h1-0:1:h1-0:ursa_overpower:claws"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "custom_rubick_spell_steal",
+          "layer": "memory",
+          "image": "/custom_rubick_spell_steal/memory.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+              "image": "/art/skills/custom_rubick_spell_steal/memory.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "custom_rubick_spell_steal",
+          "layer": "learn",
+          "image": "/custom_rubick_spell_steal/learn.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:learn",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:learn",
+              "image": "/art/skills/custom_rubick_spell_steal/learn.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sunder-exchange",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "terrorblade_sunder",
+        "points": 3,
+        "time": 0.5,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "exchange",
+            "image": "/terrorblade_sunder/exchange.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+            "x": 2.1354836600000002,
+            "y": -0.12635279999999996
+          },
+          {
+            "kind": "world",
+            "art": "terrorblade_sunder",
+            "layer": "receive",
+            "image": "/terrorblade_sunder/receive.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:receive",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4,
+          "time": 0.5,
+          "hits": [],
+          "health": {
+            "caster": 90000,
+            "target": 25000
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 6,
+        "activeImageBytes": 74153984,
+        "cachedImageBytes": 81379328,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "world:visual-world:0:receive",
+          "world:visual-world:1:receive"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "exchange",
+          "image": "/terrorblade_sunder/exchange.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "x": 2.1354836600000002,
+          "y": -0.12635279999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+              "image": "/art/skills/terrorblade_sunder/exchange.webp",
+              "x": 2.1354836600000002,
+              "y": -0.12635279999999996,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "terrorblade_sunder",
+          "layer": "receive",
+          "image": "/terrorblade_sunder/receive.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:receive",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:receive",
+              "image": "/art/skills/terrorblade_sunder/receive.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sunder-dagon",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "terrorblade_sunder",
+        "points": 9,
+        "time": 0.3,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "exchange",
+            "image": "/terrorblade_sunder/exchange.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+            "x": 2.13409892,
+            "y": -0.13919183999999996
+          },
+          {
+            "kind": "world",
+            "art": "terrorblade_sunder",
+            "layer": "receive",
+            "image": "/terrorblade_sunder/receive.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:receive",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "dagon",
+            "image": "/terrorblade_sunder/dagon.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+            "x": 2.13409892,
+            "y": -0.13919183999999996
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.2,
+          "time": 0.3,
+          "hits": [],
+          "dagonDamage": 800,
+          "health": {
+            "caster": 90000,
+            "target": 24200
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 8,
+        "activeImageBytes": 77250560,
+        "cachedImageBytes": 84475904,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+          "world:visual-world:0:receive",
+          "world:visual-world:1:receive"
+        ],
+        "transientEffects": 2,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "exchange",
+          "image": "/terrorblade_sunder/exchange.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "x": 2.13409892,
+          "y": -0.13919183999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+              "image": "/art/skills/terrorblade_sunder/exchange.webp",
+              "x": 2.13409892,
+              "y": -0.13919183999999996,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "terrorblade_sunder",
+          "layer": "receive",
+          "image": "/terrorblade_sunder/receive.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:receive",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:receive",
+              "image": "/art/skills/terrorblade_sunder/receive.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "dagon",
+          "image": "/terrorblade_sunder/dagon.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+          "x": 2.13409892,
+          "y": -0.13919183999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+              "image": "/art/skills/terrorblade_sunder/dagon.webp",
+              "x": 2.13409892,
+              "y": -0.13919183999999996,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "vacuum-pull",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "dark_seer_vacuum",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-1",
+            "x": 5.083333333333333,
+            "y": 0.7222222222222222,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "dark_seer_vacuum",
+            "layer": "inward",
+            "image": "/dark_seer_vacuum/inward.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:inward",
+            "x": 4,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [],
+          "collateral": {
+            "x": 5.083333333333333,
+            "y": 0.7222222222222222,
+            "warpSequence": 0
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 6,
+        "triangles": 12,
+        "gpuTextures": 5,
+        "activeImageBytes": 68550656,
+        "cachedImageBytes": 75776000,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/characters/mage-male/disabled.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:0:inward"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "dark_seer_vacuum",
+          "layer": "inward",
+          "image": "/dark_seer_vacuum/inward.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:inward",
+          "x": 4,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:inward",
+              "image": "/art/skills/dark_seer_vacuum/inward.webp",
+              "x": 4,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:h1-1",
+          "x": 5.083333333333333,
+          "y": 0.7222222222222222,
+          "visible": true,
+          "image": "/art/characters/mage-male/disabled.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "vacuum-replica",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "dark_seer_vacuum",
+        "points": 9,
+        "time": 1.3666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 5.210000000000001,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "x": 9.333333333333332,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "dark_seer_vacuum",
+            "layer": "replica_enter",
+            "image": "/dark_seer_vacuum/replica_enter.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:1:replica_enter",
+            "x": 9.333333333333332,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 1.3666666666666667,
+          "hits": [
+            {
+              "skill": "dark_seer_vacuum",
+              "time": 1.0333333333333332,
+              "amount": 250,
+              "category": "spell"
+            }
+          ],
+          "images": [
+            {
+              "id": "0:h0-0:summon:0",
+              "x": 9.333333333333332,
+              "y": 0,
+              "attack": 80,
+              "taken": 2
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 8,
+        "activeImageBytes": 81231872,
+        "cachedImageBytes": 88457216,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:1:replica_enter"
+        ],
+        "transientEffects": 4,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "dark_seer_vacuum",
+          "layer": "replica_enter",
+          "image": "/dark_seer_vacuum/replica_enter.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:1:replica_enter",
+          "x": 9.333333333333332,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:1:replica_enter",
+              "image": "/art/skills/dark_seer_vacuum/replica_enter.webp",
+              "x": 9.333333333333332,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 5.210000000000001,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "0:h0-0:summon:0",
+          "x": 9.333333333333332,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sharp-aim",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 3,
+        "time": 0.7333333333333333,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "charge",
+            "image": "/custom_hoodwink_sharpshooter/charge.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:charge",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.7333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 71794688,
+        "cachedImageBytes": 79020032,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:0:charge"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "charge",
+          "image": "/custom_hoodwink_sharpshooter/charge.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:charge",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:charge",
+              "image": "/art/skills/custom_hoodwink_sharpshooter/charge.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sharp-bolt",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 9,
+        "time": 5.1,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": -0.8749999999999969,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 12,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "bolt",
+            "image": "/custom_hoodwink_sharpshooter/bolt.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:bolt",
+            "x": 2.75,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "projectile",
+            "image": "/custom_hoodwink_sharpshooter/boomerang.webp"
+          },
+          {
+            "kind": "world",
+            "image": "/custom_hoodwink_sharpshooter/charge.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 5.1,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 73711616,
+        "cachedImageBytes": 80936960,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:bolt"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "bolt",
+          "image": "/custom_hoodwink_sharpshooter/bolt.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:bolt",
+          "x": 2.75,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:bolt",
+              "image": "/art/skills/custom_hoodwink_sharpshooter/bolt.webp",
+              "x": 2.75,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "projectile",
+          "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+          "actual": []
+        },
+        {
+          "kind": "world",
+          "image": "/custom_hoodwink_sharpshooter/charge.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": -0.8749999999999969,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 12,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "boomerang-flight",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 9,
+        "time": 0.4666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "moving",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "boomerang",
+            "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+            "resourceAvailable": true,
+            "projectedKey": "motion:visual-projectile:0:boomerang",
+            "x": 1.6,
+            "y": 1.902113032590307
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.4666666666666667,
+          "hits": [],
+          "child": "hoodwink_hunters_boomerang"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 6,
+        "triangles": 12,
+        "gpuTextures": 6,
+        "activeImageBytes": 75481088,
+        "cachedImageBytes": 82706432,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:charge",
+          "motion:visual-projectile:0:boomerang"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "moving",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "boomerang",
+          "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+          "resourceAvailable": true,
+          "projectedKey": "motion:visual-projectile:0:boomerang",
+          "x": 1.6,
+          "y": 1.902113032590307,
+          "actual": [
+            {
+              "key": "motion:visual-projectile:0:boomerang",
+              "image": "/art/skills/custom_hoodwink_sharpshooter/boomerang.webp",
+              "x": 1.6,
+              "y": 1.902113032590307,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-before",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 0.13333333333333333,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.13333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 71794688,
+        "cachedImageBytes": 79020032,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-inside",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 0.6666666666666666,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "custom_dark_willow_shadow_realm",
+            "layer": "realm",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.6666666666666666,
+          "hits": [],
+          "untargetable": true
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 73711616,
+        "cachedImageBytes": 80936960,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "custom_dark_willow_shadow_realm",
+          "layer": "realm",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+              "image": "/art/skills/custom_dark_willow_shadow_realm/realm.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-shot",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 1.1666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_dark_willow_shadow_realm",
+            "layer": "charged",
+            "image": "/custom_dark_willow_shadow_realm/charged.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:basic",
+            "x": 0.2,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 1.1666666666666667,
+          "hits": [],
+          "attackStatisticsSkill": "basic_attack"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 71794688,
+        "cachedImageBytes": 79020032,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/characters/mage-female/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:basic"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_dark_willow_shadow_realm",
+          "layer": "charged",
+          "image": "/custom_dark_willow_shadow_realm/charged.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:basic",
+          "x": 0.2,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:basic",
+              "image": "/art/skills/custom_dark_willow_shadow_realm/charged.webp",
+              "x": 0.2,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-female/attack.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "steal-return",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_rubick_spell_steal",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_rubick_spell_steal",
+            "layer": "steal",
+            "image": "/custom_rubick_spell_steal/steal.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:steal",
+            "x": 2.8000000000000003,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4666666666666667,
+          "time": 0.5666666666666667,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 7,
+        "activeImageBytes": 26673152,
+        "cachedImageBytes": 29884416,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "p:projectile:0:steal",
+          "s:1:h1-0:1:h1-0:ursa_overpower:claws"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_rubick_spell_steal",
+          "layer": "steal",
+          "image": "/custom_rubick_spell_steal/steal.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:steal",
+          "x": 2.8000000000000003,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:steal",
+              "image": "/art/mobile/skills/custom_rubick_spell_steal/steal.webp",
+              "x": 2.8000000000000003,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "steal-memory",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_rubick_spell_steal",
+        "points": 3,
+        "time": 0.9,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "custom_rubick_spell_steal",
+            "layer": "memory",
+            "image": "/custom_rubick_spell_steal/memory.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "world",
+            "art": "custom_rubick_spell_steal",
+            "layer": "learn",
+            "image": "/custom_rubick_spell_steal/learn.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:learn",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4666666666666667,
+          "time": 0.9,
+          "hits": [],
+          "borrowed": "ursa_overpower"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 7,
+        "activeImageBytes": 26935296,
+        "cachedImageBytes": 30146560,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "world:visual-world:0:learn",
+          "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+          "s:1:h1-0:1:h1-0:ursa_overpower:claws"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "custom_rubick_spell_steal",
+          "layer": "memory",
+          "image": "/custom_rubick_spell_steal/memory.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:h0-0:0:h0-0:custom_rubick_spell_steal:memory",
+              "image": "/art/mobile/skills/custom_rubick_spell_steal/memory.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "custom_rubick_spell_steal",
+          "layer": "learn",
+          "image": "/custom_rubick_spell_steal/learn.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:learn",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:learn",
+              "image": "/art/mobile/skills/custom_rubick_spell_steal/learn.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sunder-exchange",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "terrorblade_sunder",
+        "points": 3,
+        "time": 0.5,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "exchange",
+            "image": "/terrorblade_sunder/exchange.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+            "x": 2.1354836600000002,
+            "y": -0.12635279999999996
+          },
+          {
+            "kind": "world",
+            "art": "terrorblade_sunder",
+            "layer": "receive",
+            "image": "/terrorblade_sunder/receive.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:receive",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.4,
+          "time": 0.5,
+          "hits": [],
+          "health": {
+            "caster": 90000,
+            "target": 25000
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 7,
+        "triangles": 14,
+        "gpuTextures": 6,
+        "activeImageBytes": 25296896,
+        "cachedImageBytes": 28508160,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "world:visual-world:0:receive",
+          "world:visual-world:1:receive"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "exchange",
+          "image": "/terrorblade_sunder/exchange.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "x": 2.1354836600000002,
+          "y": -0.12635279999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+              "image": "/art/mobile/skills/terrorblade_sunder/exchange.webp",
+              "x": 2.1354836600000002,
+              "y": -0.12635279999999996,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "terrorblade_sunder",
+          "layer": "receive",
+          "image": "/terrorblade_sunder/receive.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:receive",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:receive",
+              "image": "/art/mobile/skills/terrorblade_sunder/receive.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sunder-dagon",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "terrorblade_sunder",
+        "points": 9,
+        "time": 0.3,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "exchange",
+            "image": "/terrorblade_sunder/exchange.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+            "x": 2.13409892,
+            "y": -0.13919183999999996
+          },
+          {
+            "kind": "world",
+            "art": "terrorblade_sunder",
+            "layer": "receive",
+            "image": "/terrorblade_sunder/receive.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:receive",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "link",
+            "art": "terrorblade_sunder",
+            "layer": "dagon",
+            "image": "/terrorblade_sunder/dagon.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+            "x": 2.13409892,
+            "y": -0.13919183999999996
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.2,
+          "time": 0.3,
+          "hits": [],
+          "dagonDamage": 800,
+          "health": {
+            "caster": 90000,
+            "target": 24200
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 8,
+        "activeImageBytes": 26673152,
+        "cachedImageBytes": 29884416,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+          "world:visual-world:0:receive",
+          "world:visual-world:1:receive"
+        ],
+        "transientEffects": 2,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "exchange",
+          "image": "/terrorblade_sunder/exchange.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+          "x": 2.13409892,
+          "y": -0.13919183999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:terrorblade_sunder",
+              "image": "/art/mobile/skills/terrorblade_sunder/exchange.webp",
+              "x": 2.13409892,
+              "y": -0.13919183999999996,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "terrorblade_sunder",
+          "layer": "receive",
+          "image": "/terrorblade_sunder/receive.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:receive",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:receive",
+              "image": "/art/mobile/skills/terrorblade_sunder/receive.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "link",
+          "art": "terrorblade_sunder",
+          "layer": "dagon",
+          "image": "/terrorblade_sunder/dagon.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+          "x": 2.13409892,
+          "y": -0.13919183999999996,
+          "actual": [
+            {
+              "key": "link:0:h0-0:1:h1-0:aa_granted_sunder_dagon",
+              "image": "/art/mobile/skills/terrorblade_sunder/dagon.webp",
+              "x": 2.13409892,
+              "y": -0.13919183999999996,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "vacuum-pull",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "dark_seer_vacuum",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-1",
+            "x": 5.083333333333333,
+            "y": 0.7222222222222222,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "dark_seer_vacuum",
+            "layer": "inward",
+            "image": "/dark_seer_vacuum/inward.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:inward",
+            "x": 4,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [],
+          "collateral": {
+            "x": 5.083333333333333,
+            "y": 0.7222222222222222,
+            "warpSequence": 0
+          }
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 6,
+        "triangles": 12,
+        "gpuTextures": 5,
+        "activeImageBytes": 22806528,
+        "cachedImageBytes": 26017792,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-1",
+            "image": "/art/mobile/characters/mage-male/disabled.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:0:inward"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "dark_seer_vacuum",
+          "layer": "inward",
+          "image": "/dark_seer_vacuum/inward.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:inward",
+          "x": 4,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:inward",
+              "image": "/art/mobile/skills/dark_seer_vacuum/inward.webp",
+              "x": 4,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:h1-1",
+          "x": 5.083333333333333,
+          "y": 0.7222222222222222,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/disabled.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "vacuum-replica",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "dark_seer_vacuum",
+        "points": 9,
+        "time": 1.3666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 5.210000000000001,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "x": 9.333333333333332,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "dark_seer_vacuum",
+            "layer": "replica_enter",
+            "image": "/dark_seer_vacuum/replica_enter.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:1:replica_enter",
+            "x": 9.333333333333332,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 1.3666666666666667,
+          "hits": [
+            {
+              "skill": "dark_seer_vacuum",
+              "time": 1.0333333333333332,
+              "amount": 250,
+              "category": "spell"
+            }
+          ],
+          "images": [
+            {
+              "id": "0:h0-0:summon:0",
+              "x": 9.333333333333332,
+              "y": 0,
+              "attack": 80,
+              "taken": 2
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 8,
+        "activeImageBytes": 28442624,
+        "cachedImageBytes": 31653888,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "0:h0-0:summon:0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:1:replica_enter"
+        ],
+        "transientEffects": 4,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "dark_seer_vacuum",
+          "layer": "replica_enter",
+          "image": "/dark_seer_vacuum/replica_enter.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:1:replica_enter",
+          "x": 9.333333333333332,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:1:replica_enter",
+              "image": "/art/mobile/skills/dark_seer_vacuum/replica_enter.webp",
+              "x": 9.333333333333332,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 5.210000000000001,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "0:h0-0:summon:0",
+          "x": 9.333333333333332,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sharp-aim",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 3,
+        "time": 0.7333333333333333,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "charge",
+            "image": "/custom_hoodwink_sharpshooter/charge.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:charge",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.7333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 24248320,
+        "cachedImageBytes": 27459584,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "world:visual-world:0:charge"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "charge",
+          "image": "/custom_hoodwink_sharpshooter/charge.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:charge",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:charge",
+              "image": "/art/mobile/skills/custom_hoodwink_sharpshooter/charge.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "sharp-bolt",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 9,
+        "time": 5.1,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": -0.8749999999999969,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 12,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "bolt",
+            "image": "/custom_hoodwink_sharpshooter/bolt.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:bolt",
+            "x": 2.75,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "projectile",
+            "image": "/custom_hoodwink_sharpshooter/boomerang.webp"
+          },
+          {
+            "kind": "world",
+            "image": "/custom_hoodwink_sharpshooter/charge.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 5.1,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 25100288,
+        "cachedImageBytes": 28311552,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:bolt"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "bolt",
+          "image": "/custom_hoodwink_sharpshooter/bolt.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:bolt",
+          "x": 2.75,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:bolt",
+              "image": "/art/mobile/skills/custom_hoodwink_sharpshooter/bolt.webp",
+              "x": 2.75,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "projectile",
+          "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+          "actual": []
+        },
+        {
+          "kind": "world",
+          "image": "/custom_hoodwink_sharpshooter/charge.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": -0.8749999999999969,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 12,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "boomerang-flight",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_hoodwink_sharpshooter",
+        "points": 9,
+        "time": 0.4666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "moving",
+            "art": "custom_hoodwink_sharpshooter",
+            "layer": "boomerang",
+            "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+            "resourceAvailable": true,
+            "projectedKey": "motion:visual-projectile:0:boomerang",
+            "x": 1.6,
+            "y": 1.902113032590307
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.4666666666666667,
+          "hits": [],
+          "child": "hoodwink_hunters_boomerang"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 6,
+        "triangles": 12,
+        "gpuTextures": 6,
+        "activeImageBytes": 25886720,
+        "cachedImageBytes": 29097984,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:charge",
+          "motion:visual-projectile:0:boomerang"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "moving",
+          "art": "custom_hoodwink_sharpshooter",
+          "layer": "boomerang",
+          "image": "/custom_hoodwink_sharpshooter/boomerang.webp",
+          "resourceAvailable": true,
+          "projectedKey": "motion:visual-projectile:0:boomerang",
+          "x": 1.6,
+          "y": 1.902113032590307,
+          "actual": [
+            {
+              "key": "motion:visual-projectile:0:boomerang",
+              "image": "/art/mobile/skills/custom_hoodwink_sharpshooter/boomerang.webp",
+              "x": 1.6,
+              "y": 1.902113032590307,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/cast.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-before",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 0.13333333333333333,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.13333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 24248320,
+        "cachedImageBytes": 27459584,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-inside",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 0.6666666666666666,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "custom_dark_willow_shadow_realm",
+            "layer": "realm",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.6666666666666666,
+          "hits": [],
+          "untargetable": true
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 25100288,
+        "cachedImageBytes": 28311552,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "custom_dark_willow_shadow_realm",
+          "layer": "realm",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:h0-0:0:h0-0:custom_dark_willow_shadow_realm:realm",
+              "image": "/art/mobile/skills/custom_dark_willow_shadow_realm/realm.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/idle.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "realm-shot",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_dark_willow_shadow_realm",
+        "points": 3,
+        "time": 1.1666666666666667,
+        "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+        "bodies": [
+          {
+            "id": "0:h0-0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:h1-0",
+            "x": 4,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "custom_dark_willow_shadow_realm",
+            "layer": "charged",
+            "image": "/custom_dark_willow_shadow_realm/charged.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:basic",
+            "x": 0.2,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/custom_dark_willow_shadow_realm/realm.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 1.1666666666666667,
+          "hits": [],
+          "attackStatisticsSkill": "basic_attack"
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 5,
+        "triangles": 10,
+        "gpuTextures": 5,
+        "activeImageBytes": 24248320,
+        "cachedImageBytes": 27459584,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:h0-0",
+            "image": "/art/mobile/characters/mage-female/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:h1-0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:basic"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "custom_dark_willow_shadow_realm",
+          "layer": "charged",
+          "image": "/custom_dark_willow_shadow_realm/charged.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:basic",
+          "x": 0.2,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:basic",
+              "image": "/art/mobile/skills/custom_dark_willow_shadow_realm/charged.webp",
+              "x": 0.2,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/custom_dark_willow_shadow_realm/realm.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:h0-0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-female/attack.webp"
+        },
+        {
+          "id": "1:h1-0",
+          "x": 4,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    }
+  ],
+  "missing": []
+}

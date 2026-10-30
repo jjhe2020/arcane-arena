@@ -1,0 +1,1140 @@
+{
+  "schemaVersion": 1,
+  "group": "summon-lineage",
+  "auditedOn": "2026-10-30",
+  "configurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+  "sourcePolicy": "Locked complete AA object numeric/differences priority;native nonnumeric Wiki priority;category alone is not a custom override.",
+  "aaFullObjects": [
+    {
+      "name": "Summon Familiars",
+      "id": "custom_visage_summon_familiars",
+      "icon": "visage_summon_familiars",
+      "tags": [
+        "attackDamage",
+        "stun",
+        "summons",
+        "ultimate"
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "description": "Conjures blind Familiars to fight for the hero. Familiars possess the Stone Form ability, that allows them to turn into stone, stunning enemies upon landing. While in Stone Form, Familiars are invulnerable, and rapidly regenerate their health.",
+      "differences": "Familiars have double their normal HP",
+      "values": [
+        "FAMILIAR ARMOR: 0 / 2 / 4",
+        "FAMILIAR ATTACK DAMAGE: 25 / 50 / 75",
+        "FAMILIAR COUNT: 2",
+        "FAMILIAR MAX HEALTH: 1000 / 1200 / 1400"
+      ],
+      "cooldowns": [
+        130,
+        120,
+        110
+      ],
+      "manaCost": [
+        150,
+        150,
+        150
+      ],
+      "superUpgrade": "Super: +2 familiars.",
+      "gabenUpgrade": "Gaben: Grants the hero Stone Form and Silent as the Grave."
+    },
+    {
+      "name": "Summon Spirit Bear",
+      "id": "custom_lone_druid_spirit_bear",
+      "icon": "lone_druid_spirit_bear",
+      "tags": [
+        "summons"
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "description": "Summons a powerful Spirit Bear companion that can equip items. Spirit Bear does not benefit from attributes.\nSpirit Bear has the Entangling Root ability.",
+      "differences": "Has no leash by default. Lives independently from caster.",
+      "values": [
+        "BEAR ARMOR: 3 / 4 / 6",
+        "BEAR BASE ATTACK TIME: 1.75 / 1.65 / 1.45",
+        "BEAR HP REGEN: 5 / 6 / 8",
+        "BEAR HP: 1100 / 1400 / 2000",
+        "BEAR MOVESPEED: 340 / 360 / 400"
+      ],
+      "cooldowns": [
+        120
+      ],
+      "manaCost": [
+        75,
+        75,
+        75
+      ],
+      "superUpgrade": "Super: +25 Spirit Bear Movement speed, +8 Spirit Bear Armor, 0s Entangle Cooldown, +1000 Spirit Bear Health, -0.1 Spirit Bear Attack Time.",
+      "gabenUpgrade": "Gaben: Grants Mjollnir, Mask of Madness and Skull Basher."
+    },
+    {
+      "name": "Summon Wolves",
+      "id": "custom_lycan_summon_wolves",
+      "icon": "lycan_summon_wolves",
+      "tags": [
+        "summons"
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "description": "Summons two wolves to fight for the caster. Level 3-4 wolves have Permanent Invisibility, and level 4 wolves have Cripple.",
+      "differences": "",
+      "values": [
+        "BASE ATTACK TIME: 1.2 / 1.1 / 0.9",
+        "DAMAGE: 18 / 24 / 36",
+        "DURATION: 50",
+        "HP: 325 / 375 / 475",
+        "WOLF COUNT: 2 / 2 / 2"
+      ],
+      "cooldowns": [
+        30,
+        30,
+        30
+      ],
+      "manaCost": [
+        125,
+        130,
+        140
+      ],
+      "superUpgrade": "Super: Summons 2 extra wolves",
+      "gabenUpgrade": "Gaben: Also summons a Big Bad Wolf in addition to the regular wolves (5x stats of regular wolf) that apply Howl on attack (4s debuff)"
+    },
+    {
+      "name": "Shapeshift",
+      "id": "lycan_shapeshift",
+      "icon": "lycan_shapeshift",
+      "tags": [
+        "mobility",
+        "stats",
+        "summons",
+        "ultimate"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DISPELLABLE: Strong Dispels Only"
+      ],
+      "description": "Lycan assumes his lupine form, granting him and his units critical strikes and added vision at night. During Shapeshift, Lycan and all units under his control move at increased speed, cannot be slowed and have a 40% chance to deal a critical strike doing 160% / 190% / 220% damage.",
+      "differences": "Shapeshift is permanent. Instant cast time. Caster becomes melee when Shapeshift is used.",
+      "values": [
+        "BONUS NIGHT VISION: 1000",
+        "CRITICAL CHANCE: 40%",
+        "CRITICAL DAMAGE: 160% / 190% / 220%",
+        "DURATION: 999",
+        "HEALTH BONUS: 200 / 300 / 400",
+        "SHAPESHIFT MOVE SPEED: 550",
+        "TRANSFORM TIME: 0"
+      ],
+      "cooldowns": [
+        125,
+        110,
+        95
+      ],
+      "manaCost": [
+        100
+      ],
+      "superUpgrade": "Super: Blinks Shapeshift unit to enemy backline (1500 range), fearing enemies in 400 AOE for 1.5 seconds.",
+      "gabenUpgrade": "Gaben: Applies Wolf Bite to the closest ally in 600 radius."
+    },
+    {
+      "name": "Vampiric Spirit",
+      "id": "custom_skeleton_king_vampiric_aura",
+      "icon": "skeleton_king_vampiric_aura",
+      "tags": [
+        "lifesteal",
+        "stun",
+        "summons"
+      ],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "description": "Restore health based on the damage the caster deals when attacking enemy units. Can be cast to summon skeletons with Vampiric Spirit. Skeletons respawn once when killed.",
+      "differences": "Always summons the maximum number of skeletons.",
+      "values": [
+        "LIFESTEAL: 10% / 18% / 34%",
+        "SKELETON DURATION: 60",
+        "SKELETONS: 2 / 4 / 8"
+      ],
+      "cooldowns": [
+        50
+      ],
+      "manaCost": [
+        70,
+        80,
+        100
+      ],
+      "superUpgrade": "Super: Skeletons gain +24 attack damage, and 2x health.",
+      "gabenUpgrade": "Gaben: Skeletons respawn indefinitely. When skeletons respawn, they cast level 2 Wraithfire Blast on a random enemy hero (global range)."
+    }
+  ],
+  "completeFieldAudit": [
+    {
+      "id": "custom_visage_summon_familiars",
+      "keys": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "differences": "Familiars have double their normal HP",
+      "aiAndNotesAbsent": true
+    },
+    {
+      "id": "custom_lone_druid_spirit_bear",
+      "keys": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "differences": "Has no leash by default. Lives independently from caster.",
+      "aiAndNotesAbsent": true
+    },
+    {
+      "id": "custom_lycan_summon_wolves",
+      "keys": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "differences": "",
+      "aiAndNotesAbsent": true
+    },
+    {
+      "id": "lycan_shapeshift",
+      "keys": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "differences": "Shapeshift is permanent. Instant cast time. Caster becomes melee when Shapeshift is used.",
+      "aiAndNotesAbsent": true
+    },
+    {
+      "id": "custom_skeleton_king_vampiric_aura",
+      "keys": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "differences": "Always summons the maximum number of skeletons.",
+      "aiAndNotesAbsent": true
+    }
+  ],
+  "nativeAbilitySelection": {
+    "visage_summon_familiars_stone_form": {
+      "ID": "5484",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "AbilityCastRange": "160",
+      "AbilityCastPoint": "0.0",
+      "MaxLevel": "3",
+      "AbilitySound": "Visage_Familiar.StoneForm.Cast",
+      "AbilityCooldown": "14.0",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "stun_radius": "375"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "stun_delay": "0.55"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "stun_damage": "60 100 140"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "stun_duration": "1.0 1.25 1.5"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "stone_duration": "6.0"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "hp_regen": "150 175 200"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5"
+    },
+    "visage_silent_as_the_grave": {
+      "ID": "683",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "MaxLevel": "1",
+      "IsGrantedByScepter": "1",
+      "AbilityCastPoint": "0.0",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityCooldown": "45.0",
+      "AbilityManaCost": "100",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "bonus_duration": "4"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage": "25"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "invis_duration": "35.0"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "movespeed_bonus": "20"
+        }
+      }
+    },
+    "lone_druid_spirit_bear_return": {
+      "ID": "5418",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+      "AbilityCooldown": "30.0",
+      "AbilityCastPoint": "0",
+      "AbilityChannelTime": "3.0",
+      "AbilityManaCost": "0",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "channel_tooltip": "3"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lone_druid_spirit_bear_entangle": {
+      "ID": "5419",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilitySound": "LoneDruid_SpiritBear.Entangle",
+      "AbilityDamage": "60",
+      "AbilityCooldown": "5.0",
+      "AbilityValues": {
+        "damage": "30 40 50 60",
+        "entangle_chance": "20",
+        "hero_duration": "1 1.6 2.2 2.8",
+        "creep_damage_multiplier": "3",
+        "hero_entangle_chance": "30"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "lycan_summon_wolves_critical_strike": {
+      "ID": "5399",
+      "MaxLevel": "1",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "AbilityValues": {
+        "maim_chance": "20",
+        "maim_duration": "4.0",
+        "maim_movement_speed": {
+          "value": "15",
+          "special_bonus_unique_lycan_3": "+10"
+        },
+        "maim_attack_speed": "60",
+        "maim_damage": "8"
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lycan_summon_wolves_invisibility": {
+      "ID": "5500",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_FLOAT",
+          "fade_time": "0.0 0.0 0.0"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "fade_delay": "2"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+    },
+    "skeleton_king_hellfire_blast": {
+      "ID": "5086",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_SkeletonKing.Hellfire_Blast",
+      "AbilityCastRange": "525",
+      "AbilityCastPoint": "0.35 0.35 0.35 0.35",
+      "AbilityCooldown": "17 14 11 8",
+      "AbilityDamage": "75 90 105 120",
+      "AbilityManaCost": "95 110 125 140",
+      "AbilityModifierSupportValue": "0.5",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "blast_speed": "1200"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "blast_stun_duration": "1.1 1.4 1.7 2.0",
+          "LinkedSpecialBonus": "special_bonus_unique_wraith_king_11"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "blast_dot_duration": "2.0",
+          "LinkedSpecialBonus": "special_bonus_unique_wraith_king_7"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "blast_slow": "-20"
+        },
+        "05": {
+          "var_type": "FIELD_INTEGER",
+          "blast_dot_damage": "20 40 60 80",
+          "LinkedSpecialBonus": "special_bonus_unique_wraith_king_3"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_move_speed": "25"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_attack_speed": "25"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "lycan_wolf_bite": {
+      "ID": "333",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "MaxLevel": "3",
+      "FightRecapLevel": "1",
+      "IsGrantedByScepter": "1",
+      "HasScepterUpgrade": "1",
+      "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+      "AbilityCastRange": "300",
+      "AbilityCooldown": "125 110 95",
+      "AbilityManaCost": "150",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+      "AbilityValues": {
+        "lifesteal_percent": "30",
+        "lifesteal_range": "1200",
+        "attack_range": "150"
+      }
+    }
+  },
+  "nativeItemSelection": {
+    "item_mjollnir": {
+      "ID": "158",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityCastRange": "800",
+      "AbilityCastPoint": "0.0",
+      "AbilityCooldown": "35.0",
+      "AbilityManaCost": "50",
+      "ItemCost": "5600",
+      "ItemShopTags": "damage;attack_speed;unique",
+      "ItemQuality": "artifact",
+      "ItemAliases": "mjollnir",
+      "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS",
+      "ShouldBeSuggested": "1",
+      "AbilityValues": {
+        "bonus_damage": "24",
+        "bonus_attack_speed": "70",
+        "static_duration": "15.0",
+        "static_chance": "20",
+        "static_strikes": "4",
+        "static_damage": "225",
+        "static_primary_radius": "600",
+        "static_seconary_radius": "900",
+        "static_radius": "900",
+        "static_cooldown": "1.0",
+        "chain_chance": "30",
+        "chain_damage": "180",
+        "chain_strikes": "12",
+        "chain_radius": "650",
+        "chain_delay": "0.25",
+        "chain_cooldown": "0.2",
+        "max_charges": "0",
+        "chain_damage_per_charge": "0"
+      }
+    },
+    "item_mask_of_madness": {
+      "ID": "172",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+      "FightRecapLevel": "1",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "AbilityCooldown": "16.0",
+      "AbilityManaCost": "25",
+      "ItemCost": "1775",
+      "ItemShopTags": "unique;hard_to_tag",
+      "ItemQuality": "artifact",
+      "ItemAliases": "mom;mask of madness",
+      "ItemDisassembleRule": "DOTA_ITEM_DISASSEMBLE_ALWAYS",
+      "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS",
+      "ShouldBeSuggested": "1",
+      "AbilityValues": {
+        "bonus_damage": "10",
+        "bonus_attack_speed": "10",
+        "lifesteal_percent": "24",
+        "creep_lifesteal_reduction_pct": "50",
+        "berserk_bonus_attack_speed": "110",
+        "berserk_bonus_movement_speed": "30",
+        "berserk_armor_reduction": "8",
+        "berserk_duration": "6.0"
+      }
+    },
+    "item_basher": {
+      "ID": "143",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "AbilityCooldown": "2.3",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "ItemCost": "2875",
+      "ItemShopTags": "damage;str;hard_to_tag",
+      "ItemQuality": "epic",
+      "ItemAliases": "skull basher",
+      "ItemDeclarations": "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS",
+      "ShouldBeSuggested": "1",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_damage": "25"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_strength": "10"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "bash_chance_melee": "25"
+        },
+        "04": {
+          "var_type": "FIELD_INTEGER",
+          "bash_chance_ranged": "10"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "bash_duration": "1.5"
+        },
+        "06": {
+          "var_type": "FIELD_FLOAT",
+          "bash_cooldown": "2.3"
+        },
+        "07": {
+          "var_type": "FIELD_INTEGER",
+          "bonus_chance_damage": "100"
+        }
+      }
+    }
+  },
+  "unitRawSelection": {
+    "npc_dota_units_base": {
+      "Model": "models/development/invisiblebox.vmdl",
+      "SoundSet": "0",
+      "Level": "1",
+      "IsAncient": "0",
+      "IsNeutralUnitType": "0",
+      "SelectionGroup": "",
+      "SelectOnSpawn": "0",
+      "CanBeDominated": "1",
+      "IgnoreAddSummonedToSelection": "0",
+      "AutoAttacksByDefault": "1",
+      "Ability1": "",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "Ability5": "",
+      "Ability6": "",
+      "Ability7": "",
+      "Ability8": "",
+      "ArmorPhysical": "0",
+      "MagicalResistance": "0",
+      "AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+      "BaseAttackSpeed": "100",
+      "AttackDamageMin": "1",
+      "AttackDamageMax": "1",
+      "AttackDamageType": "DAMAGE_TYPE_ArmorPhysical",
+      "AttackRate": "1.7",
+      "AttackAnimationPoint": "0.75",
+      "AttackAcquisitionRange": "800",
+      "AttackRange": "600",
+      "AttackRangeBuffer": "250",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "900",
+      "AttributePrimary": "DOTA_ATTRIBUTE_STRENGTH",
+      "AttributeBaseStrength": "0",
+      "AttributeStrengthGain": "0",
+      "AttributeBaseIntelligence": "0",
+      "AttributeIntelligenceGain": "0",
+      "AttributeBaseAgility": "0",
+      "AttributeAgilityGain": "0",
+      "BountyXP": "0",
+      "BountyGoldMin": "0",
+      "BountyGoldMax": "0",
+      "BoundsHullName": "DOTA_HULL_SIZE_HERO",
+      "RingRadius": "50",
+      "HealthBarOffset": "-1",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_NONE",
+      "MovementSpeed": "300",
+      "MovementTurnRate": "0.5",
+      "HasAggressiveStance": "0",
+      "FollowRange": "100",
+      "StatusHealth": "150",
+      "StatusHealthRegen": "0",
+      "StatusMana": "0",
+      "StatusManaRegen": "0",
+      "StatusStartingMana": "-1",
+      "TeamName": "DOTA_TEAM_NEUTRALS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT",
+      "NeutralIgnore": "0",
+      "VisionDaytimeRange": "575",
+      "VisionNighttimeRange": "575",
+      "AttackDesire": "1.0",
+      "HasInventory": "0",
+      "WakesNeutrals": "1",
+      "IdleSoundLoop": ""
+    },
+    "npc_dota_lycan_wolf1": {
+      "Model": "models/heroes/lycan/summon_wolves.vmdl",
+      "BaseClass": "npc_dota_creep_neutral",
+      "SoundSet": "Lycan_Wolf",
+      "Level": "1",
+      "IsSummoned": "1",
+      "ModelScale": "0.9",
+      "UnitLabel": "lycan_wolf",
+      "UseNeutralCreepBehavior": "0",
+      "Ability1": "",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "ArmorPhysical": "0",
+      "MagicalResistance": "40",
+      "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+      "AttackDamageMin": "20",
+      "AttackDamageMax": "23",
+      "AttackRate": "1.2",
+      "AttackAnimationPoint": "0.33",
+      "AttackAcquisitionRange": "500",
+      "AttackRange": "90",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "0",
+      "RingRadius": "70",
+      "HealthBarOffset": "160",
+      "BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+      "BountyXP": "20",
+      "BountyGoldMin": "21",
+      "BountyGoldMax": "21",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+      "MovementSpeed": "400",
+      "StatusHealth": "325",
+      "StatusHealthRegen": "0.5",
+      "StatusMana": "0",
+      "StatusManaRegen": "0",
+      "VisionDaytimeRange": "1200",
+      "VisionNighttimeRange": "800",
+      "TeamName": "DOTA_TEAM_NEUTRALS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    },
+    "npc_dota_lycan_wolf2": {
+      "include_keys_from": "npc_dota_lycan_wolf1",
+      "Level": "2",
+      "ModelScale": "0.95",
+      "AttackDamageMin": "26",
+      "AttackDamageMax": "29",
+      "AttackRate": "1.1",
+      "BountyGoldMin": "26",
+      "BountyGoldMax": "26",
+      "MovementSpeed": "420",
+      "MagicalResistance": "50",
+      "StatusHealth": "375"
+    },
+    "npc_dota_lycan_wolf3": {
+      "include_keys_from": "npc_dota_lycan_wolf1",
+      "Level": "3",
+      "ModelScale": ".975",
+      "Ability1": "lycan_summon_wolves_invisibility",
+      "AttackDamageMin": "32",
+      "AttackDamageMax": "34",
+      "AttackRate": "1.0",
+      "BountyGoldMin": "36",
+      "BountyGoldMax": "36",
+      "MovementSpeed": "440",
+      "MagicalResistance": "60",
+      "StatusHealth": "425"
+    },
+    "npc_dota_lycan_wolf4": {
+      "include_keys_from": "npc_dota_lycan_wolf1",
+      "Level": "4",
+      "ModelScale": ".99",
+      "Ability1": "lycan_summon_wolves_invisibility",
+      "Ability2": "lycan_summon_wolves_critical_strike",
+      "AttackDamageMin": "38",
+      "AttackDamageMax": "40",
+      "AttackRate": "0.9",
+      "BountyGoldMin": "41",
+      "BountyGoldMax": "41",
+      "MovementSpeed": "460",
+      "MagicalResistance": "70",
+      "StatusHealth": "475"
+    },
+    "npc_dota_lycan_wolf_lane": {
+      "include_keys_from": "npc_dota_lycan_wolf4",
+      "Ability1": "lycan_summon_wolves_critical_strike",
+      "BountyXP": "10",
+      "BountyGoldMin": "15",
+      "BountyGoldMax": "15",
+      "MovementSpeed": "325"
+    },
+    "npc_dota_lone_druid_bear1": {
+      "Model": "models/heroes/lone_druid/spirit_bear.vmdl",
+      "BaseClass": "npc_dota_lone_druid_bear",
+      "SoundSet": "LoneDruid_SpiritBear",
+      "Level": "1",
+      "ModelScale": ".65",
+      "ConsideredHero": "1",
+      "UnitLabel": "spirit_bear",
+      "Ability1": "lone_druid_spirit_bear_return",
+      "Ability2": "lone_druid_spirit_bear_demolish",
+      "Ability3": "lone_druid_savage_roar_bear",
+      "Ability4": "lone_druid_spirit_bear_entangle",
+      "ArmorPhysical": "3",
+      "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+      "AttackDamageMin": "28",
+      "AttackDamageMax": "28",
+      "AttackRate": "1.75",
+      "AttackAnimationPoint": "0.43",
+      "AttackAcquisitionRange": "500",
+      "AttackRange": "150",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "0",
+      "RingRadius": "70",
+      "HealthBarOffset": "215",
+      "BountyXP": "300",
+      "BountyGoldMin": "300",
+      "BountyGoldMax": "300",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+      "MovementSpeed": "340",
+      "MovementTurnRate": "0.6",
+      "StatusHealth": "1100",
+      "StatusHealthRegen": "5",
+      "StatusMana": "300",
+      "StatusManaRegen": "0.5",
+      "VisionDaytimeRange": "1400",
+      "VisionNighttimeRange": "800",
+      "TeamName": "DOTA_TEAM_NEUTRALS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT",
+      "HasInventory": "1"
+    },
+    "npc_dota_lone_druid_bear2": {
+      "include_keys_from": "npc_dota_lone_druid_bear1",
+      "ModelScale": ".72",
+      "ArmorPhysical": "4",
+      "AttackRate": "1.65",
+      "MovementSpeed": "360",
+      "MovementTurnRate": "0.6",
+      "StatusHealth": "1400",
+      "StatusHealthRegen": "6",
+      "StatusMana": "300",
+      "StatusManaRegen": "0.5"
+    },
+    "npc_dota_lone_druid_bear3": {
+      "include_keys_from": "npc_dota_lone_druid_bear1",
+      "ModelScale": ".78",
+      "ArmorPhysical": "5",
+      "AttackRate": "1.55",
+      "MovementSpeed": "380",
+      "MovementTurnRate": "0.6",
+      "StatusHealth": "1700",
+      "StatusHealthRegen": "7",
+      "StatusMana": "300",
+      "StatusManaRegen": "0.5"
+    },
+    "npc_dota_lone_druid_bear4": {
+      "include_keys_from": "npc_dota_lone_druid_bear1",
+      "ModelScale": ".85",
+      "ArmorPhysical": "6",
+      "AttackRate": "1.45",
+      "MovementSpeed": "400",
+      "MovementTurnRate": "0.6",
+      "StatusHealth": "2000",
+      "StatusHealthRegen": "8",
+      "StatusMana": "300",
+      "StatusManaRegen": "0.5"
+    },
+    "npc_dota_visage_familiar1": {
+      "BaseClass": "npc_dota_visage_familiar",
+      "Model": "models/heroes/visage/visage_familiar.vmdl",
+      "SoundSet": "Visage_Familiar",
+      "ModelScale": "0.66",
+      "Level": "2",
+      "IsSummoned": "1",
+      "IsAncient": "1",
+      "UnitLabel": "visage_familiars",
+      "AutoAttacksByDefault": "0",
+      "ConsideredHero": "1",
+      "wearable": "600",
+      "Ability1": "visage_summon_familiars_stone_form",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "Ability5": "",
+      "Ability6": "",
+      "Ability7": "",
+      "Ability8": "",
+      "ArmorPhysical": "0",
+      "MagicalResistance": "35",
+      "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+      "AttackDamageMin": "25",
+      "AttackDamageMax": "25",
+      "AttackDamageType": "DAMAGE_TYPE_ArmorPhysical",
+      "AttackRate": "0.5",
+      "AttackAnimationPoint": "0.33",
+      "AttackAcquisitionRange": "400",
+      "AttackRange": "180",
+      "ProjectileModel": "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf",
+      "ProjectileSpeed": "900",
+      "BountyXP": "41",
+      "BountyGoldMin": "100",
+      "BountyGoldMax": "100",
+      "BoundsHullName": "DOTA_HULL_SIZE_REGULAR",
+      "HealthBarOffset": "130",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+      "MovementSpeed": "420",
+      "MovementTurnRate": "0.9",
+      "StatusHealth": "500",
+      "StatusHealthRegen": "0.0",
+      "StatusMana": "0",
+      "StatusManaRegen": "0.0",
+      "TeamName": "DOTA_TEAM_BADGUYS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD",
+      "VisionDaytimeRange": "400",
+      "VisionNighttimeRange": "400"
+    },
+    "npc_dota_visage_familiar2": {
+      "include_keys_from": "npc_dota_visage_familiar1",
+      "ArmorPhysical": "2",
+      "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+      "AttackDamageMin": "50",
+      "AttackDamageMax": "50",
+      "AttackDamageType": "DAMAGE_TYPE_ArmorPhysical",
+      "AttackRate": "0.5",
+      "AttackAnimationPoint": "0.33",
+      "AttackAcquisitionRange": "400",
+      "AttackRange": "180",
+      "ProjectileModel": "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf",
+      "ProjectileSpeed": "900",
+      "StatusHealth": "600"
+    },
+    "npc_dota_visage_familiar3": {
+      "include_keys_from": "npc_dota_visage_familiar1",
+      "ArmorPhysical": "4",
+      "AttackCapabilities": "DOTA_UNIT_CAP_RANGED_ATTACK",
+      "AttackDamageMin": "75",
+      "AttackDamageMax": "75",
+      "StatusHealth": "700"
+    },
+    "npc_dota_wraith_king_skeleton_warrior": {
+      "BaseClass": "npc_dota_creep_neutral",
+      "Model": "models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl",
+      "SoundSet": "Creep_Good_Melee",
+      "ModelScale": "1.1",
+      "Level": "1",
+      "IsSummoned": "1",
+      "Ability1": "",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "Ability5": "",
+      "Ability6": "",
+      "Ability7": "",
+      "Ability8": "",
+      "ArmorPhysical": "1",
+      "MagicalResistance": "50",
+      "AttackCapabilities": "DOTA_UNIT_CAP_MELEE_ATTACK",
+      "AttackDamageMin": "32",
+      "AttackDamageMax": "37",
+      "AttackDamageType": "DAMAGE_TYPE_ArmorPhysical",
+      "AttackRate": "1.2",
+      "AttackAnimationPoint": "0.56",
+      "AttackAcquisitionRange": "300",
+      "AttackRange": "115",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "",
+      "BountyXP": "0",
+      "BountyGoldMin": "0",
+      "BountyGoldMax": "0",
+      "BoundsHullName": "DOTA_HULL_SIZE_SMALLEST",
+      "HealthBarOffset": "140",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+      "MovementSpeed": "350",
+      "MovementTurnRate": "0.5",
+      "StatusHealth": "175",
+      "StatusHealthRegen": "0.0",
+      "StatusMana": "0",
+      "StatusManaRegen": "0",
+      "TeamName": "DOTA_TEAM_GOODGUYS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT",
+      "VisionDaytimeRange": "800",
+      "VisionNighttimeRange": "600"
+    }
+  },
+  "unitInheritancePolicy": "Merge npc_dota_units_base,then recursively include_keys_from,then own values. Attack clocks/AP/back/turn adaptations are individually documented in workbook;old20profiles are unchanged.",
+  "rawTypeAudit": {
+    "visage_summon_familiars_stone_form": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "3",
+      "technicalWrapper": false
+    },
+    "aa_granted_visage_stone_form": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": true
+    },
+    "visage_silent_as_the_grave": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "1",
+      "technicalWrapper": false
+    },
+    "lone_druid_spirit_bear_return": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "lone_druid_spirit_bear_entangle": {
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "item_mjollnir": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "item_mask_of_madness": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "item_basher": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "lycan_summon_wolves_critical_strike": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "1",
+      "technicalWrapper": false
+    },
+    "lycan_summon_wolves_invisibility": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "skeleton_king_hellfire_blast": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "no explicit MaxLevel;one passive/action rank or normal four-rank hero action as individually mapped",
+      "technicalWrapper": false
+    },
+    "lycan_wolf_bite": {
+      "AbilityType": "no explicit ULTIMATE;native default BASIC",
+      "MaxLevel": "3",
+      "technicalWrapper": false
+    }
+  },
+  "technicalDomains": [
+    {
+      "id": "aa_granted_visage_stone_form",
+      "ranks": 1,
+      "meaning": "Technical action wrapper for Cloak Shard hero action. Its1rank does not assert native passive Gravekeepers Cloak maximum1;uses parent nativeFamiliar3 landing fields."
+    },
+    {
+      "id": "aa_granted_sunder_dagon",
+      "ranks": 5,
+      "meaning": "Other group technical upgrade index item_dagon through item_dagon_5,not a single KV native ability with MaxLevel5."
+    }
+  ],
+  "captures": [
+    {
+      "url": "https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid",
+      "sha256": "d0e23f8096d41e4a3ffe9d18ccc4e7c6335c71478467c1e195d8de04cfcb9ccc",
+      "method": "Prior fullHTML cached and sections actually reread C14"
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191614id_/https://dota2.fandom.com/wiki/Wraith_King",
+      "sha256": "ae0052f14994d5657317657decfea272f29a0ceb487f967450e036d01309df72",
+      "method": "Actual fresh historical fullHTML HTTP200"
+    },
+    {
+      "url": "https://liquipedia.net/dota2/Archive%3AVisage",
+      "method": "Actual indexed retained/Archive section,not a new2023capture"
+    },
+    {
+      "url": "https://dota2.fandom.com/wiki/Lycan",
+      "method": "Actual indexed retained sections,dated exactrequest429"
+    }
+  ],
+  "failedHistoricalRequests": [
+    {
+      "hero": "Lycan",
+      "accessedOn": "2026-10-30",
+      "policy": "One discovery and at most one exactcapture;no retry after429.",
+      "url": "https://web.archive.org/web/20230205103458id_/https://dota2.fandom.com/wiki/Lycan",
+      "capture": "20230205103458",
+      "httpStatus": 429,
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "hero": "Visage",
+      "accessedOn": "2026-10-30",
+      "policy": "One discovery and at most one exactcapture;no retry after429.",
+      "cdxUrl": "https://web.archive.org/cdx/search/cdx?url=dota2.fandom.com%2Fwiki%2FVisage&output=json&filter=statuscode%3A200&from=20230201&to=20230301&collapse=timestamp%3A6",
+      "cdxStatus": 200,
+      "captures": [
+        [
+          "urlkey",
+          "timestamp",
+          "original",
+          "mimetype",
+          "statuscode",
+          "digest",
+          "length"
+        ],
+        [
+          "com,fandom,dota2)/wiki/visage",
+          "20230215192213",
+          "https://dota2.fandom.com/wiki/Visage",
+          "text/html",
+          "200",
+          "AUZTIYEOIATEZUULZQI4J7LTYSI4JMHY",
+          "164921"
+        ]
+      ],
+      "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Visage",
+      "capture": "20230215192213",
+      "httpStatus": 429,
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "hero": "Wraith_King",
+      "accessedOn": "2026-10-30",
+      "policy": "One discovery and at most one exactcapture;no retry after429.",
+      "cdxUrl": "https://web.archive.org/cdx/search/cdx?url=dota2.fandom.com%2Fwiki%2FWraith_King&output=json&filter=statuscode%3A200&from=20230201&to=20230301&collapse=timestamp%3A6",
+      "cdxStatus": 200,
+      "captures": [
+        [
+          "urlkey",
+          "timestamp",
+          "original",
+          "mimetype",
+          "statuscode",
+          "digest",
+          "length"
+        ],
+        [
+          "com,fandom,dota2)/wiki/wraith_king",
+          "20230215191614",
+          "https://dota2.fandom.com/wiki/Wraith_King",
+          "text/html",
+          "200",
+          "3OSU5R5TN6K2WWEW5TMH2VIJZLCIQ3WX",
+          "162958"
+        ]
+      ],
+      "url": "https://web.archive.org/web/20230215191614id_/https://dota2.fandom.com/wiki/Wraith_King",
+      "capture": "20230215191614",
+      "httpStatus": 200,
+      "sha256": "ae0052f14994d5657317657decfea272f29a0ceb487f967450e036d01309df72"
+    }
+  ],
+  "beforeDiagnostics": {
+    "file": "output/c14-summon-intake/actual-before.json",
+    "sha256": "0e2f3ce87c1b7668bdd1f30bfe116ab687b4a9c2ea790623c6583e3b05a4ad07",
+    "observations": "28actual-before results retain positive counterexamples:owner-dead wolves already refaded and existing skeleton expiry preservation already worked;120second round cap is not evidence of premature permanent expiry."
+  },
+  "scope": "Native inventory/trading,FoW,XP and hero progression are not manufactured by these finite game factories.",
+  "itemSource": {
+    "id": "nativeItems",
+    "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/items.txt",
+    "accessedOn": "2026-10-30",
+    "sha256": "28d026d1724bdce59e50683f29c5e3f26c43a50c7311231dec1a3023b9dd3d40",
+    "versionContext": "Pinned commit2023-02-10actual items.txt. Repository directory20230216is not the source commit date. No new MoM HTTPpage is claimed.",
+    "observation": "Read item_mask_of_madness creep_lifesteal_reduction_pct50,lifesteal24,damage10,AS10,berserk110AS/30flatMS/armor8/6seconds,25mana/16CD. Mjollnir24damage/70AS/180chain/225static and Basher25damage/100conditional/1.5stun/2.3CD are independent native item sources;itemattribute bonuses explicitly omitted by AA.",
+    "localEvidence": "references/dota-wiki/summon-lineage-source-snapshot.json"
+  },
+  "additionalReadSource": {
+    "id": "basherDetails",
+    "url": "https://dota2.fandom.com/wiki/Skull_Basher",
+    "accessedOn": "2026-10-30",
+    "versionContext": "Actually read retained indexed primary page in C14;7.33stun1.2and7.34damage30excluded in favor of pinned1.5/25. No new dated fullHTML capture claimed.",
+    "observation": "Its100conditional physical damage is excluded from crit/cleave,retainslifesteal and singleflatblock,does not scale with main attack percentage. Proc debuff precedes main damage;PRD is independently dated2012-12-06. Exact duplicate item/innatebash eligibility remains bounded."
+  },
+  "pinnedSourceCommitDate": "2023-02-10T01:16:45Z"
+}

@@ -5,7 +5,7 @@ export type DamageType = 'physical' | 'magical' | 'pure';
 /** Mechanism category is independent of the ability used for statistics. */
 export type DamageCategory = 'attack' | 'spell' | 'hpRemoval';
 /** One released attack; opaque data must contain serializable snapshots only. */
-export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number};mainDamageSnapshot?:{stage:'attackBegin';at:number;baseline:number;unscaled:number;fraction:number;beforeCritical:number;damage?:number}}
+export interface AttackRecord {id:string;source:string;target:string;abilityId:string;ranged:boolean;data:Record<string,unknown>;critical?:{multiplier:number;key?:string;lifesteal:number};criticalOccurrence?:{stage:'attackBegin';at:number};mainDamageSnapshot?:{stage:'attackBegin';at:number;baseline:number;unscaled:number;fraction:number;beforeCritical:number;damage?:number}}
 export interface DamageFlags { critical?:boolean; damageOverTime?:boolean; reflection?:boolean; noSpellLifesteal?:boolean; delayed?:boolean; healthRemoval?:boolean;noAmplification?:boolean;noReflection?:boolean;noDamageHooks?:boolean;nonLethal?:boolean;ignoreDamageBlock?:boolean;bypassGenericMultipliers?:boolean;convertedAttack?:boolean;affectsBanished?:boolean;affectsInvulnerable?:boolean }
 /** Typed HPLOSS retains armor/MR; direct healthRemoval follows its older path. */
 export interface DamageFlags {healthLoss?:boolean}
@@ -35,5 +35,6 @@ export interface CombatUnit {nativeTemplateId?:string;nativeBaseAttackSpeed?:num
 export interface CombatUnit {piercingAttackClass?:{hero:number;creep:number;reinforced:number};reinforced?:boolean}
 /** Pure launch presentation; it never changes an attack's statistical source. */
 export interface AttackRecord {projectileVisual?:{skill:string;points:number}}
+export interface CombatUnit {attackOrder?:{targetId:string;withinRangeOnly?:boolean}}
 export interface AnimationClip { image: string; frames: number; columns: number; frameWidth: number; frameHeight: number; fps: number; pivot?: [number, number]; loop?: boolean; [key:string]: unknown }
 export interface AssetManifest { characters: Record<string, Record<string, AnimationClip>>; skills: Record<string, unknown>; arenas: { name: string; image: string; [key: string]: unknown }[]; projectiles?:Record<string,AnimationClip>; mobileAtlases?:Record<string,Partial<AnimationClip>&{image:string;frameWidth:number;frameHeight:number}>; [key:string]: unknown }

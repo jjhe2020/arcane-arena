@@ -32,6 +32,9 @@ import {applyResonantArrowAcceptance,RESONANT_ARROW_CHILD_DEFINITIONS} from './c
 import {applyAuraArmorAcceptance,AURA_ARMOR_CHILD_DEFINITIONS} from './combat/aura-armor-acceptance';
 import {applyMotionReleaseAcceptance,MOTION_RELEASE_CHILD_DEFINITIONS} from './combat/motion-release-acceptance';
 import {applyRestorationLinkAcceptance,RESTORATION_LINK_CHILD_DEFINITIONS} from './combat/restoration-link-acceptance';
+import {applyAttackStateAcceptance,ATTACK_STATE_CHILD_DEFINITIONS} from './combat/attack-state-acceptance';
+import {applyControlTargetAcceptance,CONTROL_TARGET_CHILD_DEFINITIONS} from './combat/control-target-acceptance';
+import {applySummonLineageAcceptance,SUMMON_LINEAGE_CHILD_DEFINITIONS} from './combat/summon-lineage-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -150,6 +153,12 @@ export interface EffectContext {
   beforeDamageResolution?:{inputAmount:number;damageAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;stage:'beforeTargetMitigation'};
   attackBatchKey?:string;
   addAttackBonus?(amount:number):void;
+  battlefieldBounds?:Readonly<{x:number;y:number}>;
+  /** A preferred ordinary attack target; explicit duel/taunt/trance still wins. */
+  orderAttack?(attacker:CombatUnit,target:CombatUnit,options?:{withinRangeOnly?:boolean}):void;
+  /** Flat stolen-instance reduction, also used by the shared sequential-charge clock. */
+  stolenCooldownReduction?:number;
+  flatAttackBonus?(unit:CombatUnit,options?:{excludeSkillIds?:string[]}):number;
   permanentAttribute?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',amount:number):number;
   /** Rebase an illusion's already-copied totals before adding a copied form multiplier. */
   inheritTemporaryAttributeMultiplier?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',fraction:number):boolean;
@@ -197,7 +206,7 @@ export interface EffectContext {
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
   projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean;visualProjectile?:string}): void;
-  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
+  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;visualLayer?:string;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
   executeFrom?(source:CombatUnit,target:CombatUnit):void;
@@ -232,7 +241,7 @@ export interface EffectContext {
   grantAbility?(id: string, points: number): void;
   /** A released grant creates a real ability on the recipient body. */
   grantAbilityTo?(target:CombatUnit,id:string,points:number):void;
-  stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>}): void;
+  stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>;castPointCap?:number;cooldownReduction?:number;removeOnDeath?:boolean;refreshExisting?:boolean}): void;
 }
 export interface SkillProgram {
   /** Active toggle Off is an independent order, preserving another pending action. */
@@ -271,10 +280,13 @@ export interface SkillProgram {
   onSpellOrder?:(c:EffectContext)=>void;
   onAffectedUnitDeath?:(c:EffectContext,status:EffectStatus)=>void;
   onAffectedUnitDamage?:(c:EffectContext,status:EffectStatus)=>void;
+  /** Accepted incoming instance on a body carrying this program's real status. */
+  onAffectedUnitIncomingDamageEvent?:(c:EffectContext,status:EffectStatus)=>void;
   /** Explicit illusion-only state copy after inherited totals are restored. */
   onIllusionCreated?:(c:EffectContext)=>void;
   cooldownStart?:'release'|'effectEnd';
-  criticalAttack?:(c:EffectContext)=>{chance:number;multiplier:number;minMultiplier?:number;maxMultiplier?:number;lifesteal?:number;prdKey?:string}|undefined;
+  /** Pure begin profile. Selection may only mark this record, never spend or apply contact effects. */
+  criticalAttack?:(c:EffectContext)=>{chance:number;multiplier:number;minMultiplier?:number;maxMultiplier?:number;lifesteal?:number;prdKey?:string;priority?:number;onSelected?:(record:import('./model').AttackRecord)=>void}|undefined;
   /** A real attack-based projectile; instantaneous attacks without a projectile omit this. */
   attackProjectile?:boolean;
   /** Fired once when an individual status is dispelled or naturally expires. */
@@ -289,6 +301,10 @@ export interface SkillProgram {
   /** Explicit native zero-point exception, preserving an existing channel. */
   canCastWhileChanneling?:boolean;
   attackCastPointFactor?:number|((c:EffectContext)=>number);
+  /** Accepted attack-based cast contributes its ensured critical before windup. */
+  attackCastOptions?:(c:EffectContext)=>InstantAttackOptions;
+  /** A selected passive replacement executes one attack without an ability execution. */
+  attackCastIsPassive?:(c:EffectContext)=>boolean;
   targetSelector?: (c:EffectContext,candidates:CombatUnit[])=>CombatUnit|undefined;
   target?: 'enemy' | 'ally' | 'self' | 'any'; range?: number | ((c: EffectContext) => number);
   castPoint?: number | ((c: EffectContext) => number); backswing?: number; channel?: number | ((c: EffectContext) => number);
@@ -657,8 +673,11 @@ applyResonantArrowAcceptance(registry);
 applyAuraArmorAcceptance(registry);
 applyMotionReleaseAcceptance(registry);
 applyRestorationLinkAcceptance(registry);
+applyAttackStateAcceptance(registry);
+applyControlTargetAcceptance(registry);
+applySummonLineageAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
-for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
+for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS,...ATTACK_STATE_CHILD_DEFINITIONS,...CONTROL_TARGET_CHILD_DEFINITIONS,...SUMMON_LINEAGE_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;
