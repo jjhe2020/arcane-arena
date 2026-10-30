@@ -8,7 +8,7 @@ import {spawn} from 'node:child_process';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
 if(!existsSync(path.join(root,'index.html'))){console.error('请先运行 npm install 和 npm run build');process.exit(1);}
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml'};
 const port=Number(process.env.PORT)||4173;
 const server=createServer((req,res)=>{
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405,{Allow:'GET, HEAD'}).end();return;}
@@ -24,7 +24,7 @@ const server=createServer((req,res)=>{
   }catch{res.writeHead(404).end('Not found');return;}
   const type=types[path.extname(target)]||'application/octet-stream';
   const etag=`"${stat.size.toString(16)}-${Math.trunc(stat.mtimeMs).toString(16)}"`;
-  const compressible=/^text\/|application\/json|image\/svg/.test(type);
+  const compressible=/^text\/|application\/(?:json|manifest\+json)|image\/svg/.test(type);
   res.setHeader('Content-Type',type);res.setHeader('Cache-Control','no-cache');res.setHeader('ETag',etag);
   if(compressible)res.setHeader('Vary','Accept-Encoding');
   if(req.headers['if-none-match']?.split(/\s*,\s*/).includes(etag)){res.writeHead(304).end();return;}

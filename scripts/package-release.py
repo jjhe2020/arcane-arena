@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import zipfile
 import hashlib
+import re
 
 root = Path(__file__).resolve().parent.parent
 dist = root / 'dist'
@@ -11,9 +12,16 @@ if not (dist / 'index.html').is_file():
 out = root / 'output'
 out.mkdir(exist_ok=True)
 coverage = json.loads((dist / 'data/mechanics-coverage.json').read_text(encoding='utf-8'))
-version = json.loads((root / 'package.json').read_text(encoding='utf-8'))['version']
+offline = json.loads((dist / 'offline-assets.json').read_text(encoding='utf-8'))
+manifest = json.loads((dist / 'manifest.webmanifest').read_text(encoding='utf-8'))
+if not (dist / 'sw.js').is_file() or not offline.get('files'):
+    raise SystemExit('Production PWA worker or offline inventory is missing.')
+package = json.loads((root / 'package.json').read_text(encoding='utf-8'))
+version = package['version']
 revision = coverage['simulationRevision']
-revision_tag = revision.rsplit('-', 1)[-1]
+revision_tag = package.get('releaseRevision', revision.rsplit('-', 1)[-1])
+if not isinstance(revision_tag, str) or not re.fullmatch(r'r\d+', revision_tag):
+    raise SystemExit('package.json releaseRevision must be r<number>.')
 # GitHub normalizes non-ASCII asset names; keep the downloadable filename stable.
 archive = out / f'ArcaneArena-{version}-{revision_tag}-dev.zip'
 prefix = 'ArcaneArena'
@@ -22,6 +30,10 @@ notice = '''秘境竞技场 · 0.1 开发构建
 双击“启动游戏.cmd”启动游戏，浏览器地址 http://localhost:4173。
 此电脑需要 Node.js；当前开发环境已安装。关闭服务窗口可停止游戏服务。
 手机横屏可通过此电脑局域网IP:4173访问。
+局域网 HTTP 仅支持在线访问；手机安装 PWA 与离线缓存需要 HTTPS 网站。
+电脑 localhost 支持离线缓存。手机首次联网打开 HTTPS 网站后，在“离线”中完整下载资源。
+建议先添加到主屏幕，从图标进入游戏后下载，等待显示离线就绪再断网游玩。
+离线资源保存在当前浏览器；清理网站数据会删除资源和本机存档。
 
 点击商品购买，点击已有技能再点击目标槽位分配/互换。
 长按或右键查看说明。拖动英雄布阵。
@@ -35,7 +47,8 @@ notice = '''秘境竞技场 · 0.1 开发构建
 最后两格为God预留位置，当前不可使用。
 跨英雄或移入暂存花1金币，暂存装备与同英雄排序免费。
 永久层数跟随技能，战斗中调整构筑仍只影响下轮。
-手机可切换全屏观战，再一键返回构筑。
+全屏按钮保留完整游戏界面；纯观战按钮可暂时收起构筑面板。
+不支持网页全屏的设备可通过浏览器“添加到主屏幕”以独立窗口游玩。
 本浏览器自动保存对局。不同设备独立存档。
 
 当前构建支持1玩家+7AI完整比赛；230项技能的基础/Super/Gaben均有工作机制。
@@ -60,7 +73,8 @@ with zipfile.ZipFile(archive) as z:
         raise RuntimeError(f'Archive CRC failed: {bad}')
 report = {'archive': str(archive), 'bytes': archive.stat().st_size, 'fileCount': len(entries)+1,
           'sha256': hashlib.file_digest(archive.open('rb'), 'sha256').hexdigest(),
-          'version': version, 'simulationRevision': revision, 'configHash': coverage.get('configHash'), 'configuration': coverage.get('configurationCoverage'), 'mechanics': coverage['counts'],
+          'version': version, 'releaseRevision': revision_tag, 'simulationRevision': revision, 'configHash': coverage.get('configHash'), 'configuration': coverage.get('configurationCoverage'), 'mechanics': coverage['counts'],
+          'offline': {'version': offline['version'], 'runtimeFiles': len(offline['files']), 'totalBytes': offline['totalBytes'], 'display': manifest['display'], 'orientation': manifest['orientation']},
           'strictReferenceVerifiedCount': coverage['strictReferenceVerifiedCount'],
           'crcVerified': True, 'status': 'playable_development_build_not_full_scope_complete'}
 (out/'release-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

@@ -1,0 +1,21 @@
+html{height:100%;background:#0c1319}
+html:fullscreen,html:-webkit-full-screen{width:100%;height:100%;background:#0c1319}
+.game{height:100vh;height:100dvh;padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right));padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(14px,env(safe-area-inset-bottom))}
+.fullscreen-toggle{white-space:nowrap;touch-action:manipulation}
+.rail-global-tools{gap:4px;flex-wrap:wrap;height:auto;min-height:41px}
+.rail-global-tools .fullscreen-toggle{font-size:11px;min-height:28px}
+.orientation{visibility:visible;padding-top:max(35px,env(safe-area-inset-top));padding-right:max(24px,env(safe-area-inset-right));padding-bottom:max(35px,env(safe-area-inset-bottom));padding-left:max(24px,env(safe-area-inset-left))}
+.orientation .fullscreen-toggle{min-height:44px;padding:10px 24px;font-size:14px}
+.fullscreen-help{width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:24px;background:#182820;color:#dce3df;border:1px solid #b9a575;border-radius:8px;box-shadow:0 12px 48px #0008}
+.fullscreen-help::backdrop{background:#08110cd9}
+.fullscreen-help h2{margin:0 0 14px;color:#ead6a6;font-size:20px}
+.fullscreen-help p{white-space:normal;line-height:1.8;font-size:14px}
+.fullscreen-help form{display:flex;justify-content:flex-end;margin-top:18px}
+.fullscreen-help button{min-height:44px;padding:8px 20px}
+.game[data-cinema=true]{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)!important}
+@media(max-width:920px) and (orientation:landscape),(max-height:600px) and (pointer:coarse) and (orientation:landscape){
+ .game{padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right));padding-top:max(5px,env(safe-area-inset-top));padding-bottom:max(5px,env(safe-area-inset-bottom))}
+ .mobile-nav{max-width:calc(100% - 8px);flex-wrap:wrap;justify-content:flex-end}
+ .mobile-nav .fullscreen-toggle{min-height:32px;padding:5px 9px}
+ .cinema-tools{max-width:calc(100% - 16px);flex-wrap:wrap}
+}

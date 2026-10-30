@@ -35,8 +35,10 @@ try{
  assert(await lastVisible(),'原生横滑后第10个普通商品仍不可达');
  const shopAfter=await page.locator('#shopGrid').evaluate(e=>e.scrollLeft);
  const goods=await page.evaluate(()=>window.arena.state.players[0].shop[9]);assert(goods);await last.tap();
- assert.equal(await page.evaluate(()=>window.arena.state.players[0].gold),3);assert.equal(await page.evaluate(()=>window.arena.state.players[0].heroes[0].skills[0]?.id),goods);
+ assert.equal(await page.evaluate(()=>window.arena.state.players[0].gold),3);assert.equal(await page.evaluate(()=>window.arena.state.players[0].reserve[0]?.id),goods,'购买应先进入暂存');assert.equal(await page.evaluate(()=>window.arena.state.players[0].heroes[0].skills[0]),null,'购买不应自动装备英雄');
  const preserved=await page.locator('#shopGrid').evaluate(e=>e.scrollLeft);assert(Math.abs(preserved-shopAfter)<2,'购买后商店滚动位置复位');
+ await page.locator('[data-action=mobileInfo]').tap();await page.locator('[data-reserve="0"]').tap();await page.locator('[data-action=closeMobileInfo]').tap();await page.locator('#teamRoster [data-slot="0"]').first().tap();
+ assert.equal(await page.evaluate(()=>window.arena.state.players[0].heroes[0].skills[0]?.id),goods,'暂存技能触摸装备失败');assert.equal(await page.evaluate(()=>window.arena.state.players[0].reserve[0]),null);assert.equal(await page.evaluate(()=>window.arena.state.players[0].gold),3,'从暂存装备应免费');
  await page.locator('#teamRoster [data-slot="0"]').first().tap();await page.locator('[data-action=mobileInfo]').tap();await page.locator('[data-reserve="3"]').tap();
  assert.equal(await page.evaluate(()=>window.arena.state.players[0].reserve[3]?.id),goods);
  assert.equal(await page.evaluate(()=>window.arena.state.players[0].gold),2,'英雄移入暂存应扣1金币');
@@ -44,7 +46,7 @@ try{
  const viewBefore=await page.evaluate(()=>{const r=window.arena.renderer;return{span:r.project(0,-12).y-r.project(0,12).y,units:JSON.stringify(window.arena.battles.map(b=>b.units))};});
  await page.locator('[data-action=cinema]').tap();await page.waitForTimeout(200);
  const viewAfter=await page.evaluate(()=>{const r=window.arena.renderer;return{span:r.project(0,-12).y-r.project(0,12).y,units:JSON.stringify(window.arena.battles.map(b=>b.units))};});
- assert(viewAfter.span>viewBefore.span*1.4,'全屏观战未扩大有效战场');assert.equal(viewAfter.units,viewBefore.units,'相机切换改变实际战斗');
+ assert(viewAfter.span>viewBefore.span*1.4,'纯净观战未扩大有效战场');assert.equal(viewAfter.units,viewBefore.units,'相机切换改变实际战斗');
  await page.locator('[data-action=cinemaSpeed]').tap();assert.equal(await page.locator('[data-action=cinemaSpeed]').textContent(),'2×');await page.screenshot({path:'artifacts/mobile-cinema.png'});await page.locator('[data-action=exitCinema]').tap();assert(await page.locator('#arenaShop').isVisible());assert.deepEqual(errors,[]);
- const report={status:'passed',viewport:'667x375',checks:['五级普通商品4/6/6/8/10、两格God禁用','本局100技能随机池','原生触摸横滑购买第10个普通商品','购买后保持滚动位置','扣1金触摸分配至第4暂存槽','全屏观战扩大画面且不改变模拟','全屏中速度按钮同步和返回构筑'],shopLevels,shopBefore,shopAfter,preserved,viewScaleGain:viewAfter.span/viewBefore.span,errors};await fs.writeFile('artifacts/mobile-touch-smoke.json',JSON.stringify(report,null,2));console.log(report);
+ const report={status:'passed',viewport:'667x375',checks:['五级普通商品4/6/6/8/10、两格God禁用','本局100技能随机池','原生触摸横滑购买第10个普通商品','购买后保持滚动位置','购买进入暂存后触摸免费装备','扣1金触摸分配至第4暂存槽','纯净观战扩大画面且不改变模拟','纯净观战中速度按钮同步和返回构筑'],shopLevels,shopBefore,shopAfter,preserved,viewScaleGain:viewAfter.span/viewBefore.span,errors};await fs.writeFile('artifacts/mobile-touch-smoke.json',JSON.stringify(report,null,2));console.log(report);
 }finally{await browser.close();}

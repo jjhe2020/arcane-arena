@@ -11,7 +11,9 @@ try {
   // A slow first texture must hold the reveal and every simulation clock,
   // then release normally once the actual atlas becomes usable.
   {
-    const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
+    // Route fixtures must reach Playwright rather than the production service worker.
+    // Offline cache behavior is exercised separately by pwa-smoke.mjs.
+    const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, serviceWorkers: 'block' });
     const errors = [], held = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(url);
@@ -152,7 +154,7 @@ try {
     await page.screenshot({ path: `${output}/${name}-celebrate.png` });
     const completed = await page.evaluate(() => { window.arena.save(); return JSON.stringify(window.arena.battles); });
     await page.reload();
-    await page.waitForFunction(() => window.arena?.renderer.diagnostics().unitBodies.some(b => b.action === 'celebrate' && b.image?.includes('/celebrate')));
+    await page.waitForFunction(() => window.arena?.renderer?.diagnostics().unitBodies.some(b => b.action === 'celebrate' && b.image?.includes('/celebrate')));
     assert.equal(await page.evaluate(() => JSON.stringify(window.arena.battles)), completed, 'Result restore changed completed battle');
     assert.deepEqual(errors, []);
     assert.deepEqual(await page.evaluate(() => window.arena.renderer.loadErrors), []);

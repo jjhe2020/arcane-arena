@@ -82,6 +82,7 @@ jobs:
           fi
           node scripts/verify-release.mjs
           node scripts/browser-smoke.mjs
+          node scripts/pwa-smoke.mjs
           node scripts/sidebar-layout-smoke.mjs
           node scripts/battle-presentation-smoke.mjs
           node scripts/spectator-smoke.mjs
@@ -115,9 +116,12 @@ jobs:
 
           下载附件中的 ZIP，解压后双击 `启动游戏.cmd`；需要先安装 Node.js。Linux/macOS 可在解压目录运行 `node scripts/serve.mjs`，浏览器打开 http://localhost:4173。
 
+          手机离线游玩：将 ZIP 内的 `dist/` 部署到 HTTPS 网站，添加到主屏幕后从图标打开，通过“离线”入口完整下载资源，等待“离线就绪”。手机通过电脑局域网 HTTP 访问只能在线游玩。ZIP 不是手机安装包。
+
           这是可玩的开发构建。逐项机制和原作对照的验证边界以本版本验证说明为准。
 
           - 模拟修订：`{report['simulationRevision']}`
+          - 发布修订：`{report['releaseRevision']}`；仅涉及界面和离线能力时保留兼容存档。
           - ZIP SHA-256：`{report['sha256']}`
           - 包内文件数：{report['fileCount']}；CRC 检查通过。
           - 本次发布已通过单元测试、生产构建、资源检查与生产浏览器操作检查。

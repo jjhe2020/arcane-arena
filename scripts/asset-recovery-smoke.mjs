@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const browser=await chromium.launch({headless:true});
 try{
- const page=await browser.newPage({viewport:{width:1440,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.routeWebSocket('**',()=>{});let requests=0;
+ // Keep temporary HTTP-failure fixtures outside the service worker cache layer.
+ const page=await browser.newPage({viewport:{width:1440,height:900},serviceWorkers:'block'});const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.routeWebSocket('**',()=>{});let requests=0;
  await page.route('**/art/characters/tank-female/idle.webp',route=>requests++<2?route.fulfill({status:503,body:'temporary fixture failure'}):route.continue());
  await page.goto(process.env.ARENA_TEST_URL??'http://localhost:5173');await page.waitForFunction(()=>window.arena?.state);
  await page.waitForFunction(()=>window.arena.renderer.diagnostics().unitBodies.some(b=>b.image?.includes('tank-female/idle.webp'))&&window.arena.renderer.loadErrors.length===0,{},{timeout:12000});
