@@ -80,7 +80,7 @@ async function download(){
   }
  }));
  if(failure){
-  await announce({...current,state:'error',completed,bytes,error:failure.name==='QuotaExceededError'?'设备空间不足，请释放空间后重试。':String(failure.message||failure)});
+  await announce({...current,state:'error',completed,bytes,error:failure.name==='QuotaExceededError'?'浏览器可用存储空间不足。请释放空间，或改用普通浏览 / 已安装应用后重试。':String(failure.message||failure)});
   return;
  }
  await cache.put(READY,new Response(MANIFEST.version));

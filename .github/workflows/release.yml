@@ -183,3 +183,22 @@ jobs:
           assert.equal(reportAsset.size, (await fs.stat('output/release-report.json')).size);
           console.log(release.url);
           JS
+
+      - name: Upload browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-browser-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/pwa-smoke/
+            artifacts/browser-smoke.json
+            artifacts/battle-presentation/
+            artifacts/sidebar-layout/
+            artifacts/skill-stats/
+            artifacts/shop-menu-smoke/
+            artifacts/ui-integrity-smoke/
+            artifacts/*.json
+            artifacts/*.png
+            ${{ runner.temp }}/arena-release-server.log
+          if-no-files-found: warn
+          retention-days: 7
