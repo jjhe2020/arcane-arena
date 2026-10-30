@@ -14,6 +14,8 @@ export interface ContinuousMoveOptions {
   ignoreTerrainBarriers?: boolean;
   respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
+  /** A released leap can finish its existing trajectory after its body dies. */
+  continueAfterDeath?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 export interface MotionController {
@@ -29,6 +31,7 @@ export interface MotionController {
   ignoreTerrainBarriers?: boolean;
   respectSoulbind?:boolean;
   cancelOnRoot?:boolean;
+  continueAfterDeath?:boolean;
   onEnd?:(reason:'complete'|'interrupted')=>void;
 }
 

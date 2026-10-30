@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { applyDamage, createBattle, stepBattle } from '../src/combat';
 import type { BattleState, CombatUnit, Player, SkillDefinition } from '../src/model';
 import type { EffectStatus } from '../src/skill-effects';
+import {activeVisualWorldEffects} from '../src/combat/visual-state';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
 function player(id: number, skill?: string, points = 3, count = 1): Player {
@@ -29,11 +30,15 @@ describe('dynamic main-skill completeness', () => {
 
   it('Gaben Ravage return wave hits a moving hero at its new radius, once in each direction', () => {
     const state = battle('custom_tidehunter_ravage', 9, 1), target = state.units[1]; target.x = 0; target.y = 0;
-    advance(state, .8);
-    expect(state.events.filter(e => e.type === 'hit' && e.skill === 'custom_tidehunter_ravage')).toHaveLength(1);
-    advance(state, 1.3); target.x = 8; target.y = -2; advance(state, .8);
-    expect(state.events.filter(e => e.type === 'hit' && e.skill === 'custom_tidehunter_ravage')).toHaveLength(2);
-    advance(state, 1); expect(state.events.filter(e => e.type === 'hit' && e.skill === 'custom_tidehunter_ravage')).toHaveLength(2);
+    const hits = () => state.events.filter(e => e.type === 'hit' && e.skill === 'custom_tidehunter_ravage');
+    // Contact first lifts the victim; damage follows the native half-second landing.
+    for(let i=0;i<60&&!hits().length;i++)advance(state,1/30);
+    expect(hits()).toHaveLength(1);
+    for(let i=0;i<120&&!activeVisualWorldEffects(state).some(e=>e.skill==='custom_tidehunter_ravage'&&e.phase==='inward');i++)advance(state,1/30);
+    expect(activeVisualWorldEffects(state).some(e=>e.skill==='custom_tidehunter_ravage'&&e.phase==='inward')).toBe(true);
+    target.x = 8; target.y = -2; advance(state, 1.5);
+    expect(hits()).toHaveLength(2);
+    advance(state, 1); expect(hits()).toHaveLength(2);
   });
 
   it('Soulbind replaces a dead partner and preserves the original anchor timer', () => {

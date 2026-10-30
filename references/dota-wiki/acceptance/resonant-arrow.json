@@ -1,0 +1,4023 @@
+{
+  "schemaVersion": 1,
+  "group": "resonant-arrow",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Metadata/hash,independent paraphrases and selected official AA/Valve structured data only;full third-party HTML remains ignored.AA explicit numbers/custom clauses preserved;nonnumeric Wiki priority over category-only conflicts.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+      "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+      "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+    },
+    {
+      "id": "units-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+      "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+    }
+  ],
+  "engineRequirements": [
+    {
+      "id": "E-C12-RESONANT-ARROW-REPLAY",
+      "kind": "combination",
+      "branch": "base",
+      "rule": "SYS-01 an unmodified actual Rot battle replays its ledger and tick phase deterministically after JSON restore",
+      "sourceIds": [
+        "aa",
+        "valve-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-resonant-arrow.test.ts",
+          "test": "SYS-01 an unmodified actual Rot battle replays its ledger and tick phase deterministically after JSON restore"
+        }
+      ],
+      "status": "working_interpretation",
+      "qualification": "Engineering deterministic replay contract,not Dota replay-format proof."
+    }
+  ],
+  "validation": {
+    "command": "npx vitest run tests/reference-resonant-arrow.test.ts",
+    "passedTests": 107,
+    "configurationHash": "522ffaf25b6f2f8e32e55f2f3af6d3e472d469a9c3144da426d5fbed53915211",
+    "typecheck": "npx tsc --noEmit",
+    "typecheckPassed": true,
+    "localReport": "output/c12-resonant-arrow/final-tests.json",
+    "reportSha256": "490bdacff05a2040e7402e570936d625273c55e36353254ee51a1d82d4242af9",
+    "meaning": "107actual named results,not107whole native mechanisms.All5remainpartial.Parent owns full-suite/reference/build/production.",
+    "firstGreen": {
+      "passedTests": 104,
+      "localReport": "output/c12-resonant-arrow/matrix-4.json",
+      "configurationHash": null,
+      "hashProvenance": "First104-run VitestJSON did not embed configuration hash;do not retrospectively assign final metadata hash.Final107rerun is independently bound to6e0f160c."
+    },
+    "lastNarrowCorrection": "Boulder actual-transform tracking catches already-completed external displacement;real NetherSwap result and final107rerun.",
+    "renderCommand": "node scripts/c12-resonant-render-smoke.mjs",
+    "renderStatus": "passed",
+    "renderReport": "artifacts/r6-c12-resonant-render/report.json",
+    "renderScenarios": 16,
+    "renderReportSha256": "a5592c7539e6504cbcb5d4b5d3f2f5c5200e140a5ecd957d954ceeff4661c059",
+    "renderMeaning": "8actual scenes on desktop/mobile,immutable engine snapshot,real textures/no load/page errors.RP measured ring/generic return/shield;native Stone consumption/rolling bodies;real wall contact;Rot On cloud without premature Dismember/clamp and Off retaining real child hold;actual Arrow+meteor.No injected statuses,damage,visuals or summons."
+  },
+  "preOverrideDiagnostic": {
+    "checkpoint": "89dcc73d4a24e2d4f65eebafd9e0a1897700a13d",
+    "configurationHash": "b966e893e1934468983d5e38aee9c7d341333053753f8ac997581fd85608ee1c",
+    "localPath": "output/c12-resonant-arrow/actual-before.json",
+    "sha256": "a8a1389a25445b7db1c873c81e78fa79a60c7ed7bb4145962cea8fbbf388a250",
+    "sourceHashes": {
+      "src/combat.ts": "1b79a1321fe678e3c1be2026520cbc710bd10e1373cf7be3fd67149e35a0fbf0",
+      "src/skill-effects-more.ts": "7fca120b81f1c5dfa47fd632fff3319835a1a8e95740b0d7b16a8726995b6062",
+      "src/combat/main-upgrades.ts": "bc3fe619e00cc0ebaae91b2b231d29b534b1a6123214776115bf456fa560da9e"
+    },
+    "observations": [
+      {
+        "name": "RP01 distant targets are damaged and their bonus absorption is installed in the release frame",
+        "cast": {
+          "type": "cast",
+          "source": "0:h0",
+          "target": "0:h0",
+          "skill": "void_spirit_resonant_pulse",
+          "x": 0,
+          "y": 0,
+          "toX": 0,
+          "toY": 0,
+          "duration": 0.2,
+          "points": 3,
+          "visualSkill": "void_spirit_resonant_pulse",
+          "visualPoints": 3,
+          "time": 0.03333333333333333,
+          "sequence": 1
+        },
+        "hits": [
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 220,
+            "damageType": "magical"
+          }
+        ],
+        "shield": [
+          {
+            "kind": "physicalShield",
+            "until": 10.033333333333333,
+            "value": 250,
+            "source": "0:h0",
+            "skill": "void_spirit_resonant_pulse",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "void_spirit_resonant_pulse",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "void_spirit_resonant_pulse",
+              "rootAbilityId": "void_spirit_resonant_pulse",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "remaining": 250
+          }
+        ]
+      },
+      {
+        "name": "RP02 physical spells incorrectly consume the native attack-only shield",
+        "hpLoss": 0,
+        "shield": [
+          {
+            "kind": "physicalShield",
+            "until": 10.033333333333333,
+            "value": 340,
+            "source": "0:h0",
+            "skill": "void_spirit_resonant_pulse",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "void_spirit_resonant_pulse",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "void_spirit_resonant_pulse",
+              "rootAbilityId": "void_spirit_resonant_pulse",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "remaining": 240
+          }
+        ]
+      },
+      {
+        "name": "RP03 absorption currently occurs after generic reduction instead of before it",
+        "absorbed": 50,
+        "hp": 100000
+      },
+      {
+        "name": "RP04 Super immunity counts a spell-immune body even though no pulse hit is accepted",
+        "hits": [
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 320,
+            "damageType": "magical"
+          }
+        ],
+        "immune": [
+          {
+            "kind": "magicImmune",
+            "until": 2.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "void_spirit_resonant_pulse",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "void_spirit_resonant_pulse",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "void_spirit_resonant_pulse",
+              "rootAbilityId": "void_spirit_resonant_pulse",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          }
+        ]
+      },
+      {
+        "name": "RP05 Gaben shield instances overwrite rather than stack after a controlled fresh target dispel",
+        "firstShield": 340,
+        "shields": [
+          {
+            "kind": "physicalShield",
+            "until": 10.066666666666666,
+            "value": 340,
+            "source": "0:h0",
+            "skill": "void_spirit_resonant_pulse",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 9,
+            "visualSkill": "void_spirit_resonant_pulse",
+            "visualPoints": 9,
+            "attribution": {
+              "abilityId": "void_spirit_resonant_pulse",
+              "rootAbilityId": "void_spirit_resonant_pulse",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "remaining": 340
+          }
+        ],
+        "casts": [
+          {
+            "time": 0.03333333333333333,
+            "source": "0:h0",
+            "target": "0:h0"
+          },
+          {
+            "time": 0.06666666666666667,
+            "source": "0:h0",
+            "target": "0:h0"
+          }
+        ],
+        "charges": {
+          "count": 0,
+          "maximum": 2,
+          "next": 18.033333333333335
+        }
+      },
+      {
+        "name": "RB01 caster receives a silence lock although native rolling permits other spells",
+        "positions": [
+          1.2444444444444445,
+          0
+        ],
+        "statuses": [
+          {
+            "kind": "root",
+            "until": 1.5708333333333335,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "earth_spirit_rolling_boulder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "earth_spirit_rolling_boulder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "earth_spirit_rolling_boulder",
+              "rootAbilityId": "earth_spirit_rolling_boulder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "disarm",
+            "until": 1.5708333333333335,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "earth_spirit_rolling_boulder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "earth_spirit_rolling_boulder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "earth_spirit_rolling_boulder",
+              "rootAbilityId": "earth_spirit_rolling_boulder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "phased",
+            "until": 1.5708333333333335,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "earth_spirit_rolling_boulder",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "earth_spirit_rolling_boulder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "earth_spirit_rolling_boulder",
+              "rootAbilityId": "earth_spirit_rolling_boulder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "silence",
+            "until": 1.5708333333333335,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "earth_spirit_rolling_boulder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "earth_spirit_rolling_boulder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "earth_spirit_rolling_boulder",
+              "rootAbilityId": "earth_spirit_rolling_boulder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "visualForm",
+            "until": 1.5708333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "earth_spirit_rolling_boulder",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "earth_spirit_rolling_boulder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "earth_spirit_rolling_boulder",
+              "rootAbilityId": "earth_spirit_rolling_boulder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "data": {
+              "form": "rolling_boulder"
+            }
+          }
+        ],
+        "hits": []
+      },
+      {
+        "name": "RB02 baseline already treats illusion collision as non-stopping and damages the later hero",
+        "position": [
+          8.799999999999999,
+          0
+        ],
+        "hits": [
+          {
+            "time": 0.6333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 48,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.1,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 48,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "RB03 spell-immune hero collision stops the roll but should not take its damage or stun",
+        "position": [
+          1.6,
+          0
+        ],
+        "hits": [],
+        "target": []
+      },
+      {
+        "name": "RT01 contact applies full stun immediately instead of after the0.6second disabling bounce",
+        "cast": {
+          "type": "cast",
+          "source": "0:h0",
+          "target": "1:h0",
+          "skill": "custom_pangolier_rolling_thunder",
+          "x": 0,
+          "y": 0,
+          "toX": 1,
+          "toY": 0,
+          "duration": 0.2,
+          "points": 3,
+          "visualSkill": "custom_pangolier_rolling_thunder",
+          "visualPoints": 3,
+          "time": 0.03333333333333333,
+          "sequence": 1
+        },
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 160,
+            "damageType": "magical"
+          }
+        ],
+        "target": [
+          {
+            "kind": "stun",
+            "until": 1.6,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": true,
+            "dispel": "strong",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 3,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 3,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          }
+        ],
+        "position": [
+          2.5,
+          0
+        ]
+      },
+      {
+        "name": "RT02 Super extends the runtime duration but public finalDURATION remains the basic5",
+        "statuses": [
+          {
+            "kind": "magicImmune",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "root",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "disarm",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "phased",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "silence",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "basic",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell"
+          },
+          {
+            "kind": "visualForm",
+            "until": 8.033333333333333,
+            "value": 0,
+            "source": "0:h0",
+            "skill": "custom_pangolier_rolling_thunder",
+            "harmful": false,
+            "dispel": "none",
+            "passive": false,
+            "piercesImmunity": false,
+            "points": 6,
+            "visualSkill": "custom_pangolier_rolling_thunder",
+            "visualPoints": 6,
+            "attribution": {
+              "abilityId": "custom_pangolier_rolling_thunder",
+              "rootAbilityId": "custom_pangolier_rolling_thunder",
+              "sourceUnitId": "0:h0",
+              "ownerUnitId": "0:h0",
+              "sourceName": "H"
+            },
+            "category": "spell",
+            "data": {
+              "form": "rolling_thunder"
+            }
+          }
+        ],
+        "definition": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 45,
+          "mana": 200,
+          "params": {
+            "DAMAGE": 160,
+            "DURATION": 5,
+            "KNOCKBACK DISTANCE": 150,
+            "RADIUS": 150,
+            "ROLL SPEED": 550,
+            "STUN DURATION": 1.5,
+            "TRANSFORM TIME": 1.2
+          },
+          "pointTier": 6,
+          "program": {},
+          "range": 20
+        }
+      },
+      {
+        "name": "RT03 manually turned direction is ignored by the fixed roll vector",
+        "from": [
+          0.8250000000000001,
+          0
+        ],
+        "to": [
+          2.1999999999999993,
+          0
+        ],
+        "facing": 1.5707963267948966
+      },
+      {
+        "name": "ROT01 self damage can kill its owner instead of respecting nonlethal semantics",
+        "dead": true,
+        "hp": 0,
+        "hits": [
+          {
+            "time": 0.23333333333333334,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 10,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.23333333333333334,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "ROT02 AA creep double-frequency damage is absent",
+        "heroHits": [
+          {
+            "time": 0.23333333333333334,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.43333333333333335,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.6333333333333333,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.8333333333333334,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 24,
+            "damageType": "magical"
+          }
+        ],
+        "creepHits": [
+          {
+            "time": 0.23333333333333334,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.43333333333333335,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.6333333333333333,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.8333333333333334,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 1.0333333333333332,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 24,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "ROT03 Super compiled negative slow arithmetic reduces32percent to18percent",
+        "slow": 0.18,
+        "params": {
+          "DAMAGE": 220,
+          "MOVE SLOW": -18,
+          "RADIUS": 250
+        }
+      },
+      {
+        "name": "ROT04 leaving the aura stops DOT immediately while native linger should damage for another0.5seconds",
+        "newHits": [
+          {
+            "time": 0.43333333333333335,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 24,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.6333333333333333,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 24,
+            "damageType": "magical"
+          }
+        ],
+        "slow": 0
+      },
+      {
+        "name": "ROT05 Gaben auto child has no real granted slot and heals only mitigated damage",
+        "skills": [
+          {
+            "id": "pudge_rot",
+            "points": 9
+          }
+        ],
+        "casts": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0"
+          }
+        ],
+        "heals": [
+          {
+            "time": 0.6,
+            "source": "0:h0",
+            "target": "0:h0",
+            "amount": 34.05
+          }
+        ],
+        "damage": [
+          {
+            "time": 0.6,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 34.05,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "AR01 spell-immune ordinary creep is executed through the projectile HP-removal path",
+        "dead": true,
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 100000,
+            "damageType": "pure"
+          }
+        ]
+      },
+      {
+        "name": "AR02 overlapping Gaben arrows can hit the same hero three times",
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 342,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 342,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 342,
+            "damageType": "magical"
+          }
+        ]
+      },
+      {
+        "name": "AR03 Super meteors hit unrevealed invisible enemies and use0.4instead of0.57delay",
+        "cast": {
+          "type": "cast",
+          "source": "0:h0",
+          "target": "1:h0",
+          "skill": "custom_mirana_arrow",
+          "x": 0,
+          "y": 0,
+          "toX": 1,
+          "toY": 0,
+          "duration": 0.2,
+          "points": 6,
+          "visualSkill": "custom_mirana_arrow",
+          "visualPoints": 6,
+          "time": 0.03333333333333333,
+          "sequence": 1
+        },
+        "hits": [
+          {
+            "time": 0.1,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 342,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.4666666666666667,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 300,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.4666666666666667,
+            "source": "0:h0",
+            "target": "1:h1",
+            "amount": 300,
+            "damageType": "magical"
+          },
+          {
+            "time": 0.5,
+            "source": "0:h0",
+            "target": "1:h0",
+            "amount": 300,
+            "damageType": "magical"
+          }
+        ]
+      }
+    ],
+    "meaning": "19controlled pre-override probes,not native certification.20authored red tests had19fail/1existing pass;correct baseline clauses were not falsely counted as fixes."
+  },
+  "skills": [
+    {
+      "id": "void_spirit_resonant_pulse",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete finite AA base/differences/S/G and related historical prototypes read first.Precise qualified choices/open clauses prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry;release helper zeroes cloned public castPoint/locks recast,separate PUB tests keep real timing.Controlled flags/positions explicit;true Fissure/NetherSwap/DeathPulse/Dismember/FierySoul and original-input replay named separately."
+      },
+      "catalogClauses": {
+        "base": "Void Spirit wraps himself in a protective shield that absorbs physical damage and emits a single damaging pulse around him. The shield gains increased damage absorption for each enemy hero the pulse hits.",
+        "differences": "AI: At Gaben, Resonant Pulse is only casted when a non-silenced hero is within cast range.",
+        "super": "Super: Grants 1s of spell immunity for each unit hit by Resonant Pulse. +100 damage.",
+        "gaben": "Gaben: Now has a maximum of 2 charges and silences enemies hit for 2 seconds.",
+        "values": [
+          "BASE SHIELD ABSORB: 40 / 80 / 160",
+          "BONUS ABSORB PER HERO HIT: 30 / 50 / 90",
+          "DAMAGE: 70 / 120 / 220",
+          "PULSE RADIUS: 500",
+          "SHIELD DURATION: 10"
+        ],
+        "cooldowns": [
+          18
+        ],
+        "mana": [
+          115,
+          120,
+          130
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+          "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+        },
+        {
+          "id": "units-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+          "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+          "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+        },
+        {
+          "id": "void-spirit-2023",
+          "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Void_Spirit",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "a5c0442c711c789d63fd86f18a3e581730f74749460ef6b5ed3bc1ca08f083c5",
+          "capture": "20230215192213",
+          "paraphrase": "Zero animation;1200outward ring and900non-disjointable returns. Multiple physical-attack shields stack,after armor/block before generic reductions;death stops ring.Scepter two charges,2silence,18recharge and0.25anti-doublecast.",
+          "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+          "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RP-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "RP-01 a distant body waits for the1200speed outward ring while the160base shield is already active",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-01 a distant body waits for the1200speed outward ring while the160base shield is already active"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-02 the native physical attack barrier never absorbs a physical spell",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-02 the native physical attack barrier never absorbs a physical spell"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-03 native shield capacity is consumed before a50percent generic incoming reduction",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-03 native shield capacity is consumed before a50percent generic incoming reduction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "RP-04 rejected immune contacts cannot create empty Super immunity duration",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-04 rejected immune contacts cannot create empty Super immunity duration"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R05",
+          "kind": "super",
+          "branch": "super",
+          "rule": "RP-05 accepted fully shielded damage still counts as one Super contact without requiring HP loss",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-05 accepted fully shielded damage still counts as one Super contact without requiring HP loss"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RP-06 two Gaben casts retain two independent base shield instances",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-06 two Gaben casts retain two independent base shield instances"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-07 tier1 uses the unique final table damage70 and immediate base shield40",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-07 tier1 uses the unique final table damage70 and immediate base shield40"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-07 tier2 uses the unique final table damage120 and immediate base shield80",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-07 tier2 uses the unique final table damage120 and immediate base shield80"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-07 tier3 uses the unique final table damage220 and immediate base shield160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-07 tier3 uses the unique final table damage220 and immediate base shield160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "RP-07 tier6 uses the unique final table damage320 and immediate base shield160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-07 tier6 uses the unique final table damage320 and immediate base shield160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R11",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RP-07 tier9 uses the unique final table damage320 and immediate base shield160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-07 tier9 uses the unique final table damage320 and immediate base shield160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R12",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "RP-08 hero bonus waits for its separate900speed return and recreates an exhausted shield",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-08 hero bonus waits for its separate900speed return and recreates an exhausted shield"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-09 caster death stops the outward wave before a distant body is reached",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-09 caster death stops the outward wave before a distant body is reached"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R14",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RP-10 silence follows Gaben damage and its basic dispel does not remove the independent shield",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-10 silence follows Gaben damage and its basic dispel does not remove the independent shield"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R15",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RP-11 Gaben AI refuses an already silenced hero and allows the charge after that silence is removed",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-11 Gaben AI refuses an already silenced hero and allows the charge after that silence is removed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R16",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RP-12 armor is resolved before native attack shield consumption",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-12 armor is resolved before native attack shield consumption"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-R17",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RP-13 two independent Gaben charges spend separately and the third cast must wait for recharge",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RP-13 two independent Gaben charges spend separately and the third cast must wait for recharge"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RP-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Frozen release origin versus moving-caster origin and exact native hull edges require direct geometric evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Shield hero bonus for illusions,creepHeroes and special clones is not directly settled;real-body/heroClone policy retained.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P03",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Returned absorption recreates an exhausted shield but shares original cast expiry;native full10second refresh is not established.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P04",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AA immunity per accepted body is established;cross-cast duration extension versus independent overlap needs original Lua.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P05",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Opt-in shield stage is tested after armor/block before generic.Existing FP/BT/Carapace/Refraction/redirect/legacyManaShield priorities retained,not fully native-certified.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Released ring/return lifecycle after a stolen parent expires or loses its slot is not original-AA proven.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RP-P07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Flying vision/fog have no arena subsystem;no compensating damage invented.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RP-P01",
+          "status": "source_pending",
+          "description": "Frozen release origin versus moving-caster origin and exact native hull edges require direct geometric evidence."
+        },
+        {
+          "id": "RP-P02",
+          "status": "source_pending",
+          "description": "Shield hero bonus for illusions,creepHeroes and special clones is not directly settled;real-body/heroClone policy retained."
+        },
+        {
+          "id": "RP-P03",
+          "status": "source_pending",
+          "description": "Returned absorption recreates an exhausted shield but shares original cast expiry;native full10second refresh is not established."
+        },
+        {
+          "id": "RP-P04",
+          "status": "source_pending",
+          "description": "AA immunity per accepted body is established;cross-cast duration extension versus independent overlap needs original Lua."
+        },
+        {
+          "id": "RP-P05",
+          "status": "source_pending",
+          "description": "Opt-in shield stage is tested after armor/block before generic.Existing FP/BT/Carapace/Refraction/redirect/legacyManaShield priorities retained,not fully native-certified."
+        },
+        {
+          "id": "RP-P06",
+          "status": "source_pending",
+          "description": "Released ring/return lifecycle after a stolen parent expires or loses its slot is not original-AA proven."
+        },
+        {
+          "id": "RP-P07",
+          "status": "out_of_scope",
+          "description": "Flying vision/fog have no arena subsystem;no compensating damage invented."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA+100and1second immunity per body.Native+160talent is not substituted.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "status": "aa_explicit_custom"
+        },
+        {
+          "branch": "gaben",
+          "rule": "NativeScepter two charges/2silence/18recharge/.25anti-doublecast plus explicit AA non-silenced-hero AI.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "void-spirit-2023"
+          ],
+          "status": "native_scepter_and_aa_ai"
+        }
+      ]
+    },
+    {
+      "id": "earth_spirit_rolling_boulder",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete finite AA base/differences/S/G and related historical prototypes read first.Precise qualified choices/open clauses prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry;release helper zeroes cloned public castPoint/locks recast,separate PUB tests keep real timing.Controlled flags/positions explicit;true Fissure/NetherSwap/DeathPulse/Dismember/FierySoul and original-input replay named separately."
+      },
+      "catalogClauses": {
+        "base": "Earth Spirit gathers himself into a boulder and, after a 0.5s delay, rolls toward the target location, dealing 30 + 100% STR damage and stunning enemy units. He will stop if he collides with an enemy hero or is stunned. If he rolls over a Stone Remnant, he will travel further and faster, and stun enemies for longer.",
+        "differences": "AI: targets backliners. Automatically places Stone Remnant in front on cast.",
+        "super": "Super: Plus 150 + 100% STR damage, +1s stun.",
+        "gaben": "Gaben: Gives 80% Status Resist for 2 seconds.",
+        "values": [
+          "DAMAGE: 30",
+          "DISTANCE MULTIPLIER (REMNANT): 2",
+          "DISTANCE: 750",
+          "ROCK BONUS STUN DURATION: 0.4 / 0.6 / 1",
+          "SPEED (REMNANT): 1600",
+          "SPEED: 1000",
+          "STUN DURATION: 0.4 / 0.6 / 1"
+        ],
+        "cooldowns": [
+          16,
+          12,
+          4
+        ],
+        "mana": [
+          50
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Cannot be dispelled"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+          "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+        },
+        {
+          "id": "units-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+          "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+          "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+        },
+        {
+          "id": "earth-spirit-2023",
+          "url": "https://web.archive.org/web/20230215191343id_/https://dota2.fandom.com/wiki/Earth_Spirit",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "d6e04f8847d640aa4192f423743bbd022cb73898e1001d2db3dfd41f947bd9ac",
+          "capture": "20230215191343",
+          "paraphrase": "0.5gather,continuous1000/1600roll,160radius,damage before stun,80opposite-side hero placement.Immune heroes collide;illusions/creepHeroes do not stop.Terrain crossed;listed hard controls/forced motion cancel,except non-disabling gather displacement.",
+          "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+          "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RB-R01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-01 the stationary gather and roll do not silence native-allowed other abilities",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-01 the stationary gather and roll do not silence native-allowed other abilities"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-02 a real hero collision completes continuous travel then uses only the native80opposite-side terminal relocation",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-02 a real hero collision completes continuous travel then uses only the native80opposite-side terminal relocation"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-03 a genuine Fissure wall cannot stop native terrain-crossing travel or create damage from a virtual endpoint",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-03 a genuine Fissure wall cannot stop native terrain-crossing travel or create damage from a virtual endpoint"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RB-04 tier1 snapshots AA strength damage48 and remnant stun0.8",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-04 tier1 snapshots AA strength damage48 and remnant stun0.8"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RB-04 tier2 snapshots AA strength damage48 and remnant stun1.2",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-04 tier2 snapshots AA strength damage48 and remnant stun1.2"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RB-04 tier3 snapshots AA strength damage48 and remnant stun2",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-04 tier3 snapshots AA strength damage48 and remnant stun2"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "RB-04 tier6 snapshots AA strength damage216 and remnant stun3",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-04 tier6 snapshots AA strength damage216 and remnant stun3"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RB-04 tier9 snapshots AA strength damage216 and remnant stun3",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-04 tier9 snapshots AA strength damage216 and remnant stun3"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R09",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-05 stationary gather has a real visible native NO_ATTACK remnant and no early caster displacement",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023",
+            "units-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-05 stationary gather has a real visible native NO_ATTACK remnant and no early caster displacement"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "RB-R10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-06 invisible real hero still collides and a magic-immune hero stops without damage or stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-06 invisible real hero still collides and a magic-immune hero stops without damage or stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R11",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-07 an illusion is hit but cannot stop the remnant-enhanced roll before the real hero",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-07 an illusion is hit but cannot stop the remnant-enhanced roll before the real hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R12",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RB-08 a stun during gather cancels before any roll while the unused remnant stays alive",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-08 a stun during gather cancels before any roll while the unused remnant stays alive"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R13",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RB-09 Gaben status resistance is active for exactly2seconds from release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-09 Gaben status resistance is active for exactly2seconds from release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R14",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-10 an invulnerable hero is passed without damage or terminal teleport",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-10 an invulnerable hero is passed without damage or terminal teleport"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R15",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RB-11 a later stun cancels already active rolling motion before any later path hit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-11 a later stun cancels already active rolling motion before any later path hit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-R16",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RB-12 a real Nether Swap during rolling cancels the old continuous path even though its warp controller is already gone",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RB-12 a real Nether Swap during rolling cancels the old continuous path even though its warp controller is already gone"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RB-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AAauto-remnant front placement is clear;native150offset/60lifetime exact AAdefaults are compatible candidates.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Raw/.03turn and inert noattack backswing0profile defaults are candidates,not native acceleration/animation proof.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Non-disabling gather displacement allowed;frozen-heading rebase after it needs direct geometric evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "80percent SRfor2seconds is explicit;release rather than rolling-start activation is a timing choice.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Special clone qualification and exact collision hull edges remain bounded beyond established illusion/creepHero rules.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Wiki1500distance/1600speed contradicts its2.4second prose;explicit parameters and actual continuous movement take precedence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA CannotBeDispelled versus historical modifier_stunned Strong.Wiki priority implements Strong;original AA deliberate custom exception unproven.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RB-P08",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Trees/cliffs,EnchantedRemnant transforms and Magnetize/StoneCaller manual charge UI absent;AAauto-placement grants none of those unrelated slots.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RB-P01",
+          "status": "source_pending",
+          "description": "AAauto-remnant front placement is clear;native150offset/60lifetime exact AAdefaults are compatible candidates."
+        },
+        {
+          "id": "RB-P02",
+          "status": "source_pending",
+          "description": "Raw/.03turn and inert noattack backswing0profile defaults are candidates,not native acceleration/animation proof."
+        },
+        {
+          "id": "RB-P03",
+          "status": "source_pending",
+          "description": "Non-disabling gather displacement allowed;frozen-heading rebase after it needs direct geometric evidence."
+        },
+        {
+          "id": "RB-P04",
+          "status": "source_pending",
+          "description": "80percent SRfor2seconds is explicit;release rather than rolling-start activation is a timing choice."
+        },
+        {
+          "id": "RB-P05",
+          "status": "source_pending",
+          "description": "Special clone qualification and exact collision hull edges remain bounded beyond established illusion/creepHero rules."
+        },
+        {
+          "id": "RB-P06",
+          "status": "source_pending",
+          "description": "Wiki1500distance/1600speed contradicts its2.4second prose;explicit parameters and actual continuous movement take precedence."
+        },
+        {
+          "id": "RB-P07",
+          "status": "source_pending",
+          "description": "AA CannotBeDispelled versus historical modifier_stunned Strong.Wiki priority implements Strong;original AA deliberate custom exception unproven."
+        },
+        {
+          "id": "RB-P08",
+          "status": "out_of_scope",
+          "description": "Trees/cliffs,EnchantedRemnant transforms and Magnetize/StoneCaller manual charge UI absent;AAauto-placement grants none of those unrelated slots."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA+150base,+100percentSTR,+1stun.Native talent keywords are provenance only.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "status": "aa_explicit_custom"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Explicit AA80percentSR2seconds;no matching2023RollingBoulderScepter/Shard is assumed.Activation phase bounded.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "earth-spirit-2023"
+          ],
+          "status": "aa_explicit_custom"
+        }
+      ]
+    },
+    {
+      "id": "custom_pangolier_rolling_thunder",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete finite AA base/differences/S/G and related historical prototypes read first.Precise qualified choices/open clauses prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry;release helper zeroes cloned public castPoint/locks recast,separate PUB tests keep real timing.Controlled flags/positions explicit;true Fissure/NetherSwap/DeathPulse/Dismember/FierySoul and original-input replay named separately."
+      },
+      "catalogClauses": {
+        "base": "Caster curls into a spell-immune ball and rolls out. When rolling, he moves at an increased speed and can move through trees, but has a decreased ability to turn. Striking enemies knocks them back, inflicting damage and stunning them when they land. \n\nColliding with walls or cliffs will cause a temporary pause while caster reverses in direction.\n\nDISPEL TYPE: Basic Dispel.",
+        "differences": "Reduced duration.",
+        "super": "Super: +3s duration, -25s CD.",
+        "gaben": "Gaben: Removed cast point. Every time you hit a wall or hero, you gain +40 movespeed.",
+        "values": [
+          "DAMAGE: 80 / 120 / 160",
+          "DURATION: 3 / 4 / 5",
+          "KNOCKBACK DISTANCE: 150",
+          "RADIUS: 150",
+          "ROLL SPEED: 550",
+          "STUN DURATION: 1 / 1.25 / 1.5",
+          "TRANSFORM TIME: 1.2"
+        ],
+        "cooldowns": [
+          80,
+          75,
+          70
+        ],
+        "mana": [
+          100,
+          150,
+          200
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+          "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+        },
+        {
+          "id": "units-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+          "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+          "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+        },
+        {
+          "id": "pangolier-2023",
+          "url": "https://web.archive.org/web/20230215191508id_/https://dota2.fandom.com/wiki/Pangolier",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "d7a9dc7b275518eddbc74e325125bd4447b0d23f2c4552e4dfc213373df572eb",
+          "capture": "20230215191508",
+          "paraphrase": "1.2transform;immunity/basic purge,fixed550speed,120degree steering with165boost for0.25.Wall pause0.2then reverse.Immediate damage,disabling0.6bounce then landing stun,unscaled rehit timeout.Free Stop;Swashbuckle ends roll.",
+          "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+          "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RT-R01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "RT-01 contact damage precedes a0.6second disabling bounce and the full stun begins after landing",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-01 contact damage precedes a0.6second disabling bounce and the full stun begins after landing"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "RT-R02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RT-02 rolling transformation does not apply a blanket silence that prevents other native-allowed spells",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-02 rolling transformation does not apply a blanket silence that prevents other native-allowed spells"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-03 tier1 uses final duration3 and contact damage80",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-03 tier1 uses final duration3 and contact damage80"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-03 tier2 uses final duration4 and contact damage120",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-03 tier2 uses final duration4 and contact damage120"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-03 tier3 uses final duration5 and contact damage160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-03 tier3 uses final duration5 and contact damage160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R06",
+          "kind": "super",
+          "branch": "super",
+          "rule": "RT-03 tier6 uses final duration8 and contact damage160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-03 tier6 uses final duration8 and contact damage160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R07",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RT-03 tier9 uses final duration8 and contact damage160",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-03 tier9 uses final duration8 and contact damage160"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-04 rolling ignores ordinary movement slows, never warps and preserves fixed550speed before a collision",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-04 rolling ignores ordinary movement slows, never warps and preserves fixed550speed before a collision"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R09",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "RT-05 landing stun is strong-dispellable after the independent disabling bounce",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-05 landing stun is strong-dispellable after the independent disabling bounce"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "RT-R10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "RT-06 real Stop Rolling consumes neither extra parent mana nor another parent cooldown",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-06 real Stop Rolling consumes neither extra parent mana nor another parent cooldown"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R11",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "RT-07 real boundary contact pauses for0.2seconds before reversing the continuous path",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-07 real boundary contact pauses for0.2seconds before reversing the continuous path"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R12",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RT-08 Gaben per-hero collision speed gain changes actual next-frame travel",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-08 Gaben per-hero collision speed gain changes actual next-frame travel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-09 a turn order changes heading only within the boosted285degree-per-second rate",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-09 a turn order changes heading only within the boosted285degree-per-second rate"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "RT-R14",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "RT-10 caster death clears transformation and stops further movement",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-10 caster death clears transformation and stops further movement"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R15",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "RT-11 Gaben ordinary-creep contact deals damage but cannot award the hero-only40speed increase",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "RT-11 Gaben ordinary-creep contact deals damage but cannot award the hero-only40speed increase"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R16",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-01 tier1 Rolling Thunder uses the real public transform windup and commits resources only on release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-01 tier1 Rolling Thunder uses the real public transform windup and commits resources only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R17",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-01 tier2 Rolling Thunder uses the real public transform windup and commits resources only on release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-01 tier2 Rolling Thunder uses the real public transform windup and commits resources only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R18",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-01 tier3 Rolling Thunder uses the real public transform windup and commits resources only on release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-01 tier3 Rolling Thunder uses the real public transform windup and commits resources only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R19",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PUB-01 tier6 Rolling Thunder uses the real public transform windup and commits resources only on release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-01 tier6 Rolling Thunder uses the real public transform windup and commits resources only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R20",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PUB-01 tier9 Rolling Thunder uses the real public transform windup and commits resources only on release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-01 tier9 Rolling Thunder uses the real public transform windup and commits resources only on release"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-R21",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-02 a genuine stun cancels the Rolling Thunder transform before mana or cooldown commitment",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-02 a genuine stun cancels the Rolling Thunder transform before mana or cooldown commitment"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "RT-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Pinned enemy bounce0.4versus historical Wiki0.6;editable0.6is a qualified compatibility choice.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Nearest-enemy initial vector for1second plus optional debug point is engineering AI,not complete native move-order/vector-parallel reconstruction.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Piercing controls,hidden state,external competing motion and jump turn boosts are not all established by the read page;current controller does not certify them.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA40per wall/hero implemented percast,ordinary creeps excluded;cross-cast growth lifetime and illusion/special-clone qualification unrecovered.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Real zero-resource Stop slot does not replace parent HUD or block leveling.SpellStealAs parent and generic hook suppression are declared policies.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P06",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Strong purge leaves none-dispel bounce then landing stun;competing knockback interruption/landing ordering needs direct evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "RT-P07",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "50vertical bounce,trees,cliffs,Roshan,ShieldCrash jump and unrelated RollUp Shard are not modeled or granted by AA.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RT-P01",
+          "status": "source_pending",
+          "description": "Pinned enemy bounce0.4versus historical Wiki0.6;editable0.6is a qualified compatibility choice."
+        },
+        {
+          "id": "RT-P02",
+          "status": "source_pending",
+          "description": "Nearest-enemy initial vector for1second plus optional debug point is engineering AI,not complete native move-order/vector-parallel reconstruction."
+        },
+        {
+          "id": "RT-P03",
+          "status": "source_pending",
+          "description": "Piercing controls,hidden state,external competing motion and jump turn boosts are not all established by the read page;current controller does not certify them."
+        },
+        {
+          "id": "RT-P04",
+          "status": "source_pending",
+          "description": "AA40per wall/hero implemented percast,ordinary creeps excluded;cross-cast growth lifetime and illusion/special-clone qualification unrecovered."
+        },
+        {
+          "id": "RT-P05",
+          "status": "source_pending",
+          "description": "Real zero-resource Stop slot does not replace parent HUD or block leveling.SpellStealAs parent and generic hook suppression are declared policies."
+        },
+        {
+          "id": "RT-P06",
+          "status": "source_pending",
+          "description": "Strong purge leaves none-dispel bounce then landing stun;competing knockback interruption/landing ordering needs direct evidence."
+        },
+        {
+          "id": "RT-P07",
+          "status": "out_of_scope",
+          "description": "50vertical bounce,trees,cliffs,Roshan,ShieldCrash jump and unrelated RollUp Shard are not modeled or granted by AA."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Native+3duration/cooldown talent family;AA-25CD and3/4/5base duration retained,Super/Gaben8.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "status": "aa_numeric_override_of_talent_family"
+        },
+        {
+          "branch": "gaben",
+          "rule": "AAinstant transform/+40wall or hero;not nativeShardRollUp and no unrelated grant.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pangolier-2023"
+          ],
+          "status": "aa_explicit_custom"
+        }
+      ]
+    },
+    {
+      "id": "pudge_rot",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete finite AA base/differences/S/G and related historical prototypes read first.Precise qualified choices/open clauses prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry;release helper zeroes cloned public castPoint/locks recast,separate PUB tests keep real timing.Controlled flags/positions explicit;true Fissure/NetherSwap/DeathPulse/Dismember/FierySoul and original-input replay named separately."
+      },
+      "catalogClauses": {
+        "base": "A toxic cloud that deals intense damage and slows movement--harming not only enemy units but Pudge himself.",
+        "differences": "Deals double damage to creeps (ticks twice as fast).",
+        "super": "Super: +100 damage, +175 radius, +14% move slow, and 25% heal reduction on affected enemies.",
+        "gaben": "Gaben: Grants Level 3 Dismember (does not need to be channeled, but gets interrupted by stuns).",
+        "values": [
+          "DAMAGE: 30 / 60 / 120",
+          "MOVE SLOW: -14% / -20% / -32%",
+          "RADIUS: 250"
+        ],
+        "cooldowns": [],
+        "mana": [],
+        "categories": [
+          "ABILITY: Toggle",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+          "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+        },
+        {
+          "id": "units-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+          "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+          "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+        },
+        {
+          "id": "pudge-2023",
+          "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Pudge",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "ff04d65ddbb348f93bd45a55add2fdb17beab9220426ac5b43ef5e476eb398e9",
+          "capture": "20230215191542",
+          "paraphrase": "Rot zero-action toggle preserves channels;independent nonlethal self damage,0.5damaging aura linger,first-On global0.2clock.Off stops linger damage only.Scepter reduces all restoration.Dismember native1to3inclusive6hero/9creep ticks,full raw heal,75pull to125,strong removal and invulnerable/hidden interruption.",
+          "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+          "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "ROT-R01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-01 native self damage is nonlethal while the independent enemy pulse still resolves",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-01 native self damage is nonlethal while the independent enemy pulse still resolves"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-02 AA ordinary creeps take twice as many equal-size damage ticks as heroes",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-02 AA ordinary creeps take twice as many equal-size damage ticks as heroes"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROT-03 Super adds14slow magnitude to32rather than weakening it to18percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-03 Super adds14slow magnitude to32rather than weakening it to18percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-04 a departed target continues receiving damage during the native0.5second aura linger",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-04 a departed target continues receiving damage during the native0.5second aura linger"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R05",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ROT-05 Gaben grants a real native3Dismember slot instead of a hidden synthetic polling cast",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-05 Gaben grants a real native3Dismember slot instead of a hidden synthetic polling cast"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R06",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-01 AA native3Dismember starts immediately without caster channeling and heals the unmitigated68.1packet",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-01 AA native3Dismember starts immediately without caster channeling and heals the unmitigated68.1packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-06 tier1 uses final per-tick6 slow0.14 and radius2.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-06 tier1 uses final per-tick6 slow0.14 and radius2.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R08",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-06 tier2 uses final per-tick12 slow0.2 and radius2.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-06 tier2 uses final per-tick12 slow0.2 and radius2.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-06 tier3 uses final per-tick24 slow0.32 and radius2.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-06 tier3 uses final per-tick24 slow0.32 and radius2.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R10",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROT-06 tier6 uses final per-tick44 slow0.46 and radius4.25",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-06 tier6 uses final per-tick44 slow0.46 and radius4.25"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R11",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "ROT-06 tier9 uses final per-tick44 slow0.46 and radius4.25",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-06 tier9 uses final per-tick44 slow0.46 and radius4.25"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R12",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-07 blocking self damage does not suppress the independent enemy packet",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-07 blocking self damage does not suppress the independent enemy packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R13",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-08 Off stops damage immediately but leaves the existing0.5second aura slow",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-08 Off stops damage immediately but leaves the existing0.5second aura slow"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R14",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROT-09 disabling and silencing an already active caster does not stop its DOT clock",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-09 disabling and silencing an already active caster does not stop its DOT clock"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R15",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROT-10 Super restoration reduction reduces actual regeneration while its aura debuff lingers after Off",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-10 Super restoration reduction reduces actual regeneration while its aura debuff lingers after Off"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R16",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "ROT-11 Off followed by a requested On preserves the first global0.2second damage phase",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-11 Off followed by a requested On preserves the first global0.2second damage phase"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R17",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "ROT-12 complete aura exit expiry ends both the lingering slow and further damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-12 complete aura exit expiry ends both the lingering slow and further damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R18",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-02 native ordinary Dismember retains a real caster channel and six inclusive hero ticks",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-02 native ordinary Dismember retains a real caster channel and six inclusive hero ticks"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R19",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-03 ordinary creeps use nine ticks over6seconds with raw80.0plusSTRpacket scaling",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-03 ordinary creeps use nine ticks over6seconds with raw80.0plusSTRpacket scaling"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R20",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-04 creep-heroes use the hero3second duration but nine evenly spaced damage packets",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-04 creep-heroes use the hero3second duration but nine evenly spaced damage packets"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R21",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-05 full raw healing is retained against a fully absorbing enemy barrier",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-05 full raw healing is retained against a fully absorbing enemy barrier"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R22",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-06 a real strong target dispel stops every remaining packet and removes only this grab",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-06 a real strong target dispel stops every remaining packet and removes only this grab"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R23",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-07 the Rot-parent no-channel grab is interrupted by a later caster stun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-07 the Rot-parent no-channel grab is interrupted by a later caster stun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R24",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-08 a target becoming invulnerable stops the grab before its next scheduled packet",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-08 a target becoming invulnerable stops the grab before its next scheduled packet"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R25",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-09 becoming invisible does not interrupt the released grab or grant repeated true sight",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-09 becoming invisible does not interrupt the released grab or grant repeated true sight"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R26",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-10 the pull moves only75units per second and stops at125without teleporting",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-10 the pull moves only75units per second and stops at125without teleporting"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R27",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "DM-11 a native child placed in an ordinary slot does not gain Rot no-channel semantics through a visual alias",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "DM-11 a native child placed in an ordinary slot does not gain Rot no-channel semantics through a visual alias"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R28",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "ROT-13 actual Rot On and Off preserve an unrelated real native Dismember channel and victim hold",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-13 actual Rot On and Off preserve an unrelated real native Dismember channel and victim hold"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R29",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROT-14 Super healing suppression reduces actual direct Death Pulse healing",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-14 Super healing suppression reduces actual direct Death Pulse healing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-R30",
+          "kind": "super",
+          "branch": "super",
+          "rule": "ROT-15 Super suppression reduces a real ordinary-attack lifesteal recovery by25percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "ROT-15 Super suppression reduces a real ordinary-attack lifesteal recovery by25percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "ROT-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Explicit-Off latch/requested-On,disabled-Off gates and same-tickOff skip are engineering order policies,not native AI/input certification.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Same-name/cross-caster aura stacking,linger under status resistance and stolen-parent expiry are not directly settled.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Live rank/Scepter damage update while already active is not implemented as mutable battle progression;AAarena ranks/items are fixed per body.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "actual_missing"
+        },
+        {
+          "id": "ROT-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA no-channel Dismember explicitly stops for stun;silence/hex/fear and other non-stun eligibility unrecovered.Normal native channel uses shared interrupts.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P05",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Full raw packet heal implemented;live STR versus snapshot and spell/heal amplification coupling are not established by the full-amount sentence alone.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P06",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Soulbind duplicate-channel independence,source theft expiry and rare simultaneous death/last-tick credit remain outside finite tested lifecycle scope.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P07",
+          "kind": "mechanism",
+          "branch": "super",
+          "rule": "One multiplicative25percent restoration provider tested;cross-caster refresh/strongest behavior not inferred.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "ROT-P08",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Unrelated ShardSwallow/Eject,ground vision and global response audio are not granted by AA.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        },
+        {
+          "id": "ROT-P09",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "Dismember currently keeps fixed full hold/channel/tick duration under status resistance;the read first/last-inclusive duration sentence does not independently prove every native status-resistance interaction.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "ROT-P01",
+          "status": "source_pending",
+          "description": "Explicit-Off latch/requested-On,disabled-Off gates and same-tickOff skip are engineering order policies,not native AI/input certification."
+        },
+        {
+          "id": "ROT-P02",
+          "status": "source_pending",
+          "description": "Same-name/cross-caster aura stacking,linger under status resistance and stolen-parent expiry are not directly settled."
+        },
+        {
+          "id": "ROT-P03",
+          "status": "actual_missing",
+          "description": "Live rank/Scepter damage update while already active is not implemented as mutable battle progression;AAarena ranks/items are fixed per body."
+        },
+        {
+          "id": "ROT-P04",
+          "status": "source_pending",
+          "description": "AA no-channel Dismember explicitly stops for stun;silence/hex/fear and other non-stun eligibility unrecovered.Normal native channel uses shared interrupts."
+        },
+        {
+          "id": "ROT-P05",
+          "status": "source_pending",
+          "description": "Full raw packet heal implemented;live STR versus snapshot and spell/heal amplification coupling are not established by the full-amount sentence alone."
+        },
+        {
+          "id": "ROT-P06",
+          "status": "source_pending",
+          "description": "Soulbind duplicate-channel independence,source theft expiry and rare simultaneous death/last-tick credit remain outside finite tested lifecycle scope."
+        },
+        {
+          "id": "ROT-P07",
+          "status": "source_pending",
+          "description": "One multiplicative25percent restoration provider tested;cross-caster refresh/strongest behavior not inferred."
+        },
+        {
+          "id": "ROT-P08",
+          "status": "out_of_scope",
+          "description": "Unrelated ShardSwallow/Eject,ground vision and global response audio are not granted by AA."
+        },
+        {
+          "id": "ROT-P09",
+          "status": "source_pending",
+          "description": "Dismember currently keeps fixed full hold/channel/tick duration under status resistance;the read first/last-inclusive duration sentence does not independently prove every native status-resistance interaction."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Scepter DPS/radius/restoration family matches;retainAA+175radius/+14slow,not native450radius/48slow.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "status": "native_scepter_family_with_aa_numbers"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Existing nativeDismember3real slot with own resources;only mechanical Rot parent removes own channel.NoShardSwallow/Eject.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "pudge-2023"
+          ],
+          "status": "aa_custom_grant_native3"
+        }
+      ]
+    },
+    {
+      "id": "custom_mirana_arrow",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "Complete finite AA base/differences/S/G and related historical prototypes read first.Precise qualified choices/open clauses prevent whole-skill acceptance.",
+        "fixtures": "Final actual registry;release helper zeroes cloned public castPoint/locks recast,separate PUB tests keep real timing.Controlled flags/positions explicit;true Fissure/NetherSwap/DeathPulse/Dismember/FierySoul and original-input replay named separately."
+      },
+      "catalogClauses": {
+        "base": "Fires a long-range arrow with deadly precision, which stuns and damages the first enemy unit it strikes. The stun duration ranges from 0.01 to 3.7 / 4.3 / 4.9 / 5.5 seconds, with bonus damage up to 180 added, based on the distance the arrow travels to its target. Instantly kills the first non-ancient creep it hits.",
+        "differences": "",
+        "super": "Super: Sacred Arrow spawns 300 damage Starstorm meteors towards enemies within 500 radius of itself and on targets it hits. -2s cooldown.",
+        "gaben": "Gaben: +1 arrow on each side of the main Arrow. +200 Starstorm meteor damage.",
+        "values": [
+          "DAMAGE: 60 / 150 / 330",
+          "MAXIMUM BONUS DAMAGE: 180",
+          "MAXIMUM STUN: 3.7 / 4.3 / 5.5",
+          "MINIMUM STUN: 0.01",
+          "RANGE: 3000"
+        ],
+        "cooldowns": [
+          19,
+          18,
+          16
+        ],
+        "mana": [
+          100,
+          100,
+          100
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Cannot be dispelled"
+        ]
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Complete selected AA base,differences,Super/Gaben,values,mana/cooldown clauses remain numeric/custom authority;category metadata alone is not proof of custom nonnumeric behavior.",
+          "versionContext": "Full230-row fresh HTTP2002026-10-30;actual selected5rows reused.Not an exact AA server patch proof."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Pinned behavior,immunity,dispel,public clocks and independent native ranks.",
+          "versionContext": "Commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 dated2023-02-10;folder20230216is not source date;exact AA patch unproven."
+        },
+        {
+          "id": "units-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+          "paraphrase": "Stone Remnant native NO_ATTACK/static100HP/Level4;missing Mana/BaseAS/MR/rawturn/buffer read from npc_dota_units_base.",
+          "versionContext": "Same2023-02-10source.Rawturn/.03and inert noattack backswing0are explicit engineering candidates."
+        },
+        {
+          "id": "mirana-2023",
+          "url": "https://web.archive.org/web/20230215191810id_/https://dota2.fandom.com/wiki/Mirana",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "6642ac097d300999f5f3da7607b8558ff97da502f454fcfe7e59a11435634e4d",
+          "capture": "20230215191810",
+          "paraphrase": "Arrow0.5point animation,900speed,51spawn,1500max scaling,damage before strong stun.Immune creep blocks without execute.Only primary triggers Scepter meteor family;three arrows cannot hit same body.Starstorm single fall0.57,native75/150/225/300,invisible selection excluded and impact immunity checked.",
+          "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+          "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "AR-R01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-01 a spell-immune ordinary creep blocks the arrow without being executed",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-01 a spell-immune ordinary creep blocks the arrow without being executed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R02",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AR-02 a single hero cannot take three overlapping Gaben arrows from the same release",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-02 a single hero cannot take three overlapping Gaben arrows from the same release"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "AR-R03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AR-03 initially invisible nearby bodies receive no Starstorm meteor and the native drop takes0.57seconds",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-03 initially invisible nearby bodies receive no Starstorm meteor and the native drop takes0.57seconds"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R04",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-04 tier1 uses final base damage60 and linear maximum stun3.7",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-04 tier1 uses final base damage60 and linear maximum stun3.7"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R05",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-04 tier2 uses final base damage150 and linear maximum stun4.3",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-04 tier2 uses final base damage150 and linear maximum stun4.3"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-04 tier3 uses final base damage330 and linear maximum stun5.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-04 tier3 uses final base damage330 and linear maximum stun5.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R07",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AR-04 tier6 uses final base damage330 and linear maximum stun5.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-04 tier6 uses final base damage330 and linear maximum stun5.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R08",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AR-04 tier9 uses final base damage330 and linear maximum stun5.5",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-04 tier9 uses final base damage330 and linear maximum stun5.5"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R09",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-05 a non-ancient ordinary creep is executed while an ancient creep takes ordinary damage instead",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-05 a non-ancient ordinary creep is executed while an ancient creep takes ordinary damage instead"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R10",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "AR-06 an invulnerable front hero is passed and the next valid hero is hit",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-06 an invulnerable front hero is passed and the next valid hero is hit"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R11",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AR-07 released point arrow retains its direction after the original AI unit moves off the line",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-07 released point arrow retains its direction after the original AI unit moves off the line"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R12",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AR-08 the primary path creates one independent native4meteor per nearby body before the impact meteor",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-08 the primary path creates one independent native4meteor per nearby body before the impact meteor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R13",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AR-09 Gaben meteors preserve native4base300plus explicit200bonus and remain child damage rows",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-09 Gaben meteors preserve native4base300plus explicit200bonus and remain child damage rows"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R14",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AR-10 becoming spell immune during a released meteor fall prevents its damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-10 becoming spell immune during a released meteor fall prevents its damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R15",
+          "kind": "super",
+          "branch": "super",
+          "rule": "AR-11 caster death cannot erase an already released primary arrow or its independent meteor fall",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "AR-11 caster death cannot erase an already released primary arrow or its independent meteor fall"
+            }
+          ],
+          "status": "working_interpretation",
+          "qualification": "Green for disclosed geometry/order/version choice,not reference-verified closure."
+        },
+        {
+          "id": "AR-R16",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-03 tier1 Sacred Arrow waits the real0.5second public cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-03 tier1 Sacred Arrow waits the real0.5second public cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R17",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-03 tier2 Sacred Arrow waits the real0.5second public cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-03 tier2 Sacred Arrow waits the real0.5second public cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R18",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-03 tier3 Sacred Arrow waits the real0.5second public cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-03 tier3 Sacred Arrow waits the real0.5second public cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R19",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PUB-03 tier6 Sacred Arrow waits the real0.5second public cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-03 tier6 Sacred Arrow waits the real0.5second public cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R20",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "PUB-03 tier9 Sacred Arrow waits the real0.5second public cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-03 tier9 Sacred Arrow waits the real0.5second public cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R21",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "PUB-04 a point-target arrow still releases at the frozen cursor after its originally chosen unit dies during windup",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-04 a point-target arrow still releases at the frozen cursor after its originally chosen unit dies during windup"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-R22",
+          "kind": "super",
+          "branch": "super",
+          "rule": "PUB-05 an Arrow windup cancelled by silence consumes no mana or cooldown and creates no meteor",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-resonant-arrow.test.ts",
+              "test": "PUB-05 an Arrow windup cancelled by silence consumes no mana or cooldown and creates no meteor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "AR-P01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Pinned Arrowwidth115versus Wiki96;AA/KV3000travel versus empirical Wiki3067.PreserveAA3000/pinned115with conflict.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Three-arrow target exclusivity implemented;whether another arrow consumes or skips a previously-hit body is not stated.Current skip policy bounded.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P03",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Native impact meteor50percent versus AAexplicit300damage on hits.Retain AAfull300/500reading as qualified interpretation.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P04",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "Primary-only meteors come from native multishot;AA side-arrow custom interaction is not explicitly settled.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P05",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "Initial invisibility and impact immunity verified;new invisibility during released fall and exact native caster-death persistence need distinct evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P06",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA CannotBeDispelled versus dated Strong stun;Wiki priority,not inferred custom.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "AR-P07",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Flying vision/fog,vertical meteor geometry and active Starstorm75percent second meteor routine are outside effect-only fragment;no active slot granted.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "testEvidence": [],
+          "status": "out_of_scope"
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "AR-P01",
+          "status": "source_pending",
+          "description": "Pinned Arrowwidth115versus Wiki96;AA/KV3000travel versus empirical Wiki3067.PreserveAA3000/pinned115with conflict."
+        },
+        {
+          "id": "AR-P02",
+          "status": "source_pending",
+          "description": "Three-arrow target exclusivity implemented;whether another arrow consumes or skips a previously-hit body is not stated.Current skip policy bounded."
+        },
+        {
+          "id": "AR-P03",
+          "status": "source_pending",
+          "description": "Native impact meteor50percent versus AAexplicit300damage on hits.Retain AAfull300/500reading as qualified interpretation."
+        },
+        {
+          "id": "AR-P04",
+          "status": "source_pending",
+          "description": "Primary-only meteors come from native multishot;AA side-arrow custom interaction is not explicitly settled."
+        },
+        {
+          "id": "AR-P05",
+          "status": "source_pending",
+          "description": "Initial invisibility and impact immunity verified;new invisibility during released fall and exact native caster-death persistence need distinct evidence."
+        },
+        {
+          "id": "AR-P06",
+          "status": "source_pending",
+          "description": "AA CannotBeDispelled versus dated Strong stun;Wiki priority,not inferred custom."
+        },
+        {
+          "id": "AR-P07",
+          "status": "out_of_scope",
+          "description": "Flying vision/fog,vertical meteor geometry and active Starstorm75percent second meteor routine are outside effect-only fragment;no active slot granted."
+        }
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Native Scepter primary-path Starstorm family;AA300and-2CD.Native1-4effect-only invoked4,full impact interpretation qualified.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "status": "native_scepter_family_with_aa_numbers"
+        },
+        {
+          "branch": "gaben",
+          "rule": "Native three-arrow±30talent,target exclusivity/primary-only meteor provenance;AA+200damage.Side-arrow custom unknown.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "mirana-2023"
+          ],
+          "status": "native_talent_and_aa_custom_damage"
+        }
+      ]
+    }
+  ],
+  "extras": {
+    "children": {
+      "mirana_starfall": "New true native1-4effect-only single meteor,invoked4,no activegrant.",
+      "pangolier_gyroshell_stop": "New native1zero-resource helper,ultimate=true per pinned AbilityType_ULTIMATE;explicit input request does not replace parent HUD.",
+      "pudge_dismember": "Existing native1-3grant rewritten,not promotion/newchild.Rot mechanically grants3."
+    },
+    "nativeStone": "20thtemplate reads compiled UNIT_CONFIG;Level4/NO_ATTACK,distinct visible remnant.Four custom occupations/old19profiles untouched.",
+    "configurationCounts": {
+      "granted": 88,
+      "referenceOnly": 20,
+      "tiers": 1402,
+      "parameters": 2633,
+      "units": 20
+    },
+    "presentation": {
+      "pulseRing": "Actual alpha>=12weighted mean/95percent radius measured from approved24framepulse atlas;root merges shared calibration,no image pixels edited.",
+      "returnProjectile": "Real900speed homing return explicitly reuses existing generic magic_bolt;no dedicated native return art claimed.",
+      "rot": "Cloud added only after actual On,follows display caster,Off/death clears;actual modifier/childhold remains independent.",
+      "developmentIntake": "Final16scenes passed under522ffaf25b6f2f8e32e55f2f3af6d3e472d469a9c3144da426d5fbed53915211;representative actual screenshots visually inspected.Return orb explicitly generic reused art."
+    }
+  },
+  "counts": {
+    "skills": 5,
+    "namedActualResults": 107,
+    "requirements": 145,
+    "passedRequirements": 100,
+    "qualifiedGreenRequirements": 7,
+    "openRequirements": 45
+  }
+}

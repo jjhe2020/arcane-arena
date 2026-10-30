@@ -1,0 +1,967 @@
+{
+  "schemaVersion": 1,
+  "auditedOn": "2026-10-30",
+  "selectionPolicy": "Locked AA catalog and pinned Valve reread; one datedTidehunter cache reread; four inaccessible dated requests recorded without retry or falseHTTP200. Retained indexed pages are explicitly version-qualified.",
+  "aaResponseSha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+  "aa": [
+    {
+      "id": "primal_beast_pulverize",
+      "name": "捶",
+      "nameEn": "Pulverize",
+      "descriptionEn": "CHANNELED - Primal Beast channels his rage, grabbing the target enemy and slamming them into the ground repeatedly, damaging and mini-stunning any enemies caught in the AoE. Lasts 2.3 seconds.",
+      "superEn": "Super: 2x channel time, and pierces Spell Immunity.",
+      "gabenEn": "Gaben: During Pulverize, every 0.75 seconds, 3 rocks fall around the arena, dealing 325 damage and stunning for 1.75 seconds in a 255 radius.",
+      "values": [
+        "AOE RADIUS: 600",
+        "HIT DAMAGE: 150 / 210 / 270",
+        "HIT INTERVAL: 0.75",
+        "STUN DURATION: 0.25"
+      ],
+      "cooldowns": [
+        32,
+        28,
+        24
+      ],
+      "mana": [
+        100
+      ],
+      "categories": [
+        "ABILITY: Channeled",
+        "DAMAGE TYPE: Magical"
+      ]
+    },
+    {
+      "id": "omniknight_purification",
+      "name": "洗礼",
+      "nameEn": "Purification",
+      "descriptionEn": "Instantly heals a friendly unit and damages all nearby enemy units.",
+      "superEn": "Super: Grant's Gaben's Blessing: Target receives 2 more Purifications on the same unit, each occuring 3 seconds after the previous. +160 Heal/Damage, -2s cooldown.",
+      "gabenEn": "Gaben: Purification also buffs the target, reducing incoming damage by 50% for 2 seconds.",
+      "values": [
+        "DAMAGE RADIUS: 260",
+        "HEAL/DAMAGE: 90 / 160 / 300"
+      ],
+      "cooldowns": [
+        18,
+        16,
+        12
+      ],
+      "mana": [
+        80,
+        95,
+        125
+      ],
+      "categories": [
+        "ABILITY: Unit Target",
+        "DAMAGE TYPE: Pure",
+        "PIERCES SPELL IMMUNITY: Allies Yes, Enemies No"
+      ]
+    },
+    {
+      "id": "custom_bristleback_quill_spray",
+      "name": "刺针扫射",
+      "nameEn": "Quill Spray",
+      "descriptionEn": "Sprays enemy units with quills dealing damage in an area of effect around the hero. Deals bonus damage for every time a unit was hit by Quill Spray in the last 14 seconds.",
+      "superEn": "Super: Grants Hairball and increases quill stack damage by 20.",
+      "gabenEn": "Gaben: Grants 40% spell lifesteal.",
+      "values": [
+        "MAX DAMAGE: 550",
+        "QUILL BASE DAMAGE: 25 / 45 / 85",
+        "QUILL STACK DAMAGE: 21 / 25 / 33",
+        "RADIUS: 700",
+        "STACK DURATION: 14"
+      ],
+      "cooldowns": [
+        3
+      ],
+      "mana": [
+        35
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Physical",
+        "PIERCES SPELL IMMUNITY: Yes",
+        "DISPELLABLE: Strong Dispels Only"
+      ]
+    },
+    {
+      "id": "custom_life_stealer_rage",
+      "name": "狂暴",
+      "nameEn": "Rage",
+      "descriptionEn": "Launch into a maddened rage, becoming Spell Immune, and gaining increased movement speed.\n\nDISPEL TYPE: Basic Dispel.",
+      "superEn": "Super: Increases movement speed by 20% and duration by 2s.",
+      "gabenEn": "Gaben: Reduces cooldown by 12 seconds (has no downtime).",
+      "values": [
+        "DURATION: 1 / 2 / 4",
+        "MOVE SPEED BONUS: 8% / 16% / 32%"
+      ],
+      "cooldowns": [
+        21,
+        20,
+        18
+      ],
+      "mana": [
+        75,
+        100,
+        150
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DISPELLABLE: Strong Dispels Only"
+      ]
+    },
+    {
+      "id": "custom_tidehunter_ravage",
+      "name": "毁灭",
+      "nameEn": "Ravage",
+      "descriptionEn": "Slams the ground, causing tentacles to erupt in all directions, damaging and stunning all nearby enemy units.",
+      "superEn": "Super: Increases stun duration by 1s.",
+      "gabenEn": "Gaben: +600 radius. Ravage comes back in, stunning a second time.",
+      "values": [
+        "DAMAGE: 100 / 150 / 200",
+        "DURATION: 1.5 / 2.25 / 3",
+        "RADIUS: 600"
+      ],
+      "cooldowns": [
+        150,
+        150,
+        150
+      ],
+      "mana": [
+        150,
+        225,
+        325
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: No",
+        "DISPELLABLE: Cannot be dispelled"
+      ]
+    }
+  ],
+  "nativeSelection": {
+    "primal_beast_pulverize": {
+      "ID": "996",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_CHANNELLED  | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "AnimationIgnoresModelScale": "1",
+      "AbilityDraftUltShardAbility": "primal_beast_rock_throw",
+      "AbilityCastPoint": "0.25",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+      "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_5",
+      "AbilityCastRange": "200",
+      "AbilityCooldown": "32 28 24",
+      "AbilityManaCost": "100",
+      "AbilityValues": {
+        "splash_radius": "600",
+        "interval": "0.75",
+        "ministun": "0.25",
+        "cast_range": "200",
+        "animation_rate": "1.5",
+        "damage": {
+          "value": "150 210 270"
+        },
+        "channel_time": {
+          "value": "2.3",
+          "special_bonus_unique_primal_beast_pulverize_duration": "+100%"
+        },
+        "pierce_immunity": {
+          "value": "0",
+          "special_bonus_unique_primal_beast_pulverize_pierces_magic_immunity": "+1"
+        }
+      }
+    },
+    "omniknight_purification": {
+      "ID": "5263",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PURE",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES_ENEMIES_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Omniknight.Purification",
+      "AbilityCastRange": "550",
+      "AbilityCastPoint": "0.2",
+      "AbilityCooldown": "18 16 14 12",
+      "AbilityManaCost": "80 95 110 125",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "heal": "90 160 230 300",
+          "LinkedSpecialBonus": "special_bonus_unique_omniknight_1",
+          "DamageTypeTooltip": "DAMAGE_TYPE_PURE",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "260",
+          "LinkedSpecialBonus": "special_bonus_unique_omniknight_4"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "bristleback_quill_spray": {
+      "ID": "5549",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Bristleback.QuillSpray",
+      "AbilityDraftShardAbility": "bristleback_hairball",
+      "AbilityCastAnimation": "ACT_INVALID",
+      "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+      "AbilityCooldown": "3.0 3.0 3.0 3.0",
+      "AbilityManaCost": "35 35 35 35",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "700"
+        },
+        "02": {
+          "var_type": "FIELD_FLOAT",
+          "quill_base_damage": "25 45 65 85"
+        },
+        "03": {
+          "var_type": "FIELD_FLOAT",
+          "quill_stack_damage": "28 30 32 34",
+          "LinkedSpecialBonus": "special_bonus_unique_bristleback_2"
+        },
+        "04": {
+          "var_type": "FIELD_FLOAT",
+          "quill_stack_duration": "14.0"
+        },
+        "05": {
+          "var_type": "FIELD_FLOAT",
+          "max_damage": "550.0"
+        },
+        "06": {
+          "var_type": "FIELD_INTEGER",
+          "projectile_speed": "2400"
+        }
+      }
+    },
+    "bristleback_hairball": {
+      "ID": "643",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "MaxLevel": "1",
+      "FightRecapLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityCastRange": "1500",
+      "AbilityCastPoint": "0.1",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "20",
+      "AbilityManaCost": "100",
+      "AbilitySpecial": {
+        "01": {
+          "var_type": "FIELD_INTEGER",
+          "projectile_speed": "1200"
+        },
+        "02": {
+          "var_type": "FIELD_INTEGER",
+          "radius": "700"
+        },
+        "03": {
+          "var_type": "FIELD_INTEGER",
+          "quill_stacks": "2"
+        }
+      }
+    },
+    "bristleback_viscous_nasal_goo": {
+      "ID": "5548",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+      "FightRecapLevel": "1",
+      "AbilitySound": "Hero_Bristleback.ViscousGoo.Cast",
+      "HasScepterUpgrade": "1",
+      "AbilityCastPoint": "0.3",
+      "AbilityCooldown": "1.75",
+      "AbilityManaCost": "12 16 20 24",
+      "AbilityValues": {
+        "goo_speed": "1000",
+        "goo_duration": "5.0",
+        "base_armor": "2",
+        "armor_per_stack": {
+          "value": "1.5 2.0 2.5 3.0",
+          "special_bonus_unique_bristleback_4": "+0.75"
+        },
+        "base_move_slow": "15",
+        "move_slow_per_stack": "3 6 9 12",
+        "stack_limit": {
+          "value": "4",
+          "special_bonus_scepter": "+3"
+        },
+        "goo_duration_creep": "10.0",
+        "AbilityCastRange": {
+          "value": "650",
+          "special_bonus_unique_bristleback_5": "+150"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "life_stealer_rage": {
+      "ID": "5249",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+      "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+      "AbilitySound": "Hero_LifeStealer.Rage",
+      "AbilityCastPoint": "0",
+      "AbilityCastRange": "0",
+      "AbilityCooldown": "21 20 19 18",
+      "AbilityManaCost": "75 100 125 150",
+      "AbilityValues": {
+        "movement_speed_bonus": {
+          "value": "15 16 17 18",
+          "special_bonus_unique_lifestealer_2": "+12"
+        },
+        "duration": {
+          "value": "3.0 4.0 5.0 6.0",
+          "special_bonus_unique_lifestealer": "+1.5"
+        },
+        "bonus_armor": {
+          "value": "0",
+          "special_bonus_unique_lifestealer_rage_armor": "+7"
+        }
+      },
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+    },
+    "tidehunter_ravage": {
+      "ID": "5121",
+      "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+      "FightRecapLevel": "2",
+      "AbilitySound": "Ability.Ravage",
+      "AbilityDraftUltShardAbility": "tidehunter_arm_of_the_deep",
+      "AbilityCastRange": "0",
+      "AbilityCastPoint": "0.3 0.3 0.3",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+      "AbilityCooldown": "150.0 150.0 150.0",
+      "AbilityDamage": "250 350 450",
+      "AbilityManaCost": "150 225 325",
+      "AbilityValues": {
+        "radius": "1250",
+        "speed": "725",
+        "duration": {
+          "value": "2.4 2.6 2.8",
+          "special_bonus_unique_tidehunter_7": "+1"
+        }
+      }
+    },
+    "primal_beast_rock_throw": {
+      "ID": "7739",
+      "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+      "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN  | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+      "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+      "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+      "FightRecapLevel": "1",
+      "MaxLevel": "1",
+      "IsGrantedByShard": "1",
+      "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH",
+      "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+      "AbilityCooldown": "25",
+      "AbilityManaCost": "85",
+      "AbilityCastPoint": "0.5",
+      "AbilityCastRange": "1800",
+      "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+      "AbilityCastGestureSlot": "DEFAULT",
+      "AbilityValues": {
+        "base_damage": {
+          "value": "325",
+          "CalculateSpellDamageTooltip": "1"
+        },
+        "impact_radius": "225",
+        "min_range": "550",
+        "min_travel_time": "0.45",
+        "max_travel_time": "1.7",
+        "bounce_travel_time": "0.6",
+        "stun_duration": "1.75",
+        "fragment_impact_distance": "600",
+        "fragment_impact_radius": "150"
+      }
+    }
+  },
+  "pinnedValve": {
+    "id": "valve",
+    "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+    "accessedOn": "2026-10-30",
+    "observation": "Pinned native target masks, cast points/ranges, damage types, dispel flags, talent-linked duration/piercing, Quill2400speed, Hairball MaxLevel1/two Quills/1200speed, and physical Rock Throw325/1.75 prototype.",
+    "versionContext": "Valve commit dated2023-02-10; local folder20230216 is capture organization, not the source patch date. Native numbers do not override locked AA numbers.",
+    "localFile": "references/dota-20230216/npc_abilities.txt",
+    "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+  },
+  "sourceAccess": {
+    "failedDatedRequests": [
+      {
+        "hero": "Primal_Beast",
+        "requestedUrl": "https://web.archive.org/web/20230215000000id_/https://dota2.fandom.com/wiki/Primal_Beast",
+        "error": "HTTP Error 429: Too Many Requests",
+        "accessedOn": "2026-10-30"
+      },
+      {
+        "hero": "Omniknight",
+        "requestedUrl": "https://web.archive.org/web/20230215000000id_/https://dota2.fandom.com/wiki/Omniknight",
+        "error": "HTTP Error 429: Too Many Requests",
+        "accessedOn": "2026-10-30"
+      },
+      {
+        "hero": "Bristleback",
+        "requestedUrl": "https://web.archive.org/web/20230215000000id_/https://dota2.fandom.com/wiki/Bristleback",
+        "error": "HTTP Error 429: Too Many Requests",
+        "accessedOn": "2026-10-30"
+      },
+      {
+        "hero": "Lifestealer",
+        "requestedUrl": "https://web.archive.org/web/20230215000000id_/https://dota2.fandom.com/wiki/Lifestealer",
+        "error": "HTTP Error 429: Too Many Requests",
+        "accessedOn": "2026-10-30"
+      }
+    ],
+    "stopRetrying429": true,
+    "reusedDatedTide": {
+      "hero": "Tidehunter",
+      "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Tidehunter",
+      "status": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "27c70a26ada997f54ee3f8bbfa9ca5c9b783f9ac45d41910a40032064ec2c24b"
+    },
+    "indexedRetainedWiki": [
+      {
+        "url": "https://dota2.fandom.com/wiki/Primal_Beast",
+        "version": "retained7.35-era,not dated2023HTTP200",
+        "read": "native grab,strong-removable modifier,200front teleport,.25+0,firstslam.75"
+      },
+      {
+        "url": "https://dota2.fandom.com/wiki/Omniknight",
+        "version": "retained7.35,not dated2023HTTP200",
+        "read": "Purification.2+1.4,healbeforepure,fullhealindependentofactualdamage"
+      },
+      {
+        "url": "https://dota2.fandom.com/wiki/Lifestealer",
+        "version": "retained7.35,debuff-immunityera;nonnumericcompatiblecandidateonly",
+        "read": "0+0,Death-only,Rageimmunitythenbasicdispel;do notimport80MRdebuffimmunityoverAASpellImmunity"
+      },
+      {
+        "url": "https://dota2.fandom.com/wiki/Bristleblood",
+        "version": "retained7.35,newHairball1quill/2goo;do notimportoverpinned2023quills2",
+        "read": "independentstacks,checkolddamagebeforeincrement,Hairball.1+.6fixedgroundimpact/1200speed"
+      },
+      {
+        "url": "https://liquipedia.net/dota2/Archive%3ABristleback",
+        "version": "archivepost7.34;mechanicalcandidateonly",
+        "read": "Quill0+0,2400outwardwave,Death-only"
+      }
+    ],
+    "datedChangelog": {
+      "quillTravel": "https://dota2.fandom.com/wiki/Bristleback/Changelogs7.00introduces2400wave",
+      "quillNoBlock": "same6.72dnoDamageBlock",
+      "pulverizeVersion": "https://liquipedia.net/dota2/Version_7.33changes150/210/270and.25stun;noimportmodernincrementsorbasepierce",
+      "purificationSuper": "ExistingC6Workshop16actualtextconfirmsPurificationSupernotpurgable"
+    }
+  },
+  "priorStateDiagnostics": [
+    {
+      "case": "PV01 native front grab positioning",
+      "cast": 0.3,
+      "targetX": 1.5,
+      "expectedFrontX": 2,
+      "source": "retainedWiki explicitly teleports victim200 in front;not inferred from category"
+    },
+    {
+      "case": "PV02 caster stun interrupts channel but leaves target grabbed stun",
+      "sourceAction": "controlled",
+      "targetStuns": [
+        2.1999999999999997
+      ],
+      "expected": "native grab releases with channel interruption"
+    },
+    {
+      "case": "PV03 strong dispelling victim does not stop caster channel",
+      "sourceAction": "channel",
+      "targetEffects": [],
+      "expected": "strong removal of primary grab ends whole linked channel"
+    },
+    {
+      "case": "PV04 SR shortens initial grab instead of maintaining the channeled linked disable",
+      "sourceAction": "channel",
+      "targetEffects": [],
+      "qualification": "exact historical SR-to-channel policy requires source;this is a named actual gap probe"
+    },
+    {
+      "case": "PU01 primary ward recipient qualification",
+      "castTarget": "0:p0h1",
+      "wardId": "0:p0h1",
+      "healed": 300,
+      "source": "fixedValve Hero|Basic target mask excludes wards;modernWiki explicitly prohibits primaryward"
+    },
+    {
+      "case": "PU02 Super repeats and source death after true cast",
+      "healEvents": [
+        {
+          "amount": 460,
+          "time": 0.23333333333333334
+        },
+        {
+          "amount": 460,
+          "time": 3.2333333333333334
+        },
+        {
+          "amount": 460,
+          "time": 6.233333333333333
+        }
+      ],
+      "cast": 0.23333333333333334,
+      "source": "AA explicit2repeats/every3sec;official20230201Supernotpurgable;source-death lifetime remains qualified"
+    },
+    {
+      "case": "PU03 actual Gaben reduction modifier contract",
+      "modifiers": [
+        {
+          "kind": "damageReduction",
+          "value": 0.5,
+          "dispel": "basic",
+          "until": 2.2333333333333334
+        }
+      ],
+      "qualification": "onlyactualstate,noAAcategorycustom inference"
+    },
+    {
+      "case": "QS01 Quill is instant rather than2400radiating",
+      "cast": 0.03333333333333333,
+      "hits": [
+        {
+          "time": 0.03333333333333333,
+          "amount": 85
+        }
+      ],
+      "expectedEarliestTravel": 0.125,
+      "source": "native2023KVprojectile_speed2400anddated7.00changelog"
+    },
+    {
+      "case": "QS02 actual AA explicit immunity pierce qualification",
+      "cast": 0.03333333333333333,
+      "hits": [
+        85
+      ],
+      "stack": [
+        {
+          "kind": "quillStack",
+          "value": 1,
+          "dispel": "basic"
+        }
+      ],
+      "expected": "AAexplicitpiercesYes,do notinfermissingonlyfromdamagecall"
+    },
+    {
+      "case": "QS03 actual stack negative purge",
+      "before": [
+        {
+          "kind": "quillStack",
+          "value": 1,
+          "dispel": "basic"
+        }
+      ],
+      "after": [],
+      "source": "pinnedSpellDispellableNo/nativeDeath-only;AAcategoryStrongOnlynotcustomproof"
+    },
+    {
+      "case": "QS04 independent quill stack lifetime",
+      "at": 2.0666666666666664,
+      "stacks": [
+        {
+          "kind": "quillStack",
+          "value": 1,
+          "until": 14.033333333333333
+        },
+        {
+          "kind": "quillStack",
+          "value": 1,
+          "until": 16.066666666666666
+        }
+      ],
+      "source": "nativeindividualexpiry;inspectbeforeassumingglobalrefresh"
+    },
+    {
+      "case": "QS05 Hairball travels to a moving unit instead of frozen ground cursor",
+      "cast": {
+        "type": "cast",
+        "source": "0:p0h0",
+        "target": "1:p1h0",
+        "skill": "bristleback_hairball",
+        "x": 0,
+        "y": 0,
+        "toX": 3,
+        "toY": 0,
+        "duration": 0.2,
+        "points": 1,
+        "visualSkill": "custom_bristleback_quill_spray",
+        "visualPoints": 6,
+        "time": 0.13333333333333333,
+        "sequence": 1
+      },
+      "hitEvents": [
+        {
+          "skill": "bristleback_hairball",
+          "amount": 85,
+          "time": 0.36666666666666664
+        },
+        {
+          "skill": "bristleback_hairball",
+          "amount": 138,
+          "time": 0.36666666666666664
+        }
+      ],
+      "statuses": [
+        {
+          "kind": "quillStack",
+          "value": 2,
+          "until": 14.366666666666667
+        }
+      ],
+      "source": "nativepointtarget/1200projectile/2Quills;parentAAfinalstacksourcecurrentprogramhardcoded"
+    },
+    {
+      "case": "RG01 actual positive Strong purge nativeDeath-only Rage",
+      "before": [
+        {
+          "kind": "magicImmune",
+          "value": 0,
+          "dispel": "basic"
+        },
+        {
+          "kind": "haste",
+          "value": 0.32,
+          "dispel": "basic"
+        }
+      ],
+      "after": [],
+      "source": "fixednativeSpellDispellableNo/retainedDeath-only;AAcategoryaloneisnotcustom"
+    },
+    {
+      "case": "RG02 AA final full Super duration and movement current runtime versus editable rows",
+      "effects": [
+        {
+          "kind": "magicImmune",
+          "value": 0,
+          "remaining": 6
+        },
+        {
+          "kind": "haste",
+          "value": 0.52,
+          "remaining": 6
+        }
+      ],
+      "editable": {
+        "1": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 21,
+          "mana": 75,
+          "params": {
+            "DURATION": 1,
+            "MOVE SPEED BONUS": 8
+          },
+          "pointTier": 1,
+          "program": {},
+          "range": 7
+        },
+        "2": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 20,
+          "mana": 100,
+          "params": {
+            "DURATION": 2,
+            "MOVE SPEED BONUS": 16
+          },
+          "pointTier": 2,
+          "program": {},
+          "range": 7
+        },
+        "3": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 18,
+          "mana": 150,
+          "params": {
+            "DURATION": 4,
+            "MOVE SPEED BONUS": 32
+          },
+          "pointTier": 3,
+          "program": {},
+          "range": 7
+        },
+        "6": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 18,
+          "mana": 150,
+          "params": {
+            "DURATION": 4,
+            "MOVE SPEED BONUS": 32
+          },
+          "pointTier": 6,
+          "program": {},
+          "range": 7
+        },
+        "9": {
+          "backswing": 0.2,
+          "castPoint": 0,
+          "cooldown": 6,
+          "mana": 150,
+          "params": {
+            "DURATION": 4,
+            "MOVE SPEED BONUS": 32
+          },
+          "pointTier": 9,
+          "program": {},
+          "range": 7
+        }
+      },
+      "expected": "final6seconds/52percentin6and9rowsratherthan4/32plusruntimeadd"
+    },
+    {
+      "case": "RV01 inner250nativeimmediatehitanddelayedlandingdamage",
+      "cast": 0.3333333333333333,
+      "events": [
+        {
+          "type": "status",
+          "status": "castWindup",
+          "time": 0.03333333333333333
+        },
+        {
+          "type": "cast",
+          "time": 0.3333333333333333
+        },
+        {
+          "type": "hit",
+          "time": 0.43333333333333335,
+          "amount": 200
+        },
+        {
+          "type": "status",
+          "status": "stun",
+          "time": 0.43333333333333335,
+          "amount": 0
+        }
+      ],
+      "source": "dated2023Tidehunter:inner250immediate,stunthen0.5air,damageonlanding"
+    },
+    {
+      "case": "RV02 airborneStrongpurgeappliesdamageimmediately",
+      "before": 1,
+      "after": [
+        {
+          "amount": 200,
+          "time": 0.43333333333333335
+        }
+      ],
+      "source": "dated2023damageappliedinstantlyifstundispelledinair"
+    },
+    {
+      "case": "RV03 Super runtime+1versuseditablecompletevalue",
+      "stuns": [
+        3.666666666666667
+      ],
+      "editable": {
+        "1": {
+          "backswing": 0.2,
+          "castPoint": 0.3,
+          "cooldown": 150,
+          "mana": 150,
+          "params": {
+            "DAMAGE": 100,
+            "DURATION": 1.5,
+            "RADIUS": 600
+          },
+          "pointTier": 1,
+          "program": {
+            "main_upgrades_advanced.delay.1": 2,
+            "main_upgrades_advanced.stun_duration.1": 1
+          },
+          "range": 7
+        },
+        "2": {
+          "backswing": 0.2,
+          "castPoint": 0.3,
+          "cooldown": 150,
+          "mana": 225,
+          "params": {
+            "DAMAGE": 150,
+            "DURATION": 2.25,
+            "RADIUS": 600
+          },
+          "pointTier": 2,
+          "program": {
+            "main_upgrades_advanced.delay.1": 2,
+            "main_upgrades_advanced.stun_duration.1": 1
+          },
+          "range": 7
+        },
+        "3": {
+          "backswing": 0.2,
+          "castPoint": 0.3,
+          "cooldown": 150,
+          "mana": 325,
+          "params": {
+            "DAMAGE": 200,
+            "DURATION": 3,
+            "RADIUS": 600
+          },
+          "pointTier": 3,
+          "program": {
+            "main_upgrades_advanced.delay.1": 2,
+            "main_upgrades_advanced.stun_duration.1": 1
+          },
+          "range": 7
+        },
+        "6": {
+          "backswing": 0.2,
+          "castPoint": 0.3,
+          "cooldown": 150,
+          "mana": 325,
+          "params": {
+            "DAMAGE": 200,
+            "DURATION": 3,
+            "RADIUS": 600
+          },
+          "pointTier": 6,
+          "program": {
+            "main_upgrades_advanced.delay.1": 2,
+            "main_upgrades_advanced.stun_duration.1": 1
+          },
+          "range": 7
+        },
+        "9": {
+          "backswing": 0.2,
+          "castPoint": 0.3,
+          "cooldown": 150,
+          "mana": 325,
+          "params": {
+            "DAMAGE": 200,
+            "DURATION": 3,
+            "RADIUS": 600
+          },
+          "pointTier": 9,
+          "program": {
+            "main_upgrades_advanced.delay.1": 2,
+            "main_upgrades_advanced.stun_duration.1": 1
+          },
+          "range": 7
+        }
+      },
+      "source": "AAfinal4secondin6/9;old3+runtime1isduplicateauthority"
+    }
+  ],
+  "newRedToGreen": {
+    "baseCases": {
+      "before": "output/c12-pulverize-ravage/red-tests.json",
+      "beforePassed": 0,
+      "total": 10,
+      "after": "output/c12-pulverize-ravage/compiled-first-tests.json"
+    },
+    "blink": {
+      "before": "output/c12-pulverize-ravage/blink-before.json",
+      "after": "output/c12-pulverize-ravage/blink-after.json"
+    },
+    "eligibility": {
+      "before": "output/c12-pulverize-ravage/visibility-before.json",
+      "after": "output/c12-pulverize-ravage/visibility-after.json"
+    }
+  },
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "observation": "Reread all five locked AA base/Super/Gaben English descriptions, values, mana and cooldowns. Explicit AA numbers remain authoritative; category labels alone do not prove custom modifier rules.",
+      "versionContext": "Previously captured actual HTTP200 full catalog response SHA1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae; reused locked selection, not a new network request.",
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "accessMethod": "locked cached response selection"
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "observation": "Pinned native target masks, cast points/ranges, damage types, dispel flags, talent-linked duration/piercing, Quill2400speed, Hairball MaxLevel1/two Quills/1200speed, and physical Rock Throw325/1.75 prototype.",
+      "versionContext": "Valve commit dated2023-02-10; local folder20230216 is capture organization, not the source patch date. Native numbers do not override locked AA numbers.",
+      "localFile": "references/dota-20230216/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5"
+    },
+    {
+      "id": "wikiRetained",
+      "url": "https://dota2.fandom.com/wiki/Primal_Beast",
+      "accessedOn": "2026-10-30",
+      "observation": "Retained page describes0.25+0animation, grabbing200in front, first slam0.75, primary disable while channeling, strong-removable grab and old Rock Throw physical prototype. Modern increasing-slam damage is not imported.",
+      "versionContext": "Actually read indexed retained approximately7.35-era page. A dated February2023 direct capture request returned429; this is not a fabricated2023HTTP200 source.",
+      "accessMethod": "web indexed retained text; no raw historical response hash"
+    },
+    {
+      "id": "change733",
+      "url": "https://liquipedia.net/dota2/Version_7.33",
+      "accessedOn": "2026-10-30",
+      "observation": "7.33 changes Pulverize native damage/stun and Rock Throw damage-block interaction. The older physical Rock Throw prototype can be damage-blocked; modern bypass is not backported.",
+      "versionContext": "Dated7.33changelog read through indexed primary Wiki text; AA explicitly keeps150/210/270and0.25rather than importing the later balance."
+    },
+    {
+      "id": "wikiRetained",
+      "url": "https://dota2.fandom.com/wiki/Omniknight",
+      "accessedOn": "2026-10-30",
+      "observation": "Purification heals before independent pure area damage, permits spell-immune allied recipients, excludes primary wards/buildings, and shows0.2+1.4animation.",
+      "versionContext": "Indexed retained approximately7.35-era Wiki;0.2point/550range additionally pinned Valve.1.4recovery is an explicitly qualified compatibility candidate, not a directly captured2023animation."
+    },
+    {
+      "id": "aaWorkshop16",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/changelog/2865676075?p=16",
+      "accessedOn": "2026-10-30",
+      "observation": "Official AA workshop16dated2023-02-01 specifically fixes Purification Super being purgable, supporting the undispellable recast marker. It does not establish the distinct Gaben protection dispel type.",
+      "versionContext": "Actually reread previously cached official workshop text from C6; no new HTTP claim.",
+      "localDerivedText": "output/c6-fire-fissure/Workshop16.txt",
+      "derivedTextSha256": "9b59286a35d412ff6938b4dd0661b33ed57f7103a2e928f73a848b686869e72f"
+    },
+    {
+      "id": "wikiRetained",
+      "url": "https://dota2.fandom.com/wiki/Bristleblood",
+      "accessedOn": "2026-10-30",
+      "observation": "Quill calculates damage from existing stacks then increments; each stack independently expires. Hairball is fixed-ground delivery whose Quill component depends on the actual learned Quill.",
+      "versionContext": "Indexed retained Bristleback alias page after7.34: its modern one-Quill/two-Goo counts are not imported over pinned2023two-Quill native1. Goo requires separately learned Goo absent from this catalog."
+    },
+    {
+      "id": "changes",
+      "url": "https://dota2.fandom.com/wiki/Bristleback/Changelogs",
+      "accessedOn": "2026-10-30",
+      "observation": "6.72d removes Quill damage-block interaction;7.00 introduces2400outward travel;7.34changes Hairball two Quills to one.",
+      "versionContext": "Dated changelog comparison explicitly distinguishes the pinned2023prototype from the retained page’s later Hairball."
+    },
+    {
+      "id": "wikiRetained",
+      "url": "https://dota2.fandom.com/wiki/Lifestealer",
+      "accessedOn": "2026-10-30",
+      "observation": "Rage0+0Death-only modifier and immunity applied before its basic dispel.",
+      "versionContext": "Indexed retained post7.33debuff-immunity-era page. Only compatible action/dispel order is used; modern80percent magic resistance/debuff immunity does not replace AA explicit classic Spell Immunity."
+    },
+    {
+      "id": "wiki2023",
+      "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Tidehunter",
+      "accessedOn": "2026-10-30",
+      "observation": "Ravage0.3+0.57,725speed,250wide ring with immediate inner250contact, initial0.5knock-up, landing damage, immediate damage on strong early removal, already-hit BKB landing damage, and blink-toward-source over the ring avoidance.",
+      "versionContext": "Direct archived February2023 page previously captured HTTP200 and actually reread in C12. AA damage/radius/stun override the page’s native1250and250/350/450.",
+      "localFile": "output/c9-inner-laser/Tidehunter.html",
+      "sha256": "27c70a26ada997f54ee3f8bbfa9ca5c9b783f9ac45d41910a40032064ec2c24b",
+      "accessMethod": "reread cached raw HTML, not a fresh request"
+    }
+  ]
+}

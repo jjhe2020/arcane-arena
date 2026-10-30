@@ -89,9 +89,9 @@ export function applyReflectionDemonAcceptance(registry:Record<string,SkillProgr
   const spawn=()=>{
    if(!map!.delete(token)||target.dead)return;
    const original=c.battle.units.find(t=>t.id===String(target.disruptionOriginalHeroId??''))??target;
-   const images=c.summon({name:'禁锢幻象',count:v(c,'ILLUSION COUNT',2),hp:original.maxHp,attack:original.attack*v(c,'ILLUSION DAMAGE')/100,armor:original.armor,range:original.range,interval:original.attackInterval,speed:original.moveSpeed,lifetime:v(c,'ILLUSION DURATION'),illusion:true,damageTaken:v(c,'ILLUSION DAMAGE TAKEN')/100,template:original,inheritsSkills:true,initializeInherited:true,inheritedMode:'passives'});
+   const images=c.summon({name:'禁锢幻象',count:v(c,'ILLUSION COUNT',2),hp:original.maxHp,currentHp:health,mana:original.mana,maxMana:original.maxMana,attack:original.attack*v(c,'ILLUSION DAMAGE')/100,attributeAttackScale:v(c,'ILLUSION DAMAGE')/100,armor:original.armor,range:original.range,interval:original.attackInterval,speed:original.moveSpeed,lifetime:v(c,'ILLUSION DURATION'),illusion:true,damageTaken:v(c,'ILLUSION DAMAGE TAKEN')/100,template:original,inheritsSkills:true,initializeInherited:true,inheritedMode:'passives'});
    for(const [index,image]of images.entries()){
-    image.hp=Math.min(image.maxHp,health);image.mana=original.mana;image.maxMana=original.maxMana;image.disruptionOriginalHeroId=original.id;image.facing=target.facing;
+    image.disruptionOriginalHeroId=original.id;image.facing=target.facing;
     c.warp(image,target.x+(index%2===0?1:-1),target.y);
    }
   };

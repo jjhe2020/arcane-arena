@@ -16,6 +16,11 @@ export function resolveVisualArt(assets:AssetManifest,source:VisualSource,fallba
 function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,skillId:string){
  const role=layer.role,kind=status.kind.toLowerCase(),self=status.source===unit.id;
  if(skillId==='custom_storm_spirit_overload'&&layer.id==='ready')return self&&kind==='overloadcharges'&&(status.value??0)>0;
+ if(skillId==='omniknight_purification'&&layer.id==='guard')return kind==='damagereduction'&&(status.value??0)>0;
+ if(skillId==='void_spirit_resonant_pulse'&&layer.id==='shield')return kind==='physicalshield'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
+ if(skillId==='void_spirit_resonant_pulse'&&layer.id==='immune')return kind==='magicimmune';
+ if(skillId==='pudge_rot'&&layer.id==='dismember')return status.skill==='pudge_dismember'&&kind==='dismemberhold'&&status.harmful===true;
+ if(skillId==='pudge_rot'&&layer.id==='sick')return status.skill==='pudge_rot'&&['slow','healreduction'].includes(kind)&&status.harmful===true;
  if(skillId==='custom_sven_gods_strength')return layer.id==='immune'?kind==='magicimmune':layer.id==='strength'?kind==='attackpct':false;
  if(skillId==='dragon_knight_elder_dragon_form')return status.skill===skillId&&(layer.id==='poison'?kind==='dot':layer.id==='frost_slow'?kind==='slow':false);
  if(skillId==='templar_assassin_refraction'&&layer.id==='shield')return kind==='refraction'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
@@ -132,6 +137,7 @@ export function eventVisuals(assets:AssetManifest,event:CombatEvent,units:Combat
  const caster=units.find(u=>u.id===event.source),points=Number(event.points??caster?.skills.find(s=>s?.id===event.skill)?.points??(event.visualSkill===event.skill?event.visualPoints:undefined)??1);
  const resolved=resolveVisualArt(assets,{skill:event.skill,points,visualSkill:typeof event.visualSkill==='string'?event.visualSkill:undefined,visualPoints:Number(event.visualPoints??points)},points);if(!resolved)return[];
  let layers=event.type==='cast'?selectVisualLayers(resolved.art,resolved.points,'cast'):event.type==='hit'?selectVisualLayers(resolved.art,resolved.points,'hit'):event.type==='heal'?selectVisualLayers(resolved.art,resolved.points,'heal'):[];
+ if(resolved.id==='pudge_rot'&&event.skill!=='pudge_dismember')layers=layers.filter(layer=>layer.id!=='clamp');
  if(event.type==='heal')layers.push(...selectVisualLayers(resolved.art,resolved.points,'proc').filter(l=>l.role==='caster_feedback'));
  // Enter effects belong to a successful modifier application, including
  // acquired transformations, rather than merely owning the ability.

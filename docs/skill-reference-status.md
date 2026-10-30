@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
-目录 230 项；已开始 170 项；完整逐项通过 7 项。
-当前代码下，1815 条具名结果测试要求通过，1815 条同时具备逐条来源绑定；另有11项跨技能引擎要求未闭合。测试证据与当前代码一致。
+目录 230 项；已开始 185 项；完整逐项通过 7 项。
+当前代码下，2002 条具名结果测试要求通过，2002 条同时具备逐条来源绑定；另有12项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -167,21 +167,21 @@
 | 强攻 (Press The Attack) | 审查中 | 6 / 3 / 2 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
 | 原始咆哮 (Primal Roar) | 审查中 | 4 / 7 / 3 / 2 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
 | 脉冲新星 (Pulse Nova) | 审查中 | 7 / 9 / 1 / 2 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/plasma-pulse.json) |
-| 捶 (Pulverize) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 洗礼 (Purification) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 刺针扫射 (Quill Spray) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 狂暴 (Rage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 毁灭 (Ravage) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 活性护甲 (Reactive Armor) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 实相裂隙 (Reality Rift) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 死神镰刀 (Reaper's Scythe) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 回身踢 (Rebound) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 折光 (Refraction) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 共鸣脉冲 (Resonant Pulse) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 巨石翻滚 (Rolling Boulder) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 滚雷 (Rolling Thunder) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 腐烂 (Rot) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
-| 月神之箭 (Sacred Arrow) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
+| 捶 (Pulverize) | 审查中 | 3 / 2 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/pulverize-ravage.json) |
+| 洗礼 (Purification) | 审查中 | 2 / 1 / 1 / 1 / 1 | 3 | [审查记录](../references/dota-wiki/acceptance/pulverize-ravage.json) |
+| 刺针扫射 (Quill Spray) | 审查中 | 1 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/pulverize-ravage.json) |
+| 狂暴 (Rage) | 审查中 | 2 / 1 / 1 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/pulverize-ravage.json) |
+| 毁灭 (Ravage) | 审查中 | 1 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/pulverize-ravage.json) |
+| 活性护甲 (Reactive Armor) | 审查中 | 6 / 2 / 1 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/reactive-refraction.json) |
+| 实相裂隙 (Reality Rift) | 审查中 | 3 / 2 / 2 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/reactive-refraction.json) |
+| 死神镰刀 (Reaper's Scythe) | 审查中 | 4 / 2 / 1 / 0 / 3 | 6 | [审查记录](../references/dota-wiki/acceptance/reactive-refraction.json) |
+| 回身踢 (Rebound) | 审查中 | 2 / 3 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/reactive-refraction.json) |
+| 折光 (Refraction) | 审查中 | 4 / 1 / 1 / 1 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/reactive-refraction.json) |
+| 共鸣脉冲 (Resonant Pulse) | 审查中 | 7 / 2 / 3 / 5 / 0 | 7 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
+| 巨石翻滚 (Rolling Boulder) | 审查中 | 5 / 0 / 1 / 2 / 7 | 8 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
+| 滚雷 (Rolling Thunder) | 审查中 | 5 / 5 / 2 / 4 / 2 | 7 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
+| 腐烂 (Rot) | 审查中 | 9 / 2 / 5 / 13 / 1 | 9 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
+| 月神之箭 (Sacred Arrow) | 审查中 | 6 / 4 / 6 / 3 / 1 | 7 | [审查记录](../references/dota-wiki/acceptance/resonant-arrow.json) |
 | 灼热之箭 (Searing Arrows) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 暗影之舞 (Shadow Dance) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |
 | 暗影之境 (Shadow Realm) | 未逐项审查 | 0 / 0 / 0 / 0 / 0 | 1 | 待取证 |

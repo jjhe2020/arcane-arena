@@ -40,7 +40,7 @@ export function applyFireFissureAcceptance(registry:Record<string,SkillProgram>)
   const run:GripRun={key,source:c.caster.id,target:victim,end:c.battle.time+seconds,done:false,actors:[],finish:()=>{}};records(c).set(key,run);
   const finish=()=>{if(run.done)return;run.done=true;records(c).delete(key);victim.statuses=statuses(victim).filter(s=>s.data?.instanceKey!==key);if(S(c)){for(const body of [...run.actors])if(!body.dead)c.despawn?.(body);}else c.endChannel();};run.finish=finish;
   if(S(c)){
-   run.actors=c.summon({name:'恶魔掌握幻象',count:v(c,'ILLUSION COUNT',2),hp:c.caster.maxHp,attack:0,armor:c.caster.armor,speed:0,lifetime:seconds+STEP,illusion:true,damageTaken:v(c,'ILLUSION DAMAGE TAKEN',200)/100});
+   run.actors=c.summon({name:'恶魔掌握幻象',count:v(c,'ILLUSION COUNT',2),hp:c.caster.maxHp,attack:0,attributeAttackScale:0,armor:c.caster.armor,speed:0,lifetime:seconds+STEP,illusion:true,damageTaken:v(c,'ILLUSION DAMAGE TAKEN',200)/100});
    const offset=v(c,'ILLUSION OFFSET',400)/100;run.actors.forEach((body,i)=>{body.fiendsGripActor=true;c.warp(body,c.caster.x+Math.cos(c.caster.facing+Math.PI/2)*(i?offset:-offset),c.caster.y+Math.sin(c.caster.facing+Math.PI/2)*(i?offset:-offset));c.channelUnit?.(body,seconds,()=>{run.actors=run.actors.filter(a=>a!==body);if(!body.dead)c.despawn?.(body);if(!run.actors.length)finish();});});
   }else{run.actors=[c.caster];c.channelUnit?.(c.caster,seconds,finish);}
   if(!run.actors.length){finish();return;}

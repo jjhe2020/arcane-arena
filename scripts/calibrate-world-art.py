@@ -1,7 +1,7 @@
 """Measure runtime atlas alpha radii, without changing approved image pixels.
 
 These are presentation measurements in cell-width units, never gameplay values.
-Re-run after importing a newer atlas for any of these five ring/burst layers.
+Re-run after importing a newer atlas for any of the named ring/burst layers.
 """
 from pathlib import Path
 from PIL import Image
@@ -16,6 +16,7 @@ layers = {
     'razor_plasma_field': ['wave'],
     'custom_sandking_epicenter': ['wave'],
     'custom_crystal_maiden_freezing_field': ['ice_burst'],
+    'void_spirit_resonant_pulse': ['pulse'],
 }
 result = {}
 for skill, names in layers.items():

@@ -1,0 +1,1673 @@
+{
+  "schemaVersion": 1,
+  "group": "reactive-refraction",
+  "auditedOn": "2026-10-30",
+  "baseline": "89dcc73d4a24e2d4f65eebafd9e0a1897700a13d",
+  "overallStatus": "partial",
+  "sourcePolicy": "Explicit captured AA balance/custom clauses first; actual dated Wiki mechanics next. No category-only custom assertion, no modern-page backport and no whole-skill completion from green working-policy outcomes.",
+  "validation": {
+    "command": "npx vitest run tests/reference-reactive-refraction.test.ts --reporter=json --outputFile=output/c12-reactive-refraction/final-tests.json",
+    "configurationHash": "522ffaf25b6f2f8e32e55f2f3af6d3e472d469a9c3144da426d5fbed53915211",
+    "skillGroupTests": 56,
+    "passedTests": 56,
+    "reportInput": "output/c12-reactive-refraction/final-tests.json",
+    "typecheck": "npx tsc --noEmit passed; root owns complete repository/source-proof/build/production verification.",
+    "render": {
+      "script": "scripts/c12-reactive-render-smoke.mjs",
+      "report": "artifacts/r6-c12-reactive-render/report.json",
+      "status": "passed",
+      "scenarios": 16,
+      "configurationHash": "522ffaf25b6f2f8e32e55f2f3af6d3e472d469a9c3144da426d5fbed53915211",
+      "scope": "Eight actual engine states on desktop/mobile, no injected statuses/effects/projectiles/summons. Real movement wake points and landing occurrence are consumed; render leaves the battle snapshot unchanged. Selected clips and native source completeness remain separate."
+    }
+  },
+  "skills": [
+    {
+      "id": "shredder_reactive_armor",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "paraphrase": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "versionContext": "Captured AA catalog; original patch and Lua version are not recovered."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "paraphrase": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "versionContext": "2023-02-10 Valve KV; AA final values override conflicting native numbers."
+        },
+        {
+          "id": "timbersaw-2023",
+          "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Timbersaw",
+          "accessedOn": "2026-10-30",
+          "observation": "Reactive Armor gains independent stacks before landed-attack damage, doubles hero-family contacts, retains existing benefits under Break, and gives illusion defenders regeneration without armor. Whirling Death snapshots total primary attribute before damage; strength removal restores19HP per point as set-health, intelligence keeps mana ratio, and temporary loss is not copied to new images.",
+          "paraphrase": "Reactive Armor gains independent stacks before landed-attack damage, doubles hero-family contacts, retains existing benefits under Break, and gives illusion defenders regeneration without armor. Whirling Death snapshots total primary attribute before damage; strength removal restores19HP per point as set-health, intelligence keeps mana ratio, and temporary loss is not copied to new images.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Timbersaw",
+          "status": 200,
+          "archiveTimestamp": "20230215191602",
+          "sha256": "2893bc39e2e6d460d11d7e8e76fd9724744ee99403ef2290b3ae5008c3a41dcb",
+          "sections": [
+            "Reactive Armor",
+            "Whirling Death",
+            "Talents",
+            "7.32 changelog"
+          ]
+        },
+        {
+          "id": "chaos-knight-2023",
+          "url": "https://web.archive.org/web/20230215191324id_/https://dota2.fandom.com/wiki/Chaos_Knight",
+          "accessedOn": "2026-10-30",
+          "observation": "Reality Rift fixes positions at cast start, places the target62in front, moves nearby images without disjointing or interrupting target channels. Chaos Bolt inversely relates continuous damage/stun, applies stun first, has700speed and impact block/disjoint. Its Shard supplies an image prototype; AA expressly removes the draft prerequisite. Phantasm basic-dispels before creating image snapshots.",
+          "paraphrase": "Reality Rift fixes positions at cast start, places the target62in front, moves nearby images without disjointing or interrupting target channels. Chaos Bolt inversely relates continuous damage/stun, applies stun first, has700speed and impact block/disjoint. Its Shard supplies an image prototype; AA expressly removes the draft prerequisite. Phantasm basic-dispels before creating image snapshots.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Chaos_Knight",
+          "status": 200,
+          "archiveTimestamp": "20230215191324",
+          "sha256": "296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5",
+          "sections": [
+            "Reality Rift",
+            "Chaos Bolt",
+            "Phantasm",
+            "Talents"
+          ],
+          "reuse": "Previously captured body reused after SHA verification; no second request."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RA-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Landed contact grants native-classified stacks before that incoming attack damage.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-01 five AA ranks gain armor before their first100damage hit and retain final stack durations"
+            }
+          ]
+        },
+        {
+          "id": "RA-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Hero, illusion and creep-hero contacts grant two stacks; basic, ward and building contacts grant one.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-02 hero illusions and creep heroes give two stacks while basic and ward attackers give one"
+            }
+          ]
+        },
+        {
+          "id": "RA-M03",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Misses and modifier-disabled attacks do not grant stacks; a zero-damage landed attack does.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-04 evasion and modifier-disabled attacks give no stacks but zero-damage landed attacks do"
+            }
+          ]
+        },
+        {
+          "id": "RA-T01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Five AA per-stack values and duration clocks remain authoritative; separate contacts expire independently.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-01 five AA ranks gain armor before their first100damage hit and retain final stack durations"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-05 stacks from two separate contacts expire on their independent clocks"
+            }
+          ]
+        },
+        {
+          "id": "RA-C01",
+          "kind": "combination",
+          "branch": "Break",
+          "mechanism": "Break prevents new gains while existing armor and regeneration continue.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-03 Break stops new stacks but preserves already gained armor and regeneration"
+            }
+          ]
+        },
+        {
+          "id": "RA-C02",
+          "kind": "combination",
+          "branch": "Phantasm",
+          "mechanism": "A real Phantasm image gains its own regeneration stacks without Reactive Armor bonus armor.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-06 an actual Phantasm image gains independent regeneration stacks but no Reactive armor"
+            }
+          ]
+        },
+        {
+          "id": "RA-S01",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "AA Super adds6seconds; the observed compiled final per-stack duration is22seconds. Maximum-limit replacement coverage is tracked separately by RA-P01.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-01 five AA ranks gain armor before their first100damage hit and retain final stack durations"
+            }
+          ]
+        },
+        {
+          "id": "RA-G01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA10percent contact trial invokes the separate Whirling Death program; a100percent chance fixture proves one genuine native4effect and200pure damage.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-07 Gaben invokes the real native4 Whirling Death once per eligible incoming contact"
+            }
+          ]
+        },
+        {
+          "id": "RA-W01",
+          "kind": "timing",
+          "branch": "native-WhirlingDeath",
+          "mechanism": "All four native child ranks use zero animation,80mana and independent damage/cooldown/debuff-duration rows.",
+          "sourceIds": [
+            "valve",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-01 four native ranks remain separate with zero animation80mana and native damage duration"
+            }
+          ]
+        },
+        {
+          "id": "RA-W02",
+          "kind": "mechanism",
+          "branch": "native-WhirlingDeath",
+          "mechanism": "Attribute loss snapshots current total primary strength after real Flesh Golem and remains a fixed flat loss after later attribute gains.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-02 the loss snapshots total strength after actual Flesh Golem and stays fixed across later attribute gains"
+            }
+          ]
+        },
+        {
+          "id": "RA-W03",
+          "kind": "mechanism",
+          "branch": "native-WhirlingDeath",
+          "mechanism": "Project-configured22HP/strength loss and separately sourced19HP/strength set-health restoration are not converted into amplified healing.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "detail": "The native body uses20HP/strength for its own2023attributes. Project22is existing AA balance authority and is preserved;19removal restoration is an independent native field. No compensation ratio is invented.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-03 configured22HPperstrength loss and independent native19HP restoration bypass healing amplification"
+            }
+          ]
+        },
+        {
+          "id": "RA-W04",
+          "kind": "mechanism",
+          "branch": "native-WhirlingDeath",
+          "mechanism": "Intelligence loss and debuff removal preserve the victims current mana percentage.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-04 intelligence loss and removal preserve the victims current mana percentage"
+            }
+          ]
+        },
+        {
+          "id": "RA-W05",
+          "kind": "combination",
+          "branch": "WhirlingDeath-Disruption",
+          "mechanism": "Actual allied Disruption creates two images without the still-active temporary Whirling attribute loss.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-06 an actual allied Disruption creates images without the temporary Whirling loss"
+            }
+          ]
+        },
+        {
+          "id": "RA-W06",
+          "kind": "combination",
+          "branch": "WhirlingDeath-Phantasm",
+          "mechanism": "Actual Phantasm basic-dispels Whirling before taking image snapshots; this control is distinct from proof of exclusion while a debuff remains.",
+          "sourceIds": [
+            "chaos-knight-2023",
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "WD-05 actual Phantasm dispels Whirling before creating its image snapshots"
+            }
+          ]
+        },
+        {
+          "id": "RA-P01",
+          "kind": "mechanism",
+          "branch": "capped-stacks",
+          "mechanism": "Exact behavior when a doubled contact reaches the cap.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "source_pending",
+          "detail": "The table retains final7/14/28/40/40limits. Exact oldest-stack/tie replacement, especially a doubled contact at an odd cap, is not recovered or outcome-tested here.",
+          "testEvidence": []
+        },
+        {
+          "id": "RA-P02",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Original free Whirling Death level and precise contact ordering.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Existing max-native4 and post-contact Gaben roll are explicit working choices. AA text establishes the chance but not the original Lua grant level or whether the free spell precedes the incoming damage.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RA-07 Gaben invokes the real native4 Whirling Death once per eligible incoming contact"
+            }
+          ]
+        },
+        {
+          "id": "RA-P03",
+          "kind": "mechanism",
+          "branch": "dispel-version",
+          "mechanism": "AA Strong-only category versus historical Death-only stack modifiers.",
+          "sourceIds": [
+            "aa",
+            "timbersaw-2023"
+          ],
+          "status": "source_pending",
+          "detail": "The category is preserved as source metadata; dated Death-only behavior is used without inventing proof that AA Lua changed it.",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RA-P01",
+          "reason": "The table retains final7/14/28/40/40limits. Exact oldest-stack/tie replacement, especially a doubled contact at an odd cap, is not recovered or outcome-tested here."
+        },
+        {
+          "id": "RA-P02",
+          "reason": "Existing max-native4 and post-contact Gaben roll are explicit working choices. AA text establishes the chance but not the original Lua grant level or whether the free spell precedes the incoming damage."
+        },
+        {
+          "id": "RA-P03",
+          "reason": "The category is preserved as source metadata; dated Death-only behavior is used without inventing proof that AA Lua changed it."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA12stack/6second upgrade resembles the dated same-hero level15 stack/duration talent, whose2023value is6/6; AA12 remains authoritative.",
+        "gaben": "Explicit AA cross-ability Whirling Death trigger; not a native2023Reactive Armor Aghanim effect."
+      },
+      "compatibility": []
+    },
+    {
+      "id": "custom_chaos_knight_reality_rift",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "paraphrase": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "versionContext": "Captured AA catalog; original patch and Lua version are not recovered."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "paraphrase": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "versionContext": "2023-02-10 Valve KV; AA final values override conflicting native numbers."
+        },
+        {
+          "id": "chaos-knight-2023",
+          "url": "https://web.archive.org/web/20230215191324id_/https://dota2.fandom.com/wiki/Chaos_Knight",
+          "accessedOn": "2026-10-30",
+          "observation": "Reality Rift fixes positions at cast start, places the target62in front, moves nearby images without disjointing or interrupting target channels. Chaos Bolt inversely relates continuous damage/stun, applies stun first, has700speed and impact block/disjoint. Its Shard supplies an image prototype; AA expressly removes the draft prerequisite. Phantasm basic-dispels before creating image snapshots.",
+          "paraphrase": "Reality Rift fixes positions at cast start, places the target62in front, moves nearby images without disjointing or interrupting target channels. Chaos Bolt inversely relates continuous damage/stun, applies stun first, has700speed and impact block/disjoint. Its Shard supplies an image prototype; AA expressly removes the draft prerequisite. Phantasm basic-dispels before creating image snapshots.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Chaos_Knight",
+          "status": 200,
+          "archiveTimestamp": "20230215191324",
+          "sha256": "296762455759e6a300e8bfcb1e110671e2d11fb9d389151dc5b7646653bb2ea5",
+          "sections": [
+            "Reality Rift",
+            "Chaos Bolt",
+            "Phantasm",
+            "Talents"
+          ],
+          "reuse": "Previously captured body reused after SHA verification; no second request."
+        },
+        {
+          "id": "timbersaw-2023",
+          "url": "https://web.archive.org/web/20230215191602id_/https://dota2.fandom.com/wiki/Timbersaw",
+          "accessedOn": "2026-10-30",
+          "observation": "Reactive Armor gains independent stacks before landed-attack damage, doubles hero-family contacts, retains existing benefits under Break, and gives illusion defenders regeneration without armor. Whirling Death snapshots total primary attribute before damage; strength removal restores19HP per point as set-health, intelligence keeps mana ratio, and temporary loss is not copied to new images.",
+          "paraphrase": "Reactive Armor gains independent stacks before landed-attack damage, doubles hero-family contacts, retains existing benefits under Break, and gives illusion defenders regeneration without armor. Whirling Death snapshots total primary attribute before damage; strength removal restores19HP per point as set-health, intelligence keeps mana ratio, and temporary loss is not copied to new images.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Timbersaw",
+          "status": 200,
+          "archiveTimestamp": "20230215191602",
+          "sha256": "2893bc39e2e6d460d11d7e8e76fd9724744ee99403ef2290b3ae5008c3a41dcb",
+          "sections": [
+            "Reactive Armor",
+            "Whirling Death",
+            "Talents",
+            "7.32 changelog"
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RR-T01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Five AA ranks use50mana,18/14/6/6/6cooldown and dated.3point/.5backswing with6second armor debuff.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-01 five AA ranks spend50mana with native.3point.5backswing and final armor duration"
+            }
+          ]
+        },
+        {
+          "id": "RR-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Cast-start positions determine the caster pull and62target separation despite target movement during windup.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-02 enemy relocation during windup cannot move the frozen native Rift destination"
+            }
+          ]
+        },
+        {
+          "id": "RR-C01",
+          "kind": "combination",
+          "branch": "projectile",
+          "mechanism": "Neither relocated body disjoints an already launched projectile.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-03 neither Rift warp disjoints an already released attack projectile"
+            }
+          ]
+        },
+        {
+          "id": "RR-C02",
+          "kind": "combination",
+          "branch": "ManaDrain",
+          "mechanism": "An affected enemy continues an actual Mana Drain channel after Rift movement.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-04 a target already channeling real Mana Drain continues after being brought closer"
+            }
+          ]
+        },
+        {
+          "id": "RR-M02",
+          "kind": "mechanism",
+          "branch": "SpellBlock",
+          "mechanism": "Primary Spell Block prevents both relocations and armor while spending the cast resources.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-05 an initial Spell Block prevents both relocations and the debuff while consuming resources"
+            }
+          ]
+        },
+        {
+          "id": "RR-M03",
+          "kind": "mechanism",
+          "branch": "root",
+          "mechanism": "Initial root prohibits the cast without resource consumption.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-11 initial root forbids Reality Rift without mana or cooldown consumption"
+            }
+          ]
+        },
+        {
+          "id": "RR-S01",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "AA pierces initial spell immunity for relocation/armor; the separately triggered native Bolt still respects its own immunity rules.",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-09 Super moves a magic immune target and applies armor but the native Bolt does not affect it"
+            }
+          ]
+        },
+        {
+          "id": "RR-S02",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "AA grants actual native4Chaos Bolt and unconditional100percent six-second strong image on successful impact.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-06 Super launches native4 inverse Chaos Bolt and creates a strong six-second100percent image on impact"
+            }
+          ]
+        },
+        {
+          "id": "RR-CT01",
+          "kind": "timing",
+          "branch": "ChaosBolt",
+          "mechanism": "Native4inverse damage/stun relation and successful impact create one image without a second parent mana payment.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-06 Super launches native4 inverse Chaos Bolt and creates a strong six-second100percent image on impact"
+            }
+          ]
+        },
+        {
+          "id": "RR-C03",
+          "kind": "combination",
+          "branch": "impact-block",
+          "mechanism": "A later impact Spell Block prevents the child without undoing Rift armor.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-07 a new impact Spell Block stops the granted Bolt without undoing the earlier Rift armor"
+            }
+          ]
+        },
+        {
+          "id": "RR-C04",
+          "kind": "combination",
+          "branch": "PhaseShift",
+          "mechanism": "Actual Phase Shift disjoints a deliberately slowed observation projectile before damage or image creation.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-08 a real zero-point Phase Shift disjoints a slowed-for-observation granted Bolt before image creation"
+            }
+          ]
+        },
+        {
+          "id": "RR-C05",
+          "kind": "combination",
+          "branch": "WhirlingDeath",
+          "mechanism": "Real temporary Whirling intelligence loss is excluded from Bolt image attributes, maximum mana and attribute-derived main damage.",
+          "sourceIds": [
+            "timbersaw-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-12 a real Whirling intelligence loss is excluded from granted Bolt illusion attributes and maximum mana"
+            }
+          ]
+        },
+        {
+          "id": "RR-G01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA direct pull leaves caster at its start and applies final doubled armor14.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-10 Gaben leaves the caster at its original point and directly pulls the target with doubled armor"
+            }
+          ]
+        },
+        {
+          "id": "RR-P01",
+          "kind": "mechanism",
+          "branch": "illusion-formation",
+          "mechanism": "Nearby image search, exact image ring placement and issued attack commands.",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "source_pending",
+          "detail": "1375search and62ring are sourced native candidates. Exact AA any-images ownership/filter timing, collision clearspace and full issued-order queue are not recovered; arena AI/temporary target lock represents the command.",
+          "testEvidence": []
+        },
+        {
+          "id": "RR-P02",
+          "kind": "super",
+          "branch": "ChaosBolt-random",
+          "mechanism": "Continuous inverse Bolt roll distribution and image birth direction.",
+          "sourceIds": [
+            "aa",
+            "chaos-knight-2023"
+          ],
+          "status": "source_pending",
+          "detail": "The inverse relation is proved and tested, but the retained uniform generator and +Y87birth-angle policy are not native-randomness proofs. Arbitrary original/custom hull clearspace remains bounded.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RR-06 Super launches native4 inverse Chaos Bolt and creates a strong six-second100percent image on impact"
+            }
+          ]
+        },
+        {
+          "id": "RR-P03",
+          "kind": "super",
+          "branch": "Super-range",
+          "mechanism": "Public500cast-range addition and full four-rank child ordinary-cast matrix.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "chaos-knight-2023"
+          ],
+          "status": "result_pending",
+          "detail": "Compiled final AA range is9/11/13/18/18for ranks1/2/3/6/9; the group tests actual Super use at6range but do not independently exercise the maximum-range edge or all four ordinary Bolt mana/CD/animation rows.",
+          "testEvidence": []
+        },
+        {
+          "id": "RR-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Roshan-specific no-target-pull exception, native fog/vision and player order UI require unavailable environment profiles.",
+          "sourceIds": [
+            "chaos-knight-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RR-P01",
+          "reason": "1375search and62ring are sourced native candidates. Exact AA any-images ownership/filter timing, collision clearspace and full issued-order queue are not recovered; arena AI/temporary target lock represents the command."
+        },
+        {
+          "id": "RR-P02",
+          "reason": "The inverse relation is proved and tested, but the retained uniform generator and +Y87birth-angle policy are not native-randomness proofs. Arbitrary original/custom hull clearspace remains bounded."
+        },
+        {
+          "id": "RR-P03",
+          "reason": "Compiled final AA range is9/11/13/18/18for ranks1/2/3/6/9; the group tests actual Super use at6range but do not independently exercise the maximum-range edge or all four ordinary Bolt mana/CD/animation rows."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "Dated level20Reality Rift spell-immunity talent prototype; added500range and native4Bolt are AA custom. Bolt image is the same-hero Shard prototype, with AA unconditional6seconds/100percent overriding the native Phantasm-draft prerequisite.",
+        "gaben": "AA direct-to-caster pull and2xarmor, not inferred from native225pull talent."
+      },
+      "compatibility": [
+        "Explicit AA base cast ranges900/1100/1300override dated native Rift range. Source range-edge outcome coverage remains separate from compiled values."
+      ]
+    },
+    {
+      "id": "custom_necrolyte_reapers_scythe",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "paraphrase": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "versionContext": "Captured AA catalog; original patch and Lua version are not recovered."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "paraphrase": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "versionContext": "2023-02-10 Valve KV; AA final values override conflicting native numbers."
+        },
+        {
+          "id": "necrophos-2023",
+          "url": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos",
+          "accessedOn": "2026-10-30",
+          "observation": "Scythe uses an unshortened1.5second mark, calculates missing-health damage at its end and affects a target gaining immunity later. It takes highest kill credit, rewards illusion/creep-hero and reincarnating deaths but excludes Tempest Double. Permanent per-kill rewards do not retroactively change with rank. The all-damage-sourced statement requires separate event-actor interpretation beyond kill credit.",
+          "paraphrase": "Scythe uses an unshortened1.5second mark, calculates missing-health damage at its end and affects a target gaining immunity later. It takes highest kill credit, rewards illusion/creep-hero and reincarnating deaths but excludes Tempest Double. Permanent per-kill rewards do not retroactively change with rank. The all-damage-sourced statement requires separate event-actor interpretation beyond kill credit.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Necrophos",
+          "status": 200,
+          "archiveTimestamp": "20230215192013",
+          "sha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2",
+          "sections": [
+            "Reaper's Scythe",
+            "Talents",
+            "7.31c and7.32 changelogs"
+          ],
+          "reuse": "Previously captured body reused after SHA verification; no second request."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RS-T01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Five AA mana200/350/500/500/500and120cooldown retain native.45point/1.5backswing and1.5mark unaffected by status resistance.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-01 five AA ranks preserve mana120cooldown and native.45point1.5backswing without status resistance shortening"
+            }
+          ]
+        },
+        {
+          "id": "RS-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Missing-health damage is calculated at the end of the mark, not its beginning.",
+          "sourceIds": [
+            "aa",
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-02 missing health is calculated at the end of the actual1.5second mark"
+            }
+          ]
+        },
+        {
+          "id": "RS-M02",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Initial ordinary-creep/immunity targets are ineligible; later immunity and strong dispel cannot remove an established Death-only mark or its final damage.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-03 later magic immunity cannot remove the established mark or stop its final damage"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-11 ordinary nonhero targets and initial spell immunity cannot be selected for Scythe"
+            }
+          ]
+        },
+        {
+          "id": "RS-C01",
+          "kind": "combination",
+          "branch": "allied-kill",
+          "mechanism": "A real allied killing packet retains its original effective damage source while mechanical death/kill credit and native permanent reward belong to Scythe.",
+          "sourceIds": [
+            "aa",
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-04 a real allied killing packet retains its damage ledger while mechanical kill credit and permanent regen go to Scythe"
+            }
+          ]
+        },
+        {
+          "id": "RS-M03",
+          "kind": "mechanism",
+          "branch": "death-class",
+          "mechanism": "Hero, illusion and creep-hero deaths grant a reward; the explicit Tempest Double qualification fixture does not.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-05 illusions and creep heroes award a stack but a Tempest Double qualification fixture does not"
+            }
+          ]
+        },
+        {
+          "id": "RS-C02",
+          "kind": "combination",
+          "branch": "dead-source",
+          "mechanism": "A released mark can finish after its source dies and still grants permanent regeneration and battle-gains output.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-06 the source can die during its released mark and still receive the permanent reward"
+            }
+          ]
+        },
+        {
+          "id": "RS-S01",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "A qualifying live-source kill uses final18HP/12MPregen and restores the caster by its current health/mana intent.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-07 Super snapshots current health and mana for actual restoration and uses final18and12regen"
+            }
+          ]
+        },
+        {
+          "id": "RS-M04",
+          "kind": "mechanism",
+          "branch": "persistence",
+          "mechanism": "A real battle-gains bridge preserves older9regen and a later Super kill adds18without retroactively enlarging the old reward.",
+          "sourceIds": [
+            "aa",
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-08 stored regen keeps its original value across a real battle-gains bridge and a later Super kill adds18"
+            }
+          ]
+        },
+        {
+          "id": "RS-C03",
+          "kind": "combination",
+          "branch": "Soulbind",
+          "mechanism": "A real Soulbind duplicate produces exactly one permanent reward for each marked victim.",
+          "sourceIds": [
+            "aa",
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-10 an actual Soulbind duplicated Scythe grants exactly one reward for each marked victim"
+            }
+          ]
+        },
+        {
+          "id": "RS-T02",
+          "kind": "timing",
+          "branch": "cleanup",
+          "mechanism": "Temporary mark data cleans after resolution; permanent awarded regeneration survives strong positive dispels.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-12 unused temporary marks clean after their final damage while awarded regeneration survives strong purges"
+            }
+          ]
+        },
+        {
+          "id": "RS-G01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "Extra100percent damage sharing within400radius.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "detail": "A tested retained work policy splits raw calculated final damage among OTHER enemies, excludes a second primary hit, and includes immune bodies in the denominator. AA Lua is missing for raw-versus-effective basis, inclusion of primary/immunity, early marked death and secondary-kill reward qualification.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-09 Gaben working policy divides the raw final damage among other enemies rather than damaging the primary twice"
+            }
+          ]
+        },
+        {
+          "id": "RS-P01",
+          "kind": "combination",
+          "branch": "damage-event-source",
+          "mechanism": "Meaning of the historical all-damage-sourced statement beyond mechanical kill credit.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "source_pending",
+          "detail": "User4A requires original effective damage packets in statistics, which are preserved. Native reflection/lifesteal/outgoing-modifier damage-event actor reassignment is not proved by the mechanical kill-credit test; no broad source rewrite is claimed.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-04 a real allied killing packet retains its damage ledger while mechanical kill credit and permanent regen go to Scythe"
+            }
+          ]
+        },
+        {
+          "id": "RS-P02",
+          "kind": "combination",
+          "branch": "multiple-markers",
+          "mechanism": "Equal-priority marks and source loss during a mark.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Highest-priority credit is sourced. Equal-priority latest-applied/source-stable arbitration is an engineering policy, not native-version proof; skill removal and source-instance replacement need paired outcomes.",
+          "testEvidence": []
+        },
+        {
+          "id": "RS-P03",
+          "kind": "super",
+          "branch": "Super-postmortem",
+          "mechanism": "Current-resource restoration after source death and exact +500range edge.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "detail": "Permanent postmortem reward is proved. The custom Super restoration is retained only for a living source; original AA postmortem restoration semantics and maximum-range edge are not recovered/outcome-closed.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-06 the source can die during its released mark and still receive the permanent reward"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-07 Super snapshots current health and mana for actual restoration and uses final18and12regen"
+            }
+          ]
+        },
+        {
+          "id": "RS-P04",
+          "kind": "combination",
+          "branch": "special-deaths",
+          "mechanism": "Reincarnation and special hidden/swallowed/clone-family linked deaths.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "result_pending",
+          "detail": "The historical page explicitly includes reincarnating victims, but this group has no actual Reincarnation-pair result. SpiritBear owner death, Supernova/swallow, reflected Omnislash and Meepo propagation are not generalized from ordinary-death tests.",
+          "testEvidence": []
+        },
+        {
+          "id": "RS-P05",
+          "kind": "mechanism",
+          "branch": "dispel-version",
+          "mechanism": "AA Strong-only category versus historical Death-only mark.",
+          "sourceIds": [
+            "aa",
+            "necrophos-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Dated Death-only behavior is implemented; captured category text alone does not establish an AA Lua override.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RS-03 later magic immunity cannot remove the established mark or stop its final damage"
+            }
+          ]
+        },
+        {
+          "id": "RS-ENV",
+          "kind": "combination",
+          "branch": "FatalBonds",
+          "mechanism": "Native zero-damage mark instance with Fatal Bonds damage sharing.",
+          "sourceIds": [
+            "necrophos-2023"
+          ],
+          "status": "not_applicable",
+          "detail": "No Fatal Bonds ability/damage-sharing consumer exists in the current catalog; this does not justify implementing an unrelated ability.",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RS-G01",
+          "reason": "A tested retained work policy splits raw calculated final damage among OTHER enemies, excludes a second primary hit, and includes immune bodies in the denominator. AA Lua is missing for raw-versus-effective basis, inclusion of primary/immunity, early marked death and secondary-kill reward qualification."
+        },
+        {
+          "id": "RS-P01",
+          "reason": "User4A requires original effective damage packets in statistics, which are preserved. Native reflection/lifesteal/outgoing-modifier damage-event actor reassignment is not proved by the mechanical kill-credit test; no broad source rewrite is claimed."
+        },
+        {
+          "id": "RS-P02",
+          "reason": "Highest-priority credit is sourced. Equal-priority latest-applied/source-stable arbitration is an engineering policy, not native-version proof; skill removal and source-instance replacement need paired outcomes."
+        },
+        {
+          "id": "RS-P03",
+          "reason": "Permanent postmortem reward is proved. The custom Super restoration is retained only for a living source; original AA postmortem restoration semantics and maximum-range edge are not recovered/outcome-closed."
+        },
+        {
+          "id": "RS-P04",
+          "reason": "The historical page explicitly includes reincarnating victims, but this group has no actual Reincarnation-pair result. SpiritBear owner death, Supernova/swallow, reflected Omnislash and Meepo propagation are not generalized from ordinary-death tests."
+        },
+        {
+          "id": "RS-P05",
+          "reason": "Dated Death-only behavior is implemented; captured category text alone does not establish an AA Lua override."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA custom additive permanent-regeneration upgrade/current-resource restoration and500range;2023native has a smaller100range talent, not the AA rule.",
+        "gaben": "Explicit AA distributed-damage custom effect; no unrelated native area item is substituted."
+      },
+      "compatibility": [
+        "AA120CD,200/350/500mana and3/6/9HPregeneration override2023native110CD,250/375/500mana and2/4/6HPregen. Mechanical credit is separate from4Aeffective packet accounting."
+      ]
+    },
+    {
+      "id": "marci_companion_run",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "paraphrase": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "versionContext": "Captured AA catalog; original patch and Lua version are not recovered."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "paraphrase": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "versionContext": "2023-02-10 Valve KV; AA final values override conflicting native numbers."
+        },
+        {
+          "id": "marci-2023",
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+          "accessedOn": "2026-10-30",
+          "observation": "Rebound is an ally-targeted1700speed tracking dash; ally speed begins on contact, disjoint/700buffer can abort, existing movement ignores later roots, and a launched leap can finish after death. Landing is64behind275radius effects, damage precedes stun. Dispose has independent four-level values and slow-before-damage landing.",
+          "paraphrase": "Rebound is an ally-targeted1700speed tracking dash; ally speed begins on contact, disjoint/700buffer can abort, existing movement ignores later roots, and a launched leap can finish after death. Landing is64behind275radius effects, damage precedes stun. Dispose has independent four-level values and slow-before-damage landing.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Marci",
+          "status": 200,
+          "archiveTimestamp": "20230215191449",
+          "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+          "sections": [
+            "Rebound",
+            "Dispose",
+            "Talents",
+            "7.32b–7.32d changelogs"
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MB-T01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Five AA rows retain.1point/0backswing,24/20/12cooldown and70/80/100mana with real continuous ally-target approach.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-01 all five AA ranks spend native resources and begin a continuous ally-target dash without early ally speed"
+            }
+          ]
+        },
+        {
+          "id": "MB-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Friendly target receives mapped25/30/40percent movement speed for5seconds on actual arrival, not cast release.",
+          "sourceIds": [
+            "aa",
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-01 all five AA ranks spend native resources and begin a continuous ally-target dash without early ally speed"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-02 actual ally arrival grants the mapped five-second25or30or40speed buff"
+            }
+          ]
+        },
+        {
+          "id": "MB-T02",
+          "kind": "timing",
+          "branch": "base",
+          "mechanism": "Real leap landing places the body64behind its area center, then damages before applying stun.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-03 landing damage and stun occur only after the real leap and the body stops64behind its effect center"
+            }
+          ]
+        },
+        {
+          "id": "MB-C01",
+          "kind": "combination",
+          "branch": "later-disable",
+          "mechanism": "Root and stun acquired after release do not cancel the already active route.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-04 later root and stun do not cancel an already launched Rebound"
+            }
+          ]
+        },
+        {
+          "id": "MB-C02",
+          "kind": "combination",
+          "branch": "disjoint",
+          "mechanism": "Friendly tracking-projectile disjoint cancels without landing effects or early ally speed.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-05 a disjointed friendly tracking projectile stops the route without landing damage or ally buff"
+            }
+          ]
+        },
+        {
+          "id": "MB-T03",
+          "kind": "timing",
+          "branch": "death",
+          "mechanism": "Death during dash cancels; an already launched leap may finish and resolve landing after death.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-06 death during the dash cancels while death during an already active leap still resolves the landing"
+            }
+          ]
+        },
+        {
+          "id": "MB-M02",
+          "kind": "mechanism",
+          "branch": "root",
+          "mechanism": "Initial root forbids the cast without resource expenditure.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-10 an initial root forbids Rebound while the later-root continuation remains distinct"
+            }
+          ]
+        },
+        {
+          "id": "MB-S01",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "AA grants2second immunity to caster/ally and1000additional leap range while retaining ordinary ally cast range.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-07 Super grants two-second immunity and adds leap range while preserving the base ally cast range"
+            }
+          ]
+        },
+        {
+          "id": "MB-G01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "An actual landing stun triggers independent native4Dispose rather than editable AA rank3Dispose.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "marci-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-08 Gaben invokes the independently configured native4 Dispose after a genuine landing stun"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-09 editing the AA Dispose main damage cannot alter the native4 child used by Rebound"
+            }
+          ]
+        },
+        {
+          "id": "MB-P01",
+          "kind": "timing",
+          "branch": "ballistic-curve",
+          "mechanism": "Exact native travel interpolation and vector selection.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Dated minimum/maximum.1/.2durations and distance endpoints are sourced. Retained bounded linear duration interpolation, rank1max=min.2choice and arena AI farthest-enemy vector are explicit working policies, not a recovered original vector UI.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-03 landing damage and stun occur only after the real leap and the body stops64behind its effect center"
+            }
+          ]
+        },
+        {
+          "id": "MB-P02",
+          "kind": "super",
+          "branch": "Super-immunity-clock",
+          "mechanism": "Precise start of custom2second immunity.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "source_pending",
+          "detail": "The duration and recipients are explicit; starting both clocks on release is retained work behavior because AA original Lua timing is unavailable.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-07 Super grants two-second immunity and adds leap range while preserving the base ally cast range"
+            }
+          ]
+        },
+        {
+          "id": "MB-P03",
+          "kind": "combination",
+          "branch": "abort-and-walls",
+          "mechanism": "Other forced movement,700abort threshold and skill-wall exceptions.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "result_pending",
+          "detail": "The module uses the real controller, native700buffer and terrain-only wall override. This group tests root/death/disjoint but has not independently closed other-controller replacement, exact abort threshold, Arena and ally-death outcomes.",
+          "testEvidence": []
+        },
+        {
+          "id": "MB-P04",
+          "kind": "gaben",
+          "branch": "native-Dispose-scope",
+          "mechanism": "Independent native Dispose public rows and all inherited throw exceptions.",
+          "sourceIds": [
+            "valve",
+            "marci-2023"
+          ],
+          "status": "result_pending",
+          "detail": "Actual rank4child damage and rank-domain independence are tested. Full four-rank ordinary child resources, face-angle, BlackHole/Chronosphere and early interrupted landing are delegated to the existing Dispose program and not newly declared complete here.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-08 Gaben invokes the independently configured native4 Dispose after a genuine landing stun"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "MB-09 editing the AA Dispose main damage cannot alter the native4 child used by Rebound"
+            }
+          ]
+        },
+        {
+          "id": "MB-ENV",
+          "kind": "combination",
+          "branch": "environment",
+          "mechanism": "Tree destruction, terrain height, disabled-help UI and manual vector UI.",
+          "sourceIds": [
+            "marci-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "MB-P01",
+          "reason": "Dated minimum/maximum.1/.2durations and distance endpoints are sourced. Retained bounded linear duration interpolation, rank1max=min.2choice and arena AI farthest-enemy vector are explicit working policies, not a recovered original vector UI."
+        },
+        {
+          "id": "MB-P02",
+          "reason": "The duration and recipients are explicit; starting both clocks on release is retained work behavior because AA original Lua timing is unavailable."
+        },
+        {
+          "id": "MB-P03",
+          "reason": "The module uses the real controller, native700buffer and terrain-only wall override. This group tests root/death/disjoint but has not independently closed other-controller replacement, exact abort threshold, Arena and ally-death outcomes."
+        },
+        {
+          "id": "MB-P04",
+          "reason": "Actual rank4child damage and rank-domain independence are tested. Full four-rank ordinary child resources, face-angle, BlackHole/Chronosphere and early interrupted landing are delegated to the existing Dispose program and not newly declared complete here."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA custom2second shared immunity resembles the same-hero Sidekick spell-immunity talent motif, not native2023Rebound Shard;1000leap range is AA custom.",
+        "gaben": "AA cross-ability native4Dispose invocation. It does not automatically grant the dated Shard throw-an-ally autocast variant."
+      },
+      "compatibility": [
+        "AA three main ranks map native Rebound levels1/2/4for ally speed, damage/stun and public values; native Dispose remains separate levels1–4."
+      ]
+    },
+    {
+      "id": "templar_assassin_refraction",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "observation": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "paraphrase": "Captured complete English base/Super/Gaben clauses and five balance rows reread locally. No new AA HTTP response or Lua recovery is claimed. Explicit numerical/custom clauses remain authoritative; a DISPELLABLE category alone does not establish custom code.",
+          "versionContext": "Captured AA catalog; original patch and Lua version are not recovered."
+        },
+        {
+          "id": "valve",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "observation": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "paraphrase": "Pinned native ability blocks supply cast points, flags, four-level child values, threshold and talent prototypes. Local directory name20230216 is not the source commit date.",
+          "versionContext": "2023-02-10 Valve KV; AA final values override conflicting native numbers."
+        },
+        {
+          "id": "templar-assassin-2023",
+          "url": "https://web.archive.org/web/20230215191900id_/https://dota2.fandom.com/wiki/Templar_Assassin",
+          "accessedOn": "2026-10-30",
+          "observation": "Refraction has independent Death-only bonus/defense pools. Flat attack damage is determined at attack beginning; a newly gained pool can be consumed by an older in-flight hit without increasing its damage. Damage below5after reductions is ignored. False Promise outranks defense but still consumes a qualifying charge, while Aphotic Shield is lower.",
+          "paraphrase": "Refraction has independent Death-only bonus/defense pools. Flat attack damage is determined at attack beginning; a newly gained pool can be consumed by an older in-flight hit without increasing its damage. Damage below5after reductions is ignored. False Promise outranks defense but still consumes a qualifying charge, while Aphotic Shield is lower.",
+          "versionContext": "Actual HTTP2002023-02-15 archived Wiki body, read2026-10-30;7.32d-compatible historical candidate, not proof of unknown AA Lua version.",
+          "hero": "Templar_Assassin",
+          "status": 200,
+          "archiveTimestamp": "20230215191900",
+          "sha256": "41de1e9b512968e8fda74e191e6a9b6a088ca5db6b5af32f2761ab052f0311a5",
+          "sections": [
+            "Refraction",
+            "Talents",
+            "7.31c and7.32 changelogs"
+          ]
+        }
+      ],
+      "requirements": [
+        {
+          "id": "RF-T01",
+          "kind": "timing",
+          "branch": "base-super-gaben",
+          "mechanism": "Five AA rows retain zero animation,17second cooldown and85/90/100mana with final independent charge counts.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-01 all five AA ranks have zero animation and final independent instance and bonus pools"
+            }
+          ]
+        },
+        {
+          "id": "RF-M01",
+          "kind": "mechanism",
+          "branch": "base",
+          "mechanism": "Bonus and defense have independent instances and expiry.",
+          "sourceIds": [
+            "aa",
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-08 pure physical and magical damage use independent defense instances while outgoing hits use only bonus instances"
+            },
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-09 both unused pools expire at the17second duration"
+            }
+          ]
+        },
+        {
+          "id": "RF-C01",
+          "kind": "combination",
+          "branch": "in-flight-before-gain",
+          "mechanism": "A100damage attack launched before Refraction gains no bonus on impact but consumes a newly acquired bonus charge.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-02 a newly gained Refraction cannot add damage to an in-flight100attack but still loses one bonus charge"
+            }
+          ]
+        },
+        {
+          "id": "RF-C02",
+          "kind": "combination",
+          "branch": "in-flight-after-expiry",
+          "mechanism": "A launched bonus remains frozen when the configured-short Refraction buff expires in flight.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-03 a launched Refraction bonus persists after a configured short buff naturally expires during flight"
+            }
+          ]
+        },
+        {
+          "id": "RF-M02",
+          "kind": "mechanism",
+          "branch": "attack-qualification",
+          "mechanism": "Misses, disjointed attacks and allied attacks do not consume bonus charges; allied attacks receive no bonus.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-04 missed disjointed and allied attacks do not consume bonus instances or grant allied bonus damage"
+            }
+          ]
+        },
+        {
+          "id": "RF-M03",
+          "kind": "mechanism",
+          "branch": "threshold",
+          "mechanism": "Damage below5after reductions is ignored; exactly5uses the explicit inclusive native-candidate threshold.",
+          "sourceIds": [
+            "valve",
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-05 damage below5after reductions is not blocked and exactly5consumes an inclusive native-candidate charge"
+            }
+          ]
+        },
+        {
+          "id": "RF-C03",
+          "kind": "combination",
+          "branch": "FalsePromise",
+          "mechanism": "Actual False Promise outranks Refraction but consumes one eligible defense charge without falsely crediting absorbed damage.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-06 actual False Promise outranks Refraction but still consumes one charge without false absorption"
+            }
+          ]
+        },
+        {
+          "id": "RF-M04",
+          "kind": "mechanism",
+          "branch": "dispel",
+          "mechanism": "Neither basic nor strong positive dispel removes the historical Death-only pools.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-07 actual basic and strong positive dispels cannot remove either historical Death-only pool"
+            }
+          ]
+        },
+        {
+          "id": "RF-S01",
+          "kind": "super",
+          "branch": "Super",
+          "mechanism": "AA final bonus185includes the explicit +100upgrade exactly once.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-01 all five AA ranks have zero animation and final independent instance and bonus pools"
+            }
+          ]
+        },
+        {
+          "id": "RF-G01",
+          "kind": "gaben",
+          "branch": "Gaben",
+          "mechanism": "AA final14instances include the explicit +8upgrade exactly once.",
+          "sourceIds": [
+            "aa"
+          ],
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-01 all five AA ranks have zero animation and final independent instance and bonus pools"
+            }
+          ]
+        },
+        {
+          "id": "RF-P01",
+          "kind": "mechanism",
+          "branch": "dispel-version",
+          "mechanism": "AA Strong-only category versus dated Death-only/KVnon-dispellable modifiers.",
+          "sourceIds": [
+            "aa",
+            "valve",
+            "templar-assassin-2023"
+          ],
+          "status": "source_pending",
+          "detail": "Historical behavior is used; a category label alone cannot prove a custom strong-dispel Lua rule.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-07 actual basic and strong positive dispels cannot remove either historical Death-only pool"
+            }
+          ]
+        },
+        {
+          "id": "RF-P02",
+          "kind": "combination",
+          "branch": "barrier-family",
+          "mechanism": "Complete Refraction priority/health-loss matrix.",
+          "sourceIds": [
+            "templar-assassin-2023"
+          ],
+          "status": "result_pending",
+          "detail": "Actual FalsePromise is closed for the tested direct-damage instance. Historical AphoticShield lower priority is sourced but not paired here; HPLOSS, ordinary health removal, deferred-damage replay and other barriers are not generalized from this result.",
+          "testEvidence": [
+            {
+              "file": "tests/reference-reactive-refraction.test.ts",
+              "test": "RF-06 actual False Promise outranks Refraction but still consumes one charge without false absorption"
+            }
+          ]
+        },
+        {
+          "id": "RF-NA01",
+          "kind": "super",
+          "branch": "ungranted-talent",
+          "mechanism": "Native cast-while-disabled talent is not an AA Super/Gaben clause and is not imported.",
+          "sourceIds": [
+            "aa",
+            "templar-assassin-2023"
+          ],
+          "status": "not_applicable",
+          "testEvidence": []
+        }
+      ],
+      "unresolved": [
+        {
+          "id": "RF-P01",
+          "reason": "Historical behavior is used; a category label alone cannot prove a custom strong-dispel Lua rule."
+        },
+        {
+          "id": "RF-P02",
+          "reason": "Actual FalsePromise is closed for the tested direct-damage instance. Historical AphoticShield lower priority is sourced but not paired here; HPLOSS, ordinary health removal, deferred-damage replay and other barriers are not generalized from this result."
+        }
+      ],
+      "upgradeProvenance": {
+        "super": "AA+100damage resembles the same-hero attack-damage talent family; dated2023talent is+25, so it is a prototype comparison rather than evidence for AA100.",
+        "gaben": "AA+8instances resembles dated level25+7Refraction instances; AA8remains authoritative, without importing the unrelated cast-while-disabled talent."
+      },
+      "compatibility": []
+    }
+  ]
+}

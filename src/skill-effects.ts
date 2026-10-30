@@ -26,6 +26,9 @@ import {applyNatureOmniAcceptance} from './combat/nature-omni-acceptance';
 import {applyPlasmaPulseAcceptance} from './combat/plasma-pulse-acceptance';
 import {applyPhantomWardAcceptance} from './combat/phantom-ward-acceptance';
 import {applyOverchargeCaskAcceptance,OVERCHARGE_CASK_CHILD_DEFINITIONS} from './combat/overcharge-cask-acceptance';
+import {applyPulverizeRavageAcceptance,PULVERIZE_RAVAGE_CHILD_DEFINITIONS} from './combat/pulverize-ravage-acceptance';
+import {applyReactiveRefractionAcceptance,REACTIVE_REFRACTION_CHILD_DEFINITIONS} from './combat/reactive-refraction-acceptance';
+import {applyResonantArrowAcceptance,RESONANT_ARROW_CHILD_DEFINITIONS} from './combat/resonant-arrow-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -56,6 +59,7 @@ import {applyLinksAndGazeAcceptance,applyTetherAcceptance} from './combat/links-
 export const REFERENCE_UNITS_PER_WORLD_UNIT = 100;
 export type DamageType = 'physical' | 'magical' | 'pure';
 export interface EffectStatus extends Status {
+  appliedAt?:number;
   affectsInvulnerable?:boolean;
   removeOnDeath?:boolean;
   attribution?:import('./model').Attribution;
@@ -70,6 +74,10 @@ export interface EffectStatus extends Status {
 }
 export interface SummonOptions {
   name: string; count: number; hp: number; attack: number; armor?: number;
+  /** Explicit creation-time resources; default HP is the authored maximum. */
+  currentHp?:number;mana?:number;maxMana?:number;
+  /** The outgoing fraction also applies when rebasing excluded attributes. */
+  attributeAttackScale?:number;
   /** Initial spawn placement, rather than a spatial jump of an existing body. */
   position?:{x:number;y:number};
   strongIllusion?:boolean;
@@ -134,6 +142,8 @@ export interface InstantAttackOptions {
 }
 export interface AttackResolution {landed:boolean;damage:number}
 export interface EffectContext {
+  /** Mechanical death credit does not replace settled damage-packet attribution. */
+  deathCredit?:{sourceId:string;skillId:string;skillInstanceId?:string;statusInstanceKey?:string};
   beforeDamageResolution?:{inputAmount:number;damageAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;stage:'beforeTargetMitigation'};
   attackBatchKey?:string;
   addAttackBonus?(amount:number):void;
@@ -146,6 +156,8 @@ export interface EffectContext {
   interrupt?(target:CombatUnit):void;
   lifestealHeal?(target:CombatUnit,amount:number,amplificationSource?:CombatUnit):number;
   channelUnit?(target:CombatUnit,duration:number,onEnd:(reason:'complete'|'interrupted')=>void):boolean;
+  /** Subscribe to this caster's existing channel without starting or extending it. */
+  onChannelEnd?(onEnd:(reason:'complete'|'interrupted')=>void):boolean;
   despawn?(target:CombatUnit):void;
   reduceCooldowns?(target:CombatUnit,seconds:number,options?:{includeUltimates?:boolean;excludeAbilityId?:string;onlyAbilityId?:string;includeChargeRecharge?:boolean;includeActiveEffect?:boolean}):void;
   attackRecord?:import('./model').AttackRecord;
@@ -177,7 +189,7 @@ export interface EffectContext {
   mana(target: CombatUnit, amount: number): number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
-  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean}): void;
+  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean;visualProjectile?:string}): void;
   linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
@@ -235,6 +247,8 @@ export interface SkillProgram {
   /** This program handles the separately documented surviving effects itself. */
   handlesBreak?:boolean;
   onIncomingAttackStart?:(c:EffectContext)=>void;
+  /** Accepted modifier-enabled contact, after miss checks and before attacker effects. */
+  onBeforeAttackDamageReceived?:(c:EffectContext)=>void;
   onAllyBeforeAttackDamage?:(c:EffectContext)=>void;
   onBeforeAbilityEffect?:(c:EffectContext)=>void;
   onAbilityExecuted?:(c:EffectContext)=>void;
@@ -626,7 +640,11 @@ applyNatureOmniAcceptance(registry);
 applyPhantomWardAcceptance(registry);
 applyPlasmaPulseAcceptance(registry);
 applyOverchargeCaskAcceptance(registry);
+applyPulverizeRavageAcceptance(registry);
+applyReactiveRefractionAcceptance(registry);
+applyResonantArrowAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
+for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

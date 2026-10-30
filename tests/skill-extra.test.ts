@@ -2,14 +2,14 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { applyDamage, battleGains, createBattle, FIXED_STEP, stepBattle } from '../src/combat';
 import { EXTRA_PROGRAMS, EXTRA_CHILD_PROGRAMS, EXTRA_CHILD_DEFINITIONS, EXTRA_WORKING_DEFAULTS } from '../src/skill-effects-extra';
-import { skillValue } from '../src/skill-effects';
+import { skillValue,GRANTED_SKILL_DEFINITIONS,getSkillProgram } from '../src/skill-effects';
 import {BATTLE_CONFIG} from '../src/config';
 import { activeVisualWorldEffects } from '../src/combat/visual-state';
 import type { EffectContext, EffectStatus, ZoneOptions,SkillProgram } from '../src/skill-effects';
 import type { CombatUnit, Player, SkillDefinition, SkillStack } from '../src/model';
 
 const catalog = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
-const definition = (id: string) => catalog.find(d => d.id === id) ?? EXTRA_CHILD_DEFINITIONS.find(d => d.id === id)!;
+const definition = (id: string) => catalog.find(d => d.id === id) ?? GRANTED_SKILL_DEFINITIONS.find(d => d.id === id) ?? EXTRA_CHILD_DEFINITIONS.find(d => d.id === id)!;
 function player(id: number, skills: SkillStack[] = []): Player {
   return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 1, reserve: [], shop: [], locked: false,
     heroes: [{ id: `h${id}`, name: `H${id}`, role: 'mage', skin: 'female', x: 0, y: -2, skills }] };
@@ -430,9 +430,9 @@ describe('extra skill upgrade behavior', () => {
     expect(status(h.target, 'castTimePct')?.value).toBe(.5); expect(status(h.target, 'slow')?.until).toBe(1.6);
   });
   it('uses one inverse Chaos Bolt roll so maximum damage cannot also receive maximum stun', () => {
-    const low = harness('custom_chaos_knight_reality_rift', 6), high = harness('custom_chaos_knight_reality_rift', 6);
+    const low = harness('chaos_knight_chaos_bolt', 4), high = harness('chaos_knight_chaos_bolt', 4);
     high.ctx.random = () => 1; const beforeLow = low.target.hp, beforeHigh = high.target.hp;
-    EXTRA_PROGRAMS[low.ctx.skill.id].cast!(low.ctx); EXTRA_PROGRAMS[high.ctx.skill.id].cast!(high.ctx);
+    getSkillProgram(low.ctx.skill.id)!.cast!(low.ctx); getSkillProgram(high.ctx.skill.id)!.cast!(high.ctx);
     expect(beforeLow - low.target.hp).toBe(150); expect(status(low.target, 'stun')?.until).toBe(4);
     expect(beforeHigh - high.target.hp).toBe(300); expect(status(high.target, 'stun')?.until).toBe(2);
   });
@@ -713,7 +713,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     const id = 'custom_chaos_knight_reality_rift', battle = createBattle(player(0, [{ id, points: 6 }]), player(1), 7, catalog), [caster, target] = battle.units;
     caster.x = 0; caster.y = 0; target.x = 0; target.y = 2; caster.mana = 1000; target.hp = target.maxHp = 100000;
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; }
-    advance(battle, .8); const image = battle.units.find(u => u.name === '混沌幻象')!;
+    advance(battle, .8); const image = battle.units.find(u => u.illusion && u.sourceSkill === 'chaos_knight_chaos_bolt')!;
     expect(image).toBeDefined(); expect(image.illusion).toBe(true); expect(image.attack).toBe(caster.attack);
     expect(image.damageTakenMultiplier).toBe(3.25); expect(Number(image.expiresAt) - battle.events.find(e => e.type === 'summon' && e.target === image.id)!.time).toBe(6);
     expect((status(image, 'attackTarget') as EffectStatus).data?.targetId).toBe(target.id);
@@ -784,6 +784,10 @@ describe('extra captured catalog differences', () => {
     const h = harness('custom_chaos_knight_reality_rift', 6); let hit: ((unit: CombatUnit) => void) | undefined, summons = 0;
     h.ctx.projectile = (_target, _speed, callback) => { hit = callback; };
     h.ctx.summon = () => { summons++; return []; };
+    h.ctx.castAbility = (id,points,target) => {
+      expect(id).toBe('chaos_knight_chaos_bolt');expect(points).toBe(4);
+      getSkillProgram(id)!.cast!({...h.ctx,skill:{id,points},definition:definition(id),target});return true;
+    };
     EXTRA_PROGRAMS[h.ctx.skill.id].cast!(h.ctx);
     expect(summons).toBe(0); expect(hit).toBeDefined(); hit!(h.target); expect(summons).toBe(1);
   });

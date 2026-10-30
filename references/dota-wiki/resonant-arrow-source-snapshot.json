@@ -1,0 +1,818 @@
+{
+  "schemaVersion": 1,
+  "group": "resonant-arrow",
+  "accessedOn": "2026-10-30",
+  "officialAA": {
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "httpStatus": 200,
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "totalRows": 230,
+    "selection": [
+      {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "cooldowns": [
+          18
+        ],
+        "description": "Void Spirit wraps himself in a protective shield that absorbs physical damage and emits a single damaging pulse around him. The shield gains increased damage absorption for each enemy hero the pulse hits.",
+        "differences": "AI: At Gaben, Resonant Pulse is only casted when a non-silenced hero is within cast range.",
+        "gabenUpgrade": "Gaben: Now has a maximum of 2 charges and silences enemies hit for 2 seconds.",
+        "icon": "void_spirit_resonant_pulse",
+        "id": "void_spirit_resonant_pulse",
+        "manaCost": [
+          115,
+          120,
+          130
+        ],
+        "name": "Resonant Pulse",
+        "superUpgrade": "Super: Grants 1s of spell immunity for each unit hit by Resonant Pulse. +100 damage.",
+        "tags": [
+          "magicDamage",
+          "magicImmunity",
+          "silence"
+        ],
+        "values": [
+          "BASE SHIELD ABSORB: 40 / 80 / 160",
+          "BONUS ABSORB PER HERO HIT: 30 / 50 / 90",
+          "DAMAGE: 70 / 120 / 220",
+          "PULSE RADIUS: 500",
+          "SHIELD DURATION: 10"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Cannot be dispelled"
+        ],
+        "cooldowns": [
+          16,
+          12,
+          4
+        ],
+        "description": "Earth Spirit gathers himself into a boulder and, after a 0.5s delay, rolls toward the target location, dealing 30 + 100% STR damage and stunning enemy units. He will stop if he collides with an enemy hero or is stunned. If he rolls over a Stone Remnant, he will travel further and faster, and stun enemies for longer.",
+        "differences": "AI: targets backliners. Automatically places Stone Remnant in front on cast.",
+        "gabenUpgrade": "Gaben: Gives 80% Status Resist for 2 seconds.",
+        "icon": "earth_spirit_rolling_boulder",
+        "id": "earth_spirit_rolling_boulder",
+        "manaCost": [
+          50
+        ],
+        "name": "Rolling Boulder",
+        "superUpgrade": "Super: Plus 150 + 100% STR damage, +1s stun.",
+        "tags": [
+          "mobility",
+          "stats",
+          "stun"
+        ],
+        "values": [
+          "DAMAGE: 30",
+          "DISTANCE MULTIPLIER (REMNANT): 2",
+          "DISTANCE: 750",
+          "ROCK BONUS STUN DURATION: 0.4 / 0.6 / 1",
+          "SPEED (REMNANT): 1600",
+          "SPEED: 1000",
+          "STUN DURATION: 0.4 / 0.6 / 1"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "cooldowns": [
+          80,
+          75,
+          70
+        ],
+        "description": "Caster curls into a spell-immune ball and rolls out. When rolling, he moves at an increased speed and can move through trees, but has a decreased ability to turn. Striking enemies knocks them back, inflicting damage and stunning them when they land. \n\nColliding with walls or cliffs will cause a temporary pause while caster reverses in direction.\n\nDISPEL TYPE: Basic Dispel.",
+        "differences": "Reduced duration.",
+        "gabenUpgrade": "Gaben: Removed cast point. Every time you hit a wall or hero, you gain +40 movespeed.",
+        "icon": "pangolier_gyroshell",
+        "id": "custom_pangolier_rolling_thunder",
+        "manaCost": [
+          100,
+          150,
+          200
+        ],
+        "name": "Rolling Thunder",
+        "superUpgrade": "Super: +3s duration, -25s CD.",
+        "tags": [
+          "magicDamage",
+          "magicImmunity",
+          "mobility",
+          "stun",
+          "ultimate"
+        ],
+        "values": [
+          "DAMAGE: 80 / 120 / 160",
+          "DURATION: 3 / 4 / 5",
+          "KNOCKBACK DISTANCE: 150",
+          "RADIUS: 150",
+          "ROLL SPEED: 550",
+          "STUN DURATION: 1 / 1.25 / 1.5",
+          "TRANSFORM TIME: 1.2"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Toggle",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "cooldowns": [],
+        "description": "A toxic cloud that deals intense damage and slows movement--harming not only enemy units but Pudge himself.",
+        "differences": "Deals double damage to creeps (ticks twice as fast).",
+        "gabenUpgrade": "Gaben: Grants Level 3 Dismember (does not need to be channeled, but gets interrupted by stuns).",
+        "icon": "pudge_rot",
+        "id": "pudge_rot",
+        "manaCost": [],
+        "name": "Rot",
+        "superUpgrade": "Super: +100 damage, +175 radius, +14% move slow, and 25% heal reduction on affected enemies.",
+        "tags": [
+          "magicDamage"
+        ],
+        "values": [
+          "DAMAGE: 30 / 60 / 120",
+          "MOVE SLOW: -14% / -20% / -32%",
+          "RADIUS: 250"
+        ]
+      },
+      {
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Cannot be dispelled"
+        ],
+        "cooldowns": [
+          19,
+          18,
+          16
+        ],
+        "description": "Fires a long-range arrow with deadly precision, which stuns and damages the first enemy unit it strikes. The stun duration ranges from 0.01 to 3.7 / 4.3 / 4.9 / 5.5 seconds, with bonus damage up to 180 added, based on the distance the arrow travels to its target. Instantly kills the first non-ancient creep it hits.",
+        "differences": "",
+        "gabenUpgrade": "Gaben: +1 arrow on each side of the main Arrow. +200 Starstorm meteor damage.",
+        "icon": "mirana_arrow",
+        "id": "custom_mirana_arrow",
+        "manaCost": [
+          100,
+          100,
+          100
+        ],
+        "name": "Sacred Arrow",
+        "superUpgrade": "Super: Sacred Arrow spawns 300 damage Starstorm meteors towards enemies within 500 radius of itself and on targets it hits. -2s cooldown.",
+        "tags": [
+          "magicDamage",
+          "stun"
+        ],
+        "values": [
+          "DAMAGE: 60 / 150 / 330",
+          "MAXIMUM BONUS DAMAGE: 180",
+          "MAXIMUM STUN: 3.7 / 4.3 / 5.5",
+          "MINIMUM STUN: 0.01",
+          "RANGE: 3000"
+        ]
+      }
+    ]
+  },
+  "historicalValve": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "abilities": {
+      "void_spirit_resonant_pulse": {
+        "ID": "7710",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_VoidSpirit.Pulse.Cast",
+        "HasScepterUpgrade": "1",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCooldown": "18",
+        "AbilityManaCost": "115 120 125 130",
+        "AbilitySpecial": {
+          "10": {
+            "var_type": "FIELD_FLOAT",
+            "silence_duration_scepter": "2.0",
+            "RequiresScepter": "1"
+          },
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "500"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "speed": "1200"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "70 120 170 220",
+            "LinkedSpecialBonus": "special_bonus_unique_void_spirit_4"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "buff_duration": "10.0"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "base_absorb_amount": "40 80 120 160"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "absorb_per_hero_hit": "30 50 70 90"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "return_projectile_speed": "900"
+          },
+          "08": {
+            "var_type": "FIELD_INTEGER",
+            "max_charges": "2",
+            "RequiresScepter": "1"
+          },
+          "09": {
+            "var_type": "FIELD_INTEGER",
+            "charge_restore_time": "18",
+            "RequiresScepter": "1"
+          }
+        }
+      },
+      "earth_spirit_rolling_boulder": {
+        "ID": "5609",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "AbilitySound": "Hero_EarthSpirit.RollingBoulder.Cast",
+        "AbilityCastRange": "3000",
+        "AbilityCastPoint": "0",
+        "AbilityCooldown": "16.0 12.0 8.0 4.0",
+        "AbilityManaCost": "50",
+        "AbilitySpecial": {
+          "10": {
+            "var_type": "FIELD_INTEGER",
+            "damage_str": "100"
+          },
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "160"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "speed": "1000"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "rock_speed": "1600"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "distance": "750.0",
+            "LinkedSpecialBonus": "special_bonus_unique_earth_spirit_4"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "rock_distance_multiplier": "2.0"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "delay": "0.5"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "30",
+            "LinkedSpecialBonus": "special_bonus_unique_earth_spirit"
+          },
+          "08": {
+            "var_type": "FIELD_FLOAT",
+            "stun_duration": "0.4 0.6 0.8 1.0",
+            "LinkedSpecialBonus": "special_bonus_unique_earth_spirit_3"
+          },
+          "09": {
+            "var_type": "FIELD_FLOAT",
+            "rock_bonus_duration": "0.4 0.6 0.8 1.0"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "pangolier_gyroshell": {
+        "ID": "6343",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "FightRecapLevel": "1",
+        "AbilityDraftUltShardAbility": "pangolier_rollup",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "1.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "80 75 70",
+        "AbilityManaCost": "100 150 200",
+        "AbilityDamage": "180 260 340",
+        "precache": {
+          "model": "models/heroes/pangolier/pangolier_gyroshell2.vmdl"
+        },
+        "AbilitySpecial": {
+          "10": {
+            "var_type": "FIELD_INTEGER",
+            "knockback_radius": "150"
+          },
+          "11": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "10.0",
+            "LinkedSpecialBonus": "special_bonus_unique_pangolier_6"
+          },
+          "12": {
+            "var_type": "FIELD_FLOAT",
+            "jump_recover_time": "0.25"
+          },
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "cast_time_tooltip": "1.2"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "tick_interval": "0.05"
+          },
+          "03": {
+            "var_type": "FIELD_FLOAT",
+            "forward_move_speed": "550"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "turn_rate_boosted": "165"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "turn_rate": "120"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "400"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "hit_radius": "150"
+          },
+          "08": {
+            "var_type": "FIELD_FLOAT",
+            "bounce_duration": "0.4"
+          },
+          "09": {
+            "var_type": "FIELD_FLOAT",
+            "stun_duration": "1.0 1.25 1.5"
+          }
+        }
+      },
+      "pudge_rot": {
+        "ID": "5076",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "rot_radius": "250"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "rot_tick": "0.2"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "rot_slow": "-14 -20 -26 -32",
+            "LinkedSpecialBonus": "special_bonus_unique_pudge_4"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "rot_damage": "30 60 90 120",
+            "LinkedSpecialBonus": "special_bonus_unique_pudge_2"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_rot_damage_bonus": "100",
+            "RequiresScepter": "1"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_rot_regen_reduction_pct": "25",
+            "RequiresScepter": "1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "mirana_arrow": {
+        "ID": "5048",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Mirana.ArrowCast",
+        "HasScepterUpgrade": "1",
+        "AbilityCastRange": "3000",
+        "AbilityCastPoint": "0.5 0.5 0.5 0.5",
+        "AbilityCooldown": "19 18 17 16",
+        "AbilityDuration": "3.11 3.11 3.11 3.11",
+        "AbilityDamage": "60 150 240 330",
+        "AbilityManaCost": "100 100 100 100",
+        "AbilitySpecial": {
+          "10": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_starstorm_target_pct": "50",
+            "RequiresScepter": "1"
+          },
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "arrow_speed": "900.0"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_width": "115"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_range": "3000"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_max_stunrange": "1500"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "arrow_min_stun": "0.01"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "arrow_max_stun": "3.2 3.8 4.4 5.0"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_bonus_damage": "180"
+          },
+          "08": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_vision": "400"
+          },
+          "09": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_radius": "500",
+            "RequiresScepter": "1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "pudge_dismember": {
+        "ID": "5077",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "FightRecapLevel": "2",
+        "AbilityDraftPreAbility": "pudge_eject",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "160",
+        "AbilityCastPoint": "0.3 0.3 0.3",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_4",
+        "AbilityManaCost": "100 130 170",
+        "AbilityValues": {
+          "dismember_damage": {
+            "value": "80 100 120",
+            "special_bonus_unique_pudge_3": "x1.8",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "strength_damage": {
+            "value": "0.3 0.6 0.9",
+            "special_bonus_unique_pudge_3": "x1.8",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "ticks": {
+            "value": "6",
+            "special_bonus_unique_pudge_6": "+2"
+          },
+          "pull_units_per_second": "75",
+          "pull_distance_limit": "125",
+          "animation_rate": "1.5",
+          "AbilityChannelTime": {
+            "value": "3.0 3.0 3.0",
+            "special_bonus_unique_pudge_6": "+0.8"
+          },
+          "creep_dismember_duration_tooltip": {
+            "value": "6.0",
+            "special_bonus_unique_pudge_6": "+0.8"
+          },
+          "AbilityCooldown": {
+            "value": "30 25 20",
+            "special_bonus_shard": "-5"
+          },
+          "shard_regen_pct": {
+            "value": "5",
+            "RequiresShard": "1"
+          },
+          "order_lock_duration": {
+            "value": "3",
+            "RequiresShard": "1"
+          },
+          "shard_cast_range": {
+            "value": "300",
+            "RequiresShard": "1"
+          },
+          "shard_cooldown_reduction": {
+            "value": "5.0",
+            "RequiresShard": "1"
+          }
+        }
+      },
+      "mirana_starfall": {
+        "ID": "5051",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Ability.Starfall",
+        "HasScepterUpgrade": "0",
+        "AbilityCastPoint": "0.4",
+        "AbilityCooldown": "12.0 12.0 12.0 12.0",
+        "AbilityDuration": "10.0 10.0 10.0 10.0",
+        "AbilityManaCost": "80 95 110 125",
+        "AbilityValues": {
+          "starfall_radius": "650",
+          "starfall_secondary_radius": "650",
+          "secondary_starfall_damage_percent": "75",
+          "damage": {
+            "value": "75 150 225 300",
+            "special_bonus_unique_mirana_7": "+200"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+        "AbilityCastGestureSlot": "DEFAULT"
+      },
+      "pangolier_rollup": {
+        "ID": "8027",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET |  DOTA_ABILITY_BEHAVIOR_HIDDEN  | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0.1",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "30",
+        "AbilityManaCost": "50",
+        "precache": {
+          "model": "models/heroes/pangolier/pangolier_gyroshell2.vmdl"
+        },
+        "AbilitySpecial": {
+          "10": {
+            "var_type": "FIELD_INTEGER",
+            "knockback_radius": "150"
+          },
+          "11": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "2.75"
+          },
+          "12": {
+            "var_type": "FIELD_FLOAT",
+            "jump_recover_time": "0.25"
+          },
+          "13": {
+            "var_type": "FIELD_FLOAT",
+            "rollup_bounce_duration": "0.75"
+          },
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "cast_time_tooltip": "0.5"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "tick_interval": "0.05"
+          },
+          "03": {
+            "var_type": "FIELD_FLOAT",
+            "forward_move_speed": "600"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "turn_rate_boosted": "275"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "turn_rate": "275"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "400"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "hit_radius": "150"
+          },
+          "08": {
+            "var_type": "FIELD_FLOAT",
+            "bounce_duration": "0.4"
+          },
+          "09": {
+            "var_type": "FIELD_FLOAT",
+            "stun_duration": "1.0 1.25 1.5"
+          }
+        }
+      },
+      "earth_spirit_stone_caller": {
+        "ID": "5611",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+        "MaxLevel": "1",
+        "AbilitySound": "Hero_EarthSpirit.StoneRemnant.Impact",
+        "HasShardUpgrade": "1",
+        "AbilityCastAnimation": "ACT_DOTA_ES_STONE_CALLER",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "1100",
+        "AbilityCastPoint": "0.0",
+        "AbilityCooldown": "0.0",
+        "AbilityChargeRestoreTime": "18",
+        "AbilityManaCost": "0",
+        "AbilityValues": {
+          "duration": "60.0",
+          "polarization_distance": {
+            "value": "0"
+          },
+          "vision_radius": {
+            "value": "0",
+            "special_bonus_shard": "+325"
+          },
+          "AbilityCharges": {
+            "value": "7",
+            "special_bonus_shard": "+4"
+          },
+          "shard_tooltip": "4",
+          "rolling_offset_distance": "150"
+        }
+      },
+      "pangolier_gyroshell_stop": {
+        "ID": "6459",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityCastAnimation": "ACT_INVALID"
+      }
+    }
+  },
+  "historicalWiki": [
+    {
+      "id": "void-spirit-2023",
+      "url": "https://web.archive.org/web/20230215192213id_/https://dota2.fandom.com/wiki/Void_Spirit",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "a5c0442c711c789d63fd86f18a3e581730f74749460ef6b5ed3bc1ca08f083c5",
+      "capture": "20230215192213",
+      "paraphrase": "Zero animation;1200outward ring and900non-disjointable returns. Multiple physical-attack shields stack,after armor/block before generic reductions;death stops ring.Scepter two charges,2silence,18recharge and0.25anti-doublecast.",
+      "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+      "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+    },
+    {
+      "id": "earth-spirit-2023",
+      "url": "https://web.archive.org/web/20230215191343id_/https://dota2.fandom.com/wiki/Earth_Spirit",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "d6e04f8847d640aa4192f423743bbd022cb73898e1001d2db3dfd41f947bd9ac",
+      "capture": "20230215191343",
+      "paraphrase": "0.5gather,continuous1000/1600roll,160radius,damage before stun,80opposite-side hero placement.Immune heroes collide;illusions/creepHeroes do not stop.Terrain crossed;listed hard controls/forced motion cancel,except non-disabling gather displacement.",
+      "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+      "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+    },
+    {
+      "id": "pangolier-2023",
+      "url": "https://web.archive.org/web/20230215191508id_/https://dota2.fandom.com/wiki/Pangolier",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "d7a9dc7b275518eddbc74e325125bd4447b0d23f2c4552e4dfc213373df572eb",
+      "capture": "20230215191508",
+      "paraphrase": "1.2transform;immunity/basic purge,fixed550speed,120degree steering with165boost for0.25.Wall pause0.2then reverse.Immediate damage,disabling0.6bounce then landing stun,unscaled rehit timeout.Free Stop;Swashbuckle ends roll.",
+      "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+      "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+    },
+    {
+      "id": "pudge-2023",
+      "url": "https://web.archive.org/web/20230215191542id_/https://dota2.fandom.com/wiki/Pudge",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "ff04d65ddbb348f93bd45a55add2fdb17beab9220426ac5b43ef5e476eb398e9",
+      "capture": "20230215191542",
+      "paraphrase": "Rot zero-action toggle preserves channels;independent nonlethal self damage,0.5damaging aura linger,first-On global0.2clock.Off stops linger damage only.Scepter reduces all restoration.Dismember native1to3inclusive6hero/9creep ticks,full raw heal,75pull to125,strong removal and invulnerable/hidden interruption.",
+      "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+      "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+    },
+    {
+      "id": "mirana-2023",
+      "url": "https://web.archive.org/web/20230215191810id_/https://dota2.fandom.com/wiki/Mirana",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "6642ac097d300999f5f3da7607b8558ff97da502f454fcfe7e59a11435634e4d",
+      "capture": "20230215191810",
+      "paraphrase": "Arrow0.5point animation,900speed,51spawn,1500max scaling,damage before strong stun.Immune creep blocks without execute.Only primary triggers Scepter meteor family;three arrows cannot hit same body.Starstorm single fall0.57,native75/150/225/300,invisible selection excluded and impact immunity checked.",
+      "versionContext": "Direct2023-02-15historical Wiki capture,full relevant ability section read;not modern prose silently backported.",
+      "accessMethod": "Successful raw HTTP archive read;decompressed HTML hash.Full third-party HTML remains ignored."
+    }
+  ],
+  "nativeStone": {
+    "raw": {
+      "Model": "models/heroes/attachto_ghost/attachto_ghost.vmdl",
+      "BaseClass": "npc_dota_earth_spirit_stone",
+      "SoundSet": "0",
+      "Level": "4",
+      "ModelScale": "12",
+      "Ability1": "",
+      "Ability2": "",
+      "Ability3": "",
+      "Ability4": "",
+      "ArmorPhysical": "0",
+      "AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+      "AttackDamageMin": "0",
+      "AttackDamageMax": "0",
+      "AttackRate": "1.0",
+      "AttackAnimationPoint": "0.0",
+      "AttackAcquisitionRange": "0",
+      "AttackRange": "0",
+      "ProjectileModel": "",
+      "ProjectileSpeed": "0",
+      "BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+      "MovementCapabilities": "DOTA_UNIT_CAP_MOVE_FLY",
+      "MovementSpeed": "0",
+      "StatusHealth": "100",
+      "StatusHealthRegen": "0.0",
+      "VisionDaytimeRange": "0",
+      "VisionNighttimeRange": "0",
+      "TeamName": "DOTA_TEAM_NEUTRALS",
+      "CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+      "CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+      "UnitRelationshipClass": "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+    },
+    "source": {
+      "file": "npc_units.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "gitBlobSha": "bd39899403639cf1f441f08e5a4a4367845b3f0d",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "meaning": "真正无攻击、静态、不可普通选中、独立可见残岩；保Level4/HP100/MS0，缺省profile从原生基类候选继承，不改四职业"
+  },
+  "sourcePolicy": "Metadata/hash,independent paraphrases and selected official AA/Valve structured data only;full third-party HTML remains ignored.AA explicit numbers/custom clauses preserved;nonnumeric Wiki priority over category-only conflicts.",
+  "specificConflicts": [
+    {
+      "skill": "earth_spirit_rolling_boulder",
+      "rule": "AA CannotBeDispelled versus historical modifier_stunned Strong.Wiki priority implements Strong;original AA deliberate custom exception unproven."
+    },
+    {
+      "skill": "custom_pangolier_rolling_thunder",
+      "rule": "Pinned enemy bounce0.4versus historical Wiki0.6;editable0.6is a qualified compatibility choice."
+    },
+    {
+      "skill": "custom_mirana_arrow",
+      "rule": "Pinned Arrowwidth115versus Wiki96;AA/KV3000travel versus empirical Wiki3067.PreserveAA3000/pinned115with conflict."
+    },
+    {
+      "skill": "custom_mirana_arrow",
+      "rule": "Native impact meteor50percent versus AAexplicit300damage on hits.Retain AAfull300/500reading as qualified interpretation."
+    },
+    {
+      "skill": "custom_mirana_arrow",
+      "rule": "AA CannotBeDispelled versus dated Strong stun;Wiki priority,not inferred custom."
+    },
+    {
+      "skill": "earth_spirit_rolling_boulder",
+      "rule": "Wiki1500distance/1600speed contradicts its2.4second prose;explicit parameters and actual continuous movement take precedence."
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import { applyDamage, createBattle, stepBattle } from '../src/combat';
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import { MORE_PROGRAMS } from '../src/skill-effects-more';
 import { MORE_CHILD_DEFINITIONS } from '../src/skill-effects-more-children';
+import {skillBalance} from '../src/config';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
 function player(id: number, skill?: string, points = 3, count = 1): Player {
@@ -110,11 +111,13 @@ describe('catalog-driven additional skills', () => {
     const state = battle('void_spirit_resonant_pulse', 9);
     state.units[0].statuses.push({ kind: 'disarm', until: 200 });
     const casts = () => state.events.filter(e => e.type === 'cast' && e.skill === 'void_spirit_resonant_pulse');
-    advance(state, 2); expect(casts()).toHaveLength(1);
+    // A zero-point pulse may release the next charge before its traveling wave silences this target.
     advance(state, 2); expect(casts()).toHaveLength(2);
-    expect(casts()[1].time - casts()[0].time).toBeGreaterThanOrEqual(2 - 1e-8);
+    advance(state, 2); expect(casts()).toHaveLength(2);
+    const balance=skillBalance(defs.find(d=>d.id==='void_spirit_resonant_pulse')!,9)!;
+    expect(casts()[1].time - casts()[0].time).toBeGreaterThanOrEqual(balance.cooldown! - 1e-8);
     const before = JSON.stringify(state); advance(state, 0); expect(JSON.stringify(state)).toBe(before);
-    const recovery = defs.find(d => d.id === 'void_spirit_resonant_pulse')!.cooldowns.at(-1)!;
+    const recovery = balance.params['CHARGE RESTORE TIME'];
     advance(state, recovery - 4); expect(casts()).toHaveLength(2);
     advance(state, 1); expect(casts()).toHaveLength(3);
     expect(casts()[2].time - casts()[0].time).toBeGreaterThanOrEqual(recovery - 1e-8);
@@ -679,8 +682,14 @@ describe('catalog-driven additional skills', () => {
     const a = player(0, 'marci_companion_run', 3, 2); a.heroes[1].x = 5;
     const state = createBattle(a, player(1), 4, defs), [caster, , target] = state.units; target.x = 5; target.y = 5;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .2); expect(caster.x).toBeGreaterThan(0); expect(caster.x).toBeLessThan(5); expect(caster.y).toBe(-2);
-    advance(state, .6); expect(Math.abs(caster.x - 5)).toBeLessThan(.5); expect(caster.y).toBeCloseTo(5);
+    const released=()=>state.events.some(e=>e.type==='cast'&&e.skill==='marci_companion_run');
+    for(let i=0;i<60&&!released();i++)advance(state,1/30);
+    expect(released()).toBe(true);const warp=caster.warpSequence;
+    advance(state, .1); expect(caster.x).toBeGreaterThan(0); expect(caster.x).toBeLessThan(5); expect(caster.y).toBe(-2);
+    advance(state, .6); expect(Math.abs(caster.x - 5)).toBeLessThan(.5);
+    const values=skillBalance(defs.find(d=>d.id==='marci_companion_run')!,3)!;
+    const landing=Math.min(7,values.range!)-values.params['LANDING OFFSET']/100;
+    expect(caster.y).toBeCloseTo(-2+landing);expect(caster.warpSequence).toBe(warp);
     expect(caster.statuses.some(s => s.skill === 'marci_companion_run' && s.kind === 'silence')).toBe(false);
   });
 
