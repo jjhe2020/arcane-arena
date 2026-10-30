@@ -12,7 +12,9 @@ const definitions = JSON.parse(readFileSync('public/data/skills.json', 'utf8')) 
 const assets = JSON.parse(readFileSync('public/data/assets.json', 'utf8'));
 const skillIds = ['custom_tidehunter_ravage', 'razor_plasma_field', 'custom_sandking_epicenter', 'custom_crystal_maiden_freezing_field'];
 function player(id: number, skill?: string, points = 9): Player {
-  return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 5, locked: false, reserve: [], shop: [], heroes: [0, 1].map(i => ({ id: `h${i}`, name: `H${i}`, role: 'archer', skin: 'female', x: i ? 12 : 0, y: i ? -10 : -2, persistentStrengthBonus: 100, skills: skill && !i ? [{ id: skill, points }] : [] })) };
+  // Initial-input durability and mana keep this presentation/replay matrix
+  // independent of round-one profession balancing,without post-create edits.
+  return { id, name: `P${id}`, hp: 100, gold: 0, shopLevel: 5, locked: false, reserve: [], shop: [], heroes: [0, 1].map(i => ({ id: `h${i}`, name: `H${i}`, role: 'archer', skin: 'female', x: i ? 12 : 0, y: i ? -10 : -2, persistentStrengthBonus: 100,persistentIntelligenceBonus:100, skills: skill && !i ? [{ id: skill, points }] : [] })) };
 }
 const create = (skill: string, points = 9) => createBattle(player(0, skill, points), player(1), 1781, definitions);
 describe('C11 actual charge presentation',()=>{

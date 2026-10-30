@@ -32,6 +32,7 @@ function buyDistinct(state: GameState, count: number) {
     const index = player.shop.findIndex(id => !!id && !owned.has(id) && !catalog.get(id)!.ultimate);
     if (index < 0) { expect(rerollShop(state, 0)).toBeNull(); continue; }
     const id = player.shop[index]!; expect(buySkill(state, 0, index)).toBeNull();
+    expect(moveSkill(state,0,{reserve:player.reserve.findIndex(s=>s?.id===id)},{hero:0,slot:player.heroes[0].skills.indexOf(null)})).toBeNull();
     bought.push(player.heroes.flatMap(h => h.skills).find(s => s?.id === id)!);
   }
   expect(bought).toHaveLength(count); return bought;
@@ -141,7 +142,7 @@ describe('FAQ movement fees and permanent ability ownership', () => {
     const buyHeap = () => {
       for (let n = 0; n < 150; n++) {
         const slot = p.shop.indexOf(id);
-        if (slot >= 0) { expect(buySkill(state, 0, slot)).toBeNull(); return; }
+        if (slot >= 0) { expect(buySkill(state, 0, slot)).toBeNull(); expect(moveSkill(state,0,{reserve:p.reserve.findIndex(s=>s?.id===id)},{hero:0,slot:p.heroes[0].skills.indexOf(null)})).toBeNull(); return; }
         expect(rerollShop(state, 0)).toBeNull();
       }
       throw new Error('Flesh Heap never appeared in the deterministic shared-pool draws');

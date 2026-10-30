@@ -141,19 +141,31 @@ try {
     // purchases and weighted rerolls; no granted slot or cooldown is fabricated.
     const acquired = await page.evaluate(id => {
       const state = window.arena.state, p = state.players[0]; p.gold = 3000;
+      let deployments = 0, deployedInstance;
       // Dispatch the existing UI handlers. Importing game.ts separately can
       // create another Vite module identity and therefore another catalog WeakMap.
       for (let n = 0; n < 2; n++) document.querySelector('#shopUpgrade').click();
       for (let attempts = 0; attempts < 1000 && (p.heroes[0].skills.find(s => s?.id === id)?.points ?? 0) < 6; attempts++) {
         const index = p.shop.indexOf(id);
         document.querySelector(index >= 0 ? `[data-buy="${index}"]` : '#reroll').click();
+        const reserveIndex = p.reserve.findIndex(skill => skill?.id === id);
+        if (reserveIndex >= 0) {
+          const stack = p.reserve[reserveIndex], gold = p.gold;
+          if (p.heroes[0].skills.some(Boolean) || stack.points !== 1) throw new Error('First parent purchase must enter reserve before any automatic equipment');
+          document.querySelector(`[data-reserve="${reserveIndex}"]`).click();
+          document.querySelector('#teamRoster [data-team-hero="0"][data-slot="0"]').click();
+          if (p.reserve[reserveIndex] !== null || p.heroes[0].skills[0]?.instanceId !== stack.instanceId || p.heroes[0].skills[0]?.points !== stack.points || p.gold !== gold) throw new Error('Actual reserve-to-hero UI deployment must be free and preserve the instance');
+          deployments++; deployedInstance = stack.instanceId;
+        }
       }
       // Legal formation positions put the real combatants inside Fireball range.
       for (const player of state.players) for (const hero of player.heroes) { hero.x = 0; hero.y = -2; }
       if (!window.arena.save()) throw new Error('Funded test fixture failed normal game serialization');
-      return p.heroes[0].skills.find(s => s?.id === id)?.points;
+      const owned = p.heroes[0].skills.find(s => s?.id === id);
+      if (deployments !== 1 || owned?.instanceId !== deployedInstance) throw new Error('Repeated purchases must upgrade the single deployed instance in place');
+      return { points: owned?.points, deployments, instanceId: deployedInstance };
     }, parent);
-    assert.equal(acquired, 6);
+    assert.equal(acquired.points, 6); assert.equal(acquired.deployments, 1);
     await page.locator('#infoContent [data-action=reselect]').click(); await page.locator('[data-role=mage]').click();
     await page.locator('#dialogFooter [data-action=close]').click();
     await page.locator('[data-action=plan]').click(); await page.locator('#ready').click();
@@ -172,7 +184,7 @@ try {
     assert((await page.locator('#dialogTitle').innerText()).length > 0);
     assert.match(await page.locator('#dialogBody').innerText(), /升级授予效果/);
     assert.match(await page.locator('#dialogFooter').innerText(), /由技能升级授予/);
-    return { parent, points: acquired, child, actualCooldown: cooldown, displayedCooldown: displayed,
+    return { parent, points: acquired.points, deployments: acquired.deployments, instanceId: acquired.instanceId, child, actualCooldown: cooldown, displayedCooldown: displayed,
       dialogTitle: await page.locator('#dialogTitle').innerText(), fallbackIcon: true };
   });
 } finally {

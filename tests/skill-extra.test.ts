@@ -97,12 +97,13 @@ describe('r4 attack snapshots, bounce flight, damage ranges and cleave direction
     for (const [i, u] of battle.units.entries()) { u.x = i ? 1.5 + (i - 1) * 3 : 0; u.y = 0; u.moveSpeed = 0; u.nextAttack = 100; u.armor = 0; u.hp = u.maxHp = 10000; }
     caster.range = 1.5; caster.attackInterval = 100; caster.nextAttack = 0;
     caster.statuses.push({ kind: 'attackBonus', value: 45, until: 100 }, { kind: 'attackPct', value: .5, until: 100 });
+    const packet=caster.attack*1.5+45;
     advance(battle, .6);
-    expect(10000 - battle.units[1].hp).toBeCloseTo(142.5); expect(battle.units[2].hp).toBe(10000); expect(battle.units[3].hp).toBe(10000);
+    expect(10000 - battle.units[1].hp).toBeCloseTo(packet); expect(battle.units[2].hp).toBe(10000); expect(battle.units[3].hp).toBe(10000);
     advance(battle, 1.2);
-    expect(10000 - battle.units[2].hp).toBeCloseTo(142.5 * (.62+.62**3));expect(10000 - battle.units[3].hp).toBeCloseTo(142.5 * .62 ** 2);expect(10000-battle.units[1].hp).toBeCloseTo(142.5*(1+.62**4));
+    expect(10000 - battle.units[2].hp).toBeCloseTo(packet * (.62+.62**3));expect(10000 - battle.units[3].hp).toBeCloseTo(packet * .62 ** 2);expect(10000-battle.units[1].hp).toBeCloseTo(packet*(1+.62**4));
     const hits = battle.events.filter(e => e.type === 'hit' && e.source === caster.id);
-    expect(hits).toHaveLength(5);expect(hits.map(e=>e.target)).toEqual([battle.units[1].id,battle.units[2].id,battle.units[3].id,battle.units[2].id,battle.units[1].id]);expect(hits.slice(1).map(e=>Number(e.amount))).toEqual([1,2,3,4].map(i=>142.5*.62**i));for(let i=1;i<hits.length;i++)expect(hits[i].time-hits[i-1].time).toBeCloseTo(.2,1);
+    expect(hits).toHaveLength(5);expect(hits.map(e=>e.target)).toEqual([battle.units[1].id,battle.units[2].id,battle.units[3].id,battle.units[2].id,battle.units[1].id]);expect(hits.slice(1).map(e=>Number(e.amount))).toEqual([1,2,3,4].map(i=>packet*.62**i));for(let i=1;i<hits.length;i++)expect(hits[i].time-hits[i-1].time).toBeCloseTo(.2,1);
   });
   it.each([3, 6])('samples skeleton attack damage every hit at tier %i and replays the seeded sequence', points => {
     function sample(seed: number) {
@@ -661,7 +662,7 @@ describe('extra skill integration with combat and persistent gains', () => {
     roster.heroes.push({ ...structuredClone(roster.heroes[0]), id: 'friend', x: 1, skills: [] });
     const battle = createBattle(roster, player(1), 7, catalog), caster = battle.units[0], ally = battle.units.find(u => u.side === caster.side && u.id !== caster.id)!;
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; }
-    ally.hp = ally.maxHp * .5; caster.mana = 1000;
+    ally.hp = ally.maxHp * .5; caster.mana = caster.maxMana = 1000;
     advance(battle, .4);
     const slot = caster.skills.findIndex(s => s?.id === 'slark_depth_shroud');
     expect(slot).toBeGreaterThanOrEqual(5); expect(caster.cooldowns[slot]).toBeGreaterThan(75);
@@ -673,7 +674,7 @@ describe('extra skill integration with combat and persistent gains', () => {
   it('gives level-two True Form an independent mana/cooldown ledger and removes only its temporary HP on expiry', () => {
     const id = 'custom_lone_druid_spirit_link', battle = createBattle(player(0, [{ id, points: 9 }]), player(1), 7, catalog), [caster] = battle.units;
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; }
-    const baseHp = caster.maxHp; caster.mana = 1000;
+    const baseHp = caster.maxHp; caster.mana = caster.maxMana = 1000;
     advance(battle, .2);
     const slot = caster.skills.findIndex(s => s?.id === 'lone_druid_true_form');
     expect(slot).toBeGreaterThanOrEqual(5); expect(caster.skills[slot]?.points).toBe(2);
@@ -685,7 +686,7 @@ describe('extra skill integration with combat and persistent gains', () => {
   });
   it('queues the matching Whirling Axes variant and applies Gaben mana/cooldown while retaining the other variant inactive', () => {
     const id = 'custom_troll_warlord_berserkers_rage', battle = createBattle(player(0, [{ id, points: 9 }]), player(1), 7, catalog), [caster, target] = battle.units;
-    caster.x = 0; caster.y = 0; target.x = 0; target.y = 1; caster.mana = 1000;
+    caster.x = 0; caster.y = 0; target.x = 0; target.y = 1; caster.mana = caster.maxMana = 1000;
     for (const unit of battle.units) { unit.nextAttack = 100; unit.moveSpeed = 0; }
     advance(battle, .7);
     const melee = caster.skills.findIndex(s => s?.id === 'troll_warlord_whirling_axes_melee');

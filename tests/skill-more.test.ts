@@ -4,7 +4,7 @@ import { applyDamage, BATTLE_BOUNDS, createBattle, stepBattle } from '../src/com
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import { MORE_PROGRAMS } from '../src/skill-effects-more';
 import { MORE_CHILD_DEFINITIONS } from '../src/skill-effects-more-children';
-import {BATTLE_CONFIG,skillBalance} from '../src/config';
+import {BATTLE_CONFIG,ROLE_CONFIG,skillBalance} from '../src/config';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
 function player(id: number, skill?: string, points = 3, count = 1): Player {
@@ -285,7 +285,7 @@ describe('catalog-driven additional skills', () => {
     advance(state, 12);
     const hits = state.events.filter(e => e.type === 'hit' && e.source === caster.id && (e.amount ?? 0) > 0);
     expect(hits.length).toBeGreaterThan(1);
-    expect(hits.every(e => Math.abs(Number(e.amount) - (65 + 80) * .625) < 1e-6)).toBe(true);
+    expect(hits.every(e => Math.abs(Number(e.amount) - (caster.attack + 80) * .625) < 1e-6)).toBe(true);
     target.y = 0; advance(state, 2);
     expect(caster.statuses.some(s => s.kind === 'marksmanship')).toBe(false);
     const procs = state.events.filter(e => e.status === 'marksmanshipProc').length;
@@ -376,7 +376,7 @@ describe('catalog-driven additional skills', () => {
 
   it('Cookie Super grants its holder 200 max health once and Gaben repeats three further hops', () => {
     const a = player(0, 'custom_snapfire_firesnap_cookie', 9, 2), state = createBattle(a, player(1), 4, defs), [caster, ally] = state.units;
-    expect(caster.maxHp).toBe(1200); expect(ally.maxHp).toBe(1000);
+    expect(caster.maxHp).toBe(ROLE_CONFIG.mage.hp+200); expect(ally.maxHp).toBe(ROLE_CONFIG.mage.hp);
     ally.hp = 100; for (const u of state.units) { u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
     caster.x=ally.x=0;caster.y=-10;ally.y=-11.5;ally.facing=Math.PI/2;
     const enemy=state.units.find(unit=>unit.side!==caster.side)!;enemy.x=0;enemy.y=-8;enemy.hp=enemy.maxHp=100000;
@@ -384,7 +384,7 @@ describe('catalog-driven additional skills', () => {
     const hops=state.events.filter(e=>e.type==='move'&&e.skill==='custom_snapfire_firesnap_cookie'&&e.source===ally.id);
     expect(hops.length).toBeGreaterThan(4);expect(hops.every(e=>e.teleport===false)).toBe(true);
     expect(hops.filter((e,i)=>i===0||e.time-hops[i-1].time>.1)).toHaveLength(4);
-    expect(caster.maxHp).toBe(1200);
+    expect(caster.maxHp).toBe(ROLE_CONFIG.mage.hp+200);
   });
 
   it('Chakram Super gives an ally a separate moving Flamethrower with damage beyond the caster body', () => {
@@ -421,7 +421,7 @@ describe('catalog-driven additional skills', () => {
   it('Life Drain transfers caster HP to a low ally only when the caster starts above ninety percent HP', () => {
     for (const full of [true, false]) {
       const state = createBattle(player(0, 'custom_pugna_life_drain', 3, 2), player(1), 13, defs), [caster, ally] = state.units;
-      caster.hp = full ? 1000 : 850; ally.hp = 100;
+      caster.maxHp=1000;caster.hp = full ? 1000 : 850; ally.hp = 100;
       for (const u of state.units) { u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
       advance(state, 1);
       if (full) { expect(ally.hp).toBeGreaterThan(100); expect(caster.hp).toBeLessThan(1000); expect(1000 - caster.hp).toBeCloseTo(ally.hp - 100); expect(ally.statuses.some(s => s.kind === 'visualLink')).toBe(true); }
@@ -505,7 +505,7 @@ describe('catalog-driven additional skills', () => {
     caster.skills.push({ id: 'custom_drow_ranger_frost_arrows', points: 3 }); caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;
     advance(state, 2.4);
     const hits = state.events.filter(e => e.type === 'hit' && e.source === caster.id && e.damageType === 'physical' && (e.amount ?? 0) > 0);
-    expect(hits).toHaveLength(3); expect(hits.every((e,index) => Math.abs(Number(e.amount) - (65 * 1.6 + 30 + 5 * (index+1))) < 1e-6)).toBe(true);
+    expect(hits).toHaveLength(3); expect(hits.every((e,index) => Math.abs(Number(e.amount) - (caster.attack * 1.6 + 30 + 5 * (index+1))) < 1e-6)).toBe(true);
     expect(target.statuses.some(s => s.kind === 'hypothermia')).toBe(true);
   });
 

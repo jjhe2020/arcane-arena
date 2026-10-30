@@ -66,7 +66,7 @@ describe('skill-level effective battle accounting',()=>{
   expect(a.healing).toBe(0);expect(row(a,'reflect')).toBe(100);
  });
  it('retains both healing providers when False Promise pays a positive net result',()=>{
-  const b=setup(),[a,t]=b.units;t.hp=900;t.statuses.push({kind:'falsePromise',until:.2,data:{healMultiplier:2}} as never);
+  const b=setup(),[a,t]=b.units;t.maxHp=1000;t.hp=900;t.statuses.push({kind:'falsePromise',until:.2,data:{healMultiplier:2}} as never);
   t.statuses.push({kind:'regen',source:a.id,skill:'healA',value:30,until:.15},{kind:'regen',source:a.id,skill:'healB',value:60,until:.15});
   stepBattle(b,.3,[]);expect(t.hp).toBeCloseTo(924);expect(a.healing).toBeCloseTo(24);
   expect(a.abilityStats?.find(s=>s.abilityId==='healA')?.healing).toBeCloseTo(8);

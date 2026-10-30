@@ -10,6 +10,7 @@ import { addBarrier,barriers,constrainBarrierMotion,resolveBarrierOverlap,routeA
 import { beginMovementFrame,constrainUnitMotion,slideUnitMotion,ignoresUnitCollision,limitOrdinaryMove,recordMovement,refreshMovementBudget,remainingMovementBudget,turnTowards,type ContinuousMoveOptions,type MotionController,type MotionPoint } from './combat/movement';
 import { CONFIG_HASH,ATTRIBUTE_CONFIG,BATTLE_CONFIG,ROLE_CONFIG,UNIT_CONFIG,skillBalance,type SkillBalance } from './config';
 import {applyNativeUnitProfile} from './combat/native-unit-profiles';
+import {heroStatsAtLevel} from './hero-progression';
 export {removeStatuses as dispelBattleStatuses};
 
 export const FIXED_STEP = 1 / 30;
@@ -50,7 +51,7 @@ const unwrap=(u:CombatUnit)=>proxyUnits.get(u)??u;
 // instance. They cannot overwrite the same ability already equipped natively.
 const UNIT_FIELDS=new Set('id name role skin side x y facing hp maxHp mana maxMana attack armor magicResist attackInterval range moveSpeed skills cooldowns statuses nextAttack castUntil action actionStart dead damage taken healing heroId damageHistory moveHistory attributes strength agility intelligence primaryAttribute owner summoned illusion expiresAt sourceSkill sourceUnitType visualBody damageTakenMultiplier inheritedMode inheritedInitialized reviveAt ancient stolenAbilities turnRate attackPoint attackBackswing projectileSpeed attackRangeBuffer previousTransform warpSequence transformTick'.split(' '));
 const DIRECT_INIT_FIELDS=new Set(['maxHp','maxMana','attack','armor','magicResist','attackInterval','range','moveSpeed']);
-for(const field of ['abilityStats','absorbed','nativeTemplateId','nativeBaseAttackSpeed','attackCapability','attackTargetCategory','heroClone','attackOrder'])UNIT_FIELDS.add(field);
+for(const field of ['abilityStats','absorbed','nativeTemplateId','nativeBaseAttackSpeed','attackCapability','attackTargetCategory','heroClone','attackOrder','level','levelAttackSpeed'])UNIT_FIELDS.add(field);
 const runtimeByBattle = new WeakMap<BattleState, Runtime>();
 const battleByUnit = new WeakMap<CombatUnit,BattleState>();
 const clamp = (n: number, bound: number) => Math.min(bound, Math.max(-bound, n));
@@ -143,8 +144,8 @@ function attributeTotal(u:CombatUnit,kind:Attribute,include:(status:EffectStatus
   const percent=[...effectiveStatusEffects(u,`${kind}Pct`),...effectiveStatusEffects(u,'statPercent')].filter(include).reduce((sum,s)=>sum+(s.value??0),extraPercent);
   return Math.max(0,(a.base[kind]+a.permanent[kind]+flat)*(1+percent)+after);
 }
-function initializeAttributes(u:CombatUnit,base:Record<Attribute,number>,primary:Attribute,permanent:Record<Attribute,number>={strength:0,agility:0,intelligence:0}):void {
-  u.attributes={base:{...base},permanent:{...permanent},primary,hp:0,mana:0,attack:0,armor:0,attackSpeed:0} satisfies AttributeState;
+function initializeAttributes(u:CombatUnit,base:Record<Attribute,number>,primary:Attribute,permanent:Record<Attribute,number>={strength:0,agility:0,intelligence:0},baseAttackSpeed=0):void {
+  u.attributes={base:{...base},permanent:{...permanent},primary,hp:0,mana:0,attack:0,armor:0,attackSpeed:0,inheritedAttackSpeed:baseAttackSpeed} satisfies AttributeState;
   u.strength=base.strength;u.agility=base.agility;u.intelligence=base.intelligence;u.primaryAttribute=primary;
   refreshAttributes(u);
 }
@@ -938,6 +939,7 @@ function summon(b: BattleState, source: CombatUnit, skill: SkillStack, options: 
       action:'spawn',actionStart:b.time,dead:false,summoned:true,owner:source.owner??source.id,damage:0,taken:0,healing:0,abilityStats:[],absorbed:0,
       damageTakenMultiplier:options.damageTaken??1,illusion:options.illusion??false,strongIllusion:options.strongIllusion??false,expiresAt:b.time+options.lifetime,
       nativeTemplateId:options.illusion?template.nativeTemplateId:undefined,sourceUnitType:options.illusion?template.sourceUnitType:undefined,nativeBaseAttackSpeed:options.illusion?template.nativeBaseAttackSpeed:undefined,attackCapability:options.illusion?template.attackCapability:undefined,attackTargetCategory:options.illusion?template.attackTargetCategory:undefined,
+      level:options.illusion||options.copyAttributes?template.level:undefined,levelAttackSpeed:options.illusion||options.copyAttributes?template.levelAttackSpeed:undefined,
       sourceSkill:skill.id,statSummonRootId:(skill as RuntimeSkill).statRootId??skill.id,visualBody:options.visualBody,inheritedMode:options.inheritedMode,
       deferredHealth:undefined,pendingFalsePromises:[],damageHistory:[],permanentAttackGain:0,reviveAt:undefined,stolenAbilities:[],stolenSpellMemory:{},attackOrder:undefined,prdState:{},warpSequence:0,previousTransform:undefined,
     };
@@ -945,9 +947,8 @@ function summon(b: BattleState, source: CombatUnit, skill: SkillStack, options: 
     if(options.inheritedPointsCap!==undefined)for(const inherited of unit.skills)if(inherited&&r.definitions.get(inherited.id)?.balanceDomain!=='native')inherited.points=Math.max(1,Math.min(inherited.points,Math.floor(options.inheritedPointsCap)));
     // Illusion totals are already snapshots. Fresh attributes must not reapply
     // the summoner's accumulated derived deltas or share a mutable ledger.
-    initializeAttributes(unit,options.illusion||options.copyAttributes?copiedAttributes:{strength:0,agility:0,intelligence:0},(template.primaryAttribute??'strength') as Attribute);
-    if(options.copyAttributes){const state=unit.attributes as AttributeState;state.inheritedAttackSpeed=templateAttributes?.attackSpeed??0;state.attackSpeed=state.inheritedAttackSpeed;}
-    if(hasExcludedAttributes)(unit.attributes as AttributeState).attackSpeed=(templateAttributes?.attackSpeed??0)+attributeDelta.agility*ATTRIBUTE_CONVERSION.agilityAttackSpeed;
+    const inheritedAttributeSpeed=options.illusion||options.copyAttributes?(templateAttributes?.attackSpeed??0)+attributeDelta.agility*ATTRIBUTE_CONVERSION.agilityAttackSpeed:0;
+    initializeAttributes(unit,options.illusion||options.copyAttributes?copiedAttributes:{strength:0,agility:0,intelligence:0},(template.primaryAttribute??'strength') as Attribute,undefined,inheritedAttributeSpeed);
     // A released illusion is a snapshot, not the owner's temporary stealing
     // slot. Its copied counters and modifiers belong to its own lifetime.
     for(const inherited of unit.skills){if(!inherited)continue;const s=inherited as RuntimeSkill;delete s.stolenOrigin;delete s.grantOwners;}
@@ -1534,12 +1535,12 @@ export function createBattle(a:Player,b:Player,seed:number,definitions:SkillDefi
   const state=restoreTarget?Object.assign(restoreTarget,initialState):initialState;
   const r:Runtime={units:new Map(),definitions:new Map([...GRANTED_SKILL_DEFINITIONS,...definitions].map(d=>[d.id,d])),tasks:[],projectiles:[],zones:[],nextSequence:0,nextSummon:0,nextProjectile:0,nextZone:0,initializing:true,initialEffects:[],nestedCasts:0,stolen:new Map(),nextStolen:0,initializedSkills:new WeakSet()};runtimeByBattle.set(state,r);
   for(const [player,mirror] of [[a,false],[b,true]] as const)for(const hero of player.heroes){
-    const stats=ROLE_CONFIG[hero.role];const u:CombatUnit={id:`${player.id}:${hero.id}`,name:hero.name,role:hero.role,skin:hero.skin,side:player.id,
+    const stats=heroStatsAtLevel(hero.role,round);const u:CombatUnit={id:`${player.id}:${hero.id}`,name:hero.name,role:hero.role,skin:hero.skin,side:player.id,level:stats.level,levelAttackSpeed:stats.levelAttackSpeed,
       x:clamp(mirror?-hero.x:hero.x,BATTLE_BOUNDS.x-BODY_RADIUS),y:clamp(mirror?-hero.y:hero.y,BATTLE_BOUNDS.y-BODY_RADIUS),
       facing:mirror?-Math.PI/2:Math.PI/2,turnRate:stats.turnRate??BATTLE_CONFIG.turnRate,attackPoint:stats.attackPoint,attackBackswing:stats.attackBackswing,projectileSpeed:stats.projectileSpeed??BATTLE_CONFIG.basicAttackProjectileSpeed,attackRangeBuffer:stats.attackRangeBuffer??BATTLE_CONFIG.attackRangeBuffer,warpSequence:0,hp:stats.hp,maxHp:stats.hp,mana:stats.mana,maxMana:stats.mana,attack:stats.attack+Number((hero as typeof hero&{persistentAttackBonus?:number}).persistentAttackBonus??0),armor:stats.armor,magicResist:BATTLE_CONFIG.magicResist,
       attackInterval:stats.attackInterval,range:stats.range,moveSpeed:stats.moveSpeed,skills:structuredClone(hero.skills),cooldowns:hero.skills.map(()=>0),statuses:[],nextAttack:0,castUntil:0,
       action:'idle',actionStart:0,dead:false,damage:0,taken:0,healing:0,heroId:hero.id,permanentAttackGain:0,skillState:hero.skills.reduce<Record<string,number>>((state,skill)=>{for(const[key,value]of Object.entries((skill as (SkillStack&{persistentState?:Record<string,number>})|null)?.persistentState??{}))state[key]=(state[key]??0)+value;return state;},{}),permanentSkillGains:{}};
-    initializeAttributes(u,{strength:stats.strength,agility:stats.agility,intelligence:stats.intelligence},stats.primaryAttribute,{strength:Number(hero.persistentStrengthBonus??0),agility:Number(hero.persistentAgilityBonus??0),intelligence:Number(hero.persistentIntelligenceBonus??0)});
+    initializeAttributes(u,{strength:stats.strength,agility:stats.agility,intelligence:stats.intelligence},stats.primaryAttribute,{strength:Number(hero.persistentStrengthBonus??0),agility:Number(hero.persistentAgilityBonus??0),intelligence:Number(hero.persistentIntelligenceBonus??0)},stats.levelAttackSpeed);
     state.units.push(u);battleByUnit.set(u,state);r.units.set(u.id,{token:0,channelUntil:0});
   }
   // An init hook may immediately damage another unit. Every ledger must exist

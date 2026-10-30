@@ -3,6 +3,10 @@ import {SIMULATION_REVISION} from './simulation-version';
 import {CONFIG_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
 import {validateUnitStatistics} from './combat/statistics';
 
+/** The public menu and saved games share these exact sixteen AI budget steps. */
+export const DIFFICULTY_LEVELS:readonly number[]=Object.freeze(Array.from({length:16},(_,index)=>(10+index)/10));
+export function isValidDifficulty(value:unknown):value is number{return typeof value==='number'&&DIFFICULTY_LEVELS.includes(value);}
+
 /** Confirmed capacities/economy, plus explicitly provisional project rules. */
 export const GAME_RULES = {
   version: 1, players: 8, initialHp: ECONOMY_CONFIG.initialHp, shopSlots: 12, reserveSlots: 4,
@@ -136,7 +140,7 @@ function beginPlanning(state: GameState, round: number): void {
 
 export function newGame(seed: number, difficulty: number, defs: SkillDefinition[]): GameState {
   if (!Number.isFinite(seed)) throw new Error('随机种子无效');
-  if (!finite(difficulty, 0.25, 10)) throw new Error('难度倍率必须在 0.25 至 10 之间');
+  if (!isValidDifficulty(difficulty)) throw new Error('难度倍率必须为 1.0 至 2.5 之间的 0.1 递增档位');
   const state: GameState = {
     version: GAME_RULES.version, seed: seed >>> 0, rng: (seed >>> 0) || 0x6d2b79f5,
     round: 1, planningRound: 1, phase: 'prep', difficulty,
@@ -157,17 +161,9 @@ function canEquip(catalog: Catalog, hero: Hero, stack: SkillStack, replacing = -
   return !hero.skills.some((other, index) => index !== replacing && other && (other.id === stack.id || (catalog.get(stack.id)!.ultimate && catalog.get(other.id)!.ultimate)));
 }
 
-function destinationFor(state: GameState, player: Player, id: string): SkillLocation | null {
-  const catalog = catalogFor(state), stack = { id, points: 1 };
-  if (player.id === 0) {
-    const hero = player.heroes[state.selectedHero];
-    if (hero && hero.skills.includes(null) && canEquip(catalog, hero, stack)) return { hero: state.selectedHero, slot: hero.skills.indexOf(null) };
-  }
-  const heroes = player.heroes.map((hero, index) => ({ hero, index, score: skillScore(catalog.get(id)!, hero) })).sort((a, b) => b.score - a.score || a.index - b.index);
-  if (player.id !== 0) for (const { hero, index } of heroes) if (hero.skills.includes(null) && canEquip(catalog, hero, stack)) return { hero: index, slot: hero.skills.indexOf(null) };
-  if (player.reserve.includes(null)) return { reserve: player.reserve.indexOf(null) };
-  for (const { hero, index } of heroes) if (hero.skills.includes(null) && canEquip(catalog, hero, stack)) return { hero: index, slot: hero.skills.indexOf(null) };
-  return null;
+function purchaseReserve(player:Player):SkillLocation|null {
+  const index=player.reserve.indexOf(null);
+  return index<0?null:{reserve:index};
 }
 
 function location(player: Player, at: SkillLocation): { slots: (SkillStack | null)[]; index: number; hero?: Hero } | null {
@@ -185,11 +181,13 @@ export function buySkill(state: GameState, playerId: number, shopIndex: number):
   if(!integer(shopIndex,0,shopOfferCount(player.shopLevel)-1))return shopIndex>=10?'God位置尚未开放':'这个商品位尚未解锁';
   if (!integer(shopIndex, 0, 11)) return '商品位置无效';
   const id = player.shop[shopIndex]; if (!id) return '这个商品已售出';
-  if (player.gold < GAME_RULES.skillPrice) return `金币不足，需要 ${GAME_RULES.skillPrice} 金币`;
   const existing = allStacks(player).find(s => s.id === id);
   if (existing && existing.points >= GAME_RULES.maximumPoints) return '该技能已经达到 Gaben';
-  const destination = existing ? null : destinationFor(state, player, id);
-  if (!existing && !destination) return '英雄技能槽与暂存区已满';
+  // A duplicate upgrades its existing instance. Only independent purchases need
+  // an empty reserve slot; all rejection checks precede transaction mutations.
+  const destination=existing?null:purchaseReserve(player);
+  if(!existing&&!destination)return '暂存区已满，无法购买';
+  if (player.gold < GAME_RULES.skillPrice) return `金币不足，需要 ${GAME_RULES.skillPrice} 金币`;
   player.gold -= GAME_RULES.skillPrice;
   player.shop[shopIndex] = null; // Reserved shop copy becomes an owned point.
   if (existing) { existing.points++; if(existing.points===6&&existing.superRound===undefined)existing.superRound=state.planningRound; }
@@ -296,27 +294,28 @@ function skillScore(def: SkillDefinition, hero: Hero): number {
 
 function organizeAi(state: GameState, player: Player): void {
   const catalog=catalogFor(state);
-  // Newly bought spells already choose a suitable hero. Only move bench spells
-  // into empty legal slots here, using the same free bench-to-hero transaction
+  // Purchases enter the bench. Only move bench spells into empty legal slots
+  // here,using the same free bench-to-hero transaction
   // as the human. Never erase/repack all equipped skills to bypass move fees.
   const reserves=player.reserve.map((stack,index)=>({stack,index})).filter((entry):entry is {stack:SkillStack;index:number}=>!!entry.stack).sort((a,b)=>Number(catalog.get(b.stack.id)!.ultimate)-Number(catalog.get(a.stack.id)!.ultimate)||b.stack.points-a.stack.points);
   for(const {stack,index}of reserves){const choices=player.heroes.map((hero,i)=>({hero,index:i,score:skillScore(catalog.get(stack.id)!,hero)-hero.skills.filter(Boolean).length*1.5})).filter(({hero})=>hero.skills.includes(null)&&canEquip(catalog,hero,stack)).sort((a,b)=>b.score-a.score||a.index-b.index);if(choices.length)moveSkill(state,player.id,{reserve:index},{hero:choices[0].index,slot:choices[0].hero.skills.indexOf(null)});}
 }
 
 function aiStep(state: GameState, player: Player): boolean {
+  organizeAi(state,player);
   const catalog = catalogFor(state), stacks = allStacks(player);
   // Upgrade only once there is an actual formation to improve, or at no cost.
   const cost = shopUpgradeCost(state, player.id);
-  if (Number.isFinite(cost) && player.gold >= cost && (cost === 0 || (stacks.length >= Math.min(4, player.heroes.length * 2) && player.gold >= cost + 3))) return upgradeShop(state, player.id) === null;
+  if (Number.isFinite(cost) && player.gold >= cost && (cost === 0 || (stacks.length >= Math.min(4, player.heroes.length * 2) && player.gold >= cost + GAME_RULES.skillPrice))) return upgradeShop(state, player.id) === null;
   const candidates = player.shop.map((id, index) => {
     if (!id) return { index, score: -Infinity };
     const owned = stacks.find(s => s.id === id);
     if (owned) return { index, score: owned.points >= 9 ? -Infinity : 30 + owned.points * 3 + ([2, 5, 8].includes(owned.points) ? 20 : 0) };
-    const target = destinationFor(state, player, id);
-    if (!target) return { index, score: -Infinity };
-    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!, h))) - (target.reserve !== undefined ? 8 : 0) };
+    if(!purchaseReserve(player))return {index,score:-Infinity};
+    const canPlace=player.heroes.some(hero=>hero.skills.includes(null)&&canEquip(catalog,hero,{id,points:1}));
+    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!, h))) - (canPlace?0:8) };
   }).sort((a, b) => b.score - a.score || a.index - b.index);
-  if (player.gold >= 3 && candidates[0]?.score > -Infinity && buySkill(state, player.id, candidates[0].index) === null) { organizeAi(state, player); return true; }
+  if (player.gold >= GAME_RULES.skillPrice && candidates[0]?.score > -Infinity && buySkill(state, player.id, candidates[0].index) === null) { organizeAi(state, player); return true; }
   if (player.gold > 0) { player.locked = false; return rerollShop(state, player.id) === null; }
   return false;
 }
@@ -441,7 +440,8 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
   if (!record(state) || state.version !== GAME_RULES.version) return '存档版本不兼容';
   if (state.contentSignature !== signature(defs)) return '存档技能目录与当前版本不一致';
   const ids = new Set(defs.map(d => d.id)), catalog = new Map(defs.map(d => [d.id, d]));
-  if (!integer(state.seed, 0, 0xffffffff) || !integer(state.rng, 1, 0xffffffff) || !integer(state.battleSeed, 0, 0xffffffff) || !integer(state.round, 1, 10000) || !integer(state.planningRound, 1, 10001) || !finite(state.difficulty, 0.25, 10) || !['prep', 'battle', 'result', 'finished'].includes(String(state.phase))) return '存档回合或随机状态无效';
+  if (!integer(state.seed, 0, 0xffffffff) || !integer(state.rng, 1, 0xffffffff) || !integer(state.battleSeed, 0, 0xffffffff) || !integer(state.round, 1, 10000) || !integer(state.planningRound, 1, 10001) || !['prep', 'battle', 'result', 'finished'].includes(String(state.phase))) return '存档回合或随机状态无效';
+  if(!isValidDifficulty(state.difficulty))return '存档难度必须为 1.0 至 2.5 的 16 个档位之一';
   if (state.planningRound !== state.round + (state.phase === 'prep' ? 0 : 1)) return '存档发钱阶段不一致';
   if(!integer(state.nextSkillInstance,1,1e9)||!Array.isArray(state.matchSkillIds)||state.matchSkillIds.length!==Math.min(GAME_RULES.matchPoolSize,ids.size)||new Set(state.matchSkillIds).size!==state.matchSkillIds.length||state.matchSkillIds.some(id=>typeof id!=='string'||!ids.has(id)))return '存档本局随机池无效';
   const matchIds=new Set(state.matchSkillIds);

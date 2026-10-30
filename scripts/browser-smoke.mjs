@@ -15,13 +15,15 @@ try{
  if(opening.enabled!==4||opening.gods.length!==2||opening.gods.some(disabled=>!disabled))throw Error('初始商店应有4件商品及2个禁用God占位');
  results.push('本局100技能池、初始4商品及2个禁用God占位');
  await page.locator('[data-buy="0"]').click();
- const purchased=await page.evaluate(()=>window.arena.state.players[0]);if(purchased.gold!==3||purchased.heroes[0].skills.filter(Boolean).length!==1)throw Error('购买/自动装备未正确扣费');
- const skill=purchased.heroes[0].skills[0].id;
+ const purchased=await page.evaluate(()=>window.arena.state.players[0]);if(purchased.gold!==3||purchased.reserve.filter(Boolean).length!==1||purchased.heroes[0].skills.some(Boolean))throw Error('购买应扣3金并仅进入暂存');
+ const skill=purchased.reserve[0].id,instance=purchased.reserve[0].instanceId;
+ await page.locator('[data-reserve="0"]').click();await page.locator('#teamRoster [data-team-hero="0"][data-slot="0"]').click();
+ const deployed=await page.evaluate(()=>window.arena.state.players[0]);if(deployed.gold!==3||deployed.reserve[0]!==null||deployed.heroes[0].skills[0]?.id!==skill||deployed.heroes[0].skills[0]?.instanceId!==instance)throw Error('新购买技能经UI从暂存部署应免费并保留实例');
  await page.locator('#teamRoster [data-slot="0"]').click();await page.locator('[data-reserve="0"]').click();
  const reserved=await page.evaluate(()=>window.arena.state.players[0]);if(reserved.reserve[0]?.id!==skill||reserved.heroes[0].skills[0]!==null||reserved.gold!==2)throw Error('移入暂存或1金币扣费错误');
  await page.locator('[data-reserve="0"]').click();await page.locator('#teamRoster [data-slot="0"]').click();
  const equipped=await page.evaluate(()=>window.arena.state.players[0]);if(equipped.heroes[0].skills[0]?.id!==skill||equipped.reserve[0]!==null||equipped.gold!==2)throw Error('暂存重新装备应免费');
- results.push('真实购买扣3金、移入暂存扣1金、暂存重新装备免费');
+ results.push('真实购买扣3金仅入暂存、UI首次部署免费、移入暂存扣1金、暂存重新装备免费');
  await page.locator('#ready').click();await page.waitForTimeout(1800);
  await page.screenshot({path:'artifacts/battle.png'});
  const before=await page.evaluate(()=>JSON.stringify(window.arena.battles.map(b=>b.units.map(u=>u.skills))));

@@ -11,6 +11,7 @@ describe('compiled economy is authoritative across execution and validation',()=
   const defs=[def('test')],state=newGame(31,1,defs),p=state.players[0];
   expect(p.gold).toBe(12);expect(roundIncome(2)).toBe(15);expect(roundIncome(20)).toBe(24);
   expect(GAME_RULES.copiesPerSkill).toBe(30);expect(buySkill(state,0,0)).toBeNull();expect(p.gold).toBe(10);
+  expect(moveSkill(state,0,{reserve:0},{hero:0,slot:0})).toBeNull();expect(p.gold).toBe(10);
   expect(moveSkill(state,0,{hero:0,slot:0},{reserve:0})).toBeNull();expect(p.gold).toBe(7);
   expect(validateGame(state,defs)).toBeNull();expect(restoreGame(serializeGame(state),defs)).not.toBeNull();
   expect(roundDamage(2,2)).toBe(10);

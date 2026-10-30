@@ -7,12 +7,14 @@ import {validateUnitStatistics} from '../src/combat/statistics';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const PULSE='void_spirit_resonant_pulse',BOULDER='earth_spirit_rolling_boulder',THUNDER='custom_pangolier_rolling_thunder',ROT='pudge_rot',ARROW='custom_mirana_arrow',DISMEMBER='pudge_dismember',STARFALL='mirana_starfall',STOP='pangolier_gyroshell_stop';
 const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
-const player=(side:number,skills:SkillStack[],count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
+// This historical packet matrix explicitly uses eighteen strength. New level
+// progression is tested separately;the initial permanent point is replayable.
+const player=(side:number,skills:SkillStack[],count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,persistentStrengthBonus:1,skills:i===0?skills:[]}))});
 function world(id:string,points=3,enemies=2,extra:SkillStack[]=[],allies=2){
  const definitions=structuredClone([...catalog,...GRANTED_SKILL_DEFINITIONS]);if(!definitions.some(d=>d.id===id)||extra.some(s=>!definitions.some(d=>d.id===s.id)))throw Error('Unknown fixture skill');
  const b=createBattle(player(0,[{id,points},...extra],allies),player(1,[],enemies),1013,definitions),u=b.units[0],targets=b.units.filter(t=>t.side===1),friends=b.units.filter(t=>t.side===0);
  for(const t of b.units){t.hp=t.maxHp=100000;t.mana=t.maxMana=10000;t.armor=t.magicResist=t.moveSpeed=0;t.attack=t.attackMin=t.attackMax=100;t.nextAttack=99999;t.cooldowns=t.skills.map(()=>99999);t.statuses.push({kind:'disarm',until:200});}
- u.x=u.y=0;u.facing=0;targets.forEach((t,i)=>{t.x=1+i*3;t.y=0;t.facing=Math.PI;});friends[1].x=.5;friends[1].y=.1;return{b,u,t:targets[0],targets,friends,definitions,step:(s:number)=>stepBattle(b,s,definitions)};
+ expect(u.strength).toBe(18);u.x=u.y=0;u.facing=0;targets.forEach((t,i)=>{t.x=1+i*3;t.y=0;t.facing=Math.PI;});friends[1].x=.5;friends[1].y=.1;return{b,u,t:targets[0],targets,friends,definitions,step:(s:number)=>stepBattle(b,s,definitions)};
 }
 type W=ReturnType<typeof world>;
 const list=(t:CombatUnit)=>t.statuses as EffectStatus[],mark=(t:CombatUnit,kind:string,value=0,extra:Partial<EffectStatus>={})=>t.statuses.push({kind,value,until:200,...extra});

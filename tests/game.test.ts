@@ -36,7 +36,7 @@ describe('shared inventory and transactions', () => {
   it('keeps every copy across buying nine points, failed tenth purchase, selling and rerolling', () => {
     const state = newGame(12, 1.5, defs), player = state.players[0];
     player.gold = 1000;
-    for (let n = 0; n < 9; n++) { offer(state, 0, 'skill_0'); expect(buySkill(state, 0, 0)).toBeNull(); }
+    for (let n = 0; n < 9; n++) { offer(state, 0, 'skill_0'); expect(buySkill(state, 0, 0)).toBeNull(); if(n===0)expect(moveSkill(state,0,{reserve:0},{hero:0,slot:0})).toBeNull(); }
     expect(player.heroes[0].skills[0]).toMatchObject({ id: 'skill_0', points: 9, superRound: 1 });
     offer(state, 0, 'skill_0');
     const before = serializeGame(state);
@@ -51,7 +51,7 @@ describe('shared inventory and transactions', () => {
 
   it('rejects a full inventory purchase without charging or consuming the offer', () => {
     const state = newGame(7, 1, defs); state.players[0].gold = 100;
-    for (let i = 0; i < 8; i++) { offer(state, 0, `skill_${i}`); expect(buySkill(state, 0, 0)).toBeNull(); }
+    for (let i = 0; i < 8; i++) { offer(state, 0, `skill_${i}`); expect(buySkill(state, 0, 0)).toBeNull(); if(i<4)expect(moveSkill(state,0,{reserve:0},{hero:0,slot:i})).toBeNull(); }
     offer(state, 0, 'skill_8'); const before = serializeGame(state);
     expect(buySkill(state, 0, 0)).toContain('已满');
     expect(serializeGame(state)).toBe(before);
@@ -61,7 +61,7 @@ describe('shared inventory and transactions', () => {
   it('allows rearranging an ultimate within its hero but rejects equipping a second', () => {
     const state = newGame(2, 1, defs); state.players[0].gold = 100;
     expect(upgradeShop(state, 0)).toBeNull(); expect(upgradeShop(state, 0)).toBeNull();
-    offer(state, 0, 'skill_30'); expect(buySkill(state, 0, 0)).toBeNull();
+    offer(state, 0, 'skill_30'); expect(buySkill(state, 0, 0)).toBeNull(); expect(moveSkill(state,0,{reserve:0},{hero:0,slot:0})).toBeNull();
     offer(state, 0, 'skill_31'); expect(buySkill(state, 0, 0)).toBeNull();
     expect(moveSkill(state, 0, { hero: 0, slot: 0 }, { hero: 0, slot: 2 })).toBeNull();
     const before = serializeGame(state);
@@ -101,7 +101,7 @@ describe('round planning and deterministic AI', () => {
 
   it('keeps the current battle unchanged by next-round sales, role changes and purchases', () => {
     const state = newGame(25, 1, defs);
-    offer(state, 0, 'skill_0'); expect(buySkill(state, 0, 0)).toBeNull();
+    offer(state, 0, 'skill_0'); expect(buySkill(state, 0, 0)).toBeNull(); expect(moveSkill(state,0,{reserve:0},{hero:0,slot:0})).toBeNull();
     expect(startRound(state, defs)).toBeNull();
     const snapshot = getBattlePlayers(state);
     expect(sellSkill(state, 0, { hero: 0, slot: 0 })).toBeNull();

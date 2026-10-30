@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { applyDamage,createBattle,restoreBattle,serializeBattle,stepBattle } from '../src/combat';
 import { GRANTED_SKILL_DEFINITIONS,referenceCastPoint } from '../src/skill-effects';
 import type { Player,SkillDefinition,SkillStack } from '../src/model';
+import {ROLE_CONFIG} from '../src/config';
 const source=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
 const definition=(id:string,overrides:Partial<SkillDefinition>={})=>({...source.find(d=>d.id===id)!,...overrides});
 function player(id:number,skills:SkillStack[]=[],two=false):Player {return {id,name:`P${id}`,hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:[{id:'h0',name:'Caster',role:'mage',skin:'female',x:0,y:-2,skills},...(two?[{id:'h1',name:'Ally',role:'tank' as const,skin:'male' as const,x:1,y:-2,skills:[]}]:[])]};}
@@ -15,12 +16,12 @@ describe('English-catalog upgrade effects',()=>{
   });
   it('Repel adds source strength to the ally and caster without dispellable Gaben buffs',()=>{
     const {b,def,caster}=match('custom_omniknight_repel',9,{},true),ally=b.units[1];ally.hp=100;
-    stepBattle(b,.5,[def]);expect(caster.strength).toBe(100);expect(ally.strength).toBe(114);
-    expect(caster.maxHp).toBe(2804);expect(ally.maxHp).toBe(3904);
+    stepBattle(b,.5,[def]);expect(caster.strength).toBe(ROLE_CONFIG.mage.strength+82);expect(ally.strength).toBe(ROLE_CONFIG.tank.strength+82);
+    expect(caster.maxHp).toBe(ROLE_CONFIG.mage.hp+82*22);expect(ally.maxHp).toBe(ROLE_CONFIG.tank.hp+82*22);
     expect((ally.statuses.find(s=>s.kind==='strength') as {dispel?:string}).dispel).toBe('none');
   });
   it('Purification repeats on the original ally three and six seconds later',()=>{
-    const {b,def,caster}=match('omniknight_purification',9,{values:['HEAL/DAMAGE: 90','DAMAGE RADIUS: 300']});caster.hp=100;
+    const {b,def,caster}=match('omniknight_purification',9,{values:['HEAL/DAMAGE: 90','DAMAGE RADIUS: 300']});caster.maxHp=1000;caster.hp=100;
     stepBattle(b,.5,[def]);caster.statuses.push({kind:'stun',until:100});stepBattle(b,6,[def]);
     expect(b.events.filter(e=>e.type==='heal'&&e.skill===def.id).map(e=>e.amount)).toEqual([250,250,250]);
     expect(caster.hp).toBe(850);expect(caster.statuses.find(s=>s.kind==='damageReduction')?.value).toBe(.5);
@@ -61,12 +62,14 @@ describe('historical candidate child abilities and replay revision',()=>{
     expect(source.some(s=>s.id==='shredder_whirling_death')).toBe(false);
     expect(GRANTED_SKILL_DEFINITIONS.some(s=>s.id==='shredder_whirling_death')).toBe(true);
     expect(b.events.find(e=>e.type==='hit'&&e.skill==='shredder_whirling_death')?.amount).toBe(200);
-    expect(b.units[1].strength).toBeCloseTo(28.8);
-    expect(b.units[0].mana).toBe(920);
+    expect(b.units[1].strength).toBeCloseTo(ROLE_CONFIG.tank.strength*.9);
+    expect(b.units[0].mana).toBe(ROLE_CONFIG.mage.mana-80);
   });
   it('triggers Mystic Snake from actual shield mana spent and applies AA overrides instead of historical petrification values',()=>{
     const shield=definition('custom_medusa_mana_shield'),b=createBattle(player(0,[{id:shield.id,points:9}]),player(1),1,[shield]),[caster,enemy]=b.units;
-    b.units.forEach(u=>u.statuses.push({kind:'stun',until:100}));
+    b.units.forEach(u=>{u.mana=u.maxMana=1000;u.statuses.push({kind:'stun',until:100});});
+    // Fixed resource budget includes the shield's bonus independently of the role baseline.
+    caster.mana=caster.maxMana=1200;
     applyDamage(b,enemy,caster,1429,'pure','test_damage',true);stepBattle(b,1.2,[shield]);
     expect(b.events.filter(e=>e.type==='cast'&&e.skill==='medusa_mystic_snake')).toHaveLength(1);
     expect(b.events.find(e=>e.type==='hit'&&e.skill==='medusa_mystic_snake')?.amount).toBe(150);
@@ -107,9 +110,9 @@ describe('historical candidate child abilities and replay revision',()=>{
   });
   it('defers Rum damage and pays it back after expiration without a second resistance calculation',()=>{
     const b=createBattle(player(0),player(1),1,[]),[source,target]=b.units;b.units.forEach(u=>u.statuses.push({kind:'stun',until:100}));
-    target.statuses.push({kind:'ghostshipRum',until:1,value:.4,data:{paybackDuration:2}} as never);
-    expect(applyDamage(b,source,target,400,'magical')).toBeCloseTo(180);stepBattle(b,.5,[]);expect(target.hp).toBeCloseTo(820);
-    stepBattle(b,2.5,[]);expect(target.hp).toBeCloseTo(700);expect(source.damage).toBeCloseTo(300);expect(target.taken).toBeCloseTo(300);
+    const initialHp=target.hp;target.statuses.push({kind:'ghostshipRum',until:1,value:.4,data:{paybackDuration:2}} as never);
+    expect(applyDamage(b,source,target,400,'magical')).toBeCloseTo(180);stepBattle(b,.5,[]);expect(target.hp).toBeCloseTo(initialHp-180);
+    stepBattle(b,2.5,[]);expect(target.hp).toBeCloseTo(initialHp-300);expect(source.damage).toBeCloseTo(300);expect(target.taken).toBeCloseTo(300);
   });
   it('Rum repayment is nonlethal even when little health remains',()=>{
     const b=createBattle(player(0),player(1),1,[]),[source,target]=b.units;b.units.forEach(u=>u.statuses.push({kind:'stun',until:100}));

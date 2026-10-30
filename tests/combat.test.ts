@@ -53,7 +53,7 @@ describe('fixed-step combat state and replay',()=>{
 describe('damage, spells and interruption',()=>{
   it('uses physical armor, magic resistance, pure damage and actual rather than overkill stats',()=>{
     const battle=createBattle(player(0),player(1,[],'tank'),1,[]),[a,b]=battle.units;
-    const physical=applyDamage(battle,a,b,100,'physical');expect(physical).toBeCloseTo(100*physicalDamageMultiplier(10));
+    const physical=applyDamage(battle,a,b,100,'physical');expect(physical).toBeCloseTo(100*physicalDamageMultiplier(ROLES.tank.armor));
     expect(applyDamage(battle,a,b,100,'magical')).toBeCloseTo(75);
     expect(applyDamage(battle,a,b,100,'pure')).toBeCloseTo(100);
     const remaining=b.hp;expect(applyDamage(battle,a,b,1e6,'pure')).toBeCloseTo(remaining);
@@ -133,7 +133,7 @@ describe('damage, spells and interruption',()=>{
   it('settles deferred damage and doubled healing once when False Promise expires',()=>{
     const sap=definition('custom_bane_brain_sap',['HEAL/DAMAGE: 75 / 150 / 300']);
     const b=createBattle(player(0,[{id:sap.id,points:3}]),player(1,[],'tank'),4,[sap]),[protectedUnit,enemy]=b.units;
-    protectedUnit.hp=700;protectedUnit.statuses.push({kind:'falsePromise',until:1,value:0,source:protectedUnit.id,data:{healMultiplier:2}} as never);
+    protectedUnit.maxHp=1000;protectedUnit.hp=700;protectedUnit.statuses.push({kind:'falsePromise',until:1,value:0,source:protectedUnit.id,data:{healMultiplier:2}} as never);
     expect(applyDamage(b,enemy,protectedUnit,300,'pure')).toBe(0);expect(protectedUnit.hp).toBe(700);
     advance(b,.5,[sap]);expect(protectedUnit.hp).toBe(700);
     advance(b,.5,[sap]);expect(protectedUnit.hp).toBe(1000);expect(protectedUnit.healing).toBe(300);
@@ -178,9 +178,10 @@ describe('project profession attributes',()=>{
     u.maxHp+=100;u.hp+=100;u.attack+=20;
     u.statuses.push({kind:'stun',until:10},{kind:'statBonus',value:5,until:1},{kind:'strengthPct',value:.5,until:1});
     stepBattle(b,FIXED_STEP,[]);
-    expect(u.strength).toBe(55.5);expect(u.agility).toBe(19);expect(u.intelligence).toBe(23);
-    expect(u.maxHp).toBe(r.hp+100+23.5*22);expect(u.maxMana).toBe(r.mana+5*12);
-    expect(u.attack).toBe(r.attack+20+23.5);expect(u.armor).toBeCloseTo(r.armor+5*.167);
+    const strength=(r.strength+5)*1.5,delta=strength-r.strength;
+    expect(u.strength).toBe(strength);expect(u.agility).toBe(r.agility+5);expect(u.intelligence).toBe(r.intelligence+5);
+    expect(u.maxHp).toBe(r.hp+100+delta*22);expect(u.maxMana).toBe(r.mana+5*12);
+    expect(u.attack).toBe(r.attack+20+delta);expect(u.armor).toBeCloseTo(r.armor+5*.167);
     stepBattle(b,1,[]);
     expect([u.strength,u.agility,u.intelligence]).toEqual([r.strength,r.agility,r.intelligence]);
     expect([u.maxHp,u.maxMana,u.attack,u.armor]).toEqual([r.hp+100,r.mana,r.attack+20,r.armor]);
@@ -188,24 +189,25 @@ describe('project profession attributes',()=>{
   it('restores persistent attributes once and reports attribute-only gains',()=>{
     const a=player(0,[],'mage');Object.assign(a.heroes[0],{persistentStrengthBonus:2,persistentAgilityBonus:3,persistentIntelligenceBonus:4,persistentAttackBonus:7});
     const b=createBattle(a,player(1),1,[]),u=b.units[0];
-    expect([u.strength,u.agility,u.intelligence]).toEqual([20,19,36]);
-    expect([u.maxHp,u.maxMana,u.attack]).toEqual([1044,1048,76]);expect(u.armor).toBeCloseTo(2+3*.167);
+    const r=ROLES.mage,totals=[r.hp+2*22,r.mana+4*12,r.attack+7+4];
+    expect([u.strength,u.agility,u.intelligence]).toEqual([r.strength+2,r.agility+3,r.intelligence+4]);
+    expect([u.maxHp,u.maxMana,u.attack]).toEqual(totals);expect(u.armor).toBeCloseTo(r.armor+3*.167);
     u.statuses.push({kind:'stun',until:10});stepBattle(b,.5,[]);
-    expect([u.maxHp,u.maxMana,u.attack]).toEqual([1044,1048,76]);
+    expect([u.maxHp,u.maxMana,u.attack]).toEqual(totals);
     u.permanentStrengthGain=1.5;expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:1.5,agility:0,intelligence:0}]);
   });
   it('uses derived intelligence in the Glaives damage coefficient without double-counting',()=>{
     const glaives=definition('custom_silencer_glaives_of_wisdom',['INT TO DAMAGE: 100%','INT STEAL: 2','INT STEAL DURATION: 10'],{passive:true});
     const b=createBattle(player(0,[{id:glaives.id,points:3}]),player(1,[],'tank'),3,[glaives]),u=b.units[0];
     u.statuses.push({kind:'intelligence',value:10,until:20});stepBattle(b,1,[glaives]);
-    expect(b.events.filter(e=>e.type==='hit'&&e.skill===glaives.id).map(e=>e.amount)).toEqual([44]);
-    expect(u.intelligence).toBe(44);expect(u.maxMana).toBe(1144);
+    expect(b.events.filter(e=>e.type==='hit'&&e.skill===glaives.id).map(e=>e.amount)).toEqual([ROLES.mage.intelligence+12]);
+    expect(u.intelligence).toBe(ROLES.mage.intelligence+12);expect(u.maxMana).toBe(ROLES.mage.mana+12*12);
   });
   it('records the last enemy death as persistent intelligence before battle completion',()=>{
     const glaives=definition('custom_silencer_glaives_of_wisdom',['INT TO DAMAGE: 100%','INT STEAL: 2','INT STEAL DURATION: 10'],{passive:false,mana:[15]});
     const opponent=player(1);opponent.heroes[0].id='h1';
     const b=createBattle(player(0,[{id:glaives.id,points:6}]),opponent,3,[glaives]),[u,enemy]=b.units;
-    applyDamage(b,u,enemy,10000,'pure','test_execution');expect(u.intelligence).toBe(34);
+    applyDamage(b,u,enemy,10000,'pure','test_execution');expect(u.intelligence).toBe(ROLES.mage.intelligence+2);
     expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:0,agility:0,intelligence:2},{heroId:'h1',attack:0,strength:0,agility:0,intelligence:-2}]);
     stepBattle(b,FIXED_STEP,[glaives]);expect(b.finished).toBe(true);expect(b.winner).toBe(0);
   });
@@ -224,8 +226,8 @@ describe('explicit upgrade programs',()=>{
     const decay=definition('custom_undying_decay',['BASE DAMAGE: 110','RADIUS: 325','STEAL DURATION: 45','STRENGTH STEAL: 4'],{mana:[50],cooldowns:[4]});
     const b=createBattle(player(0,[{id:decay.id,points:9}]),player(1,[],'tank'),2,[decay]),[caster,target]=b.units;
     target.statuses.push({kind:'stun',until:20});stepBattle(b,.4,[decay]);caster.statuses.push({kind:'stun',until:20});
-    expect(target.strength).toBe(22);stepBattle(b,3,[decay]);expect(target.strength).toBe(12);
-    target.x=12;stepBattle(b,3,[decay]);expect(target.strength).toBe(12);
+    expect(target.strength).toBe(ROLES.tank.strength-10);stepBattle(b,3,[decay]);expect(target.strength).toBe(ROLES.tank.strength-20);
+    target.x=12;stepBattle(b,3,[decay]);expect(target.strength).toBe(ROLES.tank.strength-20);
     expect(b.events.filter(e=>e.type==='hit'&&e.skill===decay.id)).toHaveLength(2);
   });
 });

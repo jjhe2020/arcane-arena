@@ -12,6 +12,10 @@ assert.ok(skills.every(skill=>skill.configHash===config.hash&&[1,2,3,6,9].every(
 const images=new Set();
 function collect(value){if(typeof value==='string'&&/^\/art\/.*\.(png|webp|jpg)$/.test(value))images.add(value);else if(Array.isArray(value))value.forEach(collect);else if(value&&typeof value==='object')Object.values(value).forEach(collect);}
 collect(assets);collect(skills);
+const ultimateIcons=await readJSON('dist/data/ultimate-icons.json');
+assert.equal(await fs.readFile('dist/data/ultimate-icons.json','utf8'),await fs.readFile('src/data/ultimate-icons.json','utf8'),'Stale ultimate icon manifest');
+for(const skill of skills.filter(d=>d.ultimate)){const icon=ultimateIcons.icons[skill.id];assert.ok(icon?.framed&&icon.source===skill.icon,'Missing framed ultimate '+skill.id);}
+for(const entry of Object.values(ultimateIcons.icons)){assert.ok(entry.framed.startsWith('/art/icons/ultimate/')&&entry.framed.endsWith('.svg'));images.add(entry.framed);}
 await Promise.all([...images].map(path=>fs.access(`dist${path}`)));
 assert.equal(skills.length,230);assert.equal(Object.keys(assets.characters).length,8);
 const assetsReport={status:'passed',generatedAt:new Date().toISOString(),simulationRevision:coverage.simulationRevision,configHash:config.hash,configuration:configReport.counts,imageReferences:images.size,characterAppearances:Object.keys(assets.characters).length,mobileAtlases:Object.keys(assets.mobileAtlases??{}).length,sourceAndProductionDataIdentical:true};
