@@ -2,6 +2,7 @@ import { ROLES, type GameState, type Hero, type Player, type Role, type RoundRep
 import {SIMULATION_REVISION} from './simulation-version';
 import {CONFIG_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
 import {validateUnitStatistics} from './combat/statistics';
+import {ARENA_SCALE,BATTLE_BOUNDS} from './arena-layout';
 
 /** The public menu and saved games share these exact sixteen AI budget steps. */
 export const DIFFICULTY_LEVELS:readonly number[]=Object.freeze(Array.from({length:16},(_,index)=>(10+index)/10));
@@ -82,7 +83,7 @@ export function roundDamage(round: number, survivors: number): number { return M
 
 function makeHero(player: number, index: number): Hero {
   const role = roleOrder[(index + (player % 4)) % roleOrder.length];
-  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [-8, -4, 0, 4, 8][index], y: role === 'tank' || role === 'assassin' ? -4 : -8.5, skills: Array(4).fill(null) };
+  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [-8, -4, 0, 4, 8][index] * ARENA_SCALE, y: (role === 'tank' || role === 'assassin' ? -4 : -8.5) * ARENA_SCALE, skills: Array(4).fill(null) };
 }
 
 function editable(state: GameState, playerId: number): Player | string {
@@ -464,7 +465,7 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
         return true;
       };
       if (!p.heroes.every(h => {
-        if (!record(h) || typeof h.id !== 'string' || h.id.length > 100 || heroIds.has(h.id) || typeof h.name !== 'string' || h.name.length > 100 || !Object.hasOwn(ROLES, String(h.role)) || !['male', 'female'].includes(String(h.skin)) || !finite(h.x, -14.57, 14.57) || !finite(h.y, -12.916, 0) || !Array.isArray(h.skills) || h.skills.length !== 4 || !h.skills.every(stackValid)) return false;
+        if (!record(h) || typeof h.id !== 'string' || h.id.length > 100 || heroIds.has(h.id) || typeof h.name !== 'string' || h.name.length > 100 || !Object.hasOwn(ROLES, String(h.role)) || !['male', 'female'].includes(String(h.skin)) || !finite(h.x, -BATTLE_BOUNDS.x, BATTLE_BOUNDS.x) || !finite(h.y, -BATTLE_BOUNDS.y, 0) || !Array.isArray(h.skills) || h.skills.length !== 4 || !h.skills.every(stackValid)) return false;
         if(h.persistentAttackBonus!==undefined&&!finite(h.persistentAttackBonus,0,1e7))return false;
         if(['persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k],k==='persistentIntelligenceBonus'?-1e7:0,1e7)))return false;
         if(h.persistentSkillState!==undefined&&!validSkillState(h.persistentSkillState))return false;

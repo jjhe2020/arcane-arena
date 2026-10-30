@@ -11,10 +11,11 @@ import { beginMovementFrame,constrainUnitMotion,slideUnitMotion,ignoresUnitColli
 import { CONFIG_HASH,ATTRIBUTE_CONFIG,BATTLE_CONFIG,ROLE_CONFIG,UNIT_CONFIG,skillBalance,type SkillBalance } from './config';
 import {applyNativeUnitProfile} from './combat/native-unit-profiles';
 import {heroStatsAtLevel} from './hero-progression';
+import { BATTLE_BOUNDS } from './arena-layout';
 export {removeStatuses as dispelBattleStatuses};
 
 export const FIXED_STEP = 1 / 30;
-export const BATTLE_BOUNDS = { x: 14.57, y: 12.916 } as const;
+export { BATTLE_BOUNDS } from './arena-layout';
 /** An explicit project safeguard, not a recovered AA overtime rule. */
 export const BATTLE_TIME_LIMIT = 120;
 const COMBAT_VERSION = 1;

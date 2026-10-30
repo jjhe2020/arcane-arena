@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "version": "v0.1.1-r10",
+  "qualification": "Playable development build; not complete native mechanism certification",
+  "baselineCommit": "41ac98b497d5bf251767c640d1b1586281ed4ff8",
+  "simulationRevision": "arena-2026-10-30-battle-presentation-r10",
+  "configurationHash": "b66448385b8795ff430ec120ac14a2265a2bb948a06b6fdf237436adaa92a017",
+  "configurationWorkbooksChanged": false,
+  "arena": {
+    "scale": 0.8,
+    "width": 23.3142856,
+    "height": 20.6666664,
+    "relativeHeroAndEffectScale": 1.25,
+    "archerRange": 7,
+    "mageRange": 5.5
+  },
+  "unit": {
+    "files": 111,
+    "tests": 4019,
+    "passed": 4019,
+    "report": "artifacts/r10-unit-tests.json",
+    "sha256": "de1418a383e6e92c59b87fbce191af4812371beff9fe836a08134b7ec54a9426"
+  },
+  "reference": {
+    "files": 71,
+    "tests": 3457,
+    "sourceFingerprint": "3d6cc98241504bffaeb1022cc0ee151d66d9fef152dea376f64c9ef4ea12e780",
+    "proofCurrent": true,
+    "counts": {
+      "catalog": 230,
+      "reviewStarted": 230,
+      "unreviewed": 0,
+      "fullyReferenceVerified": 7,
+      "requirements": 3453,
+      "resultTestPassed": 2619,
+      "referenceVerifiedRequirements": 2619,
+      "pendingRequirements": 834,
+      "engineRequirements": 189,
+      "enginePending": 52
+    }
+  },
+  "build": {
+    "command": "npm run build",
+    "status": "passed"
+  },
+  "productionServer": {
+    "command": "node scripts/serve.mjs",
+    "port": 4180
+  },
+  "browserReports": [
+    {
+      "path": "artifacts/production-release-check.json",
+      "status": "passed",
+      "sha256": "4065136e1f09a57528b1e13b81a6a9f078d6c14fb8a322c2bb874d2e346a5f4a"
+    },
+    {
+      "path": "artifacts/release-assets-check.json",
+      "status": "passed",
+      "sha256": "9496b3550eebb5318e25626822ad8468c613d9472f62c23655318abc995d2761"
+    },
+    {
+      "path": "artifacts/browser-smoke.json",
+      "status": "passed",
+      "sha256": "bb6a56e1183e300ea947c1044798ac7f19da96c08077971bbfd286730c71a96e"
+    },
+    {
+      "path": "artifacts/sidebar-layout/report.json",
+      "status": "passed",
+      "sha256": "214580015359330e7a20fd590491431e06466fdfd6b349705a03599a564e3681"
+    },
+    {
+      "path": "artifacts/battle-presentation/report.json",
+      "status": "passed",
+      "sha256": "979536d83b2ea9a7dc8a921192233549f92486a1c3c2cf58098c4e844a036332"
+    },
+    {
+      "path": "artifacts/spectator-smoke.json",
+      "status": "passed",
+      "sha256": "2b35d0a3c46484cd0508647abb00f90caf570509dc7ea15ed95aba15850ce96b"
+    },
+    {
+      "path": "artifacts/shop-menu-smoke/report.json",
+      "status": "passed",
+      "sha256": "d5c4b9cd29fd44ba296acff90befb48e29b1d8aeaeea54cb19b039ee7cb46a42"
+    },
+    {
+      "path": "artifacts/skill-stats/report.json",
+      "status": "passed",
+      "sha256": "f67cdaa71df8ff245bbbddb43939d7ef9d203cf38486714209181e9166a43cf5"
+    },
+    {
+      "path": "artifacts/skill-stats/engine-report.json",
+      "status": "passed",
+      "sha256": "363e1ffa6ee481f281d5953bef0cd788c0eb408e083388caac1ce24b3333a423"
+    },
+    {
+      "path": "artifacts/ui-integrity/report.json",
+      "status": "passed",
+      "sha256": "a6dc55816b2732cb9f1420ad76191450a88be5bf4e006f084f53b1b42f19359b"
+    },
+    {
+      "path": "artifacts/recovery-smoke.json",
+      "status": "passed",
+      "sha256": "b634069e9c22a029b91e859c6020d510502b805cab207222cff79a76e607537f"
+    }
+  ],
+  "boundaries": [
+    "Chromium touch emulation does not replace physical-phone performance testing",
+    "Cold entry waits for required body atlases; later skill art is still loaded on demand",
+    "Existing 834 skill requirements and 52 shared engine requirements remain open"
+  ]
+}

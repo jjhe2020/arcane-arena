@@ -1,10 +1,11 @@
 import type { BattleState,CombatUnit } from '../model';
 import { recordMovement } from './movement';
 import {BATTLE_CONFIG} from '../config';
+import {BATTLE_BOUNDS} from '../arena-layout';
 export interface Point {x:number;y:number}
 export interface BattleBarrier {side?:number;blocks?:'all'|'enemies';id:string;source:string;skill:string;from:Point;to:Point;width:number;until:number;createdAt:number;visual?:{group:string;centerX:number;centerY:number;angle:number;circleRadius?:number}}
 const RADIUS=BATTLE_CONFIG.bodyRadius;
-const bounds={x:14.57-RADIUS,y:12.916-RADIUS};
+const bounds={x:BATTLE_BOUNDS.x-RADIUS,y:BATTLE_BOUNDS.y-RADIUS};
 const clamp=(p:Point):Point=>({x:Math.max(-bounds.x,Math.min(bounds.x,p.x)),y:Math.max(-bounds.y,Math.min(bounds.y,p.y))});
 const distance=(a:Point,b:Point)=>Math.hypot(a.x-b.x,a.y-b.y);
 function closest(p:Point,a:Point,b:Point):Point {const dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy,t=length?Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/length)):0;return {x:a.x+t*dx,y:a.y+t*dy};}

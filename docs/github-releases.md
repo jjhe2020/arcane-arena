@@ -5,7 +5,7 @@
 ## 版本命名
 
 - 正式版本：`v<package.json 的 version>`，例如 `v0.1.1`。
-- 开发修订：`v<version>-<SIMULATION_REVISION 最后一个后缀>`，当前为 `v0.1.1-r9`。这类 Release 标记为预发布，流程同时核对Excel编译一致性、配置hash、技能统计、商店与等级、UI完整性和存档恢复专项。
+- 开发修订：`v<version>-<SIMULATION_REVISION 最后一个后缀>`，当前为 `v0.1.1-r10`。这类 Release 标记为预发布，流程同时核对Excel编译一致性、配置hash、技能统计、商店与等级、UI完整性、侧栏布局、战场入场与观战及存档恢复专项。
 - 发布 tag 必须与该提交中的版本信息匹配。已发布 tag 不移动，每个完成版本使用新的版本号或修订号。
 
 开发修订在 `docs/<修订号>-validation.md` 中记录内容和验证边界，例如 `docs/r4-validation.md`；正式版也必须具备适用的版本说明。

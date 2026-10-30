@@ -378,8 +378,8 @@ describe('catalog-driven additional skills', () => {
     const a = player(0, 'custom_snapfire_firesnap_cookie', 9, 2), state = createBattle(a, player(1), 4, defs), [caster, ally] = state.units;
     expect(caster.maxHp).toBe(ROLE_CONFIG.mage.hp+200); expect(ally.maxHp).toBe(ROLE_CONFIG.mage.hp);
     ally.hp = 100; for (const u of state.units) { u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    caster.x=ally.x=0;caster.y=-10;ally.y=-11.5;ally.facing=Math.PI/2;
-    const enemy=state.units.find(unit=>unit.side!==caster.side)!;enemy.x=0;enemy.y=-8;enemy.hp=enemy.maxHp=100000;
+    caster.x=ally.x=0;caster.y=-7;ally.y=-8.5;ally.facing=Math.PI/2;
+    const enemy=state.units.find(unit=>unit.side!==caster.side)!;enemy.x=0;enemy.y=-5;enemy.hp=enemy.maxHp=100000;
     advance(state, 6.5);
     const hops=state.events.filter(e=>e.type==='move'&&e.skill==='custom_snapfire_firesnap_cookie'&&e.source===ally.id);
     expect(hops.length).toBeGreaterThan(4);expect(hops.every(e=>e.teleport===false)).toBe(true);
@@ -649,7 +649,7 @@ describe('catalog-driven additional skills', () => {
     caster.statuses.push({ kind: 'disarm', until: 200 }); first.x = second.x = 0; first.y = 2; second.y = 6;
     advance(state, 1.8);
     for (const target of [first, second]) {
-      expect(target.y).toBeGreaterThan(11.5);
+      expect(target.y).toBeCloseTo(BATTLE_BOUNDS.y-BATTLE_CONFIG.bodyRadius);
       expect(target.statuses.some(s => s.kind === 'stun' && s.skill === 'custom_mars_spear_of_mars')).toBe(true);
       expect(target.statuses.some(s => s.kind === 'selfStun' && s.skill === 'custom_mars_spear_of_mars')).toBe(false);
     }

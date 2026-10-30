@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { applyDamage, battleGains, battleStats, createBattle, FIXED_STEP, physicalDamageMultiplier, restoreBattle, serializeBattle, simulateBattle, stepBattle } from '../src/combat';
+import { applyDamage, battleGains, battleStats, BATTLE_BOUNDS, createBattle, FIXED_STEP, physicalDamageMultiplier, restoreBattle, serializeBattle, simulateBattle, stepBattle } from '../src/combat';
 import { arrayValue, basicLevel, getMechanicCoverage, skillValue } from '../src/skill-effects';
 import { ROLES, type Hero, type Player, type SkillDefinition, type SkillStack } from '../src/model';
 
@@ -248,7 +248,7 @@ describe('reference value handling',()=>{
       for(const u of battle.units){
         for(const value of [u.x,u.y,u.hp,u.maxHp,u.mana,u.damage,u.taken,u.healing])expect(Number.isFinite(value),`${d.id}@${points}: invalid unit value`).toBe(true);
         expect(u.hp).toBeGreaterThanOrEqual(0);expect(u.hp).toBeLessThanOrEqual(u.maxHp+.001);
-        expect(Math.abs(u.x)).toBeLessThanOrEqual(14.57);expect(Math.abs(u.y)).toBeLessThanOrEqual(12.916);
+        expect(Math.abs(u.x)).toBeLessThanOrEqual(BATTLE_BOUNDS.x);expect(Math.abs(u.y)).toBeLessThanOrEqual(BATTLE_BOUNDS.y);
       }
     }
   },15000);
