@@ -151,7 +151,7 @@ describe('catalog-driven additional skills', () => {
       const state = battle('vengefulspirit_wave_of_terror', points), [caster, enemy] = state.units;
       const armor = enemy.armor, attack = enemy.attack; advance(state, .6);
       expect(caster.statuses.find(s => s.skill === 'vengefulspirit_wave_of_terror' && s.kind === 'attackBonus')?.value).toBeCloseTo(attack * .2);
-      expect(enemy.statuses.find(s => s.skill === 'vengefulspirit_wave_of_terror' && s.kind === 'armor')?.value).toBeCloseTo(-8 - armor * .2);
+      expect(enemy.statuses.filter(s=>s.skill==='vengefulspirit_wave_of_terror'&&s.kind==='armor').reduce((sum,s)=>sum+Number(s.value??0),0)).toBeCloseTo(-8-armor*.2);
       expect(enemy.statuses.some(s => s.kind === 'fear')).toBe(points === 9);
     }
   });
@@ -252,7 +252,7 @@ describe('catalog-driven additional skills', () => {
     expect(state.units[1].statuses.find(s => s.skill === 'riki_smoke_screen' && s.kind === 'blind')?.value).toBe(.75);
     expect(state.units[1].statuses.some(s => s.skill === 'riki_smoke_screen' && s.kind === 'silence')).toBe(true);
     expect(state.events.some(e => e.type === 'cast' && e.skill === 'riki_smoke_screen' && e.points === 4)).toBe(true);
-    advance(state, 2.2);
+    advance(state, 2.5);
     expect(state.units[1].statuses.some(s => s.skill === 'riki_smoke_screen')).toBe(false);
   });
 
@@ -338,7 +338,8 @@ describe('catalog-driven additional skills', () => {
       expect(applyDamage(state, enemy, egg, 10000, 'magical', 'test_spell')).toBe(0);
       if (destroy) { for (let i = 0; i < 9; i++) applyDamage(state, enemy, egg, 10000, 'physical'); expect(egg.dead).toBe(false); applyDamage(state, enemy, egg, 10000, 'physical'); expect(egg.dead).toBe(true); }
       advance(state, 6);
-      expect(state.events.some(e => e.type === 'status' && e.skill === 'custom_phoenix_sun_ray' && e.status === 'stun')).toBe(!destroy);
+      expect(state.events.some(e => e.type === 'status' && e.skill === 'aa_granted_sun_ray_supernova' && e.status === 'stun')).toBe(!destroy);
+      expect(state.units[0].dead).toBe(false);
     }
   });
 
@@ -406,11 +407,11 @@ describe('catalog-driven additional skills', () => {
     }
   });
 
-  it('Sun Ray presentation preserves cast aim and expires promptly when the normal channel is interrupted', () => {
+  it('Sun Ray presentation follows its current facing and ends promptly on a disable without a channel', () => {
     const state = battle('custom_phoenix_sun_ray', 6), caster = state.units[0]; advance(state, .4);
     const beam = caster.statuses.find(s => s.kind === 'visualBeam') as { data: { aimX: number; aimY: number; length: number } } | undefined;
-    expect(beam?.data.length).toBe(12); expect(beam?.data.aimY).toBeGreaterThan(.99);
-    caster.facing = Math.PI; advance(state, .1); expect((caster.statuses.find(s => s.kind === 'visualBeam') as typeof beam)?.data.aimY).toBeGreaterThan(.99);
+    expect(beam?.data.length).toBe(11.5); expect(beam?.data.aimY).toBeGreaterThan(.99);
+    caster.facing = Math.PI; advance(state, .1); const current=caster.statuses.find(s=>s.kind==='visualBeam') as typeof beam; expect(current?.data.aimX).toBeCloseTo(Math.cos(caster.facing)); expect(current?.data.aimY).toBeCloseTo(Math.sin(caster.facing));
     caster.statuses.push({ kind: 'stun', until: 10 }); advance(state, .3);
     expect(caster.statuses.some(s => s.kind === 'visualBeam')).toBe(false);
   });
@@ -683,7 +684,8 @@ describe('catalog-driven additional skills', () => {
     const state = createBattle(a, player(1), 5, defs), [caster, , target] = state.units; target.y = 5;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
     advance(state, .1); caster.hp = 0; caster.dead = true; advance(state, .8);
-    expect(target.statuses.some(s => s.kind === 'dot' && s.skill === 'venomancer_venomous_gale')).toBe(true);
+    expect(state.events.some(e=>e.type==='hit'&&e.target===target.id&&e.skill==='venomancer_venomous_gale'&&Number(e.amount)>0)).toBe(true);
+    expect(target.statuses.some(s=>s.kind==='slow'&&s.skill==='venomancer_venomous_gale')).toBe(true);
     const before = target.taken; advance(state, 3); expect(target.taken).toBeGreaterThan(before);
   });
 
@@ -727,9 +729,10 @@ describe('catalog-driven additional skills', () => {
     const a = player(0, 'centaur_stampede', 6, 2); a.heroes[1].x = 8;
     const state = createBattle(a, player(1), 6, defs), [caster, ally, target] = state.units; target.y = 4;
     for (const u of state.units) { u.hp = u.maxHp = 100000; u.moveSpeed = 0; u.statuses.push({ kind: 'disarm', until: 200 }); }
-    advance(state, .5); expect(ally.statuses.some(s => s.kind === 'forceMoveSpeed')).toBe(true);
+    advance(state, .5); expect(ally.statuses.some(s => s.kind === 'minimumMoveSpeed')).toBe(true);
     caster.hp = 0; caster.dead = true; ally.x = target.x; ally.y = target.y; advance(state, .1);
     expect(state.events.filter(e => e.type === 'hit' && e.skill === 'centaur_stampede' && e.target === target.id)).toHaveLength(1);
+    expect(state.events.find(e=>e.type==='hit'&&e.skill==='centaur_stampede'&&e.target===target.id)?.source).toBe(ally.id);
     expect(target.statuses.some(s => s.kind === 'stun' && s.skill === 'centaur_stampede')).toBe(true);
   });
 

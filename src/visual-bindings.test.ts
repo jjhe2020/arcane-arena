@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyDamage, createBattle, stepBattle } from './combat';
+import { applyDamage, createBattle, dispelBattleStatuses, stepBattle } from './combat';
 import { eventVisuals, movingVisuals, portalVisuals, resolveVisualArt, statusVisuals } from './visual-bindings';
 import { activeVisualProjectiles, addVisualProjectile, visualProjectilePosition } from './combat/visual-state';
 import { bodyPresentation, linePresentations } from './animation';
@@ -10,6 +10,9 @@ import {selectVisualLayers,type VisualSkillArt} from './visual-layers';
 
 const assets = JSON.parse(readFileSync('public/data/assets.json', 'utf8')) as AssetManifest;
 const definitions = JSON.parse(readFileSync('public/data/skills.json', 'utf8')) as SkillDefinition[];
+describe('C15 status-specific presentation',()=>{
+ it('permanent Uproar attack damage cannot paint temporary roar armor before release or after a real purge',()=>{const id='primal_beast_uproar',h=setup(id,9);expect(layers(statusVisuals(assets,h.battle.units,0))).not.toContain('armour');applyDamage(h.battle,h.target,h.caster,1000,'pure');h.step(1/30);expect(layers(statusVisuals(assets,h.battle.units,h.battle.time))).toContain('armour');dispelBattleStatuses(h.battle,h.caster,true,false);expect(h.caster.statuses.some(s=>s.kind==='attackBonus'&&s.skill===id&&s.value===24)).toBe(true);expect(layers(statusVisuals(assets,h.battle.units,h.battle.time))).not.toContain('armour');});
+});
 const art = (id: string) => assets.skills[id] as VisualSkillArt;
 const layers = (visuals: ReturnType<typeof statusVisuals>) => visuals.map(v => v.key.split(':').at(v.key.startsWith('event:') ? -2 : -1));
 function player(id: number, skills: SkillStack[] = [], ally = false): Player {

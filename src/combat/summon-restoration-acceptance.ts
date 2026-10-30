@@ -28,8 +28,8 @@ export function applySummonRestorationAcceptance(registry:Record<string,SkillPro
  };
  wild.target='self';wild.pointTarget=false;wild.canCast=c=>!c.caster.beastmasterBoar;
  wild.cast=c=>{
-  const life=v(c,'SUMMON DURATION'),boar=c.summon({name:'豪猪',count:v(c,'BOAR COUNT',1),hp:v(c,'BOAR HEALTH'),attack:v(c,'BOAR ATTACK DAMAGE'),armor:v(c,'BOAR ARMOR',0),range:v(c,'BOAR ATTACK RANGE',550)/100,interval:v(c,'BOAR BASE ATTACK TIME',1.25),speed:v(c,'BOAR MOVE SPEED',c.skill.points>=3?350:c.skill.points>=2?330:320)/100,lifetime:life})[0];
-  boar.beastmasterBoar=true;boar.magicResist=0;boar.attackPoint=v(c,'BOAR ATTACK POINT',.5);boar.attackBackswing=v(c,'BOAR ATTACK BACKSWING',.47);boar.projectileSpeed=v(c,'BOAR PROJECTILE SPEED',1500)/100;boar.skills=[{...c.skill}];boar.cooldowns=[Infinity];boar.inheritedMode='attackEffects';c.status(boar,'regen',life,v(c,'BEAST REGEN',1.5));
+  const life=v(c,'SUMMON DURATION'),boar=c.summon({name:'豪猪',count:v(c,'BOAR COUNT',1),hp:v(c,'BOAR HEALTH'),attack:v(c,'BOAR ATTACK DAMAGE'),armor:v(c,'BOAR ARMOR',0),range:v(c,'BOAR ATTACK RANGE',550)/100,interval:v(c,'BOAR BASE ATTACK TIME',1.25),speed:v(c,'BOAR MOVE SPEED',c.skill.points>=3?350:c.skill.points>=2?330:320)/100,lifetime:life,nativeTemplateId:'npc_dota_beastmaster_boar'})[0];
+  boar.beastmasterBoar=true;boar.magicResist=0;boar.skills=[{...c.skill}];boar.cooldowns=[Infinity];boar.inheritedMode='attackEffects';c.status(boar,'regen',life,v(c,'BEAST REGEN',1.5));
   const hawks=c.summon({name:'猎鹰',count:v(c,'HAWK COUNT',gaben(c)?3:1),hp:v(c,'HAWK HEALTH'),attack:0,armor:v(c,'HAWK ARMOR',5),range:0,speed:v(c,'HAWK SPEED')/100,lifetime:life,nativeTemplateId:'npc_dota_beastmaster_hawk_4'});
   for(const hawk of hawks){hawk.beastmasterHawk=true;hawk.magicResist=0;c.status(hawk,'fly',life,1,{dispel:'none'});c.status(hawk,'disarm',life,1,{dispel:'none'});c.status(hawk,'invisible',life,1,{dispel:'none'});c.status(hawk,'regen',life,v(c,'BEAST REGEN',1.5));if(upgraded(c))addSkills(hawk,['beastmaster_hawk_dive']);}
   if(upgraded(c)){
@@ -79,8 +79,8 @@ export function applySummonRestorationAcceptance(registry:Record<string,SkillPro
   for(let i=0;i<count;i++)c.delay(delay+i*v(c,'GOLEM SPAWN INTERVAL',.2),()=>{
    for(const enemy of c.enemies().filter(t=>!t.ward&&!t.building&&distance(t,position)<=v(c,'SUMMON BLAST RADIUS')/100))c.status(enemy,'stun',v(c,'SUMMON STUN DURATION',1),0,{harmful:true,dispel:'strong',piercesImmunity:true});
    const hp=onDeath?v(c,'ON DEATH GOLEM HEALTH',v(c,'GOLEM HEALTH')):v(c,'GOLEM HEALTH')-(!configured(c)&&gaben(c)?600:0),template={...c.caster,extraOfferingGolem:true,skills:[{...c.skill}]};
-   const body=c.summon({name:'地狱火',count:1,hp,attack:v(c,'GOLEM DAMAGE'),armor:v(c,'GOLEM ARMOR'),lifetime:v(c,'GOLEM DURATION',60),range:v(c,'GOLEM ATTACK RANGE',225)/100,interval:v(c,'GOLEM BASE ATTACK TIME',1.2),speed:v(c,'GOLEM MOVE SPEED',c.skill.points>=3?360:c.skill.points>=2?340:320)/100,template,inheritsSkills:true,initializeInherited:true,inheritedMode:'attackEffects'})[0];
-   body.extraOfferingGolem=true;body.magicResist=v(c,'GOLEM MAGIC RESISTANCE',33)/100;body.ancient=true;body.consideredHero=true;body.attackPoint=v(c,'GOLEM ATTACK POINT',.26);body.attackBackswing=v(c,'GOLEM ATTACK BACKSWING',.57);body.cooldowns=[Infinity];c.warp(body,position.x,position.y);beginGolemAuras.get(body)?.();
+   const body=c.summon({name:'地狱火',count:1,hp,attack:v(c,'GOLEM DAMAGE'),armor:v(c,'GOLEM ARMOR'),lifetime:v(c,'GOLEM DURATION',60),range:v(c,'GOLEM ATTACK RANGE',225)/100,interval:v(c,'GOLEM BASE ATTACK TIME',1.2),speed:v(c,'GOLEM MOVE SPEED',c.skill.points>=3?360:c.skill.points>=2?340:320)/100,template,inheritsSkills:true,initializeInherited:true,inheritedMode:'attackEffects',nativeTemplateId:'npc_dota_warlock_golem'})[0];
+   body.extraOfferingGolem=true;body.magicResist=v(c,'GOLEM MAGIC RESISTANCE',33)/100;body.ancient=true;body.consideredHero=true;body.cooldowns=[Infinity];c.warp(body,position.x,position.y);beginGolemAuras.get(body)?.();
   });
  };
  offering.target='enemy';offering.pointTarget=true;offering.backswing=.7;offering.canCast=c=>!c.caster.extraOfferingGolem;

@@ -35,6 +35,9 @@ import {applyRestorationLinkAcceptance,RESTORATION_LINK_CHILD_DEFINITIONS} from 
 import {applyAttackStateAcceptance,ATTACK_STATE_CHILD_DEFINITIONS} from './combat/attack-state-acceptance';
 import {applyControlTargetAcceptance,CONTROL_TARGET_CHILD_DEFINITIONS} from './combat/control-target-acceptance';
 import {applySummonLineageAcceptance,SUMMON_LINEAGE_CHILD_DEFINITIONS} from './combat/summon-lineage-acceptance';
+import {applyAttackTempoAcceptance,ATTACK_TEMPO_CHILD_DEFINITIONS} from './combat/attack-tempo-acceptance';
+import {applyPassiveDamageAcceptance,PASSIVE_DAMAGE_CHILD_DEFINITIONS} from './combat/passive-damage-acceptance';
+import {applyMotionScopeAcceptance,MOTION_SCOPE_CHILD_DEFINITIONS} from './combat/motion-scope-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -159,6 +162,8 @@ export interface EffectContext {
   /** Flat stolen-instance reduction, also used by the shared sequential-charge clock. */
   stolenCooldownReduction?:number;
   flatAttackBonus?(unit:CombatUnit,options?:{excludeSkillIds?:string[]}):number;
+  /** Flat average attack for an explicitly non-attack ability formula. No rolls. */
+  averageFlatAttackDamage?():number;
   permanentAttribute?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',amount:number):number;
   /** Rebase an illusion's already-copied totals before adding a copied form multiplier. */
   inheritTemporaryAttributeMultiplier?(target:CombatUnit,attribute:'strength'|'agility'|'intelligence',fraction:number):boolean;
@@ -186,7 +191,9 @@ export interface EffectContext {
   battle: BattleState; caster: CombatUnit; target: CombatUnit; skill: SkillStack;
   definition: SkillDefinition; amount?: number; damageType?: DamageType; triggerSkillId?: string; triggerUnitId?:string; originSkillId?: string; originPoints?: number;
   /** Successful attack snapshots before victim armor: baseline and modified. */
-  baseAttackDamage?:number; attackDamage?:number;attackSourceSkill?:string;attackIsRanged?:boolean;
+  baseAttackDamage?:number; attackDamage?:number;attackCleaveDamage?:number;attackSourceSkill?:string;attackIsRanged?:boolean;
+  /** Accepted spell input before any primary mitigation or HP mutation. */
+  beforeAbilityDamageEvent?:{inputAmount:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;attribution?:import('./model').Attribution};
   /** An accepted ability damage instance, independent of effective HP loss. */
   abilityDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags;attribution?:import('./model').Attribution};
   incomingDamageEvent?:{inputAmount:number;actualDamage:number;category:import('./model').DamageCategory;flags:import('./model').DamageFlags};
@@ -205,8 +212,8 @@ export interface EffectContext {
   armor?(target:CombatUnit,options?:{excludeSourceId?:string;excludeSkillId?:string}):number;
   status(target: CombatUnit, kind: string, duration: number, value?: number, options?: Partial<EffectStatus>): void;
   dispel(target: CombatUnit, strong?: boolean, harmful?: boolean): void;
-  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean;visualProjectile?:string}): void;
-  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;origin?:{x:number;y:number};shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;visualLayer?:string;effect:(target:CombatUnit)=>void}):void;
+  projectile(target: CombatUnit, speed: number, effect: (target: CombatUnit) => void, origin?: {x:number;y:number}, onMove?:(position:{x:number;y:number})=>void,options?:{onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;allowInitiallyInvisible?:boolean;visualProjectile?:string;visualLayer?:string}): void;
+  linearProjectile(options:{angle:number;distance:number;speed:number;width:number;endWidth?:number;stopOnHit?:boolean;targets?:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;origin?:{x:number;y:number};followOrigin?:CombatUnit;shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void;visualLayer?:string;effect:(target:CombatUnit)=>void}):void;
   disjoint(target:CombatUnit):void;
   execute(target:CombatUnit):void;
   executeFrom?(source:CombatUnit,target:CombatUnit):void;
@@ -229,6 +236,8 @@ export interface EffectContext {
   teleport(target: CombatUnit, x: number, y: number): void;
   warp(target: CombatUnit, x: number, y: number): void;
   moveContinuous(target:CombatUnit,x:number,y:number,options?:ContinuousMoveOptions):boolean;
+  /** Retarget this caller's existing controller, including a released dead body. */
+  retargetMotion?(target:CombatUnit,x:number,y:number,identity:{expectedOwner:string;expectedStartedAt:number}):boolean;
   motionActive?(target:CombatUnit):Readonly<{skill:string;owner:string;startedAt:number}>|undefined;
   attack(target: CombatUnit, multiplier?: number, triggerModifiers?: boolean, baseDamage?: number, released?:boolean,options?:InstantAttackOptions): AttackResolution;
   revive(target: CombatUnit, delay: number, hpFraction: number): void;
@@ -255,9 +264,12 @@ export interface SkillProgram {
   /** Automatic attack actions remain eligible during forced attacks, without lifting silence. */
   canAutocastWhileTaunted?:boolean;
   /** Pure main-damage property. Do not debit charges, roll procs or emit effects here. */
-  attackMainDamage?:(c:EffectContext)=>{fixedDamage?:number;baseMultiplier?:number;flatBonus?:number};
+  attackMainDamage?:(c:EffectContext)=>{fixedDamage?:number;baseMultiplier?:number;baseBonus?:number;flatBonus?:number};
   /** A native secondary action may report its parent as the last stealable spell. */
   spellStealAs?:string;
+  spellStealEligible?:boolean;
+  rootDisables?:boolean;
+  leashDisables?:boolean;
   onBeforeDamageResolution?:(c:EffectContext)=>void;
   unitTarget?:boolean|((c:EffectContext)=>boolean);
   /** This program handles the separately documented surviving effects itself. */
@@ -314,12 +326,15 @@ export interface SkillProgram {
   soulbindCopies?:boolean;
   projectileDisjointable?:boolean;
   projectileDisjointOnInvisibility?:boolean;
+  /** A specific seeker loses a target that becomes immune to True Sight. */
+  projectileDisjointOnUndetectable?:boolean;
   cooldown?: (c: EffectContext) => number; manaCost?: (c: EffectContext) => number;
   passive?: boolean; canCast?: (c: EffectContext) => boolean;
   cast?: (c: EffectContext) => void; init?: (c: EffectContext) => void;
   onAttack?: (c: EffectContext) => void; onAttacked?: (c: EffectContext) => void; onHeal?: (c: EffectContext) => void;
   onDamage?: (c: EffectContext) => void; onCast?: (c: EffectContext) => void;
   onDealDamage?: (c: EffectContext) => void;
+  onBeforeAbilityDamageEvent?: (c:EffectContext)=>void;
   onAbilityDamageEvent?: (c:EffectContext)=>void;
   onIncomingDamageEvent?: (c:EffectContext)=>void;
   onDeath?: (c: EffectContext) => void; onAllyCast?: (c: EffectContext) => void; onAllyAttack?: (c: EffectContext) => void; onUnitDeath?: (c: EffectContext) => void; onManaShieldSpent?: (c: EffectContext) => void;
@@ -676,8 +691,11 @@ applyRestorationLinkAcceptance(registry);
 applyAttackStateAcceptance(registry);
 applyControlTargetAcceptance(registry);
 applySummonLineageAcceptance(registry);
+applyAttackTempoAcceptance(registry);
+applyPassiveDamageAcceptance(registry);
+applyMotionScopeAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
-for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS,...ATTACK_STATE_CHILD_DEFINITIONS,...CONTROL_TARGET_CHILD_DEFINITIONS,...SUMMON_LINEAGE_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
+for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS,...ATTACK_STATE_CHILD_DEFINITIONS,...CONTROL_TARGET_CHILD_DEFINITIONS,...SUMMON_LINEAGE_CHILD_DEFINITIONS,...ATTACK_TEMPO_CHILD_DEFINITIONS,...PASSIVE_DAMAGE_CHILD_DEFINITIONS,...MOTION_SCOPE_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];
 GRANTED_SKILL_DEFINITIONS.forEach(d=>attachSkillBalance(d,true));
 export const SKILL_IMPLEMENTATIONS: Readonly<Record<string, SkillProgram>> = registry;

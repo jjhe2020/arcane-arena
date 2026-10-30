@@ -26206,14 +26206,14 @@
       "name": "烟幕",
       "nameEn": "riki_smoke_screen",
       "description": "升级授予的历史基线附属效果",
-      "descriptionEn": "Valve shipped KV 2023-02-10, SteamTracking 6abdd9d13de2f4330ca748082467b9ff6e6cd928; AA version match unverified",
+      "descriptionEn": "Independent historical native Smoke Screen component.",
       "super": "",
       "gaben": "",
-      "tags": [],
       "values": [
         "RADIUS: 375",
-        "DURATION: 6",
-        "MISS RATE: 30 / 45 / 60 / 75"
+        "DURATION: 6 / 6 / 6 / 2",
+        "MISS CHANCE: 30 / 45 / 60 / 75",
+        "AURA LINGER: 0.5"
       ],
       "cooldowns": [
         20,
@@ -26230,14 +26230,22 @@
       "categories": [
         "ABILITY: Point Target"
       ],
-      "icon": "",
+      "tags": [],
+      "icon": "/art/icons/custom_riki_tricks_of_the_trade.webp",
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_riki_tricks_of_the_trade",
       "historicalSource": {
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "date": "2023-02-10",
-        "id": "riki_smoke_screen"
+        "id": "riki_smoke_screen",
+        "maxLevel": 4,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.2,
+        "backswing": 0,
+        "range": 5.5
       }
     },
     {
@@ -27463,40 +27471,14 @@
       "name": "暗杀",
       "nameEn": "sniper_assassinate",
       "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
-      "tags": [],
+      "descriptionEn": "Independent historical native Assassinate component.",
       "super": "",
       "gaben": "",
-      "icon": "",
       "values": [
-        "ID: 5157",
-        "AbilityType: DOTA_ABILITY_TYPE_ULTIMATE",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",
-        "AbilityUnitTargetTeam: DOTA_UNIT_TARGET_TEAM_ENEMY",
-        "AbilityUnitTargetType: DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
-        "AbilityUnitTargetFlags: DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
-        "SpellDispellableType: SPELL_DISPELLABLE_NO",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "AbilityUnitDamageType: DAMAGE_TYPE_MAGICAL",
-        "FightRecapLevel: 2",
-        "HasScepterUpgrade: 1",
-        "AbilitySound: Ability.Assassinate",
-        "AbilityDraftUltShardAbility: sniper_concussive_grenade",
-        "AbilityCastRange: 3000",
-        "AbilityCastRangeBuffer: 600",
-        "AbilityCastPoint: 2",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_4",
-        "AbilityCooldown: 20 15 10",
-        "AbilityDamage: 320 510 700",
-        "AbilityManaCost: 175 225 275",
-        "AbilityModifierSupportValue: 0.0",
-        "projectile_speed: 2500 2500 2500",
-        "scepter_stun_duration: 1 1.25 1.5",
-        "scepter_crit: 0",
-        "scepter_cast_point: 0.5",
-        "scatter_range: 0",
-        "scatter_width: 0",
-        "scatter_damage_pct: 0"
+        "DAMAGE: 320 / 510 / 700",
+        "PROJECTILE SPEED: 2500",
+        "MINISTUN: 0.01",
+        "VISION DURATION: 4"
       ],
       "cooldowns": [
         20,
@@ -27509,20 +27491,25 @@
         275
       ],
       "categories": [
-        "ABILITY: Unit Target"
+        "ABILITY: Unit Target",
+        "DAMAGE TYPE: Magical"
       ],
+      "tags": [],
+      "icon": "/art/icons/custom_sniper_take_aim.webp",
       "passive": false,
       "ultimate": true,
       "grantedOnly": true,
+      "sourceMaximumLevel": 3,
+      "visualParentId": "custom_sniper_take_aim",
       "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "sniper_assassinate"
+        "id": "sniper_assassinate",
+        "maxLevel": 3,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 2,
+        "backswing": 1.37,
+        "range": 30
       }
     },
     {
@@ -27530,35 +27517,17 @@
       "name": "震荡手雷",
       "nameEn": "sniper_concussive_grenade",
       "description": "升级授予的历史候选技能",
-      "descriptionEn": "Historical granted child; AA patch unverified",
-      "tags": [],
+      "descriptionEn": "Independent historical native Concussive Grenade component.",
       "super": "",
       "gaben": "",
-      "icon": "",
       "values": [
-        "ID: 694",
-        "AbilityBehavior: DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
-        "AbilityUnitTargetTeam: DOTA_UNIT_TARGET_TEAM_ENEMY",
-        "AbilityUnitTargetType: DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
-        "AbilityUnitDamageType: DAMAGE_TYPE_MAGICAL",
-        "SpellImmunityType: SPELL_IMMUNITY_ENEMIES_NO",
-        "SpellDispellableType: SPELL_DISPELLABLE_YES",
-        "FightRecapLevel: 1",
-        "IsGrantedByShard: 1",
-        "MaxLevel: 1",
-        "AbilityCastPoint: 0.1",
-        "AbilityCastAnimation: ACT_DOTA_CAST_ABILITY_5",
-        "AbilityCooldown: 10",
-        "AbilityManaCost: 50",
-        "damage: 25",
-        "AbilityCastRange: 600",
-        "radius: 375",
-        "slow: 50",
-        "debuff_duration: 3",
-        "knockback_height: 100",
-        "knockback_distance: 475",
-        "knockback_duration: 0.4",
-        "self_push: 1"
+        "DAMAGE: 25",
+        "RADIUS: 375",
+        "PROJECTILE SPEED: 2500",
+        "KNOCKBACK DISTANCE: 475",
+        "KNOCKBACK DURATION: 0.4",
+        "MOVEMENT SLOW: 50",
+        "DEBUFF DURATION: 3"
       ],
       "cooldowns": [
         10
@@ -27567,20 +27536,24 @@
         50
       ],
       "categories": [
-        "ABILITY: No Target"
+        "ABILITY: Point Target"
       ],
+      "tags": [],
+      "icon": "/art/icons/custom_sniper_take_aim.webp",
       "passive": false,
       "ultimate": false,
       "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_sniper_take_aim",
       "historicalSource": {
-        "file": "npc_abilities.txt",
-        "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
-        "commitDate": "2023-02-10T01:16:45Z",
-        "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
-        "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
-        "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
-        "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted.",
-        "id": "sniper_concussive_grenade"
+        "id": "sniper_concussive_grenade",
+        "maxLevel": 1,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.1,
+        "backswing": 0.8,
+        "range": 6
       }
     },
     {
@@ -30977,6 +30950,211 @@
         "castPoint": 0,
         "backswing": 0,
         "range": 0
+      }
+    },
+    {
+      "id": "zuus_heavenly_jump",
+      "name": "神圣一跃",
+      "nameEn": "Heavenly Jump",
+      "icon": "/art/icons/custom_zuus_static_field.webp",
+      "description": "原生四级神圣一跃触发分量。静电场超神免费原地触发，并单独指定两个目标。",
+      "descriptionEn": "Independent native four-rank Heavenly Jump hit component;the AA caller performs a free in-place effect on two targets.",
+      "tags": [
+        "magicDamage"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: No"
+      ],
+      "values": [
+        "DAMAGE: 25 / 50 / 75 / 100",
+        "SEARCH RADIUS: 700 / 800 / 900 / 1000",
+        "MOVEMENT SLOW: 80",
+        "ATTACK SLOW: 100",
+        "CAST SLOW: 50",
+        "DURATION: 1.6"
+      ],
+      "cooldowns": [
+        26,
+        22,
+        18,
+        14
+      ],
+      "mana": [
+        50,
+        60,
+        70,
+        80
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_zuus_static_field"
+    },
+    {
+      "id": "phoenix_sun_ray_stop",
+      "name": "停止烈日炙烤",
+      "nameEn": "Stop Sun Ray",
+      "description": "历史原生附属效果的独立等级；父技能免费触发不重复扣费，保留父来源归因。",
+      "descriptionEn": "Independent historical native child rank;free parent effect retains provenance.",
+      "icon": "/art/icons/custom_phoenix_sun_ray.webp",
+      "tags": [],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "values": [],
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_phoenix_sun_ray",
+      "historicalSource": {
+        "id": "phoenix_sun_ray_stop",
+        "maxLevel": 4,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0,
+        "backswing": 0,
+        "range": 0
+      }
+    },
+    {
+      "id": "phoenix_sun_ray_toggle_move",
+      "name": "切换炙烤移动",
+      "nameEn": "Toggle Movement",
+      "description": "历史原生附属效果的独立等级；父技能免费触发不重复扣费，保留父来源归因。",
+      "descriptionEn": "Independent historical native child rank;free parent effect retains provenance.",
+      "icon": "/art/icons/custom_phoenix_sun_ray.webp",
+      "tags": [],
+      "categories": [
+        "ABILITY: No Target"
+      ],
+      "values": [
+        "MOVE SPEED: 250"
+      ],
+      "cooldowns": [
+        0
+      ],
+      "mana": [
+        0
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 1,
+      "visualParentId": "custom_phoenix_sun_ray",
+      "historicalSource": {
+        "id": "phoenix_sun_ray_toggle_move",
+        "maxLevel": 1,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0,
+        "backswing": 0,
+        "range": 0
+      }
+    },
+    {
+      "id": "aa_granted_sun_ray_supernova",
+      "name": "超新星（炙烤授予）",
+      "nameEn": "Supernova",
+      "description": "历史原生附属效果的独立等级；父技能免费触发不重复扣费，保留父来源归因。",
+      "descriptionEn": "Independent historical native child rank;free parent effect retains provenance.",
+      "icon": "/art/icons/custom_phoenix_sun_ray.webp",
+      "tags": [],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical"
+      ],
+      "values": [
+        "DURATION: 6",
+        "RADIUS: 1200",
+        "DAMAGE PER SECOND: 60 / 90 / 120",
+        "HERO ATTACKS TO DESTROY: 6 / 8 / 10",
+        "STUN DURATION: 2 / 2.5 / 3",
+        "AURA LINGER: 0.5",
+        "DAMAGE INTERVAL: 1"
+      ],
+      "cooldowns": [
+        120
+      ],
+      "mana": [
+        150,
+        200,
+        250
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": true,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 3,
+      "visualParentId": "custom_phoenix_sun_ray",
+      "historicalSource": {
+        "id": "phoenix_supernova",
+        "maxLevel": 3,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.01,
+        "backswing": 0.5,
+        "range": 0
+      }
+    },
+    {
+      "id": "queenofpain_blink",
+      "name": "闪烁（投掷授予）",
+      "nameEn": "Blink",
+      "description": "历史原生附属效果的独立等级；父技能免费触发不重复扣费，保留父来源归因。",
+      "descriptionEn": "Independent historical native child rank;free parent effect retains provenance.",
+      "icon": "/art/icons/custom_tiny_toss.webp",
+      "tags": [],
+      "categories": [
+        "ABILITY: Point Target"
+      ],
+      "values": [
+        "MIN BLINK RANGE: 200"
+      ],
+      "cooldowns": [
+        12,
+        10,
+        8,
+        6
+      ],
+      "mana": [
+        60
+      ],
+      "super": "",
+      "gaben": "",
+      "passive": false,
+      "ultimate": false,
+      "grantedOnly": true,
+      "sourceMaximumLevel": 4,
+      "visualParentId": "custom_tiny_toss",
+      "historicalSource": {
+        "id": "queenofpain_blink",
+        "maxLevel": 4,
+        "date": "2023-02-10"
+      },
+      "referencePublic": {
+        "castPoint": 0.33,
+        "backswing": 0.53,
+        "range": 13
       }
     }
   ],

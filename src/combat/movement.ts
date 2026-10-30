@@ -5,6 +5,8 @@ export interface TransformSnapshot extends MotionPoint { facing: number; warpSeq
 export interface ContinuousMoveOptions {
   /** Seconds of world time, independent of attack/cast animation speed. */
   duration?: number;
+  /** Optional world-units/sec cap on actual segments; never snaps to catch up. */
+  maxSpeed?:number;
   /** Explicit project arbitration; equal-priority unrelated controllers keep the incumbent. */
   priority?: number;
   lockActions?: boolean;
@@ -27,6 +29,7 @@ export interface MotionController {
   to: MotionPoint;
   startedAt: number;
   duration: number;
+  maxSpeed?:number;
   priority: number;
   lockActions: boolean;
   ignoreBarriers: boolean;

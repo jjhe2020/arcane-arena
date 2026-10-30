@@ -1,0 +1,1464 @@
+{
+  "schemaVersion": 1,
+  "group": "passive-damage",
+  "accessedOn": "2026-10-30",
+  "baselineCommit": "bd1362979d697e6573515575b2cf155350b45a84",
+  "baselineConfigurationHash": "fe8fa08c8ae11f34ca24d214772ca307863d54cef1dedabcb366c4cb8f017f7e",
+  "policy": "Complete locked AA numeric/differences priority;native nonnumeric Wiki priority. Metadata category is not proof of customLua.",
+  "aa": {
+    "path": "output/c13-aura-armor/abilities.json",
+    "url": "https://www.abilityarena.com/data/abilities.json",
+    "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "method": "Reused fullactualC13HTTP200payload,not a new C15request",
+    "sha256Verified": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+    "selected": [
+      {
+        "name": "Static Field",
+        "id": "custom_zuus_static_field",
+        "icon": "zuus_static_field",
+        "tags": [
+          "magicDamage",
+          "passive",
+          "spam"
+        ],
+        "categories": [
+          "ABILITY: Passive",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No"
+        ],
+        "description": "The caster shocks any enemy hit by his abilities, causing damage proportional to their current health.",
+        "differences": "Has a cooldown for each ability to trigger Static Field.",
+        "values": [
+          "COOLDOWN: 3",
+          "HEALTH REDUCTION: 4% / 6% / 10%"
+        ],
+        "cooldowns": [],
+        "manaCost": [],
+        "superUpgrade": "Super: Increases health reduction by 2%.",
+        "gabenUpgrade": "Gaben: Performs a Heavenly Jump on the spot every time it procs, dealing damage to two targets."
+      },
+      {
+        "name": "Sticky Napalm",
+        "id": "batrider_sticky_napalm",
+        "icon": "batrider_sticky_napalm",
+        "tags": [
+          "damageAmplification",
+          "magicDamage",
+          "spam"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Drenches an area in sticky oil, amplifying damage from Batrider's attacks and abilities and slowing the movement speed and turn rate of enemies in the area. Additional casts of Sticky Napalm continue to increase damage, up to 10 stacks. Applies a small amount of damage with each cast.",
+        "differences": "",
+        "values": [
+          "CAST RANGE: 705",
+          "APPLICATION DAMAGE: 6 / 12 / 24",
+          "DURATION: 6",
+          "EXTRA DAMAGE: 6 / 12 / 24",
+          "MOVEMENT SLOW: -2% / -4% / -8%",
+          "RADIUS: 375",
+          "TURN RATE SLOW: -10% / -30% / -70%"
+        ],
+        "cooldowns": [
+          3,
+          3,
+          3
+        ],
+        "manaCost": [
+          25
+        ],
+        "superUpgrade": "Super: Attacks apply a stack of Sticky Napalm to target.",
+        "gabenUpgrade": "Gaben: Stacks infinitely, and Sticky Napalm on attack now applies in a 375 AOE. "
+      },
+      {
+        "name": "Uproar",
+        "id": "primal_beast_uproar",
+        "icon": "primal_beast_uproar",
+        "tags": [
+          "attackDamage",
+          "break",
+          "dispel"
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "The Beast's temper passively provides bonus damage. Additionally, for every instance of 50 damage or more Primal Beast takes from enemy heroes, he accumulates stacks of Uproar. \n\nWhen activated, Primal Beast releases a roar that slows surrounding enemies and grants the Beast additional attack damage and armor for 7 seconds based on his current stacks of Uproar.",
+        "differences": "",
+        "values": [
+          "BASE BONUS DAMAGE: 6 / 12 / 24",
+          "BONUS DAMAGE PER STACK: 10 / 20 / 40",
+          "MAX STACKS: 5",
+          "ROAR ARMOR BONUS PER STACK: 1 / 2 / 4",
+          "ROAR RADIUS: 900",
+          "SLOW DURATION: 3",
+          "SLOW PER STACK: 8%"
+        ],
+        "cooldowns": [
+          0
+        ],
+        "manaCost": [],
+        "superUpgrade": "Super: Uproar now Hard Dispels, and is automatically activated whenever it reaches max stacks.",
+        "gabenUpgrade": "Gaben: Upon cast, the caster releases 3 waves of 2 projectiles per stack of uproar each in a circle around them. Projectiles deal 100 damage and Break enemies for 2.5s. After a short delay, each projectile splinters in two."
+      },
+      {
+        "name": "Venomous Gale",
+        "id": "venomancer_venomous_gale",
+        "icon": "venomancer_venomous_gale",
+        "tags": [
+          "magicDamage"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Launches a ball of venom in a line, poisoning enemy units so that they take both initial damage and damage over time, as well as suffering slowed movement. Venomous Gale deals damage every 3 seconds over its duration.",
+        "differences": "",
+        "values": [
+          "DAMAGE PER TICK: 15 / 45 / 105",
+          "DURATION: 15 / 15 / 15",
+          "INITIAL DAMAGE: 50 / 75 / 125",
+          "SLOW: -50% / -50% / -50%"
+        ],
+        "cooldowns": [
+          21,
+          20,
+          18
+        ],
+        "manaCost": [
+          95,
+          105,
+          125
+        ],
+        "superUpgrade": "Super: Cooldown reduced by 6 seconds, gains +400 cast range, decreases affected units' attack speed by 10%, impact damage deals 2x more damage.",
+        "gabenUpgrade": "Gaben: Venomous Gale now reduces affected units' status resistance by 40%."
+      },
+      {
+        "name": "Wave of Terror",
+        "id": "vengefulspirit_wave_of_terror",
+        "icon": "vengefulspirit_wave_of_terror",
+        "tags": [
+          "damageAmplification"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "Vengeful Spirit lets loose a wicked cry, weakening the armor of enemies and giving vision of the path ahead.",
+        "differences": "",
+        "values": [
+          "DAMAGE: 85 / 100 / 130",
+          "ARMOR REDUCTION: -3 / -4 / -6",
+          "VISION DURATION: 4"
+        ],
+        "cooldowns": [
+          16,
+          14,
+          10
+        ],
+        "manaCost": [
+          25,
+          30,
+          40
+        ],
+        "superUpgrade": "Super: Increases armor reduction by 2 and steals 20% of enemy hero base damage and base armor for the duration of the debuff.",
+        "gabenUpgrade": "Gaben: Enemies struck with Wave of Terror are also feared for 2 seconds."
+      }
+    ],
+    "completeFieldAudit": [
+      {
+        "id": "custom_zuus_static_field",
+        "fields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "differences": "Has a cooldown for each ability to trigger Static Field.",
+        "aiAndNotesAbsent": true
+      },
+      {
+        "id": "batrider_sticky_napalm",
+        "fields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "differences": "",
+        "aiAndNotesAbsent": true
+      },
+      {
+        "id": "primal_beast_uproar",
+        "fields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "differences": "",
+        "aiAndNotesAbsent": true
+      },
+      {
+        "id": "venomancer_venomous_gale",
+        "fields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "differences": "",
+        "aiAndNotesAbsent": true
+      },
+      {
+        "id": "vengefulspirit_wave_of_terror",
+        "fields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "differences": "",
+        "aiAndNotesAbsent": true
+      }
+    ]
+  },
+  "native": {
+    "sourceCommit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+    "sourceCommitDate": "2023-02-10",
+    "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+    "localFile": "references/dota-20230216/npc_abilities.txt",
+    "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+    "selected": {
+      "zuus_heavenly_jump": {
+        "ID": "641",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityManaCost": "50 60 70 80",
+        "AbilityValues": {
+          "damage": {
+            "value": "25 50 75 100",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "hop_distance": "500",
+          "hop_duration": "0.5",
+          "hop_height": "250",
+          "range": "700 800 900 1000",
+          "duration": "1.6",
+          "move_slow": "80",
+          "aspd_slow": "100",
+          "cast_slow": "50",
+          "targets": {
+            "value": "1",
+            "special_bonus_unique_zeus": "+1"
+          },
+          "AbilityCooldown": {
+            "value": "26 22 18 14",
+            "special_bonus_unique_zeus_jump_cooldown": "-4"
+          },
+          "postjump_movespeed_duration": {
+            "value": "0",
+            "special_bonus_unique_zeus_jump_postjump_movespeed": "+1.6"
+          },
+          "postjump_movespeed": {
+            "value": "0",
+            "special_bonus_unique_zeus_jump_postjump_movespeed": "+30"
+          }
+        }
+      },
+      "zuus_arc_lightning": {
+        "ID": "5110",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilitySound": "Hero_Zuus.ArcLightning.Cast",
+        "AbilityCastRange": "850",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "1.6",
+        "AbilityManaCost": "80 85 90 95",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "arc_damage": "90 120 150 180",
+            "LinkedSpecialBonus": "special_bonus_unique_zeus_2"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "500 500 500 500"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "jump_count": "5 7 9 15"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "jump_delay": "0.25 0.25 0.25 0.25"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "zuus_lightning_bolt": {
+        "ID": "5111",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Zuus.LightningBolt",
+        "AbilityCastRange": "700 750 800 850",
+        "AbilityCastPoint": "0.3",
+        "AbilityDamage": "125 200 275 350",
+        "AbilityCooldown": "6.0 6.0 6.0 6.0",
+        "AbilityManaCost": "120 125 130 135",
+        "AbilityModifierSupportValue": "0.1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "true_sight_radius": "750"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_day": "750"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_night": "750"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "sight_duration": "5"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "spread_aoe": "325"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "ministun_duration": "0.3",
+            "LinkedSpecialBonus": "special_bonus_unique_zeus_3"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "zuus_cloud": {
+        "ID": "6325",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByScepter": "1",
+        "AbilitySound": "Hero_Zuus.Cloud.Cast",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "45",
+        "AbilityManaCost": "325",
+        "AbilityModifierSupportValue": "0.1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "cloud_duration": "30"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "cloud_bolt_interval": "2.5"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "cloud_radius": "450"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "hits_to_kill_tooltip": "8"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "creep_hits_to_kill_tooltip": "16"
+          },
+          "06": {
+            "var_type": "FIELD_INTEGER",
+            "cloud_bounty_tooltip": "125"
+          }
+        }
+      },
+      "zuus_static_field": {
+        "ID": "5112",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilitySound": "Hero_Zuus.StaticField",
+        "MaxLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityValues": {
+          "damage_health_pct": {
+            "value": "8",
+            "CalculateSpellDamageTooltip": "0"
+          }
+        }
+      },
+      "zuus_thundergods_wrath": {
+        "ID": "5113",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Zuus.GodsWrath",
+        "AbilityDraftUltScepterAbility": "zuus_cloud",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "130 125 120",
+        "AbilityManaCost": "300 400 500",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_day": "500"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "sight_radius_night": "500"
+          },
+          "03": {
+            "var_type": "FIELD_FLOAT",
+            "sight_duration": "3.0 3.0 3.0 3.0"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "300 425 550",
+            "LinkedSpecialBonus": "special_bonus_unique_zeus_4"
+          }
+        }
+      },
+      "vengefulspirit_magic_missile": {
+        "ID": "5122",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_VengefulSpirit.MagicMissile",
+        "HasShardUpgrade": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "12 11 10 9",
+        "AbilityManaCost": "100 110 120 130",
+        "AbilityValues": {
+          "magic_missile_speed": "1350",
+          "magic_missile_stun": "1.4 1.5 1.6 1.7",
+          "magic_missile_damage": {
+            "value": "90 180 270 360",
+            "special_bonus_unique_vengeful_spirit_1": "+200"
+          },
+          "AbilityCastRange": {
+            "value": "650",
+            "special_bonus_unique_vengeful_spirit_missile_castrange": "+125"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "vengefulspirit_command_aura": {
+        "ID": "5123",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "AbilityCastRange": "1200",
+        "HasScepterUpgrade": "1",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_base_damage": "11 18 25 32",
+            "LinkedSpecialBonus": "special_bonus_unique_vengeful_spirit_2"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "aura_radius": "1200"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_illusion_damage_out_pct": "100",
+            "RequiresScepter": "1"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_illusion_damage_in_pct": "100",
+            "RequiresScepter": "1"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "scepter_illusion_ms_bonus_pct": "12",
+            "RequiresScepter": "1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "vengefulspirit_wave_of_terror": {
+        "ID": "5124",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Hero_VengefulSpirit.WaveOfTerror",
+        "AbilityCastRange": "1400",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "16 14 12 10",
+        "AbilityDuration": "8",
+        "AbilityDamage": "85 100 115 130",
+        "AbilityManaCost": "25 30 35 40",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "wave_speed": "2000.0"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "wave_width": "325"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "armor_reduction": "-3 -4 -5 -6",
+            "LinkedSpecialBonus": "special_bonus_unique_vengeful_spirit_4"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "vision_aoe": "350"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "vision_duration": "4"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "vengefulspirit_nether_swap": {
+        "ID": "5125",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_CUSTOM",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_CUSTOM",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_VengefulSpirit.NetherSwap",
+        "AbilityCastRange": "800 950 1100",
+        "AbilityCastPoint": "0.4",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "50 40 30",
+        "AbilityManaCost": "100 150 200",
+        "AbilityValues": {
+          "damage_reduction": {
+            "value": "30 40 50",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+          },
+          "damage_reduction_duration": {
+            "value": "3",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+          },
+          "damage": {
+            "value": "50",
+            "special_bonus_unique_vengeful_spirit_swap_damage": "+150"
+          }
+        }
+      },
+      "venomancer_area_poison": {
+        "ID": "592",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "MaxLevel": "1",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "60",
+        "AbilityCastRange": "900",
+        "AbilityManaCost": "150",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "15"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "650"
+          }
+        }
+      },
+      "venomancer_venomous_gale": {
+        "ID": "5178",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Venomancer.VenomousGale",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "800",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityManaCost": "95 105 115 125",
+        "AbilityValues": {
+          "duration": "15.0 15.0 15.0 15.0",
+          "strike_damage": {
+            "value": "50 75 100 125",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "tick_damage": {
+            "value": "15 45 75 105",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "tick_interval": "3.0 3.0 3.0 3.0",
+          "movement_slow": "-50 -50 -50 -50",
+          "radius": "125",
+          "speed": "1200 1200 1200 1200",
+          "create_wards": {
+            "value": "0",
+            "special_bonus_unique_venomancer_gale_plagueward": "+2"
+          },
+          "AbilityCooldown": {
+            "value": "21 20 19 18",
+            "special_bonus_unique_venomancer_3": "-5"
+          }
+        }
+      },
+      "venomancer_poison_sting": {
+        "ID": "5179",
+        "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilityValues": {
+          "duration": "6.0 9.0 12.0 15.0",
+          "damage": {
+            "value": "8 16 24 32",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "movement_speed": {
+            "value": "-8 -10 -12 -14",
+            "special_bonus_unique_venomancer_2": "-8"
+          },
+          "hp_regen_reduction": {
+            "value": "0",
+            "special_bonus_unique_venomancer_poisonsting_regen_reduction": "+20"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "venomancer_plague_ward": {
+        "ID": "5180",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "AbilitySound": "Hero_Venomancer.Plague_Ward",
+        "AbilityCastRange": "850",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityCooldown": "5.0",
+        "AbilityManaCost": "21 24 27 30",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "40.0",
+            "LinkedSpecialBonus": "special_bonus_unique_venomancer_7"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "ward_hp_tooltip": "120 230 340 450",
+            "LinkedSpecialBonus": "special_bonus_unique_venomancer",
+            "LinkedSpecialBonusOperation": "SPECIAL_BONUS_MULTIPLY"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "ward_damage_tooltip": "13 22 31 40",
+            "LinkedSpecialBonus": "special_bonus_unique_venomancer",
+            "LinkedSpecialBonusOperation": "SPECIAL_BONUS_MULTIPLY"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "ward_hp": "240 460 680 900"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "ward_damage": "26 44 62 80"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "venomancer_poison_nova": {
+        "ID": "5181",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Venomancer.PoisonNova",
+        "AbilityDraftUltShardAbility": "venomancer_latent_poison",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.0 0.0 0.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "140.0 120.0 100.0",
+        "AbilityManaCost": "200 300 400",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilityValues": {
+          "radius": "850 900 950",
+          "start_radius": "255 255 255",
+          "duration": {
+            "value": "20",
+            "LinkedSpecialBonus": "special_bonus_unique_venomancer_4"
+          },
+          "damage": "2 2.75 3.5",
+          "cooldown_scepter": {
+            "value": "100.0 80.0 60.0",
+            "RequiresScepter": "1"
+          },
+          "damage_scepter": {
+            "value": "3 3.75 4.5",
+            "RequiresScepter": "1"
+          },
+          "speed": "550",
+          "base_damage": "20 30 40",
+          "aspd_slow": {
+            "value": "0",
+            "special_bonus_unique_venomancer_5": "+100"
+          }
+        }
+      },
+      "venomancer_latent_poison": {
+        "ID": "986",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_QueenOfPain.ShadowStrike",
+        "IsGrantedByShard": "1",
+        "MaxLevel": "1",
+        "AbilityCastRange": "800",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "20",
+        "AbilityManaCost": "75",
+        "AbilityValues": {
+          "duration_damage": {
+            "value": "20",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "movement_slow": "-10",
+          "projectile_speed": "1800",
+          "damage_interval": "1.0",
+          "duration": "7",
+          "explosion_damage": "300",
+          "explosion_stun_duration": "2"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_6"
+      },
+      "batrider_sticky_napalm": {
+        "ID": "5320",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "AbilitySound": "Hero_Batrider.StickyNapalm.Impact",
+        "HasShardUpgrade": "1",
+        "AbilityCastRange": "600",
+        "AbilityCastPoint": "0",
+        "AbilityCooldown": "3.0 3.0 3.0 3.0",
+        "AbilityManaCost": "20",
+        "AbilityModifierSupportValue": "0.5",
+        "AbilityValues": {
+          "damage": {
+            "value": "6 12 18 24",
+            "special_bonus_unique_batrider_4": "+10",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "radius": {
+            "value": "375",
+            "special_bonus_unique_batrider_7": "+50"
+          },
+          "duration": "6",
+          "movement_speed_pct": "-2 -4 -6 -8",
+          "turn_rate_pct": "-10 -30 -50 -70",
+          "max_stacks": "10 10 10 10",
+          "creep_damage_pct": "50",
+          "shard_napalm_on_attack_chance_pct": {
+            "value": "50",
+            "RequiresShard": "1"
+          },
+          "application_damage": "6 12 18 24"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "batrider_sticky_napalm_application_damage": {
+        "ID": "976",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Hero_Batrider.StickyNapalm.Impact",
+        "MaxLevel": "1"
+      },
+      "batrider_flamebreak": {
+        "ID": "5321",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Batrider.Flamebreak",
+        "AbilityCastRange": "1300",
+        "AbilityCastPoint": "0.2 0.2 0.2 0.2",
+        "AbilityCooldown": "18 17 16 15",
+        "AbilityManaCost": "110 115 120 125",
+        "AbilityModifierSupportValue": "1.0",
+        "AbilityValues": {
+          "damage_impact": {
+            "value": "30 60 90 120",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "damage_per_second": {
+            "value": "15",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "damage_duration": {
+            "value": "2 4 6 8",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "explosion_radius": "500",
+          "collision_radius": "100 100 100 100",
+          "stun_duration": "0.5 0.5 0.5 0.5",
+          "speed": "1200",
+          "knockback_distance": {
+            "value": "250",
+            "special_bonus_unique_batrider_3": "+50"
+          },
+          "knockback_height": "100 100 100 100",
+          "knockback_duration": "0.35",
+          "napalm_stacks": {
+            "value": "0",
+            "special_bonus_unique_batrider_2": "+2"
+          },
+          "AbilityCharges": {
+            "value": "0",
+            "special_bonus_unique_batrider_5": "+2"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "batrider_firefly": {
+        "ID": "5322",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityCooldown": "52 46 40 34",
+        "AbilityManaCost": "125",
+        "AbilityValues": {
+          "damage_per_second": {
+            "value": "20 35 50 65",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "movement_speed": "3 6 9 12",
+          "radius": "200",
+          "duration": {
+            "value": "15",
+            "special_bonus_unique_batrider_1": "+4.5"
+          },
+          "tick_interval": "0.5 0.5 0.5 0.5",
+          "tree_radius": "100 100 100 100",
+          "bonus_vision": "50 100 150 200"
+        }
+      },
+      "batrider_flaming_lasso": {
+        "ID": "5323",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Batrider.FlamingLasso.Cast",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.2 0.2 0.2 0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastRange": "175",
+        "AbilityManaCost": "150 175 200",
+        "AbilityValues": {
+          "duration": "2.5 3.0 3.5",
+          "drag_distance": "300 300 300",
+          "break_distance": "425",
+          "damage": {
+            "value": "35 55 75",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "grab_radius_scepter": {
+            "value": "600",
+            "RequiresScepter": "1"
+          },
+          "AbilityCooldown": {
+            "value": "120 115 110",
+            "special_bonus_unique_batrider_6": "-10"
+          }
+        }
+      },
+      "primal_beast_onslaught": {
+        "ID": "992",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilityCastPoint": "0.15",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCooldown": "25 22 19 16",
+        "AbilityManaCost": "120",
+        "AbilityValues": {
+          "charge_speed": "1200",
+          "chargeup_time": "2",
+          "knockback_radius": "190",
+          "max_distance": "2000",
+          "knockback_distance": "200",
+          "knockback_damage": {
+            "value": "95 190 285 380",
+            "special_bonus_unique_primal_beast_onslaught_damage": "+90"
+          },
+          "knockback_duration": "0.2",
+          "max_charge_time": "1.5",
+          "turn_rate": "70",
+          "base_power": "0.15",
+          "movement_turn_rate": "50",
+          "stun_duration": "1 1.2 1.4 1.6"
+        }
+      },
+      "primal_beast_onslaught_release": {
+        "ID": "993",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+        "AbilityCastPoint": "0.0",
+        "AbilityCastRange": "999999",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_7",
+        "AbilityCooldown": "0.3"
+      },
+      "primal_beast_trample": {
+        "ID": "994",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityManaCost": "90 85 80 75",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastGestureSlot": "ABSOLUTE",
+        "AbilityValues": {
+          "effect_radius": "230",
+          "step_distance": "140",
+          "base_damage": {
+            "value": "15 30 45 60",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "duration": "5.5",
+          "attack_damage": {
+            "value": "35",
+            "special_bonus_unique_primal_beast_trample_attack_damage": "+25"
+          },
+          "bonus_magic_resistance": {
+            "value": "0",
+            "special_bonus_unique_primal_beast_trample_magic_resist": "+20"
+          },
+          "AbilityCooldown": {
+            "value": "30 27 24 21",
+            "special_bonus_unique_primal_beast_trample_cooldown": "-5"
+          }
+        }
+      },
+      "primal_beast_uproar": {
+        "ID": "995",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityCooldown": "0",
+        "HasScepterUpgrade": "1",
+        "AbilityValues": {
+          "bonus_damage": "6 12 18 24",
+          "bonus_damage_per_stack": "10 20 30 40",
+          "stack_limit": {
+            "value": "5"
+          },
+          "damage_limit": "50",
+          "stack_duration": "20",
+          "move_slow_per_stack": "8",
+          "slow_duration": "3.0",
+          "damage_min": "20",
+          "damage_max": "2000",
+          "radius": "900",
+          "roared_bonus_attack_speed": "0",
+          "roared_bonus_armor": {
+            "value": "1 2 3 4",
+            "special_bonus_unique_primal_beast_uproar_armor": "+4"
+          },
+          "roar_duration": "7",
+          "should_dispell": {
+            "value": "0",
+            "special_bonus_unique_primal_beast_roar_dispells": "+1"
+          },
+          "projectiles_per_stack": {
+            "value": "2",
+            "RequiresScepter": "1"
+          },
+          "projectile_distance": {
+            "value": "1400",
+            "RequiresScepter": "1"
+          },
+          "projectile_width": {
+            "value": "75",
+            "RequiresScepter": "1"
+          },
+          "projectile_damage": {
+            "value": "100",
+            "RequiresScepter": "1",
+            "DamageTypeTooltip": "DAMAGE_TYPE_MAGICAL",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "projectile_speed": {
+            "value": "500",
+            "RequiresScepter": "1"
+          },
+          "splinter_angle": {
+            "value": "30",
+            "RequiresScepter": "1"
+          },
+          "max_split_amount": {
+            "value": "2",
+            "RequiresScepter": "1"
+          },
+          "split_delay": {
+            "value": "1.25",
+            "RequiresScepter": "1"
+          },
+          "projectile_break_duration": {
+            "value": "2.5",
+            "RequiresScepter": "1"
+          },
+          "projectile_waves": {
+            "value": "3",
+            "RequiresScepter": "1"
+          }
+        }
+      },
+      "primal_beast_pulverize": {
+        "ID": "996",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_CHANNELLED  | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "AnimationIgnoresModelScale": "1",
+        "AbilityDraftUltShardAbility": "primal_beast_rock_throw",
+        "AbilityCastPoint": "0.25",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_5",
+        "AbilityCastRange": "200",
+        "AbilityCooldown": "32 28 24",
+        "AbilityManaCost": "100",
+        "AbilityValues": {
+          "splash_radius": "600",
+          "interval": "0.75",
+          "ministun": "0.25",
+          "cast_range": "200",
+          "animation_rate": "1.5",
+          "damage": {
+            "value": "150 210 270"
+          },
+          "channel_time": {
+            "value": "2.3",
+            "special_bonus_unique_primal_beast_pulverize_duration": "+100%"
+          },
+          "pierce_immunity": {
+            "value": "0",
+            "special_bonus_unique_primal_beast_pulverize_pierces_magic_immunity": "+1"
+          }
+        }
+      },
+      "primal_beast_rock_throw": {
+        "ID": "7739",
+        "AbilityType": "DOTA_ABILITY_TYPE_BASIC",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN  | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "MaxLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityCooldown": "25",
+        "AbilityManaCost": "85",
+        "AbilityCastPoint": "0.5",
+        "AbilityCastRange": "1800",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityValues": {
+          "base_damage": {
+            "value": "325",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "impact_radius": "225",
+          "min_range": "550",
+          "min_travel_time": "0.45",
+          "max_travel_time": "1.7",
+          "bounce_travel_time": "0.6",
+          "stun_duration": "1.75",
+          "fragment_impact_distance": "600",
+          "fragment_impact_radius": "150"
+        }
+      },
+      "special_bonus_unique_primal_beast_roar_dispells": {
+        "ID": "7740",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_onslaught_damage": {
+        "ID": "7741",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_trample_attack_damage": {
+        "ID": "7742",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_pulverize_duration": {
+        "ID": "7743",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_uproar_armor": {
+        "ID": "7744",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_trample_magic_resist": {
+        "ID": "1081",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_trample_cooldown": {
+        "ID": "1082",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_primal_beast_pulverize_pierces_magic_immunity": {
+        "ID": "904",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_venomancer": {
+        "ID": "6058",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "2.5",
+            "ad_linked_abilities": "venomancer_plague_ward"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_2": {
+        "ID": "6532",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_venomancer_3": {
+        "ID": "6979",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_venomancer_4": {
+        "ID": "6980",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "5.0",
+            "ad_linked_abilities": "venomancer_poison_nova"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_5": {
+        "ID": "6981",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "2",
+            "ad_linked_abilities": "venomancer_poison_nova"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_6": {
+        "ID": "6999",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "640",
+            "ad_linked_abilities": "venomancer_poison_nova"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_7": {
+        "ID": "416",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "15",
+            "ad_linked_abilities": "venomancer_plague_ward"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_8": {
+        "ID": "811",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "1",
+            "ad_linked_abilities": "venomancer_plague_ward"
+          }
+        }
+      },
+      "special_bonus_unique_venomancer_poisonsting_regen_reduction": {
+        "ID": "859",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_venomancer_gale_plagueward": {
+        "ID": "1083",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_1": {
+        "ID": "6087",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_2": {
+        "ID": "6229",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_3": {
+        "ID": "6610",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_4": {
+        "ID": "512",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_5": {
+        "ID": "572",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_6": {
+        "ID": "658",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_batrider_7": {
+        "ID": "714",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      }
+    }
+  },
+  "historicalReads": [
+    {
+      "source": "output/c9-living-field/Vengeful_Spirit.html",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit",
+      "sha256": "8d5727125070e153ebdd5057cd1d50649c3bede8d1b6aeb9c2fe49f90fd306f7",
+      "archiveTimestamp": "20230215191945",
+      "actualReadSection": "Wave_of_Terror",
+      "completeSectionCharacters": 12207,
+      "sectionFile": "output\\c15-passive-intake\\Wave_of_Terror.txt",
+      "method": "Actual prior HTTP200fullHTML SHA revalidated and entire named ability section reread C15;not a new HTTP request"
+    },
+    {
+      "source": "output/c11-phantom-ward/Venomancer.html",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Venomancer",
+      "sha256": "614a7d61d5bba8260b1d7a17c45b8b99cd4e0eb63d1499d929a43e1a4793260c",
+      "archiveTimestamp": "20230215191945",
+      "actualReadSection": "Venomous_Gale",
+      "completeSectionCharacters": 18271,
+      "sectionFile": "output\\c15-passive-intake\\Venomous_Gale.txt",
+      "method": "Actual prior HTTP200fullHTML SHA revalidated and entire named ability section reread C15;not a new HTTP request"
+    },
+    {
+      "hero": "Batrider",
+      "accessedOn": "2026-10-30",
+      "cdxURL": "https://web.archive.org/cdx/search/cdx?url=dota2.fandom.com%2Fwiki%2FBatrider&output=json&filter=statuscode%3A200&from=202302&to=202302&collapse=timestamp%3A6",
+      "attemptLimit": "One request at each new URL;429stops thishero,never retries.",
+      "cdxStatus": 200,
+      "captures": [
+        [
+          "com,fandom,dota2)/wiki/batrider",
+          "20230215191541",
+          "https://dota2.fandom.com/wiki/Batrider",
+          "text/html",
+          "200",
+          "T5ZIIR5AII3SFVZNIO43PWSH7FSJHVHM",
+          "158015"
+        ]
+      ],
+      "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Batrider",
+      "status": 200,
+      "sha256": "057dfd636030a7c72979c810e1f74361eaa89a0b8d6ef33636207459a120e389",
+      "wireSha256": "28aa1a0dd6e8086b490d453b9aa174831b94e2526f27b49f0e974d410d5cf1bb",
+      "encodingNote": "HTTPgzip response preserved separately;HTMLdecompressedoncewithouttexttranslation."
+    },
+    {
+      "url": "https://liquipedia.net/dota2/Zeus/Old_Abilities",
+      "readOn": "2026-10-30",
+      "method": "Actually read complete indexed Static7.21-7.30e and7.31-7.32e primary sections",
+      "conclusion": "AA4/6/10base description maps older spell-hit-only version,not2023Shard8percent+attacks. Native appliespre-triggerdamage/effects;AAexplicitper-ability3secondcooldown andall-drafted-spell semantics retained. Native onlyZeus restriction cannot replace AA intent."
+    },
+    {
+      "url": "https://dota2.fandom.com/wiki/Primal_Beast",
+      "readOn": "2026-10-30",
+      "method": "Actual retained indexed fullUproar section;not dated2023fullHTML",
+      "conclusion": "50threshold,20sstackexpiry,7sbuff,instant0+0,20-2000collectiveplayerdamage,waves1.25split. Modernpassive5/10/15/20 excluded in favor of lockedAA6/12/24."
+    },
+    {
+      "url": "https://dota2.fandom.com/wiki/Primal_Beast/Changelogs",
+      "readOn": "2026-10-30",
+      "method": "Actual primary datedchangelog read",
+      "conclusion": "7.34dchanges passive24to20;7.33cdescribes publicScepterwaves introduction despite earlierpinnedKVfields. AAexplicitGwave clause retained;do not call pre-releaseKVproof of contemporaryshippedmechanic."
+    }
+  ],
+  "actualBefore": {
+    "file": "output/c15-passive-intake/actual-before.json",
+    "sha256": "d9c015739ecb5adf6b62617e8116f6fc54329d1faf3f70b9a011eb63fe371830",
+    "probes": 20,
+    "method": "Real registered battle casts/attacks with initialstats/clocks/positions controls;no injected program,status,damage,FX or summons."
+  },
+  "capturedFullHTML": [
+    {
+      "file": "output/c15-passive-intake/Batrider.html",
+      "sha256": "057dfd636030a7c72979c810e1f74361eaa89a0b8d6ef33636207459a120e389",
+      "wireFile": "output/c15-passive-intake/Batrider.response.bin",
+      "wireSha256": "28aa1a0dd6e8086b490d453b9aa174831b94e2526f27b49f0e974d410d5cf1bb",
+      "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Batrider"
+    },
+    {
+      "file": "output/c11-phantom-ward/Venomancer.html",
+      "sha256": "614a7d61d5bba8260b1d7a17c45b8b99cd4e0eb63d1499d929a43e1a4793260c",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Venomancer"
+    },
+    {
+      "file": "output/c9-living-field/Vengeful_Spirit.html",
+      "sha256": "8d5727125070e153ebdd5057cd1d50649c3bede8d1b6aeb9c2fe49f90fd306f7",
+      "url": "https://web.archive.org/web/20230215191945id_/https://dota2.fandom.com/wiki/Vengeful_Spirit"
+    }
+  ],
+  "versionDecisions": [
+    "Static uses AA older spell-hit-only family,not native2023Shard attacks.",
+    "Napalm uses magical2023version;AAeveryattack/infinite375AOEoverride nativeeveryother/10cap. Firstapplication event order remains finite AA-unproved policy.",
+    "Uproar currentAA prose and retained native prose both say perinstance50buttheirmechanicnotes describe20–2000cumulative;threshold50kept,mechanism notes used,exactAAcounter acknowledged pending.",
+    "Uproar AApublic0/nativepublic0doesnot establish removal of native7s hidden downtime;selected7snon-CDR clock uses BUFF DURATION but AAinheritance is specifically pending.",
+    "Gale refresh keepsperiodic phase and usesoneparentdeadline;AAnegative resistance self-refresh is a qualified policy,not recoveredLua.",
+    "Wave AAvision4is preserved inrawsource butno editable no-opFoW parameter is created."
+  ]
+}

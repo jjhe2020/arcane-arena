@@ -2485,13 +2485,22 @@
           "id": "FB-P03",
           "kind": "mechanism",
           "branch": "base",
-          "rule": "Some project-created ordinary summons lack nativeTemplateId/nativeLevel. Unknown-level bodies conservatively use hero duration; profile-less boars and similar summons need explicit level metadata before claiming the full level<=6 clause.",
-          "status": "mechanism_missing",
+          "rule": "All33current compiled native templates carry explicit resolved Level. The former profile-less ordinary Boar now binds pinnedLevel1 at real creation and receives actual10second Frostbite;hero/illusion/clone/ancient classification retains its separate duration. Unknown externally constructed bodies still conservatively use hero duration;this finite catalog factory fix does not certify absent external unit families.",
+          "status": "passed",
           "sourceIds": [
             "aa",
             "units"
           ],
-          "testEvidence": []
+          "testEvidence": [
+            {
+              "file": "tests/reference-native-unit-profiles.test.ts",
+              "test": "PROFILE-C15-03 actual Frostbite reads the newly bound boar level and applies the ordinary-creep duration"
+            },
+            {
+              "file": "tests/reference-frost-control.test.ts",
+              "test": "FB-10 an actual native level-four wolf receives ten seconds from its compiled template level"
+            }
+          ]
         }
       ],
       "upgradeProvenance": {

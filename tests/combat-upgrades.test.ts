@@ -32,7 +32,9 @@ describe('English-catalog upgrade effects',()=>{
     expect(b.events.some(e=>e.type==='cast'&&e.skill===missile.id)).toBe(true);
   });
   it('Windrun Gaben spends two charges and waits for sequential recharge',()=>{
-    const {b,def}=match('custom_windrunner_windrun',9,{cooldowns:[4]});stepBattle(b,2,[def]);
+    const {b,def}=match('custom_windrunner_windrun',9,{cooldowns:[4]});
+    // A complete compiled-rank fixture keeps the charge clock and public CD in one source.
+    (def.balanceLevels as Record<string,{cooldown:number;mana:number}>)['9'].cooldown=4;(def.balanceLevels as Record<string,{cooldown:number;mana:number}>)['9'].mana=0;def.balanceInputSignature=JSON.stringify([def.values,def.cooldowns,def.mana]);stepBattle(b,2,[def]);
     expect(b.events.filter(e=>e.type==='cast'&&e.skill===def.id)).toHaveLength(2);
     stepBattle(b,3,[def]);expect(b.events.filter(e=>e.type==='cast'&&e.skill===def.id)).toHaveLength(3);
     stepBattle(b,3,[def]);expect(b.events.filter(e=>e.type==='cast'&&e.skill===def.id)).toHaveLength(3);

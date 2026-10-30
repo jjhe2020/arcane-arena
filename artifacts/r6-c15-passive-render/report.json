@@ -1,0 +1,5428 @@
+{
+  "status": "passed",
+  "url": "http://localhost:5173",
+  "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+  "fixtureNote": "Real registered createBattle/stepBattle only. Fixedseed,initial100000HP/10000mana,zero armor/MR,zero ordinarymovement,startingpositions,100ordinaryattack and ordinaryattack/cooldown gates are explicit controls. Uproar stacks are earned by genuine hostile ordinaryattacks;its stored-stack and five-stack scenes use a real enemy GlobalSilence to hold manualcasting,not an injected status. No damage,status,FX,projectile,summon or program/hook is manufactured. Frozen renderer snapshots must leave all battle/RNG state byteidentical.",
+  "boundaries": [
+    "Source/version gaps remain in passive-damage ledger;finite render checks do not close them.",
+    "Uproar rays use explicit AA fullstack trigger and actual hostile attacks under actual GlobalSilence;no manufactured stack counter.",
+    "Nonmoving fixture locations do not establish native accelerated turning,arbitrary ray geometry or fog vision."
+  ],
+  "reports": [
+    {
+      "scenario": "field-shock",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_zuus_static_field",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "transient",
+            "art": "custom_zuus_static_field",
+            "layer": "shock",
+            "image": "/custom_zuus_static_field/shock.webp",
+            "resourceAvailable": true,
+            "projectedKey": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "world",
+            "image": "/custom_zuus_static_field/jump.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [
+            {
+              "skill": "custom_zuus_static_field",
+              "time": 0.43333333333333335,
+              "amount": 10000,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 7,
+        "activeImageBytes": 77545472,
+        "cachedImageBytes": 84770816,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 2,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "transient",
+          "art": "custom_zuus_static_field",
+          "layer": "shock",
+          "image": "/custom_zuus_static_field/shock.webp",
+          "resourceAvailable": true,
+          "projectedKey": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+              "image": "/art/skills/custom_zuus_static_field/shock.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "world",
+          "image": "/custom_zuus_static_field/jump.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "field-jump",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_zuus_static_field",
+        "points": 9,
+        "time": 0.5666666666666667,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 4,
+            "y": 1,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "custom_zuus_static_field",
+            "layer": "jump",
+            "image": "/custom_zuus_static_field/jump.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:jump",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "link",
+            "art": "custom_zuus_static_field",
+            "layer": "jump_arc",
+            "image": "/custom_zuus_static_field/jump_arc.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+            "x": 1.5,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [
+            {
+              "skill": "custom_zuus_static_field",
+              "time": 0.43333333333333335,
+              "amount": 12000,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 15,
+        "triangles": 30,
+        "gpuTextures": 9,
+        "activeImageBytes": 81674240,
+        "cachedImageBytes": 88899584,
+        "cachedAtlases": 10,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+          "link:0:p0h0:1:p1h1:custom_zuus_static_field",
+          "world:visual-world:0:jump"
+        ],
+        "transientEffects": 4,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "custom_zuus_static_field",
+          "layer": "jump",
+          "image": "/custom_zuus_static_field/jump.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:jump",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:jump",
+              "image": "/art/skills/custom_zuus_static_field/jump.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "link",
+          "art": "custom_zuus_static_field",
+          "layer": "jump_arc",
+          "image": "/custom_zuus_static_field/jump_arc.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+          "x": 1.5,
+          "y": 0,
+          "actual": [
+            {
+              "key": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+              "image": "/art/skills/custom_zuus_static_field/jump_arc.webp",
+              "x": 1.5,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 4,
+          "y": 1,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "napalm-splash",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "batrider_sticky_napalm",
+        "points": 3,
+        "time": 0.16666666666666666,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "batrider_sticky_napalm",
+            "layer": "splash",
+            "image": "/batrider_sticky_napalm/splash.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:splash",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.16666666666666666,
+          "hits": [
+            {
+              "skill": "batrider_sticky_napalm",
+              "time": 0.03333333333333333,
+              "amount": 24,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 5,
+        "activeImageBytes": 68845568,
+        "cachedImageBytes": 76070912,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:splash",
+          "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "batrider_sticky_napalm",
+          "layer": "splash",
+          "image": "/batrider_sticky_napalm/splash.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:splash",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:splash",
+              "image": "/art/skills/batrider_sticky_napalm/splash.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "napalm-stack",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "batrider_sticky_napalm",
+        "points": 3,
+        "time": 0.16666666666666666,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "batrider_sticky_napalm",
+            "layer": "coat",
+            "image": "/batrider_sticky_napalm/coat.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.16666666666666666,
+          "hits": [
+            {
+              "skill": "batrider_sticky_napalm",
+              "time": 0.03333333333333333,
+              "amount": 24,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 5,
+        "activeImageBytes": 68845568,
+        "cachedImageBytes": 76070912,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:splash",
+          "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "batrider_sticky_napalm",
+          "layer": "coat",
+          "image": "/batrider_sticky_napalm/coat.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+              "image": "/art/skills/batrider_sticky_napalm/coat.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-stack",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 3,
+        "time": 0.4,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "primal_beast_uproar",
+            "layer": "stack",
+            "image": "/primal_beast_uproar/stack.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/primal_beast_uproar/armour.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.4,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 13,
+        "triangles": 26,
+        "gpuTextures": 7,
+        "activeImageBytes": 79167488,
+        "cachedImageBytes": 91701248,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/attack_02.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "s:0:p0h0:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+          "s:0:p0h1:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h2:1:p1h0:custom_silencer_global_silence:silence"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "primal_beast_uproar",
+          "layer": "stack",
+          "image": "/primal_beast_uproar/stack.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+              "image": "/art/skills/primal_beast_uproar/stack.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/primal_beast_uproar/armour.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/attack_02.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-roar",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 3,
+        "time": 0.2,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "primal_beast_uproar",
+            "layer": "roar",
+            "image": "/primal_beast_uproar/roar.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:roar",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "status",
+            "art": "primal_beast_uproar",
+            "layer": "armour",
+            "image": "/primal_beast_uproar/armour.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/primal_beast_uproar/stack.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.06666666666666667,
+          "time": 0.2,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 6,
+        "activeImageBytes": 74153984,
+        "cachedImageBytes": 81379328,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:roar",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:armour"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "primal_beast_uproar",
+          "layer": "roar",
+          "image": "/primal_beast_uproar/roar.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:roar",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:roar",
+              "image": "/art/skills/primal_beast_uproar/roar.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "status",
+          "art": "primal_beast_uproar",
+          "layer": "armour",
+          "image": "/primal_beast_uproar/armour.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+              "image": "/art/skills/primal_beast_uproar/armour.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/primal_beast_uproar/stack.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/attack.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-rays",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 9,
+        "time": 0.7,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "primal_beast_uproar",
+            "layer": "shard",
+            "image": "/primal_beast_uproar/shard.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:shard",
+            "x": 0.16666666666666666,
+            "y": 0
+          },
+          {
+            "kind": "world",
+            "art": "primal_beast_uproar",
+            "layer": "roar",
+            "image": "/primal_beast_uproar/roar.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:roar",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.7,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 23,
+        "triangles": 46,
+        "gpuTextures": 9,
+        "activeImageBytes": 85213184,
+        "cachedImageBytes": 97746944,
+        "cachedAtlases": 11,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/attack_02.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 14,
+        "persistentEffectKeys": [
+          "world:visual-world:0:roar",
+          "p:projectile:0:shard",
+          "p:projectile:1:shard",
+          "p:projectile:2:shard",
+          "p:projectile:3:shard",
+          "p:projectile:4:shard",
+          "p:projectile:5:shard",
+          "p:projectile:6:shard",
+          "p:projectile:7:shard",
+          "p:projectile:8:shard",
+          "p:projectile:9:shard",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+          "s:0:p0h1:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h2:1:p1h0:custom_silencer_global_silence:silence"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "primal_beast_uproar",
+          "layer": "shard",
+          "image": "/primal_beast_uproar/shard.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:shard",
+          "x": 0.16666666666666666,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:shard",
+              "image": "/art/skills/primal_beast_uproar/shard.webp",
+              "x": 0.16666666666666666,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "primal_beast_uproar",
+          "layer": "roar",
+          "image": "/primal_beast_uproar/roar.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:roar",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:roar",
+              "image": "/art/skills/primal_beast_uproar/roar.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/attack_02.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-flight",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 3,
+        "time": 0.13333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 6,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "venomancer_venomous_gale",
+            "layer": "gale",
+            "image": "/venomancer_venomous_gale/gale.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:gale",
+            "x": 1.2000000000000002,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/venomancer_venomous_gale/poison.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.13333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 4,
+        "activeImageBytes": 66486272,
+        "cachedImageBytes": 73711616,
+        "cachedAtlases": 5,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "venomancer_venomous_gale",
+          "layer": "gale",
+          "image": "/venomancer_venomous_gale/gale.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:gale",
+          "x": 1.2000000000000002,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:gale",
+              "image": "/art/skills/venomancer_venomous_gale/gale.webp",
+              "x": 1.2000000000000002,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/venomancer_venomous_gale/poison.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 6,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-poison",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 3,
+        "time": 0.5333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "venomancer_venomous_gale",
+            "layer": "poison",
+            "image": "/venomancer_venomous_gale/poison.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/venomancer_venomous_gale/resistance.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.5333333333333333,
+          "hits": [
+            {
+              "skill": "venomancer_venomous_gale",
+              "time": 0.26666666666666666,
+              "amount": 125,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 11,
+        "triangles": 22,
+        "gpuTextures": 7,
+        "activeImageBytes": 77250560,
+        "cachedImageBytes": 84475904,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "venomancer_venomous_gale",
+          "layer": "poison",
+          "image": "/venomancer_venomous_gale/poison.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+              "image": "/art/skills/venomancer_venomous_gale/poison.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/venomancer_venomous_gale/resistance.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-resistance",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 9,
+        "time": 0.5333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "venomancer_venomous_gale",
+            "layer": "resistance",
+            "image": "/venomancer_venomous_gale/resistance.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.5333333333333333,
+          "hits": [
+            {
+              "skill": "venomancer_venomous_gale",
+              "time": 0.26666666666666666,
+              "amount": 250,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 8,
+        "activeImageBytes": 80936960,
+        "cachedImageBytes": 88162304,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "venomancer_venomous_gale",
+          "layer": "resistance",
+          "image": "/venomancer_venomous_gale/resistance.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+              "image": "/art/skills/venomancer_venomous_gale/resistance.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-flight",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 3,
+        "time": 0.43333333333333335,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 12,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "spirit",
+            "image": "/vengefulspirit_wave_of_terror/spirit.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:spirit",
+            "x": 2,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/vengefulspirit_wave_of_terror/fracture.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.43333333333333335,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 4,
+        "activeImageBytes": 66486272,
+        "cachedImageBytes": 73711616,
+        "cachedAtlases": 5,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:spirit"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "spirit",
+          "image": "/vengefulspirit_wave_of_terror/spirit.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:spirit",
+          "x": 2,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:spirit",
+              "image": "/art/skills/vengefulspirit_wave_of_terror/spirit.webp",
+              "x": 2,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 12,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-steal",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 6,
+        "time": 0.6,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "steal",
+            "image": "/vengefulspirit_wave_of_terror/steal.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:steal",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "status",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "fracture",
+            "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/vengefulspirit_wave_of_terror/fear.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.6,
+          "hits": [
+            {
+              "skill": "vengefulspirit_wave_of_terror",
+              "time": 0.4666666666666667,
+              "amount": 130,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 11,
+        "triangles": 22,
+        "gpuTextures": 7,
+        "activeImageBytes": 77840384,
+        "cachedImageBytes": 85065728,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "world:visual-world:0:steal",
+          "p:projectile:0:spirit",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "steal",
+          "image": "/vengefulspirit_wave_of_terror/steal.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:steal",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:steal",
+              "image": "/art/skills/vengefulspirit_wave_of_terror/steal.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "status",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "fracture",
+          "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+              "image": "/art/skills/vengefulspirit_wave_of_terror/fracture.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/vengefulspirit_wave_of_terror/fear.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-fear",
+      "mobile": false,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 9,
+        "time": 0.6,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "fear",
+            "image": "/vengefulspirit_wave_of_terror/fear.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.6,
+          "hits": [
+            {
+              "skill": "vengefulspirit_wave_of_terror",
+              "time": 0.4666666666666667,
+              "amount": 130,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 8,
+        "activeImageBytes": 81526784,
+        "cachedImageBytes": 88752128,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "world:visual-world:0:steal",
+          "p:projectile:0:spirit",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "fear",
+          "image": "/vengefulspirit_wave_of_terror/fear.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+              "image": "/art/skills/vengefulspirit_wave_of_terror/fear.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "field-shock",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_zuus_static_field",
+        "points": 3,
+        "time": 0.5666666666666667,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "transient",
+            "art": "custom_zuus_static_field",
+            "layer": "shock",
+            "image": "/custom_zuus_static_field/shock.webp",
+            "resourceAvailable": true,
+            "projectedKey": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "world",
+            "image": "/custom_zuus_static_field/jump.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [
+            {
+              "skill": "custom_zuus_static_field",
+              "time": 0.43333333333333335,
+              "amount": 10000,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 7,
+        "activeImageBytes": 26804224,
+        "cachedImageBytes": 30015488,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 0,
+        "persistentEffectKeys": [],
+        "transientEffects": 2,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "transient",
+          "art": "custom_zuus_static_field",
+          "layer": "shock",
+          "image": "/custom_zuus_static_field/shock.webp",
+          "resourceAvailable": true,
+          "projectedKey": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "event:0:p0h0:1:p1h0:custom_zuus_static_field:shock:4",
+              "image": "/art/mobile/skills/custom_zuus_static_field/shock.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "world",
+          "image": "/custom_zuus_static_field/jump.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "field-jump",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "custom_zuus_static_field",
+        "points": 9,
+        "time": 0.5666666666666667,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 4,
+            "y": 1,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "custom_zuus_static_field",
+            "layer": "jump",
+            "image": "/custom_zuus_static_field/jump.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:jump",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "link",
+            "art": "custom_zuus_static_field",
+            "layer": "jump_arc",
+            "image": "/custom_zuus_static_field/jump_arc.webp",
+            "resourceAvailable": true,
+            "projectedKey": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+            "x": 1.5,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.43333333333333335,
+          "time": 0.5666666666666667,
+          "hits": [
+            {
+              "skill": "custom_zuus_static_field",
+              "time": 0.43333333333333335,
+              "amount": 12000,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 15,
+        "triangles": 30,
+        "gpuTextures": 9,
+        "activeImageBytes": 28639232,
+        "cachedImageBytes": 31850496,
+        "cachedAtlases": 10,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/disabled.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+          "link:0:p0h0:1:p1h1:custom_zuus_static_field",
+          "world:visual-world:0:jump"
+        ],
+        "transientEffects": 4,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "custom_zuus_static_field",
+          "layer": "jump",
+          "image": "/custom_zuus_static_field/jump.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:jump",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:jump",
+              "image": "/art/mobile/skills/custom_zuus_static_field/jump.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "link",
+          "art": "custom_zuus_static_field",
+          "layer": "jump_arc",
+          "image": "/custom_zuus_static_field/jump_arc.webp",
+          "resourceAvailable": true,
+          "projectedKey": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+          "x": 1.5,
+          "y": 0,
+          "actual": [
+            {
+              "key": "link:0:p0h0:1:p1h0:custom_zuus_static_field",
+              "image": "/art/mobile/skills/custom_zuus_static_field/jump_arc.webp",
+              "x": 1.5,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/disabled.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 4,
+          "y": 1,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "napalm-splash",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "batrider_sticky_napalm",
+        "points": 3,
+        "time": 0.16666666666666666,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "batrider_sticky_napalm",
+            "layer": "splash",
+            "image": "/batrider_sticky_napalm/splash.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:splash",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.16666666666666666,
+          "hits": [
+            {
+              "skill": "batrider_sticky_napalm",
+              "time": 0.03333333333333333,
+              "amount": 24,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 5,
+        "activeImageBytes": 22937600,
+        "cachedImageBytes": 26148864,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:splash",
+          "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "batrider_sticky_napalm",
+          "layer": "splash",
+          "image": "/batrider_sticky_napalm/splash.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:splash",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:splash",
+              "image": "/art/mobile/skills/batrider_sticky_napalm/splash.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "napalm-stack",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "batrider_sticky_napalm",
+        "points": 3,
+        "time": 0.16666666666666666,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "batrider_sticky_napalm",
+            "layer": "coat",
+            "image": "/batrider_sticky_napalm/coat.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.16666666666666666,
+          "hits": [
+            {
+              "skill": "batrider_sticky_napalm",
+              "time": 0.03333333333333333,
+              "amount": 24,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 5,
+        "activeImageBytes": 22937600,
+        "cachedImageBytes": 26148864,
+        "cachedAtlases": 6,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:splash",
+          "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "batrider_sticky_napalm",
+          "layer": "coat",
+          "image": "/batrider_sticky_napalm/coat.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:batrider_sticky_napalm:coat",
+              "image": "/art/mobile/skills/batrider_sticky_napalm/coat.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-stack",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 3,
+        "time": 0.4,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "primal_beast_uproar",
+            "layer": "stack",
+            "image": "/primal_beast_uproar/stack.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/primal_beast_uproar/armour.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.4,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 13,
+        "triangles": 26,
+        "gpuTextures": 7,
+        "activeImageBytes": 27525120,
+        "cachedImageBytes": 30736384,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "s:0:p0h0:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+          "s:0:p0h1:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h2:1:p1h0:custom_silencer_global_silence:silence"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "primal_beast_uproar",
+          "layer": "stack",
+          "image": "/primal_beast_uproar/stack.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:p0h0:0:p0h0:primal_beast_uproar:stack",
+              "image": "/art/mobile/skills/primal_beast_uproar/stack.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/primal_beast_uproar/armour.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/attack.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-roar",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 3,
+        "time": 0.2,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "primal_beast_uproar",
+            "layer": "roar",
+            "image": "/primal_beast_uproar/roar.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:roar",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "status",
+            "art": "primal_beast_uproar",
+            "layer": "armour",
+            "image": "/primal_beast_uproar/armour.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/primal_beast_uproar/stack.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.06666666666666667,
+          "time": 0.2,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 10,
+        "triangles": 20,
+        "gpuTextures": 6,
+        "activeImageBytes": 25296896,
+        "cachedImageBytes": 28508160,
+        "cachedAtlases": 7,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "world:visual-world:0:roar",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:armour"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "primal_beast_uproar",
+          "layer": "roar",
+          "image": "/primal_beast_uproar/roar.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:roar",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:roar",
+              "image": "/art/mobile/skills/primal_beast_uproar/roar.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "status",
+          "art": "primal_beast_uproar",
+          "layer": "armour",
+          "image": "/primal_beast_uproar/armour.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+              "image": "/art/mobile/skills/primal_beast_uproar/armour.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/primal_beast_uproar/stack.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/attack.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "uproar-rays",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "primal_beast_uproar",
+        "points": 9,
+        "time": 0.7,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "primal_beast_uproar",
+            "layer": "shard",
+            "image": "/primal_beast_uproar/shard.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:shard",
+            "x": 0.16666666666666666,
+            "y": 0
+          },
+          {
+            "kind": "world",
+            "art": "primal_beast_uproar",
+            "layer": "roar",
+            "image": "/primal_beast_uproar/roar.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:roar",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.7,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 23,
+        "triangles": 46,
+        "gpuTextures": 9,
+        "activeImageBytes": 30212096,
+        "cachedImageBytes": 33423360,
+        "cachedAtlases": 10,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/attack.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 14,
+        "persistentEffectKeys": [
+          "world:visual-world:0:roar",
+          "p:projectile:0:shard",
+          "p:projectile:1:shard",
+          "p:projectile:2:shard",
+          "p:projectile:3:shard",
+          "p:projectile:4:shard",
+          "p:projectile:5:shard",
+          "p:projectile:6:shard",
+          "p:projectile:7:shard",
+          "p:projectile:8:shard",
+          "p:projectile:9:shard",
+          "s:0:p0h0:0:p0h0:primal_beast_uproar:armour",
+          "s:0:p0h1:1:p1h0:custom_silencer_global_silence:silence",
+          "s:0:p0h2:1:p1h0:custom_silencer_global_silence:silence"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "primal_beast_uproar",
+          "layer": "shard",
+          "image": "/primal_beast_uproar/shard.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:shard",
+          "x": 0.16666666666666666,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:shard",
+              "image": "/art/mobile/skills/primal_beast_uproar/shard.webp",
+              "x": 0.16666666666666666,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "world",
+          "art": "primal_beast_uproar",
+          "layer": "roar",
+          "image": "/primal_beast_uproar/roar.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:roar",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:roar",
+              "image": "/art/mobile/skills/primal_beast_uproar/roar.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/attack.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-flight",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 3,
+        "time": 0.13333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 6,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "venomancer_venomous_gale",
+            "layer": "gale",
+            "image": "/venomancer_venomous_gale/gale.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:gale",
+            "x": 1.2000000000000002,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/venomancer_venomous_gale/poison.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.13333333333333333,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 4,
+        "activeImageBytes": 21889024,
+        "cachedImageBytes": 25100288,
+        "cachedAtlases": 5,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "venomancer_venomous_gale",
+          "layer": "gale",
+          "image": "/venomancer_venomous_gale/gale.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:gale",
+          "x": 1.2000000000000002,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:gale",
+              "image": "/art/mobile/skills/venomancer_venomous_gale/gale.webp",
+              "x": 1.2000000000000002,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/venomancer_venomous_gale/poison.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 6,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-poison",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 3,
+        "time": 0.5333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "venomancer_venomous_gale",
+            "layer": "poison",
+            "image": "/venomancer_venomous_gale/poison.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/venomancer_venomous_gale/resistance.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.5333333333333333,
+          "hits": [
+            {
+              "skill": "venomancer_venomous_gale",
+              "time": 0.26666666666666666,
+              "amount": 125,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 11,
+        "triangles": 22,
+        "gpuTextures": 7,
+        "activeImageBytes": 26673152,
+        "cachedImageBytes": 29884416,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 2,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "venomancer_venomous_gale",
+          "layer": "poison",
+          "image": "/venomancer_venomous_gale/poison.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+              "image": "/art/mobile/skills/venomancer_venomous_gale/poison.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/venomancer_venomous_gale/resistance.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "gale-resistance",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "venomancer_venomous_gale",
+        "points": 9,
+        "time": 0.5333333333333333,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "venomancer_venomous_gale",
+            "layer": "resistance",
+            "image": "/venomancer_venomous_gale/resistance.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.03333333333333333,
+          "time": 0.5333333333333333,
+          "hits": [
+            {
+              "skill": "venomancer_venomous_gale",
+              "time": 0.26666666666666666,
+              "amount": 250,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 8,
+        "activeImageBytes": 28311552,
+        "cachedImageBytes": 31522816,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "p:projectile:0:gale",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:poison",
+          "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance"
+        ],
+        "transientEffects": 1,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "venomancer_venomous_gale",
+          "layer": "resistance",
+          "image": "/venomancer_venomous_gale/resistance.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:venomancer_venomous_gale:resistance",
+              "image": "/art/mobile/skills/venomancer_venomous_gale/resistance.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-flight",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 3,
+        "time": 0.43333333333333335,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 12,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "projectile",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "spirit",
+            "image": "/vengefulspirit_wave_of_terror/spirit.webp",
+            "resourceAvailable": true,
+            "projectedKey": "p:projectile:0:spirit",
+            "x": 2,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/vengefulspirit_wave_of_terror/fracture.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.43333333333333335,
+          "hits": []
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 9,
+        "triangles": 18,
+        "gpuTextures": 4,
+        "activeImageBytes": 21889024,
+        "cachedImageBytes": 25100288,
+        "cachedAtlases": 5,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 1,
+        "persistentEffectKeys": [
+          "p:projectile:0:spirit"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "projectile",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "spirit",
+          "image": "/vengefulspirit_wave_of_terror/spirit.webp",
+          "resourceAvailable": true,
+          "projectedKey": "p:projectile:0:spirit",
+          "x": 2,
+          "y": 0,
+          "actual": [
+            {
+              "key": "p:projectile:0:spirit",
+              "image": "/art/mobile/skills/vengefulspirit_wave_of_terror/spirit.webp",
+              "x": 2,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 12,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-steal",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 6,
+        "time": 0.6,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "world",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "steal",
+            "image": "/vengefulspirit_wave_of_terror/steal.webp",
+            "resourceAvailable": true,
+            "projectedKey": "world:visual-world:0:steal",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "kind": "status",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "fracture",
+            "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [
+          {
+            "kind": "status",
+            "image": "/vengefulspirit_wave_of_terror/fear.webp"
+          }
+        ],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.6,
+          "hits": [
+            {
+              "skill": "vengefulspirit_wave_of_terror",
+              "time": 0.4666666666666667,
+              "amount": 130,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 11,
+        "triangles": 22,
+        "gpuTextures": 7,
+        "activeImageBytes": 26935296,
+        "cachedImageBytes": 30146560,
+        "cachedAtlases": 8,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 3,
+        "persistentEffectKeys": [
+          "world:visual-world:0:steal",
+          "p:projectile:0:spirit",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "world",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "steal",
+          "image": "/vengefulspirit_wave_of_terror/steal.webp",
+          "resourceAvailable": true,
+          "projectedKey": "world:visual-world:0:steal",
+          "x": 0,
+          "y": 0,
+          "actual": [
+            {
+              "key": "world:visual-world:0:steal",
+              "image": "/art/mobile/skills/vengefulspirit_wave_of_terror/steal.webp",
+              "x": 0,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        },
+        {
+          "kind": "status",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "fracture",
+          "image": "/vengefulspirit_wave_of_terror/fracture.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+              "image": "/art/mobile/skills/vengefulspirit_wave_of_terror/fracture.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [
+        {
+          "kind": "status",
+          "image": "/vengefulspirit_wave_of_terror/fear.webp",
+          "actual": []
+        }
+      ],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    },
+    {
+      "scenario": "wave-fear",
+      "mobile": true,
+      "status": "passed",
+      "fixture": {
+        "id": "vengefulspirit_wave_of_terror",
+        "points": 9,
+        "time": 0.6,
+        "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+        "bodies": [
+          {
+            "id": "0:p0h0",
+            "x": 0,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h1",
+            "x": 14.17,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "0:p0h2",
+            "x": 14.970001830000001,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h0",
+            "x": 3,
+            "y": 0,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h1",
+            "x": 15.770003430003662,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          },
+          {
+            "id": "1:p1h2",
+            "x": 16,
+            "y": 10,
+            "dead": false,
+            "hidden": false
+          }
+        ],
+        "checks": [
+          {
+            "kind": "status",
+            "art": "vengefulspirit_wave_of_terror",
+            "layer": "fear",
+            "image": "/vengefulspirit_wave_of_terror/fear.webp",
+            "resourceAvailable": true,
+            "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+            "x": 3,
+            "y": 0
+          }
+        ],
+        "absent": [],
+        "mechanics": {
+          "releaseTime": 0.3333333333333333,
+          "time": 0.6,
+          "hits": [
+            {
+              "skill": "vengefulspirit_wave_of_terror",
+              "time": 0.4666666666666667,
+              "amount": 130,
+              "category": "spell"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "drawCalls": 12,
+        "triangles": 24,
+        "gpuTextures": 8,
+        "activeImageBytes": 28573696,
+        "cachedImageBytes": 31784960,
+        "cachedAtlases": 9,
+        "unitBodies": [
+          {
+            "id": "0:p0h0",
+            "image": "/art/mobile/characters/mage-male/cast.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "0:p0h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h0",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h1",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          },
+          {
+            "id": "1:p1h2",
+            "image": "/art/mobile/characters/mage-male/idle.webp",
+            "visible": true
+          }
+        ],
+        "persistentEffects": 4,
+        "persistentEffectKeys": [
+          "world:visual-world:0:steal",
+          "p:projectile:0:spirit",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fracture",
+          "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear"
+        ],
+        "transientEffects": 0,
+        "loadErrors": []
+      },
+      "checks": [
+        {
+          "kind": "status",
+          "art": "vengefulspirit_wave_of_terror",
+          "layer": "fear",
+          "image": "/vengefulspirit_wave_of_terror/fear.webp",
+          "resourceAvailable": true,
+          "projectedKey": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+          "x": 3,
+          "y": 0,
+          "actual": [
+            {
+              "key": "s:1:p1h0:0:p0h0:vengefulspirit_wave_of_terror:fear",
+              "image": "/art/mobile/skills/vengefulspirit_wave_of_terror/fear.webp",
+              "x": 3,
+              "y": 0,
+              "opacity": 1
+            }
+          ]
+        }
+      ],
+      "absent": [],
+      "bodies": [
+        {
+          "id": "0:p0h0",
+          "x": 0,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/cast.webp"
+        },
+        {
+          "id": "0:p0h1",
+          "x": 14.17,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "0:p0h2",
+          "x": 14.970001830000001,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h0",
+          "x": 3,
+          "y": 0,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h1",
+          "x": 15.770003430003662,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        },
+        {
+          "id": "1:p1h2",
+          "x": 16,
+          "y": 10,
+          "visible": true,
+          "image": "/art/mobile/characters/mage-male/idle.webp"
+        }
+      ],
+      "missing": [],
+      "errors": []
+    }
+  ],
+  "missing": []
+}

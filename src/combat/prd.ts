@@ -39,6 +39,8 @@ export function rollPrd(state:PrdState,probability:number,random:()=>number):boo
  * certified. Random target selection, scalar rolls and unspecified procs keep
  * their existing uniform draws. Each key is independent per combat skill slot. */
 export const PRD_WORKING_ELIGIBILITY:Readonly<Record<string,readonly string[]>>={
+  // Dated 2023 Smoke Screen notes explicitly identify blind as PRD.
+  riki_smoke_screen:['blind'],
   custom_phantom_assassin_coup_de_grace:['critical'],
   custom_chaos_knight_chaos_strike:['critical'],
   custom_axe_counter_helix:['helix'],

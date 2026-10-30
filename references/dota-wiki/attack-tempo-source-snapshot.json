@@ -1,0 +1,1745 @@
+{
+  "schemaVersion": 1,
+  "group": "attack-tempo",
+  "accessedOn": "2026-10-30",
+  "policy": "Only metadata/hashes/independent paraphrases and selected official structured records are committed. Full third-party HTML remains ignored. Exact capture dates and fetched-full-page versus changelog-search evidence are distinguished.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+      "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+      "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+    },
+    {
+      "url": "https://web.archive.org/web/20230205103531id_/https://dota2.fandom.com/wiki/Sniper",
+      "accessedOn": "2026-10-30",
+      "sha256": "9abb658bb5942248b5d67c4e5b3deb0d61d86c5c012c3c2f262aa3a443bcd450",
+      "id": "sniper-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Sniper",
+      "paraphrase": "Passive range has no granted native active under explicit AA difference. Native Grenade is a moving ground projectile with continuous self/enemy push and enemy debuff before damage. Assassinate uses tracking damage then brief stun;impact block and TrueSight-immunity disjoint are distinct.",
+      "versionContext": "Direct full historical HTML capture 20230205103531. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Riki",
+      "accessedOn": "2026-10-30",
+      "sha256": "777b454c753facbb1699f5dbb6759196320384ea668cc815e4991ea71dcf5aa2",
+      "id": "riki-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Riki",
+      "paraphrase": "Tricks has immediate attacks at the stated count-dependent intervals,hidden/phased/invulnerable channel,ability-only agility and ordinary modifier eligibility. Root/leash exception is a separate ungranted talent. Smoke uses independent native ranks,half-second lingering blind/silence and nonstacking providers.",
+      "versionContext": "Direct full historical HTML capture 20230301011014. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230205214118id_/https://dota2.fandom.com/wiki/Windranger",
+      "accessedOn": "2026-10-30",
+      "sha256": "54c81372cc7775af1d507465070ebf317ffcf484efba267a0ce6afe31cfe21d5",
+      "id": "windranger-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Windranger",
+      "paraphrase": "Windrun activation is immediate with no backswing despite the raw unprocessed point;its slow has a2.5second lease. Basic dispel removes the active aura. Native modern Scepter phasing/invisibility/blind is not imported with AA two-charge-only Gaben.",
+      "versionContext": "Direct full historical HTML capture 20230205214118. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+      "accessedOn": "2026-10-30",
+      "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+      "id": "kunkka-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Kunkka",
+      "paraphrase": "Ready Tidebringer contributes regular visible bonus damage;cleave uses the pre-target attack packet and native starting/ending trapezoid. Illusions and special targets have explicit exclusions. Historical silence and Break behavior is version-qualified against the later7.33 change.",
+      "versionContext": "Direct full historical HTML capture 20230215191426. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+      "accessedOn": "2026-10-30",
+      "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+      "id": "marci-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Marci",
+      "paraphrase": "Flurry grants speed only while loaded,consumes executed miss/instant/allied attacks,has a one-second completion window and differentiated failure/success recovery. Last attack orders debuff,pulse,silence,then its main damage. Native Scepter is narrower than AA any-spell Gaben.",
+      "versionContext": "Direct full historical HTML capture 20230215191449. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://news.abilityarena.com/ability-arena-season-4/",
+      "httpStatus": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "98315a69923ee51a703cede5b0b95142531bee8c52f1cc81ff84fdc189d7a716",
+      "bytes": 30460,
+      "id": "aa-season4",
+      "paraphrase": "Official Season4 patch article explicitly prevents Tricks from casting during Sleight of Fist. The older Gaben attack-count bug note does not overwrite the current official Super/Gaben descriptions.",
+      "versionContext": "Official article dated2023-01-01;complete body actually fetched/read,not a search-index-only citation."
+    },
+    {
+      "id": "valve-733",
+      "url": "https://www.dota2.com/datafeed/patchnotes?version=7.33&language=english",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "b65cb135d43236e8816546e661a58aaf30de3ec7f737a201905590e041f17d04",
+      "paraphrase": "Official hero23 ability5032 patch entry changes Tidebringer from silence-disabled to Break-disabled. This establishes the version boundary;the present implementation deliberately uses pre7.33 behavior.",
+      "versionContext": "Official7.33 patch timestamp1681974000/2023-04-20;actual structured response read,not applied backward to February mechanics."
+    },
+    {
+      "id": "wind-722",
+      "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.22",
+      "accessedOn": "2026-10-30",
+      "observation": "Historical7.22 Scepter records a two-charge Windrun with quarter-second cast reuse. Only the charge prototype is used;old movement bonus/max-speed changes are not automatically granted.",
+      "versionContext": "Historical changelog search evidence crosschecked against existing native charge fields. This is a prototype/working compatibility source,not proof AA copied the entire7.22Scepter."
+    }
+  ],
+  "officialAA": [
+    {
+      "name": "Take Aim",
+      "id": "custom_sniper_take_aim",
+      "icon": "sniper_take_aim",
+      "tags": [
+        "attackRange",
+        "displacement",
+        "passive"
+      ],
+      "categories": [
+        "ABILITY: Passive"
+      ],
+      "description": "Extends the attack range of this hero's weapon.",
+      "differences": "Doesn't has an active component.",
+      "values": [
+        "BONUS RANGE: 100 / 200 / 400"
+      ],
+      "cooldowns": [],
+      "manaCost": [],
+      "superUpgrade": "Super: Grants Concussive Grenade.",
+      "gabenUpgrade": "Gaben: Attacks also proc Assassinate on the target. 5s cooldown."
+    },
+    {
+      "name": "Tidebringer",
+      "id": "kunkka_tidebringer",
+      "icon": "kunkka_tidebringer",
+      "tags": [
+        "attackDamage",
+        "attackModifier"
+      ],
+      "categories": [
+        "ABILITY: Auto-Cast",
+        "DAMAGE TYPE: Physical",
+        "PIERCES SPELL IMMUNITY: Yes"
+      ],
+      "description": "Kunkka's legendary sword grants increased damage and cleaves a large area of effect in front of him for a single strike.",
+      "differences": "",
+      "values": [
+        "CLEAVE DAMAGE: 150%",
+        "CLEAVE RANGE: 1100",
+        "DAMAGE BONUS: 30 / 60 / 120"
+      ],
+      "cooldowns": [
+        13,
+        10,
+        4
+      ],
+      "manaCost": [],
+      "superUpgrade": "Super: Cooldown reduced by -2 seconds.",
+      "gabenUpgrade": "Gaben: +100% Tidebringer Cleave"
+    },
+    {
+      "name": "Tricks of the Trade",
+      "id": "custom_riki_tricks_of_the_trade",
+      "icon": "riki_tricks_of_the_trade",
+      "tags": [
+        "instantAttack"
+      ],
+      "categories": [
+        "ABILITY: Channeled",
+        "PIERCES SPELL IMMUNITY: Yes"
+      ],
+      "description": "CHANNELED - Riki phases out of the world while striking random enemy heroes from behind in an area around him.",
+      "differences": "Has a greatly increased cast point.",
+      "values": [
+        "ATTACK RATE: 4",
+        "DURATION: 2",
+        "RADIUS: 450"
+      ],
+      "cooldowns": [
+        21,
+        18,
+        12
+      ],
+      "manaCost": [
+        50
+      ],
+      "superUpgrade": "Super: Increases the number of attacks by 1, hits 1 extra target per attack, and -4s CDR.",
+      "gabenUpgrade": "Gaben: Casts a level 4 Smoke Screen on the ground while casting Tricks of the Trade which lasts 2s."
+    },
+    {
+      "name": "Unleash",
+      "id": "marci_unleash",
+      "icon": "marci_unleash",
+      "tags": [
+        "ultimate"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical",
+        "DISPELLABLE: Strong Dispels Only"
+      ],
+      "description": "Marci taps a hidden power, gaining Fury charges that allow her to deliver a rapid sequence of strikes that slow movement and attack speed of the target for 2s. The last strike in every Fury combo creates a damaging pulse around the target. In between Fury combos, Marci is unable to attack for 1.5s.\n\nMarci gains 15% movement speed when Unleash is cast.",
+      "differences": "",
+      "values": [
+        "BASE ATTACK SPEED SLOW: 60 / 80 / 100",
+        "BONUS ATTACK SPEED: 700 / 975 / 1325",
+        "DURATION: 16",
+        "MOVEMENT SLOW: 30%",
+        "PULSE DAMAGE: 50 / 100 / 150",
+        "PULSE RADIUS: 800",
+        "STRIKES PER FURY: 3 / 4 / 5"
+      ],
+      "cooldowns": [
+        100,
+        80,
+        60
+      ],
+      "manaCost": [
+        100,
+        125,
+        150
+      ],
+      "superUpgrade": "Super: Pulses silence for 1.5 seconds.",
+      "gabenUpgrade": "Gaben: Cooldown reduced by 10 seconds. While Unleash is active, casting spells creates a pulse."
+    },
+    {
+      "name": "Windrun",
+      "id": "custom_windrunner_windrun",
+      "icon": "windrunner_windrun",
+      "tags": [
+        "mobility"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "PIERCES SPELL IMMUNITY: No",
+        "DISPELLABLE: Yes"
+      ],
+      "description": "Increases movement speed and adds evasion from all physical attacks, while slowing movement of nearby enemies.",
+      "differences": "",
+      "values": [
+        "DURATION: 1 / 2 / 4",
+        "ENEMY SLOW RADIUS: 325",
+        "ENEMY SLOW: -15% / -20% / -30%",
+        "EVASION: 80%",
+        "MOVE SPEED BONUS: 60%"
+      ],
+      "cooldowns": [
+        15,
+        14,
+        12
+      ],
+      "manaCost": [
+        50
+      ],
+      "superUpgrade": "Super: +2s duration.",
+      "gabenUpgrade": "Gaben: Grants 2 charges."
+    }
+  ],
+  "pinnedValve": {
+    "metadata": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "selectedHeroTalentChildAbilities": {
+      "kunkka_tidal_wave": {
+        "ID": "605",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityCastRange": "1400",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "12",
+        "AbilityManaCost": "75",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "speed": "700"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "750"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "damage": "250"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "1.25"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "knockback_distance": "600"
+          }
+        }
+      },
+      "kunkka_torrent": {
+        "ID": "5031",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Ability.Torrent",
+        "HasScepterUpgrade": "1",
+        "AbilityDraftScepterAbility": "kunkka_torrent_storm",
+        "AbilityCastRange": "1300",
+        "AbilityCastPoint": "0.4",
+        "AbilityCooldown": "16 14 12 10",
+        "AbilityManaCost": "100",
+        "AbilityModifierSupportValue": "0.5",
+        "AbilityValues": {
+          "radius": {
+            "value": "225",
+            "special_bonus_unique_kunkka": "+80"
+          },
+          "movespeed_bonus": "-40",
+          "slow_duration": "1 2 3 4",
+          "stun_duration": {
+            "value": "1.6",
+            "special_bonus_unique_kunkka_7": "+30%"
+          },
+          "delay": "1.6 1.6 1.6 1.6",
+          "torrent_damage": {
+            "value": "80 160 240 320",
+            "special_bonus_unique_kunkka_7": "+30%"
+          },
+          "damage_tick_interval": "0.2"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "kunkka_torrent_storm": {
+        "ID": "319",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByScepter": "1",
+        "HasScepterUpgrade": "1",
+        "AbilitySound": "Ability.Torrent",
+        "AbilityCastPoint": "0.4",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1",
+        "AbilityCooldown": "70",
+        "AbilityManaCost": "250",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "torrent_interval": "0.25",
+            "RequiresScepter": "1"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "torrent_duration": "5.0",
+            "RequiresScepter": "1"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "torrent_min_distance": "300",
+            "RequiresScepter": "1"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "torrent_max_distance": "1100",
+            "RequiresScepter": "1"
+          }
+        }
+      },
+      "kunkka_tidebringer": {
+        "ID": "5032",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "AbilitySound": "Hero_Kunkka.Tidebringer.Attack",
+        "AbilityCastRange": "150",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityValues": {
+          "cleave_starting_width": "150",
+          "cleave_ending_width": "500 550 600 650",
+          "cleave_distance": "650 800 950 1100",
+          "damage_bonus": "30 60 90 120",
+          "cleave_damage": {
+            "value": "150",
+            "special_bonus_unique_kunkka_4": "+70"
+          },
+          "movespeed_slow": {
+            "value": "0",
+            "special_bonus_unique_kunkka_tidebringer_slow": "-60"
+          },
+          "movespeed_slow_duration": {
+            "value": "0",
+            "special_bonus_unique_kunkka_tidebringer_slow": "+1"
+          },
+          "AbilityCooldown": {
+            "value": "13.0 10.0 7.0 4.0",
+            "special_bonus_unique_kunkka_5": "-2"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "kunkka_x_marks_the_spot": {
+        "ID": "5033",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Ability.XMarksTheSpot.Target",
+        "AbilityCastRange": "550 700 850 1000",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityCooldown": "30 24 18 12",
+        "AbilityManaCost": "50",
+        "AbilityValues": {
+          "duration": "4.0",
+          "allied_duration": "8.0",
+          "fow_range": "400",
+          "fow_duration": "5.94",
+          "ally_ms": {
+            "value": "0",
+            "special_bonus_unique_kunkka_6": "+25"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "kunkka_return": {
+        "ID": "5034",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilitySound": "Ability.XMarksTheSpot.Return",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastPoint": "0.4 0.4 0.4 0.4",
+        "AbilityCooldown": "1.0",
+        "AbilityManaCost": "0"
+      },
+      "kunkka_ghostship": {
+        "ID": "5035",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Ability.Ghostship",
+        "AbilityDraftUltShardAbility": "kunkka_tidal_wave",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_GHOST_SHIP",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastRange": "1000",
+        "AbilityCastPoint": "0.3",
+        "AbilityDamage": "400 500 600",
+        "AbilityManaCost": "125 175 225",
+        "AbilityValues": {
+          "tooltip_delay": "3.1",
+          "ghostship_distance": "2000",
+          "ghostship_width": "450",
+          "movespeed_bonus": "15",
+          "buff_duration": "10",
+          "stun_duration": "1.4 1.4 1.4",
+          "ghostship_speed": "650",
+          "ghostship_absorb": "40",
+          "AbilityCooldown": {
+            "value": "80 70 60",
+            "special_bonus_unique_kunkka_ghostship_cooldown": "-15"
+          }
+        }
+      },
+      "windrunner_gale_force": {
+        "ID": "652",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT |  DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "MaxLevel": "1",
+        "IsShardUpgrade": "1",
+        "IsGrantedByShard": "1",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastRange": "1500",
+        "AbilityCooldown": "30",
+        "AbilityManaCost": "150",
+        "AbilityValues": {
+          "duration": "3",
+          "wind_strength": "240",
+          "radius": "1000"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "windrunner_shackleshot": {
+        "ID": "5130",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Windrunner.ShackleshotCast",
+        "AbilityCastRange": "800",
+        "AbilityCastPoint": "0.15",
+        "AbilityCooldown": "16 14 12 10",
+        "AbilityDamage": "0 0 0 0",
+        "AbilityManaCost": "70 80 90 100",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "fail_stun_duration": "0.75 0.75 0.75 0.75"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "stun_duration": "2.0 2.6 3.2 3.8",
+            "LinkedSpecialBonus": "special_bonus_unique_windranger_6"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "shackle_distance": "575"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "arrow_speed": "1650"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "shackle_count": "1"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "shackle_angle": "23"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "windrunner_powershot": {
+        "ID": "5131",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Ability.Powershot",
+        "AbilityCastRange": "2600",
+        "AbilityCastPoint": "0.0",
+        "AbilityCooldown": "12 11 10 9",
+        "AbilityChannelTime": "1.0",
+        "AbilityManaCost": "90 100 110 120",
+        "AbilityValues": {
+          "powershot_damage": {
+            "value": "150 250 350 450",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "damage_reduction": {
+            "value": "20",
+            "special_bonus_unique_windranger_3": "-15",
+            "CalculateSpellDamageTooltip": "0",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+          },
+          "arrow_width": "125 125 125 125",
+          "arrow_range": "2600",
+          "arrow_speed": "3000.0 3000.0 3000.0 3000.0",
+          "tree_width": "75 75 75 75",
+          "vision_radius": "400",
+          "vision_duration": "3.34 3.34 3.34 3.34"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "windrunner_windrun": {
+        "ID": "5132",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "AbilitySound": "Ability.Windrun",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "15 14 13 12",
+        "AbilityDuration": "3 4 5 6",
+        "AbilityManaCost": "50",
+        "AbilityModifierSupportValue": "0.1",
+        "AbilityValues": {
+          "movespeed_bonus_pct": "60",
+          "evasion_pct_tooltip": "100",
+          "enemy_movespeed_bonus_pct": {
+            "value": "-15 -20 -25 -30"
+          },
+          "radius": {
+            "value": "325",
+            "special_bonus_unique_windranger": "+225"
+          },
+          "scepter_movespeed_bonus_pct": {
+            "RequiresScepter": "1",
+            "value": "-35 -40 -45 -50"
+          },
+          "scepter_blind": {
+            "value": "40",
+            "RequiresScepter": "1"
+          },
+          "cannot_be_dispelled": {
+            "value": "0",
+            "special_bonus_unique_windranger_windrun_undispellable": "+1"
+          },
+          "duration": "3 4 5 6"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "windrunner_focusfire": {
+        "ID": "5133",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySound": "Ability.Focusfire",
+        "AbilityDraftUltShardAbility": "windrunner_gale_force",
+        "AbilityCastRange": "600",
+        "AbilityCastPoint": "0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "70 50 30",
+        "AbilityDuration": "20.0",
+        "AbilityManaCost": "75 100 125",
+        "AbilityValues": {
+          "bonus_attack_speed": "350 425 500",
+          "focusfire_damage_reduction": {
+            "value": "-30",
+            "LinkedSpecialBonus": "special_bonus_unique_windranger_8"
+          },
+          "focusfire_fire_on_the_move": "1"
+        }
+      },
+      "windrunner_focusfire_cancel": {
+        "ID": "587",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilityCastAnimation": "ACT_INVALID"
+      },
+      "riki_poison_dart": {
+        "ID": "550",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "MaxLevel": "1",
+        "FightRecapLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityCastRange": "1000",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "12",
+        "AbilityManaCost": "75",
+        "AbilityValues": {
+          "duration": "3",
+          "damage": {
+            "value": "150",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "movement_slow": "30",
+          "debuff_duration": "4",
+          "projectile_speed": "1600",
+          "wake_damage_limit": "200"
+        }
+      },
+      "riki_smoke_screen": {
+        "ID": "5142",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySound": "Hero_Riki.Smoke_Screen",
+        "AbilityCastRange": "550",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "20 17 14 11",
+        "AbilityDuration": "6",
+        "AbilityManaCost": "65 70 75 80",
+        "AbilityValues": {
+          "radius": {
+            "value": "375",
+            "LinkedSpecialBonus": "special_bonus_unique_riki_7"
+          },
+          "duration": "6",
+          "miss_rate": "30 45 60 75"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "riki_blink_strike": {
+        "ID": "5143",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_CUSTOM",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_CUSTOM",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "AbilitySound": "Hero_Riki.Blink_Strike",
+        "AbilityCastRange": "600 700 800 900",
+        "AbilityCastPoint": "0.3",
+        "AbilityCooldown": "0.1",
+        "AbilityCharges": "2",
+        "AbilityManaCost": "50 55 60 65",
+        "AbilityValues": {
+          "bonus_damage": {
+            "value": "40 55 70 85",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "AbilityChargeRestoreTime": {
+            "value": "25 20 15 10",
+            "special_bonus_unique_riki_9": "-4"
+          },
+          "slow": {
+            "value": "0.2 0.4 0.6 0.8",
+            "special_bonus_unique_riki_2": "+0.4"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "riki_backstab": {
+        "ID": "5144",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityDraftUltShardAbility": "riki_poison_dart",
+        "AbilityValues": {
+          "damage_multiplier": {
+            "value": "1.4 1.8 2.2",
+            "LinkedSpecialBonus": "special_bonus_unique_riki_1",
+            "CalculateSpellDamageTooltip": "0",
+            "DamageTypeTooltip": "DAMAGE_TYPE_NONE"
+          },
+          "backstab_angle": "105 105 105",
+          "fade_delay": "4 3 2"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "riki_permanent_invisibility": {
+        "ID": "316",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "fade_delay": "4 3 2"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "movement_speed": "20 40 60"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "riki_tricks_of_the_trade": {
+        "ID": "5145",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "HasScepterUpgrade": "1",
+        "AbilitySound": "Hero_Riki.TricksOfTheTrade.Cast",
+        "AbilityCastRange": "400",
+        "AbilityCastPoint": "0.3",
+        "AbilityChannelTime": "2.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityChannelAnimation": "ACT_DOTA_CHANNEL_ABILITY_4",
+        "AbilityCooldown": "18 16 14 12",
+        "AbilityManaCost": "55",
+        "AbilityValues": {
+          "radius": {
+            "value": "450",
+            "LinkedSpecialBonus": "special_bonus_unique_riki_4"
+          },
+          "attack_count": "4",
+          "damage_pct": "40",
+          "agility_pct": "55 70 85 100",
+          "scepter_duration": {
+            "value": "2",
+            "RequiresScepter": "1"
+          },
+          "scepter_attacks": {
+            "value": "5",
+            "RequiresScepter": "1"
+          },
+          "scepter_cast_range": {
+            "value": "700",
+            "RequiresScepter": "1"
+          },
+          "dispel": {
+            "value": "0",
+            "special_bonus_unique_riki_5": "+1"
+          }
+        }
+      },
+      "sniper_concussive_grenade": {
+        "ID": "694",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "IsGrantedByShard": "1",
+        "MaxLevel": "1",
+        "AbilityCastPoint": "0.1",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "10",
+        "AbilityManaCost": "50",
+        "AbilityValues": {
+          "damage": {
+            "value": "25",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "AbilityCastRange": {
+            "value": "600",
+            "special_bonus_unique_sniper_grenade_range": "+250"
+          },
+          "radius": "375",
+          "slow": "50",
+          "debuff_duration": "3",
+          "knockback_height": "100",
+          "knockback_distance": "475",
+          "knockback_duration": "0.4",
+          "self_push": {
+            "value": "1",
+            "special_bonus_unique_sniper_grenade_self_push": "+1"
+          }
+        }
+      },
+      "sniper_shrapnel": {
+        "ID": "5154",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Sniper.ShrapnelShatter",
+        "AbilityCastRange": "1800",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "0",
+        "AbilityCharges": "3",
+        "AbilityChargeRestoreTime": "35",
+        "AbilityManaCost": "75",
+        "AbilityModifierSupportValue": "0.25",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "slow_movement_speed": "-12 -18 -24 -30",
+            "LinkedSpecialBonus": "special_bonus_unique_sniper_5"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "radius": "400"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "shrapnel_damage": "25 40 55 70",
+            "LinkedSpecialBonus": "special_bonus_unique_sniper_1"
+          },
+          "04": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "10.0"
+          },
+          "05": {
+            "var_type": "FIELD_FLOAT",
+            "damage_delay": "1.2"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "slow_duration": "2.0 2.0 2.0 2.0"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "AbilityCharges": "",
+            "LinkedSpecialBonus": "special_bonus_unique_sniper_2"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "sniper_headshot": {
+        "ID": "5155",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilityValues": {
+          "damage": {
+            "value": "20 50 80 110",
+            "special_bonus_unique_sniper_headshot_damage": "+30"
+          },
+          "proc_chance": "40",
+          "knockback_distance": {
+            "value": "10",
+            "special_bonus_unique_sniper_3": "+28"
+          },
+          "slow": "-100",
+          "slow_duration": "0.5"
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2"
+      },
+      "sniper_take_aim": {
+        "ID": "5156",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilityCastRange": "0",
+        "AbilityCastPoint": "0 0 0 0",
+        "AbilityCooldown": "20 18 16 14",
+        "AbilityManaCost": "50",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_attack_range": "100 200 300 400",
+            "LinkedSpecialBonus": "special_bonus_unique_sniper_6"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "duration": "3",
+            "LinkedSpecialBonus": "special_bonus_unique_sniper_4"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "slow": "45 40 35 30"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "headshot_chance": "100"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3"
+      },
+      "sniper_assassinate": {
+        "ID": "5157",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitTargetFlags": "DOTA_UNIT_TARGET_FLAG_INVULNERABLE",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "FightRecapLevel": "2",
+        "HasScepterUpgrade": "1",
+        "AbilitySound": "Ability.Assassinate",
+        "AbilityDraftUltShardAbility": "sniper_concussive_grenade",
+        "AbilityCastRange": "3000",
+        "AbilityCastRangeBuffer": "600",
+        "AbilityCastPoint": "2",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "20 15 10",
+        "AbilityDamage": "320 510 700",
+        "AbilityManaCost": "175 225 275",
+        "AbilityModifierSupportValue": "0.0",
+        "AbilityValues": {
+          "projectile_speed": "2500 2500 2500",
+          "scepter_stun_duration": {
+            "value": "1 1.25 1.5",
+            "RequiresScepter": "1"
+          },
+          "scepter_crit": {
+            "value": "0",
+            "RequiresScepter": "1"
+          },
+          "scepter_cast_point": {
+            "value": "0.5",
+            "RequiresScepter": "1"
+          },
+          "scatter_range": {
+            "value": "0",
+            "special_bonus_shard": "0"
+          },
+          "scatter_width": {
+            "value": "0",
+            "special_bonus_shard": "0",
+            "RequiresShard": "1"
+          },
+          "scatter_damage_pct": {
+            "value": "0",
+            "special_bonus_shard": "0",
+            "RequiresShard": "1"
+          }
+        }
+      },
+      "marci_grapple": {
+        "ID": "8192",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_BOTH",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Marci.Grapple.Cast",
+        "AbilityCastPoint": "0.2",
+        "AbilityCastRange": "175",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_5",
+        "AbilityCooldown": "16 14 12 10",
+        "AbilityManaCost": "90",
+        "AbilityValues": {
+          "landing_radius": "275",
+          "air_duration": "0.5",
+          "air_height": "150",
+          "pull_offset": "75",
+          "throw_distance_behind": "250",
+          "pull_angle": "230",
+          "debuff_duration": "3",
+          "impact_damage": {
+            "value": "70 120 170 220",
+            "special_bonus_unique_marci_grapple_damage": "+60"
+          },
+          "movement_slow_pct": "20 30 40 50"
+        }
+      },
+      "marci_unleash": {
+        "ID": "8198",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Marci.Unleash.Cast",
+        "HasScepterUpgrade": "1",
+        "AbilityCastPoint": "0.2",
+        "AbilityCooldown": "100 80 60",
+        "AbilityManaCost": "100 125 150",
+        "AbilityValues": {
+          "duration": "16",
+          "charges_per_flurry": "3 4 5",
+          "flurry_bonus_attack_speed": "700 975 1325",
+          "time_between_flurries": "1.5",
+          "pulse_radius": "800",
+          "pulse_debuff_duration": "2.0",
+          "pulse_damage": {
+            "value": "50 100 150",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "pulse_move_slow_pct": "30.0",
+          "pulse_attack_slow_pct": "60.0 80.0 100.0",
+          "max_time_window_per_hit": "1.0",
+          "bonus_movespeed": {
+            "value": "15",
+            "special_bonus_unique_marci_unleash_speed": "+15"
+          },
+          "recovery_fixed_attack_rate": "2.0",
+          "shard_push_length": "300",
+          "scepter_cooldown_reduction": {
+            "value": "20.0",
+            "RequiresScepter": "1"
+          },
+          "dispel": {
+            "value": "0",
+            "special_bonus_scepter": "+1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4"
+      },
+      "marci_companion_run": {
+        "ID": "8235",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES_STRONG",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Marci.Rebound.Cast",
+        "HasShardUpgrade": "1",
+        "AbilityCastPoint": "0.1",
+        "AbilityCastRange": "450 550 650 750",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_2",
+        "AbilityManaCost": "70 80 90 100",
+        "AbilityValues": {
+          "AbilityCooldown": {
+            "value": "24 20 16 12",
+            "special_bonus_unique_marci_lunge_cooldown": "-3"
+          },
+          "move_speed": "1700",
+          "min_jump_distance": "450",
+          "max_jump_distance": {
+            "value": "450 550 650 750",
+            "LinkedSpecialBonus": "special_bonus_unique_marci_lunge_range"
+          },
+          "landing_radius": "275",
+          "impact_damage": {
+            "value": "75 150 225 300",
+            "LinkedSpecialBonus": "special_bonus_unique_marci_lunge_damage"
+          },
+          "debuff_duration": {
+            "value": "0.9 1.3 1.7 2.1",
+            "special_bonus_unique_marci_grapple_stun_duration": "+0.7"
+          },
+          "min_lob_travel_time": "0.1",
+          "max_lob_travel_time": "0.2",
+          "min_height_above_lowest": "250.0",
+          "min_height_above_highest": "200.0",
+          "min_acceleration": "6000.0",
+          "max_acceleration": "6000.0",
+          "vector_preview_radius": "100",
+          "ally_buff_duration": "5.0",
+          "ally_movespeed_pct": "25 30 35 40",
+          "impact_position_offset": "64",
+          "target_abort_distance": "700",
+          "scepter_heal": {
+            "value": "300",
+            "RequiresScepter": "1"
+          },
+          "scepter_armor": {
+            "value": "15",
+            "RequiresScepter": "1"
+          }
+        }
+      },
+      "marci_guardian": {
+        "ID": "8234",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_PHYSICAL",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_Marci.Guardian.Applied",
+        "AbilityCastRange": "700",
+        "AbilityCastPoint": "0.0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCooldown": "36 28 20 12",
+        "AbilityManaCost": "45 40 35 30",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "buff_duration": "7"
+          },
+          "02": {
+            "var_type": "FIELD_FLOAT",
+            "lifesteal_pct": "30 35 40 45",
+            "LinkedSpecialBonus": "special_bonus_unique_marci_guardian_lifesteal"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_damage": "20 35 50 65",
+            "CalculateSpellDamageTooltip": "0"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_attack_range": "0"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "nearest_ally_search_range": "700"
+          }
+        }
+      },
+      "special_bonus_unique_marci_lunge_ally_absorb": {
+        "ID": "8236",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "160.0",
+            "ad_linked_abilities": "marci_companion_run"
+          }
+        }
+      },
+      "special_bonus_unique_marci_lunge_damage": {
+        "ID": "8237",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "150.0",
+            "ad_linked_abilities": "marci_companion_run"
+          }
+        }
+      },
+      "special_bonus_unique_marci_grapple_stun_duration": {
+        "ID": "8238",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_marci_guardian_magic_immune": {
+        "ID": "8239",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "1.5",
+            "ad_linked_abilities": "marci_guardian"
+          }
+        }
+      },
+      "special_bonus_unique_marci_unleash_flurry_crits": {
+        "ID": "8240",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "150.0",
+            "ad_linked_abilities": "marci_unleash"
+          }
+        }
+      },
+      "special_bonus_unique_marci_unleash_pulse_lunge_refresh": {
+        "ID": "8244",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "0.0",
+            "ad_linked_abilities": "marci_unleash"
+          }
+        }
+      },
+      "special_bonus_unique_marci_unleash_silence": {
+        "ID": "8241",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "1.5",
+            "ad_linked_abilities": "marci_unleash"
+          }
+        }
+      },
+      "special_bonus_unique_marci_guardian_lifesteal": {
+        "ID": "8242",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "15",
+            "ad_linked_abilities": "marci_guardian"
+          }
+        }
+      },
+      "special_bonus_unique_marci_lunge_range": {
+        "ID": "8243",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "125",
+            "ad_linked_abilities": "marci_companion_run"
+          }
+        }
+      },
+      "special_bonus_unique_marci_unleash_speed": {
+        "ID": "1042",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_marci_lunge_cooldown": {
+        "ID": "8245",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_marci_grapple_damage": {
+        "ID": "8246",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka": {
+        "ID": "6089",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka_2": {
+        "ID": "6385",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "100",
+            "ad_linked_abilities": "kunkka_torrent"
+          }
+        }
+      },
+      "special_bonus_unique_kunkka_3": {
+        "ID": "6666",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "3.5",
+            "ad_linked_abilities": "kunkka_ghostship"
+          }
+        }
+      },
+      "special_bonus_unique_kunkka_4": {
+        "ID": "6667",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "70",
+            "ad_linked_abilities": "kunkka_tidebringer"
+          }
+        }
+      },
+      "special_bonus_unique_kunkka_5": {
+        "ID": "7131",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka_6": {
+        "ID": "745",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka_7": {
+        "ID": "766",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka_ghostship_cooldown": {
+        "ID": "1014",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_kunkka_tidebringer_slow": {
+        "ID": "1015",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_riki_1": {
+        "ID": "6330",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "0.5",
+            "ad_linked_abilities": "riki_backstab"
+          }
+        }
+      },
+      "special_bonus_unique_riki_2": {
+        "ID": "6193",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "ad_linked_abilities": "riki_blink_strike"
+      },
+      "special_bonus_unique_riki_3": {
+        "ID": "6865",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "4",
+            "ad_linked_abilities": "riki_smoke_screen"
+          }
+        }
+      },
+      "special_bonus_unique_riki_4": {
+        "ID": "6866",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "300",
+            "ad_linked_abilities": "riki_tricks_of_the_trade"
+          }
+        }
+      },
+      "special_bonus_unique_riki_5": {
+        "ID": "6867",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "ad_linked_abilities": "riki_tricks_of_the_trade"
+      },
+      "special_bonus_unique_riki_6": {
+        "ID": "347",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "4",
+            "ad_linked_abilities": "riki_tricks_of_the_trade"
+          }
+        }
+      },
+      "special_bonus_unique_riki_7": {
+        "ID": "474",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "60",
+            "ad_linked_abilities": "riki_smoke_screen"
+          }
+        }
+      },
+      "special_bonus_unique_riki_8": {
+        "ID": "782",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "8",
+            "ad_linked_abilities": "riki_backstab"
+          }
+        }
+      },
+      "special_bonus_unique_riki_9": {
+        "ID": "795",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+      },
+      "special_bonus_unique_sniper_1": {
+        "ID": "6305",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "24",
+            "ad_linked_abilities": "sniper_shrapnel"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_2": {
+        "ID": "6198",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "6",
+            "ad_linked_abilities": "sniper_shrapnel"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_3": {
+        "ID": "6896",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "28",
+            "ad_linked_abilities": "sniper_headshot"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_4": {
+        "ID": "6897",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_FLOAT",
+            "value": "1",
+            "ad_linked_abilities": "sniper_take_aim"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_5": {
+        "ID": "7396",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "-14",
+            "ad_linked_abilities": "sniper_shrapnel"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_6": {
+        "ID": "7892",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "value": "125",
+            "ad_linked_abilities": "sniper_take_aim"
+          }
+        }
+      },
+      "special_bonus_unique_sniper_grenade_range": {
+        "ID": "1047",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_sniper_grenade_self_push": {
+        "ID": "906",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      },
+      "special_bonus_unique_sniper_headshot_damage": {
+        "ID": "928",
+        "AbilityType": "DOTA_ABILITY_TYPE_ATTRIBUTES",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "BaseClass": "special_bonus_base"
+      }
+    }
+  },
+  "verifiedHistoricalCaches": [
+    {
+      "hero": "Sniper",
+      "cachePath": "output/c15-attack-intake/Sniper.html",
+      "sha256": "9abb658bb5942248b5d67c4e5b3deb0d61d86c5c012c3c2f262aa3a443bcd450",
+      "sourceId": "sniper-2023",
+      "fullHtmlRead": true
+    },
+    {
+      "hero": "Riki",
+      "cachePath": "output/c15-attack-intake/Riki.html",
+      "sha256": "777b454c753facbb1699f5dbb6759196320384ea668cc815e4991ea71dcf5aa2",
+      "sourceId": "riki-2023",
+      "fullHtmlRead": true
+    },
+    {
+      "hero": "Windranger",
+      "cachePath": "output/c15-attack-intake/Windranger.html",
+      "sha256": "54c81372cc7775af1d507465070ebf317ffcf484efba267a0ce6afe31cfe21d5",
+      "sourceId": "windranger-2023",
+      "fullHtmlRead": true
+    },
+    {
+      "hero": "Kunkka",
+      "cachePath": "output/c7-fury-global/Kunkka.html",
+      "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+      "sourceId": "kunkka-2023",
+      "fullHtmlRead": true
+    },
+    {
+      "hero": "Marci",
+      "cachePath": "output/c12-reactive-refraction/Marci.html",
+      "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+      "sourceId": "marci-2023",
+      "fullHtmlRead": true
+    }
+  ],
+  "fullOfficialFieldAudit": {
+    "availableFields": {
+      "custom_sniper_take_aim": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "kunkka_tidebringer": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "custom_riki_tricks_of_the_trade": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "marci_unleash": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "custom_windrunner_windrun": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ]
+    },
+    "originalCatalogDiff": {
+      "custom_sniper_take_aim": [],
+      "kunkka_tidebringer": [],
+      "custom_riki_tricks_of_the_trade": [],
+      "marci_unleash": [],
+      "custom_windrunner_windrun": []
+    },
+    "notes": "No AI/notes keys in these five official objects. TakeAim no-active and Tricks increasedpoint are explicit custom differences;category alone is not."
+  },
+  "historicalSectionsRead": [
+    "TakeAim including Grenade",
+    "Assassinate full notes",
+    "Tidebringer full notes and7.33boundary",
+    "Tricks full notes including talent-qualified root row",
+    "Smoke full notes",
+    "Unleash full notes including recovery and Scepter",
+    "Windrun full notes",
+    "Official AASeason4 body including Tricks/Sleight fix"
+  ],
+  "differencesAndConflicts": {
+    "TA": [
+      "The AA Gaben does not specify the Assassinate native rank. Existing maximum3 working choice is retained;native3damage700 is not falsely attributed to explicit AA rank evidence.",
+      "Released Grenade/Assassinate source death,source removal,stolen-slot expiration and replacement have not each been closed by direct skill-specific historical evidence/results.",
+      "Grenade arc height,vertical-motion interruption,tree removal and Roshan-map interactions have no complete planar equivalent;no invented damage/range compensation."
+    ],
+    "TB": [
+      "Eligibility changed mid-windup and the full set of instant/ranged callers need caller-specific source proof;Dagger and true Chakra/CPA/Phantasm are finite covered examples.",
+      "Arena automatic always-on autocast and duplicate same-ID status identity are engineering input/instance policies,not certification of all native manual/autocast/Rubick combinations.",
+      "Pre7.33silence/Break behavior is version-locked by direct7.33 change;the exact original AA runtime patch is not independently recovered."
+    ],
+    "TT": [
+      "Explicit AA differences says greatly increased cast point,but no reliable numerical custom point has been recovered. Current public0.3 equals native and remains a known unresolved custom-timing gap,not native-complete acceptance.",
+      "Mixed accuracy/blind/evasion PRD trial ordering and correlation use declared engine working order;wearer PRD evidence does not prove the whole native stream ordering.",
+      "Specific Smoke-during-Tricks/channel-queue continuation and mid-windup Sleight overlap are not fully modeled/native-certified. Official AA Season4 start gate is covered separately.",
+      "Fog-of-war targeting,player shift queues and hold/stop options are outside the planar automated input model. No missing Cloak/backstab skill or full ally-jump Scepter is silently granted."
+    ],
+    "MU": [
+      "Recovery uses explicit AA1.5second action suppression plus native2BAT marker. Foreign IAS/BAT/time-factor interactions and ranged pulse versus in-flight attack order are not all source/result-closed.",
+      "AA StrongOnly category conflicts with historical death-only modifier. Wiki nonnumeric mechanism is chosen;no original AA Lua confirms a deliberate custom dispel override.",
+      "AA/wiki print base-attack-speed slow as60/80/100 without percent while raw key name contains pct. Current flat attack-speed-point choice preserves displayed values;exact AA formula remains unproven.",
+      "Unlimited AS opt-in bypasses old0.12floor,but30Hz quantization/FIXED_STEP remains. This is not native certification of arbitrary greater-than30attacks/second."
+    ],
+    "WR": [
+      "AA grants two charges but does not state quarter-second reuse or complete old7.22Scepter movement behavior. Public final recharge is authoritative;quarter-second reuse is a transparent historical-prototype compatibility choice.",
+      "Shared stolen-charge acquisition/transfer/refresh/reacquire behavior has finite engineering regressions elsewhere,not comprehensive native source closure for every body/slot transition."
+    ]
+  },
+  "preImplementationDiagnostic": {
+    "file": "output/c15-attack-intake/actual-before.json",
+    "sha256": "96b8464c8a9e3de4402eaf2ecb2936a7c02cc96cc9f999622324484d2d503305",
+    "checkpoint": "bd1362979d697e6573515575b2cf155350b45a84",
+    "probes": 17,
+    "note": "Actual old final registry before implementation;not replacement programs or fabricated statuses. Before-source fingerprints retained."
+  },
+  "selectedOfficial733Patch": {
+    "patch_number": "7.33",
+    "patch_timestamp": 1681974000,
+    "kunkka": {
+      "hero_id": 23,
+      "abilities": [
+        {
+          "ability_id": 5032,
+          "ability_notes": [
+            {
+              "indent_level": 1,
+              "note": "No longer disabled by silences. Instead disabled by break"
+            }
+          ]
+        },
+        {
+          "ability_id": 5035,
+          "ability_notes": [
+            {
+              "indent_level": 1,
+              "note": "Stun Duration decreased from 1.4s to 1.2s ",
+              "info": "Duration decreased as a part of the comprehensive Disables Reduction"
+            }
+          ]
+        },
+        {
+          "ability_id": 319,
+          "ability_notes": [
+            {
+              "indent_level": 1,
+              "note": "Now area targeted with a 900 cast range and 1100 radius"
+            }
+          ]
+        },
+        {
+          "ability_id": 605,
+          "ability_notes": [
+            {
+              "indent_level": 1,
+              "note": "Duration decreased from 1.25s to 1s ",
+              "info": "Duration decreased as a part of the comprehensive Disables Reduction"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

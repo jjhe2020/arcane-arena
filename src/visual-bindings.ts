@@ -15,6 +15,12 @@ export function resolveVisualArt(assets:AssetManifest,source:VisualSource,fallba
 }
 function semanticStatus(layer:VisualLayer,status:VisualStatus,unit:CombatUnit,skillId:string,source?:CombatUnit){
  const role=layer.role,kind=status.kind.toLowerCase(),self=status.source===unit.id;
+ if(skillId==='primal_beast_uproar'&&layer.id==='armour')return self&&kind==='armor'&&(status.value??0)>0&&String(status.data?.instanceKey??'').startsWith('uproarRoar:');
+ if(skillId==='primal_beast_uproar'&&layer.id==='stack')return self&&kind==='uproarstack'&&(status.value??0)>0;
+ if(skillId==='venomancer_venomous_gale'&&layer.id==='resistance')return kind==='statusresistance'&&(status.value??0)<0&&status.harmful===true;
+ if(skillId==='kunkka_tidebringer'&&layer.id==='edge')return self&&kind==='attackbonus'&&(status.value??0)>0&&status.data?.tempoTideReady===true;
+ if(skillId==='marci_unleash'&&layer.id==='fury')return self&&kind==='unleash'&&(status.value??0)>0&&typeof status.data?.tempoRun==='string';
+ if(skillId==='custom_sniper_take_aim'&&layer.id==='disarm')return kind==='disarm'&&status.harmful===true;
  if(skillId==='custom_storm_spirit_overload'&&layer.id==='ready')return self&&kind==='overloadcharges'&&(status.value??0)>0;
  if(skillId==='omniknight_purification'&&layer.id==='guard')return kind==='damagereduction'&&(status.value??0)>0;
  if(skillId==='void_spirit_resonant_pulse'&&layer.id==='shield')return kind==='physicalshield'&&Number((status as VisualStatus&{remaining?:number}).remaining??status.value??0)>0;
@@ -155,6 +161,7 @@ export function eventVisuals(assets:AssetManifest,event:CombatEvent,units:Combat
  if(resolved.id==='morphling_waveform'&&event.type==='hit')layers=layers.filter(layer=>layer.id==='attack'?event.category==='attack':layer.id==='splash'?event.category==='spell':true);
  if(resolved.id==='clinkz_searing_arrows'&&event.type==='hit')layers=layers.filter(layer=>layer.id==='mkb'?event.skill==='item_monkey_king_bar':event.skill!=='item_monkey_king_bar');
  if(resolved.id==='custom_mars_spear_of_mars'&&event.type==='hit')layers=layers.filter(layer=>layer.id!=='pin');
+ if(resolved.id==='custom_sniper_take_aim'&&event.type==='hit')layers=layers.filter(layer=>event.skill==='sniper_assassinate'?layer.id==='assassinate_hit':event.skill==='sniper_concussive_grenade'?false:layer.id==='hit');
  if(event.type==='heal')layers.push(...selectVisualLayers(resolved.art,resolved.points,'proc').filter(l=>l.role==='caster_feedback'));
  // Enter effects belong to a successful modifier application, including
  // acquired transformations, rather than merely owning the ability.

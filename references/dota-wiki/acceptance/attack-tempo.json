@@ -1,0 +1,2460 @@
+{
+  "schemaVersion": 1,
+  "group": "attack-tempo",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Only metadata/hashes/independent paraphrases and selected official structured records are committed. Full third-party HTML remains ignored. Exact capture dates and fetched-full-page versus changelog-search evidence are distinguished.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+      "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+      "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+    },
+    {
+      "url": "https://web.archive.org/web/20230205103531id_/https://dota2.fandom.com/wiki/Sniper",
+      "accessedOn": "2026-10-30",
+      "sha256": "9abb658bb5942248b5d67c4e5b3deb0d61d86c5c012c3c2f262aa3a443bcd450",
+      "id": "sniper-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Sniper",
+      "paraphrase": "Passive range has no granted native active under explicit AA difference. Native Grenade is a moving ground projectile with continuous self/enemy push and enemy debuff before damage. Assassinate uses tracking damage then brief stun;impact block and TrueSight-immunity disjoint are distinct.",
+      "versionContext": "Direct full historical HTML capture 20230205103531. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Riki",
+      "accessedOn": "2026-10-30",
+      "sha256": "777b454c753facbb1699f5dbb6759196320384ea668cc815e4991ea71dcf5aa2",
+      "id": "riki-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Riki",
+      "paraphrase": "Tricks has immediate attacks at the stated count-dependent intervals,hidden/phased/invulnerable channel,ability-only agility and ordinary modifier eligibility. Root/leash exception is a separate ungranted talent. Smoke uses independent native ranks,half-second lingering blind/silence and nonstacking providers.",
+      "versionContext": "Direct full historical HTML capture 20230301011014. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230205214118id_/https://dota2.fandom.com/wiki/Windranger",
+      "accessedOn": "2026-10-30",
+      "sha256": "54c81372cc7775af1d507465070ebf317ffcf484efba267a0ce6afe31cfe21d5",
+      "id": "windranger-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Windranger",
+      "paraphrase": "Windrun activation is immediate with no backswing despite the raw unprocessed point;its slow has a2.5second lease. Basic dispel removes the active aura. Native modern Scepter phasing/invisibility/blind is not imported with AA two-charge-only Gaben.",
+      "versionContext": "Direct full historical HTML capture 20230205214118. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+      "accessedOn": "2026-10-30",
+      "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+      "id": "kunkka-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Kunkka",
+      "paraphrase": "Ready Tidebringer contributes regular visible bonus damage;cleave uses the pre-target attack packet and native starting/ending trapezoid. Illusions and special targets have explicit exclusions. Historical silence and Break behavior is version-qualified against the later7.33 change.",
+      "versionContext": "Direct full historical HTML capture 20230215191426. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+      "accessedOn": "2026-10-30",
+      "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+      "id": "marci-2023",
+      "httpStatus": 200,
+      "originalUrl": "https://dota2.fandom.com/wiki/Marci",
+      "paraphrase": "Flurry grants speed only while loaded,consumes executed miss/instant/allied attacks,has a one-second completion window and differentiated failure/success recovery. Last attack orders debuff,pulse,silence,then its main damage. Native Scepter is narrower than AA any-spell Gaben.",
+      "versionContext": "Direct full historical HTML capture 20230215191449. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+      "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+    },
+    {
+      "url": "https://news.abilityarena.com/ability-arena-season-4/",
+      "httpStatus": 200,
+      "accessedOn": "2026-10-30",
+      "sha256": "98315a69923ee51a703cede5b0b95142531bee8c52f1cc81ff84fdc189d7a716",
+      "bytes": 30460,
+      "id": "aa-season4",
+      "paraphrase": "Official Season4 patch article explicitly prevents Tricks from casting during Sleight of Fist. The older Gaben attack-count bug note does not overwrite the current official Super/Gaben descriptions.",
+      "versionContext": "Official article dated2023-01-01;complete body actually fetched/read,not a search-index-only citation."
+    },
+    {
+      "id": "valve-733",
+      "url": "https://www.dota2.com/datafeed/patchnotes?version=7.33&language=english",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "b65cb135d43236e8816546e661a58aaf30de3ec7f737a201905590e041f17d04",
+      "paraphrase": "Official hero23 ability5032 patch entry changes Tidebringer from silence-disabled to Break-disabled. This establishes the version boundary;the present implementation deliberately uses pre7.33 behavior.",
+      "versionContext": "Official7.33 patch timestamp1681974000/2023-04-20;actual structured response read,not applied backward to February mechanics."
+    },
+    {
+      "id": "wind-722",
+      "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.22",
+      "accessedOn": "2026-10-30",
+      "observation": "Historical7.22 Scepter records a two-charge Windrun with quarter-second cast reuse. Only the charge prototype is used;old movement bonus/max-speed changes are not automatically granted.",
+      "versionContext": "Historical changelog search evidence crosschecked against existing native charge fields. This is a prototype/working compatibility source,not proof AA copied the entire7.22Scepter."
+    }
+  ],
+  "engineRequirements": [],
+  "validation": {
+    "command": "npx vitest run tests/reference-attack-tempo.test.ts",
+    "passedTests": 76,
+    "totalTests": 76,
+    "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+    "localReport": "output/c15-attack-intake/final-tests.json",
+    "reportSha256": "798a5f38a208872eb8db47ff09bc48c7a3db9a8ea5be2eaf2cfa0846c82ae132",
+    "typecheck": "npx tsc --noEmit",
+    "typecheckPassed": true,
+    "meaning": "76finite genuine-engine cases. All5skills remain partial;not a completeR6/native/mechanism release. Root owns final fullsuite/reference/build/production.",
+    "firstGreen": {
+      "localReport": "output/c15-attack-intake/matrix-3.json",
+      "passedTests": 22,
+      "configurationHash": "d53e445998406ebdd7a54f77b4d81999db54d86f9f7e737ec0537375ac7185da"
+    },
+    "preFixRed": {
+      "localReport": "output/c15-attack-intake/red-tests.json",
+      "passedTests": 2,
+      "failedTests": 20
+    },
+    "laterRedEvidence": [
+      {
+        "file": "output/c15-attack-intake/tide-chakra-red.json",
+        "rule": "True Chakra did not reset the old private Tide clock."
+      },
+      {
+        "file": "output/c15-attack-intake/aa-sleight-red.json",
+        "rule": "True Phantasm increased real Sleight targets sufficiently to expose forbidden Tricks overlap."
+      },
+      {
+        "file": "output/c15-attack-intake/assassinate-dance-red-corrected.json",
+        "rule": "Same actual Assassinate target enters genuine Dance before impact;missing opt-in undetectable disjoint fails. Earlier red fixture targeted a nearer different hero and is not used as native proof."
+      }
+    ],
+    "renderStatus": "passed",
+    "renderCommand": "node scripts/c15-attack-render-smoke.mjs",
+    "renderReport": "artifacts/r6-c15-attack-render/report.json",
+    "renderReportSha256": "38f83d1234df15fbf3d6f2041606aae6dc40a3dd5bb8d68d9e648873e745e70a",
+    "renderScenarios": 28,
+    "renderMeaning": "Actual final compiled engine actions/native children/ordinary attack records. Only initial ordinary stats/positions/clocks and genuine slot availability controlled;no injected statuses,damage,FX,summons,programs or definition overrides. True Dance disjoint,True Fury recovery,positive purge and Smoke leases are genuine. Immutable simulation snapshot across actual draw. Finite visual intake,not whole native acceptance.",
+    "visualReview": {
+      "inspectedOn": "2026-10-30",
+      "files": [
+        "grenade-flight.png",
+        "grenade-impact-mobile.png",
+        "assassinate-flight-mobile.png",
+        "assassinate-disjoint.png",
+        "tide-ready-mobile.png",
+        "tide-cleave.png",
+        "tide-cleave-mobile.png",
+        "tide-cooldown-mobile.png",
+        "tricks-channel.png",
+        "tricks-smoke-lease-mobile.png",
+        "fury-loaded.png",
+        "fury-pulse.png",
+        "fury-pulse-mobile.png",
+        "fury-recovery.png",
+        "wind-active-mobile.png",
+        "wind-purged-lease.png"
+      ],
+      "observation": "Actual desktop/mobile PNGs inspected. GroundGrenade and Assassinate use distinct real projectile layers;genuineDance conceals its target and cancels only its pendingAssassinate without a stale reveal/hit. Tide ready edge,actual cleave and cooldown absence are separate. Tricks hides its actual body while boundary/Smoke exist;only the true target silence lease remains after the channel. Fury loaded and recovery have different valid art;real finishing pulse uses three existing layers. Positive Windrun purge removes caster wind/pressure while targetslow keeps its lease. Arena-wide framing makes bodies/effects compact;no new camera/art/native physics claim.",
+      "samplingNote": "First28scenes also passed,then Tide/Fury shots advanced the actual simulation0.15seconds after the real occurrence to avoid an uninformative birth-frame atlas sample;all28were rerun successfully. No source/test/config changes."
+    }
+  },
+  "preOverrideDiagnostic": {
+    "file": "output/c15-attack-intake/actual-before.json",
+    "sha256": "96b8464c8a9e3de4402eaf2ecb2936a7c02cc96cc9f999622324484d2d503305",
+    "checkpoint": "bd1362979d697e6573515575b2cf155350b45a84",
+    "probes": 17,
+    "note": "Actual old final registry before implementation;not replacement programs or fabricated statuses. Before-source fingerprints retained."
+  },
+  "extras": {
+    "nativeChildren": [
+      {
+        "id": "sniper_concussive_grenade",
+        "nativeRanks": [
+          1
+        ],
+        "passive": false,
+        "ultimate": false
+      },
+      {
+        "id": "sniper_assassinate",
+        "nativeRanks": [
+          1,
+          2,
+          3
+        ],
+        "passive": false,
+        "ultimate": true,
+        "AAGabenRankPolicy": "Existing maximum3working default;not explicitly specified by AA."
+      },
+      {
+        "id": "riki_smoke_screen",
+        "nativeRanks": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "passive": false,
+        "ultimate": false,
+        "AALevel4Duration": 2
+      }
+    ],
+    "visualMetadata": "Actual explosion/cleave/channel/pulse occurrences only. Clip lifetimes Grenade16/24,Tide16/24,Unleash22/24+10/24+26/24;Tricks boundary follows actual hidden channel and cleans on end. Native child projectile layers are explicit. No fabricated physics/damage or art-source claim.",
+    "sourceSnapshot": "references/dota-wiki/attack-tempo-source-snapshot.json",
+    "simulationBoundaries": [
+      "30Hz quantization remains for unlimitedAS;no arbitrary native greater-than30APS proof.",
+      "Planar map omits terrain-height,tree and nativeplayerqueue systems;no invented compensation.",
+      "Exact duplicate same-ID slot identity protocol is not full native passive stacking proof."
+    ]
+  },
+  "skills": [
+    {
+      "id": "custom_sniper_take_aim",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All available AA base/differences/Super/Gaben and original tags/categories/clocks read. Finite result closure is separated from precise missing/custom/source/environment boundaries;not whole-skill acceptance.",
+        "fixtures": "Actual final registered programs and compiled parameters/public clocks. Only ordinary initial stats/positions/clocks and true slot availability controlled. No program/status/FX/summon/native classification injection. Phantasm,Sleight,Sidekick,BlackHole,Chakra,TimeLock,Windrun,Root,Soulbind,Dance are genuine engine actions."
+      },
+      "catalogClauses": {
+        "base": "Extends the attack range of this hero's weapon.",
+        "differences": "Doesn't has an active component.",
+        "super": "Super: Grants Concussive Grenade.",
+        "gaben": "Gaben: Attacks also proc Assassinate on the target. 5s cooldown.",
+        "values": [
+          "BONUS RANGE: 100 / 200 / 400"
+        ],
+        "mana": [],
+        "cooldowns": [],
+        "categories": [
+          "ABILITY: Passive"
+        ],
+        "allAvailableFields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "AIAndNotes": "No such fields exist in the original object;none synthesized."
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+          "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+          "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+        },
+        {
+          "url": "https://web.archive.org/web/20230205103531id_/https://dota2.fandom.com/wiki/Sniper",
+          "accessedOn": "2026-10-30",
+          "sha256": "9abb658bb5942248b5d67c4e5b3deb0d61d86c5c012c3c2f262aa3a443bcd450",
+          "id": "sniper-2023",
+          "httpStatus": 200,
+          "originalUrl": "https://dota2.fandom.com/wiki/Sniper",
+          "paraphrase": "Passive range has no granted native active under explicit AA difference. Native Grenade is a moving ground projectile with continuous self/enemy push and enemy debuff before damage. Assassinate uses tracking damage then brief stun;impact block and TrueSight-immunity disjoint are distinct.",
+          "versionContext": "Direct full historical HTML capture 20230205103531. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+          "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R001",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-01 the explicit AA passive-only Take Aim never receives the native active component",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-01 the explicit AA passive-only Take Aim never receives the native active component"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R002",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-02 the native passive range survives a positive strong removal operation",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-02 the native passive range survives a positive strong removal operation"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R003",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "TA-03 real Concussive Grenade travels before applying enemy damage at its frozen ground point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-03 real Concussive Grenade travels before applying enemy damage at its frozen ground point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R004",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "TA-04 real Grenade applies its debuff and disabling knockback before the impact damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-04 real Grenade applies its debuff and disabling knockback before the impact damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R005",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "TA-05 attack-triggered Assassinate applies damage before its actual native one-frame ministun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-05 attack-triggered Assassinate applies damage before its actual native one-frame ministun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R006",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-06 tier1 retains the explicit AA passive range100",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-06 tier1 retains the explicit AA passive range100"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R007",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-06 tier2 retains the explicit AA passive range200",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-06 tier2 retains the explicit AA passive range200"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R008",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-06 tier3 retains the explicit AA passive range400",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-06 tier3 retains the explicit AA passive range400"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R009",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-06 tier6 retains the explicit AA passive range400",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-06 tier6 retains the explicit AA passive range400"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R010",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TA-06 tier9 retains the explicit AA passive range400",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-06 tier9 retains the explicit AA passive range400"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R011",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "TA-07 Gaben attack proc has one real five-second shared lock and never spends Assassinate mana",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-07 Gaben attack proc has one real five-second shared lock and never spends Assassinate mana"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R012",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "TA-08 genuine Freezing Field Linkens remains until Assassinate impact and then blocks its damage and ministun",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-08 genuine Freezing Field Linkens remains until Assassinate impact and then blocks its damage and ministun"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R013",
+          "kind": "timing",
+          "branch": "super",
+          "rule": "TA-09 real Grenade public action has0.1windup and0.8backswing",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-09 real Grenade public action has0.1windup and0.8backswing"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R014",
+          "kind": "combination",
+          "branch": "super",
+          "rule": "TA-10 actual Fortune root prevents the granted Grenade without treating every root as a leash",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-10 actual Fortune root prevents the granted Grenade without treating every root as a leash"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-R015",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "TA-11 genuine Shadow Dance True Sight immunity disjoints only the pending Assassinate shot",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TA-11 genuine Shadow Dance True Sight immunity disjoints only the pending Assassinate shot"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "The AA Gaben does not specify the Assassinate native rank. Existing maximum3 working choice is retained;native3damage700 is not falsely attributed to explicit AA rank evidence.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-P02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Released Grenade/Assassinate source death,source removal,stolen-slot expiration and replacement have not each been closed by direct skill-specific historical evidence/results.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "CUSTOM_SNIPER_TAKE_AIM-E01",
+          "kind": "super",
+          "branch": "super",
+          "rule": "Grenade arc height,vertical-motion interruption,tree removal and Roshan-map interactions have no complete planar equivalent;no invented damage/range compensation.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ],
+          "testEvidence": [],
+          "status": "environment_out_of_scope"
+        }
+      ],
+      "unresolved": [
+        "The AA Gaben does not specify the Assassinate native rank. Existing maximum3 working choice is retained;native3damage700 is not falsely attributed to explicit AA rank evidence.",
+        "Released Grenade/Assassinate source death,source removal,stolen-slot expiration and replacement have not each been closed by direct skill-specific historical evidence/results.",
+        "Grenade arc height,vertical-motion interruption,tree removal and Roshan-map interactions have no complete planar equivalent;no invented damage/range compensation."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA Grenade grant with independent native1 values/public clocks;not an active TakeAim component.",
+          "status": "aa_explicit_native_child",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "rule": "Explicit AA attack-triggered Assassinate/five-second lock;rank3 retained as qualified existing default.",
+          "status": "aa_explicit_rank_pending",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "sniper-2023"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kunkka_tidebringer",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All available AA base/differences/Super/Gaben and original tags/categories/clocks read. Finite result closure is separated from precise missing/custom/source/environment boundaries;not whole-skill acceptance.",
+        "fixtures": "Actual final registered programs and compiled parameters/public clocks. Only ordinary initial stats/positions/clocks and true slot availability controlled. No program/status/FX/summon/native classification injection. Phantasm,Sleight,Sidekick,BlackHole,Chakra,TimeLock,Windrun,Root,Soulbind,Dance are genuine engine actions."
+      },
+      "catalogClauses": {
+        "base": "Kunkka's legendary sword grants increased damage and cleaves a large area of effect in front of him for a single strike.",
+        "differences": "",
+        "super": "Super: Cooldown reduced by -2 seconds.",
+        "gaben": "Gaben: +100% Tidebringer Cleave",
+        "values": [
+          "CLEAVE DAMAGE: 150%",
+          "CLEAVE RANGE: 1100",
+          "DAMAGE BONUS: 30 / 60 / 120"
+        ],
+        "mana": [],
+        "cooldowns": [
+          13,
+          10,
+          4
+        ],
+        "categories": [
+          "ABILITY: Auto-Cast",
+          "DAMAGE TYPE: Physical",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "allAvailableFields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "AIAndNotes": "No such fields exist in the original object;none synthesized."
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+          "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+          "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+        },
+        {
+          "url": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Kunkka",
+          "accessedOn": "2026-10-30",
+          "sha256": "9c23102b6a4ef89c7e5ddeb596475b896a1f949974ceda149fd0096e7d1c555d",
+          "id": "kunkka-2023",
+          "httpStatus": 200,
+          "originalUrl": "https://dota2.fandom.com/wiki/Kunkka",
+          "paraphrase": "Ready Tidebringer contributes regular visible bonus damage;cleave uses the pre-target attack packet and native starting/ending trapezoid. Illusions and special targets have explicit exclusions. Historical silence and Break behavior is version-qualified against the later7.33 change.",
+          "versionContext": "Direct full historical HTML capture 20230215191426. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+          "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+        },
+        {
+          "id": "valve-733",
+          "url": "https://www.dota2.com/datafeed/patchnotes?version=7.33&language=english",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "b65cb135d43236e8816546e661a58aaf30de3ec7f737a201905590e041f17d04",
+          "paraphrase": "Official hero23 ability5032 patch entry changes Tidebringer from silence-disabled to Break-disabled. This establishes the version boundary;the present implementation deliberately uses pre7.33 behavior.",
+          "versionContext": "Official7.33 patch timestamp1681974000/2023-04-20;actual structured response read,not applied backward to February mechanics."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "KUNKKA_TIDEBRINGER-R001",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-01 Tidebringer cleave uses the actual990critical packet instead of reconstructing raw220",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-01 Tidebringer cleave uses the actual990critical packet instead of reconstructing raw220"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R002",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-02 the native150starting-radius trapezoid includes a near-side target outside the old provisional wedge",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-02 the native150starting-radius trapezoid includes a near-side target outside the old provisional wedge"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R003",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-03 actual Quill spell lifesteal and Dragon Blood amplification do not modify or heal Tidebringer cleave",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-03 actual Quill spell lifesteal and Dragon Blood amplification do not modify or heal Tidebringer cleave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R004",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-04 a real Phantasm illusion cannot activate Tidebringer bonus or cleave",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-04 a real Phantasm illusion cannot activate Tidebringer bonus or cleave"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R005",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-05 cooldown-ready Tidebringer contributes ordinary flat damage to the visible effective attack value",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-05 cooldown-ready Tidebringer contributes ordinary flat damage to the visible effective attack value"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R006",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-06 tier1 preserves bonus30 and final cleave150percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-06 tier1 preserves bonus30 and final cleave150percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R007",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-06 tier2 preserves bonus60 and final cleave150percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-06 tier2 preserves bonus60 and final cleave150percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R008",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-06 tier3 preserves bonus120 and final cleave150percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-06 tier3 preserves bonus120 and final cleave150percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R009",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-06 tier6 preserves bonus120 and final cleave150percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-06 tier6 preserves bonus120 and final cleave150percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R010",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TB-06 tier9 preserves bonus120 and final cleave250percent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-06 tier9 preserves bonus120 and final cleave250percent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R011",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-07 pre7.33 actual Global Silence suppresses Tidebringer while the ordinary attack still lands",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-07 pre7.33 actual Global Silence suppresses Tidebringer while the ordinary attack still lands"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R012",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-08 pre7.33 actual Nethertoxin Break does not disable the active Tidebringer modifier",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-08 pre7.33 actual Nethertoxin Break does not disable the active Tidebringer modifier"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R013",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-09 an actual native Stifling Dagger does not spend or add the ready Tidebringer bonus",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-09 an actual native Stifling Dagger does not spend or add the ready Tidebringer bonus"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R014",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-10 a genuine Chakra Magic resets the real Tidebringer ability cooldown before its next attack",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-10 a genuine Chakra Magic resets the real Tidebringer ability cooldown before its next attack"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-R015",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TB-11 finite dual-slot protocol uses the actual second Tide object without sharing the first slots cooldown",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TB-11 finite dual-slot protocol uses the actual second Tide object without sharing the first slots cooldown"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Finite same-body dual-slot identity/cooldown engineering protocol;arbitrary duplicate passive stacking/native Rubick same-ID semantics not proven."
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-P01",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Eligibility changed mid-windup and the full set of instant/ranged callers need caller-specific source proof;Dagger and true Chakra/CPA/Phantasm are finite covered examples.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Arena automatic always-on autocast and duplicate same-ID status identity are engineering input/instance policies,not certification of all native manual/autocast/Rubick combinations.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "KUNKKA_TIDEBRINGER-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Pre7.33silence/Break behavior is version-locked by direct7.33 change;the exact original AA runtime patch is not independently recovered.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "Eligibility changed mid-windup and the full set of instant/ranged callers need caller-specific source proof;Dagger and true Chakra/CPA/Phantasm are finite covered examples.",
+        "Arena automatic always-on autocast and duplicate same-ID status identity are engineering input/instance policies,not certification of all native manual/autocast/Rubick combinations.",
+        "Pre7.33silence/Break behavior is version-locked by direct7.33 change;the exact original AA runtime patch is not independently recovered."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA final cooldown13/10/4 with Super minus2,compiled single authority.",
+          "status": "aa_explicit_numeric",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "rule": "Explicit AA additional100percentagepoints yields250percent cleave,not a repeated multiplier.",
+          "status": "aa_explicit_numeric",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "kunkka-2023",
+            "valve-733"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_riki_tricks_of_the_trade",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All available AA base/differences/Super/Gaben and original tags/categories/clocks read. Finite result closure is separated from precise missing/custom/source/environment boundaries;not whole-skill acceptance.",
+        "fixtures": "Actual final registered programs and compiled parameters/public clocks. Only ordinary initial stats/positions/clocks and true slot availability controlled. No program/status/FX/summon/native classification injection. Phantasm,Sleight,Sidekick,BlackHole,Chakra,TimeLock,Windrun,Root,Soulbind,Dance are genuine engine actions."
+      },
+      "catalogClauses": {
+        "base": "CHANNELED - Riki phases out of the world while striking random enemy heroes from behind in an area around him.",
+        "differences": "Has a greatly increased cast point.",
+        "super": "Super: Increases the number of attacks by 1, hits 1 extra target per attack, and -4s CDR.",
+        "gaben": "Gaben: Casts a level 4 Smoke Screen on the ground while casting Tricks of the Trade which lasts 2s.",
+        "values": [
+          "ATTACK RATE: 4",
+          "DURATION: 2",
+          "RADIUS: 450"
+        ],
+        "mana": [
+          50
+        ],
+        "cooldowns": [
+          21,
+          18,
+          12
+        ],
+        "categories": [
+          "ABILITY: Channeled",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "allAvailableFields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "AIAndNotes": "No such fields exist in the original object;none synthesized."
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+          "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+          "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+        },
+        {
+          "url": "https://web.archive.org/web/20230301011014id_/https://dota2.fandom.com/wiki/Riki",
+          "accessedOn": "2026-10-30",
+          "sha256": "777b454c753facbb1699f5dbb6759196320384ea668cc815e4991ea71dcf5aa2",
+          "id": "riki-2023",
+          "httpStatus": 200,
+          "originalUrl": "https://dota2.fandom.com/wiki/Riki",
+          "paraphrase": "Tricks has immediate attacks at the stated count-dependent intervals,hidden/phased/invulnerable channel,ability-only agility and ordinary modifier eligibility. Root/leash exception is a separate ungranted talent. Smoke uses independent native ranks,half-second lingering blind/silence and nonstacking providers.",
+          "versionContext": "Direct full historical HTML capture 20230301011014. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+          "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+        },
+        {
+          "url": "https://news.abilityarena.com/ability-arena-season-4/",
+          "httpStatus": 200,
+          "accessedOn": "2026-10-30",
+          "sha256": "98315a69923ee51a703cede5b0b95142531bee8c52f1cc81ff84fdc189d7a716",
+          "bytes": 30460,
+          "id": "aa-season4",
+          "paraphrase": "Official Season4 patch article explicitly prevents Tricks from casting during Sleight of Fist. The older Gaben attack-count bug note does not overwrite the current official Super/Gaben descriptions.",
+          "versionContext": "Official article dated2023-01-01;complete body actually fetched/read,not a search-index-only citation."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R001",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "TT-01 real Tricks begins its first instant attack on the release frame",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-01 real Tricks begins its first instant attack on the release frame"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R002",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-02 a real Tricks channel hides the caster and explicitly marks its out-of-game state",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-02 a real Tricks channel hides the caster and explicitly marks its out-of-game state"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R003",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-03 native40percent applies to the non-agility casters real primary attack without a global agility buff",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-03 native40percent applies to the non-agility casters real primary attack without a global agility buff"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R004",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "TT-04 the explicit level-four two-second Smoke retains the native half-second aura lease",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-04 the explicit level-four two-second Smoke retains the native half-second aura lease"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R005",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "TT-05 real Smoke blind records an opt-in wearer PRD trial after Tricks ends",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-05 real Smoke blind records an opt-in wearer PRD trial after Tricks ends"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R006",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-06 tier1 produces4real rounds with1distinct targets per round",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-06 tier1 produces4real rounds with1distinct targets per round"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R007",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-06 tier2 produces4real rounds with1distinct targets per round",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-06 tier2 produces4real rounds with1distinct targets per round"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R008",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-06 tier3 produces4real rounds with1distinct targets per round",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-06 tier3 produces4real rounds with1distinct targets per round"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R009",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-06 tier6 produces5real rounds with2distinct targets per round",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-06 tier6 produces5real rounds with2distinct targets per round"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R010",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "TT-06 tier9 produces5real rounds with2distinct targets per round",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-06 tier9 produces5real rounds with2distinct targets per round"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R011",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-07 an agility-primary caster gains only the native ability white contribution and never a persistent agility status",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-07 an agility-primary caster gains only the native ability white contribution and never a persistent agility status"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R012",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-08 a genuine enemy Black Hole cannot damage or interrupt an already out-of-game Tricks channel",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-08 a genuine enemy Black Hole cannot damage or interrupt an already out-of-game Tricks channel"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R013",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-09 actual Global Silence arriving during the pending Tricks windup prevents hidden-state commitment",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-09 actual Global Silence arriving during the pending Tricks windup prevents hidden-state commitment"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R014",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-10 an actual enemy Shadow Dance is not mistaken for a visible marked hero",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-10 an actual enemy Shadow Dance is not mistaken for a visible marked hero"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R015",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "TT-11 two genuine same-team Gaben Smoke casts refresh one75percent provider instead of stacking150percent blind",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-11 two genuine same-team Gaben Smoke casts refresh one75percent provider instead of stacking150percent blind"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R016",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "TT-12 real allied Super Sidekick immunity suppresses an existing Smoke effect and the still-active aura restores it afterward",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-12 real allied Super Sidekick immunity suppresses an existing Smoke effect and the still-active aura restores it afterward"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R017",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-13 actual Fortune root prevents a new base Tricks cast without importing its ungranted native talent",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-13 actual Fortune root prevents a new base Tricks cast without importing its ungranted native talent"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R018",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-14 actual Soulbind prevents Tricks through its separately declared native leash restriction",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-14 actual Soulbind prevents Tricks through its separately declared native leash restriction"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-R019",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "TT-15 the explicit AA Season4 rule prevents Tricks from starting during a genuine Sleight of Fist",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "TT-15 the explicit AA Season4 rule prevents Tricks from starting during a genuine Sleight of Fist"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Explicit AA differences says greatly increased cast point,but no reliable numerical custom point has been recovered. Current public0.3 equals native and remains a known unresolved custom-timing gap,not native-complete acceptance.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [],
+          "status": "mechanism_missing"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-P02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Mixed accuracy/blind/evasion PRD trial ordering and correlation use declared engine working order;wearer PRD evidence does not prove the whole native stream ordering.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-P03",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Specific Smoke-during-Tricks/channel-queue continuation and mid-windup Sleight overlap are not fully modeled/native-certified. Official AA Season4 start gate is covered separately.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "CUSTOM_RIKI_TRICKS_OF_THE_TRADE-E01",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "Fog-of-war targeting,player shift queues and hold/stop options are outside the planar automated input model. No missing Cloak/backstab skill or full ally-jump Scepter is silently granted.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ],
+          "testEvidence": [],
+          "status": "environment_out_of_scope"
+        }
+      ],
+      "unresolved": [
+        "Explicit AA differences says greatly increased cast point,but no reliable numerical custom point has been recovered. Current public0.3 equals native and remains a known unresolved custom-timing gap,not native-complete acceptance.",
+        "Mixed accuracy/blind/evasion PRD trial ordering and correlation use declared engine working order;wearer PRD evidence does not prove the whole native stream ordering.",
+        "Specific Smoke-during-Tricks/channel-queue continuation and mid-windup Sleight overlap are not fully modeled/native-certified. Official AA Season4 start gate is covered separately.",
+        "Fog-of-war targeting,player shift queues and hold/stop options are outside the planar automated input model. No missing Cloak/backstab skill or full ally-jump Scepter is silently granted."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA fifth round/second distinct target/minus4CD agrees with selected Scepter aspects;no full ally-jump/range upgrade imported.",
+          "status": "aa_explicit_partial_native_prototype",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "rule": "Explicit AA casts native Smoke level4 with unique final two-second duration;all4native ranks remain independent.",
+          "status": "aa_explicit_native_rank_override",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "riki-2023",
+            "aa-season4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marci_unleash",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All available AA base/differences/Super/Gaben and original tags/categories/clocks read. Finite result closure is separated from precise missing/custom/source/environment boundaries;not whole-skill acceptance.",
+        "fixtures": "Actual final registered programs and compiled parameters/public clocks. Only ordinary initial stats/positions/clocks and true slot availability controlled. No program/status/FX/summon/native classification injection. Phantasm,Sleight,Sidekick,BlackHole,Chakra,TimeLock,Windrun,Root,Soulbind,Dance are genuine engine actions."
+      },
+      "catalogClauses": {
+        "base": "Marci taps a hidden power, gaining Fury charges that allow her to deliver a rapid sequence of strikes that slow movement and attack speed of the target for 2s. The last strike in every Fury combo creates a damaging pulse around the target. In between Fury combos, Marci is unable to attack for 1.5s.\n\nMarci gains 15% movement speed when Unleash is cast.",
+        "differences": "",
+        "super": "Super: Pulses silence for 1.5 seconds.",
+        "gaben": "Gaben: Cooldown reduced by 10 seconds. While Unleash is active, casting spells creates a pulse.",
+        "values": [
+          "BASE ATTACK SPEED SLOW: 60 / 80 / 100",
+          "BONUS ATTACK SPEED: 700 / 975 / 1325",
+          "DURATION: 16",
+          "MOVEMENT SLOW: 30%",
+          "PULSE DAMAGE: 50 / 100 / 150",
+          "PULSE RADIUS: 800",
+          "STRIKES PER FURY: 3 / 4 / 5"
+        ],
+        "mana": [
+          100,
+          125,
+          150
+        ],
+        "cooldowns": [
+          100,
+          80,
+          60
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "DAMAGE TYPE: Magical",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "allAvailableFields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "AIAndNotes": "No such fields exist in the original object;none synthesized."
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+          "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+          "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+        },
+        {
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Marci",
+          "accessedOn": "2026-10-30",
+          "sha256": "d7f3c1cf9001be9ff029610c0b069ac361a357189238f7cfa83ea1595bf12078",
+          "id": "marci-2023",
+          "httpStatus": 200,
+          "originalUrl": "https://dota2.fandom.com/wiki/Marci",
+          "paraphrase": "Flurry grants speed only while loaded,consumes executed miss/instant/allied attacks,has a one-second completion window and differentiated failure/success recovery. Last attack orders debuff,pulse,silence,then its main damage. Native Scepter is narrower than AA any-spell Gaben.",
+          "versionContext": "Direct full historical HTML capture 20230215191449. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+          "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "MARCI_UNLEASH-R001",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "MU-01 a genuine completed Fury flurry applies its pulse before the last primary attack damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-01 a genuine completed Fury flurry applies its pulse before the last primary attack damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R002",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "MU-02 a genuine failed one-second flurry loses its bonus attack speed while ordinary attacks remain allowed",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-02 a genuine failed one-second flurry loses its bonus attack speed while ordinary attacks remain allowed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R003",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-03 actual Unleash1325AS unlocks the generic700ceiling without changing its base interval",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-03 actual Unleash1325AS unlocks the generic700ceiling without changing its base interval"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R004",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-04 a positive strong removal cannot remove the native death-only Unleash state",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-04 a positive strong removal cannot remove the native death-only Unleash state"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R005",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-05 tier1 loads3charges and only its active flurry provides700AS",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-05 tier1 loads3charges and only its active flurry provides700AS"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R006",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-05 tier2 loads4charges and only its active flurry provides975AS",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-05 tier2 loads4charges and only its active flurry provides975AS"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R007",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-05 tier3 loads5charges and only its active flurry provides1325AS",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-05 tier3 loads5charges and only its active flurry provides1325AS"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R008",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-05 tier6 loads5charges and only its active flurry provides1325AS",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-05 tier6 loads5charges and only its active flurry provides1325AS"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R009",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "MU-05 tier9 loads5charges and only its active flurry provides1325AS",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-05 tier9 loads5charges and only its active flurry provides1325AS"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R010",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MU-06 the real Chemical Rage melee1.2BAT and Unleash1325combo is not clamped by the global0.12floor",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-06 the real Chemical Rage melee1.2BAT and Unleash1325combo is not clamped by the global0.12floor"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R011",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MU-07 actual missed attacks consume Fury charges and can release the finishing pulse",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-07 actual missed attacks consume Fury charges and can release the finishing pulse"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R012",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "MU-08 successful flurry recovery blocks the next ordinary attack for the explicit1.5seconds then reloads",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-08 successful flurry recovery blocks the next ordinary attack for the explicit1.5seconds then reloads"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Actual explicit AA1.5second no-attack recovery is tested. Fixed-native2BAT implementation under arbitrary foreign IAS/time factors remains unproven."
+        },
+        {
+          "id": "MARCI_UNLEASH-R013",
+          "kind": "combination",
+          "branch": "gaben",
+          "rule": "MU-09 AA Gaben reacts to a genuine non-Marci Fortune spell without importing native Scepter-only restrictions",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-09 AA Gaben reacts to a genuine non-Marci Fortune spell without importing native Scepter-only restrictions"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R014",
+          "kind": "super",
+          "branch": "super",
+          "rule": "MU-10 the genuine Super finishing pulse applies one1.5second silence after its spell damage",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-10 the genuine Super finishing pulse applies one1.5second silence after its spell damage"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R015",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "MU-11 a genuine Time Lock extra attack consumes another displayed flurry charge on its independent record",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-11 a genuine Time Lock extra attack consumes another displayed flurry charge on its independent record"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-R016",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "MU-12 a failed flurry reloads after its1.5second recovery instead of leaving a permanent lost-attack state",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "MU-12 a failed flurry reloads after its1.5second recovery instead of leaving a permanent lost-attack state"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "MARCI_UNLEASH-P01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Recovery uses explicit AA1.5second action suppression plus native2BAT marker. Foreign IAS/BAT/time-factor interactions and ranged pulse versus in-flight attack order are not all source/result-closed.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "MARCI_UNLEASH-P02",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA StrongOnly category conflicts with historical death-only modifier. Wiki nonnumeric mechanism is chosen;no original AA Lua confirms a deliberate custom dispel override.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "MARCI_UNLEASH-P03",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "AA/wiki print base-attack-speed slow as60/80/100 without percent while raw key name contains pct. Current flat attack-speed-point choice preserves displayed values;exact AA formula remains unproven.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "MARCI_UNLEASH-E01",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "Unlimited AS opt-in bypasses old0.12floor,but30Hz quantization/FIXED_STEP remains. This is not native certification of arbitrary greater-than30attacks/second.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ],
+          "testEvidence": [],
+          "status": "environment_out_of_scope"
+        }
+      ],
+      "unresolved": [
+        "Recovery uses explicit AA1.5second action suppression plus native2BAT marker. Foreign IAS/BAT/time-factor interactions and ranged pulse versus in-flight attack order are not all source/result-closed.",
+        "AA StrongOnly category conflicts with historical death-only modifier. Wiki nonnumeric mechanism is chosen;no original AA Lua confirms a deliberate custom dispel override.",
+        "AA/wiki print base-attack-speed slow as60/80/100 without percent while raw key name contains pct. Current flat attack-speed-point choice preserves displayed values;exact AA formula remains unproven.",
+        "Unlimited AS opt-in bypasses old0.12floor,but30Hz quantization/FIXED_STEP remains. This is not native certification of arbitrary greater-than30attacks/second."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "AA pulse1.5second silence matches historical pulse silence component.",
+          "status": "aa_explicit_native_component",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "rule": "AA minus10cooldown and any-spell pulse are broader/different than native minus20Marci-onlyScepter;no native self-basic-purge silently added.",
+          "status": "aa_explicit_custom",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "marci-2023"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom_windrunner_windrun",
+      "status": "partial",
+      "reviewedAllDescriptionClauses": false,
+      "scope": {
+        "AAClausesEnumerated": true,
+        "meaning": "All available AA base/differences/Super/Gaben and original tags/categories/clocks read. Finite result closure is separated from precise missing/custom/source/environment boundaries;not whole-skill acceptance.",
+        "fixtures": "Actual final registered programs and compiled parameters/public clocks. Only ordinary initial stats/positions/clocks and true slot availability controlled. No program/status/FX/summon/native classification injection. Phantasm,Sleight,Sidekick,BlackHole,Chakra,TimeLock,Windrun,Root,Soulbind,Dance are genuine engine actions."
+      },
+      "catalogClauses": {
+        "base": "Increases movement speed and adds evasion from all physical attacks, while slowing movement of nearby enemies.",
+        "differences": "",
+        "super": "Super: +2s duration.",
+        "gaben": "Gaben: Grants 2 charges.",
+        "values": [
+          "DURATION: 1 / 2 / 4",
+          "ENEMY SLOW RADIUS: 325",
+          "ENEMY SLOW: -15% / -20% / -30%",
+          "EVASION: 80%",
+          "MOVE SPEED BONUS: 60%"
+        ],
+        "mana": [
+          50
+        ],
+        "cooldowns": [
+          15,
+          14,
+          12
+        ],
+        "categories": [
+          "ABILITY: No Target",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "allAvailableFields": [
+          "name",
+          "id",
+          "icon",
+          "tags",
+          "categories",
+          "description",
+          "differences",
+          "values",
+          "cooldowns",
+          "manaCost",
+          "superUpgrade",
+          "gabenUpgrade"
+        ],
+        "AIAndNotes": "No such fields exist in the original object;none synthesized."
+      },
+      "sources": [
+        {
+          "id": "aa",
+          "url": "https://www.abilityarena.com/data/abilities.json",
+          "accessedOn": "2026-10-30",
+          "httpStatus": 200,
+          "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+          "paraphrase": "Full original five AA records,including description,differences,values,cooldowns,manaCost,tags,categories,Super and Gaben. No AI or notes keys exist in these rows. Explicit custom values/rules retained;category labels alone are not custom-mechanic evidence.",
+          "versionContext": "Fresh complete230row official response reused after SHA verification;not an asserted original Lua implementation."
+        },
+        {
+          "id": "valve-2023",
+          "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+          "accessedOn": "2026-10-30",
+          "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+          "paraphrase": "Five hero families,associated talents and independent Grenade1,Assassinate3,Smoke4 public/data fields read. Native ranks remain separate from AA points.",
+          "versionContext": "Pinned mirror commit6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually dated2023-02-10T01:16:45Z. Folder20230216 is not the source date or proof of the AA patch."
+        },
+        {
+          "url": "https://web.archive.org/web/20230205214118id_/https://dota2.fandom.com/wiki/Windranger",
+          "accessedOn": "2026-10-30",
+          "sha256": "54c81372cc7775af1d507465070ebf317ffcf484efba267a0ce6afe31cfe21d5",
+          "id": "windranger-2023",
+          "httpStatus": 200,
+          "originalUrl": "https://dota2.fandom.com/wiki/Windranger",
+          "paraphrase": "Windrun activation is immediate with no backswing despite the raw unprocessed point;its slow has a2.5second lease. Basic dispel removes the active aura. Native modern Scepter phasing/invisibility/blind is not imported with AA two-charge-only Gaben.",
+          "versionContext": "Direct full historical HTML capture 20230205214118. Sniper/Windranger are Feb5,Riki is Mar1,others Feb15;not interchangeable dates. No silent modern behavior import.",
+          "accessMethod": "Successful HTTP200 raw archive response. Full HTML SHA revalidated and relevant complete sections read;full third-party HTML stays ignored."
+        },
+        {
+          "id": "wind-722",
+          "url": "https://liquipedia.net/dota2/Archive%3AVersion_7.22",
+          "accessedOn": "2026-10-30",
+          "observation": "Historical7.22 Scepter records a two-charge Windrun with quarter-second cast reuse. Only the charge prototype is used;old movement bonus/max-speed changes are not automatically granted.",
+          "versionContext": "Historical changelog search evidence crosschecked against existing native charge fields. This is a prototype/working compatibility source,not proof AA copied the entire7.22Scepter."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R001",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "WR-01 genuine Windrun is immediate and has no backswing despite the old unprocessed KV cast point",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-01 genuine Windrun is immediate and has no backswing despite the old unprocessed KV cast point"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R002",
+          "kind": "timing",
+          "branch": "base",
+          "rule": "WR-02 the real Windrun enemy aura grants a2.5second slow lease",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-02 the real Windrun enemy aura grants a2.5second slow lease"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R003",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-03 the AA80percent evasion and60percent movement stay intact rather than importing full native Scepter",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-03 the AA80percent evasion and60percent movement stay intact rather than importing full native Scepter"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R004",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-04 tier1 uses its unique final AA duration1",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-04 tier1 uses its unique final AA duration1"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R005",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-04 tier2 uses its unique final AA duration2",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-04 tier2 uses its unique final AA duration2"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R006",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-04 tier3 uses its unique final AA duration4",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-04 tier3 uses its unique final AA duration4"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R007",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-04 tier6 uses its unique final AA duration6",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-04 tier6 uses its unique final AA duration6"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R008",
+          "kind": "mechanism",
+          "branch": "base",
+          "rule": "WR-04 tier9 uses its unique final AA duration6",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-04 tier9 uses its unique final AA duration6"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R009",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "WR-05 positive purge removes Windrun and stops renewal while preserving only the old target lease",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-05 positive purge removes Windrun and stops renewal while preserving only the old target lease"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R010",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "WR-06 Gaben uses its second real shared charge after purge and waits12seconds for its next recharge",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-06 Gaben uses its second real shared charge after purge and waits12seconds for its next recharge"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Shared charge memory/recharge and dispel behavior is an engineering compatibility policy;old prototype does not prove all AA acquisition/steal/refresh timelines."
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-R011",
+          "kind": "timing",
+          "branch": "gaben",
+          "rule": "WR-07 native charge reuse is still possible while the first Windrun is active",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-attack-tempo.test.ts",
+              "test": "WR-07 native charge reuse is still possible while the first Windrun is active"
+            }
+          ],
+          "status": "source_pending",
+          "qualification": "Quarter-second reuse comes from old7.22 prototype;currentAA only explicitly grants two charges,not a recovered exact reuse clock."
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-P01",
+          "kind": "gaben",
+          "branch": "gaben",
+          "rule": "AA grants two charges but does not state quarter-second reuse or complete old7.22Scepter movement behavior. Public final recharge is authoritative;quarter-second reuse is a transparent historical-prototype compatibility choice.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        },
+        {
+          "id": "CUSTOM_WINDRUNNER_WINDRUN-P02",
+          "kind": "combination",
+          "branch": "base",
+          "rule": "Shared stolen-charge acquisition/transfer/refresh/reacquire behavior has finite engineering regressions elsewhere,not comprehensive native source closure for every body/slot transition.",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ],
+          "testEvidence": [],
+          "status": "source_pending"
+        }
+      ],
+      "unresolved": [
+        "AA grants two charges but does not state quarter-second reuse or complete old7.22Scepter movement behavior. Public final recharge is authoritative;quarter-second reuse is a transparent historical-prototype compatibility choice.",
+        "Shared stolen-charge acquisition/transfer/refresh/reacquire behavior has finite engineering regressions elsewhere,not comprehensive native source closure for every body/slot transition."
+      ],
+      "upgradeProvenance": [
+        {
+          "branch": "super",
+          "rule": "Explicit AA adds2seconds to final1/2/4duration,producing6seconds atS/G.",
+          "status": "aa_explicit_numeric",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ]
+        },
+        {
+          "branch": "gaben",
+          "rule": "Explicit AA twocharges traced to old7.22Scepter charge-only prototype;not a complete2023Scepter import.",
+          "status": "aa_explicit_partial_historical_prototype",
+          "sourceIds": [
+            "aa",
+            "valve-2023",
+            "windranger-2023",
+            "wind-722"
+          ]
+        }
+      ]
+    }
+  ],
+  "render": {
+    "status": "passed",
+    "command": "node scripts/c15-attack-render-smoke.mjs",
+    "report": "artifacts/r6-c15-attack-render/report.json",
+    "reportSha256": "38f83d1234df15fbf3d6f2041606aae6dc40a3dd5bb8d68d9e648873e745e70a",
+    "configurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+    "scenarios": 28,
+    "desktopScenes": 14,
+    "mobileScenes": 14,
+    "browserClosed": true,
+    "meaning": "Actual final compiled engine actions/native children/ordinary attack records. Only initial ordinary stats/positions/clocks and genuine slot availability controlled;no injected statuses,damage,FX,summons,programs or definition overrides. True Dance disjoint,True Fury recovery,positive purge and Smoke leases are genuine. Immutable simulation snapshot across actual draw. Finite visual intake,not whole native acceptance.",
+    "visualReview": {
+      "inspectedOn": "2026-10-30",
+      "files": [
+        "grenade-flight.png",
+        "grenade-impact-mobile.png",
+        "assassinate-flight-mobile.png",
+        "assassinate-disjoint.png",
+        "tide-ready-mobile.png",
+        "tide-cleave.png",
+        "tide-cleave-mobile.png",
+        "tide-cooldown-mobile.png",
+        "tricks-channel.png",
+        "tricks-smoke-lease-mobile.png",
+        "fury-loaded.png",
+        "fury-pulse.png",
+        "fury-pulse-mobile.png",
+        "fury-recovery.png",
+        "wind-active-mobile.png",
+        "wind-purged-lease.png"
+      ],
+      "observation": "Actual desktop/mobile PNGs inspected. GroundGrenade and Assassinate use distinct real projectile layers;genuineDance conceals its target and cancels only its pendingAssassinate without a stale reveal/hit. Tide ready edge,actual cleave and cooldown absence are separate. Tricks hides its actual body while boundary/Smoke exist;only the true target silence lease remains after the channel. Fury loaded and recovery have different valid art;real finishing pulse uses three existing layers. Positive Windrun purge removes caster wind/pressure while targetslow keeps its lease. Arena-wide framing makes bodies/effects compact;no new camera/art/native physics claim.",
+      "samplingNote": "First28scenes also passed,then Tide/Fury shots advanced the actual simulation0.15seconds after the real occurrence to avoid an uninformative birth-frame atlas sample;all28were rerun successfully. No source/test/config changes."
+    }
+  }
+}

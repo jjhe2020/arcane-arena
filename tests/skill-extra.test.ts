@@ -424,10 +424,11 @@ describe('extra skill upgrade behavior', () => {
   it('performs Heavenly Jump at the same position and caps it at two targets', () => {
     const h = harness('custom_zuus_static_field'), original = { x: h.caster.x, y: h.caster.y };
     const third = structuredClone(h.other); third.id = 'third'; third.x = 9; h.ctx.battle.units.push(third);
-    EXTRA_PROGRAMS[h.ctx.skill.id].onDealDamage!({ ...h.ctx, triggerSkillId: 'test' });
+    getSkillProgram(h.ctx.skill.id)!.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'test' });
     expect({ x: h.caster.x, y: h.caster.y }).toEqual(original);
-    expect(h.ctx.enemies().filter(u => status(u, 'castTimePct'))).toHaveLength(2);
-    expect(status(h.target, 'castTimePct')?.value).toBe(.5); expect(status(h.target, 'slow')?.until).toBe(1.6);
+    // The parent dispatches independent real-level children; this harness records dispatch only.
+    expect(h.grants).toHaveLength(2);expect(h.grants.every(g=>g.id==='zuus_heavenly_jump'&&g.points===4)).toBe(true);
+    expect(new Set(h.grants.map(g=>g.target)).size).toBe(2);
   });
   it('uses one inverse Chaos Bolt roll so maximum damage cannot also receive maximum stun', () => {
     const low = harness('chaos_knight_chaos_bolt', 4), high = harness('chaos_knight_chaos_bolt', 4);
@@ -439,8 +440,8 @@ describe('extra skill upgrade behavior', () => {
   it('prioritizes visible heroes over a closer summon for Heavenly Jump', () => {
     const h = harness('custom_zuus_static_field'), summon = structuredClone(h.other);
     summon.id = 'creep'; summon.summoned = true; summon.x = h.caster.x; summon.y = h.caster.y + .1; h.ctx.battle.units.push(summon);
-    EXTRA_PROGRAMS[h.ctx.skill.id].onDealDamage!({ ...h.ctx, triggerSkillId: 'test' });
-    expect(status(summon, 'castTimePct')).toBeUndefined(); expect(status(h.target, 'castTimePct')).toBeDefined(); expect(status(h.other, 'castTimePct')).toBeDefined();
+    getSkillProgram(h.ctx.skill.id)!.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'test' });
+    expect(h.grants.map(g=>g.target)).not.toContain(summon.id);expect(h.grants.map(g=>g.target)).toEqual(expect.arrayContaining([h.target.id,h.other.id]));
   });
   it('uses the real Echo attack-speed buff for a bounded ordinary melee follow-up', () => {
     const id='custom_monkey_king_jingu_mastery',battle=createBattle(player(0,[{id,points:6}]),player(1),19,catalog),[caster,target]=battle.units;
@@ -840,12 +841,12 @@ describe('extra captured catalog differences', () => {
     expect(h.battle.finished).toBe(false);
     advance(h.battle, 2); expect(bear.dead).toBe(false); expect(h.enemies[0].hp).toBeLessThan(health);
   });
-  it('keeps Static Field cooldowns independent per source ability and suppresses damage-over-time retriggers', () => {
+  it('keeps accepted Static Field source-ability clocks independent across repeated packets', () => {
     const h = harness('custom_zuus_static_field', 3), p = EXTRA_PROGRAMS[h.ctx.skill.id], hp = h.target.hp;
-    p.onDealDamage!({ ...h.ctx, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .9);
-    h.ctx.battle.time = 1; p.onDealDamage!({ ...h.ctx, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .9);
-    p.onDealDamage!({ ...h.ctx, triggerSkillId: 'abilityB' }); expect(h.target.hp).toBeCloseTo(hp * .81);
-    h.ctx.battle.time = 3; p.onDealDamage!({ ...h.ctx, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .729);
+    p.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .9);
+    h.ctx.battle.time = 1; p.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .9);
+    p.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'abilityB' }); expect(h.target.hp).toBeCloseTo(hp * .81);
+    h.ctx.battle.time = 3; p.onBeforeAbilityDamageEvent!({ ...h.ctx, beforeAbilityDamageEvent:{inputAmount:1,category:'spell',flags:{}}, triggerSkillId: 'abilityA' }); expect(h.target.hp).toBeCloseTo(hp * .729);
   });
   it('shares Grave Chill with every owned summon body rather than only Visage familiars', () => {
     const h = harness('custom_visage_grave_chill', 3), p = EXTRA_PROGRAMS[h.ctx.skill.id];

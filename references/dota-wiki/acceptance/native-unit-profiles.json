@@ -208,6 +208,14 @@
       "versionContext": "Captured AA clauses and values stay authoritative; this profile migration does not substitute vanilla balance numbers.",
       "observation": "AA Super adds two wolves and Gaben gives a further Big Bad Wolf with fivefold health and damage.",
       "localEvidence": "config/reference/migration-baseline.json"
+    },
+    {
+      "id": "c15-generic-unit-identities",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Pinned2023-02-10 raw and parsed KV;explicit unit fields overlaid on npc_dota_units_base,not inferred numbered tiers.",
+      "observation": "Generic Boar is ranged,100BaseAS,.5point,1500projectile,.6turn,Level1;generic Golem is melee,100BaseAS,.26point,zero projectile,inherited.5turn andLevel1. Both inherit250rangebuffer. Existing AA HP/damage/range/BAT/movement values remain authored separately;backswing is relocated without claiming new historicalAAcertification.",
+      "localEvidence": "references/dota-wiki/c15-native-profile-source-snapshot.json"
     }
   ],
   "skills": [],
@@ -728,7 +736,7 @@
       "id": "E-NATIVE-PROFILE-17",
       "kind": "combination",
       "branch": "engine",
-      "rule": "a new ordinary summon made by a native caster does not inherit its native attack identity or baseAS",
+      "rule": "A new actual Boar created by a native Archer uses its explicit own100BaseAS/.5point profile,not the caster109BaseAS/.7point identity. Unmarked factory bodies likewise do not blindly inherit a native template;illusions have their separate snapshot contract.",
       "sourceIds": [
         "project-creation-contract"
       ],
@@ -787,6 +795,30 @@
       ],
       "status": "pending",
       "testEvidence": []
+    },
+    {
+      "id": "E-NATIVE-PROFILE-C15-BOAR-GOLEM",
+      "kind": "mechanism",
+      "branch": "finite_c15_protocol",
+      "status": "passed",
+      "sourceIds": [
+        "c15-generic-unit-identities"
+      ],
+      "rule": "Actual Boar and Golem factories bind their own native attack/motion identity on creation;five duplicate AA skill clock fields are removed. AA Boar750HP/50attack/1.25BAT and Golemzeroattack stay intact. A native Archer casting Wild creates the separate100BaseASBoar rather than copying its own109BaseASprofile. Flat turn conversion remains the explicit engine work model.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-C15-01 boar identity migration preserves its AA stats without duplicate skill clocks"
+        },
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-C15-02 golem uses a genuine melee native identity while retaining AA zero attack"
+        },
+        {
+          "file": "tests/reference-native-unit-profiles.test.ts",
+          "test": "PROFILE-17 a new ordinary summon made by a native caster does not inherit its native attack identity or baseAS"
+        }
+      ]
     }
   ],
   "validation": {
