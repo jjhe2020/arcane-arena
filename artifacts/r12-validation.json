@@ -1,6 +1,81 @@
 {
-  "status": "validation_in_progress",
+  "status": "passed",
   "release": "v0.1.1-r12",
+  "generatedAt": "2026-10-30T12:17:17.919Z",
   "simulationRevision": "arena-2026-10-30-battle-presentation-r10",
-  "ciFix": "Use a temporary disk-backed persistent profile for full PWA storage validation; fail immediately on download errors."
+  "saveCompatibleWith": "v0.1.1-r10",
+  "unitTests": {
+    "files": 113,
+    "tests": 4028,
+    "status": "passed"
+  },
+  "referenceTests": {
+    "files": 71,
+    "tests": 3457,
+    "status": "passed"
+  },
+  "build": "passed",
+  "production": [
+    "verify-release",
+    "browser-smoke",
+    "pwa-smoke",
+    "sidebar-layout-smoke",
+    "battle-presentation-smoke",
+    "spectator-smoke",
+    "skill-stats-smoke",
+    "skill-stats-engine-smoke",
+    "shop-menu-smoke",
+    "ui-integrity-smoke",
+    "recovery-smoke",
+    "asset-recovery-smoke"
+  ],
+  "development": [
+    "mobile-touch-smoke",
+    "mobile-roster-smoke"
+  ],
+  "pwa": {
+    "version": "8979c16aea446c95e5ef",
+    "files": 2993,
+    "bytes": 580174387
+  },
+  "pwaScenarios": [
+    "runtime-inventory",
+    "install-manifest-and-worker",
+    "failed-download-is-not-ready",
+    "complete-download-and-resume",
+    "network-disabled-cold-start-and-battle",
+    "network-disabled-new-game-and-skill-purchase",
+    "explicit-safe-update",
+    "native-fullscreen-enter-and-exit",
+    "denied-fullscreen-guidance",
+    "portrait-no-api-install-guidance"
+  ],
+  "package": {
+    "scope": "local-validation-archive",
+    "bytes": 582877303,
+    "fileCount": 5661,
+    "sha256": "b00f3d6bcbd93c4e4d34ecd7bf93f82328455c2141e846261b71effae633bbe5",
+    "crcVerified": true
+  },
+  "boundaries": [
+    "HTTPS required for mobile PWA; LAN HTTP is online-only",
+    "Chromium automation and mobile emulation, not physical Android/iOS installation validation",
+    "No public hosting created",
+    "Playable development build, not full reference acceptance"
+  ],
+  "pwaStorageProfile": "persistent",
+  "focusedCI": {
+    "status": "passed",
+    "url": "https://github.com/jjhe2020/arcane-arena/actions/runs/41053766988",
+    "headSha": "9f4f4ebb8964d1811333afaf237c6eee61abc6fc",
+    "elapsedSeconds": 31.28,
+    "scenarios": 10,
+    "storageProfile": "persistent"
+  },
+  "previousAttempt": {
+    "tag": "v0.1.1-r11",
+    "releasePublished": false,
+    "ci": "failed",
+    "reason": "PWA test used ephemeral private storage quota; existing error was hidden until timeout."
+  }
 }
