@@ -87,8 +87,8 @@ try {
         const box = await offer.boundingBox(); assert(box);
         const cdp = await context.newCDPSession(page);
         await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
-        await page.waitForTimeout(600);
-        await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+        try { await page.locator('#dialog[open]').waitFor(); }
+        finally { await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); }
       } else await offer.click({ button: 'right' });
       await page.locator('#dialog[open]').waitFor();
       assert.equal(await page.evaluate(() => window.arena.state.players[0].gold), beforeDetails.gold);
