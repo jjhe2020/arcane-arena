@@ -3,6 +3,7 @@ import type {BattleBarrier} from './combat/barriers';
 import {barrierSkillFamily} from './combat/barriers';
 import {selectVisualLayers} from './visual-layers';
 import {resolveVisualArt} from './visual-bindings';
+import radialCalibration from './radial-art-calibration.json';
 
 export interface BodyPresentation {clip?:AnimationClip;hidden:boolean;skill?:string;prefix?:string}
 export function bodyVisibility(u:CombatUnit,viewSide:number,time:number){const has=(kind:string)=>u.statuses.some(s=>s.kind===kind&&s.until>time),concealed=(has('invisible')&&!has('revealed'))||has('undetectable');return{hidden:u.side!==viewSide&&concealed,opacity:u.side===viewSide&&concealed ? .45 : 1};}
@@ -103,7 +104,7 @@ export function bodyPresentation(assets:AssetManifest,u:CombatUnit,action:string
  return{hidden:false};
 }
 
-export interface BarrierPresentation {key:string;clip:AnimationClip;x:number;y:number;angle:number;age:number;width:number;height:number}
+export interface BarrierPresentation {key:string;clip:AnimationClip;x:number;y:number;angle:number;age:number;width:number;height:number;loop?:boolean}
 export interface LinePresentation {key:string;clip:AnimationClip;x:number;y:number;angle:number;age:number;width:number;height:number}
 export interface ShadowPath {id:string;source:string;skill:string;from:{x:number;y:number};to:{x:number;y:number};createdAt:number;until:number}
 export function shadowPathPresentations(assets:AssetManifest,paths:ShadowPath[],time:number):LinePresentation[]{
@@ -164,6 +165,19 @@ export function barrierPresentations(assets:AssetManifest,walls:BattleBarrier[],
   if(!clip)continue;
   if(wall.visual){
    const visual=wall.visual;if(groups.has(visual.group))continue;groups.add(visual.group);
+   if(wall.skill==='mars_arena_of_blood'&&visual.circleRadius!==undefined){
+    const samples=radialCalibration['mars_arena_of_blood/arena_wall'].meanRadius.filter(r=>r>0),measured=samples.reduce((n,r)=>n+r,0)/samples.length,size=visual.circleRadius/measured;
+    result.push({key:`wall:${visual.group}`,clip,x:visual.centerX,y:visual.centerY,angle:0,age:time-wall.createdAt,width:size,height:size,loop:true});continue;
+   }
+   const members=walls.filter(w=>w.visual?.group===visual.group&&w.until>time);
+   if(barrierSkillFamily(wall.skill)==='custom_earthshaker_fissure'&&members.every(w=>w.from.x===w.to.x&&w.from.y===w.to.y)){
+    // A row of real circular cells still has finite thickness. Tile the ridge
+    // across its measured axial extent; collision remains in the simulation.
+    const dx=Math.cos(visual.angle),dy=Math.sin(visual.angle),bounds=members.map(w=>({at:(w.from.x-visual.centerX)*dx+(w.from.y-visual.centerY)*dy,radius:w.width/2}));
+    const from=Math.min(...bounds.map(p=>p.at-p.radius)),to=Math.max(...bounds.map(p=>p.at+p.radius)),length=to-from,count=Math.max(1,Math.ceil(length/3)),width=Math.max(...members.map(w=>w.width));
+    for(let i=0;i<count;i++){const at=from+(i+.5)*length/count;result.push({key:`wall:${visual.group}:${i}`,clip,x:visual.centerX+dx*at,y:visual.centerY+dy*at,angle:visual.angle-Math.PI/2,age:time-wall.createdAt,width:width/.14,height:(length/count)/.57});}
+    continue;
+   }
    const cosine=Math.cos(visual.angle),sine=Math.sin(visual.angle);
    const local=walls.filter(w=>w.visual?.group===visual.group).flatMap(w=>[w.from,w.to]).map(p=>({x:-(p.x-visual.centerX)*sine+(p.y-visual.centerY)*cosine,y:-(p.x-visual.centerX)*cosine-(p.y-visual.centerY)*sine}));
    const minX=Math.min(...local.map(p=>p.x)),maxX=Math.max(...local.map(p=>p.x)),minY=Math.min(...local.map(p=>p.y)),maxY=Math.max(...local.map(p=>p.y));

@@ -2,7 +2,7 @@ import type { BattleState,CombatUnit } from '../model';
 import { recordMovement } from './movement';
 import {BATTLE_CONFIG} from '../config';
 export interface Point {x:number;y:number}
-export interface BattleBarrier {side?:number;blocks?:'all'|'enemies';id:string;source:string;skill:string;from:Point;to:Point;width:number;until:number;createdAt:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
+export interface BattleBarrier {side?:number;blocks?:'all'|'enemies';id:string;source:string;skill:string;from:Point;to:Point;width:number;until:number;createdAt:number;visual?:{group:string;centerX:number;centerY:number;angle:number;circleRadius?:number}}
 const RADIUS=BATTLE_CONFIG.bodyRadius;
 const bounds={x:14.57-RADIUS,y:12.916-RADIUS};
 const clamp=(p:Point):Point=>({x:Math.max(-bounds.x,Math.min(bounds.x,p.x)),y:Math.max(-bounds.y,Math.min(bounds.y,p.y))});
@@ -40,14 +40,16 @@ function clearSegment(a:Point,b:Point,walls:BattleBarrier[],allowExit=false):boo
   return walls.every(w=>{const clearance=w.width/2+RADIUS,foot=closest(a,w.from,w.to);if(allowExit&&pointDistance(a,w.from,w.to)<clearance-1e-6&&pointDistance(b,w.from,w.to)>pointDistance(a,w.from,w.to)&&(a.x-foot.x)*(b.x-a.x)+(a.y-foot.y)*(b.y-a.y)>=-1e-10)return true;return segmentDistance(a,b,w.from,w.to)>=clearance-1e-6;});
 }
 interface Graph { signature:string;points:Point[];edges:{to:number;cost:number}[][] }
-const graphs=new WeakMap<BattleState,Graph>();
+// Different sides can see different blocking subsets (AA allied Fissures).
+// Keep each live subset rather than rebuilding it every alternating body.
+const graphs=new WeakMap<BattleState,Map<string,Graph>>();
 function graph(b:BattleState,walls:BattleBarrier[]):Graph{
-  const signature=walls.map(w=>w.id).join('|'),old=graphs.get(b);if(old?.signature===signature)return old;
+  const signature=walls.map(w=>w.id).join('|');let cache=graphs.get(b);if(!cache){cache=new Map();graphs.set(b,cache);}const old=cache.get(signature);if(old)return old;
   const points:Point[]=[];
-  for(const wall of walls){const radius=(wall.width/2+RADIUS)*1.2+.03;for(const end of [wall.from,wall.to])for(let i=0;i<8;i++){const p=clamp({x:end.x+Math.cos(i*Math.PI/4)*radius,y:end.y+Math.sin(i*Math.PI/4)*radius});if(walls.every(w=>pointDistance(p,w.from,w.to)>=w.width/2+RADIUS+.01)&&!points.some(t=>distance(t,p)<.01))points.push(p);}}
+  for(const wall of walls){const radius=(wall.width/2+RADIUS)*1.2+.03,ends=wall.from.x===wall.to.x&&wall.from.y===wall.to.y?[wall.from]:[wall.from,wall.to];for(const end of ends)for(let i=0;i<8;i++){const p=clamp({x:end.x+Math.cos(i*Math.PI/4)*radius,y:end.y+Math.sin(i*Math.PI/4)*radius});if(walls.every(w=>pointDistance(p,w.from,w.to)>=w.width/2+RADIUS+.01)&&!points.some(t=>distance(t,p)<.01))points.push(p);}}
   const edges=points.map(()=>[] as {to:number;cost:number}[]);
   for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++)if(clearSegment(points[i],points[j],walls)){const cost=distance(points[i],points[j]);edges[i].push({to:j,cost});edges[j].push({to:i,cost});}
-  const value={signature,points,edges};graphs.set(b,value);return value;
+  const value={signature,points,edges};if(cache.size>=16)cache.clear();cache.set(signature,value);return value;
 }
 /** Deterministic visibility-graph routing around wall endpoints. Static edges
  * are cached while the barrier set is unchanged; origin/target edges are live. */

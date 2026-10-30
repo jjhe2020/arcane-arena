@@ -1,0 +1,780 @@
+{
+  "schemaVersion": 1,
+  "group": "impact-restoration",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "sourcePolicy": "Selected official structured AA/Valve records plus independent source metadata/paraphrases only. Full third-party historical HTML remains ignored. Engine debt closure does not create duplicate main skill records or claim whole-skill completeness.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Complete original five AA objects read,including descriptions,differences,allvalues,clocks,categories,Super and Gaben. These objects have no AI or notes keys;absence does not establish an original bot movement policy. All AA numbers and custom clauses remain unchanged.",
+      "versionContext": "Fresh official230row body metadata reused and original five rows compared with final catalog,not an assertion of recovered AA Lua."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Five original native ability records retain their own values and behavior version. This batch adds only the675fake-cast eligibility field and does not replace AA values with native figures.",
+      "versionContext": "Pinned6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually2023-02-10T01:16:45Z;folder20230216is not source date or proof AA used this patch."
+    },
+    {
+      "id": "dawn-2023",
+      "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+      "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Powered-up contact heals its caster,then nearby allies,before critical damage. Both restoration components are lifesteal-class and use the caster amplification. The lower-critical-priority sentence does not settle every higher-critical consumption case.",
+      "versionContext": "Direct complete historical HTML capture20230215191331. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "lifesteal-2023",
+      "url": "https://web.archive.org/web/20230215192108id_/https://dota2.fandom.com/wiki/Lifesteal",
+      "sha256": "e6ed9ce3f16c7b3b406a739d076c3a7ccecd072f8459c886629ec9da1e35db58",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Ordinary physical attack lifesteal includes the packet a dying target would have taken without death. Dawnbreaker is in the regular source list without the no-overkill footnote,which belongs to Marci/Jingu. Most target generic multipliers do not affect lifesteal;FleshGolem/AeonDisk are stated examples. Exact shield/deferred conversions are not specified here.",
+      "versionContext": "Direct complete historical HTML capture20230215192108. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "zeus-2023",
+      "url": "https://web.archive.org/web/20230215192015id_/https://dota2.fandom.com/wiki/Zeus",
+      "sha256": "12b3d928f7d8a031a9d49c811fed07ae337436911b8d308220b838843d8a1edc",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Native StaticField damage precedes every effect of each triggering Zeus ability. Native Shard8percent/Zeus-only behavior is not substituted for AA4/6/10and any-learned-ability/three-second-lock custom data. The native immediate-nuke examples do not independently resolve all AA delayedDOT/debuff-only callers.",
+      "versionContext": "Direct complete historical HTML capture20230215192015. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "lancer-2023",
+      "url": "https://web.archive.org/web/20230215191831id_/https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "sha256": "457d64b68abd62cdf42d6b268fe74329a8533752d004a5290bc64c4e82102889",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Owned illusions within675perform full fake cast animation and release harmless fake lances simultaneously with a real release. Parent cancellation retains their animation without releasing fake lances. Moving/attacking illusions retain their orders/facing;fake lances do not interact with targets.",
+      "versionContext": "Direct complete historical HTML capture20230215191831. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "necro-2023",
+      "url": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos",
+      "sha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "ReapersScythe explicitly has the highest kill-credit manipulation priority. The existing shared mark protocol is reused and verified against a real IceBlast shatter caused by a third attacker;damage attribution stays independent.",
+      "versionContext": "Direct complete historical HTML capture20230215192013. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "primal-retained",
+      "url": "https://dota2.fandom.com/wiki/Primal_Beast",
+      "accessedOn": "2026-10-30",
+      "observation": "The previous motion batch retains7.35indexed movement/stomp notes. Known2023archive429was not retried;this is not a successful dated full-page source. Neither this text nor the complete AA object proves an automated orbit AI.",
+      "versionContext": "Explicit retained modern/indexed candidate and unavailable2023page;ordinary center pursuit is a project engineering policy,not native behavior certification."
+    }
+  ],
+  "skills": [],
+  "engineRequirements": [
+    {
+      "id": "E-C16-01",
+      "kind": "timing",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM01 a genuine charged attack restores self then allies before committing its critical HP damage",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM01 a genuine charged attack restores self then allies before committing its critical HP damage"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-02",
+      "kind": "timing",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM02 a lethal charged attack restores its full uncapped physical packet before the target dies",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM02 a lethal charged attack restores its full uncapped physical packet before the target dies"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-03",
+      "kind": "timing",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM03 genuine twenty armor reduces the single calculated restoration packet before its pre-health heal",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM03 genuine twenty armor reduces the single calculated restoration packet before its pre-health heal"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-04",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM04 the explicitly qualified real refraction protection keeps its zero-restoration working outcome",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM04 the explicitly qualified real refraction protection keeps its zero-restoration working outcome"
+        }
+      ],
+      "status": "source_pending",
+      "qualification": "Real protected zero-restoration outcome is a retained working policy;this green test does not establish native shield/FP/BT basis."
+    },
+    {
+      "id": "E-C16-05",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM04 the explicitly qualified real promise protection keeps its zero-restoration working outcome",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM04 the explicitly qualified real promise protection keeps its zero-restoration working outcome"
+        }
+      ],
+      "status": "source_pending",
+      "qualification": "Real protected zero-restoration outcome is a retained working policy;this green test does not establish native shield/FP/BT basis."
+    },
+    {
+      "id": "E-C16-06",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM04 the explicitly qualified real borrowed protection keeps its zero-restoration working outcome",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM04 the explicitly qualified real borrowed protection keeps its zero-restoration working outcome"
+        }
+      ],
+      "status": "source_pending",
+      "qualification": "Real protected zero-restoration outcome is a retained working policy;this green test does not establish native shield/FP/BT basis."
+    },
+    {
+      "id": "E-C16-07",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM05 a genuine Crimson active block is consumed once before the physical restoration packet",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM05 a genuine Crimson active block is consumed once before the physical restoration packet"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-08",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "IR-LUM06 the directly documented Flesh Golem incoming multiplier does not amplify native lifesteal",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-LUM06 the directly documented Flesh Golem incoming multiplier does not amplify native lifesteal"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-09",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_zuus_static_field"
+      ],
+      "rule": "IR-SF01 Static Field from a real Spirit Lance precedes its slow and primary damage on that contact",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "zeus-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-SF01 Static Field from a real Spirit Lance precedes its slow and primary damage on that contact"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-10",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_ancient_apparition_ice_blast"
+      ],
+      "rule": "IR-IB01 existing real Scythe credit defeats Ice Blast shatter while the third attacker retains settled damage",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "necro-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-IB01 existing real Scythe credit defeats Ice Blast shatter while the third attacker retains settled damage"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-11",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "IR-PL01 genuine owned images within675 emit harmless fake lances on the real parent release",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-PL01 genuine owned images within675 emit harmless fake lances on the real parent release"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-12",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "IR-PL02 real image cast presentation does not overwrite their mechanical action clocks",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-PL02 real image cast presentation does not overwrite their mechanical action clocks"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-13",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "IR-PL03 genuine Global Silence cancels the parent yet leaves full harmless image cast playback without fake release",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-PL03 genuine Global Silence cancels the parent yet leaves full harmless image cast playback without fake release"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-14",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "IR-PL04 harmless fake releases add no RNG or extra primary damage compared with outside675 images",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-PL04 harmless fake releases add no RNG or extra primary damage compared with outside675 images"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-15",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "primal_beast_trample"
+      ],
+      "rule": "IR-TR01 engineering pursuit uses ordinary movement instead of waiting at the ranged body attack radius",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "primal-retained"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-TR01 engineering pursuit uses ordinary movement instead of waiting at the ranged body attack radius"
+        }
+      ],
+      "status": "working_interpretation",
+      "qualification": "Ordinary pursuit and legal-cast priority are project AI behavior,not recovered original Dota/AA automated movement."
+    },
+    {
+      "id": "E-C16-16",
+      "kind": "combination",
+      "branch": "existing_engine_gap",
+      "appliesTo": [
+        "primal_beast_trample"
+      ],
+      "rule": "IR-TR02 engineering pursuit yields to a genuine legal spell during the active disarm",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "primal-retained"
+      ],
+      "testEvidence": [
+        {
+          "file": "tests/reference-impact-restoration.test.ts",
+          "test": "IR-TR02 engineering pursuit yields to a genuine legal spell during the active disarm"
+        }
+      ],
+      "status": "working_interpretation",
+      "qualification": "Ordinary pursuit and legal-cast priority are project AI behavior,not recovered original Dota/AA automated movement."
+    },
+    {
+      "id": "E-C16-LUM-BASIS",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "Precise Refraction/barrier/earlyManaShield/FalsePromise/BorrowedTime/rum/nonlethal and damage-type conversion bases are not collectively established. Only normal physical/overkill/armor/trueCrimsonblock and explicitFleshGolem examples are closed.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-LUM-CRITICAL",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_dawnbreaker_luminosity"
+      ],
+      "rule": "Higher-critical competition/consumption and several in-flight ready ranged missiles remain independent open clauses. The before-health fix preserves earlier counter/batch/Break/Gaben policy rather than proving these.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "dawn-2023",
+        "lifesteal-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-SF-ALL-CONTACTS",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_zuus_static_field"
+      ],
+      "rule": "All-effects-first is still not migrated/verified for every final native/custom caller. RealLance and concentrated root-owned immediate contacts are finite repairs;the manual18path inventory explicitly distinguishes stale overridden code,delayedDOT and composite paths.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "zeus-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [],
+      "status": "actual_missing"
+    },
+    {
+      "id": "E-C16-SF-AA-LUA",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_zuus_static_field"
+      ],
+      "rule": "Original AA Lua is not recovered for source-wide versus per-victim three-second lock,nested freeJump triggers,and the native immediate-spell rule generalized to delayedDOT/debuff-only contacts.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "zeus-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-IB-WINTER",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_ancient_apparition_ice_blast"
+      ],
+      "rule": "WinterCurse has no current230main/109granted actor or program. A fabricated status is not a real native combo. Existing Scythe priority is genuinely proven without inventing a duplicate execution protocol.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "necro-2023"
+      ],
+      "testEvidence": [],
+      "status": "environment_boundary"
+    },
+    {
+      "id": "E-C16-IB-OTHER",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_ancient_apparition_ice_blast"
+      ],
+      "rule": "Cross-caster frostbite,FalsePromise/BorrowedTime deferred/converted shatter and minimum-health exceptions retain their previous bounded source/result qualifications.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "necro-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-PL-MEMBERSHIP",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "Fake-cast eligibility is frozen at accepted cast start. Entering/leaving675duringwindup,exact idle-image cosmetic turn timing,and independently controlled image states require further direct observation.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-PL-RELEASED",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "custom_phantom_lancer_spirit_lance"
+      ],
+      "rule": "Moving-target/death/disjoint/source-slot-removal fake presentation chronology is not fully recovered. Current fake trajectory homes without mechanical contact and never synthesizes damage/debuff/proc/ability-resource use.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "lancer-2023"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-TR-AI",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "primal_beast_trample"
+      ],
+      "rule": "Native automated pursuit/orbit is not established by AA full fields or retained modern notes. Current ordinary center pursuit yields to accepted spells and explicit forced-target policies,and may stop at body contact.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "primal-retained"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    },
+    {
+      "id": "E-C16-TR-VERSION",
+      "kind": "mechanism",
+      "branch": "remaining_boundary",
+      "appliesTo": [
+        "primal_beast_trample"
+      ],
+      "rule": "Exact2023stomp/warp thresholds,unitphasing/terrain/pathing and every foreign-controller exception remain the previous explicit version/environment boundary;C16does not silently change those numbers.",
+      "sourceIds": [
+        "aa",
+        "valve-2023",
+        "primal-retained"
+      ],
+      "testEvidence": [],
+      "status": "source_pending"
+    }
+  ],
+  "extras": {
+    "existingSkillLinks": {
+      "custom_dawnbreaker_luminosity": {
+        "oldRecordGroup": "attack-trigger",
+        "allDescriptionClausesReviewedHere": false
+      },
+      "custom_zuus_static_field": {
+        "oldRecordGroup": "passive-damage",
+        "allDescriptionClausesReviewedHere": false
+      },
+      "custom_ancient_apparition_ice_blast": {
+        "oldRecordGroup": "hand-ice",
+        "allDescriptionClausesReviewedHere": false
+      },
+      "custom_phantom_lancer_spirit_lance": {
+        "oldRecordGroup": "attack-state",
+        "allDescriptionClausesReviewedHere": false
+      },
+      "primal_beast_trample": {
+        "oldRecordGroup": "motion-scope",
+        "allDescriptionClausesReviewedHere": false
+      }
+    },
+    "sourceSnapshot": "references/dota-wiki/impact-restoration-source-snapshot.json",
+    "meaning": "C16repairs narrowly scoped existing engine/mechanism debt. No new main ability is counted and none of the five old whole-skill source_pending boundaries is silently removed.",
+    "remaining": [
+      [
+        "LUM-BASIS",
+        "LUM",
+        "source_pending",
+        "Precise Refraction/barrier/earlyManaShield/FalsePromise/BorrowedTime/rum/nonlethal and damage-type conversion bases are not collectively established. Only normal physical/overkill/armor/trueCrimsonblock and explicitFleshGolem examples are closed."
+      ],
+      [
+        "LUM-CRITICAL",
+        "LUM",
+        "source_pending",
+        "Higher-critical competition/consumption and several in-flight ready ranged missiles remain independent open clauses. The before-health fix preserves earlier counter/batch/Break/Gaben policy rather than proving these."
+      ],
+      [
+        "SF-ALL-CONTACTS",
+        "SF",
+        "actual_missing",
+        "All-effects-first is still not migrated/verified for every final native/custom caller. RealLance and concentrated root-owned immediate contacts are finite repairs;the manual18path inventory explicitly distinguishes stale overridden code,delayedDOT and composite paths."
+      ],
+      [
+        "SF-AA-LUA",
+        "SF",
+        "source_pending",
+        "Original AA Lua is not recovered for source-wide versus per-victim three-second lock,nested freeJump triggers,and the native immediate-spell rule generalized to delayedDOT/debuff-only contacts."
+      ],
+      [
+        "IB-WINTER",
+        "IB",
+        "environment_boundary",
+        "WinterCurse has no current230main/109granted actor or program. A fabricated status is not a real native combo. Existing Scythe priority is genuinely proven without inventing a duplicate execution protocol."
+      ],
+      [
+        "IB-OTHER",
+        "IB",
+        "source_pending",
+        "Cross-caster frostbite,FalsePromise/BorrowedTime deferred/converted shatter and minimum-health exceptions retain their previous bounded source/result qualifications."
+      ],
+      [
+        "PL-MEMBERSHIP",
+        "PL",
+        "source_pending",
+        "Fake-cast eligibility is frozen at accepted cast start. Entering/leaving675duringwindup,exact idle-image cosmetic turn timing,and independently controlled image states require further direct observation."
+      ],
+      [
+        "PL-RELEASED",
+        "PL",
+        "source_pending",
+        "Moving-target/death/disjoint/source-slot-removal fake presentation chronology is not fully recovered. Current fake trajectory homes without mechanical contact and never synthesizes damage/debuff/proc/ability-resource use."
+      ],
+      [
+        "TR-AI",
+        "TR",
+        "source_pending",
+        "Native automated pursuit/orbit is not established by AA full fields or retained modern notes. Current ordinary center pursuit yields to accepted spells and explicit forced-target policies,and may stop at body contact."
+      ],
+      [
+        "TR-VERSION",
+        "TR",
+        "source_pending",
+        "Exact2023stomp/warp thresholds,unitphasing/terrain/pathing and every foreign-controller exception remain the previous explicit version/environment boundary;C16does not silently change those numbers."
+      ]
+    ],
+    "childDefinitionsAdded": 0,
+    "configurationDelta": {
+      "skill": "custom_phantom_lancer_spirit_lance",
+      "key": "FAKE CAST RADIUS",
+      "AAFinalValues": [
+        675,
+        675,
+        675,
+        675,
+        675
+      ],
+      "units": "Dota units",
+      "originalSource": "lancer-2023",
+      "allOtherPublicNumericValues": "unchanged"
+    }
+  },
+  "validation": {
+    "command": "npx vitest run tests/reference-impact-restoration.test.ts",
+    "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+    "passedTests": 16,
+    "totalTests": 16,
+    "localReport": "output/c16-damage-intake/final-tests.json",
+    "reportSha256": "391477c09554c9fcd4d9bcaed07e1e479892e44708c90ba5215acf0d835d7cf9",
+    "preFixRed": {
+      "file": "output/c16-damage-intake/red-tests.json",
+      "passed": 5,
+      "failed": 7
+    },
+    "affectedRegression": {
+      "command": "npx vitest run tests/reference-impact-restoration.test.ts tests/reference-attack-trigger.test.ts tests/reference-attack-state.test.ts tests/reference-motion-scope.test.ts",
+      "file": "output/c16-damage-intake/affected-final.json",
+      "passed": 237,
+      "total": 237,
+      "sha256": "349ce9a7013a7fac2acadab1afeb627b363b50e5b81565ad78dcfc465bf39321"
+    },
+    "typecheck": "npx tsc --noEmit",
+    "typecheckPassed": true,
+    "meaning": "Finite realengine outcomes and explicitly labeled protected/AI policies. Root owns final allsuite/reference/build/production;no full R6 release claim.",
+    "renderStatus": "passed",
+    "renderReport": "artifacts/r6-c16-damage-render/report.json",
+    "renderReportSha256": "306492075beeff0a91f40a72f756858d8435f4797d83eda1e58c606983f16c80"
+  },
+  "render": {
+    "status": "passed",
+    "command": "node scripts/c16-damage-render-smoke.mjs",
+    "report": "artifacts/r6-c16-damage-render/report.json",
+    "reportSha256": "306492075beeff0a91f40a72f756858d8435f4797d83eda1e58c606983f16c80",
+    "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+    "actualURL": "http://127.0.0.1:5173",
+    "passedScenarios": 16,
+    "totalScenarios": 16,
+    "desktopScenarios": 8,
+    "mobileScenarios": 8,
+    "browserClosed": true,
+    "representativePngsReviewed": [
+      {
+        "file": "artifacts/r6-c16-damage-render/luminosity-heal-mobile.png",
+        "sha256": "3317a5bce7030079da8a65173dbb57280bddeda895b5456af53aec1367a3b662"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/luminosity-lethal.png",
+        "sha256": "01fa60b03f8052f78497fe9d6ecb3116232de00097551fe67f638b8a02cd93f2"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/static-contact-mobile.png",
+        "sha256": "a80aff0ad1408f5db4e25ce6a8f52c2b1035bff42e37442408addbb035b8589f"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/iceblast-scythe.png",
+        "sha256": "427d32110671b1261978025bdc15b3718d6e560c8154aec139eaa0dac044418e"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-cast.png",
+        "sha256": "41111e4d7b4fb968722501b11d115e56da669ec158c7b8b5380ebe7c61903ed7"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-fakes-mobile.png",
+        "sha256": "72eeffab4297f3256d63cab497733d1f4ff6ddc6393eae0632e0e01eeba0e87b"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-canceled.png",
+        "sha256": "fbfbe95c63ed911543eac30cc5a890756fb9d03966497717ebde44e170d6ad77"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/trample-pursuit.png",
+        "sha256": "368b6afe17518863d98e830b271b21b179440583a4bcb46c55090eb62b738134"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/trample-pursuit-mobile.png",
+        "sha256": "1d8fe28651c09caa8001c2c08869137018357ecc91c1bf80cd3c805f68eb2ea2"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/iceblast-scythe-mobile.png",
+        "sha256": "32372b493a98cdbf38750efdaa000804c9793c225777745e318e6147aab4d67b"
+      }
+    ],
+    "scope": "Real engine and renderer fixtures only. No injected status/damage/fx/summons/programs. Finite presentation coverage; no whole-skill native acceptance claim."
+  }
+}

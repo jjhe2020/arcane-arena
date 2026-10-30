@@ -5,6 +5,7 @@ import {interpolatedTransform} from './combat/presentation';
 import {DAMAGE_COLORS} from './combat/statistics';
 import type {ShadowPath} from './animation';
 import type {BattleBarrier} from './combat/barriers';
+import {activeVisualBodyActions} from './combat/visual-state';
 import {selectVisualLayers,tierVisualLayers} from './visual-layers';
 import {resolveVisualArt,statusVisuals,portalVisuals,movingVisuals,worldVisuals,eventVisuals,type VisualSource} from './visual-bindings';
 import {duelVisuals} from './duel-presentation';
@@ -101,6 +102,7 @@ export class ArenaRenderer {
     const units: (Hero|CombatUnit)[]=displayBattle?displayBattle.units:[...heroes,...enemy.map(h=>({...h,y:-h.y,x:-h.x}))];
     if(battle?.finished&&this.finishClock===undefined)this.finishClock=this.clock;
     const used=new Set<string>();this.hiddenBodies.clear();const time=battle?battle.time+(this.finishClock===undefined?0:Math.min(2,this.clock-this.finishClock)):this.clock;
+    const bodyPoses=new Map(battle?activeVisualBodyActions(battle,time).map(p=>[p.unitId,p]):[]);
     units.forEach((u)=>{const live='dead' in u,unit=u as CombatUnit;if(live&&unit.dead&&time-unit.actionStart>5)return;used.add(u.id);let v=this.visuals.get(u.id);if(!v){v=this.makeVisual();this.visuals.set(u.id,v);}
       const clips=this.assets.characters[`${u.role}-${u.skin}`];if(!clips)return;
       let action=live?unit.action:'idle';let clipAge=live?time-(unit.actionStart??0):time;
@@ -108,13 +110,15 @@ export class ArenaRenderer {
       const attacking=action==='attack'||(action==='idle'&&attack&&time-attack.time<Number(attack.duration??unit.attackInterval));
       if(attacking&&attack){action=this.attackChoices.get(u.id)??'attack';const c=clips[action]??clips.attack;const age=time-attack.time,windup=Number(attack.windup??.3),duration=Number(attack.duration??unit.attackInterval);const frame=age<=windup?17*age/Math.max(.01,windup):17+(c.frames-18)*(age-windup)/Math.max(.01,duration-windup);clipAge=Math.min(c.frames-1,frame)/c.fps;}
       if(action==='cast'&&battle){const windup=this.windups.get(u.id);if(windup){const point=Number(windup.duration??.3);const age=time-windup.time;clipAge=(age<=point?17*age/Math.max(.01,point):17+(age-point)*24)/24;}}
+      const pose=live?bodyPoses.get(unit.id):undefined;
+      if(pose){action=pose.action;clipAge=Math.max(0,time-pose.createdAt);}
       const aliases:Record<string,string>={stun:'disabled',controlled:'disabled',cast:'cast',walk:'move',channel:'channel',death:'death'};
       let clip=clips[action]??clips[aliases[action]]??clips['idle'];
       if(live&&battle){const presentation=bodyPresentation(this.assets,unit,action,battle.time,this.births.get(unit.id)?.skill);clip=presentation.clip??clip;v.group.visible=!presentation.hidden;if(presentation.hidden)this.hiddenBodies.add(unit.id);}else v.group.visible=true;
       const visibility=live?bodyVisibility(unit,viewSide,time):{hidden:false,opacity:1};if(visibility.hidden){v.group.visible=false;this.hiddenBodies.add(unit.id);}if(!clip)return;this.setClip(v,clip);
       const bodyScale=live&&battle?bodyVisualScale(unit as CombatUnit,battle.time):1;
       this.frame(v,clipAge,Boolean(clip.loop??(action==='idle'||action==='move')),Number(clip.worldSize??3.6)*bodyScale);
-      v.group.position.set(u.x,u.y,.2+(13-u.y)*.001);v.group.rotation.z=live?unit.facing+Math.PI/2:(heroes.includes(u as Hero)?Math.PI:0);
+      v.group.position.set(u.x,u.y,.2+(13-u.y)*.001);v.group.rotation.z=live?(pose?.facing??unit.facing)+Math.PI/2:(heroes.includes(u as Hero)?Math.PI:0);
       const ghost=live&&typeof battle?.ghostSide==='number'&&battle.ghostSide===unit.side;v.mesh.material.opacity=(live&&unit.dead?.valueOf()?0.35:visibility.opacity)*(ghost ? .6 : 1);v.mesh.material.color.set(ghost?'#dcecff':live&&unit.side!==viewSide?'#ffd0b8':'#ffffff');
     });
     this.visuals.forEach((v,id)=>{if(!used.has(id)){this.remove(v);this.visuals.delete(id);}});
@@ -140,7 +144,7 @@ export class ArenaRenderer {
   private drawPersistentEffects(battle:BattleState|undefined,time:number){const used=new Set<string>();
     const paint=(key:string,c:AnimationClip,x:number,y:number,age:number,size:number,angle=0,z=.4,loop=true,height=size)=>{if(used.size>=90)return;used.add(key);let v=this.persistentFx.get(key);if(!v){v=this.makeVisual();this.persistentFx.set(key,v);}this.setClip(v,c);this.frame(v,age,loop,size,height);v.group.position.set(x,y,z);v.group.rotation.z=angle;};
     if(battle){
-      for(const wall of barrierPresentations(this.assets,(battle.barriers??[]) as BattleBarrier[],time))paint(wall.key,wall.clip,wall.x,wall.y,wall.age,wall.width,wall.angle,.16,false,wall.height);
+      for(const wall of barrierPresentations(this.assets,(battle.barriers??[]) as BattleBarrier[],time))paint(wall.key,wall.clip,wall.x,wall.y,wall.age,wall.width,wall.angle,.16,wall.loop??false,wall.height);
       for(const line of linePresentations(this.assets,battle.units,time))paint(line.key,line.clip,line.x,line.y,line.age,line.width,line.angle,.68,true,line.height);
       for(const placed of duelVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
       for(const placed of worldVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);

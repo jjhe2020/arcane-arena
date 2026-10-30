@@ -739,13 +739,34 @@
           "id": "LM-P1",
           "kind": "mechanism",
           "branch": "base",
-          "rule": "Healing-before-damage sequencing is still missing;current effectiveHP-damage basis is retained until armor/block/barriers/nonlethal/deferred-damage basis is established.",
+          "rule": "Split the closed before-health/life-before-lethal scope from remaining basis/negation/converted/deferred questions. Actual self then ally restoration now precedes the real HP commit with uncapped ordinary physical overkill. Do not close all native barriers/FP/BT/nonlethal/strongercrit/inflight consumption.",
           "sourceIds": [
             "aa",
             "wiki2023"
           ],
-          "status": "mechanism_missing",
-          "testEvidence": []
+          "status": "source_pending",
+          "testEvidence": [
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-LUM01 a genuine charged attack restores self then allies before committing its critical HP damage"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-LUM02 a lethal charged attack restores its full uncapped physical packet before the target dies"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-LUM03 genuine twenty armor reduces the single calculated restoration packet before its pre-health heal"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-LUM05 a genuine Crimson active block is consumed once before the physical restoration packet"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-LUM06 the directly documented Flesh Golem incoming multiplier does not amplify native lifesteal"
+            }
+          ]
         },
         {
           "id": "LM-P2",

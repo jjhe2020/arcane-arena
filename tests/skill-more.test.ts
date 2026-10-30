@@ -311,8 +311,10 @@ describe('catalog-driven additional skills', () => {
 
   it('Fissure Gaben builds a perpendicular physical ridge and triggers Aftershock for a cast on its own fissure', () => {
     const state = battle('custom_earthshaker_fissure', 9); state.units[1].y = .5; advance(state, 1);
-    const walls = (state.barriers ?? []) as { skill: string; from: { x: number; y: number }; to: { x: number; y: number } }[];
-    expect(walls.filter(w => w.skill === 'custom_earthshaker_fissure')).toHaveLength(2);
+    const walls = (state.barriers ?? []) as { skill: string; from: { x: number; y: number }; to: { x: number; y: number }; visual?:{group:string} }[];
+    const cells=walls.filter(w => w.skill === 'custom_earthshaker_fissure');
+    expect(new Set(cells.map(w=>w.visual?.group)).size).toBe(2);
+    expect(cells).toHaveLength(60);expect(cells.every(w=>w.from.x===w.to.x&&w.from.y===w.to.y)).toBe(true);
     expect(state.events.some(e=>e.type==='hit'&&e.skill==='custom_earthshaker_fissure'&&Math.abs(Number(e.amount)-150*.75)<1e-6)).toBe(false);
     const caster=state.units[0];caster.x=walls[0].from.x;caster.y=walls[0].from.y;caster.nextAttack=100;
     caster.skills.push({id:'custom_vengefulspirit_magic_missile',points:3});caster.cooldowns.push(0);advance(state,1);

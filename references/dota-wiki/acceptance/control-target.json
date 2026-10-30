@@ -1575,12 +1575,17 @@
           "id": "SH-P01",
           "kind": "mechanism",
           "branch": "gaben",
-          "mechanism": "Native Boomerang ground-point mode, close-point minimum400triangular path and exact adaptive arc geometry are not implemented.",
+          "mechanism": "Nativegroundmodeisnowrealpoint-ordercastwithfrozenpoint/900actualpathspeed;below400triangleverticesandexactadaptivearcshape remainunimplemented. Retainedsinusoidisnotrelabelednative.",
           "sourceIds": [
             "hoodwink-2023"
           ],
           "status": "actual_missing",
-          "testEvidence": [],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-B06 a real near-point ground order records the retained non-triangular working arc without claiming recovered400vertices"
+            }
+          ],
           "boundary": "Only the finite unit-target outbound/disjoint/return cases are verified. Dead MIN TRAVEL DISTANCE was excluded from editable runtime configuration."
         },
         {
@@ -1674,6 +1679,56 @@
             {
               "file": "tests/reference-control-target.test.ts",
               "test": "CN-02 native child metadata has Chinese names parent icons and independent5/1/1/3level domains"
+            }
+          ]
+        },
+        {
+          "id": "SH-C16-BO01",
+          "kind": "gaben",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "RealnativeBoomgroundorderconsumes125mana/18CD/.2point/1.07recoveryandfreezesrealpoint.",
+          "sourceIds": [
+            "hoodwink-2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-B01 a real native Boomerang point order freezes its ground point and consumes its own mana cooldown and cast clock"
+            }
+          ]
+        },
+        {
+          "id": "SH-C16-BO02",
+          "kind": "timing",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "Groundmode900actualdistance/sec doesnotusetheunitminimumclock;unknownarcverticesstayseparate.",
+          "sourceIds": [
+            "hoodwink-2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-B02 ground Boomerang advances at actual900speed over its retained arc instead of the unit halfsecond clock"
+            }
+          ]
+        },
+        {
+          "id": "SH-C16-BO03",
+          "kind": "combination",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "GroundBoomdamagesrealFreezingFieldGLinkensholderwithoutconsumingunitspellblock.",
+          "sourceIds": [
+            "hoodwink-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-B07 a real ground-order Boomerang damages an actual FreezingField Linkens holder without consuming its unit spell block"
             }
           ]
         }

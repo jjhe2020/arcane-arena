@@ -28,15 +28,17 @@ describe('reference acceptance evidence gate',()=>{
    await rm(fixture,{recursive:true,force:true});
   }
  });
- it('invalidates proof when the consumed catalog or configuration compiler changes',async()=>{
+ it('invalidates proof when the consumed catalog,configuration compiler or test discovery changes',async()=>{
   const output=resolve('output');await mkdir(output,{recursive:true});const fixture=await mkdtemp(join(output,'reference-fingerprint-'));
   try{
    for(const directory of ['src','tests','config','references/dota-wiki/acceptance','scripts','public/data'])await mkdir(join(fixture,directory),{recursive:true});
-   const catalog=join(fixture,'public/data/skills.json'),compiler=join(fixture,'scripts/config-compiler.mjs');
-   await writeFile(catalog,'[]\n');await writeFile(compiler,'export const coefficient=1;\n');const before=await referenceFingerprint(fixture);
+   const catalog=join(fixture,'public/data/skills.json'),compiler=join(fixture,'scripts/config-compiler.mjs'),discovery=join(fixture,'vite.config.ts');
+   await writeFile(catalog,'[]\n');await writeFile(compiler,'export const coefficient=1;\n');await writeFile(discovery,'export default {test:{include:["tests/**/*.test.ts"]}};\n');const before=await referenceFingerprint(fixture);
    await writeFile(catalog,'[{"id":"changed"}]\n');expect(await referenceFingerprint(fixture)).not.toBe(before);
    await writeFile(catalog,'[]\n');expect(await referenceFingerprint(fixture)).toBe(before);
    await writeFile(compiler,'export const coefficient=2;\n');expect(await referenceFingerprint(fixture)).not.toBe(before);
+   await writeFile(compiler,'export const coefficient=1;\n');expect(await referenceFingerprint(fixture)).toBe(before);
+   await writeFile(discovery,'export default {test:{include:["src/**/*.test.ts"]}};\n');expect(await referenceFingerprint(fixture)).not.toBe(before);
   }finally{
    if(dirname(resolve(fixture))!==output||!basename(fixture).startsWith('reference-fingerprint-'))throw Error('Refusing to remove a fingerprint fixture outside the task output directory');
    await rm(fixture,{recursive:true,force:true});

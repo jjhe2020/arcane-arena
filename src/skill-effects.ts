@@ -38,6 +38,9 @@ import {applySummonLineageAcceptance,SUMMON_LINEAGE_CHILD_DEFINITIONS} from './c
 import {applyAttackTempoAcceptance,ATTACK_TEMPO_CHILD_DEFINITIONS} from './combat/attack-tempo-acceptance';
 import {applyPassiveDamageAcceptance,PASSIVE_DAMAGE_CHILD_DEFINITIONS} from './combat/passive-damage-acceptance';
 import {applyMotionScopeAcceptance,MOTION_SCOPE_CHILD_DEFINITIONS} from './combat/motion-scope-acceptance';
+import {applyGeometryOrderAcceptance} from './combat/geometry-order-acceptance';
+import {applyImpactRestorationAcceptance} from './combat/impact-restoration-acceptance';
+import {applyLifecycleSummonAcceptance} from './combat/lifecycle-summon-acceptance';
 import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
@@ -87,6 +90,8 @@ export interface SummonOptions {
   currentHp?:number;mana?:number;maxMana?:number;
   /** The outgoing fraction also applies when rebasing excluded attributes. */
   attributeAttackScale?:number;
+  /** Snapshot attributes on an ordinary clone without reapplying derived totals. */
+  copyAttributes?:boolean;
   /** Initial spawn placement, rather than a spatial jump of an existing body. */
   position?:{x:number;y:number};
   strongIllusion?:boolean;
@@ -109,7 +114,7 @@ export interface ZoneOptions {
   onEnd?:()=>void;
   effect: (target: CombatUnit, tick: number) => void;
 }
-export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number}}
+export interface BarrierOptions { blocks?:'all'|'enemies';from:{x:number;y:number};to:{x:number;y:number};width:number;duration:number;visual?:{group:string;centerX:number;centerY:number;angle:number;circleRadius?:number}}
 export interface InstantAttackOptions {
   /** Explicit attack geometry; the actual actor and statistical attribution stay unchanged. */
   attackOrigin?:{x:number;y:number};
@@ -150,6 +155,14 @@ export interface InstantAttackOptions {
   suppressAllyAttackPoint?:boolean;
 }
 export interface AttackResolution {landed:boolean;damage:number}
+/** Detached observations from this one real damage resolution. An absent stage
+ * was not reached; it is distinct from a reached stage whose value is zero. */
+export interface AttackDamageResolution {
+ inputAmount:number;damageType:DamageType;category:import('./model').DamageCategory;flags:Readonly<import('./model').DamageFlags>;
+ /** HP-sized candidate before subscribers; settled statistics still use actual HP loss. */
+ outcome:'damage'|'absorbed'|'deferred'|'converted'|'rejected'|'zero'|'specialBody'|'hpRemoval';reason?:string;effectiveDamage:number;
+ afterOutgoing?:number;afterEarlyManaShield?:number;afterBlock?:number;afterTypeMitigation?:number;afterTypeVulnerability?:number;afterGeneric?:number;afterBarriers?:number;afterRum?:number;beforeHealthClamp?:number;afterNonLethalClamp?:number;
+}
 export interface EffectContext {
   /** Mechanical death credit does not replace settled damage-packet attribution. */
   deathCredit?:{sourceId:string;skillId:string;skillInstanceId?:string;statusInstanceKey?:string};
@@ -184,6 +197,7 @@ export interface EffectContext {
   criticalSourceKey?:string;
   damageFlags?:import('./model').DamageFlags;
   damageCategory?:import('./model').DamageCategory;
+  attackDamageResolution?:Readonly<AttackDamageResolution>;
   castOrder?:{skillId:string;targetId:string;kind:'unit'|'point'|'none'};
   /** Frozen ground cursor for explicitly point-targeted orders. */
   castPosition?:{x:number;y:number};
@@ -203,6 +217,8 @@ export interface EffectContext {
   chance?(probability:number,key:string):boolean;
   enemies(): CombatUnit[]; allies(): CombatUnit[];
   damage(target: CombatUnit, amount: number, type?: DamageType, piercesImmunity?: boolean, options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}): number;
+  /** One contact: accepted spell prehook, declared effects, primary damage. */
+  damageWithEffects?(target:CombatUnit,amount:number,type:DamageType,piercesImmunity:boolean,beforePrimary:()=>void,options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}):number;
   damageFrom?(source:CombatUnit,target:CombatUnit,amount:number,type?:DamageType,piercesImmunity?:boolean,options?:{flags?:import('./model').DamageFlags;category?:import('./model').DamageCategory}):number;
   heal(target: CombatUnit, amount: number, kind?:'heal'|'regen'|'lifesteal',options?:{lifestealAmplificationSource?:CombatUnit}): number;
   mana(target: CombatUnit, amount: number): number;
@@ -253,6 +269,11 @@ export interface EffectContext {
   stealAbility?(id: string, points: number, options: {duration:number;spellAmp:number;debuffAmp:number;maxSlots:number;persistentState?:Record<string,number>;castPointCap?:number;cooldownReduction?:number;removeOnDeath?:boolean;refreshExisting?:boolean}): void;
 }
 export interface SkillProgram {
+  /** Explicit external orders are opt-in; automatic target selection is unchanged. */
+  castOrderModes?:readonly ('unit'|'point')[];
+  /** Optional automatic pursuit strategy, using the one ordinary walk budget.
+   * Called only after pending casts, channels and legal spell actions. */
+  ordinaryMoveGoal?:(c:EffectContext)=>{targetId:string;arrivalRange:number}|undefined;
   /** Active toggle Off is an independent order, preserving another pending action. */
   toggleActive?:(c:EffectContext)=>boolean;
   canToggleOff?:(c:EffectContext)=>boolean;
@@ -282,6 +303,9 @@ export interface SkillProgram {
   onAllyBeforeAttackDamageAfterDeath?:boolean;
   onBeforeAbilityEffect?:(c:EffectContext)=>void;
   onAbilityExecuted?:(c:EffectContext)=>void;
+  onAffectedUnitAbilityExecuted?:(c:EffectContext,status:EffectStatus)=>void;
+  /** Primary attack packet only; never a cloned/second mitigation pass. */
+  onBeforeAttackHealthCommit?:(c:EffectContext)=>void;
   /** Explicit per-ability targeting exception, including its ordinary checks. */
   targetEligibility?:(c:EffectContext,target:CombatUnit)=>boolean;
   reduceRecharge?:(c:EffectContext,seconds:number)=>void;
@@ -694,6 +718,9 @@ applySummonLineageAcceptance(registry);
 applyAttackTempoAcceptance(registry);
 applyPassiveDamageAcceptance(registry);
 applyMotionScopeAcceptance(registry);
+applyGeometryOrderAcceptance(registry);
+applyImpactRestorationAcceptance(registry);
+applyLifecycleSummonAcceptance(registry);
 export const GRANTED_SKILL_DEFINITIONS:SkillDefinition[]=[...HISTORICAL_CHILD_DEFINITIONS,...MORE_CHILD_DEFINITIONS,...EXTRA_CHILD_DEFINITIONS,...HISTORICAL_UPGRADE_DEFINITIONS,...SUMMON_GAP_CHILD_DEFINITIONS,...MOBILITY_FIELDS_CHILD_DEFINITIONS,...CONTROL_EXECUTION_CHILD_DEFINITIONS,...FROST_CONTROL_CHILD_DEFINITIONS,...HAND_ICE_CHILD_DEFINITIONS,...LIVING_FIELD_CHILD_DEFINITIONS,...MANA_MIRROR_CHILD_DEFINITIONS,...MIST_FLARE_CHILD_DEFINITIONS,...OVERCHARGE_CASK_CHILD_DEFINITIONS];
 for(const definition of [...PULVERIZE_RAVAGE_CHILD_DEFINITIONS,...REACTIVE_REFRACTION_CHILD_DEFINITIONS,...RESONANT_ARROW_CHILD_DEFINITIONS,...AURA_ARMOR_CHILD_DEFINITIONS,...MOTION_RELEASE_CHILD_DEFINITIONS,...RESTORATION_LINK_CHILD_DEFINITIONS,...ATTACK_STATE_CHILD_DEFINITIONS,...CONTROL_TARGET_CHILD_DEFINITIONS,...SUMMON_LINEAGE_CHILD_DEFINITIONS,...ATTACK_TEMPO_CHILD_DEFINITIONS,...PASSIVE_DAMAGE_CHILD_DEFINITIONS,...MOTION_SCOPE_CHILD_DEFINITIONS]){const i=GRANTED_SKILL_DEFINITIONS.findIndex(d=>d.id===definition.id);if(i<0)GRANTED_SKILL_DEFINITIONS.push(definition);else GRANTED_SKILL_DEFINITIONS[i]=definition;}
 for(const definition of GRANTED_SKILL_DEFINITIONS)if(['extra_granted_demonic_cleanse','extra_granted_demonic_purge'].includes(definition.id))definition.categories=['ABILITY: Unit Target','PIERCES SPELL IMMUNITY: Yes'];

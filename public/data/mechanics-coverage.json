@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-30T04:54:02.229Z",
-  "simulationRevision": "arena-2026-10-30-c15-r6",
+  "generatedAt": "2026-10-30T06:20:22.838Z",
+  "simulationRevision": "arena-2026-10-30-c16-r6",
   "targetSkillCount": 230,
   "referencePatch": "unknown",
   "referenceSnapshot": "2026-10-26",
-  "catalogSha256": "c1ffac232e3d4dc0a96b54c0b02ea6b1301bbf614a377e3122582b4280006823",
+  "catalogSha256": "c5945046e75467104563f3fdf67933b2c3348522458a5004dd759ee9a902c79c",
   "historicalCandidate": {
     "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
     "date": "2023-02-10",
@@ -1667,7 +1667,8 @@
         "Formation precedes full AA arena duration at a frozen ground point",
         "Enemy attack projectiles are negated within100 of the wall; melee and spell projectiles pass",
         "Hero spear trigger160, independent1second cooldown and non-disabling160/.2second inward movement",
-        "Super is an in-arena180 regen aura with.5second linger; Gaben300magical DPS lava"
+        "Super is an in-arena180 regen aura with.5second linger; Gaben300magical DPS lava",
+        "A qualified Arena inner-edge knockback interrupts the foreign MeatHook controller before applying its own movement"
       ],
       "remaining": [
         "Walk restriction is an explicit fourteen-segment barrier approximation; native direction-dependent slowing and its .5second linger need dedicated movement fields",
@@ -1820,7 +1821,8 @@
         "true-strike path attacks ignore disarm and never cleave",
         "independent resistance-scaled void marks detonate on expiry or dispel",
         "Super ensured critical and faster sequential charge restoration",
-        "finite ability charges with sequential simulation-time replenishment"
+        "finite ability charges with sequential simulation-time replenishment",
+        "Chakra reduces the current real charge-restoration deadline;excess reduction does not consume a future full cycle"
       ],
       "remaining": [
         "AA +200% crit uses 200% total critical candidate; native talent has a different numerical value",
@@ -3320,12 +3322,12 @@
       "implemented": [
         "AA ally targeting applies restoration,dispel and reductions to both ally and caster",
         "Existing basic cooldowns and explicitly supported recharging charge spells;Gaben also includes ultimates",
-        "AA retroactive window affects the newly cast ability only;Chakra never reduces its own cooldown"
+        "AA retroactive window affects the newly cast ability only;Chakra never reduces its own cooldown",
+        "Existing Chakra modifier routes only its recipient actual executed action,including an already-dead or no-longer-owning original provider"
       ],
       "remaining": [
         "AA retroactive seconds and consumption count unspecified: editable15second multi-cast working window uses the old native prototype without claiming exact AA Lua",
-        "Retroactive routing after the original Chakra caster dies is not established",
-        "Charge implementations without reduceRecharge hooks remain outside the verified recharge set"
+        "The15second plural retroactive window remains an explicit AA working prototype;this router repair does not establish its unrecovered original Lua duration/consumption"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -3353,9 +3355,9 @@
           "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 5,
-          "referenceVerified": 2,
-          "resultTestPassed": 2,
+          "reviewedRequirements": 6,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
           "status": "partial"
         }
       },
@@ -3367,11 +3369,7 @@
         },
         {
           "category": "reference_validation",
-          "description": "Retroactive routing after the original Chakra caster dies is not established"
-        },
-        {
-          "category": "reference_validation",
-          "description": "Charge implementations without reduceRecharge hooks remain outside the verified recharge set"
+          "description": "The15second plural retroactive window remains an explicit AA working prototype;this router repair does not establish its unrecovered original Lua duration/consumption"
         }
       ],
       "configuration": {
@@ -6832,9 +6830,9 @@
           "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 10,
-          "referenceVerified": 9,
-          "resultTestPassed": 9,
+          "reviewedRequirements": 11,
+          "referenceVerified": 10,
+          "resultTestPassed": 10,
           "status": "partial"
         }
       },
@@ -6876,18 +6874,19 @@
         "690ms point/zero recovery;instant line stun before damage and timed enemy-blocking ridge;AA allies pass freely",
         "Super final340damage and1720range are consumed once",
         "Gaben perpendicular ridge uses first victim along the ray,not unit-array order;overlap hits once",
-        "Pre-effect on-cast gate requires physical contact with an older active own ridge;officialAA400msAftershock stun precedes150damage"
+        "Pre-effect on-cast gate requires physical contact with an older active own ridge;officialAA400msAftershock stun precedes150damage",
+        "Discrete24radius/56.25spacing Fissure cells;damage225circles de-duplicate victims;AAallies continue to pass"
       ],
       "remaining": [
-        "Continuous80-wide ridge/start offset are retained flat-arena geometry candidates,not a proof of native24radius/56.25segmentation",
         "ExactAA conditionalAftershock propagation shape is unrecovered;nativeShard-inspired full-own-ridge300radius interpretation is explicit",
-        "Secondary ridge extent/offset and cross-tier stolenAftershock identity need originalAA proof"
+        "Secondary ridge extent/offset and cross-tier stolenAftershock identity need originalAA proof",
+        "First56.25cell phase is a calculated edge-gap candidate;behind216.75arithmetic and initial push-aside need exact source/result reconciliation"
       ],
       "referenceAcceptance": {
         "mechanism": {
-          "reviewedRequirements": 2,
-          "referenceVerified": 1,
-          "resultTestPassed": 1,
+          "reviewedRequirements": 4,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
           "status": "partial"
         },
         "timing": {
@@ -6909,9 +6908,9 @@
           "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 3,
-          "referenceVerified": 3,
-          "resultTestPassed": 3,
+          "reviewedRequirements": 4,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
           "status": "reviewed_clauses_verified"
         }
       },
@@ -6919,15 +6918,15 @@
       "remainingDetails": [
         {
           "category": "working_default",
-          "description": "Continuous80-wide ridge/start offset are retained flat-arena geometry candidates,not a proof of native24radius/56.25segmentation"
-        },
-        {
-          "category": "working_default",
           "description": "ExactAA conditionalAftershock propagation shape is unrecovered;nativeShard-inspired full-own-ridge300radius interpretation is explicit"
         },
         {
           "category": "reference_validation",
           "description": "Secondary ridge extent/offset and cross-tier stolenAftershock identity need originalAA proof"
+        },
+        {
+          "category": "working_default",
+          "description": "First56.25cell phase is a calculated edge-gap candidate;behind216.75arithmetic and initial push-aside need exact source/result reconciliation"
         }
       ],
       "configuration": {
@@ -9345,12 +9344,14 @@
         "Hero/clone hit counter, charged flat damage and dated restoration",
         "AA strong dispel and35second expiry, Boundless single-charge batch",
         "Echo native attack-speed second ordinary attack and item stats",
-        "Independent nonrecursive AA two-second stone soldier bodies and minimum cadence"
+        "Independent nonrecursive AA two-second stone soldier bodies and minimum cadence",
+        "AA profession soldier clones copy current source attributes without adding their already-snapshotted health,armour or main attack a second time"
       ],
       "remaining": [
         "AA conservative inherited-effect allowlist and body targeting/selection remain candidates",
         "Exact AA Echo instant-attack exceptions versus modern item list",
-        "Pre7.38b Jingu restoration amplification and absorbed/overkill basis not fully sourced"
+        "Pre7.38b Jingu restoration amplification and absorbed/overkill basis not fully sourced",
+        "The current1.2BAT/.36attack point/.84backswing soldier clock remains a working AA candidate;native maximum attack frequency alone does not uniquely determine every profession animation clock"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -9360,7 +9361,7 @@
           "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 5,
+          "reviewedRequirements": 6,
           "referenceVerified": 3,
           "resultTestPassed": 3,
           "status": "partial"
@@ -9397,6 +9398,10 @@
         {
           "category": "reference_validation",
           "description": "Pre7.38b Jingu restoration amplification and absorbed/overkill basis not fully sourced"
+        },
+        {
+          "category": "working_default",
+          "description": "The current1.2BAT/.36attack point/.84backswing soldier clock remains a working AA candidate;native maximum attack frequency alone does not uniquely determine every profession animation clock"
         }
       ],
       "configuration": {
@@ -9635,12 +9640,14 @@
         "Released undisjointable1200homing projectile and continuous movable spellcasting leap",
         "Basic cleanse, capped5-second spell immunity, impact Spell Block",
         "Enemy then real magical nonlethal self damage, source-native slow and AA Super self-loss transfer",
-        "True single-target taunt without Duel and AA Gaben45strength"
+        "True single-target taunt without Duel and AA Gaben45strength",
+        "Actual Soulbind redirects no longer replace one another in the caster leap map;retainedGuide timing candidate starts the next linked-target native leap after an accepted impact"
       ],
       "remaining": [
         "AA Super raw-versus-effective self-loss basis under shields/deferred mitigation remains a working interpretation",
         "Multiple concurrent invisible-projectile replay/recast and five-second-buff-expiry interactions require targeted source results",
-        "2023body2440cutoff conflicts with stale1400/.015tooltip; body profile is selected explicitly"
+        "2023body2440cutoff conflicts with stale1400/.015tooltip; body profile is selected explicitly",
+        "Sequential primary-then-secondary timing has a retainedGuide prototype;exact historical2023intermediate timings and AAthree-linked order remain qualified"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -9650,9 +9657,9 @@
           "status": "reviewed_clauses_verified"
         },
         "timing": {
-          "reviewedRequirements": 3,
-          "referenceVerified": 2,
-          "resultTestPassed": 2,
+          "reviewedRequirements": 4,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
           "status": "partial"
         },
         "super": {
@@ -9668,9 +9675,9 @@
           "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 12,
-          "referenceVerified": 9,
-          "resultTestPassed": 9,
+          "reviewedRequirements": 13,
+          "referenceVerified": 10,
+          "resultTestPassed": 10,
           "status": "partial"
         }
       },
@@ -9687,6 +9694,10 @@
         {
           "category": "reference_validation",
           "description": "2023body2440cutoff conflicts with stale1400/.015tooltip; body profile is selected explicitly"
+        },
+        {
+          "category": "reference_validation",
+          "description": "Sequential primary-then-secondary timing has a retainedGuide prototype;exact historical2023intermediate timings and AAthree-linked order remain qualified"
         }
       ],
       "configuration": {
@@ -10075,14 +10086,13 @@
       "gaben": true,
       "verifiedAgainstReference": false,
       "implemented": [
-        "Enemy hero/creep successful-contact counting excludes allied/ward/building attacks",
-        "One counter update per Starbreaker wave;precharged ensured critical survives Break and resets while healing/new charges are suppressed",
-        "AA final critical/healing/required hits;Gaben independent five-second additional attack;lifesteal-class self/hero-ally restoration"
+        "Genuine single resolved physical packet restores caster then nearby heroes before HP commitment,including lethal overkill",
+        "Existing successful-contact/batch/Break/AAcounter and independently timed Gaben attack retained",
+        "Native lifesteal amplification belongs to this provider and per-recipient suppression remains separate"
       ],
       "remaining": [
-        "Healing currently follows effective attack damage;historical self/allies-before-damage ordering and barriers/deferred-damage basis remain unimplemented",
-        "Ranged in-flight charging/consumption and stronger-crit versus ready-buff consumption still require direct observation",
-        "AA Gaben+150percent is retained as percentage points and .1-second extra-attack delay is a documented working interpretation"
+        "Exact barrier/FalsePromise/BorrowedTime/rum/nonlethal and mixed damage-type basis retain explicit working outcomes rather than whole native closure",
+        "Strongercritical competition,ready ranged missile allocation and partial-charge death lifetime remain separately source-qualified"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -10119,16 +10129,12 @@
       "acceptanceFile": "references/dota-wiki/acceptance/attack-trigger.json",
       "remainingDetails": [
         {
-          "category": "working_default",
-          "description": "Healing currently follows effective attack damage;historical self/allies-before-damage ordering and barriers/deferred-damage basis remain unimplemented"
+          "category": "reference_validation",
+          "description": "Exact barrier/FalsePromise/BorrowedTime/rum/nonlethal and mixed damage-type basis retain explicit working outcomes rather than whole native closure"
         },
         {
           "category": "reference_validation",
-          "description": "Ranged in-flight charging/consumption and stronger-crit versus ready-buff consumption still require direct observation"
-        },
-        {
-          "category": "working_default",
-          "description": "AA Gaben+150percent is retained as percentage points and .1-second extra-attack delay is a documented working interpretation"
+          "description": "Strongercritical competition,ready ranged missile allocation and partial-charge death lifetime remain separately source-qualified"
         }
       ],
       "configuration": {
@@ -10627,9 +10633,9 @@
           "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 7,
-          "referenceVerified": 4,
-          "resultTestPassed": 4,
+          "reviewedRequirements": 9,
+          "referenceVerified": 6,
+          "resultTestPassed": 6,
           "status": "partial"
         }
       },
@@ -11235,7 +11241,8 @@
       "implemented": [
         "Frozen point-target tree-free AA summoning with native1/2/4profiles and explicitAAHP/damage overrides",
         "Super historical1650HP/108mean Greater Treant body",
-        "Gaben enemy summon/illusion deaths create regular Treants and real hero deaths create Greater Treants"
+        "Gaben enemy summon/illusion deaths create regular Treants and real hero deaths create Greater Treants",
+        "The native Greater Treant uses configured102–114per-attack variance in both direct Super and Gaben death-spawn paths;ordinary AA Treant damage is unchanged"
       ],
       "remaining": [
         "Exact AA death-summon eligibility for wards/buildings and source-dead observers remains scoped",
@@ -11244,8 +11251,8 @@
       "referenceAcceptance": {
         "mechanism": {
           "reviewedRequirements": 5,
-          "referenceVerified": 3,
-          "resultTestPassed": 3,
+          "referenceVerified": 4,
+          "resultTestPassed": 4,
           "status": "partial"
         },
         "timing": {
@@ -11339,9 +11346,9 @@
           "status": "reviewed_clauses_verified"
         },
         "combination": {
-          "reviewedRequirements": 9,
-          "referenceVerified": 6,
-          "resultTestPassed": 6,
+          "reviewedRequirements": 10,
+          "referenceVerified": 7,
+          "resultTestPassed": 7,
           "status": "partial"
         }
       },
@@ -14056,9 +14063,9 @@
           "status": "partial"
         },
         "timing": {
-          "reviewedRequirements": 7,
-          "referenceVerified": 6,
-          "resultTestPassed": 6,
+          "reviewedRequirements": 8,
+          "referenceVerified": 7,
+          "resultTestPassed": 7,
           "status": "partial"
         },
         "super": {
@@ -14068,15 +14075,15 @@
           "status": "partial"
         },
         "gaben": {
-          "reviewedRequirements": 3,
-          "referenceVerified": 2,
-          "resultTestPassed": 2,
+          "reviewedRequirements": 4,
+          "referenceVerified": 3,
+          "resultTestPassed": 3,
           "status": "partial"
         },
         "combination": {
-          "reviewedRequirements": 5,
-          "referenceVerified": 5,
-          "resultTestPassed": 5,
+          "reviewedRequirements": 6,
+          "referenceVerified": 6,
+          "resultTestPassed": 6,
           "status": "reviewed_clauses_verified"
         }
       },
@@ -14778,17 +14785,19 @@
       "implemented": [
         "Impact-blocked/disjointable1000projectiles;slow before damage;successful contact creates currentHP/mana illusion",
         "Unique Shard bounce prioritizes heroes including images/creepHeroes;block/disjoint/immunity stops chain",
-        "AAfinal80image damage,+225range/-4CD;Gprimary45/25CDR"
+        "AAfinal80image damage,+225range/-4CD;Gprimary45/25CDR",
+        "Actual existing owned illusions within675play a cosmetic cast lease;only real release emits harmless fake lances",
+        "StaticField dispatch precedes the actual primary contact slow and damage without duplicate events"
       ],
       "remaining": [
-        "Native fake lances by existing images are a presentation gap",
-        "Collision-size random spawn and real attack order use arena hull/AI conventions;not exact native command queue"
+        "Illusion membership is frozen at accepted cast start;enter/leave-radius and exact cosmeticidleturn timing remain source-qualified",
+        "Fake-projectile moving-target/death/source-expiration chronology is a bounded presentation policy;no real damage/proc is synthesized"
       ],
       "referenceAcceptance": {
         "mechanism": {
           "reviewedRequirements": 14,
-          "referenceVerified": 7,
-          "resultTestPassed": 7,
+          "referenceVerified": 8,
+          "resultTestPassed": 8,
           "status": "partial"
         },
         "timing": {
@@ -14820,11 +14829,11 @@
       "remainingDetails": [
         {
           "category": "reference_validation",
-          "description": "Native fake lances by existing images are a presentation gap"
+          "description": "Illusion membership is frozen at accepted cast start;enter/leave-radius and exact cosmeticidleturn timing remain source-qualified"
         },
         {
           "category": "reference_validation",
-          "description": "Collision-size random spawn and real attack order use arena hull/AI conventions;not exact native command queue"
+          "description": "Fake-projectile moving-target/death/source-expiration chronology is a bounded presentation policy;no real damage/proc is synthesized"
         }
       ],
       "configuration": {
@@ -16524,12 +16533,13 @@
         "AA35→60percent final attack coefficient and230→300radius;native immediate/ignore-channel zero-point action",
         "Average flat-main/bonus attack read without randomcrit/prepare/chargeconsumption;separate spell damage",
         "Version-qualified single stomp per140movement,shortwarp cap140and0.1>500suppression",
-        "AA Super active resistances and Gaben modifier-only fixed0attack with truezero cooldown"
+        "AA Super active resistances and Gaben modifier-only fixed0attack with truezero cooldown",
+        "Explicit arena pursuit policy uses the ordinary movement budget after legal casts/pending/channels,not another forced step"
       ],
       "remaining": [
         "Immediate stomp/movement cap and flat-attack classification are retained7.35candidates,not falsely dated2023",
-        "Automatic native Trample steering/orbit policy is not recovered;current ordinary AIcanstopinsideattackrange",
-        "All foreignmotion/source-itemexceptions and every attackmodifier eligibility matrix need specific results"
+        "All foreignmotion/source-itemexceptions and every attackmodifier eligibility matrix need specific results",
+        "Native automatedpursuit/orbit is not established by the AA row or retained7.35notes;center pursuit is a declared arena input policy and may stop at body contact"
       ],
       "referenceAcceptance": {
         "mechanism": {
@@ -16571,11 +16581,11 @@
         },
         {
           "category": "reference_validation",
-          "description": "Automatic native Trample steering/orbit policy is not recovered;current ordinary AIcanstopinsideattackrange"
+          "description": "All foreignmotion/source-itemexceptions and every attackmodifier eligibility matrix need specific results"
         },
         {
           "category": "reference_validation",
-          "description": "All foreignmotion/source-itemexceptions and every attackmodifier eligibility matrix need specific results"
+          "description": "Native automatedpursuit/orbit is not established by the AA row or retained7.35notes;center pursuit is a declared arena input policy and may stop at body contact"
         }
       ],
       "configuration": {
@@ -17749,16 +17759,16 @@
     "reviewStarted": 230,
     "unreviewed": 0,
     "fullyReferenceVerified": 7,
-    "requirements": 3439,
-    "resultTestPassed": 2603,
-    "referenceVerifiedRequirements": 2603,
-    "pendingRequirements": 836,
-    "engineRequirements": 110,
-    "enginePending": 14,
+    "requirements": 3453,
+    "resultTestPassed": 2619,
+    "referenceVerifiedRequirements": 2619,
+    "pendingRequirements": 834,
+    "engineRequirements": 189,
+    "enginePending": 52,
     "proofCurrent": true,
     "report": "data/reference-acceptance.json"
   },
-  "configHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+  "configHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
   "configurationCoverage": {
     "mainSkills": 230,
     "grantedSkills": 109,

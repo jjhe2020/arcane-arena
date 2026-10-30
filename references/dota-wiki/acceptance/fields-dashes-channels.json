@@ -773,7 +773,7 @@
           "id": "STEP-R08",
           "kind": "gaben",
           "branch": "gaben",
-          "rule": "normal and Gaben charges are finite and restore sequentially at the final charge time",
+          "rule": "normal and Gaben charges are finite and restore sequentially at the final charge time C16: Real allied GChakra now reduces the actual internal first recharge deadline by6seconds at both AA3and9 capacity,not only the public cooldown slot.",
           "sourceIds": [
             "aa",
             "archive",
@@ -784,6 +784,14 @@
             {
               "file": "tests/reference-fields-dashes-channels.test.ts",
               "test": "STEP-08 normal and Gaben charges are finite and restore sequentially at the final charge time"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH03 rank3 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH03 rank9 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
             }
           ]
         },

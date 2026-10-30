@@ -1,7 +1,7 @@
 # 技能原作逐项验收
 
 目录 230 项；已开始 230 项；完整逐项通过 7 项。
-当前代码下，2603 条具名结果测试要求通过，2603 条同时具备逐条来源绑定；另有14项跨技能引擎要求未闭合。测试证据与当前代码一致。
+当前代码下，2619 条具名结果测试要求通过，2619 条同时具备逐条来源绑定；另有52项跨技能引擎要求未闭合。测试证据与当前代码一致。
 
 这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。
 
@@ -39,7 +39,7 @@
 | 掘地穿刺 (Burrowstrike) | 审查中 | 0 / 1 / 1 / 1 / 8 | 1 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
 | 野性呼唤 (Call of the Wild) | 审查中 | 2 / 1 / 2 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
 | 连环霜冻 (Chain Frost) | 审查中 | 5 / 2 / 1 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/control-execution.json) |
-| 查克拉魔法 (Chakra Magic) | 审查中 | 1 / 2 / 1 / 2 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/control-execution.json) |
+| 查克拉魔法 (Chakra Magic) | 审查中 | 1 / 2 / 1 / 2 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/control-execution.json) |
 | 锯齿飞轮 (Chakram) | 审查中 | 0 / 1 / 2 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/mobility-fields.json) |
 | 混沌一击 (Chaos Strike) | 审查中 | 3 / 1 / 1 / 2 / 3 | 2 | [审查记录](../references/dota-wiki/acceptance/proc-acceptance.json) |
 | 混乱献祭 (Chaotic Offering) | 审查中 | 3 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/summon-restoration.json) |
@@ -87,8 +87,8 @@
 | 魔爪 (Fiend's Grip) | 审查中 | 1 / 3 / 3 / 1 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 炽魂 (Fiery Soul) | 审查中 | 1 / 2 / 1 / 1 / 7 | 1 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 死亡之指 (Finger of Death) | 审查中 | 2 / 1 / 2 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
-| 龙炎饼干 (Firesnap Cookie) | 审查中 | 0 / 2 / 0 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
-| 沟壑 (Fissure) | 审查中 | 1 / 2 / 1 / 4 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 龙炎饼干 (Firesnap Cookie) | 审查中 | 0 / 2 / 0 / 1 / 10 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
+| 沟壑 (Fissure) | 审查中 | 3 / 2 / 1 / 4 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/fire-fissure.json) |
 | 高射火炮 (Flak Cannon) | 审查中 | 6 / 1 / 2 / 0 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
 | 烈火罩 (Flame Guard) | 审查中 | 1 / 4 / 0 / 0 / 7 | 7 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
 | 血肉傀儡 (Flesh Golem) | 审查中 | 2 / 1 / 6 / 1 / 7 | 5 | [审查记录](../references/dota-wiki/acceptance/flak-flesh.json) |
@@ -126,7 +126,7 @@
 | 海妖外壳 (Kraken Shell) | 审查中 | 2 / 1 / 0 / 0 / 6 | 4 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
 | 激光 (Laser) | 审查中 | 6 / 2 / 0 / 0 / 2 | 9 | [审查记录](../references/dota-wiki/acceptance/inner-laser.json) |
 | 寄生种子 (Leech Seed) | 审查中 | 3 / 3 / 1 / 1 / 8 | 7 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
-| 牺牲 (Life Break) | 审查中 | 4 / 2 / 1 / 2 / 9 | 6 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
+| 牺牲 (Life Break) | 审查中 | 4 / 3 / 1 / 2 / 10 | 6 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
 | 生命汲取 (Life Drain) | 审查中 | 3 / 4 / 2 / 2 / 12 | 6 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
 | 雷击 (Lightning Bolt) | 审查中 | 3 / 1 / 2 / 2 / 12 | 4 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
 | 霹雳铁手 (Lil' Shredder) | 审查中 | 4 / 3 / 2 / 1 / 3 | 9 | [审查记录](../references/dota-wiki/acceptance/leech-shredder.json) |
@@ -139,7 +139,7 @@
 | 法力损毁 (Mana Break) | 审查中 | 1 / 1 / 5 / 1 / 9 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
 | 法力吸取 (Mana Drain) | 审查中 | 1 / 1 / 1 / 4 / 5 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
 | 魔法护盾 (Mana Shield) | 审查中 | 1 / 0 / 0 / 3 / 13 | 5 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
-| 肉钩 (Meat Hook) | 审查中 | 1 / 1 / 1 / 0 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
+| 肉钩 (Meat Hook) | 审查中 | 1 / 1 / 1 / 0 / 6 | 3 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
 | 镜像 (Mirror Image) | 审查中 | 1 / 0 / 1 / 4 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/mana-mirror.json) |
 | 迷雾缠绕 (Mist Coil) | 审查中 | 2 / 4 / 0 / 0 / 5 | 5 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
 | 勇气之霎 (Moment of Courage) | 审查中 | 2 / 0 / 0 / 1 / 4 | 3 | [审查记录](../references/dota-wiki/acceptance/attack-trigger.json) |
@@ -148,8 +148,8 @@
 | 数箭齐发 (Multishot) | 审查中 | 3 / 2 / 0 / 0 / 6 | 10 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
 | 神秘之耀 (Mystic Flare) | 审查中 | 2 / 8 / 0 / 0 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/mist-flare.json) |
 | 自然之助 (Nature's Attendants) | 审查中 | 3 / 3 / 3 / 1 / 4 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
-| 自然的呼唤 (Nature's Call) | 审查中 | 3 / 2 / 0 / 1 / 2 | 6 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
-| 移形换位 (Nether Swap) | 审查中 | 3 / 1 / 1 / 2 / 6 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 自然的呼唤 (Nature's Call) | 审查中 | 4 / 2 / 0 / 1 / 2 | 6 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
+| 移形换位 (Nether Swap) | 审查中 | 3 / 1 / 1 / 2 / 7 | 5 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 幽冥剧毒 (Nethertoxin) | 审查中 | 3 / 3 / 2 / 2 / 4 | 4 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 无敌斩 (Omnislash) | 审查中 | 3 / 2 / 2 / 1 / 8 | 9 | [审查记录](../references/dota-wiki/acceptance/nature-omni.json) |
 | 过载 (Overcharge) | 审查中 | 1 / 1 / 1 / 1 / 2 | 3 | [审查记录](../references/dota-wiki/acceptance/overcharge-cask.json) |
@@ -187,7 +187,7 @@
 | 暗影之境 (Shadow Realm) | 审查中 | 2 / 5 / 0 / 1 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 暗影波 (Shadow Wave) | 审查中 | 7 / 3 / 2 / 8 / 2 | 5 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 变身 (Shapeshift) | 审查中 | 1 / 1 / 1 / 1 / 1 | 5 | [审查记录](../references/dota-wiki/acceptance/summon-lineage.json) |
-| 一箭穿心 (Sharpshooter) | 审查中 | 5 / 6 / 1 / 2 / 5 | 6 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
+| 一箭穿心 (Sharpshooter) | 审查中 | 5 / 7 / 1 / 3 / 6 | 6 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 震荡波 (Shockwave) | 审查中 | 1 / 2 / 1 / 0 / 3 | 3 | [审查记录](../references/dota-wiki/acceptance/motion-scope.json) |
 | 健体术 (Sidekick) | 审查中 | 10 / 0 / 3 / 1 / 0 | 4 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 无影拳 (Sleight of Fist) | 审查中 | 4 / 1 / 1 / 0 / 1 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
@@ -197,7 +197,7 @@
 | 战神迅矛 (Spear of Mars) | 审查中 | 10 / 3 / 4 / 1 / 0 | 6 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
 | 技能窃取 (Spell Steal) | 审查中 | 2 / 3 / 0 / 1 / 8 | 5 | [审查记录](../references/dota-wiki/acceptance/control-target.json) |
 | 尖刺外壳 (Spiked Carapace) | 审查中 | 1 / 0 / 0 / 1 / 1 | 2 | [审查记录](../references/dota-wiki/acceptance/defense-and-dispel.json) |
-| 灵魂之矛 (Spirit Lance) | 审查中 | 7 / 2 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
+| 灵魂之矛 (Spirit Lance) | 审查中 | 8 / 2 / 1 / 1 / 2 | 4 | [审查记录](../references/dota-wiki/acceptance/attack-state.json) |
 | 幽魂链接 (Spirit Link) | 审查中 | 7 / 2 / 1 / 6 / 7 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 吸魂巫术 (Spirit Siphon) | 审查中 | 6 / 5 / 1 / 4 / 5 | 6 | [审查记录](../references/dota-wiki/acceptance/restoration-link.json) |
 | 撕裂大地 (Split Earth) | 审查中 | 2 / 3 / 1 / 1 / 3 | 4 | [审查记录](../references/dota-wiki/acceptance/motion-release.json) |

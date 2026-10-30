@@ -8282,28 +8282,6 @@
           "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
         },
         {
-          "key": "RIDGE START OFFSET",
-          "unit": "Dota单位",
-          "meaning": "起点及次沟壑偏移候选",
-          "kind": "value",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "source": "C6逐项AA/历史Wiki核验",
-          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
-        },
-        {
-          "key": "RIDGE WIDTH",
-          "unit": "Dota单位",
-          "meaning": "连续障碍宽度候选",
-          "kind": "value",
-          "min": 0,
-          "max": 1000000000,
-          "integer": false,
-          "source": "C6逐项AA/历史Wiki核验",
-          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
-        },
-        {
           "key": "AFTERSHOCK RADIUS",
           "unit": "Dota单位",
           "meaning": "沿沟壑余震范围候选",
@@ -8335,6 +8313,50 @@
           "integer": false,
           "source": "C6逐项AA/历史Wiki核验",
           "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；AA allies free passage。官方Season4余震眩晕0.4秒。连续80宽/80起点是旧平面几何候选，不伪称native分段。"
+        },
+        {
+          "key": "CELL COLLISION RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "单节沟壑阻挡半径",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C16历史沟壑几何与范围核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；单节半径24、间距56.25；首中心56.25为24英雄半径+24单节半径+8.25边缘间隙的计算候选；历史后端216.75矛盾未以补偿数字掩盖；G横沟壑中心80保现工作候选。"
+        },
+        {
+          "key": "CELL SPACING",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "相邻沟壑单节中心间距",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C16历史沟壑几何与范围核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；单节半径24、间距56.25；首中心56.25为24英雄半径+24单节半径+8.25边缘间隙的计算候选；历史后端216.75矛盾未以补偿数字掩盖；G横沟壑中心80保现工作候选。"
+        },
+        {
+          "key": "CELL START OFFSET",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "首节中心偏移（边缘间隙计算候选）",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C16历史沟壑几何与范围核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；单节半径24、间距56.25；首中心56.25为24英雄半径+24单节半径+8.25边缘间隙的计算候选；历史后端216.75矛盾未以补偿数字掩盖；G横沟壑中心80保现工作候选。"
+        },
+        {
+          "key": "SECONDARY CENTER OFFSET",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "Gaben横向沟壑中心后移（工作候选）",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C16历史沟壑几何与范围核验",
+          "note": "https://web.archive.org/web/20230215191426id_/https://dota2.fandom.com/wiki/Earthshaker；单节半径24、间距56.25；首中心56.25为24英雄半径+24单节半径+8.25边缘间隙的计算候选；历史后端216.75矛盾未以补偿数字掩盖；G横沟壑中心80保现工作候选。"
         }
       ]
     },
@@ -19476,6 +19498,17 @@
           "integer": false,
           "source": "C14锁定AA五档最终数值与具名原生来源",
           "note": "https://www.abilityarena.com/data/abilities.json；https://web.archive.org/web/20230215191727id_/https://dota2.fandom.com/wiki/Lone_Druid；https://web.archive.org/web/20230215191614id_/https://dota2.fandom.com/wiki/Wraith_King；https://liquipedia.net/dota2/Archive%3AVisage；完整锁定AA明确数值优先；Visage/Lycan非数值采用固定KV和具名保留Wiki候选，未称实读AA Lua。；AA40base/+40Super final80image damage;AA3.25slow and-10/-18/-34 retained over native3.75/14/21/35. Native1/2/4mappedpublicrange600/650/750+225Super=975,commonH sole editable range. Independent item/category not inferred. Impact block/disjoint stopsbounce;slow beforedamage;image currentHP/mana snapshot.；"
+        },
+        {
+          "key": "FAKE CAST RADIUS",
+          "kind": "value",
+          "unit": "Dota单位",
+          "meaning": "虚假施法的己方活体幻象搜索半径",
+          "min": 0,
+          "max": 1000000000,
+          "integer": false,
+          "source": "C16历史灵魂之矛虚假施法范围",
+          "note": "https://web.archive.org/web/20230215191831id_/https://dota2.fandom.com/wiki/Phantom_Lancer；本体开始施法时仅选择已有己方活体幻象；施法时序与弹道速度沿既有独立参数，不额外配置。"
         }
       ]
     },

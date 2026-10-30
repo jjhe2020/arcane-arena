@@ -886,7 +886,7 @@
           "id": "JM-09",
           "kind": "timing",
           "branch": "gaben",
-          "mechanism": "Gaben creates a nonrecursive clone every2seconds with independent Jingu counters",
+          "mechanism": "Gaben creates a nonrecursive clone every2seconds with independent Jingu counters C16: All four AA profession soldiers now copy actual source STR/AGI/INT with no second mainattack/HP/armour contribution. Existing soldier attributes remain frozen;new soldiers capture genuine Glaives intelligence growth. Role,skin,heroClone identity and delivered soldier/class projectile art remain intact.",
           "sourceIds": [
             "aa",
             "monkey-2023"
@@ -897,6 +897,26 @@
             {
               "file": "tests/reference-inner-laser.test.ts",
               "test": "JM-09 Gaben creates a nonrecursive clone every2seconds with independent Jingu counters"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-JG02 existing clone attributes remain a snapshot while a later soldier copies genuine Glaives intelligence gain"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-JG01 actualassassin Jingu soldier remains a profession clone with copied attributes and existing role art"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-JG01 actualarcher Jingu soldier remains a profession clone with copied attributes and existing role art"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-JG01 actualmage Jingu soldier remains a profession clone with copied attributes and existing role art"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-JG01 actualtank Jingu soldier remains a profession clone with copied attributes and existing role art"
             }
           ]
         },
@@ -1165,6 +1185,18 @@
           ],
           "status": "not_applicable_to_current_catalog",
           "testEvidence": []
+        },
+        {
+          "id": "JM-P-C16-CLOCK",
+          "kind": "timing",
+          "branch": "gaben",
+          "status": "source_pending",
+          "sourceIds": [
+            "aa",
+            "monkey-2023"
+          ],
+          "testEvidence": [],
+          "mechanism": "Existing1.2BAT/.36attack point/.84backswing soldier clock is preserved as an AA working candidate;the native maximum attack frequency and fixed-interval wording do not uniquely resolve arbitrary AA profession animation clocks. No Monkey King native body is imposed."
         }
       ],
       "unresolved": [

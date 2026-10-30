@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "group": "c16-engine",
+  "baseline": "f044fac88e4ec99ea07553a2b92ad4049f225aa1",
+  "sources": [
+    {
+      "id": "field",
+      "url": "https://liquipedia.net/dota2/Zeus/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actually read indexed historical7.21–7.30e/7.31–7.32e StaticField sections;not a new dated2023HTMLcapture.",
+      "observation": "Older spell-hit-only Static applies currentHP damage before the triggering spell. AA4/6/10andper-ability3s are retained;2023Shard8percent and attack procs are not imported. AAgeneral drafted-spell caller expands the nativeZeus-only family."
+    },
+    {
+      "id": "dawn",
+      "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+      "accessedOn": "2026-10-29",
+      "observation": "Successful enemyhero/creep attacks count;allies wards buildings neither count nor consume. Starbreaker adds one charge per wave regardless victim count. Precharged hit still criticals and resets underBreak while newcharges/healing are disabled. Illusions and creep-heroes use hero healing factor. Self then allies heal before criticaldamage,and restoration uses caster lifesteal amplification.",
+      "versionContext": "Directarchived Dota2Wiki candidate,HTTP200,capture20230215191331. No modernfacet redesign imported.",
+      "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864"
+    },
+    {
+      "url": "https://web.archive.org/web/20230215191831id_/https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "originalUrl": "https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "capture": "20230215191831",
+      "sha256": "457d64b68abd62cdf42d6b268fe74329a8533752d004a5290bc64c4e82102889",
+      "id": "lance",
+      "paraphrase": "1000tracking lance,slow before damage,impact spell-block/disjoint gates stopbounce. Successful contact creates illusion and Shard prioritizes heroes including illusions/creepHeroes. Existing illusions launch visual-only fake lances.",
+      "versionContext": "Direct historical Wiki capture 20230215191831;no silent import of post7.33behavior.",
+      "accessMethod": "Successful raw archive fetch. Decompressed HTML SHA revalidated from ignored cache;no full third-party HTML committed."
+    },
+    {
+      "id": "chakra",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C4actuallyreadindexedhistoricalentries;newC16directrequest403,no200claim",
+      "observation": "pre7.20next-spell15sprototypeversusAApluralretroactivewindow;notexactAALua.",
+      "readMethod": "Previously read indexed C4 entries. C16 direct fetch returned403 once;no new HTTP200 is claimed."
+    },
+    {
+      "id": "monkey",
+      "url": "https://web.archive.org/web/20230308092705id_/https://dota2.fandom.com/wiki/Monkey_King",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actualredirectcapture2023-03-08after7.32e,notFebruary;priorHTTP200fullpageSHArevalidated",
+      "observation": "Hero-cloneidentity/copiedstatsandindependentJingu,1.2maximumattackfrequency,animationeffects;nativeMonkeymodelnotforcedontoAAroles.",
+      "localEvidence": "output/c9-inner-laser/Monkey_King.html",
+      "sha256": "ef070790c42133613f3bf188d042ca68b01716a4b983c4c70fb5174d80f76931",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "hoodwink",
+      "url": "https://web.archive.org/web/20230215191730id_/https://dota2.fandom.com/wiki/Hoodwink",
+      "accessedOn": "2026-10-30",
+      "observation": "Sharpshooter aims without ordinary channel interruption, with60degree/s turning,20percent initial power, five-second auto release and disable survival. Bolt eligibility and debuff-before-damage are explicit. Boomerang unit targets, disjoint last-location return and incoming spell-only additive amplification are documented.",
+      "paraphrase": "Sharpshooter aims without ordinary channel interruption, with60degree/s turning,20percent initial power, five-second auto release and disable survival. Bolt eligibility and debuff-before-damage are explicit. Boomerang unit targets, disjoint last-location return and incoming spell-only additive amplification are documented.",
+      "versionContext": "Actual2023-02-15 HTTP200full snapshot; pre7.33 rules, not modern debuff-immunity semantics.",
+      "httpStatus": 200,
+      "sha256": "b6a4eb9ecda4e6f706e73b56796bb968e05b6b1a83eea7845c3566cda8921a99",
+      "archiveTimestamp": "20230215191730",
+      "cacheSections": "references/dota-wiki/control-target-source-snapshot.json"
+    }
+  ],
+  "skills": [],
+  "engineRequirements": [
+    {
+      "id": "E-C16-DECLARED-CONTACT",
+      "kind": "mechanism",
+      "sourceIds": [
+        "field",
+        "lance"
+      ],
+      "rule": "Only a declared real contact runs accepted-spell prehooks,then its own explicit effects,then primary damage. Incoming modifier snapshots include those explicit primary effects. Rejected packets still let the caller handle its independently qualified effects. Actual Lance proves Field precedes slow and primary;all other callers and delayed/control-only generalization remain open.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E01 one accepted contact orders spell prehook,effects,primary and after exactly once"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E02 rejected spell immunity still runs the caller effect callback without a spell prehook"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E03 a status explicitly installed before primary damage sees that incoming instance once"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-PREHEALTH-OBSERVATION",
+      "kind": "mechanism",
+      "sourceIds": [
+        "dawn"
+      ],
+      "rule": "An opted attack provider observes a detached reached-stage trace of its one actual primary resolution before health commit. It cannot reroll block/PRD,consume a second barrier,repeat on typed components or repeat after deferred settlement. Unreached resistance stages remain absent. EffectiveDamage is a candidate at observation time;actual health/statistics are cropped again after subscriber effects. Actual charged Luminosity exercises self then allied restoration before lethal HP loss. Every negation/basis and critical competition remains individually qualified.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E04 traces expose reached mitigation stages without another resolution or overkill debit"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E05 an observer cannot create phantom effective statistics when it removes the victim first"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E06 'refraction' reports its actual branch without a fabricated health basis"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E06 'falsePromise' reports its actual branch without a fabricated health basis"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E06 'borrowedTime' reports its actual branch without a fabricated health basis"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E07 a delayed packet notifies its original observation once,then settles without a second attack"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E08 independent typed attack components do not repeat the primary observer"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E09 modifier-disabled attacks do not enter a modifier observer"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E10 the read-only observation adds no block roll,PRD/RNG debit or shield consumption"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E27 an early magical barrier cannot claim a resistance stage that was never reached"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-RECEIVED-EXECUTION-LEASE",
+      "kind": "combination",
+      "sourceIds": [
+        "chakra"
+      ],
+      "rule": "A surviving recipient modifier can react once to a newly executed ordinary ability while retaining its original provider/source/points after provider death or forgotten slot. Snapshot authority predates the ability effect;removed/expired/newly created modifiers and cancelled windups/effect-only casts do not receive that earlier execution. Actual Chakra and charge matrices supply native caller evidence;arbitrary stolen/multiple-provider lifecycles remain separate.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E11 a surviving received lease retains a dead,forgotten provider and its exact stored level"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E12 a lease created by the spell effect cannot observe that earlier execution"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E13 an removed received lease cannot fire after the effect removes its authority"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E13 an expired received lease cannot fire after the effect removes its authority"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E14 cancelled windup and effect-only child casts do not create executed-ability notices"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-OPTED-ATTRIBUTE-SNAPSHOT",
+      "kind": "mechanism",
+      "sourceIds": [
+        "monkey"
+      ],
+      "rule": "Only explicit copyAttributes summons snapshot current attributes plus their already-present derived attack-speed contribution without doubling authored HP/main attack/armour. Future source changes do not follow the body;its own changes are independent. This flag does not grant illusion/heroClone/native-template identity. Actual Jingu profession clones use it;their precise native animation clocks remain source_pending.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E15 copyAttributes copies independent values and derived AS without doubling authored totals"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E16 ordinary summons still use their existing zero-attribute body policy"
+        },
+        {
+          "file": "tests/reference-c16-replay.test.ts",
+          "test": "C16-REPLAY03 actual Jingu profession clone attributes and presentation state rebuild and advance identically through both restore paths"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-COSMETIC-BODY-LEASE",
+      "kind": "mechanism",
+      "sourceIds": [
+        "lance"
+      ],
+      "rule": "A cosmetic body cast lease changes display clip/age/optional facing only. It cannot issue attacks,cancel mechanical windup,consume RNG or enter damage/healing statistics. Latest pose wins and expires with its actual body. Actual Lance images play a full fake cast despite a genuinely cancelled parent;only successful release creates harmless visual lances. Moving-target and exact display-turn chronology remain bounded work policies.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E17 a cosmetic cast lease leaves mechanical clocks,facing,RNG and event accounting untouched"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E18 latest body pose wins,then expires or disappears with the actual body"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    },
+    {
+      "id": "E-C16-EXPLICIT-SPELL-INPUT",
+      "kind": "timing",
+      "sourceIds": [
+        "hoodwink"
+      ],
+      "rule": "Only programs declaring unit/point modes accept explicit deterministic next-tick orders. Point orders freeze a real cursor rather than synthesizing a unit,retain normal resources/turn/cast pipeline,and avoid unit-target spell block/Soulbind. Unit orders retain side/visibility eligibility and cancel on lost target before release. Saved input journal reconstructs pending closures through both restore paths. Journal/cancellation bounds are project input contracts,not native human UI or unknown AA automatic selection certification.",
+      "testEvidence": [
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E20 explicit point orders freeze a real ground cursor without fabricating a target body"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E21 unregistered modes and invalid cursors are rejected before any input is recorded"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E23 input journal and cosmetic leases rebuild identically through both restore paths"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E24 malformed replay input cannot be silently accepted"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E25 explicit unit orders obey the declared target side and real visibility eligibility"
+        },
+        {
+          "file": "tests/reference-c16-engine.test.ts",
+          "test": "C16-E26 loss of an explicitly ordered unit during windup cancels without spending resources"
+        },
+        {
+          "file": "tests/reference-c16-replay.test.ts",
+          "test": "C16-REPLAY01 an accepted real point order restores before its first dispatch and continues identically through both restore paths"
+        },
+        {
+          "file": "tests/reference-c16-replay.test.ts",
+          "test": "C16-REPLAY02 a real unit order replaces an actually begun Boomerang point windup and both restores release only the replacement"
+        }
+      ],
+      "branch": "finite_c16_protocol",
+      "status": "passed"
+    }
+  ],
+  "engineeringOnly": {
+    "barrierCellDisplay": [
+      {
+        "file": "tests/reference-c16-engine.test.ts",
+        "test": "C16-E19 discrete barrier-cell presentation has positive finite thickness and covers both ends"
+      }
+    ],
+    "ordinaryPursuit": [
+      {
+        "file": "tests/reference-c16-engine.test.ts",
+        "test": "C16-E22 ordinary pursuit is one movement budget and yields to a real cast windup"
+      }
+    ],
+    "realImpactAndPerimeterPresentation": [
+      {
+        "file": "tests/reference-c16-world.test.ts",
+        "test": "C16-W01 Ice Blast has no fabricated early burst and one occurrence at its actual frozen impact"
+      },
+      {
+        "file": "tests/reference-c16-world.test.ts",
+        "test": "C16-W02 actual Ice Blast display fits approved pixels to its radius and never changes combat state"
+      },
+      {
+        "file": "tests/reference-c16-world.test.ts",
+        "test": "C16-W03 a formed native Arena keeps fourteen collision walls but renders one calibrated looping circle"
+      },
+      {
+        "file": "tests/reference-c16-world.test.ts",
+        "test": "C16-W04 two actual simultaneous Arena casts retain independent whole-circle groups"
+      }
+    ],
+    "approvedPixelMeasurements": "src/radial-art-calibration.json binds the two delivered atlases by SHA;IceBlast uses95percent outer radius,Arena uses the stable mean annulus radius. No pixels or collision geometry modified.",
+    "barrierSubsetCache": "Existing three real tournament difficulties exercise reuse across side-specific blocking subsets. Collision nodes/edges and actual sweeps are unchanged;no native global-pathfinding claim."
+  },
+  "remaining": "Native turn acceleration,all status-before-damage callers,arbitrary stolen/provider/controller combinations,close-point triangle,Fissure initial displacement and all remaining native source qualifications stay open."
+}

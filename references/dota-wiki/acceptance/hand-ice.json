@@ -2975,7 +2975,7 @@
           "id": "IB-EXECUTION-PRIORITY",
           "kind": "combination",
           "branch": "base",
-          "rule": "WinterCurse/ReaperScythe exclusive kill-credit priority and real damage-conversion/deferred-settlement crossings need a shared precise execution-event protocol; ordinary actual actor credit is separately tested.",
+          "rule": "Existing C12deathCredit protocol and actual Scythe-first priority already work,so remove claim that another global protocol is needed. WinterCurse has no registered main/native child and cannot be fabricated. Distinct conversion/deferred/crosscaster branches remain open.",
           "sourceIds": [
             "aa",
             "valve",
@@ -2987,8 +2987,13 @@
             "oracle-guide",
             "aa-counters"
           ],
-          "testEvidence": [],
-          "status": "mechanism_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-IB01 existing real Scythe credit defeats Ice Blast shatter while the third attacker retains settled damage"
+            }
+          ],
+          "status": "source_pending"
         },
         {
           "id": "IB-FREEZE-EXCEPTIONS",

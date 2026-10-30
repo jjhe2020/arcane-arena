@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "group": "lifecycle-summon",
+  "auditedOn": "2026-10-30",
+  "overallStatus": "partial",
+  "scope": "C16 finite shared lifecycle follow-up. Existing five catalog skill ledgers remain their sole catalog acceptance records;this engine-only ledger adds no duplicate skill or whole-skill pass.",
+  "sourceSnapshot": "references/dota-wiki/lifecycle-summon-source-snapshot.json",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actual earlierC13HTTP200reused,not newC16HTTP",
+      "observation": "FullfiveAAobjects,allactualfieldsincludingdifferences;AI/notesabsent.",
+      "localEvidence": "output/c13-aura-armor/abilities.json",
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Sourcecommit2023-02-10,not folderdate20230216",
+      "observation": "NativeSpell/child/clock fields;notAALua.",
+      "localEvidence": "references/dota-20230216/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "units",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Pinned2023-02-10",
+      "observation": "GreaterTreant102/114alreadydistinctrawvalues;ordinaryAAfixeddamageisnotreplaced.",
+      "localEvidence": "references/dota-20230216/npc_units.txt",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "snapfire2023",
+      "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire",
+      "accessedOn": "2026-10-30",
+      "versionContext": "ActualfullHTTP2002023-02-15capture,reusedandSHArevalidatedC16",
+      "observation": "Cookie/Kisses/Spitsharefirst-appliedmodifier;immediate.5scan/.5burn/1secondtail;impact/stun/sourcecontinuationclausesqualified.",
+      "localEvidence": "output/c6-fire-fissure/Snapfire.html",
+      "sha256": "5e27ec69554d71439ee67f16cfd5ca40a8eb5c69f59676da23b9e2a8c604b0b1",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "monkey2023",
+      "url": "https://web.archive.org/web/20230308092705id_/https://dota2.fandom.com/wiki/Monkey_King",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actualredirectcapture2023-03-08after7.32e,notFebruary;priorHTTP200fullpageSHArevalidated",
+      "observation": "Hero-cloneidentity/copiedstatsandindependentJingu,1.2maximumattackfrequency,animationeffects;nativeMonkeymodelnotforcedontoAAroles.",
+      "localEvidence": "output/c9-inner-laser/Monkey_King.html",
+      "sha256": "ef070790c42133613f3bf188d042ca68b01716a4b983c4c70fb5174d80f76931",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "prophet2023",
+      "url": "https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actual2023-02-15fullHTTP200cache,reverified.C10didnotfetchstandaloneGreaterTreantpage.",
+      "observation": "NatureCalltree-freeAAoverrideandhistoricalgreaterunitlineage;numericrangecomesfromunitKV.",
+      "localEvidence": "output/c10-nature-omni/Nature_Prophet.html",
+      "sha256": "04f0022f381c7e89acd6ab1fdeb70582ade94697f72af942b05dd34b2c3fd537",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "chakra-old",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C4actuallyreadindexedhistoricalentries;newC16directrequest403,no200claim",
+      "observation": "pre7.20next-spell15sprototypeversusAApluralretroactivewindow;notexactAALua.",
+      "readMethod": "Previously read indexed C4 entries. C16 direct fetch returned403 once;no new HTTP200 is claimed."
+    },
+    {
+      "id": "chakra-history",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Changelogs",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C4indexeddated2020-01-26chargefix;C16directrequest403,no200claim",
+      "observation": "Sourcefornativecharge-replenishmentinclusion;notallmodulestatehandlersorAAwindowproof.",
+      "readMethod": "Previously read indexed C4 entries. C16 direct fetch returned403 once;no new HTTP200 is claimed."
+    }
+  ],
+  "skills": [],
+  "engineRequirements": [
+    {
+      "id": "C16-LC-CH01",
+      "kind": "mechanism",
+      "branch": "shared lifecycle",
+      "mechanism": "Existing recipient Chakra modifier routes a genuine executed Windrun after original provider death with the same4-second reduction. The original source and modifier value are used directly;no fake extra Chakra skill is attached to the recipient.",
+      "sourceIds": [
+        "aa",
+        "chakra-old",
+        "chakra-history"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH01 original provider dead=false preserves the same4-second retroactive reduction after a genuine Finger death"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH01 original provider dead=true preserves the same4-second retroactive reduction after a genuine Finger death"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-CH02",
+      "kind": "timing",
+      "branch": "shared lifecycle",
+      "mechanism": "Chakra does not reduce its own newly created cooldown,and a genuinely expired15-second working lease does not affect a later cast. This tests the declared window,not recovered AA Lua seconds.",
+      "sourceIds": [
+        "aa",
+        "chakra-old"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH02 a new Chakra cast does not reduce its own new cooldown or double-run the old own/ally handlers"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH05 the expired15-second working lease cannot reduce a later Windrun"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-CH03",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "Both AA Step3/9 depleted ability-charge pools now accept allied Chakra reduction on the real currently restoring deadline while retaining their2/4 capacity.",
+      "sourceIds": [
+        "aa",
+        "valve",
+        "chakra-history"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH03 rank3 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH03 rank9 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-CH04",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "Real Barrage,Purge,Cleanse,Disruption,InkSwell,Siphon,Starbreaker,Waveform,Windrun and independently granted Blink Fragment restoration clocks retain the allied Chakra reduction. Burrowstrike,ResonantPulse and Sleight additionally account for genuine same-frame recast and retroactive reduction;queue growth alone is not treated as a failure. Attack-charge counters are not misclassified as ability recharge.",
+      "sourceIds": [
+        "aa",
+        "chakra-history"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 clinkz_strafe keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 custom_shadow_demon_demonic_purge keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 custom_shadow_demon_demonic_cleanse keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 custom_shadow_demon_disruption keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 custom_grimstroke_ink_swell keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 death_prophet_spirit_siphon keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 dawnbreaker_fire_wreath keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 morphling_waveform keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH04 custom_windrunner_windrun keeps its already-supported real charge clock responsive to allied Chakra"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH06 a genuine granted Blink Fragment shifts all three already-queued restoration deadlines once"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH07 sandking_burrowstrike accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH07 void_spirit_resonant_pulse accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH07 ember_spirit_sleight_of_fist accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-MG01",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "The already-shared Cookie,Kisses and Spit magma modifier retains the first provider damage,phase and attribution in all six pair orders,without stacked second-provider burn packets.",
+      "sourceIds": [
+        "aa",
+        "snapfire2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstcustom_snapfire_firesnap_cookie thencustom_snapfire_mortimer_kisses keeps first-provider half-second damage15 without a second stacked burn"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstcustom_snapfire_mortimer_kisses thencustom_snapfire_firesnap_cookie keeps first-provider half-second damage25 without a second stacked burn"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstcustom_snapfire_firesnap_cookie thenaa_granted_spit_out keeps first-provider half-second damage15 without a second stacked burn"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstaa_granted_spit_out thencustom_snapfire_firesnap_cookie keeps first-provider half-second damage50 without a second stacked burn"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstcustom_snapfire_mortimer_kisses thenaa_granted_spit_out keeps first-provider half-second damage25 without a second stacked burn"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG01 firstaa_granted_spit_out thencustom_snapfire_mortimer_kisses keeps first-provider half-second damage50 without a second stacked burn"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-MG02",
+      "kind": "timing",
+      "branch": "shared lifecycle",
+      "mechanism": "A real allied Super Chakra basic purge removes the previous magma run;the surviving actual Cookie pool scan reapplies a new immediate run,and the half-second burn phase continues from that new application.",
+      "sourceIds": [
+        "snapfire2023",
+        "aa"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG02 genuine Super Chakra purge removes the old burn run and the surviving Cookie puddle reapplies a new immediate run"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-MG03",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "After actual Finger death stops the caster channel,already-released Kisses puddles keep half-second damage attributed to that caster. No status or damage is manually inserted in this result fixture.",
+      "sourceIds": [
+        "snapfire2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-MG03 real Finger death stops the Kisses channel but already released pools continue their attributed half-second damage"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-TR01",
+      "kind": "mechanism",
+      "branch": "shared lifecycle",
+      "mechanism": "Real Super Greater Treants use the existing unit profile102–114 per-attack range;ordinary AA Treants retain their explicit42 fixed attack and original native identity. No new numeric authority or blanket unit-class rewrite is added.",
+      "sourceIds": [
+        "aa",
+        "units",
+        "prophet2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-TR01 genuine Super Greater Treant uses configured102–114 per-attack variance rather than fixed108"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-TR02 ordinary AA Treants keep the locked42 fixed damage and do not borrow Greater Treant variance"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-TR03 genuine Gaben ally Finger kill creates a corpse-location Greater Treant with the same native attack range"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-JG01",
+      "kind": "mechanism",
+      "branch": "shared lifecycle",
+      "mechanism": "All four AA profession soldiers remain nonillusion hero clones with their role and skin,copy current source STR/AGI/INT,and keep1HP,0armour and the already-counted attack snapshot without adding Echo attributes a second time.",
+      "sourceIds": [
+        "aa",
+        "monkey2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualassassin Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualarcher Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualmage Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualtank Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG02 existing clone attributes remain a snapshot while a later soldier copies genuine Glaives intelligence gain"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-JG02",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "Actual class clones resolve the delivered soldier idle/attack body art and class-compatible projectile art without applying a native Monkey King unit template. This is finite asset/identity compatibility,not proof of the native profession-independent animation clock.",
+      "sourceIds": [
+        "aa",
+        "monkey2023"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualassassin Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualarcher Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualmage Jingu soldier remains a profession clone with copied attributes and existing role art"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-JG01 actualtank Jingu soldier remains a profession clone with copied attributes and existing role art"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-VIS01",
+      "kind": "presentation",
+      "branch": "shared lifecycle",
+      "mechanism": "Actual positive mana restoration emits a short recipient-following existing restore atlas occurrence. Full-mana recipients do not receive an unearned restore occurrence. This pure presentation regression adds no health-heal statistics,damage,unit action or RNG and repeated projection leaves battle bytes unchanged;it is not a claim about original native graphics.",
+      "sourceIds": [
+        "aa"
+      ],
+      "status": "passed",
+      "testEvidence": [
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH08 actual mana restoration adds a recipient-following restore occurrence without health-heal events or render mutation"
+        },
+        {
+          "file": "tests/reference-lifecycle-summon.test.ts",
+          "test": "LS-CH09 a full-mana recipient receives its real cooldown benefit without an unearned mana-restore occurrence"
+        }
+      ]
+    },
+    {
+      "id": "C16-LC-P01",
+      "kind": "timing",
+      "branch": "shared lifecycle",
+      "mechanism": "AA specifies retroactive plural cooldown reduction but not exact duration or consumption count. The editable15-second window is an explicit historical-prototype working candidate,not read AA Lua.",
+      "sourceIds": [
+        "aa",
+        "chakra-old"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P02",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "Full posthumous,stolen/replaced-provider and multiple simultaneous provider priority semantics are not all native-source-closed by the finite dead original caster result. Effect-only free child effects intentionally do not emit the action event.",
+      "sourceIds": [
+        "aa",
+        "chakra-history"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P03",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "The finite main-family and Blink Fragment matrix does not prove independently exhausted native Demonic child slots,all stolen-state transfers or every overwrite/cooldown-reset lifecycle. Those cases retain separate finite coverage elsewhere or remain to be audited;no attack-charge counter is relabelled an ability recharge.",
+      "sourceIds": [
+        "aa",
+        "valve",
+        "chakra-history"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P04",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "Magma cross-source status-resistance phase changes,immunity/banish transitions,reentry and every expiry handoff are not established by the six first-provider orders and one actual purge/death fixture.",
+      "sourceIds": [
+        "snapfire2023"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P05",
+      "kind": "timing",
+      "branch": "shared lifecycle",
+      "mechanism": "The existing Jingu soldier1.2BAT/.36attack point/.84backswing is preserved as an AA working clock. A native maximum attack frequency and fixed-interval wording do not uniquely determine arbitrary AA profession animation clocks.",
+      "sourceIds": [
+        "aa",
+        "monkey2023"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P06",
+      "kind": "combination",
+      "branch": "shared lifecycle",
+      "mechanism": "The conservative AA inherited-effect allowlist and complete native item/attack exception set are not expanded or declared fully accepted by the attribute and art snapshot correction.",
+      "sourceIds": [
+        "aa",
+        "monkey2023"
+      ],
+      "status": "source_pending",
+      "testEvidence": []
+    },
+    {
+      "id": "C16-LC-P07",
+      "kind": "mechanism",
+      "branch": "shared lifecycle",
+      "mechanism": "Original Dota terrain,trees and native model swapping are outside this fixed planar profession-body environment;the explicit tree-free AA Nature Call difference and profession soldiers remain in force.",
+      "sourceIds": [
+        "aa",
+        "prophet2023",
+        "monkey2023"
+      ],
+      "status": "environment_out_of_scope",
+      "testEvidence": []
+    }
+  ],
+  "validation": {
+    "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+    "baselineCommit": "f044fac88e4ec99ea07553a2b92ad4049f225aa1",
+    "testCommand": "npx vitest run tests/reference-lifecycle-summon.test.ts",
+    "testFile": "tests/reference-lifecycle-summon.test.ts",
+    "testCount": 37,
+    "passed": 37,
+    "failed": 0,
+    "report": "output/c16-lifecycle-intake/final-tests.json",
+    "reportSha256": "f2630308c82ab7fea11b51dbdf2b6b7bc61ab52f2700b1d936685d43c4e4bf86",
+    "typecheck": "npx tsc --noEmit passed",
+    "render": {
+      "status": "passed",
+      "command": "ARENA_TEST_URL=http://127.0.0.1:5173 node scripts/c16-lifecycle-render-smoke.mjs",
+      "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+      "scenarios": 28,
+      "report": "artifacts/r6-c16-lifecycle-render/report.json",
+      "sha256": "8cd160b745be334b76711a834ece137f04fb2285ab4197f352d33d4d46a20b83",
+      "stateMutation": "All28fixture battle/RNG serialization snapshots unchanged after frozen renderer frames",
+      "loadErrors": 0,
+      "browsersClosed": true,
+      "visualInspection": {
+        "inspectedOn": "2026-10-30",
+        "files": [
+          "chakra-release.png",
+          "chakra-dead-route-mobile.png",
+          "magma-cookie-first.png",
+          "magma-spit-first-mobile.png",
+          "greater-tree-attack.png",
+          "ordinary-tree-mobile.png",
+          "jingu-archer.png",
+          "jingu-mage-mobile.png",
+          "jingu-before-spawn-mobile.png",
+          "magma-reapplied.png"
+        ],
+        "observation": "Actual representative desktop/mobile PNGs inspected. The genuine positive Chakra restoration has a short recipient sprite. Real mixed magma pools show ground fire and actual first-provider damage labels;the later reapplication frame has its actual burn after the visible pool expiry. Greater and ordinary Treants use distinct delivered bodies. Archer/mage soldiers use delivered soldier bodies while keeping AA class identity. The real pre2second negative frame contains no soldier. Arena-wide framing makes bodies and effects compact;no native model-swap or exact native attack-clock claim is made."
+      }
+    }
+  },
+  "unresolved": [
+    {
+      "id": "C16-LC-P01",
+      "status": "source_pending",
+      "mechanism": "AA specifies retroactive plural cooldown reduction but not exact duration or consumption count. The editable15-second window is an explicit historical-prototype working candidate,not read AA Lua."
+    },
+    {
+      "id": "C16-LC-P02",
+      "status": "source_pending",
+      "mechanism": "Full posthumous,stolen/replaced-provider and multiple simultaneous provider priority semantics are not all native-source-closed by the finite dead original caster result. Effect-only free child effects intentionally do not emit the action event."
+    },
+    {
+      "id": "C16-LC-P03",
+      "status": "source_pending",
+      "mechanism": "The finite main-family and Blink Fragment matrix does not prove independently exhausted native Demonic child slots,all stolen-state transfers or every overwrite/cooldown-reset lifecycle. Those cases retain separate finite coverage elsewhere or remain to be audited;no attack-charge counter is relabelled an ability recharge."
+    },
+    {
+      "id": "C16-LC-P04",
+      "status": "source_pending",
+      "mechanism": "Magma cross-source status-resistance phase changes,immunity/banish transitions,reentry and every expiry handoff are not established by the six first-provider orders and one actual purge/death fixture."
+    },
+    {
+      "id": "C16-LC-P05",
+      "status": "source_pending",
+      "mechanism": "The existing Jingu soldier1.2BAT/.36attack point/.84backswing is preserved as an AA working clock. A native maximum attack frequency and fixed-interval wording do not uniquely determine arbitrary AA profession animation clocks."
+    },
+    {
+      "id": "C16-LC-P06",
+      "status": "source_pending",
+      "mechanism": "The conservative AA inherited-effect allowlist and complete native item/attack exception set are not expanded or declared fully accepted by the attribute and art snapshot correction."
+    },
+    {
+      "id": "C16-LC-P07",
+      "status": "environment_out_of_scope",
+      "mechanism": "Original Dota terrain,trees and native model swapping are outside this fixed planar profession-body environment;the explicit tree-free AA Nature Call difference and profession soldiers remain in force."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import {skillBalance} from '../config';
 import type {CombatUnit,SkillDefinition} from '../model';
 import {skillValue as v,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
+import {addVisualWorldEffect} from './visual-state';
 
 const HAND='chen_hand_of_god',GRACE='custom_omniknight_repel',HEX='custom_shadow_shaman_voodoo',DIVE='phoenix_icarus_dive',BLAST='custom_ancient_apparition_ice_blast',MARTYR='chen_martyrdom',STOP='phoenix_icarus_dive_stop',RELEASE='ancient_apparition_ice_blast_release';
 const STEP=1/30,EPS=1e-8;
@@ -177,6 +178,7 @@ function releaseBlast(state:BlastState):void{
  const touch=(position:{x:number;y:number})=>{for(const t of c.enemies().filter(t=>distance(t,position)<=pathRadius))frostbite(c,t,state.token);};
  const impact=()=>{
   if(!state.active)return;state.active=false;
+  addVisualWorldEffect(c.battle,{source:c.caster.id,skill:BLAST,points:c.skill.points,layer:'burst',kind:'burst',...destination,radius,until:c.battle.time+16/24});
   if(S(c))c.castAbility('ancient_apparition_ice_vortex',4,{...c.target,...destination});
   for(const t of c.enemies().filter(t=>ordinary(t)&&distance(t,destination)<=radius)){
    frostbite(c,t,state.token);c.damage(t,v(c,'IMPACT DAMAGE'),'magical',true);

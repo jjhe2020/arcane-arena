@@ -1,0 +1,415 @@
+{
+  "schemaVersion": 1,
+  "group": "lifecycle-summon",
+  "auditedOn": "2026-10-30",
+  "baselineCommit": "f044fac88e4ec99ea07553a2b92ad4049f225aa1",
+  "baselineConfigurationHash": "3dd65647f71209f382bf22f4a9b6b00d0e593bde592b07b6b0986b1b52466a94",
+  "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+  "sourcePolicy": "Locked AA numeric and explicit custom differences remain authoritative. Historical native mechanics are version-qualified. Existing complete cached pages are re-read and rehashed;no inaccessible page is represented as a new successful fetch.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actual earlierC13HTTP200reused,not newC16HTTP",
+      "observation": "FullfiveAAobjects,allactualfieldsincludingdifferences;AI/notesabsent.",
+      "localEvidence": "output/c13-aura-armor/abilities.json",
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "valve",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Sourcecommit2023-02-10,not folderdate20230216",
+      "observation": "NativeSpell/child/clock fields;notAALua.",
+      "localEvidence": "references/dota-20230216/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "units",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_units.txt",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Pinned2023-02-10",
+      "observation": "GreaterTreant102/114alreadydistinctrawvalues;ordinaryAAfixeddamageisnotreplaced.",
+      "localEvidence": "references/dota-20230216/npc_units.txt",
+      "sha256": "97d15edd2b3122db357e2a66abeec5d1c5262954c72c28983b07f2b6b9ddc592",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "snapfire2023",
+      "url": "https://web.archive.org/web/20230215191541id_/https://dota2.fandom.com/wiki/Snapfire",
+      "accessedOn": "2026-10-30",
+      "versionContext": "ActualfullHTTP2002023-02-15capture,reusedandSHArevalidatedC16",
+      "observation": "Cookie/Kisses/Spitsharefirst-appliedmodifier;immediate.5scan/.5burn/1secondtail;impact/stun/sourcecontinuationclausesqualified.",
+      "localEvidence": "output/c6-fire-fissure/Snapfire.html",
+      "sha256": "5e27ec69554d71439ee67f16cfd5ca40a8eb5c69f59676da23b9e2a8c604b0b1",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "monkey2023",
+      "url": "https://web.archive.org/web/20230308092705id_/https://dota2.fandom.com/wiki/Monkey_King",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actualredirectcapture2023-03-08after7.32e,notFebruary;priorHTTP200fullpageSHArevalidated",
+      "observation": "Hero-cloneidentity/copiedstatsandindependentJingu,1.2maximumattackfrequency,animationeffects;nativeMonkeymodelnotforcedontoAAroles.",
+      "localEvidence": "output/c9-inner-laser/Monkey_King.html",
+      "sha256": "ef070790c42133613f3bf188d042ca68b01716a4b983c4c70fb5174d80f76931",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "prophet2023",
+      "url": "https://web.archive.org/web/20230215192014id_/https://dota2.fandom.com/wiki/Nature%27s_Prophet",
+      "accessedOn": "2026-10-30",
+      "versionContext": "Actual2023-02-15fullHTTP200cache,reverified.C10didnotfetchstandaloneGreaterTreantpage.",
+      "observation": "NatureCalltree-freeAAoverrideandhistoricalgreaterunitlineage;numericrangecomesfromunitKV.",
+      "localEvidence": "output/c10-nature-omni/Nature_Prophet.html",
+      "sha256": "04f0022f381c7e89acd6ab1fdeb70582ade94697f72af942b05dd34b2c3fd537",
+      "readMethod": "Reused the earlier actual captured full response and revalidated its exact SHA in C16. This is not a new successful C16 HTTP fetch."
+    },
+    {
+      "id": "chakra-old",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Old_Abilities",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C4actuallyreadindexedhistoricalentries;newC16directrequest403,no200claim",
+      "observation": "pre7.20next-spell15sprototypeversusAApluralretroactivewindow;notexactAALua.",
+      "readMethod": "Previously read indexed C4 entries. C16 direct fetch returned403 once;no new HTTP200 is claimed."
+    },
+    {
+      "id": "chakra-history",
+      "url": "https://liquipedia.net/dota2/Keeper_of_the_Light/Changelogs",
+      "accessedOn": "2026-10-30",
+      "versionContext": "C4indexeddated2020-01-26chargefix;C16directrequest403,no200claim",
+      "observation": "Sourcefornativecharge-replenishmentinclusion;notallmodulestatehandlersorAAwindowproof.",
+      "readMethod": "Previously read indexed C4 entries. C16 direct fetch returned403 once;no new HTTP200 is claimed."
+    }
+  ],
+  "completeAAFieldAudit": [
+    {
+      "id": "keeper_of_the_light_chakra_magic",
+      "fields": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "AA": {
+        "name": "Chakra Magic",
+        "id": "keeper_of_the_light_chakra_magic",
+        "icon": "keeper_of_the_light_chakra_magic",
+        "tags": [
+          "buff",
+          "manaRegeneration"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "PIERCES SPELL IMMUNITY: Yes"
+        ],
+        "description": "Restores mana to the target unit and reduces cooldowns of all abilities currently on cooldown by a fixed amount.",
+        "differences": "When casted on an ally, also applies the effects on self. Is retroactive, meaning the next abilities that are cast within certain amount of seconds will also have its cooldown reduced.",
+        "values": [
+          "COOLDOWN REDUCTION: 1 / 2 / 4",
+          "MANA RESTORE: 80 / 160 / 320"
+        ],
+        "cooldowns": [
+          18,
+          16,
+          12
+        ],
+        "manaCost": [
+          0
+        ],
+        "superUpgrade": "Super: -4s reduced cooldown, and applies a basic dispel on targeted hero. Reduces ally cooldowns by an additional 2s.",
+        "gabenUpgrade": "Gaben: Grants Blinding Light. Chakra Magic also reduces the cooldown of ultimates."
+      },
+      "AIFieldPresent": false,
+      "notesFieldPresent": false
+    },
+    {
+      "id": "custom_snapfire_firesnap_cookie",
+      "fields": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "AA": {
+        "name": "Firesnap Cookie",
+        "id": "custom_snapfire_firesnap_cookie",
+        "icon": "snapfire_firesnap_cookie",
+        "tags": [
+          "buff",
+          "healing",
+          "magicDamage",
+          "mobility",
+          "stun"
+        ],
+        "categories": [
+          "ABILITY: Unit Target",
+          "DAMAGE TYPE: Magical",
+          "DISPELLABLE: Cannot be dispelled"
+        ],
+        "description": "The hero feeds a potent cookie to themselves or an ally, causing them to hop a short distance. The hopping unit stuns and damages enemies in the landing zone.",
+        "differences": "",
+        "values": [
+          "HOP DISTANCE: 425",
+          "IMPACT DAMAGE: 70 / 140 / 280",
+          "IMPACT RADIUS: 300",
+          "IMPACT STUN DURATION: 1.3 / 1.6 / 2.2"
+        ],
+        "cooldowns": [
+          21,
+          19,
+          15
+        ],
+        "manaCost": [
+          100
+        ],
+        "superUpgrade": "Super: Firesnap cookies become even more potent, getting increased jump range and launching a Mortimer Kiss to the landing destination. Heals units for 200 and grants 200 max health.",
+        "gabenUpgrade": "Gaben: For 3 seconds, the target gets thrown an additional Firesnap Cookie every 1 seconds."
+      },
+      "AIFieldPresent": false,
+      "notesFieldPresent": false
+    },
+    {
+      "id": "custom_snapfire_mortimer_kisses",
+      "fields": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "AA": {
+        "name": "Mortimer Kisses",
+        "id": "custom_snapfire_mortimer_kisses",
+        "icon": "snapfire_mortimer_kisses",
+        "tags": [
+          "magicDamage",
+          "mobility",
+          "ultimate"
+        ],
+        "categories": [
+          "ABILITY: Point Target",
+          "DAMAGE TYPE: Magical",
+          "PIERCES SPELL IMMUNITY: No",
+          "DISPELLABLE: Yes"
+        ],
+        "description": "The caster launches a barrage of firespit globs over 5.5 seconds. Globs cause impact damage and create pools of firespit, which slow and apply damage over time. The caster has a reduced turn rate for the duration and a minimum launch range of 600.",
+        "differences": "",
+        "values": [
+          "BURN DPS: 10 / 20 / 30",
+          "DAMAGE PER GLOB: 100 / 200 / 300",
+          "ENEMY MOVEMENT SLOW: 15% / 20% / 25%",
+          "FIRESPIT POOL DURATION: 3",
+          "GLOB COUNT: 8",
+          "IMPACT RADIUS: 275"
+        ],
+        "cooldowns": [
+          120,
+          110,
+          100
+        ],
+        "manaCost": [
+          125,
+          150,
+          175
+        ],
+        "superUpgrade": "Super: +20% slow, and +20 burn damage per second. Given Gobble Up ability.",
+        "gabenUpgrade": "Gaben: No longer requires channeling."
+      },
+      "AIFieldPresent": false,
+      "notesFieldPresent": false
+    },
+    {
+      "id": "custom_furion_force_of_nature",
+      "fields": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "AA": {
+        "name": "Nature's Call",
+        "id": "custom_furion_force_of_nature",
+        "icon": "furion_force_of_nature",
+        "tags": [
+          "summons"
+        ],
+        "categories": [
+          "ABILITY: Point Target"
+        ],
+        "description": "Spawn number of Treants under the command of the caster.",
+        "differences": "Doesn't require trees to make",
+        "values": [
+          "TREANT COUNT: 2 / 3 / 5",
+          "TREANT DAMAGE: 18 / 26 / 42",
+          "TREANT DURATION: 60 / 60 / 60",
+          "TREANT HEALTH: 550"
+        ],
+        "cooldowns": [
+          37
+        ],
+        "manaCost": [
+          130,
+          140,
+          160
+        ],
+        "superUpgrade": "Super: Treants become Greater Treants.",
+        "gabenUpgrade": "Gaben: Spawns a Treant when an enemy summon or illusion dies, and a Greater Treant when an enemy hero dies."
+      },
+      "AIFieldPresent": false,
+      "notesFieldPresent": false
+    },
+    {
+      "id": "custom_monkey_king_jingu_mastery",
+      "fields": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "AA": {
+        "name": "Jingu Mastery",
+        "id": "custom_monkey_king_jingu_mastery",
+        "icon": "monkey_king_jingu_mastery",
+        "tags": [
+          "attackDamage",
+          "lifesteal",
+          "passive"
+        ],
+        "categories": [
+          "ABILITY: Passive",
+          "PIERCES SPELL IMMUNITY: Yes",
+          "DISPELLABLE: Strong Dispels Only"
+        ],
+        "description": "The caster's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, the caster earns four charged attacks that have bonus damage and lifesteal.",
+        "differences": "",
+        "values": [
+          "BONUS DAMAGE: 25 / 50 / 100",
+          "BONUS LIFESTEAL: 25% / 40% / 70%",
+          "CHARGES: 4",
+          "COUNTER DURATION: 7 / 8 / 10",
+          "REQUIRED HITS: 4"
+        ],
+        "cooldowns": [
+          0
+        ],
+        "manaCost": [],
+        "superUpgrade": "Super: Grants Echo Sabre and +130 damage.",
+        "gabenUpgrade": "Gaben: Spawns a stone soldier near you every 2s."
+      },
+      "AIFieldPresent": false,
+      "notesFieldPresent": false
+    }
+  ],
+  "beforeProbe": {
+    "method": "Original real registry/compiledcatalog/abilities only.No program,hook,status,damage,FX,summon injection.Initial HP/mana/positions/ordinary attack gates and initial skillCD scheduling are declared controls.No balance row edits. GreaterTreant singleton positioning and ordinary clock is explicitly controlled after actual summon;all attacks are real.",
+    "path": "output/c16-lifecycle-intake/actual-before.json",
+    "sha256": "c4659279947e90f0338440b8e21439af9ffcb9e005948cfb8a88e90fdd4e9c00",
+    "results": 33,
+    "findings": [
+      {
+        "id": "dead-chakra",
+        "observation": "A genuine Finger death leaves the existing recipient Chakra modifier alive,but a later actual Windrun replenishes at18 instead of the live-provider14."
+      },
+      {
+        "id": "step-recharge",
+        "observation": "Actual Step3/9 empty pools keep internal next18.2333/14.2333 despite allied GChakra reducing public clocks by6."
+      },
+      {
+        "id": "existing-magma",
+        "observation": "All three current final programs already call the one magma manager. Six pair orders preserve Cookie15/Kisses25/Spit50 per half-second first-provider burns. Basic dispel causes a new run on actual later puddle scan;released Kisses puddles survive a real owner death."
+      },
+      {
+        "id": "greater-variance",
+        "observation": "The actual greater body has attack108 but absent min/max;14 genuine ordinary hits are all108 despite the existing native profile102/114."
+      },
+      {
+        "id": "jingu-attributes",
+        "observation": "All four actual AA profession soldiers keep their role,skin and heroClone identity,but source nonzero attributes become0/0/0. Existing profession attack snapshots and delivered soldier body/projectile art are preserved."
+      }
+    ]
+  },
+  "configurationChanges": {
+    "presentationOnlyRepair": "The existing Chakra c.mana path had no matching restore world occurrence;the authorized narrow wrapper emits the existing16frame/24fps atlas only after a genuine positive mana delta. This is a presentation lifetime,not a balance cell or fake heal.",
+    "ownNumericFields": [],
+    "existingFieldsNowConsumed": [
+      "UNIT_CONFIG.npc_dota_furion_treant_large.AttackDamageMin",
+      "UNIT_CONFIG.npc_dota_furion_treant_large.AttackDamageMax"
+    ],
+    "otherGroupBatch": "Only Fissure geometry and Phantom Lance fake-cast radius change. See the separate configuration QA artifact."
+  },
+  "limitations": [
+    "The Greater Treant102–114 range is read from pinned unit KV. No standalone historical Greater Treant HTTP capture is invented.",
+    "Monkey King full response redirected to2023-03-08 after7.32e,not a February capture.",
+    "Chakra old native prototype does not prove AA Lua duration or exact plural consumption policy.",
+    "First failed provisional probes selected the Chakra caster in some charge fixtures;only corrected recipient-qualified before results are used."
+  ],
+  "renderValidation": {
+    "status": "passed",
+    "command": "ARENA_TEST_URL=http://127.0.0.1:5173 node scripts/c16-lifecycle-render-smoke.mjs",
+    "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+    "scenarios": 28,
+    "report": "artifacts/r6-c16-lifecycle-render/report.json",
+    "sha256": "8cd160b745be334b76711a834ece137f04fb2285ab4197f352d33d4d46a20b83",
+    "stateMutation": "All28fixture battle/RNG serialization snapshots unchanged after frozen renderer frames",
+    "loadErrors": 0,
+    "browsersClosed": true,
+    "visualInspection": {
+      "inspectedOn": "2026-10-30",
+      "files": [
+        "chakra-release.png",
+        "chakra-dead-route-mobile.png",
+        "magma-cookie-first.png",
+        "magma-spit-first-mobile.png",
+        "greater-tree-attack.png",
+        "ordinary-tree-mobile.png",
+        "jingu-archer.png",
+        "jingu-mage-mobile.png",
+        "jingu-before-spawn-mobile.png",
+        "magma-reapplied.png"
+      ],
+      "observation": "Actual representative desktop/mobile PNGs inspected. The genuine positive Chakra restoration has a short recipient sprite. Real mixed magma pools show ground fire and actual first-provider damage labels;the later reapplication frame has its actual burn after the visible pool expiry. Greater and ordinary Treants use distinct delivered bodies. Archer/mage soldiers use delivered soldier bodies while keeping AA class identity. The real pre2second negative frame contains no soldier. Arena-wide framing makes bodies and effects compact;no native model-swap or exact native attack-clock claim is made."
+    }
+  }
+}

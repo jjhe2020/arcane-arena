@@ -362,13 +362,18 @@
           "id": "PD-SF-MISSING-ORDER01",
           "kind": "mechanism",
           "branch": "base_triggering_effect_order",
-          "mechanism": "Full triggering-ability debuff ordering is not yet established:the accepted-damage prehook moves Field before the primary damage packet,but callers which apply their stun/debuff before c.damage can still apply that effect before Field. A per-hit pre-effect protocol is needed to satisfy the historical all-effects-first statement.",
+          "mechanism": "Retain all-caller requirement open. Logical-impact helper and actual Lance contact are now fixed;root owns bounded native shared callers. DelayedDOT/debuff-only AA generalization and every status-first caller are not automatically covered.",
           "sourceIds": [
             "wiki",
             "aa",
             "valve"
           ],
-          "testEvidence": [],
+          "testEvidence": [
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-SF01 Static Field from a real Spirit Lance precedes its slow and primary damage on that contact"
+            }
+          ],
           "status": "actual_missing",
           "reason": "Current finite SF01/SF02 prove primary damage ordering only;they must not be expanded into every triggering debuff being applied afterward."
         }

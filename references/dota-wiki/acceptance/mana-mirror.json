@@ -1513,6 +1513,25 @@
           "accessedOn": "2026-10-30",
           "observation": "The named patch changes Hook to return a victim to the initial hook position regardless of Pudge current location.",
           "versionContext": "Dated historical nonnumeric fix;the actual C10 test relocates the caster as a diagnostic and does not claim a complete Blink-skill combination."
+        },
+        {
+          "id": "mars-2023",
+          "url": "https://web.archive.org/web/20230215191449id_/https://dota2.fandom.com/wiki/Mars",
+          "accessedOn": "2026-10-30",
+          "observation": "The specified prohibited horizontal abilities cannot passArena. Other horizontal sources may crossitswalls,but the qualified inside-edge spear knockback stilltriggers andcan interrupt forced movement. This supports the localHookcontroller interruption at an actual spear hit,not a global priority increase.",
+          "paraphrase": "The specified prohibited horizontal abilities cannot passArena. Other horizontal sources may crossitswalls,but the qualified inside-edge spear knockback stilltriggers andcan interrupt forced movement. This supports the localHookcontroller interruption at an actual spear hit,not a global priority increase.",
+          "versionContext": "Actual2023-02-15pre7.33fullbody reused with verifiedbytes.",
+          "httpStatus": 200,
+          "archiveTimestamp": "20230215191449",
+          "sha256": "14803f6e56773f994f6bd7af3fb5e84b494b77c186abc2f1b4eff8e39fec08b9",
+          "rawBytesReverified": true,
+          "sections": [
+            {
+              "name": "Arena Of Blood",
+              "start": 19800,
+              "end": 21300
+            }
+          ]
         }
       ],
       "requirements": [
@@ -1693,14 +1712,53 @@
           "id": "HK-P03",
           "kind": "combination",
           "branch": "boundary",
-          "status": "actual_missing",
-          "mechanism": "Special spell-wall exceptions and full owner-death/interrupted-flight hook attachment need paired results;the ordinary terrain-bypassing controller does not certify every barrier.",
+          "status": "source_pending",
+          "mechanism": "ActualqualifiedArenaSpearcaninterruptHookcontroller,andrealBladeFurynegativepasses. ExistingreleasedHookalsohits/pullsaftertrueordinaryattackkillsource,butdatedherotextdoesnotexplicitlysettlesource-deathrule. Otherwall/vertical/interruptedattachmentbranchesremainseparateopenboundaries.",
           "sourceIds": [
             "aa",
             "wiki2023",
             "valve"
           ],
-          "testEvidence": []
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-H01 an actual enemy ordinary attack kills the Hook source before impact but the released Hook still hits and pulls"
+            }
+          ]
+        },
+        {
+          "id": "HK-C16-ARENA01",
+          "kind": "combination",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "RealArenaqualifiedinner-edgespearinterruptsforeignHookbeforeapplyingownknockback;noglobalprioritychange.",
+          "sourceIds": [
+            "wiki2023",
+            "mars-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-H02 a real Arena inner-edge spear interrupts the foreign Hook controller instead of letting it drag the victim fully out"
+            }
+          ]
+        },
+        {
+          "id": "HK-C16-ARENA02",
+          "kind": "combination",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "RealBladeFuryimmunitypreventsspearinterruptwhilepiercingHookstillpullsthrough.",
+          "sourceIds": [
+            "wiki2023",
+            "mars-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-H03 actual BladeFury immunity prevents the Arena spear interruption while the piercing Hook still pulls through"
+            }
+          ]
         }
       ],
       "unresolved": [

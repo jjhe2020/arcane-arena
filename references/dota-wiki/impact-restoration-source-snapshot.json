@@ -1,0 +1,695 @@
+{
+  "schemaVersion": 1,
+  "group": "impact-restoration",
+  "accessedOn": "2026-10-30",
+  "sourcePolicy": "Selected official structured AA/Valve records plus independent source metadata/paraphrases only. Full third-party historical HTML remains ignored. Engine debt closure does not create duplicate main skill records or claim whole-skill completeness.",
+  "sources": [
+    {
+      "id": "aa",
+      "url": "https://www.abilityarena.com/data/abilities.json",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "sha256": "1014c45e7209094d311e3d2c16c92bd4c32ae490c510a721a75e0c23c48cfcae",
+      "paraphrase": "Complete original five AA objects read,including descriptions,differences,allvalues,clocks,categories,Super and Gaben. These objects have no AI or notes keys;absence does not establish an original bot movement policy. All AA numbers and custom clauses remain unchanged.",
+      "versionContext": "Fresh official230row body metadata reused and original five rows compared with final catalog,not an assertion of recovered AA Lua."
+    },
+    {
+      "id": "valve-2023",
+      "url": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "accessedOn": "2026-10-30",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "paraphrase": "Five original native ability records retain their own values and behavior version. This batch adds only the675fake-cast eligibility field and does not replace AA values with native figures.",
+      "versionContext": "Pinned6abdd9d13de2f4330ca748082467b9ff6e6cd928 actually2023-02-10T01:16:45Z;folder20230216is not source date or proof AA used this patch."
+    },
+    {
+      "id": "dawn-2023",
+      "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+      "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Powered-up contact heals its caster,then nearby allies,before critical damage. Both restoration components are lifesteal-class and use the caster amplification. The lower-critical-priority sentence does not settle every higher-critical consumption case.",
+      "versionContext": "Direct complete historical HTML capture20230215191331. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "lifesteal-2023",
+      "url": "https://web.archive.org/web/20230215192108id_/https://dota2.fandom.com/wiki/Lifesteal",
+      "sha256": "e6ed9ce3f16c7b3b406a739d076c3a7ccecd072f8459c886629ec9da1e35db58",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Ordinary physical attack lifesteal includes the packet a dying target would have taken without death. Dawnbreaker is in the regular source list without the no-overkill footnote,which belongs to Marci/Jingu. Most target generic multipliers do not affect lifesteal;FleshGolem/AeonDisk are stated examples. Exact shield/deferred conversions are not specified here.",
+      "versionContext": "Direct complete historical HTML capture20230215192108. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "zeus-2023",
+      "url": "https://web.archive.org/web/20230215192015id_/https://dota2.fandom.com/wiki/Zeus",
+      "sha256": "12b3d928f7d8a031a9d49c811fed07ae337436911b8d308220b838843d8a1edc",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Native StaticField damage precedes every effect of each triggering Zeus ability. Native Shard8percent/Zeus-only behavior is not substituted for AA4/6/10and any-learned-ability/three-second-lock custom data. The native immediate-nuke examples do not independently resolve all AA delayedDOT/debuff-only callers.",
+      "versionContext": "Direct complete historical HTML capture20230215192015. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "lancer-2023",
+      "url": "https://web.archive.org/web/20230215191831id_/https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "sha256": "457d64b68abd62cdf42d6b268fe74329a8533752d004a5290bc64c4e82102889",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "Owned illusions within675perform full fake cast animation and release harmless fake lances simultaneously with a real release. Parent cancellation retains their animation without releasing fake lances. Moving/attacking illusions retain their orders/facing;fake lances do not interact with targets.",
+      "versionContext": "Direct complete historical HTML capture20230215191831. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "necro-2023",
+      "url": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos",
+      "sha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2",
+      "accessedOn": "2026-10-30",
+      "httpStatus": 200,
+      "paraphrase": "ReapersScythe explicitly has the highest kill-credit manipulation priority. The existing shared mark protocol is reused and verified against a real IceBlast shatter caused by a third attacker;damage attribution stays independent.",
+      "versionContext": "Direct complete historical HTML capture20230215192013. Relevant sections actually read and SHA verified. Full third-party HTML stays ignored;no silent modern mechanism import."
+    },
+    {
+      "id": "primal-retained",
+      "url": "https://dota2.fandom.com/wiki/Primal_Beast",
+      "accessedOn": "2026-10-30",
+      "observation": "The previous motion batch retains7.35indexed movement/stomp notes. Known2023archive429was not retried;this is not a successful dated full-page source. Neither this text nor the complete AA object proves an automated orbit AI.",
+      "versionContext": "Explicit retained modern/indexed candidate and unavailable2023page;ordinary center pursuit is a project engineering policy,not native behavior certification."
+    }
+  ],
+  "officialAA": [
+    {
+      "name": "Luminosity",
+      "id": "custom_dawnbreaker_luminosity",
+      "icon": "dawnbreaker_luminosity",
+      "tags": [
+        "healing",
+        "lifesteal",
+        "passive"
+      ],
+      "categories": [
+        "ABILITY: Passive",
+        "PIERCES SPELL IMMUNITY: Yes"
+      ],
+      "description": "After 3 attacks, the caster powers up, charging her next attack with a critical hit that heals all allied heroes within 650 units around her for a portion of attack damage dealt. Creeps and neutral enemies provide less healing. Allies are healed for 35% of the amount.",
+      "differences": "",
+      "values": [
+        "CREEP HEAL PENALTY: 50%",
+        "CRITICAL STRIKE DAMAGE: 120% / 140% / 180%",
+        "HEALING FROM HEROES: 25% / 50% / 100%"
+      ],
+      "cooldowns": [],
+      "manaCost": [],
+      "superUpgrade": "Super: Requires 1 less attack to proc. Increases by 40% the critical damage.",
+      "gabenUpgrade": "Gaben: Lifesteal increased by 150%. Grants a double attack every 5 seconds."
+    },
+    {
+      "name": "Static Field",
+      "id": "custom_zuus_static_field",
+      "icon": "zuus_static_field",
+      "tags": [
+        "magicDamage",
+        "passive",
+        "spam"
+      ],
+      "categories": [
+        "ABILITY: Passive",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: No"
+      ],
+      "description": "The caster shocks any enemy hit by his abilities, causing damage proportional to their current health.",
+      "differences": "Has a cooldown for each ability to trigger Static Field.",
+      "values": [
+        "COOLDOWN: 3",
+        "HEALTH REDUCTION: 4% / 6% / 10%"
+      ],
+      "cooldowns": [],
+      "manaCost": [],
+      "superUpgrade": "Super: Increases health reduction by 2%.",
+      "gabenUpgrade": "Gaben: Performs a Heavenly Jump on the spot every time it procs, dealing damage to two targets."
+    },
+    {
+      "name": "Ice Blast",
+      "id": "custom_ancient_apparition_ice_blast",
+      "icon": "ancient_apparition_ice_blast",
+      "tags": [
+        "magicDamage",
+        "ultimate"
+      ],
+      "categories": [
+        "ABILITY: Point Target",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: Yes",
+        "DISPELLABLE: Strong Dispels Only"
+      ],
+      "description": "Launches a tracer toward any location on the battlefield, which must be triggered again to mark the area to be blasted by a damaging explosion of hail. The further the tracer travels, the larger the explosion will be. Enemies caught in the explosion, or who touch the icy ball of hail as it travels, are Frostbitten, taking damage and prevented from regenerating or healing. If a Frostbitten unit's health drops below a certain percentage, they will instantly shatter.",
+      "differences": "Debuff is shorter, but damage over time is increased.",
+      "values": [
+        "FROSTBITTEN DAMAGE PER SECOND: 10 / 20 / 30",
+        "FROSTBITTEN DURATION: 5 / 7 / 9",
+        "IMPACT DAMAGE: 100 / 150 / 200",
+        "SHATTER HEALTH THRESHOLD: 12% / 13% / 14%"
+      ],
+      "cooldowns": [
+        60,
+        50,
+        40
+      ],
+      "manaCost": [
+        175
+      ],
+      "superUpgrade": "Super: Forms an Ice Vortex at its destination just before Ice Blast deals damage. +4% kill threshold.",
+      "gabenUpgrade": "Gaben: Grants Second Ice Age: Casts Cold Feet on all enemies in the arena, dealing 90 damage per second and stuns for 3.5 seconds if the enemy doesn't move away from the initial cast point."
+    },
+    {
+      "name": "Spirit Lance",
+      "id": "custom_phantom_lancer_spirit_lance",
+      "icon": "phantom_lancer_spirit_lance",
+      "tags": [
+        "magicDamage",
+        "stats"
+      ],
+      "categories": [
+        "ABILITY: Unit Target",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: No",
+        "DISPELLABLE: Yes"
+      ],
+      "description": "Sends a magical spirit lance to a target enemy unit that damages and slows, while summoning an illusory phantom to attack the unit.",
+      "differences": "",
+      "values": [
+        "ILLUSION DAMAGE TAKEN: 400% / 400% / 400%",
+        "ILLUSION DAMAGE: 40%",
+        "ILLUSION DURATION: 2 / 4 / 8",
+        "LANCE DAMAGE: 100 / 160 / 280",
+        "MOVEMENT SLOW: -10% / -18% / -34%",
+        "SLOW DURATION: 3.25"
+      ],
+      "cooldowns": [
+        7
+      ],
+      "manaCost": [
+        120
+      ],
+      "superUpgrade": "Super: Cooldown reduced by 4 seconds, and cast range increased by 225. Spirit Lance bounces once on an enemy within 750 radius, prioritizing heroes. Increases Spirit Lance illusion damage by +40%",
+      "gabenUpgrade": "Gaben: Grants 25% cooldown reduction and +45 to base stat."
+    },
+    {
+      "name": "Trample",
+      "id": "primal_beast_trample",
+      "icon": "primal_beast_trample",
+      "tags": [
+        "instantAttack",
+        "mobility",
+        "stats"
+      ],
+      "categories": [
+        "ABILITY: No Target",
+        "DAMAGE TYPE: Magical",
+        "PIERCES SPELL IMMUNITY: No",
+        "DISPELLABLE: Strong Dispels Only"
+      ],
+      "description": "Primal Beast stomps over everything. For every 140 units traveled, all enemies around the Beast receive damage. Deals base damage plus a multiplier of Primal Beast's attack damage. Primal Beast is disarmed for the duration of the ability.",
+      "differences": "Deals slightly reduced damage.",
+      "values": [
+        "ATTACK DAMAGE MULTIPLIER: 35%",
+        "BASE DAMAGE: 15 / 30 / 60",
+        "DAMAGE AOE: 230",
+        "DURATION: 5.5"
+      ],
+      "cooldowns": [
+        30,
+        27,
+        21
+      ],
+      "manaCost": [
+        90,
+        85,
+        75
+      ],
+      "superUpgrade": "Super: Gain 50% magic resistance and 50% status resistance during Trample. +25% attack damage multiplier, +70 damage radius.",
+      "gabenUpgrade": "Gaben: Procs attack modifiers. Has no cooldown."
+    }
+  ],
+  "fullOfficialFieldAudit": {
+    "allAvailableFields": {
+      "custom_dawnbreaker_luminosity": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "custom_zuus_static_field": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "custom_ancient_apparition_ice_blast": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "custom_phantom_lancer_spirit_lance": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ],
+      "primal_beast_trample": [
+        "name",
+        "id",
+        "icon",
+        "tags",
+        "categories",
+        "description",
+        "differences",
+        "values",
+        "cooldowns",
+        "manaCost",
+        "superUpgrade",
+        "gabenUpgrade"
+      ]
+    },
+    "catalogDiff": {
+      "custom_dawnbreaker_luminosity": [],
+      "custom_zuus_static_field": [],
+      "custom_ancient_apparition_ice_blast": [],
+      "custom_phantom_lancer_spirit_lance": [],
+      "primal_beast_trample": []
+    },
+    "AIAndNotes": "No AI/notes properties exist in these original five rows;no native automatic pursuit/orbit is inferred."
+  },
+  "pinnedValve": {
+    "source": {
+      "file": "npc_abilities.txt",
+      "commit": "6abdd9d13de2f4330ca748082467b9ff6e6cd928",
+      "commitDate": "2023-02-10T01:16:45Z",
+      "sourceUrl": "https://github.com/SteamTracking/GameTracking-Dota2/blob/6abdd9d13de2f4330ca748082467b9ff6e6cd928/game/dota/pak01_dir/scripts/npc/npc_abilities.txt",
+      "sha256": "2b46b39707599b46921702c3afab7c833e8529cf6e1c3a1255cfbfd4d3355de5",
+      "gitBlobSha": "ae43f94db278763c22e84c464df74e3ace890d44",
+      "warning": "Historical shipped Dota KV mirror; not proven to match the AA snapshot. String values preserved; duplicate keys and platform conditions are recorded, not silently interpreted."
+    },
+    "abilities": {
+      "dawnbreaker_luminosity": {
+        "ID": "7918",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_FRIENDLY",
+        "SpellImmunityType": "SPELL_IMMUNITY_ALLIES_YES",
+        "AbilityCastAnimation": "ACT_DOTA_OVERRIDE_ABILITY_3",
+        "AbilityCastGestureSlot": "DEFAULT",
+        "AbilityCastPoint": "0.0 0.0 0.0 0.0",
+        "AbilitySpecial": {
+          "01": {
+            "var_type": "FIELD_INTEGER",
+            "attack_count": "3",
+            "LinkedSpecialBonus": "special_bonus_unique_dawnbreaker_luminosity_attack_count",
+            "LinkedSpecialBonusOperation": "SPECIAL_BONUS_SUBTRACT"
+          },
+          "02": {
+            "var_type": "FIELD_INTEGER",
+            "heal_radius": "650"
+          },
+          "03": {
+            "var_type": "FIELD_INTEGER",
+            "heal_pct": "35 40 45 50"
+          },
+          "04": {
+            "var_type": "FIELD_INTEGER",
+            "heal_from_creeps": "50"
+          },
+          "05": {
+            "var_type": "FIELD_INTEGER",
+            "bonus_damage": "125 150 175 200",
+            "LinkedSpecialBonus": "special_bonus_unique_dawnbreaker_luminosity_crit"
+          },
+          "06": {
+            "var_type": "FIELD_FLOAT",
+            "proc_cooldown": "0.00"
+          },
+          "07": {
+            "var_type": "FIELD_INTEGER",
+            "allied_healing_pct": "50"
+          }
+        }
+      },
+      "zuus_static_field": {
+        "ID": "5112",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "AbilitySound": "Hero_Zuus.StaticField",
+        "MaxLevel": "1",
+        "IsGrantedByShard": "1",
+        "AbilityValues": {
+          "damage_health_pct": {
+            "value": "8",
+            "CalculateSpellDamageTooltip": "0"
+          }
+        }
+      },
+      "ancient_apparition_ice_blast": {
+        "ID": "5348",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE",
+        "AbilityType": "DOTA_ABILITY_TYPE_ULTIMATE",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_YES",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "FightRecapLevel": "2",
+        "AbilitySound": "Hero_Ancient_Apparition.IceBlast.Target",
+        "AbilityCastPoint": "0.01 0.01 0.01",
+        "AbilityCastRange": "0",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCooldown": "60.0 50.0 40.0",
+        "AbilityManaCost": "175",
+        "AbilityDamage": "250 325 400",
+        "AbilityValues": {
+          "radius_min": "275",
+          "radius_grow": "50.0",
+          "radius_max": "1000",
+          "path_radius": "275",
+          "frostbite_duration": "10 11 12",
+          "dot_damage": {
+            "value": "12.5 20.0 32.0",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "speed": "1500 1500 1500 1500",
+          "kill_pct": {
+            "value": "12 13 14",
+            "special_bonus_unique_ancient_apparition_5": "+4"
+          },
+          "target_sight_radius": "500 500 500"
+        }
+      },
+      "phantom_lancer_spirit_lance": {
+        "ID": "5065",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET",
+        "AbilityUnitTargetTeam": "DOTA_UNIT_TARGET_TEAM_ENEMY",
+        "AbilityUnitTargetType": "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_YES",
+        "FightRecapLevel": "1",
+        "AbilitySound": "Hero_PhantomLancer.SpiritLance.Throw",
+        "HasShardUpgrade": "1",
+        "AbilityCastPoint": "0.3 0.3 0.3 0.3",
+        "AbilityCooldown": "7",
+        "AbilityManaCost": "120",
+        "AbilityCastRange": "600 650 700 750",
+        "AbilityValues": {
+          "lance_damage": {
+            "value": "100 160 220 280",
+            "special_bonus_unique_phantom_lancer_lance_damage": "+50"
+          },
+          "lance_speed": "1000 1000 1000 1000",
+          "duration": "3.75",
+          "movement_speed_pct": "-14 -21 -28 -35",
+          "illusion_duration": "2.0 4.0 6.0 8.0",
+          "illusion_damage_out_pct": "-80",
+          "tooltip_illusion_damage": "20",
+          "illusion_damage_in_pct": "300 300 300 300",
+          "tooltip_illusion_total_damage_in_pct": "400 400 400 400",
+          "fake_lance_distance": "675",
+          "shard_bounce_radius": {
+            "value": "750",
+            "RequiresShard": "1"
+          },
+          "shard_bonus_illusion_damage": {
+            "value": "40",
+            "RequiresShard": "1"
+          },
+          "shard_total_hits": {
+            "value": "2",
+            "RequiresShard": "1"
+          }
+        },
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_1"
+      },
+      "primal_beast_trample": {
+        "ID": "994",
+        "AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL",
+        "AbilityUnitDamageType": "DAMAGE_TYPE_MAGICAL",
+        "SpellImmunityType": "SPELL_IMMUNITY_ENEMIES_NO",
+        "SpellDispellableType": "SPELL_DISPELLABLE_NO",
+        "AbilityManaCost": "90 85 80 75",
+        "AbilityCastAnimation": "ACT_DOTA_CAST_ABILITY_4",
+        "AbilityCastGestureSlot": "ABSOLUTE",
+        "AbilityValues": {
+          "effect_radius": "230",
+          "step_distance": "140",
+          "base_damage": {
+            "value": "15 30 45 60",
+            "CalculateSpellDamageTooltip": "1"
+          },
+          "duration": "5.5",
+          "attack_damage": {
+            "value": "35",
+            "special_bonus_unique_primal_beast_trample_attack_damage": "+25"
+          },
+          "bonus_magic_resistance": {
+            "value": "0",
+            "special_bonus_unique_primal_beast_trample_magic_resist": "+20"
+          },
+          "AbilityCooldown": {
+            "value": "30 27 24 21",
+            "special_bonus_unique_primal_beast_trample_cooldown": "-5"
+          }
+        }
+      }
+    }
+  },
+  "verifiedHistoricalCaches": [
+    {
+      "url": "https://web.archive.org/web/20230215191331id_/https://dota2.fandom.com/wiki/Dawnbreaker",
+      "accessedOn": "2026-10-30",
+      "reason": "Previously successful direct2023fullHTML source has metadataSHA but no retained local cache;single request,no retry.",
+      "httpStatus": 200,
+      "sha256": "929e37d9aa480a8e99a32ec9883573d8e3769c297751005f4afb05477277e864",
+      "bytes": 503524
+    },
+    {
+      "url": "https://web.archive.org/web/20230215192015id_/https://dota2.fandom.com/wiki/Zeus",
+      "accessedOn": "2026-10-30",
+      "policy": "Single request,no retry after429;archive full response distinguished from capture index.",
+      "httpStatus": 200,
+      "sha256": "12b3d928f7d8a031a9d49c811fed07ae337436911b8d308220b838843d8a1edc",
+      "bytes": 494981
+    },
+    {
+      "url": "https://web.archive.org/web/20230215192108id_/https://dota2.fandom.com/wiki/Lifesteal",
+      "accessedOn": "2026-10-30",
+      "policy": "Single direct response using capture index,not another retry.",
+      "httpStatus": 200,
+      "sha256": "e6ed9ce3f16c7b3b406a739d076c3a7ccecd072f8459c886629ec9da1e35db58",
+      "bytes": 372150
+    },
+    {
+      "hero": "Phantom_Lancer",
+      "originalUrl": "https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "accessedOn": "2026-10-30",
+      "cdxUrl": "https://web.archive.org/cdx/search/cdx?url=dota2.fandom.com%2Fwiki%2FPhantom_Lancer&output=json&filter=statuscode%3A200&from=2022&to=20230301&collapse=timestamp%3A6",
+      "cdxStatus": 200,
+      "captures": [
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20220214100344",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "5GXCLKSJBKRUCVJZXGCITTQG5N3OAA2L",
+          "149829"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20220516060443",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "ONMQF5DQQMSMPBTHYKMMW4YPFX2RUVFX",
+          "151299"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20220721101544",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "ZPJSUC2V6JOYK2GDAGOXFBUJW7YTZCXT",
+          "152849"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20220821074644",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "M3LD6RA7HRER5P62E4I4E33IFPPJLH4B",
+          "152574"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20220928160938",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "2LOS4S76EMX6QBIO4ULTG7O7ZTMF5CW2",
+          "141846"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20221205135849",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "VCPT64HRQRK2G2P7SOJNYAER2VAG7N3F",
+          "155612"
+        ],
+        [
+          "com,fandom,dota2)/wiki/phantom_lancer",
+          "20230215191831",
+          "https://dota2.fandom.com/wiki/Phantom_Lancer",
+          "text/html",
+          "200",
+          "WPXMY5NHMD7Q4RUJ6AXSHUI45AGCDSRD",
+          "157308"
+        ]
+      ],
+      "url": "https://web.archive.org/web/20230215191831id_/https://dota2.fandom.com/wiki/Phantom_Lancer",
+      "httpStatus": 200,
+      "sha256": "457d64b68abd62cdf42d6b268fe74329a8533752d004a5290bc64c4e82102889",
+      "capture": "20230215191831",
+      "cachePath": "output/c14-attack-state-intake/Phantom_Lancer.html",
+      "verifiedFullHtmlSha256": "457d64b68abd62cdf42d6b268fe74329a8533752d004a5290bc64c4e82102889",
+      "readScope": "Relevant full ability section actually reread;not an index-only source."
+    },
+    {
+      "hero": "Necrophos",
+      "url": "https://web.archive.org/web/20230215192013id_/https://dota2.fandom.com/wiki/Necrophos",
+      "status": 200,
+      "sha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2",
+      "bytes": 508522,
+      "cachePath": "output/c4-death-demonic/Necrophos.html",
+      "verifiedFullHtmlSha256": "4b8ce05f1d59ea336df588723eef7d0f69929ff45ec186ecf40aa42c23157bb2",
+      "readScope": "Relevant full ability section actually reread;not an index-only source."
+    }
+  ],
+  "knownUnavailable": [
+    {
+      "hero": "Primal_Beast",
+      "state": "known429_not_retried",
+      "metadata": "output/c15-motion-intake/reused-sources.json",
+      "meaning": "Retained7.35indexed notes are not a successful2023fullpage."
+    }
+  ],
+  "beforeDiagnostic": {
+    "file": "output/c16-damage-intake/actual-before.json",
+    "sha256": "efccec26f43c08769f1e8ebf87b3d1f2141d086853dc51fa0f3307edb79b7c8e",
+    "realEngineProbes": 11,
+    "registrationLookups": 1,
+    "checkpoint": "f044fac88e4ec99ea07553a2b92ad4049f225aa1",
+    "warning": "Initial HP/armor/attack/range/MS/positions/clocks controlled;no program/definition/status/FX/summon/native-flag injection. WinterCurse lookup is not an executed combo."
+  },
+  "stagePolicy": "Native self→allies→HP order uses observations from the same real resolution. It never clones/re-enters damage,rerolls PRD or consumes another block/shield. Ordinary physical lifesteal uses the uncapped type-mitigated packet. Protection crossings are explicitly bounded working outcomes,not a complete native damage pipeline certification.",
+  "configurationDelta": {
+    "skill": "custom_phantom_lancer_spirit_lance",
+    "key": "FAKE CAST RADIUS",
+    "AAFinalValues": [
+      675,
+      675,
+      675,
+      675,
+      675
+    ],
+    "units": "Dota units",
+    "originalSource": "lancer-2023",
+    "allOtherPublicNumericValues": "unchanged"
+  },
+  "oldLedgerSuggestions": "output/c16-damage-intake/old-ledger-updates.json",
+  "staticManualInventory": "output/c16-damage-intake/static-contact-inventory.json",
+  "render": {
+    "status": "passed",
+    "command": "node scripts/c16-damage-render-smoke.mjs",
+    "report": "artifacts/r6-c16-damage-render/report.json",
+    "reportSha256": "306492075beeff0a91f40a72f756858d8435f4797d83eda1e58c606983f16c80",
+    "configurationHash": "ae885242a8459c844d5a756e273fa06f4586caa52fa9f72ea80b5c9cc8847e5c",
+    "actualURL": "http://127.0.0.1:5173",
+    "passedScenarios": 16,
+    "totalScenarios": 16,
+    "desktopScenarios": 8,
+    "mobileScenarios": 8,
+    "browserClosed": true,
+    "representativePngsReviewed": [
+      {
+        "file": "artifacts/r6-c16-damage-render/luminosity-heal-mobile.png",
+        "sha256": "3317a5bce7030079da8a65173dbb57280bddeda895b5456af53aec1367a3b662"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/luminosity-lethal.png",
+        "sha256": "01fa60b03f8052f78497fe9d6ecb3116232de00097551fe67f638b8a02cd93f2"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/static-contact-mobile.png",
+        "sha256": "a80aff0ad1408f5db4e25ce6a8f52c2b1035bff42e37442408addbb035b8589f"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/iceblast-scythe.png",
+        "sha256": "427d32110671b1261978025bdc15b3718d6e560c8154aec139eaa0dac044418e"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-cast.png",
+        "sha256": "41111e4d7b4fb968722501b11d115e56da669ec158c7b8b5380ebe7c61903ed7"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-fakes-mobile.png",
+        "sha256": "72eeffab4297f3256d63cab497733d1f4ff6ddc6393eae0632e0e01eeba0e87b"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/lance-canceled.png",
+        "sha256": "fbfbe95c63ed911543eac30cc5a890756fb9d03966497717ebde44e170d6ad77"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/trample-pursuit.png",
+        "sha256": "368b6afe17518863d98e830b271b21b179440583a4bcb46c55090eb62b738134"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/trample-pursuit-mobile.png",
+        "sha256": "1d8fe28651c09caa8001c2c08869137018357ecc91c1bf80cd3c805f68eb2ea2"
+      },
+      {
+        "file": "artifacts/r6-c16-damage-render/iceblast-scythe-mobile.png",
+        "sha256": "32372b493a98cdbf38750efdaa000804c9793c225777745e318e6147aab4d67b"
+      }
+    ],
+    "scope": "Real engine and renderer fixtures only. No injected status/damage/fx/summons/programs. Finite presentation coverage; no whole-skill native acceptance claim."
+  }
+}

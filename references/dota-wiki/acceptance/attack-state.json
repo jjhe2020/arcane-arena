@@ -3006,15 +3006,32 @@
           "id": "CUSTOM_PHANTOM_LANCER_SPIRIT_LANCE-P01",
           "kind": "mechanism",
           "branch": "base",
-          "rule": "Historical existing ownedillusions play cast and launchfake harmless lances. Finalmodule does not yet publish fake-lance playback;damage-bearing primary/bounce are real.",
+          "rule": "Core missing fake playback now has actual owned-image675/action/cancel/zero-damage/RNG results. Move exact mid-windup membership,cosmetic idle-turn and moving-target/death/source-removal chronology into a separate source_pending item;retain all other old pending requirements.",
           "sourceIds": [
             "aa",
             "valve-2023",
             "lancer-2023",
             "illusions-2023"
           ],
-          "testEvidence": [],
-          "status": "actual_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-PL01 genuine owned images within675 emit harmless fake lances on the real parent release"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-PL02 real image cast presentation does not overwrite their mechanical action clocks"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-PL03 genuine Global Silence cancels the parent yet leaves full harmless image cast playback without fake release"
+            },
+            {
+              "file": "tests/reference-impact-restoration.test.ts",
+              "test": "IR-PL04 harmless fake releases add no RNG or extra primary damage compared with outside675 images"
+            }
+          ],
+          "status": "passed"
         },
         {
           "id": "CUSTOM_PHANTOM_LANCER_SPIRIT_LANCE-P02",

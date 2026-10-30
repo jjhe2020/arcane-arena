@@ -819,14 +819,25 @@
           "rule": "Greater Treant attacks should preserve native102–114range rather than only108mean if native per-hit distribution is required. HP/profile/mean results do not prove that random component.",
           "sourceIds": [
             "aa",
-            "valve",
-            "english",
-            "prophet-2023",
             "unit-kv",
-            "prophet-history"
+            "prophet-2023"
           ],
-          "testEvidence": [],
-          "status": "mechanism_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-TR01 genuine Super Greater Treant uses configured102–114 per-attack variance rather than fixed108"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-TR03 genuine Gaben ally Finger kill creates a corpse-location Greater Treant with the same native attack range"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-TR02 ordinary AA Treants keep the locked42 fixed damage and do not borrow Greater Treant variance"
+            }
+          ],
+          "status": "passed",
+          "mechanism": "The actual native Greater Treant now consumes the existing UNIT_CONFIG102–114 attack range in real ordinary attacks. The genuine Gaben corpse-spawn branch carries the same range. Ordinary AA Treants keep their explicit42 fixed attack and original profile."
         },
         {
           "id": "NC-P02",
@@ -1028,6 +1039,14 @@
           "accessedOn": "2026-10-30",
           "paraphrase": "7.40 explicitly removes invulnerable-unit targeting for Nether Swap; the captured2023 capability is therefore retained.",
           "versionContext": "Dated2025-12-15 change, after selected historical candidate."
+        },
+        {
+          "id": "guide-retained",
+          "url": "https://dota2.fandom.com/wiki/Grimstroke/Guide",
+          "accessedOn": "2026-10-30",
+          "observation": "Retained indexedGuide explicitly describes LifeBreak jumpingprimary then secondary with damage on eachjump. Its NetherSwap rotation conflicts with the2023hero/retainedInteractions intro.",
+          "paraphrase": "Retained indexedGuide explicitly describes LifeBreak jumpingprimary then secondary with damage on eachjump. Its NetherSwap rotation conflicts with the2023hero/retainedInteractions intro.",
+          "versionContext": "Retained indexed guide,currentunknownhistoricalrevision. Distinctattempt to obtain2023Guide returned429once;no retry. Sequentialjump is an explicit versioncandidate,not a provedFebruary2023clock."
         }
       ],
       "requirements": [
@@ -1345,7 +1364,7 @@
           "id": "NS-P01",
           "kind": "combination",
           "branch": "base",
-          "rule": "Captured Soulbind specifies a three-way exchange order. Shared generic duplicate casts have not been individually reconciled to that sequence and simultaneous target stop commands.",
+          "rule": "ActualSoulbindexistingfinalrotationC→Soriginal/P→Coriginal/S→Poriginalisnowverified. Datedintroduction,literalthreepairwiseswaps,andretainedGuideoppositerotationconflict;exactmiddlestop/repositionorderremainsopenandnopseudo-thirdswapadded.",
           "sourceIds": [
             "aa",
             "valve",
@@ -1355,8 +1374,13 @@
             "venge-history",
             "patch740"
           ],
-          "testEvidence": [],
-          "status": "result_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-N01 actual Soulbind NetherSwap retains the existing caster-secondary primary-caster secondary-primary final rotation"
+            }
+          ],
+          "status": "source_pending"
         },
         {
           "id": "NS-P02",
@@ -1408,6 +1432,23 @@
           ],
           "testEvidence": [],
           "status": "environment_out_of_scope"
+        },
+        {
+          "id": "NS-C16-FINAL01",
+          "kind": "combination",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "RealSoulbindcurrentfourwarpsgivethefinitefinalrotationmatchingdatedintro.",
+          "sourceIds": [
+            "venge-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-N01 actual Soulbind NetherSwap retains the existing caster-secondary primary-caster secondary-primary final rotation"
+            }
+          ],
+          "qualification": "Retainedmiddle-step/Guideconflictisnotclosedbythisfinal-stateassertion."
         }
       ],
       "unresolved": [

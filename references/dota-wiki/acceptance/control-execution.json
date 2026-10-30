@@ -627,13 +627,23 @@
           "id": "CM-P02",
           "kind": "combination",
           "branch": "base-custom",
-          "mechanism": "Retroactive buff response after the original Chakra caster dies has no status-source cast router.",
+          "mechanism": "An existing real Chakra recipient modifier continues its newly-executed-spell reduction after the original provider is genuinely killed by Finger;the actual modifier value/source is routed without reconstructing the dead provider slot. This closes that finite missing router,not every stolen/multiple-provider case.",
           "sourceIds": [
             "aa",
-            "chakra-old"
+            "chakra-old",
+            "kotl-history"
           ],
-          "status": "implementation_pending",
-          "testEvidence": []
+          "status": "passed",
+          "testEvidence": [
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH01 original provider dead=false preserves the same4-second retroactive reduction after a genuine Finger death"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH01 original provider dead=true preserves the same4-second retroactive reduction after a genuine Finger death"
+            }
+          ]
         },
         {
           "id": "CM-P03",
@@ -662,12 +672,86 @@
           "id": "CM-P05",
           "kind": "combination",
           "branch": "base",
-          "mechanism": "Only charge implementations with a reduceRecharge hook are covered;other charge families are not claimed.",
+          "mechanism": "All registered actual ability-charge families now expose a reduction hook,including the corrected Astral Step. Finite real tests cover main pools and Blink Fragment,including same-frame recast. This residual concerns independently exhausted native Demonic child slots and arbitrary stolen-state/overwrite/reset combinations,not a missing main-family hook.",
           "sourceIds": [
-            "chakra-old"
+            "aa",
+            "kotl-history"
           ],
-          "status": "implementation_pending",
+          "status": "source_pending",
           "testEvidence": []
+        },
+        {
+          "id": "CM-C16-CHARGES",
+          "kind": "combination",
+          "branch": "all",
+          "mechanism": "Real Step3/9 internal recharge shifts6seconds;Barrage,Purge,Cleanse,Disruption,InkSwell,Siphon,Starbreaker,Waveform,Windrun,Fragment and event-aware Burrow/Pulse/Sleight matrices confirm the named actual restoration clocks without classifying attack-charge pools as ability recharge.",
+          "status": "passed",
+          "sourceIds": [
+            "aa",
+            "kotl-history"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH03 rank3 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH03 rank9 Astral Step shifts its real exhausted charge deadline by6seconds and retains sequential capacity"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH06 a genuine granted Blink Fragment shifts all three already-queued restoration deadlines once"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH07 sandking_burrowstrike accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH07 void_spirit_resonant_pulse accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH07 ember_spirit_sleight_of_fist accounts for real same-frame recast and retroactive reduction rather than comparing a stale queue alone"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 clinkz_strafe keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 custom_shadow_demon_demonic_purge keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 custom_shadow_demon_demonic_cleanse keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 custom_shadow_demon_disruption keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 custom_grimstroke_ink_swell keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 death_prophet_spirit_siphon keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 dawnbreaker_fire_wreath keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 morphling_waveform keeps its already-supported real charge clock responsive to allied Chakra"
+            },
+            {
+              "file": "tests/reference-lifecycle-summon.test.ts",
+              "test": "LS-CH04 custom_windrunner_windrun keeps its already-supported real charge clock responsive to allied Chakra"
+            }
+          ]
         }
       ],
       "unresolved": [

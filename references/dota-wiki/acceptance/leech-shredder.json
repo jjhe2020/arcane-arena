@@ -686,6 +686,14 @@
           "paraphrase": "Life Break explicitly carries Huskar over impassable terrain and trees. Modern debuff immunity, resistance, damage ordering and initial Spell Block differ from the captured historical rules and are not imported.",
           "versionContext": "Current indexed7.41 text supports terrain traversal as a compatible Wiki supplement; exact introduction or continuity at2023 remains unverified.",
           "accessMethod": "indexedPrimaryWiki"
+        },
+        {
+          "id": "guide-retained",
+          "url": "https://dota2.fandom.com/wiki/Grimstroke/Guide",
+          "accessedOn": "2026-10-30",
+          "observation": "Retained indexedGuide explicitly describes LifeBreak jumpingprimary then secondary with damage on eachjump. Its NetherSwap rotation conflicts with the2023hero/retainedInteractions intro.",
+          "paraphrase": "Retained indexedGuide explicitly describes LifeBreak jumpingprimary then secondary with damage on eachjump. Its NetherSwap rotation conflicts with the2023hero/retainedInteractions intro.",
+          "versionContext": "Retained indexed guide,currentunknownhistoricalrevision. Distinctattempt to obtain2023Guide returned429once;no retry. Sequentialjump is an explicit versioncandidate,not a provedFebruary2023clock."
         }
       ],
       "requirements": [
@@ -1091,7 +1099,7 @@
           "id": "LB-P02",
           "kind": "timing",
           "branch": "base",
-          "rule": "Captured charge modifier can expire at five seconds while the drag continues. Source is known; expiry under a long moving-target chase and re-cast collision with the older invisible projectile need dedicated outcomes.",
+          "rule": "Theoriginal5secondchargebuffexpiringwhileleap/projectilecontinueisnowmeasuredbyexplicitlongcontrolledtrajectory. Recastcollisionwitholderinvisibleprojectileandallnativeevadercallerinteractionsstillneedseparateresults.",
           "sourceIds": [
             "aa",
             "valve",
@@ -1099,14 +1107,19 @@
             "huskar-2023",
             "huskar-current"
           ],
-          "testEvidence": [],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L02 explicit long-chase trajectory expires LifeBreak immunity at5while its actual projectile keeps moving"
+            }
+          ],
           "status": "result_missing"
         },
         {
           "id": "LB-P03",
           "kind": "combination",
           "branch": "base",
-          "rule": "Captured Soulbind notes describe redirect/double self-cost interactions. The retained canCast Soulbind/leash gate has not been reconciled with native redirect semantics or AA source; no Soulbind combination is certified.",
+          "rule": "ActualtargetSoulbindnolongerlosesprimaryleap:twoenemy+selfpackets/AAcompoundHP/finalsecondaryareverified. SequentialprimarythensecondaryclockadoptsretainedcurrentGuidecandidate;Februarypageprovescounts/endbutnottiming. CasterSoulbound/leashgateandAAthree-linkedorderremainseparate.",
           "sourceIds": [
             "aa",
             "valve",
@@ -1114,8 +1127,21 @@
             "huskar-2023",
             "huskar-current"
           ],
-          "testEvidence": [],
-          "status": "mechanism_missing"
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank1 applies one enemy and self packet for each linked target"
+            },
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank2 applies one enemy and self packet for each linked target"
+            },
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank3 applies one enemy and self packet for each linked target"
+            }
+          ],
+          "status": "source_pending"
         },
         {
           "id": "LB-P04",
@@ -1148,6 +1174,50 @@
           ],
           "testEvidence": [],
           "status": "result_missing"
+        },
+        {
+          "id": "LB-C16-T01",
+          "kind": "timing",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "At5secondsimmunity/disarmexpirewhileactualinvisibleprojectile/leapcontinuespast5.5.",
+          "sourceIds": [
+            "huskar-2023",
+            "valve"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L02 explicit long-chase trajectory expires LifeBreak immunity at5while its actual projectile keeps moving"
+            }
+          ],
+          "qualification": "Explicitper30Hzcontrolledtargetcircleisengineeringtrajectorystimulus,nofakeprogram/status;notanoriginalnativeevasionabilitypair."
+        },
+        {
+          "id": "LB-C16-C01",
+          "kind": "combination",
+          "branch": "C16-finite-followup",
+          "status": "passed",
+          "mechanism": "RealSoulbindtargetpairatAA1/2/3dealsbothenemy+selfpackets,two0MRcompoundcosts32/38/44andendssecondary.",
+          "sourceIds": [
+            "aa",
+            "huskar-2023"
+          ],
+          "testEvidence": [
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank1 applies one enemy and self packet for each linked target"
+            },
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank2 applies one enemy and self packet for each linked target"
+            },
+            {
+              "file": "tests/reference-geometry-order.test.ts",
+              "test": "GO-L01 real Soulbind LifeBreak rank3 applies one enemy and self packet for each linked target"
+            }
+          ],
+          "qualification": "Thisfinitecounts/HP/endresultdoesnotclaimexact2023intermediatejumpclock;thatorderingisexplicitversioncandidate."
         }
       ],
       "unresolved": [

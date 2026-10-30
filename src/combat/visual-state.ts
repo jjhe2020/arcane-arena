@@ -1,6 +1,24 @@
 import type { BattleState } from '../model';
 
 export interface VisualPoint { x: number; y: number }
+/** A cosmetic body pose. It does not issue an order, cancel an attack, reserve
+ * mana/cooldowns or change the simulation facing used by targeting. */
+export interface VisualBodyAction {
+  id:string;unitId:string;sourceId:string;skill:string;points:number;
+  action:'cast';createdAt:number;until:number;facing?:number;
+}
+export function activeVisualBodyActions(battle:BattleState,time=battle.time):VisualBodyAction[]{
+  if(battle.finished)return [];
+  const latest=new Map<string,VisualBodyAction>();
+  for(const pose of (battle.visualBodyActions??[]) as VisualBodyAction[])
+    if(pose.createdAt<=time&&pose.until>time&&battle.units.some(u=>u.id===pose.unitId&&!u.dead))latest.set(pose.unitId,pose);
+  return [...latest.values()];
+}
+export function addVisualBodyAction(battle:BattleState,options:Omit<VisualBodyAction,'id'|'createdAt'>):VisualBodyAction{
+  const next=Number(battle.nextVisualBodyAction??0);battle.nextVisualBodyAction=next+1;
+  const pose:VisualBodyAction={...options,id:`visual-body-action:${next}`,createdAt:battle.time};
+  battle.visualBodyActions=[...activeVisualBodyActions(battle).filter(p=>p.unitId!==pose.unitId),pose];return pose;
+}
 /** Read-only render metadata for motion already computed by a skill. It never
  * participates in targeting, collision, damage, RNG or win conditions. */
 export interface VisualProjectile extends VisualPoint {
