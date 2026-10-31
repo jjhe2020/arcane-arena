@@ -1,4 +1,5 @@
 import {defaultMotionDuration} from '../config';
+import {skillValue} from '../skill-effects';
 import type { CombatUnit, SkillDefinition } from '../model';
 import type { EffectContext as C, EffectStatus, SkillProgram, SummonOptions } from '../skill-effects';
 import {UNIT_CONFIG,BATTLE_CONFIG} from '../config';
@@ -35,16 +36,17 @@ export const SUMMON_GAP_CHILD_PROGRAMS: Record<string, SkillProgram> = {
     passive: true,
     onDeath: c => {
       const raw = units.units.npc_dota_neutral_mud_golem_split;
-      const shards = c.summon({ name: '泥土碎片傀儡', nativeTemplateId:'npc_dota_neutral_mud_golem_split', count: 2, hp: raw.StatusHealth,
+      const seconds=skillValue(c,'SHARD DURATION',60);
+      const shards = c.summon({ name: '泥土碎片傀儡', nativeTemplateId:'npc_dota_neutral_mud_golem_split', count: skillValue(c,'SHARD COUNT',2), hp: raw.StatusHealth,
         attack: (raw.AttackDamageMin + raw.AttackDamageMax) / 2, armor: raw.ArmorPhysical,
         interval: raw.AttackRate, range: raw.AttackRange / 100,
-        speed: raw.MovementSpeed / 100, lifetime: 60 });
+        speed: raw.MovementSpeed / 100, lifetime: seconds });
       shards.forEach((shard, i) => {
         shard.sourceUnitType = 'npc_dota_neutral_mud_golem_split'; shard.owner = c.caster.owner ?? c.caster.id;
         shard.magicResist = raw.MagicalResistance / 100; shard.mana = shard.maxMana = raw.StatusMana;
-        c.status(shard, 'regen', 60, raw.StatusHealthRegen);
-        c.status(shard, 'manaRegen', 60, raw.StatusManaRegen - BATTLE_CONFIG.baseManaRegen);
-        boulder(shard); c.warp(shard,c.caster.x + (i ? .45 : -.45),c.caster.y);
+        c.status(shard, 'regen', seconds, raw.StatusHealthRegen);
+        c.status(shard, 'manaRegen', seconds, raw.StatusManaRegen - BATTLE_CONFIG.baseManaRegen);
+        boulder(shard); c.warp(shard,c.caster.x + (i-(shards.length-1)/2)*2*skillValue(c,'SHARD SPAWN OFFSET',45)/100,c.caster.y);
       });
     },
     implemented: ['On death spawns exactly two 60-second Shard Golems', 'Shards retain Boulder but do not split again'],

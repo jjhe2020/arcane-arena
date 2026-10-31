@@ -1,4 +1,4 @@
-export const FILES={skills:'技能配置.xlsx',units:'单位配置.xlsx',economy:'经济配置.xlsx'};
+export const FILES={skills:'技能配置.xlsx',units:'单位配置.xlsx',economy:'经济配置.xlsx',globals:'全局配置.xlsx'};
 export const SKILL_HEADERS=['技能ID','中文名称','等级','施法前摇ms','施法后摇ms','冷却ms','魔耗','施法距离','参数1','参数2','参数3','参数4','参数5','参数6','参数7','参数8','参数9','参数10'];
 export const EXTRA_HEADERS=['等级域','技能ID','等级','参数键','数值'];
 export const DICTIONARY_HEADERS=['等级域','技能ID','参数序号','参数键','含义','单位','最小值','最大值','整数','数值来源','来源说明'];

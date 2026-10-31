@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "aa:custom_alchemist_acid_spray": {
       "domain": "aa",
@@ -2095,6 +2095,17 @@
           "meaning": "Gaben自动攻击伤害倍率百分数",
           "source": "Wiki机制与AA有效档位",
           "note": "https://liquipedia.net/dota2/Archive%3AJuggernaut；历史剑刃风暴0.2秒伤害间隔，AA Gaben每秒100%攻击。Super半径+75写为最终335。"
+        },
+        {
+          "key": "GABEN MOVE SPEED",
+          "unit": "Dota单位",
+          "meaning": "Gaben额外移动速度",
+          "min": 0,
+          "max": 10000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
         }
       ]
     },
@@ -5132,6 +5143,83 @@
           "meaning": "触发间隔",
           "source": "原程序工作数值",
           "note": "src/combat/main-upgrades-remaining.ts:32；interval:.5"
+        },
+        {
+          "key": "WISP DURATION",
+          "unit": "ms",
+          "meaning": "Gaben邪恶精灵持续时间",
+          "min": 0,
+          "max": 3600000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "WISP ORBIT PERIOD",
+          "unit": "ms",
+          "meaning": "邪恶精灵环绕一周时间",
+          "min": 1,
+          "max": 3600000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "WISP ORBIT RADIUS",
+          "unit": "Dota单位",
+          "meaning": "邪恶精灵环绕半径",
+          "min": 0,
+          "max": 10000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "WISP SEARCH RADIUS",
+          "unit": "Dota单位",
+          "meaning": "邪恶精灵伤害搜索半径",
+          "min": 0,
+          "max": 10000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "SUPER DELAY REDUCTION",
+          "unit": "ms",
+          "meaning": "Super引爆延迟减少",
+          "min": 0,
+          "max": 3600000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "BRAMBLE COUNT",
+          "unit": "次数",
+          "meaning": "Super环形荆棘数量",
+          "min": 1,
+          "max": 64,
+          "integer": true,
+          "kind": "value",
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "BRAMBLE SPAWN RADIUS",
+          "unit": "Dota单位",
+          "meaning": "Super荆棘生成环形半径",
+          "min": 0,
+          "max": 10000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
         }
       ]
     },
@@ -20407,6 +20495,17 @@
           "meaning": "程序参数 攻击速度PCT 持续时间",
           "source": "原程序工作数值",
           "note": "src/combat/main-upgrades.ts:116；c.status(t,'attackSpeedPct',.2,-p(v(c,'SLOW')),{harmful:true})"
+        },
+        {
+          "key": "MUD GOLEM DURATION",
+          "unit": "ms",
+          "meaning": "Gaben泥土傀儡持续时间",
+          "min": 0,
+          "max": 3600000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
         }
       ]
     },
@@ -25324,6 +25423,17 @@
           "meaning": "效果延迟或脉冲间隔",
           "source": "原程序工作数值",
           "note": "src/skill-effects-more-children.ts:193；c.delay(.1, tick)"
+        },
+        {
+          "key": "DAMAGE INTERVAL",
+          "unit": "ms",
+          "meaning": "喷火器灼烧伤害间隔",
+          "min": 1,
+          "max": 60000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
         }
       ]
     },
@@ -28909,7 +29019,41 @@
       "tiers": [
         1
       ],
-      "params": []
+      "params": [
+        {
+          "key": "SHARD DURATION",
+          "unit": "ms",
+          "meaning": "碎片傀儡持续时间",
+          "min": 0,
+          "max": 3600000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "SHARD COUNT",
+          "unit": "次数",
+          "meaning": "死亡时生成碎片数量",
+          "min": 1,
+          "max": 64,
+          "integer": true,
+          "kind": "value",
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        },
+        {
+          "key": "SHARD SPAWN OFFSET",
+          "unit": "Dota单位",
+          "meaning": "碎片初始横向偏移",
+          "min": 0,
+          "max": 10000,
+          "kind": "value",
+          "integer": false,
+          "source": "project_current",
+          "note": "现有有效机制常数迁移；默认行为保留"
+        }
+      ]
     },
     "native:granite_golem_hp_aura": {
       "domain": "native",
@@ -33607,6 +33751,525 @@
   "workbooks": {
     "skills": "技能配置.xlsx",
     "units": "单位配置.xlsx",
-    "economy": "经济配置.xlsx"
+    "economy": "经济配置.xlsx",
+    "globals": "全局配置.xlsx"
+  },
+  "globals": {
+    "battle": {
+      "name": "战斗规则",
+      "fields": [
+        {
+          "key": "timeLimit",
+          "label": "战斗最长时间",
+          "unit": "ms",
+          "min": 1000,
+          "max": 3600000,
+          "integer": false
+        },
+        {
+          "key": "armorCoefficient",
+          "label": "物理护甲减伤系数",
+          "unit": "倍率",
+          "min": 0,
+          "max": 1,
+          "integer": false
+        },
+        {
+          "key": "baseAttackSpeed",
+          "label": "英雄基础攻击速度",
+          "unit": "攻速点",
+          "min": 1,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "castRangeBuffer",
+          "label": "普通施法距离缓冲",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "assassinateRangeBuffer",
+          "label": "暗杀施法距离缓冲",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "netherStrikeRangeBuffer",
+          "label": "幽冥一击施法距离缓冲",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "defaultAttackPointCap",
+          "label": "默认攻击前摇上限",
+          "unit": "ms",
+          "min": 0,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "defaultAttackPointFactor",
+          "label": "默认攻击前摇占攻击间隔",
+          "unit": "倍率",
+          "min": 0,
+          "max": 1,
+          "integer": false
+        },
+        {
+          "key": "magicResistanceCap",
+          "label": "独立魔抗叠加上限",
+          "unit": "倍率",
+          "min": 0,
+          "max": 1,
+          "integer": false
+        },
+        {
+          "key": "minimumSpellAmplification",
+          "label": "法术增幅最低修正",
+          "unit": "倍率",
+          "min": -0.999,
+          "max": 0,
+          "integer": false
+        }
+      ]
+    },
+    "board": {
+      "name": "棋盘布阵",
+      "fields": [
+        {
+          "key": "scale",
+          "label": "棋盘缩放比例",
+          "unit": "倍率",
+          "min": 0.1,
+          "max": 4,
+          "integer": false
+        },
+        {
+          "key": "width",
+          "label": "棋盘缩放前宽度",
+          "unit": "Dota单位",
+          "min": 100,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "height",
+          "label": "棋盘缩放前高度",
+          "unit": "Dota单位",
+          "min": 100,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "formationHalfWidth",
+          "label": "布阵缩放前半宽",
+          "unit": "Dota单位",
+          "min": 0,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "formationMinY",
+          "label": "布阵缩放前下界",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 0,
+          "integer": false
+        },
+        {
+          "key": "formationMaxY",
+          "label": "布阵缩放前上界",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 0,
+          "integer": false
+        },
+        {
+          "key": "defaultHeroX1",
+          "label": "第1英雄默认横坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "defaultHeroX2",
+          "label": "第2英雄默认横坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "defaultHeroX3",
+          "label": "第3英雄默认横坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "defaultHeroX4",
+          "label": "第4英雄默认横坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "defaultHeroX5",
+          "label": "第5英雄默认横坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 20000,
+          "integer": false
+        },
+        {
+          "key": "frontRowY",
+          "label": "近战职业默认纵坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 0,
+          "integer": false
+        },
+        {
+          "key": "backRowY",
+          "label": "远程职业默认纵坐标",
+          "unit": "Dota单位",
+          "min": -20000,
+          "max": 0,
+          "integer": false
+        }
+      ]
+    },
+    "ai": {
+      "name": "AI策略",
+      "fields": [
+        {
+          "key": "baseSkillScore",
+          "label": "技能基础购买评分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "tankSynergyScore",
+          "label": "坦克匹配技能加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "attackSynergyScore",
+          "label": "物理职业匹配技能加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "mageSynergyScore",
+          "label": "法师匹配技能加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "mageActiveScore",
+          "label": "法师主动技能加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "assassinSynergyScore",
+          "label": "刺客机动控制加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "ultimateScore",
+          "label": "终极技能加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "equippedSlotPenalty",
+          "label": "已有技能槽拥挤扣分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "duplicateBaseScore",
+          "label": "重复技能基础评分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "duplicatePointScore",
+          "label": "重复技能每点加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "upgradeThresholdScore",
+          "label": "接近三六九点额外加分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "unplaceablePenalty",
+          "label": "暂时无法装备扣分",
+          "unit": "数值",
+          "min": 0,
+          "max": 1000000,
+          "integer": false
+        },
+        {
+          "key": "shopUpgradeMinimumStacks",
+          "label": "升级商店所需最多技能数",
+          "unit": "次数",
+          "min": 1,
+          "max": 20,
+          "integer": true
+        },
+        {
+          "key": "shopUpgradeStacksPerHero",
+          "label": "每英雄升级前所需技能数",
+          "unit": "次数",
+          "min": 0,
+          "max": 4,
+          "integer": true
+        }
+      ]
+    },
+    "ui": {
+      "name": "界面表现",
+      "fields": [
+        {
+          "key": "tabletMaximumAspectRatio",
+          "label": "双排商店最大屏幕宽高比",
+          "unit": "倍率",
+          "min": 1,
+          "max": 2,
+          "integer": false
+        },
+        {
+          "key": "tabletMinimumHeight",
+          "label": "双排商店最小视口高度",
+          "unit": "px",
+          "min": 400,
+          "max": 2000,
+          "integer": true
+        },
+        {
+          "key": "tabletMinimumWidth",
+          "label": "双排商店最小视口宽度",
+          "unit": "px",
+          "min": 600,
+          "max": 3000,
+          "integer": true
+        },
+        {
+          "key": "tabletShopColumns",
+          "label": "双排商店每排商品数",
+          "unit": "次数",
+          "min": 6,
+          "max": 6,
+          "integer": true
+        },
+        {
+          "key": "tabletTouchTarget",
+          "label": "平板主要操作最小高度",
+          "unit": "px",
+          "min": 28,
+          "max": 80,
+          "integer": true
+        },
+        {
+          "key": "minimumTextScale",
+          "label": "小屏文字最低缩放比例",
+          "unit": "倍率",
+          "min": 0.4,
+          "max": 1,
+          "integer": false
+        },
+        {
+          "key": "referenceViewportWidth",
+          "label": "文字缩放参考视口宽",
+          "unit": "px",
+          "min": 800,
+          "max": 2400,
+          "integer": true
+        },
+        {
+          "key": "referenceViewportHeight",
+          "label": "文字缩放参考视口高",
+          "unit": "px",
+          "min": 400,
+          "max": 1600,
+          "integer": true
+        },
+        {
+          "key": "shopNameFontSize",
+          "label": "商品名称标准字号",
+          "unit": "px",
+          "min": 6,
+          "max": 24,
+          "integer": false
+        },
+        {
+          "key": "shopNameMinimumFontSize",
+          "label": "商品名称最小字号",
+          "unit": "px",
+          "min": 4,
+          "max": 16,
+          "integer": false
+        },
+        {
+          "key": "healthBarMinimumWidth",
+          "label": "战场英雄血条最小宽度",
+          "unit": "px",
+          "min": 8,
+          "max": 200,
+          "integer": false
+        },
+        {
+          "key": "healthBarMaximumWidth",
+          "label": "战场英雄血条最大宽度",
+          "unit": "px",
+          "min": 8,
+          "max": 200,
+          "integer": false
+        },
+        {
+          "key": "healthBarWorldWidth",
+          "label": "战场英雄血条基础世界宽度",
+          "unit": "Dota单位",
+          "min": 1,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "healthBarHeight",
+          "label": "战场英雄血条高度",
+          "unit": "px",
+          "min": 2,
+          "max": 20,
+          "integer": false
+        },
+        {
+          "key": "summonHealthBarMinimumWidth",
+          "label": "召唤物血条最小宽度",
+          "unit": "px",
+          "min": 4,
+          "max": 200,
+          "integer": false
+        },
+        {
+          "key": "summonHealthBarMaximumWidth",
+          "label": "召唤物血条最大宽度",
+          "unit": "px",
+          "min": 4,
+          "max": 200,
+          "integer": false
+        },
+        {
+          "key": "summonHealthBarWorldWidth",
+          "label": "召唤物血条基础世界宽度",
+          "unit": "Dota单位",
+          "min": 1,
+          "max": 10000,
+          "integer": false
+        },
+        {
+          "key": "summonHealthBarHeight",
+          "label": "召唤物血条高度",
+          "unit": "px",
+          "min": 1,
+          "max": 20,
+          "integer": false
+        },
+        {
+          "key": "manaBarHeight",
+          "label": "战场魔法条高度",
+          "unit": "px",
+          "min": 1,
+          "max": 20,
+          "integer": false
+        },
+        {
+          "key": "healthBarYOffset",
+          "label": "血条相对单位标记上边缘的偏移",
+          "unit": "px",
+          "min": 0,
+          "max": 100,
+          "integer": false
+        },
+        {
+          "key": "manaBarYOffset",
+          "label": "魔法条相对单位标记上边缘的偏移",
+          "unit": "px",
+          "min": 0,
+          "max": 100,
+          "integer": false
+        },
+        {
+          "key": "buffIconGap",
+          "label": "血条上Buff图标间隔",
+          "unit": "px",
+          "min": 0,
+          "max": 10,
+          "integer": false
+        },
+        {
+          "key": "buffBorderWidth",
+          "label": "Buff边框宽度",
+          "unit": "px",
+          "min": 0.5,
+          "max": 4,
+          "integer": false
+        },
+        {
+          "key": "buffStackFontSize",
+          "label": "战场Buff层数字号",
+          "unit": "px",
+          "min": 3,
+          "max": 12,
+          "integer": false
+        },
+        {
+          "key": "buffDetailIconSize",
+          "label": "详情Buff图标尺寸",
+          "unit": "px",
+          "min": 18,
+          "max": 64,
+          "integer": false
+        }
+      ]
+    }
   }
 }

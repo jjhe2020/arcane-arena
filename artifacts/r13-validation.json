@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "generatedAt": "2026-10-31T14:03:22.137Z",
+  "version": "v0.1.1-r13",
+  "simulationRevision": "arena-2026-10-31-status-replay-range-r13",
+  "configHash": "d676c39b3ecda9c5684d352d9c7d5a44e6c990b6cbad0d8644d341197c03ff48",
+  "mechanicsHash": "5a7d226a472cd7f09b84cb045b14a0873710f298518a63c8290ef38e95662fd2",
+  "presentationHash": "af49b2861667e9374287ae0af66b9c0118d9452aaced3c10be00c8ca3846bd48",
+  "unitTests": {
+    "files": 122,
+    "passed": 4079
+  },
+  "referenceTests": {
+    "files": 71,
+    "passed": 3457,
+    "proofCurrent": true
+  },
+  "rangeAudit": {
+    "main": 230,
+    "granted": 109,
+    "referenceOnly": 18,
+    "playableRankRows": 1395,
+    "referenceRankRows": 60,
+    "probedRows": 1395,
+    "distanceParameters": 1962,
+    "failures": 0
+  },
+  "currentValveReference": {
+    "snapshot": "references/dota-wiki/r13-current-valve-range-snapshot.json",
+    "capturedAt": "2026-10-31T13:46:51.715099+00:00",
+    "heroCount": 127,
+    "abilityCount": 734,
+    "patch": null,
+    "mappedSkills": 286,
+    "unmappedSkills": 53
+  },
+  "configurationAudit": {
+    "sourceFiles": 101,
+    "numericLiterals": 13924,
+    "configuredValueReads": 4997,
+    "skillParameterContracts": 2642,
+    "globalParameterContracts": 62,
+    "statusMetadataRows": 316,
+    "retainedDirectArgumentLiterals": 111,
+    "retainedCategories": {
+      "state_marker": 89,
+      "visual_playback": 1,
+      "superseded_implementation": 13,
+      "refresh_lease": 6,
+      "control_lock": 1,
+      "attack_type_enum": 1
+    }
+  },
+  "offline": {
+    "version": "f8e407a56ad226c5ecd7",
+    "files": 2993,
+    "totalBytes": 580392871
+  },
+  "reports": {
+    "artifacts/production-release-check.json": {
+      "status": "passed"
+    },
+    "artifacts/release-assets-check.json": {
+      "status": "passed"
+    },
+    "artifacts/browser-smoke.json": {
+      "status": "passed"
+    },
+    "artifacts/recovery-smoke.json": {
+      "status": "passed"
+    },
+    "artifacts/ui-integrity/report.json": {
+      "status": "passed"
+    },
+    "artifacts/r13-replay/report.json": {
+      "status": "passed"
+    },
+    "artifacts/tablet-layout/report.json": {
+      "status": "passed"
+    },
+    "artifacts/r13-buffs-inspection/report.json": {
+      "status": "passed"
+    },
+    "artifacts/r13-plasma-render/report.json": {
+      "status": "passed"
+    },
+    "artifacts/pwa-smoke/report.json": {
+      "status": "passed"
+    }
+  },
+  "boundaries": [
+    "Range audit execution and numeric comparisons are distinct from complete Dota/AA mechanism certification.",
+    "Historical unresolved hull, AA source and interaction requirements remain documented.",
+    "Desktop and iPad touch coverage uses Chromium emulation, not physical iPad Safari certification."
+  ]
+}

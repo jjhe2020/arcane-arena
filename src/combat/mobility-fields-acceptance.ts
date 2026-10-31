@@ -185,13 +185,14 @@ function returnProgram(key:string):SkillProgram{return field(c=>returnSaw(c,key)
  },implemented:['Independent zero-resource immediate Return that works during channels and emits no cast hooks'],remaining:['Automatic return when all parked blade areas are empty is explicit arena AI policy']});}
 function flame(c:C){
  const holder=c.target,duration=v(c,'DURATION',8),until=c.battle.time+duration;c.status(holder,'flamethrower',duration,0,{dispel:'none'});
+ const damageInterval=Math.max(STEP,v(c,'DAMAGE INTERVAL',.5));
  const tick=()=>{
   if(holder.dead||c.battle.time>until+1e-8)return;const length=v(c,'LENGTH',400)/100,width=v(c,'WIDTH',275)/100;
   for(const target of c.enemies().filter(t=>!t.ward)){
    const dx=target.x-holder.x,dy=target.y-holder.y,forward=dx*Math.cos(holder.facing)+dy*Math.sin(holder.facing),across=Math.abs(-dx*Math.sin(holder.facing)+dy*Math.cos(holder.facing));if(forward<0||forward>length||across>width*forward/length)continue;
    const existing=target.statuses.find(s=>s.kind==='dot'&&s.skill===FLAME&&s.source===c.caster.id),seconds=v(c,'LINGER DURATION',2);
-   c.status(target,'dot',seconds,v(c,'DAMAGE',80),{harmful:true,dispel:'basic',interval:.5,damageType:'magical'});c.status(target,'slow',seconds,v(c,'SLOW',30)/100,{harmful:true,dispel:'basic'});
-   if(!existing)c.damage(target,v(c,'DAMAGE',80)*.5,'magical',false,{flags:{damageOverTime:true}});
+   c.status(target,'dot',seconds,v(c,'DAMAGE',80),{harmful:true,dispel:'basic',interval:damageInterval,damageType:'magical'});c.status(target,'slow',seconds,v(c,'SLOW',30)/100,{harmful:true,dispel:'basic'});
+   if(!existing)c.damage(target,v(c,'DAMAGE',80)*damageInterval,'magical',false,{flags:{damageOverTime:true}});
   }
   if(c.battle.time<until-1e-8)c.delay(.1,tick);
  };tick();

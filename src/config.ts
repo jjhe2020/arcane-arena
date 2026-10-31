@@ -7,6 +7,11 @@ interface CompiledConfig {skillMetadata:Record<string,{name:string;nameEn:string
 interface BattleRules {minimumAttackSpeed:number;maximumAttackSpeed:number;minimumAttackInterval:number;defaultForcedMoveDuration:number;defaultLeapDuration:number;spellLifestealCreepFactor:number;baseManaRegen:number}
 const config=data as unknown as CompiledConfig;
 export const CONFIG_HASH=config.hash;
+interface CompiledConfig {mechanicsHash:string;presentationHash:string;statusMetadata:StatusMetadata[]}
+export interface StatusMetadata {key:string;skill:string;kind:string;name:string;description:string;polarity:'auto'|'positive'|'negative';lifecycle:'auto'|'timed'|'permanent'|'aura';stackMode:'auto'|'none'|'instances'|'value'|'remaining';variant:string;hidden:boolean;valueFormat:'raw'|'percent'|'seconds'|'distance'|'counter'|'none'}
+export const MECHANICS_HASH=config.mechanicsHash;
+export const PRESENTATION_HASH=config.presentationHash;
+export const STATUS_METADATA_CONFIG=config.statusMetadata;
 export const ROLE_CONFIG=config.roles;
 export const ECONOMY_CONFIG=config.economy;
 export const SHOP_LEVELS=config.shopLevels;

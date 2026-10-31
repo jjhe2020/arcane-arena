@@ -3,6 +3,7 @@ import type {BattleState,CombatUnit} from '../model';
 import {skillValue as v,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
 import {historicalValue} from './historical-upgrades';
 import {addVisualWorldEffect,removeVisualWorldEffect,updateVisualWorldEffect} from './visual-state';
+import {plasmaAnnulus,sweptAnnulusIntersects} from '../range-geometry';
 
 const PF='razor_plasma_field',PA='custom_viper_poison_attack',PTA='legion_commander_press_the_attack',ROAR='beastmaster_primal_roar',NOVA='leshrac_pulse_nova',EDICT='leshrac_diabolic_edict';
 const STEP=1/30,EPS=1e-8,FOREVER=1_000_000;
@@ -18,14 +19,14 @@ const visible=(c:C,t:CombatUnit)=>!has(c,t,'invisible')||has(c,t,'revealed');
 function plasma(c:C):void{
  const extension=final(c,'RADIUS',S(c)?400:0)/100,speed=v(c,'WAVE SPEED',636)/100,offset=v(c,'START OFFSET',105)/100,width=v(c,'DAMAGE WIDTH',100)/100,half=extension/speed,total=2*half,start=c.battle.time,key=token(c),seen=[new Set<string>(),new Set<string>()];
  let previous=0,lastDirection=0;
- let visual=addVisualWorldEffect(c.battle,{source:c.caster.id,skill:PF,followUnit:c.caster.id,expiresWithSource:true,points:c.skill.points,layer:'wave',role:'ground_event',kind:'ring',x:c.caster.x,y:c.caster.y,radius:0,previousRadius:0,maxRadius:extension,halfWidth:width,phase:'outward',progress:0,until:start+.15});
+ let visual=addVisualWorldEffect(c.battle,{source:c.caster.id,skill:PF,followUnit:c.caster.id,expiresWithSource:true,points:c.skill.points,layer:'wave',role:'ground_event',kind:'ring',x:c.caster.x,y:c.caster.y,radius:0,previousRadius:0,maxRadius:extension,halfWidth:width/2,...plasmaAnnulus(0,offset,width),phase:'outward',progress:0,until:start+.15});
  const sample=(elapsed:number)=>{
   const direction=elapsed>half+EPS?1:0,wave=direction?Math.max(0,(total-elapsed)*speed):Math.min(extension,elapsed*speed);
-  if(direction!==lastDirection){removeVisualWorldEffect(c.battle,visual);visual=addVisualWorldEffect(c.battle,{source:c.caster.id,skill:PF,followUnit:c.caster.id,expiresWithSource:true,points:c.skill.points,layer:'wave',role:'ground_event',kind:'ring',x:c.caster.x,y:c.caster.y,radius:extension,previousRadius:extension,maxRadius:extension,halfWidth:width,phase:'inward',progress:0,until:c.battle.time+.15});}
-  const old=direction!==lastDirection?extension:previous,inner=offset+Math.min(old,wave),outer=offset+Math.max(old,wave)+width;
-  updateVisualWorldEffect(c.battle,visual,{x:c.caster.x,y:c.caster.y,previousRadius:visual.radius,radius:wave,progress:Math.min(1,direction?(elapsed-half)/half:elapsed/half),until:c.battle.time+.15});
+  if(direction!==lastDirection){removeVisualWorldEffect(c.battle,visual);visual=addVisualWorldEffect(c.battle,{source:c.caster.id,skill:PF,followUnit:c.caster.id,expiresWithSource:true,points:c.skill.points,layer:'wave',role:'ground_event',kind:'ring',x:c.caster.x,y:c.caster.y,radius:extension,previousRadius:extension,maxRadius:extension,halfWidth:width/2,...plasmaAnnulus(extension,offset,width),phase:'inward',progress:0,until:c.battle.time+.15});}
+  const old=direction!==lastDirection?extension:previous;
+  updateVisualWorldEffect(c.battle,visual,{x:c.caster.x,y:c.caster.y,previousRadius:visual.radius,radius:wave,...plasmaAnnulus(wave,offset,width),progress:Math.min(1,direction?(elapsed-half)/half:elapsed/half),until:c.battle.time+.15});
   for(const t of c.enemies()){
-   const d=dist(t,c.caster);if(seen[direction].has(t.id)||!vulnerable(c,t)||!visible(c,t)||d+BATTLE_CONFIG.bodyRadius<inner-EPS||d-BATTLE_CONFIG.bodyRadius>outer+EPS)continue;
+   const d=dist(t,c.caster);if(seen[direction].has(t.id)||!vulnerable(c,t)||!visible(c,t)||!sweptAnnulusIntersects(d,old,wave,offset,width,BATTLE_CONFIG.bodyRadius))continue;
    seen[direction].add(t.id);const fraction=Math.max(0,Math.min(1,(d-offset)/extension)),min=final(c,'DAMAGE MIN',S(c)?30:0),max=final(c,'DAMAGE MAX',S(c)?30:0);
    c.damage(t,G(c)?max:min+(max-min)*fraction,'magical',false);
    c.status(t,'slow',v(c,'SLOW DURATION'),(v(c,'SLOW MIN')+(v(c,'SLOW MAX')-v(c,'SLOW MIN'))*fraction)/100,{harmful:true,dispel:'basic',data:{instanceKey:`${key}:${direction}`}});

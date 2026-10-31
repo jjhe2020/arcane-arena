@@ -1,10 +1,11 @@
+import {GLOBAL_BATTLE_CONFIG} from '../global-config';
 import {balanceNumber,skillBalance} from '../config';
 import type {CombatUnit} from '../model';
 import {skillValue as value,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
 import {addVisualWorldEffect} from './visual-state';
 
 const LOCK='faceless_void_time_lock',COURAGE='legion_commander_moment_of_courage',LUM='custom_dawnbreaker_luminosity',STAR='dawnbreaker_fire_wreath',IMPETUS='enchantress_impetus';
-const STEP=1/30,FOREVER=120;
+const STEP=1/30,FOREVER=GLOBAL_BATTLE_CONFIG.timeLimit;
 const distance=(a:{x:number;y:number},b:{x:number;y:number})=>Math.hypot(a.x-b.x,a.y-b.y);
 const has=(c:C,u:CombatUnit,kind:string)=>u.statuses.some(s=>s.kind===kind&&s.until>c.battle.time+1e-8);
 const key=(c:C,name:string)=>`${c.skill.instanceId??c.skill.id}:${name}`;

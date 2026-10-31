@@ -5,7 +5,7 @@
 ## 版本命名
 
 - 正式版本：`v<package.json 的 version>`，例如 `v0.1.1`。
-- 开发修订：`v<version>-<package.json 的 releaseRevision>`，当前为 `v0.1.1-r12`。这类 Release 标记为预发布，流程同时核对Excel编译一致性、配置hash、技能统计、商店与等级、UI完整性、侧栏布局、战场入场与观战、PWA 离线/全屏及存档恢复专项。
+- 开发修订：`v<version>-<package.json 的 releaseRevision>`，当前为 `v0.1.1-r13`。这类 Release 标记为预发布，流程同时核对Excel编译一致性、配置hash、技能统计、商店与等级、UI完整性、侧栏布局、战场入场与观战、PWA 离线/全屏及存档恢复专项。
 - 发布修订与模拟修订独立。UI、PWA 等不影响战斗或经济重放的版本只递增 `releaseRevision`，保留 `SIMULATION_REVISION` 及兼容存档；只有影响重放时才同时更新模拟修订。旧版未声明 `releaseRevision` 时，工具兼容读取模拟修订最后一个后缀。
 - 发布 tag 必须与该提交中的版本信息匹配。已发布 tag 不移动，每个完成版本使用新的版本号或修订号。
 
@@ -43,10 +43,10 @@ PWA 与 Service Worker 要求安全来源：HTTPS 或电脑本机 `http://localh
 
 ```powershell
 git add .
-git commit -m "Release v0.1.1-r11"
+git commit -m "Release v0.1.1-r13"
 git push origin HEAD
-git tag -a v0.1.1-r11 -m "技能小乱斗 0.1.1 r11 开发构建"
-git push origin v0.1.1-r11
+git tag -a v0.1.1-r13 -m "技能小乱斗 0.1.1 r13 开发构建"
+git push origin v0.1.1-r13
 ```
 
 ## 自动发布
@@ -62,7 +62,7 @@ git push origin v0.1.1-r11
 本地通过同等验证并打包后，用 GitHub CLI 发布。以当前开发版本为例：
 
 ```powershell
-gh release create v0.1.1-r11 "output/ArcaneArena-0.1.1-r11-dev.zip" output/release-report.json --verify-tag --prerelease --title "技能小乱斗 0.1.1 r11 开发构建" --notes-file docs/r11-validation.md
+gh release create v0.1.1-r13 "output/ArcaneArena-0.1.1-r13-dev.zip" output/release-report.json --verify-tag --prerelease --title "技能小乱斗 0.1.1 r13 开发构建" --notes-file docs/r13-validation.md
 ```
 
 正式版本不使用 `--prerelease`。执行前确认该 tag 没有现存 Release；失败后应先检查远程实际状态，再决定继续上传或修复，避免重复发布和覆盖已发布包。

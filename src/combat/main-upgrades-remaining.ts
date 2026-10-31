@@ -35,15 +35,15 @@ export function applyRemainingUpgrades(r:Record<string,SkillProgram>){
  update('custom_lina_dragon_slave',{cast:c=>{const origin={x:c.caster.x,y:c.caster.y},angle=Math.atan2(c.target.y-origin.y,c.target.x-origin.x),range=h('lina_dragon_slave','dragon_slave_distance')/100;let count=0;c.linearProjectile({origin,angle,distance:range,speed:h('lina_dragon_slave','dragon_slave_speed')/100,width:h('lina_dragon_slave','dragon_slave_width_initial')/100,endWidth:h('lina_dragon_slave','dragon_slave_width_end')/100,effect:t=>{c.damage(t,v(c,'DAMAGE')+(S(c)?balanceNumber(c,'main_upgrades_remaining.damage.1',150)+count*balanceNumber(c,'main_upgrades_remaining.damage.2',50):0));count++;},onEnd:()=>{if(G(c))dragon(c,origin.x+Math.cos(angle)*range,origin.y+Math.sin(angle)*range);}});},superImplemented:true,gabenImplemented:true},['Swept historical-speed Dragon Slave with linearly tapering275-to200width','Super +150base and50stacking damage per previously hit unit','Gaben endpoint historical Overlord-buffed Black Dragon with Fireball/splash/armor aura'],['Stacking damage interpreted within each cast; no permanent prior-cast accumulation','Overlord owner item/aura bonuses not granted because AA specifically describes buffed dragon']);
  update('custom_beastmaster_call_of_the_wild',{cast:c=>{const lifetime=v(c,'SUMMON DURATION');const boar=c.summon({name:'豪猪',count:balanceNumber(c,'main_upgrades_remaining.count.1',1),hp:v(c,'BOAR HEALTH'),attack:v(c,'BOAR ATTACK DAMAGE'),lifetime,range:balanceNumber(c,'main_upgrades_remaining.range.1',5),interval:balanceNumber(c,'main_upgrades_remaining.interval.1',1.5),speed:balanceNumber(c,'main_upgrades_remaining.speed.1',3)})[0];c.status(boar,'onHitSlow',lifetime,p(v(c,'BOAR SLOW')),{data:{duration:v(c,'BOAR POISON DURATION'),attackSpeedPct:p(v(c,'BOAR SLOW'))}});for(let i=0;i<(G(c)?3:1);i++){const hawk=c.summon({name:'猎鹰',count:balanceNumber(c,'main_upgrades_remaining.count.2',1),hp:v(c,'HAWK HEALTH'),attack:0,range:0,armor:balanceNumber(c,'main_upgrades_remaining.armor.1',5),speed:v(c,'HAWK SPEED')/100,lifetime})[0];c.status(hawk,'fly',lifetime);if(S(c))addSkills(hawk,['beastmaster_hawk_dive'],1);else c.status(hawk,'disarm',lifetime);}if(S(c)){const warrior=body(c,'npc_dota_necronomicon_warrior_3','死灵战士',lifetime),archer=body(c,'npc_dota_necronomicon_archer_3','死灵弓手',lifetime);addSkills(warrior,['necronomicon_warrior_mana_burn','necronomicon_warrior_last_will']);addSkills(archer,['necronomicon_archer_purge','necronomicon_archer_aoe']);for(const summon of c.allies().filter(t=>t.owner===c.caster.id)){summon.maxHp+=250;summon.hp+=250;}}if(G(c)){const candidates=['npc_dota_neutral_black_dragon','npc_dota_neutral_granite_golem','npc_dota_neutral_big_thunder_lizard'] as const,key=candidates[Math.floor(c.random()*candidates.length)],ancient=body(c,key,'支配远古',lifetime);ancient.ancient=true;if(key==='npc_dota_neutral_black_dragon')addSkills(ancient,['black_dragon_fireball','black_dragon_splash_attack','black_dragon_dragonhide_aura']);if(key==='npc_dota_neutral_big_thunder_lizard')addSkills(ancient,['big_thunder_lizard_slam','big_thunder_lizard_frenzy']);}},superImplemented:true,gabenImplemented:true},['Base boar slow and independent hawk bodies','Super two historical Necro3 units with burn/death/purge/auras, hawk Dive Bomb and controlled-summon250HP','Gaben two extra hawks and seeded random historical ancient body'],['Ancient candidate pool limited to historical black dragon/granite golem/thunder lizard; original AA pool weights not known','Granite Golem max-health aura not implemented; hawk vision has no fog equivalent','New ancient is created after +250buff; source cast-order semantics need verification']);
  update('custom_dark_willow_cursed_crown',{cast:c=>{
-  const target=c.target,delay=v(c,'DELAY')-(S(c)?1:0),token=Number(c.caster.crownCastSequence??0)+1;
+  const target=c.target,delay=v(c,'DELAY')-(S(c)?v(c,'SUPER DELAY REDUCTION',1):0),token=Number(c.caster.crownCastSequence??0)+1;
   c.caster.crownCastSequence=token;
   const marker=()=>target.statuses.find(s=>s.kind==='cursedCrown'&&s.source===c.caster.id&&s.skill===c.skill.id&&(s as {data?:{crownToken?:number}}).data?.crownToken===token);
   c.status(target,'cursedCrown',delay+balanceNumber(c,'main_upgrades_remaining.cursedcrown_duration.1',0.05),0,{harmful:true,ignoreStatusResistance:true,data:{crownToken:token}});
   let completed=false;
   const brambles=()=>{
    if(!S(c))return;
-   for(let i=0;i<4;i++){
-    const angle=target.facing+i*Math.PI/2,spawnRadius=h('dark_willow_cursed_crown','shard_spawn_radius',4,175)/100,x=target.x+Math.cos(angle)*spawnRadius,y=target.y+Math.sin(angle)*spawnRadius;
+   const count=Math.max(1,v(c,'BRAMBLE COUNT',4));for(let i=0;i<count;i++){
+    const angle=target.facing+i*Math.PI*2/count,spawnRadius=v(c,'BRAMBLE SPAWN RADIUS',175)/100,x=target.x+Math.cos(angle)*spawnRadius,y=target.y+Math.sin(angle)*spawnRadius;
     let used=false;
     c.zone({x,y,radius:balanceNumber(c,'main_upgrades_remaining.radius.1',0.9),duration:balanceNumber(c,'main_upgrades_remaining.duration.1',15),interval:balanceNumber(c,'main_upgrades_remaining.interval.1',0.1),effect:victim=>{
      if(used)return;used=true;
@@ -58,11 +58,12 @@ export function applyRemainingUpgrades(r:Record<string,SkillProgram>){
    if(detonate&&!target.dead)for(const victim of near(c,target,v(c,'STUN RADIUS')/100)){
     c.status(victim,'stun',v(c,'STUN DURATION'),0,{harmful:true,dispel:'strong'});
     if(G(c)&&victim.statuses.some(s=>s.kind==='stun'&&s.source===c.caster.id&&s.skill===c.skill.id&&s.until>c.battle.time)){
-     c.status(victim,'cursedCrownWisp',5,1,{dispel:'none'});
-     for(let i=1;i<=20;i++)c.delay(i*balanceNumber(c,'main_upgrades_remaining.delay.1',0.25),()=>{
+     const wispDuration=v(c,'WISP DURATION',5),wispInterval=balanceNumber(c,'main_upgrades_remaining.delay.1',0.25);
+     c.status(victim,'cursedCrownWisp',wispDuration,1,{dispel:'none'});
+     for(let i=1;i<=Math.floor(wispDuration/Math.max(1/30,wispInterval));i++)c.delay(i*wispInterval,()=>{
       if(victim.dead)return;
-      const angle=i*.25*Math.PI*2/1.5,center={...victim,x:victim.x+Math.cos(angle)*2,y:victim.y+Math.sin(angle)*2};
-      const choices=near(c,center,3),chosen=choices[Math.floor(c.random()*choices.length)];
+      const angle=i*wispInterval*Math.PI*2/Math.max(1/30,v(c,'WISP ORBIT PERIOD',1.5)),orbit=v(c,'WISP ORBIT RADIUS',200)/100,center={...victim,x:victim.x+Math.cos(angle)*orbit,y:victim.y+Math.sin(angle)*orbit};
+      const choices=near(c,center,v(c,'WISP SEARCH RADIUS',300)/100),chosen=choices[Math.floor(c.random()*choices.length)];
       if(chosen)c.damage(chosen,h('dark_willow_bedlam','attack_damage',3));
      });
     }

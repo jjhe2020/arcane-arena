@@ -1,9 +1,10 @@
+import {GLOBAL_BATTLE_CONFIG} from '../global-config';
 import {skillBalance} from '../config';
 import {addVisualWorldEffect} from './visual-state';
 import type {CombatUnit} from '../model';
 import {skillValue as value,type EffectContext,type EffectStatus,type SkillProgram} from '../skill-effects';
 
-const STEP=1/30,FOREVER=120;
+const STEP=1/30,FOREVER=GLOBAL_BATTLE_CONFIG.timeLimit;
 const SPEAR='custom_huskar_burning_spear',CHAOS='custom_chaos_knight_chaos_strike',HELIX='custom_axe_counter_helix',COUP='custom_phantom_assassin_coup_de_grace',CURSE='custom_abaddon_curse_of_avernus';
 const has=(u:CombatUnit,kind:string)=>u.statuses.some(s=>s.kind===kind);
 const statuses=(u:CombatUnit)=>u.statuses as EffectStatus[];

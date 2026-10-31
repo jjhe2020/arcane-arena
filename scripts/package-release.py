@@ -42,6 +42,11 @@ notice = '''秘境竞技场 · 0.1 开发构建
 英雄等级随回合增长，第N回合为N级，晚到场英雄同样使用当前等级。
 难度可选AI金币1.0至2.5倍，每0.1一档。
 备战不限时，准备后自动战斗；空格暂停，左侧可切换观看速度。
+战场可点选己方、敌方、召唤物与幻象，右侧查看实时属性、技能和状态。
+血条上方显示绿框正面、红框负面状态；详情图标支持悬停或触屏点按说明。
+“上轮战报”可下载当前录像，“对局”中可下载或播放历史战报录像。
+菜单“导入录像”可打开同机械版本的JSON，支持暂停、倍速和拖动时间轴。
+录像独立于当前局，退出后返回原局；需要长期保留的对局请下载JSON文件。
 手机底部阵容可横向滑动，查看和操作五名英雄的全部技能槽。
 商店每局随机选100项技能；五级开放4/6/6/8/10个商品，3级起有终极技能。
 最后两格为God预留位置，当前不可使用。
@@ -58,7 +63,7 @@ notice = '''秘境竞技场 · 0.1 开发构建
 '''
 entries = [(p, f'{prefix}/dist/{p.relative_to(dist).as_posix()}') for p in dist.rglob('*') if p.is_file()]
 entries += [(root/'启动游戏.cmd', f'{prefix}/启动游戏.cmd'), (root/'scripts/serve.mjs', f'{prefix}/scripts/serve.mjs')]
-for name in [f'{revision_tag}-validation.md', f'{revision_tag}-visual-binding-gaps.md', 'faq-rules.md']:
+for name in [f'{revision_tag}-validation.md', f'{revision_tag}-visual-binding-gaps.md', f'{revision_tag}-range-audit.md', 'configuration.md', 'configuration-inventory.md', 'faq-rules.md']:
     document = root / 'docs' / name
     if document.is_file():
         entries.append((document, f'{prefix}/版本说明/{name}'))

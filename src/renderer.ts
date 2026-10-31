@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { AnimationClip, AssetManifest, BattleState, CombatEvent, CombatUnit, Hero } from './model';
+import type { AnimationClip, AssetManifest, BattleState, CombatEvent, CombatUnit, Hero,SkillDefinition } from './model';
 import {atlasFrame,bodyPresentation,barrierPresentations,linePresentations,combatTextEvents,recentCombatEvents,COMBAT_TEXT_LIFETIME,basicAttackClip,bodyVisibility,bodyVisualScale,shadowPathPresentations} from './animation';
 import {interpolatedTransform} from './combat/presentation';
 import {DAMAGE_COLORS} from './combat/statistics';
@@ -7,13 +7,17 @@ import type {ShadowPath} from './animation';
 import type {BattleBarrier} from './combat/barriers';
 import {activeVisualBodyActions} from './combat/visual-state';
 import {selectVisualLayers,tierVisualLayers} from './visual-layers';
-import {resolveVisualArt,statusVisuals,portalVisuals,movingVisuals,worldVisuals,eventVisuals,type VisualSource} from './visual-bindings';
+import {resolveVisualArt,statusVisuals,portalVisuals,movingVisuals,worldVisuals,zoneVisuals,eventVisuals,type VisualSource} from './visual-bindings';
 import {duelVisuals} from './duel-presentation';
 import {isRangedAttackType} from './combat';
 import {ARENA_SCALE,ARENA_WIDTH,ARENA_HEIGHT,BATTLE_BOUNDS,FORMATION_BOUNDS} from './arena-layout';
 import {ArenaViewTransition,battleViewRotation,viewPoint,isCelebrating} from './arena-view';
+import {radialMaterial} from './range-material';
+import {zoneVisualSize,type RadialMapping} from './range-geometry';
+import {combatUnitBuffs,heroPersistentBuffs,drawBuffBorder,type UnitBuffView} from './buffs';
+import {UI_CONFIG} from './global-config';
 
-type Visual = { group: THREE.Group; mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>; clip?: AnimationClip; desired?:AnimationClip; key: string; texture?: THREE.Texture };
+type Visual = { group: THREE.Group; mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>; clip?: AnimationClip; desired?:AnimationClip; key: string; texture?: THREE.Texture;radial:ReturnType<typeof radialMaterial> };
 export class ArenaRenderer {
   readonly renderer: THREE.WebGLRenderer;
   readonly scene = new THREE.Scene();
@@ -44,6 +48,10 @@ export class ArenaRenderer {
   public gridVisible=false;
   public selected='';
   public loadErrors: string[]=[];
+  private buffDefinitions=new Map<string,SkillDefinition>();
+  set definitions(value:SkillDefinition[]){this.buffDefinitions=new Map(value.map(d=>[d.id,d]));}
+  private buffIcons=new Map<string,HTMLImageElement>();
+  private buffCache=new WeakMap<CombatUnit,{time:number;buffs:UnitBuffView[]}>();
   private clock=0;
   private persistentFx=new Map<string,Visual>();
   private attacks=new Map<string,CombatEvent>();
@@ -56,10 +64,11 @@ export class ArenaRenderer {
   private textureUse=new Map<string,number>();
   private hiddenBodies=new Set<string>();
   private arenaGeneration=0;
+  private disposed=false;
   private compactAtlases(){return this.renderer.capabilities.maxTextureSize<3584||innerWidth<=920||(innerHeight<=600&&matchMedia('(pointer:coarse)').matches);}
   resolveClip(clip:AnimationClip):AnimationClip{const variant=this.assets.mobileAtlases?.[clip.image];return this.compactAtlases()&&variant?{...clip,...variant}:clip;}
   diagnostics(){const images=new Map<string,{width:number;height:number}>();this.scene.traverse(object=>{if(object instanceof THREE.Mesh){const materials=Array.isArray(object.material)?object.material:[object.material];for(const material of materials){const t=(material as THREE.MeshBasicMaterial).map;if(t?.image)images.set(t.source.uuid,{width:t.image.width,height:t.image.height});}}});return{drawCalls:this.renderer.info.render.calls,triangles:this.renderer.info.render.triangles,gpuTextures:this.renderer.info.memory.textures,activeImageBytes:[...images.values()].reduce((n,i)=>n+i.width*i.height*4,0),cachedImageBytes:[...this.textures.values()].reduce((n,t)=>n+t.image.width*t.image.height*4,0),cachedAtlases:this.textures.size,unitBodies:[...this.visuals.entries()].map(([id,v])=>({id,image:v.clip?.image,visible:v.group.visible,action:v.group.userData.action,frame:v.group.userData.frame,age:v.group.userData.age,loop:v.group.userData.loop,opacity:v.mesh.material.opacity,size:v.mesh.scale.x})),view:{...this.viewTransition.diagnostics(),rotation:this.viewRotation},intro:{ready:this.battleIntroReady,progress:this.viewTransition.introProgress,enemyOpacity:this.viewTransition.enemyOpacity,maskOpacity:this.viewTransition.shade*.43},persistentEffects:this.persistentFx.size,persistentEffectKeys:[...this.persistentFx.keys()],transientEffects:this.fx.length,loadErrors:[...this.loadErrors]};}
-  constructor(public canvas: HTMLCanvasElement, public assets:AssetManifest) {
+  constructor(public canvas: HTMLCanvasElement, public assets:AssetManifest,private options:{isolated?:boolean}={}) {
     this.renderer=new THREE.WebGLRenderer({canvas,alpha:false,antialias:true,powerPreference:'high-performance'});
     this.renderer.setClearColor('#111b19');this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
     this.renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -77,18 +86,24 @@ export class ArenaRenderer {
     this.formationShade.name='formation-boundary-shade';this.scene.add(this.formationShade);
     this.setArena(0);
   }
+  dispose(){
+    this.disposed=true;this.arenaGeneration++;
+    this.scene.traverse(object=>{const drawable=object as THREE.Mesh;if(drawable.geometry)drawable.geometry.dispose();if(drawable.material)for(const material of Array.isArray(drawable.material)?drawable.material:[drawable.material]){(material as THREE.MeshBasicMaterial).map?.dispose();material.dispose();}});
+    for(const texture of this.textures.values())texture.dispose();this.textures.clear();this.renderer.dispose();this.renderer.forceContextLoss();this.hud.remove();
+  }
   private texture(url:string):Promise<THREE.Texture>{
     this.textureUse.set(url,this.clock);
     if(this.textures.has(url))return Promise.resolve(this.textures.get(url)!);
     if(this.pending.has(url))return this.pending.get(url)!;
     if(this.clock<(this.retryAfter.get(url)??0))return Promise.reject(new Error('Texture retry pending'));
-    const p=this.loader.loadAsync(url).then(t=>{t.name=url;t.colorSpace=THREE.SRGBColorSpace;t.generateMipmaps=false;t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;this.textures.set(url,t);this.retryAfter.delete(url);this.loadErrors=this.loadErrors.filter(failed=>failed!==url);return t;}).catch(e=>{if(!this.loadErrors.includes(url))this.loadErrors.push(url);this.pending.delete(url);this.retryAfter.set(url,this.clock+2);throw e;});
+    const p=this.loader.loadAsync(url).then(t=>{if(this.disposed){t.dispose();throw Error('Renderer disposed');}t.name=url;t.colorSpace=THREE.SRGBColorSpace;t.generateMipmaps=false;t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;this.textures.set(url,t);this.retryAfter.delete(url);this.loadErrors=this.loadErrors.filter(failed=>failed!==url);return t;}).catch(e=>{if(!this.disposed&&!this.loadErrors.includes(url))this.loadErrors.push(url);this.pending.delete(url);this.retryAfter.set(url,this.clock+2);throw e;});
     this.pending.set(url,p);return p;
   }
   async setArena(index:number){const generation=++this.arenaGeneration,arena=this.assets.arenas[index];if(!arena)return;try{const texture=await this.texture(arena.image);if(generation!==this.arenaGeneration)return;let bg=this.scene.getObjectByName('background') as THREE.Mesh; if(bg){bg.geometry.dispose();(bg.material as THREE.Material).dispose();this.scene.remove(bg);}bg=new THREE.Mesh(new THREE.PlaneGeometry(39*ARENA_SCALE,39*ARENA_SCALE),new THREE.MeshBasicMaterial({map:texture,transparent:true}));bg.name='background';bg.position.z=-2;this.scene.add(bg);if(this.ambient)this.remove(this.ambient);if(arena.ambient){this.ambient=this.makeVisual();this.world.remove(this.ambient.group);this.scene.add(this.ambient.group);this.setClip(this.ambient,{...arena.ambient as AnimationClip,pivot:[.5,.5]});this.ambient.group.position.z=-1.9;}}catch{setTimeout(()=>{if(generation===this.arenaGeneration)void this.setArena(index);},2000);}}
   layout(){
     const box=this.canvas.parentElement!.getBoundingClientRect();this.width=Math.max(1,box.width);this.height=Math.max(1,box.height);
     this.renderer.setSize(this.width,this.height,false);this.hud.width=this.width*Math.min(devicePixelRatio,1.75);this.hud.height=this.height*Math.min(devicePixelRatio,1.75);
+    if(this.options.isolated){this.safe={left:12,top:12,right:this.width-12,bottom:this.height-12};this.updateCamera();return;}
     const visibleBox=(selector:string)=>{const el=document.querySelector<HTMLElement>(selector);return el?.getClientRects().length?el.getBoundingClientRect():undefined;};
     const top=visibleBox('#matchIsland'),shop=visibleBox('#arenaShop');
     const cinema=document.querySelector<HTMLElement>('#game')?.dataset.cinema==='true';
@@ -104,11 +119,11 @@ export class ArenaRenderer {
   }
   project(x:number,y:number){const p=viewPoint(x,y,this.viewRotation),v=new THREE.Vector3(p.x,p.y,0).project(this.camera);return {x:(v.x+1)*this.width/2,y:(1-v.y)*this.height/2};}
   unproject(clientX:number,clientY:number){const r=this.canvas.getBoundingClientRect();const v=new THREE.Vector3((clientX-r.left)/this.width*2-1,1-(clientY-r.top)/this.height*2,0).unproject(this.camera);return viewPoint(v.x,v.y,this.viewRotation);}
-  private makeVisual():Visual{const group=new THREE.Group();const mesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({transparent:true,depthWrite:false,side:THREE.FrontSide}));group.add(mesh);this.world.add(group);return{group,mesh,key:''};}
+  private makeVisual():Visual{const group=new THREE.Group();const mesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({transparent:true,depthWrite:false,side:THREE.FrontSide}));group.add(mesh);this.world.add(group);return{group,mesh,key:'',radial:radialMaterial(mesh.material)};}
   private setClip(v:Visual,clip:AnimationClip){clip=this.resolveClip(clip);v.desired=clip;if(v.key===clip.image&&(v.clip?.image===clip.image||this.pending.has(clip.image)||this.clock<(this.retryAfter.get(clip.image)??0)))return;v.key=clip.image;v.mesh.visible=!!v.texture;
     // Hold the old pose with its own UV layout until the next atlas is ready.
     // A failed request can retry after a short delay instead of poisoning cache.
-    this.texture(clip.image).then(base=>{if(v.key!==clip.image)return;v.texture?.dispose();v.texture=base.clone();v.clip=clip;v.mesh.visible=true;v.mesh.material.map=v.texture;v.mesh.material.needsUpdate=true;}).catch(()=>{});
+    this.texture(clip.image).then(base=>{if(this.disposed||v.key!==clip.image)return;v.texture?.dispose();v.texture=base.clone();v.clip=clip;v.mesh.visible=true;v.mesh.material.map=v.texture;v.mesh.material.needsUpdate=true;}).catch(()=>{});
   }
   private frame(v:Visual,age:number,loop=true,size=3.6,height=size){if(v.desired&&(!v.texture||v.clip?.image!==v.desired.image))this.setClip(v,v.desired);const c=v.clip;if(!c||!v.texture)return;this.textureUse.set(v.key,this.clock);const cell=atlasFrame(c,age,loop);
     Object.assign(v.group.userData,{frame:cell.index,age,loop});
@@ -196,12 +211,12 @@ export class ArenaRenderer {
   }
   private remove(v:Visual){v.key='';v.group.removeFromParent();v.texture?.dispose();v.mesh.geometry.dispose();v.mesh.material.dispose();}
   private drawPersistentEffects(battle:BattleState|undefined,time:number){const used=new Set<string>();
-    const paint=(key:string,c:AnimationClip,x:number,y:number,age:number,size:number,angle=0,z=.4,loop=true,height=size)=>{if(used.size>=90)return;used.add(key);let v=this.persistentFx.get(key);if(!v){v=this.makeVisual();this.persistentFx.set(key,v);}this.setClip(v,c);this.frame(v,age,loop,size,height);v.group.position.set(x,y,z);v.group.rotation.z=angle;};
+    const paint=(key:string,c:AnimationClip,x:number,y:number,age:number,size:number,angle=0,z=.4,loop=true,height=size,radial?:RadialMapping)=>{if(used.size>=90)return;used.add(key);let v=this.persistentFx.get(key);if(!v){v=this.makeVisual();this.persistentFx.set(key,v);}this.setClip(v,c);this.frame(v,age,loop,size,height);v.radial.update(radial,size,v.texture);v.group.position.set(x,y,z);v.group.rotation.z=angle;};
     if(battle){
       for(const wall of barrierPresentations(this.assets,(battle.barriers??[]) as BattleBarrier[],time))paint(wall.key,wall.clip,wall.x,wall.y,wall.age,wall.width,wall.angle,.16,wall.loop??false,wall.height);
       for(const line of linePresentations(this.assets,battle.units,time))paint(line.key,line.clip,line.x,line.y,line.age,line.width,line.angle,.68,true,line.height);
       for(const placed of duelVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
-      for(const placed of worldVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
+      for(const placed of worldVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height,placed.radialMapping);
       for(const placed of portalVisuals(this.assets,battle.units,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
       for(const p of (battle.projectiles??[]) as (VisualSource&{id?:string;createdAt?:number;angle?:number;source:string;target:string;x:number;y:number;visualProjectile?:string;visualLayer?:string})[]){
         const source=battle.units.find(u=>u.id===p.source),target=battle.units.find(u=>u.id===p.target);
@@ -213,13 +228,7 @@ export class ArenaRenderer {
         for(const layer of selectVisualLayers(resolved.art,resolved.points,'projectile',p.visualLayer?[p.visualLayer]:undefined).slice(0,2))paint(`p:${p.id??`${p.source}:${p.target}:${p.skill}`}:${layer.id}`,layer.clip,p.x,p.y,time-(p.createdAt??0),Number(layer.clip.worldSize??3.6),angle,.8);
       }
       for(const placed of movingVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
-      for(const zone of (battle.zones??[]) as (VisualSource&{id?:string;createdAt?:number;layer?:string;source:string;x:number;y:number;radius:number;until:number})[]){
-        // Radius-zero zones are simulation clocks, not a visible area of effect.
-        if(zone.radius<=.1||zone.until<=time)continue;
-        const caster=battle.units.find(u=>u.id===zone.source),resolved=resolveVisualArt(this.assets,zone,caster?.skills.find(s=>s?.id===zone.skill)?.points??1);if(!resolved)continue;
-        const layers=zone.layer?tierVisualLayers(resolved.art,resolved.points).filter(l=>l.id===zone.layer):selectVisualLayers(resolved.art,resolved.points,'zone');
-        for(const layer of layers.slice(0,3))paint(`z:${zone.id??`${zone.source}:${zone.skill}`}:${layer.id}`,layer.clip,zone.x,zone.y,time-(zone.createdAt??0),Number(layer.clip.worldSize??zone.radius*2),0,layer.role==='orbit_weapon'?.65:.12);
-      }
+      for(const placed of zoneVisuals(this.assets,battle,time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
       for(const placed of statusVisuals(this.assets,battle.units.filter(u=>!this.hiddenBodies.has(u.id)),time))paint(placed.key,placed.clip,placed.x,placed.y,placed.age,placed.size,placed.angle,placed.z,placed.loop,placed.height);
       for(const path of shadowPathPresentations(this.assets,(battle.shadowPaths??[]) as ShadowPath[],time))paint(path.key,path.clip,path.x,path.y,path.age,path.width,path.angle,.14,true,path.height);
     }
@@ -229,7 +238,13 @@ export class ArenaRenderer {
     units.forEach(u=>{const p=this.project(u.x,u.y);const c=u as CombatUnit;if(c.dead||this.hiddenBodies.has(u.id))return;const mine=!battle?u.y<=0:c.side===side,pixels=this.width/(this.camera.right-this.camera.left),r=Math.max(c.summoned?3:5,Math.min(c.summoned?12:23,pixels*(c.summoned?.5:1)));
       ctx.globalAlpha=battle&&c.side!==side?this.viewTransition.enemyOpacity:1;
       ctx.strokeStyle=u.id===this.selected?'#f5d891':battle&&typeof battle.ghostSide==='number'&&battle.ghostSide===c.side?'#e0edf6':mine?'#70c9b2':'#ec8c76';ctx.lineWidth=u.id===this.selected?2.5:1;ctx.beginPath();ctx.ellipse(p.x,p.y+3,r,r*.7,0,0,Math.PI*2);ctx.stroke();
-      if(battle){const w=Math.max(c.summoned?12:24,Math.min(c.summoned?25:44,pixels*(c.summoned?1.3:2.2)));ctx.fillStyle='#142220';ctx.fillRect(p.x-w/2,p.y-r-13,w,5);ctx.fillStyle=mine?'#7dc99c':'#dd8475';ctx.fillRect(p.x-w/2,p.y-r-13,w*Math.max(0,c.hp/Math.max(1,c.maxHp)),5);ctx.fillStyle='#68a9df';ctx.fillRect(p.x-w/2,p.y-r-7,w*Math.max(0,c.mana/Math.max(1,c.maxMana)),2);}
+      const w=Math.max(c.summoned?UI_CONFIG.summonHealthBarMinimumWidth:UI_CONFIG.healthBarMinimumWidth,Math.min(c.summoned?UI_CONFIG.summonHealthBarMaximumWidth:UI_CONFIG.healthBarMaximumWidth,pixels*(c.summoned?UI_CONFIG.summonHealthBarWorldWidth:UI_CONFIG.healthBarWorldWidth))),barHeight=c.summoned?UI_CONFIG.summonHealthBarHeight:UI_CONFIG.healthBarHeight,barY=p.y-r-UI_CONFIG.healthBarYOffset;
+      if(battle){ctx.fillStyle='#142220';ctx.fillRect(p.x-w/2,barY,w,barHeight);ctx.fillStyle=mine?'#7dc99c':'#dd8475';ctx.fillRect(p.x-w/2,barY,w*Math.max(0,c.hp/Math.max(1,c.maxHp)),barHeight);ctx.fillStyle='#68a9df';ctx.fillRect(p.x-w/2,p.y-r-UI_CONFIG.manaBarYOffset,w*Math.max(0,c.mana/Math.max(1,c.maxMana)),UI_CONFIG.manaBarHeight);}
+      let buffs:UnitBuffView[];
+      if(battle){const cached=this.buffCache.get(c);if(cached?.time===battle.time)buffs=cached.buffs;else{buffs=combatUnitBuffs(c,battle.time,this.buffDefinitions,battle.units);this.buffCache.set(c,{time:battle.time,buffs});}}
+      else buffs=heroPersistentBuffs(u as Hero,this.buffDefinitions);
+      const size=barHeight,gap=UI_CONFIG.buffIconGap,capacity=Math.floor((w+gap)/(size+gap));
+      buffs.slice(0,capacity).forEach((buff,index)=>{const x=p.x-w/2+index*(size+gap),y=barY-gap-size;ctx.save();ctx.beginPath();ctx.rect(x,y,size,size);ctx.clip();ctx.fillStyle='#10231f';ctx.fillRect(x,y,size,size);if(buff.icon){let icon=this.buffIcons.get(buff.icon);if(!icon){icon=new Image();icon.src=buff.icon;this.buffIcons.set(buff.icon,icon);}if(icon.complete&&icon.naturalWidth)ctx.drawImage(icon,x,y,size,size);}drawBuffBorder(ctx,x,y,size,buff,time);if(buff.stacks>1){const label=String(buff.stacks);ctx.font=`bold ${UI_CONFIG.buffStackFontSize}px system-ui`;const fit=Math.min(1,(size-1)/Math.max(1,ctx.measureText(label).width));ctx.font=`bold ${UI_CONFIG.buffStackFontSize*fit}px system-ui`;ctx.textAlign='right';ctx.textBaseline='bottom';ctx.fillStyle='#fff';ctx.strokeStyle='#07100f';ctx.lineWidth=1;ctx.strokeText(label,x+size-.5,y+size);ctx.fillText(label,x+size-.5,y+size);}ctx.restore();});
     });ctx.globalAlpha=1;
     if(battle){const pixelsPerWorld=this.width/(this.camera.right-this.camera.left);for(const text of combatTextEvents(recentCombatEvents(battle.events,time),time)){const target=battle.units.find(u=>u.id===text.target);if(this.hiddenBodies.has(text.target)||(target?.summoned&&pixelsPerWorld<12&&text.amount<75&&!text.critical))continue;const age=time-text.time,p=this.project(text.x,text.y),pop=text.critical?1+Math.max(0,1-age/.16)*.3:1;ctx.globalAlpha=Math.max(0,1-age/COMBAT_TEXT_LIFETIME);ctx.font=`bold ${Math.round((text.critical?17:text.damageOverTime?11:13)*pop)}px system-ui`;ctx.textAlign='center';ctx.fillStyle=text.type==='heal'?DAMAGE_COLORS.healing:DAMAGE_COLORS[text.damageType];ctx.strokeStyle='#15231fe6';ctx.lineWidth=text.critical?3.2:2.5;const label=text.outcome==='miss'?'未命中':`${text.type==='heal'?'+':''}${Math.round(text.amount)}${text.critical?'!':''}`,x=p.x+text.lane*15,y=p.y-29-Math.min(age,.2)*40-Math.max(0,age-.2)*18;ctx.strokeText(label,x,y);ctx.fillText(label,x,y);}
       for(const e of battle.events.slice(-70)){const age=battle.time-e.time;if(e.type!=='attack'||e.toX===undefined||age<0||age>=.16)continue;const source=battle.units.find(u=>u.id===e.source);if(e.ranged===true||(e.ranged===undefined&&source&&isRangedAttackType(source)))continue;const a=this.project(e.x,e.y),b=this.project(e.toX,e.toY!);ctx.globalAlpha=1-age/.16;ctx.strokeStyle='#eacb8a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}

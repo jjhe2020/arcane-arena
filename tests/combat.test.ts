@@ -208,7 +208,7 @@ describe('project profession attributes',()=>{
     const opponent=player(1);opponent.heroes[0].id='h1';
     const b=createBattle(player(0,[{id:glaives.id,points:6}]),opponent,3,[glaives]),[u,enemy]=b.units;
     applyDamage(b,u,enemy,10000,'pure','test_execution');expect(u.intelligence).toBe(ROLES.mage.intelligence+2);
-    expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:0,agility:0,intelligence:2},{heroId:'h1',attack:0,strength:0,agility:0,intelligence:-2}]);
+    expect(battleGains(b)).toEqual([{heroId:'h0',attack:0,strength:0,agility:0,intelligence:2,persistentBuffs:{[glaives.id]:{intelligence:2}}},{heroId:'h1',attack:0,strength:0,agility:0,intelligence:-2,persistentBuffs:{[glaives.id]:{intelligence:-2}}}]);
     stepBattle(b,FIXED_STEP,[glaives]);expect(b.finished).toBe(true);expect(b.winner).toBe(0);
   });
 });

@@ -11,7 +11,7 @@ import type {Player,SkillDefinition} from '../src/model';
 
 const repository=fileURLToPath(new URL('../',import.meta.url));
 let temporary:string;
-const files=['config/schema.json','config/reference/migration-baseline.json','config/技能配置.xlsx','config/单位配置.xlsx','config/经济配置.xlsx'];
+const files=['config/schema.json','config/reference/migration-baseline.json','config/技能配置.xlsx','config/单位配置.xlsx','config/经济配置.xlsx','config/全局配置.xlsx'];
 async function edit(book:string,change:(wb:Awaited<ReturnType<typeof loadWorkbook>>)=>void){const filename=path.join(temporary,'config',book);const wb=await loadWorkbook(filename);change(wb);await wb.xlsx.writeFile(filename);}
 const cellRow=(sheet:NonNullable<ReturnType<Awaited<ReturnType<typeof loadWorkbook>>['getWorksheet']>>,id:string,tier:number)=>{for(let i=5;i<=sheet.rowCount;i++)if(sheet.getRow(i).getCell(1).value===id&&sheet.getRow(i).getCell(3).value===tier)return sheet.getRow(i);throw new Error('fixture row missing');};
 const player=(id:number,ability?:string):Player=>({id,name:`P${id}`,hp:100,gold:0,shopLevel:1,heroes:[{id:`h${id}`,name:`H${id}`,role:'mage',skin:'male',x:0,y:-2,skills:[ability?{id:ability,points:1}:null,null,null,null]}],reserve:Array(4).fill(null),shop:Array(12).fill(null),locked:false});

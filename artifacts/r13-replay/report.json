@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:4174",
+  "startedAt": "2026-10-31T13:58:19.128Z",
+  "checks": [
+    {
+      "name": "Real UI purchase and deployment",
+      "details": {
+        "skillId": "troll_warlord_fervor",
+        "instanceId": "ability:1"
+      }
+    },
+    {
+      "name": "Enemy canvas selection opens enemy details without moving the observation camera",
+      "details": {
+        "unitId": "1:p1-h0"
+      }
+    },
+    {
+      "name": "desktop-partial: native pointer drag holds the seek target until release",
+      "details": {
+        "heldTick": 45
+      }
+    },
+    {
+      "name": "desktop-partial: import, play/pause, 2x/4x speed, seek and checksum verification",
+      "details": {
+        "id": "replay-50bcd61d7e69af35",
+        "targetTick": 64,
+        "pausedTick": 9,
+        "middle": 32
+      }
+    },
+    {
+      "name": "Closing imported replay leaves current GameState and all BattleStates unchanged"
+    },
+    {
+      "name": "Paused main game and battles restore after refresh"
+    },
+    {
+      "name": "Natural round completion archives every RoundReport.replayId in IndexedDB",
+      "details": {
+        "completed": {
+          "phase": "result",
+          "round": 1,
+          "reports": [
+            {
+              "round": 1,
+              "a": 2,
+              "b": 7,
+              "replayId": "replay-8e03e07d5e91cdc9"
+            },
+            {
+              "round": 1,
+              "a": 0,
+              "b": 1,
+              "replayId": "replay-9c3134268c664faa"
+            },
+            {
+              "round": 1,
+              "a": 5,
+              "b": 4,
+              "replayId": "replay-dd337f8de91e8995"
+            },
+            {
+              "round": 1,
+              "a": 6,
+              "b": 3,
+              "replayId": "replay-597380d2c1b0d5a2"
+            }
+          ]
+        },
+        "archive": [
+          {
+            "id": "replay-597380d2c1b0d5a2",
+            "targetTick": 395,
+            "finished": true
+          },
+          {
+            "id": "replay-8e03e07d5e91cdc9",
+            "targetTick": 388,
+            "finished": true
+          },
+          {
+            "id": "replay-9c3134268c664faa",
+            "targetTick": 549,
+            "finished": true
+          },
+          {
+            "id": "replay-dd337f8de91e8995",
+            "targetTick": 504,
+            "finished": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Previous round remains downloadable and replays identically after advancing to the next planning round",
+      "details": {
+        "historyId": "replay-9c3134268c664faa"
+      }
+    },
+    {
+      "name": "Next-round save and archived replay both survive refresh"
+    },
+    {
+      "name": "touch-archived: import, play/pause, 2x/4x speed, seek and checksum verification",
+      "details": {
+        "id": "replay-9c3134268c664faa",
+        "targetTick": 549,
+        "pausedTick": 4,
+        "middle": 274
+      }
+    },
+    {
+      "name": "Touch replay exit preserves the underlying planning game"
+    }
+  ],
+  "errors": [],
+  "files": [
+    "artifacts\\r13-replay\\desktop-enemy-inspection.png",
+    "D:\\Documents\\ChatGPT\\技能小乱斗\\artifacts\\r13-replay\\current-battle.json",
+    "artifacts\\r13-replay\\desktop-partial-verified.png",
+    "D:\\Documents\\ChatGPT\\技能小乱斗\\artifacts\\r13-replay\\archived-round-one.json",
+    "artifacts\\r13-replay\\desktop-archived-round-verified.png",
+    "artifacts\\r13-replay\\touch-archived-verified.png"
+  ],
+  "boundaries": [
+    "Uses actual UI purchases, deployment, natural combat and IndexedDB archival. No battle result, combat state, random seed state or replay result is injected.",
+    "Desktop and touch checks use Chromium emulation; physical iPad performance is not certified."
+  ],
+  "finishedAt": "2026-10-31T13:58:39.085Z"
+}

@@ -5,10 +5,16 @@ import {createHash} from 'node:crypto';
 import ExcelJS from 'exceljs';
 import JSZip from 'jszip';
 import {FILES,SKILL_HEADERS,EXTRA_HEADERS,DICTIONARY_HEADERS,META_HEADERS,ROLE_HEADERS,ROLE_GROWTH_FIELDS,UNIT_HEADERS,UNIT_ATTACK_CLASS_FIELDS,RULE_HEADERS,SHOP_HEADERS,ECONOMY_HEADERS,SAFE_ID,FORBIDDEN,toRuntime} from './config-schema.mjs';
+import {GLOBAL_HEADERS,STATUS_HEADERS,STATUS_FIELDS} from './global-config-schema.mjs';
 
 export const canonical=value=>value===null||typeof value!=='object'?JSON.stringify(value):Array.isArray(value)?`[${value.map(v=>canonical(v)??'null').join(',')}]`:`{${Object.keys(value).filter(k=>value[k]!==undefined).sort().map(k=>`${JSON.stringify(k)}:${canonical(value[k])}`).join(',')}}`;
 export const contentHash=value=>createHash('sha256').update(canonical(value)).digest('hex');
 const defaultRoot=fileURLToPath(new URL('../',import.meta.url));
+async function replaceOutput(source,destination){
+ // Windows file watchers can briefly hold a just-read Vite asset. Retry the
+ // same atomic replacement rather than deleting the committed output first.
+ for(let attempt=0;;attempt++)try{await fs.rename(source,destination);return;}catch(error){if(process.platform!=='win32'||!['EPERM','EBUSY','EACCES'].includes(error.code)||attempt>=5)throw error;await new Promise(resolve=>setTimeout(resolve,40*(attempt+1)));}
+}
 
 /** Excel's namespace prefixes are arbitrary. Artifact Tool uses x:, while
  * ExcelJS expects unprefixed SpreadsheetML tags. Normalize the read buffer,
@@ -29,7 +35,7 @@ export async function readConfiguration(root=defaultRoot){
  const number=(cell,where,{min=-1e9,max=1e9,integer=false}={})=>{const value=cell.value;if(typeof value!=='number'||!Number.isFinite(value)){issue(where,'需要有限数字；空白、数字文本和公式缓存不能代替数值');return 0;}if(value<min||value>max||integer&&!Number.isInteger(value))issue(where,`数字必须在${min}至${max}${integer?'且为整数':''}`);return value;};
  const id=(cell,where)=>{const value=text(cell,where);if(!SAFE_ID.test(value)||FORBIDDEN.has(value))issue(where,'标识符无效');return value;};
  const rows=(book,name,headers)=>{const sheet=books[book].getWorksheet(name);if(!sheet){issue(`${FILES[book]}/${name}`,'缺少工作表');return [];}headers.forEach((header,i)=>{if(sheet.getRow(4).getCell(i+1).value!==header)issue(`${FILES[book]}/${name}/${sheet.getRow(4).getCell(i+1).address}`,`列名应为“${header}”`);});if(sheet.getRow(4).cellCount>headers.length)issue(`${FILES[book]}/${name}/4`,'存在未知列名');const result=[];for(let r=5;r<=sheet.rowCount;r++){const row=sheet.getRow(r);if(row.values.slice(1).every(v=>v===null||v===undefined||v===''))continue;result.push({row,where:`${FILES[book]}/${name}/${r}`});}return result;};
- const config={schemaVersion:1,roles:{},economy:{},shopLevels:[],attributes:{},battle:{},units:{},skills:{},nativeSkills:{},workingDefaults:{}};
+ const config={schemaVersion:2,roles:{},economy:{},shopLevels:[],attributes:{},battle:{},units:{},skills:{},nativeSkills:{},workingDefaults:{},globals:{battle:{},board:{},ai:{},ui:{}},statusMetadata:[]};
  const metadata=new Map();
  const sourceDefs=new Map([...baseline.granted,...baseline.skills].map(d=>[d.id,d]));
  for(const {row,where}of rows('skills','技能资料',META_HEADERS)){const key=id(row.getCell(1),where+'/A');if(!sourceDefs.has(key)){issue(where,'未知技能ID；新增机制需先实现程序');continue;}if(metadata.has(key))issue(where,'重复技能ID');const source=sourceDefs.get(key),shop=number(row.getCell(6),where+'/F',{min:0,max:1,integer:true});if(shop!==Number(baseline.skills.some(d=>d.id===key)))issue(where,'不能通过数值表改变商店与授予技能分类');metadata.set(key,{...source,name:text(row.getCell(2),where+'/B'),nameEn:text(row.getCell(3),where+'/C'),passive:!!number(row.getCell(4),where+'/D',{min:0,max:1,integer:true}),ultimate:!!number(row.getCell(5),where+'/E',{min:0,max:1,integer:true}),description:text(row.getCell(7),where+'/G',true),super:text(row.getCell(8),where+'/H',true),gaben:text(row.getCell(9),where+'/I',true)});}
@@ -78,16 +84,44 @@ export async function readConfiguration(root=defaultRoot){
  config.economy.heroArrivalRounds=[1,2,3,4,5].map(i=>config.economy[`heroArrivalRound${i}`]);for(let i=1;i<=5;i++)delete config.economy[`heroArrivalRound${i}`];
  if(config.economy.initialHp<1||config.economy.copiesPerSkill<1||config.economy.matchPoolSize<1||config.economy.matchPoolSize>baseline.skills.length||config.economy.ultimateShopLevel<1||config.economy.ultimateShopLevel>5||config.economy.roundDamageDivisor<=0||config.economy.heroArrivalRounds[0]!==1||config.economy.heroArrivalRounds.some((n,i,a)=>i>0&&n<=a[i-1]))issue('经济规则','库存、随机池、终极等级、除数或英雄到场回合无效');
  const shopSeen=new Set();for(const {row,where}of rows('economy','商店等级',SHOP_HEADERS)){const level=number(row.getCell(1),where+'/A',{min:1,max:5,integer:true});if(shopSeen.has(level))issue(where,'重复商店等级');shopSeen.add(level);config.shopLevels.push({level,activeSlots:number(row.getCell(2),where+'/B',{min:1,max:10,integer:true}),upgradePrice:number(row.getCell(3),where+'/C',{min:0,integer:true})});}config.shopLevels.sort((a,b)=>a.level-b.level);if(shopSeen.size!==5||config.shopLevels[4]?.upgradePrice!==0||config.shopLevels.some((r,i,a)=>i>0&&r.activeSlots<a[i-1].activeSlots))issue('商店等级','必须为五级、开放数不递减且满级升级费用为0');
+ for(const [group,contract] of Object.entries(schema.globals??{})){
+  const seen=new Set();for(const {row,where}of rows('globals',contract.name,GLOBAL_HEADERS)){
+   const key=id(row.getCell(1),where+'/A'),entry=contract.fields.find(field=>field.key===key);
+   if(!entry){issue(where,'未知全局配置项');continue;}if(seen.has(key))issue(where,'重复全局配置');seen.add(key);
+   const unit=text(row.getCell(4),where+'/D');if(unit!==entry.unit)issue(where,`单位应为“${entry.unit}”`);
+   const value=number(row.getCell(3),where+'/C',entry);config.globals[group][key]=unit==='ms'?value/1000:unit==='Dota单位'?Number((value/100).toPrecision(15)):value;
+  }if(seen.size!==contract.fields.length)issue(contract.name,'缺少全局配置项');
+ }
+ if(Object.keys(schema.globals??{}).length!==4)issue('全局配置','schema必须包含四组全局配置契约');
+ const board=config.globals.board,ui=config.globals.ui;
+ if(board.formationHalfWidth>board.width/2||board.formationMinY< -board.height/2||board.formationMaxY>0||board.formationMinY>board.formationMaxY)issue('棋盘布阵','布阵边界必须位于棋盘内');
+ for(let i=1;i<=5;i++)if(Math.abs(board['defaultHeroX'+i])>board.formationHalfWidth)issue('棋盘布阵',`第${i}英雄默认横坐标超出布阵边界`);
+ if([board.frontRowY,board.backRowY].some(y=>y<board.formationMinY||y>board.formationMaxY))issue('棋盘布阵','默认站位超出布阵边界');
+ if(ui.shopNameMinimumFontSize>ui.shopNameFontSize||ui.healthBarMinimumWidth>ui.healthBarMaximumWidth)issue('界面表现','最小值不能大于最大值');
+ const statusSeen=new Set();for(const {row,where}of rows('skills','状态资料',STATUS_HEADERS)){
+  const entry=Object.fromEntries(STATUS_FIELDS.map((field,i)=>[field,field==='hidden'?!!number(row.getCell(i+1),`${where}/${i+1}`,{min:0,max:1,integer:true}):text(row.getCell(i+1),`${where}/${i+1}`,['variant','name','description'].includes(field))]));
+  if(!/^[a-zA-Z0-9_.:/*-]+$/.test(entry.key)||FORBIDDEN.has(entry.key)||statusSeen.has(entry.key))issue(where,'状态ID无效或重复');statusSeen.add(entry.key);
+  if(entry.skill==='*'&&(!entry.name||!entry.description))issue(where,'通用状态必须有名称和效果说明');
+  if(entry.skill!=='*'&&!sourceDefs.has(entry.skill))issue(where,'来源技能ID不存在');
+  for(const [key,values]of [['polarity',['auto','positive','negative']],['lifecycle',['auto','timed','permanent','aura']],['stackMode',['auto','none','instances','value','remaining']],['valueFormat',['raw','percent','seconds','distance','counter','none']]])if(!values.includes(entry[key]))issue(where,`无效${key}`);
+  config.statusMetadata.push(entry);
+ }
+ if(!config.statusMetadata.length)issue('状态资料','必须包含状态说明');
  if(issues.length)throw new Error(`配置编译失败（${issues.length}项）\n${issues.slice(0,80).join('\n')}`);
  config.skillMetadata=Object.fromEntries([...metadata].map(([id,d])=>[id,{name:d.name,nameEn:d.nameEn,description:d.description,super:d.super,gaben:d.gaben,passive:d.passive,ultimate:d.ultimate,balanceParamLabels:Object.fromEntries((schema.skills[`aa:${id}`]??schema.skills[`native:${id}`]).params.filter(p=>p.kind==='value').map(p=>[p.key,p.meaning]))}]));
- const hash=contentHash(config);const compiled={...config,hash};
+ // Compatibility excludes names, descriptions, colors and UI settings. Full
+ // content integrity remains independently available as hash.
+ const mechanics={...config,skillMetadata:Object.fromEntries(Object.entries(config.skillMetadata).map(([key,value])=>[key,{nameEn:value.nameEn,passive:value.passive,ultimate:value.ultimate}])),roles:Object.fromEntries(Object.entries(config.roles).map(([key,{name,color,...values}])=>[key,values])),globals:{battle:config.globals.battle,board:config.globals.board,ai:config.globals.ai}};
+ delete mechanics.statusMetadata;
+ const mechanicsHash=contentHash(mechanics),presentationHash=contentHash({skillMetadata:config.skillMetadata,statusMetadata:config.statusMetadata,roles:Object.fromEntries(Object.entries(config.roles).map(([key,{name,color}])=>[key,{name,color}])),ui:config.globals.ui});
+ const hash=contentHash(config);const compiled={...config,hash,mechanicsHash,presentationHash};
  const defs=baseline.skills.map(original=>{
   const d=metadata.get(original.id),levels=config.skills[d.id];
   // Reference catalog/catalogZh remain the immutable source. Runtime/display
   // values follow the workbook, including intentional zeroes.
   return {...d,values:d.values.map(text=>{const at=text.indexOf(':'),key=text.slice(0,at).trim().toUpperCase();if(at<0||levels[1].params[key]===undefined)return text;const values=[1,2,3].map(t=>levels[t].params[key]);return `${key}: ${[...new Set(values)].length===1?values[0]:values.join(' / ')}`;}),valuesZh:undefined,cooldowns:[1,2,3].map(t=>levels[t].cooldown),mana:[1,2,3].map(t=>levels[t].mana),balanceLevels:levels,balanceDomain:'aa',balanceParamLabels:config.skillMetadata[d.id].balanceParamLabels,configHash:hash};
  });
- const report={schemaVersion:1,hash,counts:{skills:baseline.skills.length,granted:baseline.granted.filter(d=>!d.referenceOnly).length,referenceAbilities:baseline.granted.filter(d=>d.referenceOnly).length,skillTiers:seenRows.size,parameters:expectedParamCount,units:schema.units.length,roles:4},sources:FILES};
+ const report={schemaVersion:2,hash,mechanicsHash,presentationHash,counts:{skills:baseline.skills.length,granted:baseline.granted.filter(d=>!d.referenceOnly).length,referenceAbilities:baseline.granted.filter(d=>d.referenceOnly).length,skillTiers:seenRows.size,parameters:expectedParamCount,units:schema.units.length,roles:4,globalParameters:Object.values(schema.globals??{}).reduce((sum,sheet)=>sum+sheet.fields.length,0),statuses:config.statusMetadata.length},sources:FILES};
  defs.forEach(d=>d.balanceInputSignature=JSON.stringify([d.values,d.cooldowns,d.mana]));
  const serialize=value=>canonical(value)+'\n';
  return {config:compiled,definitions:defs,report,outputs:new Map([['src/generated/game-config.json',serialize(compiled)],['public/data/game-config.json',serialize(compiled)],['public/data/config-report.json',serialize(report)],['public/data/skills.json',serialize(defs)]])};
@@ -97,6 +131,6 @@ export async function compileConfiguration({root=defaultRoot,check=false}={}){
  const result=await readConfiguration(root),stale=[];
  for(const [file,expected]of result.outputs){const destination=path.join(root,file);let actual;try{actual=await fs.readFile(destination,'utf8');}catch{}if(actual!==expected)stale.push(file);}
  if(check&&stale.length)throw new Error(`Excel配置尚未编译或产物过期：${stale.join(', ')}。请手动运行 npm run config:compile。`);
- if(!check&&stale.length){const temporary=[];try{for(const [file,text]of result.outputs){const destination=path.join(root,file);await fs.mkdir(path.dirname(destination),{recursive:true});const tmp=destination+'.config-tmp';await fs.writeFile(tmp,text);temporary.push([tmp,destination]);}for(const [tmp,destination]of temporary)await fs.rename(tmp,destination);}finally{for(const [tmp]of temporary)await fs.rm(tmp,{force:true});}}
+ if(!check&&stale.length){const temporary=[];try{for(const [file,text]of result.outputs){const destination=path.join(root,file);await fs.mkdir(path.dirname(destination),{recursive:true});const tmp=destination+'.config-tmp';await fs.writeFile(tmp,text);temporary.push([tmp,destination]);}for(const [tmp,destination]of temporary)await replaceOutput(tmp,destination);}finally{for(const [tmp]of temporary)await fs.rm(tmp,{force:true});}}
  return result;
 }

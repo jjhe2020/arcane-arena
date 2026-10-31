@@ -1,0 +1,12 @@
+import {describe,it,expect} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {createBattle,stepBattle} from '../src/combat';
+import type {Player,SkillDefinition} from '../src/model';
+const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+function setup(id:string,points=9){const definitions=structuredClone(catalog),a:Player={id:0,name:'A',hp:100,gold:0,shopLevel:5,locked:false,reserve:[],shop:[],heroes:[{id:'a',name:'A',role:'mage',skin:'male',x:0,y:-2,skills:[{id,points}]}]},b=structuredClone(a);b.id=1;b.heroes[0].id='b';b.heroes[0].skills=[];return{definitions,a,b,definition:definitions.find(d=>d.id===id)!};}
+function begin(w:ReturnType<typeof setup>){const battle=createBattle(w.a,w.b,713,w.definitions),[caster,target]=battle.units;for(const unit of battle.units){unit.hp=unit.maxHp=100000;unit.mana=unit.maxMana=10000;unit.moveSpeed=0;unit.nextAttack=100;}caster.x=caster.y=0;caster.facing=0;target.x=5;target.y=0;return{battle,caster,target,step:(n:number)=>stepBattle(battle,n,w.definitions)};}
+describe('newly connected authored mechanic values affect real simulation',()=>{
+ it('uses the existing Huskar strength parameter rather than a second hardcoded sixty',()=>{const w=setup('huskar_berserkers_blood');for(const row of Object.values(w.definition.balanceLevels!))row.program['skill_effects_extra.buff_amount.1']=77;const {caster}=begin(w);expect(caster.statuses.find(s=>s.kind==='strength'&&s.skill===w.definition.id)?.value).toBe(77);});
+ it('reads Blade Fury Gaben movement speed from its own authored level row',()=>{const w=setup('custom_juggernaut_blade_fury');for(const row of Object.values(w.definition.balanceLevels!))row.params['GABEN MOVE SPEED']=250;const x=begin(w);x.target.x=1;x.step(.2);expect(x.caster.statuses.find(s=>s.kind==='moveFlat'&&s.skill===w.definition.id)?.value).toBe(2.5);});
+ it('reads both the existing Time Walk Super dodge amount and duration',()=>{const w=setup('faceless_void_time_walk',6);for(const row of Object.values(w.definition.balanceLevels!)){row.program['main_upgrades.damagedodge_amount.2']=.7;row.program['main_upgrades.damagedodge_duration.2']=3;}const x=begin(w);x.caster.hp=x.caster.maxHp*.5;x.step(1);const dodge=x.caster.statuses.find(s=>s.kind==='damageDodge');expect(dodge?.value).toBe(.7);expect(dodge!.until-x.battle.events.find(e=>e.type==='cast'&&e.skill===w.definition.id)!.time).toBeCloseTo(3,5);});
+});

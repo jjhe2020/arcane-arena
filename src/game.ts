@@ -1,7 +1,8 @@
 import { ROLES, type GameState, type Hero, type Player, type Role, type RoundReport, type SkillDefinition, type SkillStack } from './model';
 import {SIMULATION_REVISION} from './simulation-version';
-import {CONFIG_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
+import {MECHANICS_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
 import {validateUnitStatistics} from './combat/statistics';
+import {BOARD_CONFIG,AI_CONFIG} from './global-config';
 import {ARENA_SCALE,BATTLE_BOUNDS} from './arena-layout';
 
 /** The public menu and saved games share these exact sixteen AI budget steps. */
@@ -33,9 +34,11 @@ const finite = (n: unknown, min = 0, max = 1e9): n is number => typeof n === 'nu
 const record = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object' && !Array.isArray(value);
 const validSkillState=(value:unknown):value is Record<string,number>=>record(value)&&Object.keys(value).length<=256&&Object.entries(value).every(([key,n])=>/^[a-zA-Z0-9_]+:[a-zA-Z0-9_]+$/.test(key)&&key.length<=160&&finite(n,0,1e7));
 
+const validPersistentBuffs=(value:unknown):boolean=>record(value)&&Object.keys(value).length<=256&&Object.entries(value).every(([id,fields])=>/^[a-zA-Z0-9_]+$/.test(id)&&!['__proto__','prototype','constructor'].includes(id)&&record(fields)&&Object.entries(fields).every(([key,n])=>['attack','strength','agility','intelligence'].includes(key)&&finite(n,-1e7,1e7)));
+
 function signature(defs: SkillDefinition[]): string {
   // Appearance changes do not invalidate a game; rules/content changes do.
-  const text = SIMULATION_REVISION+CONFIG_HASH+JSON.stringify([...defs].sort((a, b) => a.id.localeCompare(b.id)).map(d => [d.id, d.ultimate, d.passive, d.tags, d.categories, d.values, d.cooldowns, d.mana, d.balanceLevels, d.descriptionEn, d.super, d.gaben]));
+  const text = SIMULATION_REVISION+MECHANICS_HASH+JSON.stringify([...defs].sort((a, b) => a.id.localeCompare(b.id)).map(d => [d.id, d.ultimate, d.passive, d.tags, d.categories, d.values, d.cooldowns, d.mana, d.balanceLevels, d.descriptionEn, d.nameEn]));
   let hash = 2166136261;
   for (let i = 0; i < text.length; i++) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
   return `arena-${GAME_RULES.version}-${(hash >>> 0).toString(16)}`;
@@ -83,7 +86,7 @@ export function roundDamage(round: number, survivors: number): number { return M
 
 function makeHero(player: number, index: number): Hero {
   const role = roleOrder[(index + (player % 4)) % roleOrder.length];
-  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [-8, -4, 0, 4, 8][index] * ARENA_SCALE, y: (role === 'tank' || role === 'assassin' ? -4 : -8.5) * ARENA_SCALE, skills: Array(4).fill(null) };
+  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [BOARD_CONFIG.defaultHeroX1, BOARD_CONFIG.defaultHeroX2, BOARD_CONFIG.defaultHeroX3, BOARD_CONFIG.defaultHeroX4, BOARD_CONFIG.defaultHeroX5][index] * ARENA_SCALE, y: (role === 'tank' || role === 'assassin' ? BOARD_CONFIG.frontRowY : BOARD_CONFIG.backRowY) * ARENA_SCALE, skills: Array(4).fill(null) };
 }
 
 function editable(state: GameState, playerId: number): Player | string {
@@ -283,13 +286,13 @@ export function changeRole(state: GameState, playerId: number, heroIndex: number
 
 function skillScore(def: SkillDefinition, hero: Hero): number {
   const text = [def.nameEn, ...def.tags, ...def.categories, def.descriptionEn].join(' ').toLowerCase();
-  let score = 10;
-  if (hero.role === 'tank' && /heal|armor|health|shield|defen|reduc|taunt|lifesteal|stun/.test(text)) score += 9;
-  if ((hero.role === 'archer' || hero.role === 'assassin') && /attack|critical|bash|damage per|attack speed|lifesteal/.test(text)) score += 9;
-  if (hero.role === 'mage' && /spell|mana|magic|cooldown|radius|damage/.test(text)) score += 7;
-  if (hero.role === 'mage' && !def.passive) score += 3;
-  if (hero.role === 'assassin' && /blink|move|slow|stun/.test(text)) score += 4;
-  if (def.ultimate) score += 4;
+  let score = AI_CONFIG.baseSkillScore;
+  if (hero.role === 'tank' && /heal|armor|health|shield|defen|reduc|taunt|lifesteal|stun/.test(text)) score += AI_CONFIG.tankSynergyScore;
+  if ((hero.role === 'archer' || hero.role === 'assassin') && /attack|critical|bash|damage per|attack speed|lifesteal/.test(text)) score += AI_CONFIG.attackSynergyScore;
+  if (hero.role === 'mage' && /spell|mana|magic|cooldown|radius|damage/.test(text)) score += AI_CONFIG.mageSynergyScore;
+  if (hero.role === 'mage' && !def.passive) score += AI_CONFIG.mageActiveScore;
+  if (hero.role === 'assassin' && /blink|move|slow|stun/.test(text)) score += AI_CONFIG.assassinSynergyScore;
+  if (def.ultimate) score += AI_CONFIG.ultimateScore;
   return score;
 }
 
@@ -299,7 +302,7 @@ function organizeAi(state: GameState, player: Player): void {
   // here,using the same free bench-to-hero transaction
   // as the human. Never erase/repack all equipped skills to bypass move fees.
   const reserves=player.reserve.map((stack,index)=>({stack,index})).filter((entry):entry is {stack:SkillStack;index:number}=>!!entry.stack).sort((a,b)=>Number(catalog.get(b.stack.id)!.ultimate)-Number(catalog.get(a.stack.id)!.ultimate)||b.stack.points-a.stack.points);
-  for(const {stack,index}of reserves){const choices=player.heroes.map((hero,i)=>({hero,index:i,score:skillScore(catalog.get(stack.id)!,hero)-hero.skills.filter(Boolean).length*1.5})).filter(({hero})=>hero.skills.includes(null)&&canEquip(catalog,hero,stack)).sort((a,b)=>b.score-a.score||a.index-b.index);if(choices.length)moveSkill(state,player.id,{reserve:index},{hero:choices[0].index,slot:choices[0].hero.skills.indexOf(null)});}
+  for(const {stack,index}of reserves){const choices=player.heroes.map((hero,i)=>({hero,index:i,score:skillScore(catalog.get(stack.id)!,hero)-hero.skills.filter(Boolean).length*AI_CONFIG.equippedSlotPenalty})).filter(({hero})=>hero.skills.includes(null)&&canEquip(catalog,hero,stack)).sort((a,b)=>b.score-a.score||a.index-b.index);if(choices.length)moveSkill(state,player.id,{reserve:index},{hero:choices[0].index,slot:choices[0].hero.skills.indexOf(null)});}
 }
 
 function aiStep(state: GameState, player: Player): boolean {
@@ -307,14 +310,14 @@ function aiStep(state: GameState, player: Player): boolean {
   const catalog = catalogFor(state), stacks = allStacks(player);
   // Upgrade only once there is an actual formation to improve, or at no cost.
   const cost = shopUpgradeCost(state, player.id);
-  if (Number.isFinite(cost) && player.gold >= cost && (cost === 0 || (stacks.length >= Math.min(4, player.heroes.length * 2) && player.gold >= cost + GAME_RULES.skillPrice))) return upgradeShop(state, player.id) === null;
+  if (Number.isFinite(cost) && player.gold >= cost && (cost === 0 || (stacks.length >= Math.min(AI_CONFIG.shopUpgradeMinimumStacks, player.heroes.length * AI_CONFIG.shopUpgradeStacksPerHero) && player.gold >= cost + GAME_RULES.skillPrice))) return upgradeShop(state, player.id) === null;
   const candidates = player.shop.map((id, index) => {
     if (!id) return { index, score: -Infinity };
     const owned = stacks.find(s => s.id === id);
-    if (owned) return { index, score: owned.points >= 9 ? -Infinity : 30 + owned.points * 3 + ([2, 5, 8].includes(owned.points) ? 20 : 0) };
+    if (owned) return { index, score: owned.points >= 9 ? -Infinity : AI_CONFIG.duplicateBaseScore + owned.points * AI_CONFIG.duplicatePointScore + ([2, 5, 8].includes(owned.points) ? AI_CONFIG.upgradeThresholdScore : 0) };
     if(!purchaseReserve(player))return {index,score:-Infinity};
     const canPlace=player.heroes.some(hero=>hero.skills.includes(null)&&canEquip(catalog,hero,{id,points:1}));
-    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!, h))) - (canPlace?0:8) };
+    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!, h))) - (canPlace?0:AI_CONFIG.unplaceablePenalty) };
   }).sort((a, b) => b.score - a.score || a.index - b.index);
   if (player.gold >= GAME_RULES.skillPrice && candidates[0]?.score > -Infinity && buySkill(state, player.id, candidates[0].index) === null) { organizeAi(state, player); return true; }
   if (player.gold > 0) { player.locked = false; return rerollShop(state, player.id) === null; }
@@ -382,7 +385,8 @@ export function getBattlePlayers(state: GameState): Player[] { return copy(state
 
 function validReport(report: unknown): report is RoundReport {
   if (!record(report) || !integer(report.round, 1, 10000) || !integer(report.a, 0, 7) || !integer(report.b, 0, 7) || report.a === report.b || (report.winner !== null && report.winner !== report.a && report.winner !== report.b) || !integer(report.damage, 0, 10000) || !finite(report.duration, 0, 100000) || !integer(report.survivors, 0, 10000) || !Array.isArray(report.stats) || report.stats.length > 10000) return false;
-  if(report.gains!==undefined&&(!Array.isArray(report.gains)||report.gains.length>100||report.gains.some(g=>!record(g)||typeof g.heroId!=='string'||!finite(g.attack,0,1e7)||['strength','agility','intelligence'].some(k=>g[k]!==undefined&&!finite(g[k],k==='intelligence'?-1e7:0,1e7))||(g.skillState!==undefined&&!validSkillState(g.skillState)))))return false;
+  if(report.replayId!==undefined&&(typeof report.replayId!=='string'||!/^replay-[a-f0-9]{16}$/.test(report.replayId)))return false;
+  if(report.gains!==undefined&&(!Array.isArray(report.gains)||report.gains.length>100||report.gains.some(g=>!record(g)||typeof g.heroId!=='string'||!finite(g.attack,0,1e7)||['strength','agility','intelligence'].some(k=>g[k]!==undefined&&!finite(g[k],k==='intelligence'?-1e7:0,1e7))||(g.skillState!==undefined&&!validSkillState(g.skillState))||(g.persistentBuffs!==undefined&&!validPersistentBuffs(g.persistentBuffs)))))return false;
   return report.stats.every(s => record(s) && typeof s.id === 'string' && typeof s.name === 'string' && integer(s.side, 0, 7) && finite(s.damage) && finite(s.taken) && finite(s.healing) && validateUnitStatistics(s));
 }
 
@@ -407,6 +411,7 @@ export function finishRound(state: GameState, reports: RoundReport[]): string | 
     if(gain.strength)hero.persistentStrengthBonus=(hero.persistentStrengthBonus??0)+gain.strength;
     if(gain.agility)hero.persistentAgilityBonus=(hero.persistentAgilityBonus??0)+gain.agility;
     if(gain.intelligence)hero.persistentIntelligenceBonus=(hero.persistentIntelligenceBonus??0)+gain.intelligence;
+    if(gain.persistentBuffs){hero.persistentBuffs??={};for(const[id,fields]of Object.entries(gain.persistentBuffs)){const target=hero.persistentBuffs[id]??={};for(const[key,value]of Object.entries(fields))target[key]=(target[key]??0)+value;}}
     const original=state.battlePlayers[player.id].heroes.find(h=>h.id===gain.heroId);
     for(const [key,delta]of Object.entries(gain.skillState??{})){
       const id=key.split(':')[0],instance=original?.skills.find(s=>s?.id===id)?.instanceId;
@@ -468,6 +473,7 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
         if (!record(h) || typeof h.id !== 'string' || h.id.length > 100 || heroIds.has(h.id) || typeof h.name !== 'string' || h.name.length > 100 || !Object.hasOwn(ROLES, String(h.role)) || !['male', 'female'].includes(String(h.skin)) || !finite(h.x, -BATTLE_BOUNDS.x, BATTLE_BOUNDS.x) || !finite(h.y, -BATTLE_BOUNDS.y, 0) || !Array.isArray(h.skills) || h.skills.length !== 4 || !h.skills.every(stackValid)) return false;
         if(h.persistentAttackBonus!==undefined&&!finite(h.persistentAttackBonus,0,1e7))return false;
         if(['persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k],k==='persistentIntelligenceBonus'?-1e7:0,1e7)))return false;
+        if(h.persistentBuffs!==undefined&&!validPersistentBuffs(h.persistentBuffs))return false;
         if(h.persistentSkillState!==undefined&&!validSkillState(h.persistentSkillState))return false;
         heroIds.add(h.id);
         return h.skills.filter(s => s && catalog.get(s.id)!.ultimate).length <= 1;

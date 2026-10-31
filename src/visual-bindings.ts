@@ -2,8 +2,9 @@ import type {AnimationClip,AssetManifest,BattleState,CombatEvent,CombatUnit,Stat
 import {selectVisualLayers,tierVisualLayers,type VisualLayer,type VisualSkillArt} from './visual-layers';
 import {activeVisualProjectiles,visualProjectilePosition,activeVisualWorldEffects,type VisualWorldEffect} from './combat/visual-state';
 import radialCalibration from './radial-art-calibration.json';
+import {zoneVisualSize,type RadialMapping} from './range-geometry';
 
-export interface PlacedVisual {key:string;clip:AnimationClip;x:number;y:number;age:number;size:number;angle:number;z:number;loop:boolean;height?:number}
+export interface PlacedVisual {key:string;clip:AnimationClip;x:number;y:number;age:number;size:number;angle:number;z:number;loop:boolean;height?:number;radialMapping?:RadialMapping}
 type VisualStatus=Status&{harmful?:boolean;passive?:boolean;data?:Record<string,unknown>;visualSkill?:string;visualPoints?:number};
 export interface VisualSource {skill:string;visualSkill?:string;visualPoints?:number;artSkill?:string;points?:number}
 const ART_ALIASES:Record<string,string>={spectre_spectral_dagger:'custom_spectre_dispersion',aa_granted_voodoo_switcheroo:'custom_witch_doctor_death_ward',dragon_knight_fireball:'dragon_knight_elder_dragon_form'};
@@ -123,7 +124,7 @@ export function movingVisuals(assets:AssetManifest,battle:BattleState,time:numbe
  * to the simulation sweep so atlas expansion is not applied a second time. */
 export function worldVisuals(assets:AssetManifest,battle:BattleState,time:number):PlacedVisual[]{
  const result:PlacedVisual[]=[];
- const measurements=radialCalibration as Record<string,{meanRadius:number[];outerRadius95:number[]}>;
+ const measurements=radialCalibration as Record<string,{meanRadius:number[];innerRadius05:number[];outerRadius95:number[]}>;
  const effects=battle.finished?((battle.visualWorldEffects??[]) as VisualWorldEffect[]).filter(e=>e.skill==='custom_legion_commander_duel'&&e.layer==='victory'&&e.kind==='proc'&&e.createdAt<=battle.time&&e.until>time):activeVisualWorldEffects(battle,time);
  for(const effect of effects){
   const followed=effect.followUnit?battle.units.find(unit=>unit.id===effect.followUnit):undefined;
@@ -131,19 +132,42 @@ export function worldVisuals(assets:AssetManifest,battle:BattleState,time:number
   const resolved=resolveVisualArt(assets,effect,effect.points);if(!resolved)continue;
   const ids=[effect.layer,...(resolved.id==='custom_tidehunter_ravage'&&effect.layer==='eruption'?['crest']:[])];
   for(const layer of tierVisualLayers(resolved.art,resolved.points).filter(l=>ids.includes(l.id))){
-   const clip=layer.clip,calibration=measurements[`${resolved.id}/${layer.id}`];let age=time-effect.createdAt,size=effect.size??Number(clip.worldSize??3.6);
+   const clip=layer.clip,calibration=measurements[`${resolved.id}/${layer.id}`];let age=time-effect.createdAt,size=effect.size??Number(clip.worldSize??3.6),radialMapping:RadialMapping|undefined;
    if(effect.kind==='ring'){
-    if(!calibration||(effect.radius??0)<=.01)continue;
+    if(!calibration||((effect.radius??0)<=.01&&effect.outerRadius===undefined))continue;
     const progress=Math.max(0,Math.min(1,effect.progress??0));let index=Math.round(progress*(clip.frames-1));
     if(resolved.id==='razor_plasma_field'){const half=clip.frames/2;index=Math.round(effect.phase==='inward'?half+progress*(clip.frames-1-half):progress*half);}
     // Transparent start/end cells carry no annulus to fit. Use the nearest
     // authored nonempty frame, with no change to collision or phase timing.
     if(!calibration.meanRadius[index]){let distance=1;while(distance<clip.frames&&!calibration.meanRadius[index]){for(const candidate of[index-distance,index+distance])if(candidate>=0&&candidate<clip.frames&&calibration.meanRadius[candidate]){index=candidate;break;}distance++;}}
     const measured=calibration.meanRadius[index];if(!measured)continue;
-    age=index/clip.fps;size=effect.radius!/measured;
+    age=(index+.001)/clip.fps;size=effect.radius!/measured;
+    if(effect.innerRadius!==undefined&&effect.outerRadius!==undefined){
+     const sourceInner=calibration.innerRadius05[index],sourceOuter=calibration.outerRadius95[index];
+     if(sourceOuter>sourceInner&&effect.outerRadius>effect.innerRadius){
+      radialMapping={innerRadius:effect.innerRadius,outerRadius:effect.outerRadius,sourceInner,sourceOuter};
+      // Keep the main 5–95% alpha band at the actual spell boundary. A small
+      // decorative glow may extend beyond it, without widening hit testing.
+      size=2*(effect.outerRadius+(effect.outerRadius-effect.innerRadius)*.3);
+     }
+    }
    }else if(effect.radius!==undefined&&calibration){const outer=Math.max(...calibration.outerRadius95);if(outer>0)size=effect.radius/outer;}
-   result.push({key:`world:${effect.id}:${layer.id}`,clip,x:followed?.x??effect.x,y:followed?.y??effect.y,age,size,angle:effect.angle===undefined?0:effect.angle+Math.PI/2,z:effect.kind==='proc'?.65:.15,loop:effect.loop??false});
+   result.push({key:`world:${effect.id}:${layer.id}`,clip,x:followed?.x??effect.x,y:followed?.y??effect.y,age,size,angle:effect.angle===undefined?0:effect.angle+Math.PI/2,z:effect.kind==='proc'?.65:.15,loop:effect.loop??false,radialMapping});
   }
+ }
+ return result;
+}
+
+/** Persistent AoE presentation consumes the exact radius published by the
+ * real zone solver. Authored cell size is an art import hint, not AoE data. */
+export function zoneVisuals(assets:AssetManifest,battle:BattleState,time:number):PlacedVisual[]{
+ const result:PlacedVisual[]=[];
+ const zones=(battle.zones??[]) as (VisualSource&{id?:string;createdAt?:number;layer?:string;source:string;x:number;y:number;radius:number;until:number})[];
+ for(const zone of zones){
+  if(zone.radius<=.1||zone.until<=time)continue;
+  const caster=battle.units.find(u=>u.id===zone.source),resolved=resolveVisualArt(assets,zone,caster?.skills.find(s=>s?.id===zone.skill)?.points??1);if(!resolved)continue;
+  const layers=zone.layer?tierVisualLayers(resolved.art,resolved.points).filter(l=>l.id===zone.layer):selectVisualLayers(resolved.art,resolved.points,'zone');
+  for(const layer of layers.slice(0,3))result.push({key:`z:${zone.id??`${zone.source}:${zone.skill}`}:${layer.id}`,clip:layer.clip,x:zone.x,y:zone.y,age:time-(zone.createdAt??0),size:zoneVisualSize(zone.radius,layer.clip),angle:0,z:layer.role==='orbit_weapon'?.65:.12,loop:true});
  }
  return result;
 }

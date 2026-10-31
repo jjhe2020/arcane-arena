@@ -72,8 +72,8 @@ export function applyLinksAndGazeAcceptance(registry:Record<string,SkillProgram>
       c.status(target,'physicalVulnerability',stone.until-c.battle.time,amp/100,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,data:{gazeToken:token,stacking:'strongest',uniqueGroup:'stoneGaze'}});
       if(c.skill.points>=9){
         const raw=UNIT_CONFIG.npc_dota_neutral_mud_golem;
-        const bodies=c.summon({name:'泥土傀儡',nativeTemplateId:'npc_dota_neutral_mud_golem',count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate,speed:raw.MovementSpeed/100,lifetime:120});
-        for(const body of bodies){body.sourceUnitType='npc_dota_neutral_mud_golem';body.magicResist=raw.MagicalResistance/100;body.mana=body.maxMana=raw.StatusMana;c.status(body,'regen',120,raw.StatusHealthRegen);c.status(body,'manaRegen',120,raw.StatusManaRegen-BATTLE_CONFIG.baseManaRegen);c.warp(body,target.x,target.y);}
+        const life=value(c,'MUD GOLEM DURATION',120),bodies=c.summon({name:'泥土傀儡',nativeTemplateId:'npc_dota_neutral_mud_golem',count:1,hp:raw.StatusHealth,attack:(raw.AttackDamageMin+raw.AttackDamageMax)/2,armor:raw.ArmorPhysical,range:raw.AttackRange/100,interval:raw.AttackRate,speed:raw.MovementSpeed/100,lifetime:life});
+        for(const body of bodies){body.sourceUnitType='npc_dota_neutral_mud_golem';body.magicResist=raw.MagicalResistance/100;body.mana=body.maxMana=raw.StatusMana;c.status(body,'regen',life,raw.StatusHealthRegen);c.status(body,'manaRegen',life,raw.StatusManaRegen-BATTLE_CONFIG.baseManaRegen);c.warp(body,target.x,target.y);}
       }
     }});
   };
@@ -90,7 +90,7 @@ export function applyLinksAndGazeAcceptance(registry:Record<string,SkillProgram>
     const duration=Math.max(STEP,travel/(balanceNumber(c,'acceptance.timeWalk.speed',3000)/100));
     c.status(c.caster,'invulnerable',duration,0,{dispel:'none'});c.status(c.caster,'selfStun',duration,0,{dispel:'none'});c.status(c.caster,'phased',duration,0,{dispel:'none'});
     c.moveContinuous(c.caster,c.caster.x+dx/gap*travel,c.caster.y+dy/gap*travel,{duration,ignoreBarriers:true});
-    if(c.skill.points>=6&&c.skill.points<9)c.status(c.caster,'damageDodge',2,.2);
+    if(c.skill.points>=6&&c.skill.points<9)c.status(c.caster,'damageDodge',balanceNumber(c,'main_upgrades.damagedodge_duration.2',2),balanceNumber(c,'main_upgrades.damagedodge_amount.2',.2));
   };
   walk.implemented.push('Pinned 3000-speed continuous travel grants travel invulnerability and action lock; cast heals recorded damage without projectile disjoint');
   walk.remaining=walk.remaining.filter(item=>!item.includes('movement invulnerability'));

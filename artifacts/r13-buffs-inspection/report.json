@@ -1,0 +1,132 @@
+{
+  "status": "passed",
+  "url": "http://localhost:5173",
+  "checkedAt": "2026-10-31T13:49:28.410134+00:00",
+  "checks": [
+    "Preparatory permanent skill growth is visible in unit details and the Canvas HUD.",
+    "Canvas click selects an enemy and a naturally summoned wolf without changing the observation camera.",
+    "Mouse hover and touch tap show an effect-specific tooltip.",
+    "Buff DOM node and open tooltip survive periodic detail refresh.",
+    "Both desktop and tablet roster portraits have nonzero 40x40 click targets."
+  ],
+  "fixtureNote": "Presentation fixture equips an existing Duel permanent bonus and Lycan summon skill directly, then starts the real engine and waits for natural wolf summons. It adds one ten-second stun status and increases live health only to hold an observable scene. These modified inputs are not treated as valid inventory/save fixtures or mechanics/replay acceptance; no battle results are injected. The replay-feature-smoke report separately covers valid UI-only purchasing, saves and deterministic replay.",
+  "boundaries": [
+    "Desktop and tablet are Chromium viewport/touch emulation, not physical-device validation.",
+    "Timed border fractions and independent stacks are covered by the pure Buff tests.",
+    "This fixture deliberately violates the regular inventory pool and therefore can show the expected unsaved-state warning."
+  ],
+  "scenarios": [
+    {
+      "tablet": false,
+      "status": "passed",
+      "setup": {
+        "id": "p0-h0",
+        "x": 464.9215671956939,
+        "y": 324.473529156733,
+        "rosterRect": {
+          "x": 157,
+          "y": 828,
+          "width": 40,
+          "height": 40
+        }
+      },
+      "prepCount": 1,
+      "fixture": {
+        "enemyId": "5:p5-h0",
+        "summonId": "0:p0-h0:summon:0",
+        "enemy": {
+          "x": 903.1871388904898,
+          "y": 211.86226483304335
+        },
+        "summon": {
+          "x": 612.5599968086754,
+          "y": 398.4824297091134
+        },
+        "time": 0.5333333333333333,
+        "view": {
+          "mode": "spectate",
+          "blend": 1,
+          "shade": 0,
+          "enemyOpacity": 1,
+          "battleIntroReady": true,
+          "bodiesReady": true,
+          "rotation": 3.141592653589793
+        }
+      },
+      "enemy": "5:p5-h0",
+      "tip": "魔法箭\n负面效果 · 剩余 10.0 秒\n不能移动、攻击或施法。\n\n来源：远程射手 1",
+      "stability": {
+        "same": true,
+        "tooltip": true,
+        "selected": "5:p5-h0",
+        "view": {
+          "mode": "spectate",
+          "blend": 1,
+          "shade": 0,
+          "enemyOpacity": 1,
+          "battleIntroReady": true,
+          "bodiesReady": true,
+          "rotation": 3.141592653589793
+        }
+      },
+      "summon": "0:p0-h0:summon:0",
+      "errors": []
+    },
+    {
+      "tablet": true,
+      "status": "passed",
+      "setup": {
+        "id": "p0-h0",
+        "x": 319.4705874925029,
+        "y": 210.8369483971021,
+        "rosterRect": {
+          "x": 106,
+          "y": 701,
+          "width": 40,
+          "height": 40
+        }
+      },
+      "prepCount": 1,
+      "fixture": {
+        "enemyId": "5:p5-h0",
+        "summonId": "0:p0-h0:summon:0",
+        "enemy": {
+          "x": 595.983920222433,
+          "y": 180.71115048785944
+        },
+        "summon": {
+          "x": 346.30400960298545,
+          "y": 341.2997827456064
+        },
+        "time": 0.5,
+        "view": {
+          "mode": "spectate",
+          "blend": 1,
+          "shade": 0,
+          "enemyOpacity": 1,
+          "battleIntroReady": true,
+          "bodiesReady": true,
+          "rotation": 3.141592653589793
+        }
+      },
+      "enemy": "5:p5-h0",
+      "tip": "魔法箭\n负面效果 · 剩余 10.0 秒\n不能移动、攻击或施法。\n\n来源：远程射手 1",
+      "stability": {
+        "same": true,
+        "tooltip": true,
+        "selected": "5:p5-h0",
+        "view": {
+          "mode": "spectate",
+          "blend": 1,
+          "shade": 0,
+          "enemyOpacity": 1,
+          "battleIntroReady": true,
+          "bodiesReady": true,
+          "rotation": 3.141592653589793
+        }
+      },
+      "summon": "0:p0-h0:summon:0",
+      "errors": []
+    }
+  ]
+}

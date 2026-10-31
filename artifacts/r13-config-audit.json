@@ -1,0 +1,1878 @@
+{
+  "schemaVersion": 1,
+  "mechanicsHash": "5a7d226a472cd7f09b84cb045b14a0873710f298518a63c8290ef38e95662fd2",
+  "summary": {
+    "sourceFiles": 101,
+    "numericLiterals": 13924,
+    "configuredValueReads": 4997,
+    "skillParameterContracts": 2642,
+    "globalParameterContracts": 62,
+    "statusMetadataRows": 316,
+    "retainedDirectArgumentLiterals": 111,
+    "retainedCategories": {
+      "state_marker": 89,
+      "visual_playback": 1,
+      "superseded_implementation": 13,
+      "refresh_lease": 6,
+      "control_lock": 1,
+      "attack_type_enum": 1
+    }
+  },
+  "groups": {
+    "battle": {
+      "sheet": "战斗规则",
+      "fields": [
+        "timeLimit",
+        "armorCoefficient",
+        "baseAttackSpeed",
+        "castRangeBuffer",
+        "assassinateRangeBuffer",
+        "netherStrikeRangeBuffer",
+        "defaultAttackPointCap",
+        "defaultAttackPointFactor",
+        "magicResistanceCap",
+        "minimumSpellAmplification"
+      ]
+    },
+    "board": {
+      "sheet": "棋盘布阵",
+      "fields": [
+        "scale",
+        "width",
+        "height",
+        "formationHalfWidth",
+        "formationMinY",
+        "formationMaxY",
+        "defaultHeroX1",
+        "defaultHeroX2",
+        "defaultHeroX3",
+        "defaultHeroX4",
+        "defaultHeroX5",
+        "frontRowY",
+        "backRowY"
+      ]
+    },
+    "ai": {
+      "sheet": "AI策略",
+      "fields": [
+        "baseSkillScore",
+        "tankSynergyScore",
+        "attackSynergyScore",
+        "mageSynergyScore",
+        "mageActiveScore",
+        "assassinSynergyScore",
+        "ultimateScore",
+        "equippedSlotPenalty",
+        "duplicateBaseScore",
+        "duplicatePointScore",
+        "upgradeThresholdScore",
+        "unplaceablePenalty",
+        "shopUpgradeMinimumStacks",
+        "shopUpgradeStacksPerHero"
+      ]
+    },
+    "ui": {
+      "sheet": "界面表现",
+      "fields": [
+        "tabletMaximumAspectRatio",
+        "tabletMinimumHeight",
+        "tabletMinimumWidth",
+        "tabletShopColumns",
+        "tabletTouchTarget",
+        "minimumTextScale",
+        "referenceViewportWidth",
+        "referenceViewportHeight",
+        "shopNameFontSize",
+        "shopNameMinimumFontSize",
+        "healthBarMinimumWidth",
+        "healthBarMaximumWidth",
+        "healthBarWorldWidth",
+        "healthBarHeight",
+        "summonHealthBarMinimumWidth",
+        "summonHealthBarMaximumWidth",
+        "summonHealthBarWorldWidth",
+        "summonHealthBarHeight",
+        "manaBarHeight",
+        "healthBarYOffset",
+        "manaBarYOffset",
+        "buffIconGap",
+        "buffBorderWidth",
+        "buffStackFontSize",
+        "buffDetailIconSize"
+      ]
+    }
+  },
+  "migratedThisRevision": [
+    {
+      "domain": "aa",
+      "id": "custom_juggernaut_blade_fury",
+      "key": "GABEN MOVE SPEED",
+      "value": 100,
+      "unit": "Dota单位",
+      "meaning": "Gaben额外移动速度",
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "domain": "aa",
+      "id": "medusa_stone_gaze",
+      "key": "MUD GOLEM DURATION",
+      "value": 120000,
+      "unit": "ms",
+      "meaning": "Gaben泥土傀儡持续时间",
+      "min": 0,
+      "max": 3600000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "WISP DURATION",
+      "value": 5000,
+      "unit": "ms",
+      "meaning": "Gaben邪恶精灵持续时间",
+      "min": 0,
+      "max": 3600000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "WISP ORBIT PERIOD",
+      "value": 1500,
+      "unit": "ms",
+      "meaning": "邪恶精灵环绕一周时间",
+      "min": 1,
+      "max": 3600000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "WISP ORBIT RADIUS",
+      "value": 200,
+      "unit": "Dota单位",
+      "meaning": "邪恶精灵环绕半径",
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "WISP SEARCH RADIUS",
+      "value": 300,
+      "unit": "Dota单位",
+      "meaning": "邪恶精灵伤害搜索半径",
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "SUPER DELAY REDUCTION",
+      "value": 1000,
+      "unit": "ms",
+      "meaning": "Super引爆延迟减少",
+      "min": 0,
+      "max": 3600000
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "BRAMBLE COUNT",
+      "value": 4,
+      "unit": "次数",
+      "meaning": "Super环形荆棘数量",
+      "min": 1,
+      "max": 64,
+      "integer": true
+    },
+    {
+      "domain": "aa",
+      "id": "custom_dark_willow_cursed_crown",
+      "key": "BRAMBLE SPAWN RADIUS",
+      "value": 175,
+      "unit": "Dota单位",
+      "meaning": "Super荆棘生成环形半径",
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "domain": "native",
+      "id": "mud_golem_rock_destroy",
+      "key": "SHARD DURATION",
+      "value": 60000,
+      "unit": "ms",
+      "meaning": "碎片傀儡持续时间",
+      "min": 0,
+      "max": 3600000
+    },
+    {
+      "domain": "native",
+      "id": "mud_golem_rock_destroy",
+      "key": "SHARD COUNT",
+      "value": 2,
+      "unit": "次数",
+      "meaning": "死亡时生成碎片数量",
+      "min": 1,
+      "max": 64,
+      "integer": true
+    },
+    {
+      "domain": "native",
+      "id": "mud_golem_rock_destroy",
+      "key": "SHARD SPAWN OFFSET",
+      "value": 45,
+      "unit": "Dota单位",
+      "meaning": "碎片初始横向偏移",
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "domain": "native",
+      "id": "aa_granted_throwable_flamethrower",
+      "key": "DAMAGE INTERVAL",
+      "value": 500,
+      "unit": "ms",
+      "meaning": "喷火器灼烧伤害间隔",
+      "min": 1,
+      "max": 60000
+    }
+  ],
+  "retainedInCode": [
+    "固定30Hz步长、随机数算法、结算顺序及技能机制算法",
+    "玩家/英雄/技能槽/暂存/商店结构容量与数组索引",
+    "输入验证安全上限、数值精度容差、百分比换算单位",
+    "内部状态哨兵、短期光环租约及事件排序节拍，逐项依据见candidates"
+  ],
+  "limitations": [
+    "静态直接参数记录不证明所有原生机制已经还原；表内单项与实际机制仍由回归测试验证。",
+    "旧program-parameters.json为历史提取档案，不是可直接重新导入的当前运行配置。"
+  ],
+  "sourceCounts": {
+    "src/animation.ts": {
+      "numericLiterals": 86,
+      "configuredValueReads": 0
+    },
+    "src/arena-layout.ts": {
+      "numericLiterals": 2,
+      "configuredValueReads": 0
+    },
+    "src/arena-view.ts": {
+      "numericLiterals": 21,
+      "configuredValueReads": 0
+    },
+    "src/balance-presentation.ts": {
+      "numericLiterals": 8,
+      "configuredValueReads": 0
+    },
+    "src/buff-ui.ts": {
+      "numericLiterals": 11,
+      "configuredValueReads": 0
+    },
+    "src/buffs-ui.ts": {
+      "numericLiterals": 18,
+      "configuredValueReads": 0
+    },
+    "src/buffs.ts": {
+      "numericLiterals": 67,
+      "configuredValueReads": 0
+    },
+    "src/combat/arenas.ts": {
+      "numericLiterals": 4,
+      "configuredValueReads": 0
+    },
+    "src/combat/attack-modes.ts": {
+      "numericLiterals": 115,
+      "configuredValueReads": 50
+    },
+    "src/combat/attack-state-acceptance.ts": {
+      "numericLiterals": 201,
+      "configuredValueReads": 72
+    },
+    "src/combat/attack-tempo-acceptance.ts": {
+      "numericLiterals": 172,
+      "configuredValueReads": 62
+    },
+    "src/combat/attack-trigger-acceptance.ts": {
+      "numericLiterals": 140,
+      "configuredValueReads": 37
+    },
+    "src/combat/aura-armor-acceptance.ts": {
+      "numericLiterals": 109,
+      "configuredValueReads": 38
+    },
+    "src/combat/barriers.ts": {
+      "numericLiterals": 66,
+      "configuredValueReads": 0
+    },
+    "src/combat/charges.ts": {
+      "numericLiterals": 31,
+      "configuredValueReads": 0
+    },
+    "src/combat/control-execution-acceptance.ts": {
+      "numericLiterals": 134,
+      "configuredValueReads": 62
+    },
+    "src/combat/control-target-acceptance.ts": {
+      "numericLiterals": 187,
+      "configuredValueReads": 59
+    },
+    "src/combat/damage-rules.ts": {
+      "numericLiterals": 12,
+      "configuredValueReads": 0
+    },
+    "src/combat/death-demonic-acceptance.ts": {
+      "numericLiterals": 136,
+      "configuredValueReads": 45
+    },
+    "src/combat/dragon-echo-acceptance.ts": {
+      "numericLiterals": 148,
+      "configuredValueReads": 53
+    },
+    "src/combat/edge-earth-acceptance.ts": {
+      "numericLiterals": 119,
+      "configuredValueReads": 55
+    },
+    "src/combat/fervor-acceptance.ts": {
+      "numericLiterals": 9,
+      "configuredValueReads": 2
+    },
+    "src/combat/fire-fissure-acceptance.ts": {
+      "numericLiterals": 133,
+      "configuredValueReads": 57
+    },
+    "src/combat/flak-flesh-acceptance.ts": {
+      "numericLiterals": 151,
+      "configuredValueReads": 55
+    },
+    "src/combat/frost-control-acceptance.ts": {
+      "numericLiterals": 148,
+      "configuredValueReads": 66
+    },
+    "src/combat/fury-global-acceptance.ts": {
+      "numericLiterals": 130,
+      "configuredValueReads": 51
+    },
+    "src/combat/geometry-order-acceptance.ts": {
+      "numericLiterals": 78,
+      "configuredValueReads": 21
+    },
+    "src/combat/god-gust-acceptance.ts": {
+      "numericLiterals": 102,
+      "configuredValueReads": 38
+    },
+    "src/combat/hand-ice-acceptance.ts": {
+      "numericLiterals": 103,
+      "configuredValueReads": 40
+    },
+    "src/combat/historical-children.ts": {
+      "numericLiterals": 62,
+      "configuredValueReads": 6
+    },
+    "src/combat/historical-upgrades.ts": {
+      "numericLiterals": 212,
+      "configuredValueReads": 53
+    },
+    "src/combat/ice-inner-acceptance.ts": {
+      "numericLiterals": 214,
+      "configuredValueReads": 71
+    },
+    "src/combat/impact-restoration-acceptance.ts": {
+      "numericLiterals": 74,
+      "configuredValueReads": 26
+    },
+    "src/combat/inner-laser-acceptance.ts": {
+      "numericLiterals": 186,
+      "configuredValueReads": 58
+    },
+    "src/combat/leech-shredder-acceptance.ts": {
+      "numericLiterals": 115,
+      "configuredValueReads": 54
+    },
+    "src/combat/lifecycle-summon-acceptance.ts": {
+      "numericLiterals": 7,
+      "configuredValueReads": 0
+    },
+    "src/combat/links-and-gaze.ts": {
+      "numericLiterals": 72,
+      "configuredValueReads": 18
+    },
+    "src/combat/living-field-acceptance.ts": {
+      "numericLiterals": 89,
+      "configuredValueReads": 44
+    },
+    "src/combat/magma-burn.ts": {
+      "numericLiterals": 13,
+      "configuredValueReads": 0
+    },
+    "src/combat/main-engine-gaps.ts": {
+      "numericLiterals": 140,
+      "configuredValueReads": 49
+    },
+    "src/combat/main-gap-overrides.ts": {
+      "numericLiterals": 89,
+      "configuredValueReads": 9
+    },
+    "src/combat/main-summon-gaps.ts": {
+      "numericLiterals": 54,
+      "configuredValueReads": 3
+    },
+    "src/combat/main-upgrades-advanced.ts": {
+      "numericLiterals": 304,
+      "configuredValueReads": 233
+    },
+    "src/combat/main-upgrades-remaining.ts": {
+      "numericLiterals": 355,
+      "configuredValueReads": 175
+    },
+    "src/combat/main-upgrades.ts": {
+      "numericLiterals": 359,
+      "configuredValueReads": 243
+    },
+    "src/combat/mana-mirror-acceptance.ts": {
+      "numericLiterals": 152,
+      "configuredValueReads": 73
+    },
+    "src/combat/mist-flare-acceptance.ts": {
+      "numericLiterals": 158,
+      "configuredValueReads": 80
+    },
+    "src/combat/mobility-fields-acceptance.ts": {
+      "numericLiterals": 248,
+      "configuredValueReads": 62
+    },
+    "src/combat/motion-release-acceptance.ts": {
+      "numericLiterals": 215,
+      "configuredValueReads": 67
+    },
+    "src/combat/motion-scope-acceptance.ts": {
+      "numericLiterals": 249,
+      "configuredValueReads": 71
+    },
+    "src/combat/movement.ts": {
+      "numericLiterals": 40,
+      "configuredValueReads": 0
+    },
+    "src/combat/native-unit-profiles.ts": {
+      "numericLiterals": 9,
+      "configuredValueReads": 0
+    },
+    "src/combat/nature-omni-acceptance.ts": {
+      "numericLiterals": 70,
+      "configuredValueReads": 43
+    },
+    "src/combat/omnislash.ts": {
+      "numericLiterals": 30,
+      "configuredValueReads": 8
+    },
+    "src/combat/overcharge-cask-acceptance.ts": {
+      "numericLiterals": 146,
+      "configuredValueReads": 67
+    },
+    "src/combat/passive-damage-acceptance.ts": {
+      "numericLiterals": 160,
+      "configuredValueReads": 73
+    },
+    "src/combat/phantom-ward-acceptance.ts": {
+      "numericLiterals": 123,
+      "configuredValueReads": 36
+    },
+    "src/combat/plasma-pulse-acceptance.ts": {
+      "numericLiterals": 136,
+      "configuredValueReads": 37
+    },
+    "src/combat/prd.ts": {
+      "numericLiterals": 33,
+      "configuredValueReads": 0
+    },
+    "src/combat/presentation.ts": {
+      "numericLiterals": 5,
+      "configuredValueReads": 0
+    },
+    "src/combat/proc-acceptance.ts": {
+      "numericLiterals": 93,
+      "configuredValueReads": 41
+    },
+    "src/combat/pulverize-ravage-acceptance.ts": {
+      "numericLiterals": 126,
+      "configuredValueReads": 45
+    },
+    "src/combat/reactive-refraction-acceptance.ts": {
+      "numericLiterals": 168,
+      "configuredValueReads": 65
+    },
+    "src/combat/reflection-demon-acceptance.ts": {
+      "numericLiterals": 129,
+      "configuredValueReads": 46
+    },
+    "src/combat/resonant-arrow-acceptance.ts": {
+      "numericLiterals": 205,
+      "configuredValueReads": 72
+    },
+    "src/combat/restoration-identity-acceptance.ts": {
+      "numericLiterals": 93,
+      "configuredValueReads": 38
+    },
+    "src/combat/restoration-link-acceptance.ts": {
+      "numericLiterals": 184,
+      "configuredValueReads": 57
+    },
+    "src/combat/statistics-ui.ts": {
+      "numericLiterals": 7,
+      "configuredValueReads": 0
+    },
+    "src/combat/statistics.ts": {
+      "numericLiterals": 31,
+      "configuredValueReads": 0
+    },
+    "src/combat/summon-lineage-acceptance.ts": {
+      "numericLiterals": 347,
+      "configuredValueReads": 125
+    },
+    "src/combat/summon-restoration-acceptance.ts": {
+      "numericLiterals": 186,
+      "configuredValueReads": 83
+    },
+    "src/combat/visual-state.ts": {
+      "numericLiterals": 9,
+      "configuredValueReads": 0
+    },
+    "src/combat.ts": {
+      "numericLiterals": 1004,
+      "configuredValueReads": 2
+    },
+    "src/config.ts": {
+      "numericLiterals": 15,
+      "configuredValueReads": 0
+    },
+    "src/duel-presentation.ts": {
+      "numericLiterals": 17,
+      "configuredValueReads": 0
+    },
+    "src/fullscreen.ts": {
+      "numericLiterals": 1,
+      "configuredValueReads": 0
+    },
+    "src/game.ts": {
+      "numericLiterals": 257,
+      "configuredValueReads": 0
+    },
+    "src/global-config.ts": {
+      "numericLiterals": 0,
+      "configuredValueReads": 0
+    },
+    "src/hero-progression.ts": {
+      "numericLiterals": 6,
+      "configuredValueReads": 0
+    },
+    "src/inspection-ui.ts": {
+      "numericLiterals": 16,
+      "configuredValueReads": 0
+    },
+    "src/main.ts": {
+      "numericLiterals": 201,
+      "configuredValueReads": 0
+    },
+    "src/model.ts": {
+      "numericLiterals": 0,
+      "configuredValueReads": 0
+    },
+    "src/pwa.ts": {
+      "numericLiterals": 11,
+      "configuredValueReads": 0
+    },
+    "src/range-geometry.ts": {
+      "numericLiterals": 7,
+      "configuredValueReads": 0
+    },
+    "src/range-material.ts": {
+      "numericLiterals": 12,
+      "configuredValueReads": 0
+    },
+    "src/renderer.ts": {
+      "numericLiterals": 273,
+      "configuredValueReads": 0
+    },
+    "src/replay-store.ts": {
+      "numericLiterals": 1,
+      "configuredValueReads": 0
+    },
+    "src/replay-ui.ts": {
+      "numericLiterals": 48,
+      "configuredValueReads": 0
+    },
+    "src/replay.ts": {
+      "numericLiterals": 64,
+      "configuredValueReads": 0
+    },
+    "src/responsive-ui.ts": {
+      "numericLiterals": 4,
+      "configuredValueReads": 0
+    },
+    "src/simulation-version.ts": {
+      "numericLiterals": 0,
+      "configuredValueReads": 0
+    },
+    "src/skill-effects-extra.ts": {
+      "numericLiterals": 1155,
+      "configuredValueReads": 669
+    },
+    "src/skill-effects-more-children.ts": {
+      "numericLiterals": 256,
+      "configuredValueReads": 116
+    },
+    "src/skill-effects-more.ts": {
+      "numericLiterals": 1330,
+      "configuredValueReads": 688
+    },
+    "src/skill-effects.ts": {
+      "numericLiterals": 633,
+      "configuredValueReads": 428
+    },
+    "src/skill-icons.ts": {
+      "numericLiterals": 0,
+      "configuredValueReads": 0
+    },
+    "src/skill-range.ts": {
+      "numericLiterals": 4,
+      "configuredValueReads": 0
+    },
+    "src/skill-text.ts": {
+      "numericLiterals": 0,
+      "configuredValueReads": 0
+    },
+    "src/visual-bindings.test.ts": {
+      "numericLiterals": 166,
+      "configuredValueReads": 0
+    },
+    "src/visual-bindings.ts": {
+      "numericLiterals": 103,
+      "configuredValueReads": 0
+    },
+    "src/visual-layers.ts": {
+      "numericLiterals": 2,
+      "configuredValueReads": 0
+    }
+  },
+  "candidates": [
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 20,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'arcticBurn',seconds,1,{dispel:'none',data:{token,hitTargets:''}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 22,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'flying',seconds,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 35,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.target,'arcticBurnDot',duration,1,{harmful:true,data:previous.data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 37,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'arcticBurnDot',duration,1,{harmful:true,data:{token}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 66,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'bladeFury',duration,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 66,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'magicImmune',c.skill.points>=6?duration:value(c,'MAGIC IMMUNITY DURATION'),1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 83,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'undying',seconds,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-modes.ts",
+      "line": 85,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'berserk',seconds,1,{dispel:'none',data:{targetId:c.currentAttackTargetId??'',searchRadius:value(c,'SEARCH RADIUS',900)/100,engaged:false}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 28,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(body,'hitCountBody',duration,1,{dispel:'none',passive:false,data:{heroDamage:v(c,'HERO HIT DAMAGE',750),basicDamage:v(c,'BASIC HIT DAMAGE',150),immuneSpells:true,treatIllu",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 36,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'undetectable',STEP*2,1,{dispel:'none',passive:false,data:{instanceKey:identity(c)}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 45,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'shadowDanceActive',v(c,'DURATION')+(!skillBalance(c.definition,c.skill.points)&&S(c)?1:0),1,{dispel:'none',passive:false,removeOnDeath:true,data:{instanceKey:ide",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 46,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'undetectable',STEP*2,1,{dispel:'none',passive:false,data:{instanceKey:identity(c)}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 50,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'undetectable',lease,1,{dispel:'none',passive:false,data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 57,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,kind,duration+STEP,1,{dispel:'none',removeOnDeath:true,data:{fistRun:run,instanceKey:run}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 72,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'spearFire',v(c,'TRAIL LINGER',2)+STEP,1,{harmful:true,dispel:'basic',removeOnDeath:true,data:{fireRun:key,instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-state-acceptance.ts",
+      "line": 99,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,kind,budget/speed+STEP*2,1,{harmful:true,dispel:'none',removeOnDeath:true,data:{spearRun:run,instanceKey:run}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-tempo-acceptance.ts",
+      "line": 80,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,kind,duration+STEP,1,{dispel:'none',removeOnDeath:true,data:{tempoRun:run,form:'tricks',hidden:kind==='visualForm',outOfGame:true}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-tempo-acceptance.ts",
+      "line": 98,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'unleash',duration,1,{dispel:'none',removeOnDeath:true,data:{tempoRun:run}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-tempo-acceptance.ts",
+      "line": 107,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'windrun',duration,1,{dispel:'basic',removeOnDeath:true,data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 41,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'courageReady',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 81,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'starbreakerActive',duration+STEP,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 81,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'disarm',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 83,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'magicImmune',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 84,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'motionRoot',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 84,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'phased',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/attack-trigger-acceptance.ts",
+      "line": 95,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'selfStun',value(c,'SELF STUN DURATION',.2),1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/aura-armor-acceptance.ts",
+      "line": 42,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'warpath',seconds,1,o)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/control-target-acceptance.ts",
+      "line": 43,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,kind,seconds,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/death-demonic-acceptance.ts",
+      "line": 98,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,marker,seconds,1,options)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/dragon-echo-acceptance.ts",
+      "line": 80,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'fireballBurn',linger,1,{harmful:true,dispel:'none',ignoreStatusResistance:true,data:{...data(c),burnGeneration:generation}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/dragon-echo-acceptance.ts",
+      "line": 104,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'empower',seconds,1,opts)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/edge-earth-acceptance.ts",
+      "line": 51,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(body,'fly',life,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/edge-earth-acceptance.ts",
+      "line": 70,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(unit,'duel',seconds,1,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,data:{targetId:partner.id,externalReduction,duelKey:key,breakDistance:",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/edge-earth-acceptance.ts",
+      "line": 119,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(body,'phased',duration,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fire-fissure-acceptance.ts",
+      "line": 35,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(victim,'fiendGrip',nominal,1,{harmful:true,dispel:'strong',piercesImmunity:true,maxStacks:Number.MAX_SAFE_INTEGER,data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fire-fissure-acceptance.ts",
+      "line": 39,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(victim,'revealed',seconds,1,{harmful:true,dispel:'strong',piercesImmunity:true,ignoreStatusResistance:true,maxStacks:Number.MAX_SAFE_INTEGER,data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fire-fissure-acceptance.ts",
+      "line": 99,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'phased',seconds,1,{dispel:'none',data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fire-fissure-acceptance.ts",
+      "line": 99,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'selfStun',seconds,1,{dispel:'none',data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/flak-flesh-acceptance.ts",
+      "line": 109,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(z,'attackTarget',v(c,'ZOMBIE DURATION',15),1,{dispel:'none',removeOnDeath:true,data:{targetId:c.target.id}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/flak-flesh-acceptance.ts",
+      "line": 110,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(z,'hitCountBody',v(c,'ZOMBIE DURATION',15),1,{dispel:'none',removeOnDeath:true,data:{heroDamage:2,basicDamage:1,immuneSpells:true}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/frost-control-acceptance.ts",
+      "line": 33,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'purifyingFlames',duration,1,{dispel:'basic',removeOnDeath:true,maxStacks:Number.MAX_SAFE_INTEGER,data:{ownerInstance:identity(c),token}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/frost-control-acceptance.ts",
+      "line": 58,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'revealed',v(c,'ROOT DURATION'),1,{harmful:true})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/frost-control-acceptance.ts",
+      "line": 76,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'frostShield',duration,1,{dispel:'basic',removeOnDeath:true,piercesImmunity:true,affectsInvulnerable:true,data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/frost-control-acceptance.ts",
+      "line": 131,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'spellBlock',FOREVER,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/frost-control-acceptance.ts",
+      "line": 133,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'spellBlock',FOREVER,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fury-global-acceptance.ts",
+      "line": 30,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'magicImmune',v(c,'SPELL IMMUNITY DURATION',4),1,{dispel:'none',passive:false})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fury-global-acceptance.ts",
+      "line": 67,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,kind,duration,1,{harmful:true,dispel:'basic',ignoreStatusResistance:true,data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/fury-global-acceptance.ts",
+      "line": 67,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'phased',duration,1,{dispel:'none',data})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/hand-ice-acceptance.ts",
+      "line": 161,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,kind,effectiveDuration,1,{...options,ignoreStatusResistance:true})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/ice-inner-acceptance.ts",
+      "line": 43,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(host,'inkSwell',seconds,1,{dispel:'basic',removeOnDeath:true,data:{inkRun:key,instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/ice-inner-acceptance.ts",
+      "line": 43,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(host,'inkSwell',seconds,1,{dispel:'basic',removeOnDeath:true,data:{inkRun:key,instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/ice-inner-acceptance.ts",
+      "line": 54,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(body,'hitCountBody',duration,1,{dispel:'none',passive:false,data:{heroDamage:v(c,'TOTEM HERO HIT DAMAGE',2),basicDamage:v(c,'TOTEM CREEP HIT DAMAGE',1),immuneSpells:true}}",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/ice-inner-acceptance.ts",
+      "line": 54,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(body,'motionRoot',duration,1,{dispel:'none',passive:false})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/inner-laser-acceptance.ts",
+      "line": 120,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 0.4,
+      "expression": "c.status(target,'visualLink',.4,0,{source:from.id,dispel:'none',ignoreStatusResistance:true,data:{layer:'beam',beneficiaryId:from.id}})",
+      "classification": "visual_playback",
+      "reason": "仅记录激光连线播放寿命，不参与伤害、盲目、生命或命中范围；与已绑定动画对应。"
+    },
+    {
+      "file": "src/combat/living-field-acceptance.ts",
+      "line": 21,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'livingArmor',duration,1,{dispel:'basic',removeOnDeath:true,data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 78,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 0.15,
+      "expression": "c.status(target, 'maxHpPct', .15, .15, sourceOptions(golem, AURA))",
+      "classification": "superseded_implementation",
+      "reason": "旧Beastmaster Granite Aura入口被summon-restoration-acceptance.ts覆盖；有效ANCIENT HEALTH AURA及ANCIENT AURA LINGER均在表内。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 78,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 0.15,
+      "expression": "c.status(target, 'maxHpPct', .15, .15, sourceOptions(golem, AURA))",
+      "classification": "superseded_implementation",
+      "reason": "旧Beastmaster Granite Aura入口被summon-restoration-acceptance.ts覆盖；有效ANCIENT HEALTH AURA及ANCIENT AURA LINGER均在表内。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 83,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(wolf, 'invisible', lifetime(c, wolf), 1, sourceOptions(wolf, INVIS))",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 91,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 0.1,
+      "expression": "c.status(wolf, 'invisible', .1, 1, sourceOptions(wolf, INVIS))",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 91,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(wolf, 'invisible', .1, 1, sourceOptions(wolf, INVIS))",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 134,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 0.1,
+      "expression": "c.status(c.caster, 'root', .1, 0, { skill: marker, dispel: 'none' })",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 135,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 0.1,
+      "expression": "c.status(c.caster, 'freePathing', .1, 1, { skill: marker, dispel: 'none' })",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/main-summon-gaps.ts",
+      "line": 135,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster, 'freePathing', .1, 1, { skill: marker, dispel: 'none' })",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 120,
+      "expression": "c.status(dragon,'regen',120,12)",
+      "classification": "superseded_implementation",
+      "reason": "旧Dragon Slave黑龙构建器已被edge-earth-acceptance.ts的dragon覆盖；有效DRAGON DURATION/各项DRAGON BONUS参数已在技能表。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 12,
+      "expression": "c.status(dragon,'regen',120,12)",
+      "classification": "superseded_implementation",
+      "reason": "旧Dragon Slave黑龙构建器已被edge-earth-acceptance.ts的dragon覆盖；有效DRAGON DURATION/各项DRAGON BONUS参数已在技能表。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 120,
+      "expression": "c.status(dragon,'manaRegen',120,4)",
+      "classification": "superseded_implementation",
+      "reason": "旧Dragon Slave黑龙构建器已被edge-earth-acceptance.ts的dragon覆盖；有效DRAGON DURATION/各项DRAGON BONUS参数已在技能表。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 4,
+      "expression": "c.status(dragon,'manaRegen',120,4)",
+      "classification": "superseded_implementation",
+      "reason": "旧Dragon Slave黑龙构建器已被edge-earth-acceptance.ts的dragon覆盖；有效DRAGON DURATION/各项DRAGON BONUS参数已在技能表。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 120,
+      "expression": "c.status(dragon,'fly',120)",
+      "classification": "superseded_implementation",
+      "reason": "旧Dragon Slave黑龙构建器已被edge-earth-acceptance.ts的dragon覆盖；有效DRAGON DURATION/各项DRAGON BONUS参数已在技能表。"
+    },
+    {
+      "file": "src/combat/main-upgrades-remaining.ts",
+      "line": 62,
+      "skill": "custom_dark_willow_cursed_crown",
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(victim,'cursedCrownWisp',wispDuration,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-upgrades.ts",
+      "line": 35,
+      "skill": "ogre_magi_bloodlust",
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'bloodlust',seconds,1)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/main-upgrades.ts",
+      "line": 126,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 1.5,
+      "expression": "c.status(t,'silence',1.5,0,{harmful:true})",
+      "classification": "superseded_implementation",
+      "reason": "旧Unleash已被attack-tempo-acceptance.ts完整注册覆盖；有效PULSE SILENCE已读取技能配置。"
+    },
+    {
+      "file": "src/combat/mana-mirror-acceptance.ts",
+      "line": 39,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'revealed',duration+STEP,1,{harmful:true,dispel:'none',removeOnDeath:true,piercesImmunity:true,data:{manaMirrorRun:run,instanceKey:run}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/mobility-fields-acceptance.ts",
+      "line": 197,
+      "skill": null,
+      "operation": "delay",
+      "argument": 1,
+      "value": 0.1,
+      "expression": "c.delay(.1,tick)",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/motion-scope-acceptance.ts",
+      "line": 32,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'slow',time,1,{harmful:true,dispel:'none',data})",
+      "classification": "control_lock",
+      "reason": "强制移动控制器的完整移动锁，与motionRoot/disarm同生共灭，不是独立平衡减速。"
+    },
+    {
+      "file": "src/combat/nature-omni-acceptance.ts",
+      "line": 28,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'naturesAttendants',Math.max(seconds,evilSeconds),1,{dispel:'none',removeOnDeath:false,ignoreStatusResistance:true,data:{wispToken:key,instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/overcharge-cask-acceptance.ts",
+      "line": 15,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'overcharge',duration,1,{dispel:'none',removeOnDeath:true,data:{overchargeCaskRun:run.key,instanceKey:id(c)}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/overcharge-cask-acceptance.ts",
+      "line": 20,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'maledict',duration+STEP,1,{harmful:true,dispel:'none',removeOnDeath:true,ignoreStatusResistance:true,data:{overchargeCaskRun:old.key,instanceKey:signature}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/overcharge-cask-acceptance.ts",
+      "line": 20,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'maledict',duration+STEP,1,{harmful:true,dispel:'none',removeOnDeath:true,ignoreStatusResistance:true,data:{overchargeCaskRun:run.key,instanceKey:signature}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/overcharge-cask-acceptance.ts",
+      "line": 25,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'revealed',remaining,1,options)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/passive-damage-acceptance.ts",
+      "line": 134,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'venomousGale',v(c,'DURATION'),1,{harmful:true,dispel:'basic',removeOnDeath:true,data:{passiveDamageRun:key,instanceKey:identity(c)}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/pulverize-ravage-acceptance.ts",
+      "line": 43,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'quillStack',v(c,'STACK DURATION'),1,{harmful:true,dispel:'none',piercesImmunity:true,removeOnDeath:true,maxStacks:Number.MAX_SAFE_INTEGER})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/pulverize-ravage-acceptance.ts",
+      "line": 61,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'purificationRecasts',n*interval+STEP,1,{dispel:'none',removeOnDeath:true,affectsInvulnerable:true,data:{instanceKey:key,pulverizeRavageRun:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/reactive-refraction-acceptance.ts",
+      "line": 31,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'reactiveArmor',seconds,1,opts)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/reactive-refraction-acceptance.ts",
+      "line": 56,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(image,'attackTarget',v(c,'ARMOR DEBUFF DURATION',6),1,{dispel:'none',data:{targetId:c.target.id}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/reactive-refraction-acceptance.ts",
+      "line": 68,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(image,'attackTarget',v(c,'ILLUSION DURATION',6),1,{dispel:'none',data:{targetId:target.id}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/restoration-identity-acceptance.ts",
+      "line": 37,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'eyeStormOwner',2*v(c,'DURATION'),1,{dispel:'none',removeOnDeath:true,data:{ownerInstance:identity(c)}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/restoration-identity-acceptance.ts",
+      "line": 100,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.target,'falsePromise',duration,1,{dispel:'none',data:{healMultiplier:1+v(c,'DELAYED HEAL AMPLIFICATION')/100}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/restoration-link-acceptance.ts",
+      "line": 93,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'crimsonActive',duration,1,{dispel:'basic',passive:false,removeOnDeath:true,affectsInvulnerable:true,data:{instanceKey:key}})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/restoration-link-acceptance.ts",
+      "line": 98,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'badJuju',n(JUJU,level,'STACK DURATION',12),1,options)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-lineage-acceptance.ts",
+      "line": 28,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(u,'fly',ROUND,1,{dispel:'none',passive:false})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-lineage-acceptance.ts",
+      "line": 36,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'invisible',STEP*2,1,{dispel:'none',passive:true})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-lineage-acceptance.ts",
+      "line": 40,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'attackTypeOverride',duration,1,o)",
+      "classification": "attack_type_enum",
+      "reason": "1代表近战攻击类型枚举；2代表远程，不能作为连续数值调参。"
+    },
+    {
+      "file": "src/combat/summon-lineage-acceptance.ts",
+      "line": 56,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(t,'freePathing',duration,1,o)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-lineage-acceptance.ts",
+      "line": 71,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.target,'mjollnirStatic',v(c,'STATIC DURATION',15),1,{dispel:'basic',passive:false})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(hawk,'fly',life,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(hawk,'disarm',life,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 34,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(hawk,'invisible',life,1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 37,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(enemy,'revealed',v(c,'TRUE SIGHT LINGER',.5),1,{source:warrior.id,dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 37,
+      "skill": null,
+      "operation": "delay",
+      "argument": 1,
+      "value": 0.1,
+      "expression": "c.delay(.1,sight)",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 45,
+      "skill": null,
+      "operation": "delay",
+      "argument": 1,
+      "value": 0.1,
+      "expression": "c.delay(.1,pulse)",
+      "classification": "refresh_lease",
+      "reason": "周期重新检查视野/位置/控制条件或延长短期状态租约；效果的真实持续时间、伤害间隔、强度和范围单独读取技能配置，不把检查频率与强度混为一项。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 60,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'revealed',v(c,'ABILITYCASTPOINT',1)+v(c,'DIVE DURATION',.4),1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 119,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'coldEmbrace',seconds,1,options)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 119,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'physicalImmune',seconds,1,options)",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/combat/summon-restoration-acceptance.ts",
+      "line": 159,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target,'corrosiveSkin',seconds,1,{harmful:true,dispel:'basic',affectsInvulnerable:true})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/skill-effects-extra.ts",
+      "line": 105,
+      "skill": null,
+      "operation": "delay",
+      "argument": 1,
+      "value": 0.25,
+      "expression": "c.delay(.25, () => bounce(next, remaining - 1))",
+      "classification": "superseded_implementation",
+      "reason": "旧共用Maelstrom helper的Mjollnir/Focus Fire入口均被最终注册覆盖；有效CHAIN DELAY/MAELSTROM BOUNCE DELAY已配置。"
+    },
+    {
+      "file": "src/skill-effects-extra.ts",
+      "line": 1368,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(target, 'badJuju', EXTRA_WORKING_DEFAULTS.badJujuDuration, 1, { harmful: sign < 0, dispel: 'none', maxStacks: 100, piercesImmunity: false })",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/skill-effects.ts",
+      "line": 442,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 0.25,
+      "expression": "c.status(t,'damageVulnerability',d,.25,{harmful:true})",
+      "classification": "superseded_implementation",
+      "reason": "旧Frostbite被frost-control-acceptance.ts覆盖；有效INCOMING DAMAGE AMP已配置。"
+    },
+    {
+      "file": "src/skill-effects.ts",
+      "line": 516,
+      "skill": "custom_clockwerk_battery_assault",
+      "operation": "status",
+      "argument": 4,
+      "value": 1,
+      "expression": "c.status(c.caster,'batteryAssault',duration(c),1,{dispel:'none'})",
+      "classification": "state_marker",
+      "reason": "状态存在标志、每次事件的一次计数或单次法术护盾的就绪标志；实际层数/强度由所属机制计算。"
+    },
+    {
+      "file": "src/skill-effects.ts",
+      "line": 597,
+      "skill": null,
+      "operation": "delay",
+      "argument": 1,
+      "value": 0.1,
+      "expression": "c.delay(.1,()=>c.attack(t,1,false))",
+      "classification": "superseded_implementation",
+      "reason": "旧Time Lock被attack-trigger-acceptance.ts覆盖；有效第二击延迟读取技能配置。"
+    },
+    {
+      "file": "src/skill-effects.ts",
+      "line": 607,
+      "skill": null,
+      "operation": "status",
+      "argument": 3,
+      "value": 120,
+      "expression": "c.status(t,'outgoingDamageReduction',120,.15,{harmful:true,maxStacks:6,data:{targetId:c.caster.id}})",
+      "classification": "superseded_implementation",
+      "reason": "旧Counter Helix被proc-acceptance.ts覆盖；有效减伤比例、持续时间及层数均读取技能配置。"
+    },
+    {
+      "file": "src/skill-effects.ts",
+      "line": 607,
+      "skill": null,
+      "operation": "status",
+      "argument": 4,
+      "value": 0.15,
+      "expression": "c.status(t,'outgoingDamageReduction',120,.15,{harmful:true,maxStacks:6,data:{targetId:c.caster.id}})",
+      "classification": "superseded_implementation",
+      "reason": "旧Counter Helix被proc-acceptance.ts覆盖；有效减伤比例、持续时间及层数均读取技能配置。"
+    }
+  ]
+}

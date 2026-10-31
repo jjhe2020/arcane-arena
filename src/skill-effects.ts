@@ -71,6 +71,8 @@ import {applyLinksAndGazeAcceptance,applyTetherAcceptance} from './combat/links-
 export const REFERENCE_UNITS_PER_WORLD_UNIT = 100;
 export type DamageType = 'physical' | 'magical' | 'pure';
 export interface EffectStatus extends Status {
+  /** Explicit UI semantics for effects whose runtime clock is a refresh/engine sentinel. */
+  presentation?: {hidden?:boolean;variant?:string;lifecycle?:'timed'|'permanent'|'aura';stackMode?:'none'|'instances'|'value'|'remaining';name?:string;description?:string};
   appliedAt?:number;
   affectsInvulnerable?:boolean;
   removeOnDeath?:boolean;

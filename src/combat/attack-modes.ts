@@ -1,7 +1,8 @@
-import {skillBalance} from '../config';
+import {GLOBAL_BATTLE_CONFIG} from '../global-config';
+import {skillBalance,balanceNumber} from '../config';
 import type {CombatUnit} from '../model';
 import {skillValue as value,type EffectContext as C,type EffectStatus,type SkillProgram} from '../skill-effects';
-const STEP=1/30,FOREVER=120;
+const STEP=1/30,FOREVER=GLOBAL_BATTLE_CONFIG.timeLimit;
 const has=(u:CombatUnit,kind:string)=>u.statuses.some(s=>s.kind===kind);
 const statuses=(u:CombatUnit)=>u.statuses as EffectStatus[];
 const distance=(a:{x:number;y:number},b:{x:number;y:number})=>Math.hypot(a.x-b.x,a.y-b.y);
@@ -46,7 +47,7 @@ export function applyAttackModeAcceptance(registry:Record<string,SkillProgram>):
 
  const blood=registry.huskar_berserkers_blood;
  blood.init=c=>{
-  if(c.skill.points>=9)c.status(c.caster,'strength',FOREVER,60,{dispel:'none',passive:false});
+  if(c.skill.points>=9)c.status(c.caster,'strength',FOREVER,balanceNumber(c,'skill_effects_extra.buff_amount.1',60),{dispel:'none',passive:false});
   const update=()=>{const raw=Math.max(0,Math.min(1,(1-c.caster.hp/c.caster.maxHp)/(1-value(c,'HP FOR MAX BONUS')/100))),scale=Math.pow(raw,value(c,'BONUS EXPONENT',1.85));
    refresh(c,'attackSpeed',value(c,'MAX ATTACK SPEED')*scale);
    refresh(c,'magicResist',c.caster.illusion?0:value(c,'MAX MAGIC RESIST')/100*scale);
@@ -65,7 +66,7 @@ export function applyAttackModeAcceptance(registry:Record<string,SkillProgram>):
   c.dispel(c.caster);c.status(c.caster,'bladeFury',duration,1,{dispel:'none'});c.status(c.caster,'magicImmune',c.skill.points>=6?duration:value(c,'MAGIC IMMUNITY DURATION'),1,{dispel:'none'});
   c.zone({follow:true,radius,duration,interval,includeEnd:true,effect:t=>{if(!t.ward&&!t.building)c.damage(t,damage*interval);}});
   if(c.skill.points>=9){
-   c.status(c.caster,'moveFlat',duration,1,{dispel:'none'});
+   c.status(c.caster,'moveFlat',duration,value(c,'GABEN MOVE SPEED',100)/100,{dispel:'none'});
    const until=c.battle.time+duration,attack=()=>{if(c.caster.dead||c.battle.time>=until-1e-8||!own(c,c.caster,'bladeFury'))return;
     const targets=c.enemies().filter(t=>!t.ward&&!t.building&&distance(t,c.caster)<=radius&&(c.canTarget?.(t,true)??true));
     if(targets.length)c.attack(targets[Math.floor(c.random()*targets.length)],value(c,'GABEN ATTACK DAMAGE',100)/100,true,undefined,false,{ignoreBladeFuryPenalty:true});

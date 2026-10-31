@@ -95,6 +95,9 @@ export interface VisualWorldEffect extends VisualPoint {
   angle?: number;
   size?: number;
   radius?: number;
+  /** Exact visible spell band, excluding the victim's body radius. */
+  innerRadius?:number;
+  outerRadius?:number;
   previousRadius?: number;
   halfWidth?: number;
   maxRadius?: number;

@@ -53,6 +53,11 @@ jobs:
       - name: Build production version
         run: npm run build
 
+      - name: Audit every skill rank and remaining configuration constants
+        run: |
+          npm run ranges:audit
+          npm run config:audit
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
@@ -91,6 +96,8 @@ jobs:
           node scripts/shop-menu-smoke.mjs
           node scripts/ui-integrity-smoke.mjs
           node scripts/recovery-smoke.mjs
+          node scripts/replay-feature-smoke.mjs
+          node scripts/tablet-layout-smoke.mjs
 
       - name: Package playable version
         run: python scripts/package-release.py
@@ -197,6 +204,9 @@ jobs:
             artifacts/skill-stats/
             artifacts/shop-menu-smoke/
             artifacts/ui-integrity-smoke/
+            artifacts/r13-replay/
+            artifacts/tablet-layout/
+            artifacts/r13-buffs-inspection/
             artifacts/*.json
             artifacts/*.png
             ${{ runner.temp }}/arena-release-server.log

@@ -33,3 +33,41 @@
 .hero-level{display:inline-block;padding:2px 5px;border:1px solid #b7a16a;color:#f5d98e;font-size:11px;line-height:1.25;vertical-align:middle;white-space:nowrap;border-radius:3px;background:#252a22}
 .hero-roster-level{position:absolute;right:1px;bottom:1px;padding:1px 3px;color:#f5d98e;background:#131c1be6;font-size:9px;line-height:1.3;white-space:nowrap;pointer-events:none;border-radius:2px}
 .role-card .role-growth{display:block;color:#b8c6c0;font-size:11px;line-height:1.6;white-space:normal;margin-top:5px}
+
+/* Font sizing follows available controls without scaling the interactive world. */
+.game{--ui-text-scale:1;--tablet-touch-target:36px;--tablet-shop-columns:6}
+.game .unit-heading h2{font-size:calc(18px * var(--ui-text-scale))}
+.game .rail-tabs button,.game .rail-global-tools button{font-size:calc(12px * var(--ui-text-scale))!important;min-width:0;letter-spacing:0}
+.game .unit-stats dt,.game .section-heading,.game .info-subtitle{font-size:calc(11px * var(--ui-text-scale))!important;letter-spacing:0}
+.game .unit-stats dd{font-size:calc(13px * var(--ui-text-scale))!important;white-space:nowrap}
+.game .unit-flavour,.game .info-note,.game .inspection-help{font-size:calc(11px * var(--ui-text-scale))!important;overflow-wrap:anywhere}
+.game .shop-side button{font-size:calc(11px * var(--ui-text-scale))!important;letter-spacing:0}
+.game .shop-side button span{white-space:nowrap}
+.game .session-controls button{font-size:calc(12px * var(--ui-text-scale))}
+.game .unit-heading>div{min-width:0}.game .unit-heading h2{overflow-wrap:anywhere;letter-spacing:0}.game .unit-stats{column-gap:8px}.game .unit-stats>div{gap:3px;min-width:0}
+.game .team-roster .hero-portrait-button{width:40px;height:40px;min-width:28px;flex:0 0 auto}
+
+/* Tall tablet formation boards use their vertical space for six larger offers
+ * per row. DOM order and all twelve original purchase indexes stay intact. */
+.game[data-tablet-shop=true] .arena-shop{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"left right" "offers offers";gap:7px 12px!important;padding:8px!important;bottom:26px!important;max-width:700px;--shop-gap:5px}
+.game[data-tablet-shop=true] .shop-left{grid-area:left;display:grid;grid-template-columns:minmax(0,1fr) minmax(82px,1fr);align-items:center;gap:8px!important}
+.game[data-tablet-shop=true] .shop-right{grid-area:right;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(84px,1fr);align-items:center;gap:7px!important}
+.game[data-tablet-shop=true] .shop-wallet{min-width:0;justify-content:space-around}
+.game[data-tablet-shop=true] .arena-shop .shop-grid{grid-area:offers;display:grid;grid-template-columns:repeat(var(--tablet-shop-columns),minmax(0,1fr))!important;grid-template-rows:repeat(2,auto)!important;gap:var(--shop-gap)!important;overflow:visible}
+.game[data-tablet-shop=true] .arena-shop .shop-card{min-width:0;aspect-ratio:1;max-height:104px}
+.game[data-tablet-shop=true] .arena-shop .shop-card .buy-skill{min-height:0;height:100%;touch-action:manipulation;aspect-ratio:1}
+.game[data-tablet-shop=true] .arena-shop .shop-side button{min-height:var(--tablet-touch-target)!important;padding:5px 3px!important;font-size:calc(12px * var(--ui-text-scale))!important;line-height:1.3}
+.game[data-tablet-shop=true] .arena-shop .shop-side .economy-help{min-height:14px!important;width:14px!important;height:14px!important;padding:0!important;font-size:9px!important;line-height:12px}
+.game[data-tablet-shop=true] .arena-shop .shop-buttons{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px}
+.game[data-tablet-shop=true] .arena-shop .ready-button span{margin-left:3px}
+.game[data-tablet-shop=true] .arena-shop .skill-name{line-height:1.3;padding:12px 2px 4px}
+.game[data-tablet-shop=true] .arena-shop .price{font-size:10px!important}
+.game[data-tablet-shop=true] .arena-shop .shop-label strong{font-size:10px!important;white-space:nowrap}
+.game[data-tablet-shop=true] .arena-shop .shop-label>span{font-size:9px!important;white-space:nowrap}
+.game[data-tablet-shop=true] .arena-shop .economy>strong{font-size:21px!important}
+@media(max-width:900px) and (min-height:601px){
+ .game[data-tablet-shop=true] .arena-shop .shop-left,.game[data-tablet-shop=true] .arena-shop .shop-right{display:flex;flex-direction:column;gap:4px!important}
+ .game[data-tablet-shop=true] .arena-shop .shop-wallet,.game[data-tablet-shop=true] .arena-shop .shop-buttons{width:100%}
+ .game[data-tablet-shop=true] .arena-shop .shop-label{flex-direction:row;align-items:center!important}
+ .game[data-tablet-shop=true] .arena-shop .shop-side>#shopUpgrade,.game[data-tablet-shop=true] .arena-shop .shop-side>#ready{width:100%}
+}
