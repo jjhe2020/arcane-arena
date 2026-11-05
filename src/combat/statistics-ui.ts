@@ -1,10 +1,11 @@
 import type {AbilityStats,DamageAmounts,UnitStats} from '../model';
 import {BASIC_ATTACK_ID,DAMAGE_NAMES,groupAbilityStats} from './statistics';
+import {GOD_SKILLS,GODS} from '../gods';
 export type StatisticsMetric='damage'|'taken'|'healing'|'absorbed';
 const escape=(value:unknown)=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const amount=(value:number)=>Math.round(value).toLocaleString('zh-CN');
 export const statisticValue=(row:UnitStats|AbilityStats,metric:StatisticsMetric)=>row[metric]??0;
-export function abilityLabel(id:string,names:Map<string,string>):string{return id===BASIC_ATTACK_ID?'普通攻击':names.get(id)??({lifesteal:'攻击吸血',spell_lifesteal:'法术吸血',regeneration:'生命恢复'}[id]??id);}
+export function abilityLabel(id:string,names:Map<string,string>):string{return id===BASIC_ATTACK_ID?'普通攻击':names.get(id)??({lifesteal:'攻击吸血',spell_lifesteal:'法术吸血',regeneration:'生命恢复',[GOD_SKILLS.centaur]:GODS.centaur.power}[id]??id);}
 export function damageBreakdown(types:DamageAmounts):string{return(['physical','magical','pure'] as const).filter(type=>types[type]>0).map(type=>`<span class="damage-${type}">${DAMAGE_NAMES[type]} ${amount(types[type])}</span>`).join('');}
 function leavesHTML(rows:AbilityStats[],metric:StatisticsMetric,names:Map<string,string>):string{
  return rows.filter(row=>statisticValue(row,metric)>0).sort((a,b)=>statisticValue(b,metric)-statisticValue(a,metric)||a.key.localeCompare(b.key)).map(row=>`<div class="ability-stat-leaf"><div><span>${escape(abilityLabel(row.abilityId,names))}</span><b class="${metric==='healing'?'healing-value':''}">${amount(statisticValue(row,metric))}</b></div><small>${metric==='taken'||metric==='absorbed'?'来源':'单位'}：${escape(row.sourceName)}</small>${metric==='healing'||metric==='absorbed'?'':`<div class="damage-breakdown">${damageBreakdown(metric==='damage'?row.damageTypes:row.takenTypes)}</div>`}</div>`).join('');

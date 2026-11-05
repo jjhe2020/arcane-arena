@@ -83,12 +83,15 @@ describe('shared inventory and transactions', () => {
 });
 
 describe('round planning and deterministic AI', () => {
-  it('pays next-round income once, does not carry balances, and survives repeated transition calls', () => {
+  it('pays next-round income once, awards one discount for any positive balance, and survives repeated transition calls', () => {
     const state = newGame(10, 1.5, defs);
     expect(state.players[0].gold).toBe(6); expect(state.players[1].gold).toBe(9);
     expect(startRound(state, defs)).toBeNull();
     expect(state.round).toBe(1); expect(state.planningRound).toBe(2);
     expect(state.players[0].gold).toBe(8); expect(state.players[1].gold).toBe(12);
+    expect(state.players[0].shopCarryDiscount).toBe(1);
+    expect(state.players[1].shopCarryDiscount??0).toBe(0);
+    expect(shopUpgradeCost(state, 0)).toBe(Math.max(0,GAME_RULES.shopUpgradePrices[0]-GAME_RULES.upgradeDiscountPerRound-1));
     expect(buySkill(state, 0, state.players[0].shop.findIndex(Boolean))).toBeNull();
     const before = serializeGame(state);
     expect(startRound(state, defs)).not.toBeNull(); expect(prepareRound(state, defs)).not.toBeNull();
@@ -96,7 +99,21 @@ describe('round planning and deterministic AI', () => {
     expect(finishRound(state, reports(state))).toBeNull();
     expect(prepareRound(state, defs)).toBeNull(); expect(prepareRound(state, defs)).toBeNull();
     expect(state.round).toBe(2); expect(state.players[0].gold).toBe(5);
+    expect(state.players[0].shopCarryDiscount).toBe(1);
     expectConservation(state);
+  });
+
+  it('adds a discount only for a saved coin at reset and retains it across upgrades and saves', () => {
+    const state = newGame(10, 1, defs), player = state.players[0];
+    player.gold=0; advance(state);
+    expect(player.shopCarryDiscount??0).toBe(0);
+    player.gold=1; advance(state);
+    expect(player.shopCarryDiscount).toBe(1);
+    player.gold=8; advance(state);
+    expect(player.shopCarryDiscount).toBe(2);
+    player.gold=100; expect(upgradeShop(state,0)).toBeNull();
+    expect(shopUpgradeCost(state,0)).toBe(Math.max(0,GAME_RULES.shopUpgradePrices[1]-3*GAME_RULES.upgradeDiscountPerRound-2));
+    expect(restoreGame(serializeGame(state),defs)?.players[0].shopCarryDiscount).toBe(2);
   });
 
   it('keeps the current battle unchanged by next-round sales, role changes and purchases', () => {

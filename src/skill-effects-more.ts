@@ -2,6 +2,7 @@ import {skillBalance} from './config';
 import {defaultMotionDuration} from './config';
 import {configuredValue} from './config';
 import {balanceNumber} from './config';
+import {enlargedSkillArea} from './hero-enchantments';
 import type { CombatUnit } from './model';
 import type { EffectContext, EffectStatus, InstantAttackOptions, SkillProgram } from './skill-effects';
 import { addVisualProjectile, moveVisualProjectile, removeVisualProjectile, addVisualWorldEffect, updateVisualWorldEffect, removeVisualWorldEffect } from './combat/visual-state';
@@ -12,7 +13,7 @@ const value = (c: EffectContext, key: string, fallback = 0): number => {
   const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row = c.definition.values.filter(r => r.slice(0, r.indexOf(':')).trim().toUpperCase() === key.toUpperCase()).at(-1);
   const numbers = row?.slice(row.indexOf(':') + 1).match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
-  return numbers[Math.min(numbers.length - 1, Math.max(0, Math.min(2, c.skill.points - 1)))] ?? fallback;
+  return enlargedSkillArea(c.caster,key,numbers[Math.min(numbers.length - 1, Math.max(0, Math.min(2, c.skill.points - 1)))] ?? fallback);
 };
 const v = value, U = (n: number) => n / 100, P = (n: number) => Math.abs(n) / 100;
 const superLevel = (c: EffectContext) => c.skill.points >= 6;

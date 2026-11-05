@@ -4,6 +4,8 @@ import {MECHANICS_HASH,ECONOMY_CONFIG,SHOP_LEVELS} from './config';
 import {validateUnitStatistics} from './combat/statistics';
 import {BOARD_CONFIG,AI_CONFIG} from './global-config';
 import {ARENA_SCALE,BATTLE_BOUNDS} from './arena-layout';
+import {BONELESS_SHOP_SLOTS,equippedGodPoints,GOD_IDS,GOD_OPENING_ROLE,godSkillScore,godTarget,godTargetScore,isGodId,isTargetedGod,legionAttackForRound,VACATION_DOUBLE_PRICE,validGodSelection,type GodId} from './gods';
+import {arrivalEnchantments,chooseAiEnchantment,ENCHANTMENT_REDRAW_PRICE,redrawEnchantments,validEnchantmentState} from './hero-enchantments';
 
 /** The public menu and saved games share these exact sixteen AI budget steps. */
 export const DIFFICULTY_LEVELS:readonly number[]=Object.freeze(Array.from({length:16},(_,index)=>(10+index)/10));
@@ -20,7 +22,7 @@ export const GAME_RULES = {
   // upgrade costs are configurable project defaults, not a claimed AA patch.
   heroArrivalRounds: ECONOMY_CONFIG.heroArrivalRounds, saleGoldPerPoint: ECONOMY_CONFIG.saleGoldPerPoint,
   shopUpgradePrices: SHOP_LEVELS.slice(0,4).map(level=>level.upgradePrice), upgradeDiscountPerRound: ECONOMY_CONFIG.upgradeDiscountPerRound,
-  // User confirmed five levels and two reserved, inactive God placeholders.
+  // Five levels and two reserved slots in the regular shop.
   maximumShopLevel: 5,
 } as const;
 
@@ -75,8 +77,23 @@ function shuffle<T>(state: GameState, values: T[]): T[] {
   return result;
 }
 
+function enchantmentRandom(state: GameState): number {
+  // Redrawing an enchantment must not change the shop or pairing RNG stream.
+  let value = state.enchantmentRng ?? ((state.seed ^ 0x9e3779b9) || 0x6d2b79f5);
+  value ^= value << 13; value ^= value >>> 17; value ^= value << 5;
+  state.enchantmentRng = value >>> 0;
+  return state.enchantmentRng / 4294967296;
+}
+
 export function roundIncome(round: number): number { return Math.min(ECONOMY_CONFIG.incomeCap, ECONOMY_CONFIG.incomeBase + ECONOMY_CONFIG.incomePerRound * Math.max(0, round - 1)); }
-export function shopOfferCount(level:number):number{return GAME_RULES.activeShopSlots[Math.max(0,Math.min(4,Math.floor(level)-1))];}
+export function shopOfferCount(level:number,god?:GodId):number {
+  const slots=god==='bonelessAghanim'?BONELESS_SHOP_SLOTS:GAME_RULES.activeShopSlots;
+  return slots[Math.max(0,Math.min(4,Math.floor(level)-1))];
+}
+export function shopOfferPoints(player:Player,slot:number):number{return player.god?.doubleSlots?.includes(slot)?2:1;}
+export function shopOfferPrice(player:Player,slot:number):number{return shopOfferPoints(player,slot)===2?VACATION_DOUBLE_PRICE:GAME_RULES.skillPrice;}
+export function shopRerollCost(player:Player):number{return player.god?.id==='sideshopMan'&&!player.god.freeRerollUsed?0:GAME_RULES.rerollPrice;}
+export function skillSalePrice(player:Player,points:number):number{return points*(player.god?.id==='sideshopMan'?GAME_RULES.skillPrice:GAME_RULES.saleGoldPerPoint);}
 export function heroCountForRound(round: number): number { return GAME_RULES.heroArrivalRounds.filter(r => r <= round).length; }
 export function skillTier(points: number): 'basic' | 'standard' | 'super' | 'gaben' {
   return points >= 9 ? 'gaben' : points >= 6 ? 'super' : points >= 3 ? 'standard' : 'basic';
@@ -84,9 +101,11 @@ export function skillTier(points: number): 'basic' | 'standard' | 'super' | 'gab
 /** Current official FAQ formula; floor rounding and draws are project defaults. */
 export function roundDamage(round: number, survivors: number): number { return Math.max(1, Math.floor(ECONOMY_CONFIG.roundDamageBase + round / ECONOMY_CONFIG.roundDamageDivisor + survivors * round / ECONOMY_CONFIG.roundDamageDivisor)); }
 
-function makeHero(player: number, index: number): Hero {
-  const role = roleOrder[(index + (player % 4)) % roleOrder.length];
-  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [BOARD_CONFIG.defaultHeroX1, BOARD_CONFIG.defaultHeroX2, BOARD_CONFIG.defaultHeroX3, BOARD_CONFIG.defaultHeroX4, BOARD_CONFIG.defaultHeroX5][index] * ARENA_SCALE, y: (role === 'tank' || role === 'assassin' ? BOARD_CONFIG.frontRowY : BOARD_CONFIG.backRowY) * ARENA_SCALE, skills: Array(4).fill(null) };
+function makeHero(state: GameState, player: number, index: number): Hero {
+  const god=player>0&&index===0?state.players[player].god?.id:undefined;
+  const role=(god&&GOD_OPENING_ROLE[god])??roleOrder[(index + (player % 4)) % roleOrder.length];
+  const choice = arrivalEnchantments(() => enchantmentRandom(state));
+  return { id: `p${player}-h${index}`, name: `${ROLES[role].name} ${index + 1}`, role, skin: (player + index) % 2 ? 'male' : 'female', x: [BOARD_CONFIG.defaultHeroX1, BOARD_CONFIG.defaultHeroX2, BOARD_CONFIG.defaultHeroX3, BOARD_CONFIG.defaultHeroX4, BOARD_CONFIG.defaultHeroX5][index] * ARENA_SCALE, y: (role === 'tank' || role === 'assassin' ? BOARD_CONFIG.frontRowY : BOARD_CONFIG.backRowY) * ARENA_SCALE, skills: Array(4).fill(null), enchantmentId: player === 0 ? choice.options[0] : chooseAiEnchantment(role, choice), ...(player === 0 ? {enchantmentChoice: choice} : {}) };
 }
 
 function editable(state: GameState, playerId: number): Player | string {
@@ -99,22 +118,28 @@ function editable(state: GameState, playerId: number): Player | string {
 
 function allStacks(player: Player): SkillStack[] { return [...player.heroes.flatMap(h => h.skills), ...player.reserve].filter((s): s is SkillStack => s !== null); }
 function releaseShop(state: GameState, player: Player): void {
-  player.shop.forEach(id => { if (id !== null) state.pool[id]++; });
+  player.shop.forEach((id,slot) => { if (id !== null) state.pool[id]+=shopOfferPoints(player,slot); });
   player.shop.fill(null);
+  if(player.god?.id==='vacationAghanim')player.god.doubleSlots=[];
+}
+function canOfferSkill(player:Player,def:SkillDefinition):boolean {
+  return !def.ultimate||(player.god?.id!=='bonelessAghanim'&&player.shopLevel>=GAME_RULES.ultimateShopLevel);
+}
+function drawShopSlot(state:GameState,player:Player,slot:number,ids:string[]):void {
+  if(player.shop[slot]!==null)return;
+  const available=ids.reduce((sum,id)=>sum+state.pool[id],0);
+  if(!available)return;
+  let roll=Math.floor(random(state)*available);
+  for(const id of ids)if((roll-=state.pool[id])<0){
+    const double=player.god?.id==='vacationAghanim'&&state.pool[id]>=2&&random(state)<.07;
+    if(double)(player.god!.doubleSlots??=[]).push(slot);
+    player.shop[slot]=id;state.pool[id]-=double?2:1;
+    return;
+  }
 }
 function drawShop(state: GameState, player: Player, startSlot=0): void {
-  const catalog = catalogFor(state);
-  const ids = [...state.matchSkillIds].sort().filter(id => !catalog.get(id)!.ultimate || player.shopLevel >= GAME_RULES.ultimateShopLevel);
-  for (let slot = startSlot; slot < shopOfferCount(player.shopLevel); slot++) {
-    if (player.shop[slot] !== null) continue;
-    const available = ids.reduce((sum, id) => sum + state.pool[id], 0);
-    if (!available) break;
-    let roll = Math.floor(random(state) * available);
-    for (const id of ids) {
-      roll -= state.pool[id];
-      if (roll < 0) { player.shop[slot] = id; state.pool[id]--; break; }
-    }
-  }
+  const catalog=catalogFor(state),ids=[...state.matchSkillIds].sort().filter(id=>canOfferSkill(player,catalog.get(id)!));
+  for(let slot=startSlot;slot<shopOfferCount(player.shopLevel,player.god?.id);slot++)drawShopSlot(state,player,slot,ids);
 }
 
 function beginPlanning(state: GameState, round: number): void {
@@ -124,31 +149,27 @@ function beginPlanning(state: GameState, round: number): void {
   // retain another player's old shop stock simply by being processed first.
   living.forEach(p => { if (!p.locked) releaseShop(state, p); });
   living.forEach(p => {
+    if (p.gold >= 1) p.shopCarryDiscount = (p.shopCarryDiscount ?? 0) + 1;
     p.gold = Math.floor(roundIncome(round) * (p.id === 0 ? 1 : state.difficulty));
-    while (p.heroes.length < heroCountForRound(round)) p.heroes.push(makeHero(p.id, p.heroes.length));
+    if(p.god?.id==='sideshopMan')p.god.freeRerollUsed=false;
+    while (p.heroes.length < heroCountForRound(round)) p.heroes.push(makeHero(state, p.id, p.heroes.length));
   });
   const order = [...living.slice(round % living.length), ...living.slice(0, round % living.length)];
   // One offer per player at a time avoids filling one complete shop first.
   const catalog = catalogFor(state);
-  const ids = [...state.matchSkillIds].sort();
-  for (let slot = 0; slot < GAME_RULES.regularShopSlots; slot++) for (const p of order) {
-    if(slot>=shopOfferCount(p.shopLevel))continue;
-    if (p.shop[slot] !== null) continue;
-    const eligible = ids.filter(id => state.pool[id] > 0 && (!catalog.get(id)!.ultimate || p.shopLevel >= GAME_RULES.ultimateShopLevel));
-    const total = eligible.reduce((sum, id) => sum + state.pool[id], 0);
-    if (!total) continue;
-    let roll = Math.floor(random(state) * total);
-    for (const id of eligible) if ((roll -= state.pool[id]) < 0) { state.pool[id]--; p.shop[slot] = id; break; }
-  }
+  const ids=[...state.matchSkillIds].sort();
+  const eligible=new Map(order.map(p=>[p.id,ids.filter(id=>canOfferSkill(p,catalog.get(id)!))]));
+  for(let slot=0;slot<GAME_RULES.shopSlots;slot++)for(const p of order)if(slot<shopOfferCount(p.shopLevel,p.god?.id))drawShopSlot(state,p,slot,eligible.get(p.id)!);
 }
 
-export function newGame(seed: number, difficulty: number, defs: SkillDefinition[]): GameState {
+export function newGame(seed: number, difficulty: number, defs: SkillDefinition[], god?:GodId): GameState {
   if (!Number.isFinite(seed)) throw new Error('随机种子无效');
   if (!isValidDifficulty(difficulty)) throw new Error('难度倍率必须为 1.0 至 2.5 之间的 0.1 递增档位');
+  if (god!==undefined&&!isGodId(god))throw new Error('请选择可用的神');
   const state: GameState = {
     version: GAME_RULES.version, seed: seed >>> 0, rng: (seed >>> 0) || 0x6d2b79f5,
     round: 1, planningRound: 1, phase: 'prep', difficulty,
-    players: Array.from({ length: 8 }, (_, id) => ({ id, name: id ? `对手 ${id}` : '你', hp: GAME_RULES.initialHp, gold: 0, shopLevel: 1, heroes: [makeHero(id, 0)], reserve: Array(4).fill(null), shop: Array(12).fill(null), locked: false })),
+    players: Array.from({ length: 8 }, (_, id) => ({ id, name: id ? `对手 ${id}` : '你', hp: GAME_RULES.initialHp, gold: 0, shopLevel: 1, heroes: [], reserve: Array(4).fill(null), shop: Array(12).fill(null), locked: false })),
     pool: Object.fromEntries(defs.map(d => [d.id, GAME_RULES.copiesPerSkill])),
     matchSkillIds:[],nextSkillInstance:1,
     pairs: [], ghostPairs: [], battlePlayers: [], history: [], pendingReports: [], selectedHero: 0, battleSeed: 0,
@@ -157,6 +178,7 @@ export function newGame(seed: number, difficulty: number, defs: SkillDefinition[
   // FAQ specifies 100 available skills but no base/ultimate quota. Sample
   // uniformly without replacement; smaller catalogs are test fixtures only.
   state.matchSkillIds=shuffle(state,defs.map(d=>d.id).sort()).slice(0,GAME_RULES.matchPoolSize);
+  if(god)for(const player of state.players)player.god={id:player.id===0?god:GOD_IDS[Math.floor(random(state)*GOD_IDS.length)]};
   beginPlanning(state, 1);
   return state;
 }
@@ -182,28 +204,32 @@ function location(player: Player, at: SkillLocation): { slots: (SkillStack | nul
 
 export function buySkill(state: GameState, playerId: number, shopIndex: number): string | null {
   const player = editable(state, playerId); if (typeof player === 'string') return player;
-  if(!integer(shopIndex,0,shopOfferCount(player.shopLevel)-1))return shopIndex>=10?'God位置尚未开放':'这个商品位尚未解锁';
+  if(!integer(shopIndex,0,shopOfferCount(player.shopLevel,player.god?.id)-1))return shopIndex>=10?'God位置尚未开放':'这个商品位尚未解锁';
   if (!integer(shopIndex, 0, 11)) return '商品位置无效';
   const id = player.shop[shopIndex]; if (!id) return '这个商品已售出';
   const existing = allStacks(player).find(s => s.id === id);
   if (existing && existing.points >= GAME_RULES.maximumPoints) return '该技能已经达到 Gaben';
+  const points=shopOfferPoints(player,shopIndex),price=shopOfferPrice(player,shopIndex);
+  if(existing&&existing.points+points>GAME_RULES.maximumPoints)return '购买双点商品会超过技能点上限';
   // A duplicate upgrades its existing instance. Only independent purchases need
   // an empty reserve slot; all rejection checks precede transaction mutations.
   const destination=existing?null:purchaseReserve(player);
   if(!existing&&!destination)return '暂存区已满，无法购买';
-  if (player.gold < GAME_RULES.skillPrice) return `金币不足，需要 ${GAME_RULES.skillPrice} 金币`;
-  player.gold -= GAME_RULES.skillPrice;
-  player.shop[shopIndex] = null; // Reserved shop copy becomes an owned point.
-  if (existing) { existing.points++; if(existing.points===6&&existing.superRound===undefined)existing.superRound=state.planningRound; }
-  else { const target = location(player, destination!)!; target.slots[target.index] = { id, points: 1,instanceId:`ability:${state.nextSkillInstance++}` }; }
+  if (player.gold < price) return `金币不足，需要 ${price} 金币`;
+  player.gold-=price;player.shop[shopIndex]=null;
+  if(points===2)player.god!.doubleSlots=player.god!.doubleSlots!.filter(slot=>slot!==shopIndex);
+  if(existing){existing.points+=points;if(existing.points>=6&&existing.superRound===undefined)existing.superRound=state.planningRound;}
+  else { const target = location(player, destination!)!; target.slots[target.index] = { id, points,instanceId:`ability:${state.nextSkillInstance++}` }; }
   return null;
 }
 
 export function rerollShop(state: GameState, playerId: number): string | null {
   const player = editable(state, playerId); if (typeof player === 'string') return player;
   if (player.locked) return '请先解除商店锁定';
-  if (player.gold < GAME_RULES.rerollPrice) return `刷新需要 ${GAME_RULES.rerollPrice} 金币`;
-  player.gold -= GAME_RULES.rerollPrice;
+  const cost=shopRerollCost(player);
+  if (player.gold < cost) return `刷新需要 ${cost} 金币`;
+  player.gold -= cost;
+  if(player.god?.id==='sideshopMan')player.god.freeRerollUsed=true;
   releaseShop(state, player); drawShop(state, player);
   return null;
 }
@@ -217,7 +243,8 @@ export function lockShop(state: GameState, playerId: number, locked?: boolean): 
 export function shopUpgradeCost(state: GameState, playerId: number): number {
   const player = state.players.find(p => p.id === playerId);
   if (!player || player.shopLevel >= GAME_RULES.maximumShopLevel) return Infinity;
-  return Math.max(0, GAME_RULES.shopUpgradePrices[player.shopLevel - 1] - (state.planningRound - 1) * GAME_RULES.upgradeDiscountPerRound);
+  const base=GAME_RULES.shopUpgradePrices[player.shopLevel-1],price=player.god?.id==='bonelessAghanim'?Math.floor(base*.8):base;
+  return Math.max(0, price - (state.planningRound - 1) * GAME_RULES.upgradeDiscountPerRound - (player.shopCarryDiscount ?? 0));
 }
 
 export function upgradeShop(state: GameState, playerId: number): string | null {
@@ -225,7 +252,7 @@ export function upgradeShop(state: GameState, playerId: number): string | null {
   if (player.shopLevel >= GAME_RULES.maximumShopLevel) return '当前商店已解锁全部可用商品';
   const cost = shopUpgradeCost(state, playerId);
   if (player.gold < cost) return `升级需要 ${cost} 金币`;
-  const previousCount=shopOfferCount(player.shopLevel);player.gold -= cost; player.shopLevel++;
+  const previousCount=shopOfferCount(player.shopLevel,player.god?.id);player.gold -= cost; player.shopLevel++;
   // Fill only newly opened positions. An upgrade never refills bought slots or
   // replaces retained/locked offers; level 3 needs a reroll to offer ultimates.
   drawShop(state,player,previousCount);
@@ -239,9 +266,8 @@ export function moveSkill(state: GameState, playerId: number, from: SkillLocatio
   const stack = source.slots[source.index], other = target.slots[target.index];
   if (!stack) return '这个位置没有技能';
   if (source.slots === target.slots && source.index === target.index) return null;
-  // FAQ: hero-to-hero / hero-to-reserve costs 1; reserve-to-hero is free.
-  // Swap policy: one gold per cross-body operation, including an outgoing
-  // hero skill when swapping from reserve. Internal ordering is free.
+  // The current economy workbook makes all slot moves free. Alternate
+  // economy configurations can still price transfers between bodies.
   const fee=source.slots!==target.slots&&(from.hero!==undefined||(to.hero!==undefined&&!!other&&other.id!==stack.id))?ECONOMY_CONFIG.moveSkillPrice:0;
   const catalog = catalogFor(state);
   // Validate the final arrangement on a copy: swaps inside the same hero must
@@ -271,7 +297,7 @@ export function sellSkill(state: GameState, playerId: number, from: SkillLocatio
   const player = editable(state, playerId); if (typeof player === 'string') return player;
   const source = location(player, from); if (!source) return '技能位置无效';
   const stack = source.slots[source.index]; if (!stack) return '这个位置没有技能';
-  player.gold += stack.points * GAME_RULES.saleGoldPerPoint;
+  player.gold += skillSalePrice(player,stack.points);
   state.pool[stack.id] += stack.points;
   source.slots[source.index] = null;
   return null;
@@ -284,7 +310,37 @@ export function changeRole(state: GameState, playerId: number, heroIndex: number
   return null;
 }
 
-function skillScore(def: SkillDefinition, hero: Hero): number {
+export function redrawHeroEnchantment(state: GameState, playerId: number, heroIndex: number): string | null {
+  const player = editable(state, playerId);
+  if (typeof player === 'string') return player;
+  const hero = player.heroes[heroIndex];
+  if (!hero?.enchantmentId) return '英雄尚未获得附魔';
+  if (hero.enchantmentChoice) return '请先完成该英雄当前的附魔选择';
+  if (player.gold < ENCHANTMENT_REDRAW_PRICE) return `需要 ${ENCHANTMENT_REDRAW_PRICE} 金币重选附魔`;
+  hero.enchantmentChoice = redrawEnchantments(hero.enchantmentId, () => enchantmentRandom(state));
+  player.gold -= ENCHANTMENT_REDRAW_PRICE;
+  return null;
+}
+
+export function chooseHeroEnchantment(state: GameState, playerId: number, heroIndex: number, enchantmentId: string): string | null {
+  const player = editable(state, playerId);
+  if (typeof player === 'string') return player;
+  const hero = player.heroes[heroIndex];
+  if (!hero?.enchantmentChoice?.options.includes(enchantmentId)) return '该附魔不在这次的候选中';
+  hero.enchantmentId = enchantmentId;
+  delete hero.enchantmentChoice;
+  return null;
+}
+
+export function setGodTarget(state:GameState,playerId:number,heroIndex:number):string|null {
+  const player=editable(state,playerId);if(typeof player==='string')return player;
+  if(!player.god||!isTargetedGod(player.god.id))return '此神技能无需指定英雄';
+  if(!integer(heroIndex,0,player.heroes.length-1))return '英雄无效';
+  player.god.targetHeroId=player.heroes[heroIndex].id;
+  return null;
+}
+
+function skillScore(def: SkillDefinition, hero: Hero,player:Player): number {
   const text = [def.nameEn, ...def.tags, ...def.categories, def.descriptionEn].join(' ').toLowerCase();
   let score = AI_CONFIG.baseSkillScore;
   if (hero.role === 'tank' && /heal|armor|health|shield|defen|reduc|taunt|lifesteal|stun/.test(text)) score += AI_CONFIG.tankSynergyScore;
@@ -293,34 +349,47 @@ function skillScore(def: SkillDefinition, hero: Hero): number {
   if (hero.role === 'mage' && !def.passive) score += AI_CONFIG.mageActiveScore;
   if (hero.role === 'assassin' && /blink|move|slow|stun/.test(text)) score += AI_CONFIG.assassinSynergyScore;
   if (def.ultimate) score += AI_CONFIG.ultimateScore;
-  return score;
+  return score+(player.god?godSkillScore(player.god.id,def,hero.role,godTarget(player)?.id===hero.id):0);
 }
 
 function organizeAi(state: GameState, player: Player): void {
   const catalog=catalogFor(state);
-  // Purchases enter the bench. Only move bench spells into empty legal slots
-  // here,using the same free bench-to-hero transaction
-  // as the human. Never erase/repack all equipped skills to bypass move fees.
+  if(player.god&&isTargetedGod(player.god.id)){
+    const id=player.god.id;
+    player.god.targetHeroId=[...player.heroes].sort((a,b)=>godTargetScore(id,b,catalog)-godTargetScore(id,a,catalog))[0].id;
+  }
+  // Use the same bench-to-hero transaction as the human.
   const reserves=player.reserve.map((stack,index)=>({stack,index})).filter((entry):entry is {stack:SkillStack;index:number}=>!!entry.stack).sort((a,b)=>Number(catalog.get(b.stack.id)!.ultimate)-Number(catalog.get(a.stack.id)!.ultimate)||b.stack.points-a.stack.points);
-  for(const {stack,index}of reserves){const choices=player.heroes.map((hero,i)=>({hero,index:i,score:skillScore(catalog.get(stack.id)!,hero)-hero.skills.filter(Boolean).length*AI_CONFIG.equippedSlotPenalty})).filter(({hero})=>hero.skills.includes(null)&&canEquip(catalog,hero,stack)).sort((a,b)=>b.score-a.score||a.index-b.index);if(choices.length)moveSkill(state,player.id,{reserve:index},{hero:choices[0].index,slot:choices[0].hero.skills.indexOf(null)});}
+  for(const {stack,index}of reserves){const choices=player.heroes.map((hero,i)=>({hero,index:i,score:skillScore(catalog.get(stack.id)!,hero,player)-hero.skills.filter(Boolean).length*AI_CONFIG.equippedSlotPenalty})).filter(({hero})=>hero.skills.includes(null)&&canEquip(catalog,hero,stack)).sort((a,b)=>b.score-a.score||a.index-b.index);if(choices.length)moveSkill(state,player.id,{reserve:index},{hero:choices[0].index,slot:choices[0].hero.skills.indexOf(null)});}
 }
 
 function aiStep(state: GameState, player: Player): boolean {
   organizeAi(state,player);
   const catalog = catalogFor(state), stacks = allStacks(player);
   // Upgrade only once there is an actual formation to improve, or at no cost.
-  const cost = shopUpgradeCost(state, player.id);
-  if (Number.isFinite(cost) && player.gold >= cost && (cost === 0 || (stacks.length >= Math.min(AI_CONFIG.shopUpgradeMinimumStacks, player.heroes.length * AI_CONFIG.shopUpgradeStacksPerHero) && player.gold >= cost + GAME_RULES.skillPrice))) return upgradeShop(state, player.id) === null;
+  const cost=shopUpgradeCost(state,player.id),god=player.god?.id;
+  const fastShop=god==='bonelessAghanim'||god==='bathtimeAghanim',minimumStacks=fastShop?1:Math.min(AI_CONFIG.shopUpgradeMinimumStacks,player.heroes.length*AI_CONFIG.shopUpgradeStacksPerHero);
+  if(Number.isFinite(cost)&&player.gold>=cost&&(cost===0||(stacks.length>=minimumStacks&&player.gold>=cost+(fastShop?0:GAME_RULES.skillPrice))))return upgradeShop(state,player.id)===null;
   const candidates = player.shop.map((id, index) => {
     if (!id) return { index, score: -Infinity };
-    const owned = stacks.find(s => s.id === id);
-    if (owned) return { index, score: owned.points >= 9 ? -Infinity : AI_CONFIG.duplicateBaseScore + owned.points * AI_CONFIG.duplicatePointScore + ([2, 5, 8].includes(owned.points) ? AI_CONFIG.upgradeThresholdScore : 0) };
+    const owned=stacks.find(s=>s.id===id),points=shopOfferPoints(player,index);
+    if(player.gold<shopOfferPrice(player,index))return {index,score:-Infinity};
+    const doubleBonus=points===2?25:0;
+    if(owned){
+      if(owned.points+points>9)return {index,score:-Infinity};
+      const advances=skillTier(owned.points)!==skillTier(owned.points+points);
+      const lastInTier=god==='bathtimeAghanim'&&advances&&player.shopLevel>=[2,4,5][Math.floor(owned.points/3)]&&player.heroes.some(h=>h.skills.includes(owned))&&!player.heroes.some(h=>h.skills.some(s=>s&&s!==owned&&skillTier(s.points)===skillTier(owned.points)));
+      const buildBonus=god==='aghanim'?-10:god==='legionCommander'||god==='sideshopMan'?8:0;
+      return {index,score:AI_CONFIG.duplicateBaseScore+owned.points*AI_CONFIG.duplicatePointScore+(advances?AI_CONFIG.upgradeThresholdScore:0)+doubleBonus+buildBonus-(lastInTier?17:0)};
+    }
     if(!purchaseReserve(player))return {index,score:-Infinity};
     const canPlace=player.heroes.some(hero=>hero.skills.includes(null)&&canEquip(catalog,hero,{id,points:1}));
-    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!, h))) - (canPlace?0:AI_CONFIG.unplaceablePenalty) };
+    const breadth=god==='aghanim'&&canPlace?10:0;
+    return { index, score: Math.max(...player.heroes.map(h => skillScore(catalog.get(id)!,h,player))) - (canPlace?0:AI_CONFIG.unplaceablePenalty)+doubleBonus+breadth };
   }).sort((a, b) => b.score - a.score || a.index - b.index);
-  if (player.gold >= GAME_RULES.skillPrice && candidates[0]?.score > -Infinity && buySkill(state, player.id, candidates[0].index) === null) { organizeAi(state, player); return true; }
-  if (player.gold > 0) { player.locked = false; return rerollShop(state, player.id) === null; }
+  if(candidates[0]?.score>-Infinity&&buySkill(state,player.id,candidates[0].index)===null){organizeAi(state,player);return true;}
+  const reroll=shopRerollCost(player);
+  if(player.gold>=reroll+(god?GAME_RULES.skillPrice:0)){player.locked=false;return rerollShop(state,player.id)===null;}
   return false;
 }
 
@@ -373,7 +442,15 @@ export function startRound(state: GameState, defs: SkillDefinition[]): string | 
   if (state.phase !== 'prep') return '当前不能重复开战';
   try { bind(state, defs); } catch (error) { return (error as Error).message; }
   if (state.players.filter(p => p.hp > 0).length < 2) return '没有足够的存活玩家';
+  if (state.players[0].hp > 0 && state.players[0].heroes.some(hero => hero.enchantmentChoice?.mode === 'redraw')) return '请先完成已购买的附魔重选';
+  for (const player of state.players) for (const hero of player.heroes) {
+    if (player.id !== 0 && hero.enchantmentChoice) hero.enchantmentId = chooseAiEnchantment(hero.role, hero.enchantmentChoice);
+    delete hero.enchantmentChoice;
+  }
   runAi(state); makePairs(state);
+  for(const player of state.players)if(player.hp>0&&player.god?.id==='legionCommander'){
+    player.god.legionAttack=(player.god.legionAttack??0)+legionAttackForRound(equippedGodPoints(player));
+  }
   state.battleSeed = Math.floor(random(state) * 4294967296);
   state.battlePlayers = copy(state.players);
   state.pendingReports = []; state.phase = 'battle';
@@ -427,6 +504,13 @@ export function finishRound(state: GameState, reports: RoundReport[]): string | 
       releaseShop(state, player);
       allStacks(player).forEach(s => { state.pool[s.id] += s.points; });
       player.heroes.forEach(h => h.skills.fill(null)); player.reserve.fill(null); player.locked = false;
+    }else if(player.god?.id==='aghanim'){
+      const options=allStacks(player).filter(s=>s.points<9&&s.id!==player.god!.lastUpgraded&&state.pool[s.id]>0);
+      if(options.length&&random(state)<(.35+.05*state.battlePlayers[player.id].shopLevel)){
+        const skill=options[Math.floor(random(state)*options.length)];
+        skill.points++;state.pool[skill.id]--;player.god.lastUpgraded=skill.id;
+        if(skill.points===6)skill.superRound=state.planningRound;
+      }
     }
   }
   state.pendingReports = copy(ordered.map(([report]) => report));
@@ -448,6 +532,7 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
   const ids = new Set(defs.map(d => d.id)), catalog = new Map(defs.map(d => [d.id, d]));
   if (!integer(state.seed, 0, 0xffffffff) || !integer(state.rng, 1, 0xffffffff) || !integer(state.battleSeed, 0, 0xffffffff) || !integer(state.round, 1, 10000) || !integer(state.planningRound, 1, 10001) || !['prep', 'battle', 'result', 'finished'].includes(String(state.phase))) return '存档回合或随机状态无效';
   if(!isValidDifficulty(state.difficulty))return '存档难度必须为 1.0 至 2.5 的 16 个档位之一';
+  if(state.enchantmentRng!==undefined&&!integer(state.enchantmentRng,1,0xffffffff))return '存档附魔随机状态无效';
   if (state.planningRound !== state.round + (state.phase === 'prep' ? 0 : 1)) return '存档发钱阶段不一致';
   if(!integer(state.nextSkillInstance,1,1e9)||!Array.isArray(state.matchSkillIds)||state.matchSkillIds.length!==Math.min(GAME_RULES.matchPoolSize,ids.size)||new Set(state.matchSkillIds).size!==state.matchSkillIds.length||state.matchSkillIds.some(id=>typeof id!=='string'||!ids.has(id)))return '存档本局随机池无效';
   const matchIds=new Set(state.matchSkillIds);
@@ -459,6 +544,9 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
     const heroIds = new Set<string>(),placements=new Set<number>(),instances=new Set<string>();
     return players.every((p, index) => {
       if (!record(p) || p.id !== index || typeof p.name !== 'string' || p.name.length > 100 || !integer(p.hp, 0, GAME_RULES.initialHp) || !integer(p.gold, 0, 10000) || !integer(p.shopLevel, 1, GAME_RULES.maximumShopLevel) || typeof p.locked !== 'boolean' || !Array.isArray(p.heroes) || !integer(p.heroes.length, 1, 5) || !Array.isArray(p.reserve) || p.reserve.length !== 4 || !Array.isArray(p.shop) || p.shop.length !== 12 || (p.eliminatedRound !== undefined && !integer(p.eliminatedRound, 1, state.round as number))) return false;
+      if (p.shopCarryDiscount !== undefined && !integer(p.shopCarryDiscount, 0, Number(state.planningRound) - 1)) return false;
+      if(!validGodSelection(p.god,p.heroes,p.shop,matchIds))return false;
+      const player=p as unknown as Player;
       const owned = new Set<string>();
       const stackValid = (s: unknown): boolean => {
         if (s === null) return true;
@@ -474,11 +562,16 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
         if(h.persistentAttackBonus!==undefined&&!finite(h.persistentAttackBonus,0,1e7))return false;
         if(['persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k],k==='persistentIntelligenceBonus'?-1e7:0,1e7)))return false;
         if(h.persistentBuffs!==undefined&&!validPersistentBuffs(h.persistentBuffs))return false;
+        if(!validEnchantmentState(h,countInventory))return false;
         if(h.persistentSkillState!==undefined&&!validSkillState(h.persistentSkillState))return false;
         heroIds.add(h.id);
         return h.skills.filter(s => s && catalog.get(s.id)!.ultimate).length <= 1;
       }) || !p.reserve.every(stackValid)) return false;
-      for (const [slot,id] of p.shop.entries()) { if (id !== null) { if (slot>=shopOfferCount(p.shopLevel as number)||typeof id !== 'string' || !matchIds.has(id)||((p.shopLevel as number)<GAME_RULES.ultimateShopLevel&&catalog.get(id)!.ultimate)) return false; if (countInventory) totals[id]++; } }
+      for(const[slot,id]of p.shop.entries())if(id!==null){
+        if(slot>=shopOfferCount(player.shopLevel,player.god?.id)||typeof id!=='string'||!matchIds.has(id)||!canOfferSkill(player,catalog.get(id)!))return false;
+        if(countInventory)totals[id]+=shopOfferPoints(player,slot);
+      }
+      if(player.god?.id==='bonelessAghanim'&&[...owned].some(id=>catalog.get(id)!.ultimate))return false;
       if (p.hp === 0 && (p.eliminatedRound === undefined || !integer(p.placement,1,8) || owned.size || p.shop.some(Boolean))) return false;
       if (p.hp > 0 && (p.eliminatedRound !== undefined || p.placement!==undefined || p.heroes.length !== heroCountForRound((countInventory ? state.planningRound : state.round) as number))) return false;
       if(p.placement!==undefined){if(placements.has(p.placement as number))return false;placements.add(p.placement as number);}
@@ -486,12 +579,15 @@ export function validateGame(state: unknown, defs: SkillDefinition[]): string | 
     });
   };
   if (!validPlayers(state.players, true) || Object.values(totals).some(total => total !== GAME_RULES.copiesPerSkill)) return '存档阵容或技能库存不守恒';
+  const usesGods=Boolean(state.players[0].god);
+  if(state.players.some(player=>Boolean(player.god)!==usesGods))return '存档选神数据不完整';
   if (!integer(state.selectedHero, 0, state.players[0].heroes.length - 1)) return '存档选中英雄无效';
   if (!Array.isArray(state.battlePlayers) || !Array.isArray(state.pairs) || state.pairs.length > 4 || !Array.isArray(state.ghostPairs) || state.ghostPairs.length > 1 || new Set(state.ghostPairs).size !== state.ghostPairs.length) return '存档配对信息无效';
   if (state.phase === 'prep') {
     if (state.battlePlayers.length || state.pairs.length || state.ghostPairs.length) return '备战存档包含过期战斗';
   } else {
     if (!validPlayers(state.battlePlayers, false)) return '存档战斗快照无效';
+    if(state.battlePlayers.some((player,index)=>player.god?.id!==(state.players as Player[])[index].god?.id))return '存档战斗选神不一致';
     const charged = new Set<number>();
     for (let i = 0; i < state.pairs.length; i++) {
       const pair = state.pairs[i];

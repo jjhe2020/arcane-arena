@@ -79,6 +79,7 @@ export function recordMovement(unit: CombatUnit, time: number, point: MotionPoin
   const history = (unit.moveHistory ?? []) as { time: number; distance: number; kind?: string; skill?: string }[];
   unit.moveHistory = [...history.filter(item => item.time >= time - 3), { time, distance, kind, ...(skill ? { skill } : {}) }];
   unit.x = point.x; unit.y = point.y;
+  if(kind==='walk'&&unit.godTravel!==undefined)unit.godTravel+=distance;
   if (kind === 'warp') unit.warpSequence = Number(unit.warpSequence ?? 0) + 1;
   if (kind === 'walk' || kind === 'collision') normalBudgets.set(unit, Math.max(0, remainingMovementBudget(unit) - distance));
   return distance;

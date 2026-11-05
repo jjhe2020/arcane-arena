@@ -1,6 +1,7 @@
 import {defaultMotionDuration} from '../config';
 import {configuredValue,nativeBalance} from '../config';
 import {balanceNumber} from '../config';
+import {enlargedSkillArea} from '../hero-enchantments';
 import raw from './historical-upgrade-data.json';
 import type { SkillDefinition,CombatUnit } from '../model';
 import type { EffectContext as C,SkillProgram } from '../skill-effects';
@@ -13,7 +14,7 @@ const fields=Object.fromEntries(Object.entries(raw.abilities).map(([id,value])=>
 export function historicalValue(id:string,key:string,level=4,fallback?:number):number{const row=nativeBalance(id,level),normalized=key.toUpperCase();if(row){if(normalized==='ABILITYCOOLDOWN')return row.cooldown;if(normalized==='ABILITYMANACOST')return row.mana;if(normalized==='ABILITYCASTPOINT')return row.castPoint;if(normalized==='ABILITYCASTRANGE')return row.range*100;const configured=row.params[normalized];if(configured!==undefined)return configured;}const a=fields[id]?.[key]?.match(/-?\d+(?:\.\d+)?/g)?.map(Number);if(!a?.length){if(fallback!==undefined)return fallback;throw new Error(`Historical field absent: ${id}.${key}`);}return a[Math.min(a.length-1,Math.max(0,level-1))];}
 const distance=(a:CombatUnit,b:CombatUnit)=>Math.hypot(a.x-b.x,a.y-b.y);
 const nearby=(c:C,t:CombatUnit,r:number)=>c.enemies().filter(u=>distance(u,t)<=r);
-const n=(c:C,key:string,fallback?:number)=>{const configured=configuredValue(c,key);if(configured!==undefined)return configured;const override=c.definition.values.find(x=>x.split(':')[0].toLowerCase()===key.toLowerCase());const a=override?.slice(override.indexOf(':')+1).match(/-?\d+(?:\.\d+)?/g)?.map(Number);return a?.length?a[Math.min(a.length-1,Math.max(0,c.skill.points-1))]:historicalValue(c.skill.id,key,c.skill.points,fallback);};
+const n=(c:C,key:string,fallback?:number)=>{const configured=configuredValue(c,key);if(configured!==undefined)return configured;const override=c.definition.values.find(x=>x.split(':')[0].toLowerCase()===key.toLowerCase());const a=override?.slice(override.indexOf(':')+1).match(/-?\d+(?:\.\d+)?/g)?.map(Number);const value=a?.length?a[Math.min(a.length-1,Math.max(0,c.skill.points-1))]:historicalValue(c.skill.id,key,c.skill.points,fallback);return enlargedSkillArea(c.caster,key,value);};
 export const HISTORICAL_UPGRADE_PROGRAMS:Record<string,SkillProgram>={};
 export const HISTORICAL_UPGRADE_DEFINITIONS:SkillDefinition[]=[];
 function add(id:string,program:SkillProgram){const f=fields[id];const nums=(key:string)=>f[key]?.match(/-?\d+(?:\.\d+)?/g)?.map(Number)??[];HISTORICAL_UPGRADE_DEFINITIONS.push({id,name:id,nameEn:id,description:'升级授予的历史候选技能',descriptionEn:'Historical granted child; AA patch unverified',tags:[],super:'',gaben:'',icon:'',values:Object.entries(f).map(([k,v])=>`${k}: ${v}`),cooldowns:nums('AbilityCooldown'),mana:nums('AbilityManaCost'),categories:[`ABILITY: ${f.AbilityBehavior?.includes('UNIT_TARGET')?'Unit Target':'No Target'}`],passive:false,ultimate:f.AbilityType==='DOTA_ABILITY_TYPE_ULTIMATE',grantedOnly:true,historicalSource:{...raw.source,id}});HISTORICAL_UPGRADE_PROGRAMS[id]={range:c=>n(c,'AbilityCastRange',700)/100,castPoint:c=>n(c,'AbilityCastPoint',0),cooldown:c=>n(c,'AbilityCooldown',0),manaCost:c=>n(c,'AbilityManaCost',0),...program,remaining:[...program.remaining,'2023-02-10 historical candidate; AA patch match unverified']};}

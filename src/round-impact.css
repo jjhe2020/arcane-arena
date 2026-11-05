@@ -1,0 +1,57 @@
+.round-impact {
+  position: fixed;
+  z-index: 18;
+  left: var(--hit-x);
+  top: var(--hit-y);
+  pointer-events: none;
+}
+.round-impact > * { position: absolute; display: block; }
+.round-impact-bolt {
+  width: 70px;
+  height: 8px;
+  left: -62px;
+  top: -4px;
+  border-radius: 80% 45% 45% 80%;
+  background: linear-gradient(90deg, transparent, #ec613a 65%, #fff2b9);
+  filter: drop-shadow(0 0 7px #f34b2c);
+  transform-origin: 62px center;
+  animation: round-impact-flight 360ms cubic-bezier(.3,.12,.6,1) both;
+}
+.round-impact-ring {
+  inset: -13px auto auto -13px;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #ffd39d;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff2b9 0%, #ed5b2cbb 32%, transparent 75%);
+  box-shadow: 0 0 16px #f34b2c;
+  animation: round-impact-burst 480ms 300ms ease-out both;
+}
+.round-impact b {
+  padding: .28em .55em;
+  white-space: nowrap;
+  border: 1px solid #e98255;
+  border-radius: 4px;
+  color: #ffe3cb;
+  background: #401b18ed;
+  font-size: clamp(12px, 2vw, 18px);
+  transform: translate(-50%, -120%);
+  animation: round-impact-label 800ms 320ms ease-out both;
+}
+.round-impact--sidebar b { transform: translate(16px, -50%); }
+.round-impact--reduced i { display: none; }
+.round-impact--reduced b { animation-delay: 0ms; }
+@keyframes round-impact-flight {
+  from { transform: translate(var(--flight-x), var(--flight-y)) rotate(var(--flight-angle)); opacity: 0; }
+  25% { opacity: 1; }
+  85% { opacity: 1; }
+  to { transform: translate(0, 0) rotate(var(--flight-angle)); opacity: 0; }
+}
+@keyframes round-impact-burst {
+  from { transform: scale(.45); opacity: 1; }
+  to { transform: scale(2.7); opacity: 0; }
+}
+@keyframes round-impact-label {
+  0%, 100% { opacity: 0; }
+  12%, 76% { opacity: 1; }
+}

@@ -9,5 +9,5 @@ export function resolveSkillCastRange(program:SkillProgram,context:EffectContext
  const callback=typeof program.range==='function';
  const dynamic=callback&&(context.definition.balanceDomain==='native'||program.dynamicRange===true);
  const baseRange:number=dynamic?(program.range as (c:EffectContext)=>number)(context):balance?.range??(callback?(program.range as (c:EffectContext)=>number)(context):typeof program.range==='number'?program.range:7);
- return {baseRange,range:program.ignoreCastRangeBonuses?baseRange:baseRange*(1+percentageBonus)+flatBonus,source:dynamic?'dynamic' as const:balance?'configured' as const:'program' as const};
+ return {baseRange,range:program.ignoreCastRangeBonuses?baseRange:baseRange*(1+percentageBonus)+flatBonus+(context.caster?.castRangeBonus??0),source:dynamic?'dynamic' as const:balance?'configured' as const:'program' as const};
 }

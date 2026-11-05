@@ -1,6 +1,7 @@
 import {defaultMotionDuration} from './config';
 import {configuredValue} from './config';
 import {balanceNumber} from './config';
+import {enlargedSkillArea} from './hero-enchantments';
 import type { CombatUnit, SkillDefinition } from './model';
 import { addVisualProjectile, moveVisualProjectile, removeVisualProjectile } from './combat/visual-state';
 import type { EffectContext, EffectStatus, SkillProgram } from './skill-effects';
@@ -20,7 +21,7 @@ const value = (c: EffectContext, key: string) => {
   const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row = c.definition.values.find(r => r.slice(0, r.indexOf(':')).toUpperCase() === key.toUpperCase());
   const values = row?.slice(row.indexOf(':') + 1).match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
-  return values[Math.min(values.length - 1, Math.max(0, Math.floor(c.skill.points) - 1))] ?? 0;
+  return enlargedSkillArea(c.caster,key,values[Math.min(values.length - 1, Math.max(0, Math.floor(c.skill.points) - 1))] ?? 0);
 };
 const v = value;
 const definitions: SkillDefinition[] = [];

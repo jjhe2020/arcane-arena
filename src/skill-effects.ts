@@ -45,6 +45,7 @@ import {defaultMotionDuration} from './config';
 import {skillBalance,attachSkillBalance} from './config';
 import type {ContinuousMoveOptions} from './combat/movement';
 import {configuredValue} from './config';
+import {enlargedSkillArea} from './hero-enchantments';
 import {balanceNumber} from './config';
 import historicalUnitTargeted from './data/historical-unit-targeted.json';
 import historicalRootDisabled from './data/historical-root-disabled.json';
@@ -386,13 +387,13 @@ export function referenceCastPoint(c:Pick<EffectContext,'skill'> & Partial<Pick<
   const a=rows[c.skill.id]?.seconds;if(!a?.length)return fallback;
   const rank=basicLevel(c.skill.points),index=a.length===4?[0,1,3][rank-1]:Math.min(rank-1,a.length-1);return a[index];
 }
-export function skillValue(c: Pick<EffectContext, 'definition' | 'skill'>, key: string, fallback = 0): number {
+export function skillValue(c: Pick<EffectContext, 'definition' | 'skill'> & Partial<Pick<EffectContext, 'caster'>>, key: string, fallback = 0): number {
   const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const normalized = key.trim().toUpperCase().replace(/:+$/, '');
   const row = c.definition.values.find(row => row.slice(0, row.indexOf(':')).trim().toUpperCase() === normalized);
-  if (!row) return fallback;
+  if (!row) return enlargedSkillArea(c.caster, key, fallback);
   const nums = row.slice(row.indexOf(':') + 1).match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
-  return arrayValue(nums, c.skill.points, fallback);
+  return enlargedSkillArea(c.caster, key, arrayValue(nums, c.skill.points, fallback));
 }
 const v = skillValue;
 const dist = (a: CombatUnit, b: CombatUnit) => Math.hypot(a.x - b.x, a.y - b.y);

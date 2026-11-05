@@ -26,6 +26,7 @@ try{
    assert.equal(layout.rows.length,tablet?2:1,`${width}x${height} shop rows`);
    assert(layout.documentWidth<=width+1,'Horizontal page overflow');
    const portrait=page.locator('#teamRoster [data-hero="0"]');const portraitBounds=await portrait.boundingBox();assert(portraitBounds&&portraitBounds.width>=28&&portraitBounds.height>=28,'Roster portrait must be visible and clickable');await portrait.click();
+   const enchantments=page.locator('#dialog[open] [data-enchant-option]');await enchantments.first().waitFor();assert.equal(await enchantments.count(),3,'A new hero must show three enchantment choices');await enchantments.first().click();
    for(const button of layout.buttons){if(!button.disabled)assert(button.reachable,`${width}x${height} ${button.action} covered`);assert(button.y>=0&&button.bottom<=height+1,'Offscreen shop button');if(tablet&&button.action!=='economy')assert(button.height>=35,`${width}x${height} ${button.action} too short`);}
    for(const name of layout.names)assert(name.textWidth<=name.width+1,`${width}x${height} clipped name ${name.text}`);
    if(tablet){const offer=page.locator('[data-buy="0"]');const gold=await page.evaluate(()=>window.arena.state.players[0].gold);await offer.tap();assert.equal(await page.evaluate(()=>window.arena.state.players[0].gold),gold-3,'Touch purchase');}

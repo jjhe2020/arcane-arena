@@ -1,6 +1,7 @@
 import {defaultMotionDuration} from '../config';
 import {configuredValue} from '../config';
 import {balanceNumber} from '../config';
+import {enlargedSkillArea} from '../hero-enchantments';
 import data from './historical-ability-data.json';
 import type { CombatUnit,SkillDefinition } from '../model';
 import type { EffectContext as C,SkillProgram } from '../skill-effects';
@@ -23,8 +24,8 @@ const nums=(s:string|undefined)=>s?.match(/-?\d+(?:\.\d+)?/g)?.map(Number)??[];
 export function childValue(c:C,key:string,fallback?:number):number{
   const configured=configuredValue(c,key);if(configured!==undefined)return configured;
   const row=c.definition.values.find(s=>s.split(':')[0].trim().toUpperCase()===key.toUpperCase());
-  const a=nums(row?.slice(row.indexOf(':')+1));if(!a.length){if(fallback!==undefined)return fallback;throw new Error(`Missing historical child field ${c.skill.id}.${key}`);}
-  return a[Math.min(a.length-1,Math.max(0,Math.floor(c.skill.points)-1))];
+  const a=nums(row?.slice(row.indexOf(':')+1));if(!a.length){if(fallback!==undefined)return enlargedSkillArea(c.caster,key,fallback);throw new Error(`Missing historical child field ${c.skill.id}.${key}`);}
+  return enlargedSkillArea(c.caster,key,a[Math.min(a.length-1,Math.max(0,Math.floor(c.skill.points)-1))]);
 }
 const n=childValue;
 const distance=(a:CombatUnit,b:CombatUnit)=>Math.hypot(a.x-b.x,a.y-b.y);

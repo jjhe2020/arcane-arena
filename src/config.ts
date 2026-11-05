@@ -1,5 +1,6 @@
 import data from './generated/game-config.json';
 import type {Role,RoleStats,SkillDefinition} from './model';
+import {enlargedSkillArea} from './hero-enchantments';
 
 export interface SkillBalance {pointTier:number;castPoint:number;backswing:number;cooldown:number;mana:number;range:number;params:Record<string,number>;program:Record<string,number>}
 interface CompiledConfig {schemaVersion:number;hash:string;roles:Record<Role,RoleStats>;economy:{initialHp:number;copiesPerSkill:number;skillPrice:number;rerollPrice:number;ultimateShopLevel:number;matchPoolSize:number;heroArrivalRounds:number[];saleGoldPerPoint:number;upgradeDiscountPerRound:number;incomeBase:number;incomePerRound:number;incomeCap:number;roundDamageBase:number;roundDamageDivisor:number;moveSkillPrice:number};shopLevels:{level:number;activeSlots:number;upgradePrice:number}[];attributes:{strengthHp:number;intelligenceMana:number;agilityAttackSpeed:number;agilityArmor:number;primaryAttack:number};battle:{magicResist:number;bodyRadius:number;basicAttackProjectileSpeed:number;turnRate:number;attackRangeBuffer:number;minimumMoveSpeed:number;maximumMoveSpeed:number};units:Record<string,Record<string,number>>;skills:Record<string,Record<string,SkillBalance>>;nativeSkills:Record<string,Record<string,SkillBalance>>;workingDefaults:Record<string,number>}
@@ -37,13 +38,15 @@ export function attachSkillBalance<T extends SkillDefinition>(definition:T,nativ
   if(levels){const result:SkillDefinition=definition;result.balanceLevels=levels;result.balanceDomain=native?'native':'aa';result.configHash=CONFIG_HASH;result.balanceInputSignature=JSON.stringify([result.values,result.cooldowns,result.mana]);const info=config.skillMetadata?.[definition.id];if(info)Object.assign(result,info);}
   return definition;
 }
-export function configuredValue(c:{definition:SkillDefinition;skill:{points:number}},key:string):number|undefined {
+export function configuredValue(c:{definition:SkillDefinition;skill:{points:number};caster?:{skillAreaBonus?:number}},key:string):number|undefined {
   const row=skillBalance(c.definition,c.skill.points),normalized=key.trim().toUpperCase().replace(/:+$/,'');
   if(row&&c.definition.balanceDomain==='native'){if(normalized==='ABILITYCOOLDOWN')return row.cooldown;if(normalized==='ABILITYMANACOST')return row.mana;if(normalized==='ABILITYCASTPOINT')return row.castPoint;if(normalized==='ABILITYCASTRANGE')return row.range*100;}
-  return row?.params[normalized];
+  const value=row?.params[normalized];
+  return value===undefined?undefined:enlargedSkillArea(c.caster,key,value);
 }
-export function balanceNumber(c:{definition:SkillDefinition;skill:{points:number}},key:string,fallback:number):number {
-  return skillBalance(c.definition,c.skill.points)?.program[key]??fallback;
+export function balanceNumber(c:{definition:SkillDefinition;skill:{points:number};caster?:{skillAreaBonus?:number}},key:string,fallback:number):number {
+  const value=skillBalance(c.definition,c.skill.points)?.program[key]??fallback;
+  return c.caster?.skillAreaBonus ? enlargedSkillArea(c.caster,key.split('.')[1]??key,value) : value;
 }
 export function nativeBalance(id:string,level:number):SkillBalance|undefined {
   const levels=config.nativeSkills[id];if(!levels)return undefined;

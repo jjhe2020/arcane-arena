@@ -5,6 +5,8 @@ import {GRANTED_SKILL_DEFINITIONS} from './skill-effects';
 import {snapshotBattleStats} from './combat/statistics';
 import {BATTLE_BOUNDS} from './arena-layout';
 import type {BattleState,Player,SkillDefinition} from './model';
+import {validGodSelection} from './gods';
+import {validEnchantmentState} from './hero-enchantments';
 import version from '../package.json';
 
 export interface ReplaySummary {
@@ -53,10 +55,12 @@ export function createReplayFile(battle:BattleState,definitions:SkillDefinition[
 function numericRecord(v:unknown):boolean {return record(v)&&Object.keys(v).length<=256&&Object.entries(v).every(([k,n])=>safeId(k)&&finite(n));}
 function validPlayer(value:unknown,definitions:Map<string,SkillDefinition>):value is Player {
   if(!record(value)||!integer(value.id,0,7)||!text(value.name,100)||!finite(value.hp,0)||!finite(value.gold,0)||!integer(value.shopLevel,1,5)||typeof value.locked!=='boolean'||!Array.isArray(value.heroes)||value.heroes.length<1||value.heroes.length>5)return false;
+  if(!validGodSelection(value.god,value.heroes,value.shop,new Set(definitions.keys())))return false;
   const ids=new Set<string>();
   return value.heroes.every(h=>{
     if(!record(h)||!safeId(h.id)||ids.has(h.id)||!text(h.name,100)||!['assassin','archer','mage','tank'].includes(String(h.role))||!['female','male'].includes(String(h.skin))||!finite(h.x,-BATTLE_BOUNDS.x,BATTLE_BOUNDS.x)||!finite(h.y,-BATTLE_BOUNDS.y,BATTLE_BOUNDS.y)||!Array.isArray(h.skills)||h.skills.length>4)return false;
     ids.add(h.id);
+    if(!validEnchantmentState(h,false))return false;
     if(['persistentAttackBonus','persistentStrengthBonus','persistentAgilityBonus','persistentIntelligenceBonus'].some(k=>h[k]!==undefined&&!finite(h[k])))return false;
     if(h.persistentBuffs!==undefined&&(!record(h.persistentBuffs)||Object.entries(h.persistentBuffs).some(([k,v])=>!safeId(k)||!numericRecord(v))))return false;
     return h.skills.every(s=>s===null||(record(s)&&safeId(s.id)&&definitions.has(s.id)&&integer(s.points,1,9)&&(s.instanceId===undefined||safeId(s.instanceId))&&(s.superRound===undefined||integer(s.superRound,1,10000))&&(s.lineage===undefined||(Array.isArray(s.lineage)&&s.lineage.length<=9&&s.lineage.every(safeId)))&&(s.persistentState===undefined||numericRecord(s.persistentState))));

@@ -1,4 +1,6 @@
 import {ROLE_CONFIG} from './config';
+import type {GodId,GodSelection} from './gods';
+import type {EnchantmentChoice} from './hero-enchantments';
 export type Role = 'assassin' | 'archer' | 'mage' | 'tank';
 export type Skin = 'female' | 'male';
 export type DamageType = 'physical' | 'magical' | 'pure';
@@ -21,8 +23,12 @@ export interface Hero { id: string; name: string; role: Role; skin: Skin; x: num
 /** Presentation provenance; numeric permanent bonuses remain the simulation's authority. */
 export type PersistentBuffSources = Record<string,Record<string,number>>;
 export interface Hero {persistentBuffs?:PersistentBuffSources}
+export interface Hero {enchantmentId?:string;enchantmentChoice?:EnchantmentChoice}
 export interface Player { id: number; name: string; hp: number; gold: number; shopLevel: number; heroes: Hero[]; reserve: (SkillStack | null)[]; shop: (string | null)[]; locked: boolean; eliminatedRound?: number; placement?:number }
+export interface Player {god?:GodSelection}
+export interface Player { shopCarryDiscount?: number }
 export interface GameState { version: number; seed: number; rng: number; round: number; planningRound: number; battlePlayers: Player[]; ghostPairs: number[]; contentSignature?: string; phase: 'prep' | 'battle' | 'result' | 'finished'; players: Player[]; pool: Record<string, number>; matchSkillIds:string[]; nextSkillInstance:number; pairs: [number, number][]; difficulty: number; history: RoundReport[]; pendingReports: RoundReport[]; selectedHero: number; winner?: number; battleSeed: number }
+export interface GameState {enchantmentRng?:number}
 export interface RoundReport { round: number; a: number; b: number; winner: number | null; damage: number; duration: number; survivors: number; stats: UnitStats[]; replayId?:string; gains?: {heroId:string;attack:number;strength?:number;agility?:number;intelligence?:number;skillState?:Record<string,number>;persistentBuffs?:PersistentBuffSources}[] }
 export interface UnitStats { id: string; name: string; side: number; damage: number; taken: number; healing: number; absorbed?:number; abilityStats?:AbilityStats[]; summons?:UnitStats[] }
 export interface SkillDefinition { id: string; name: string; nameEn: string; tags: string[]; description: string; descriptionEn: string; super: string; gaben: string; values: string[]; cooldowns: number[]; mana: number[]; categories: string[]; icon: string; art?: string; passive: boolean; ultimate: boolean; [key: string]: unknown }
@@ -33,6 +39,8 @@ export interface CombatUnit { id: string; name: string; role: Role; skin: Skin; 
 export interface CombatEvent { time: number; type: 'attack'|'cast'|'hit'|'heal'|'death'|'summon'|'move'|'status'; source: string; target?: string; skill?: string; x: number; y: number; toX?: number; toY?: number; amount?: number; duration?: number; damageType?:DamageType;originDamageType?:DamageType;category?:DamageCategory;flags?:DamageFlags;attribution?:Attribution; [key:string]: unknown }
 export interface BattleState { time: number; round?: number; units: CombatUnit[]; events: CombatEvent[]; finished: boolean; winner: number | null; rng: number; [key: string]: unknown }
 export interface CombatUnit { absorbed?:number }
+export interface CombatUnit {godId?:GodId;godTravel?:number;godRetaliate?:number;godMulticast?:number;godSummonAttackSpeed?:number;godSpellAmp?:number}
+export interface CombatUnit {enchantmentId?:string;healthRegen?:number;manaRegenBonus?:number;attackRangeBonus?:number;castRangeBonus?:number;skillAreaBonus?:number}
 export interface CombatUnit {persistentBuffs?:PersistentBuffSources;permanentBuffGains?:PersistentBuffSources}
 /** Hero level follows the frozen battle round, never the next planning round. */
 export interface CombatUnit {level?:number;levelAttackSpeed?:number}

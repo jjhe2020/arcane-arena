@@ -1,5 +1,6 @@
 import {skillBalance} from '../config';
 import {configuredValue} from '../config';
+import {enlargedSkillArea} from '../hero-enchantments';
 import type { CombatUnit } from '../model';
 import type { EffectContext as C, EffectStatus, SkillProgram } from '../skill-effects';
 import { historicalValue as historical } from './historical-upgrades';
@@ -107,6 +108,8 @@ export function applyMainGapOverrides(registry: Record<string, SkillProgram>): v
   const dagger = registry.spectre_spectral_dagger;
   dagger.cast = c => {
     const h = (key: string) => historical('spectre_spectral_dagger', key, Math.max(1, Math.min(4, Math.floor(c.skill.points))));
+    const hitRadius = enlargedSkillArea(c.caster, 'DAGGER RADIUS', h('dagger_radius') / 100) + .4;
+    const pathRadius = enlargedSkillArea(c.caster, 'PATH RADIUS', h('path_radius') / 100);
     type Path = { id: string; source: string; skill: string; from: { x: number; y: number }; to: { x: number; y: number }; createdAt: number; until: number };
     const paths: Path[] = [], hit = new Set<string>(), marked = new Map<string, { unit: CombatUnit; until: number; previous: { x: number; y: number } }>();
     const token = `${c.caster.id}:${c.battle.time}`, interval = 1 / 30;
@@ -134,7 +137,7 @@ export function applyMainGapOverrides(registry: Record<string, SkillProgram>): v
         const gap = distance(position, c.target), step = Math.min(gap, h('speed') / 100 * interval), scale = gap ? step / gap : 0;
         const next = { x: position.x + (c.target.x - position.x) * scale, y: position.y + (c.target.y - position.y) * scale };
         addPath(position, next);
-        for (const enemy of c.enemies()) if (pointOnSegment(enemy, position, next, h('dagger_radius') / 100 + .4)) strike(enemy);
+        for (const enemy of c.enemies()) if (pointOnSegment(enemy, position, next, hitRadius)) strike(enemy);
         position = next; if (gap <= step + .4 || c.target.dead) flying = false;
       }
       for (const [id, entry] of marked) {
@@ -144,7 +147,7 @@ export function applyMainGapOverrides(registry: Record<string, SkillProgram>): v
       }
       for (let i = paths.length - 1; i >= 0; i--) if (paths[i].until <= c.battle.time) paths.splice(i, 1);
       c.battle.shadowPaths = ((c.battle.shadowPaths ?? []) as Path[]).filter(path => path.until > c.battle.time);
-      const onPath = (unit: CombatUnit) => paths.some(path => pointOnSegment(unit, path.from, path.to, h('path_radius') / 100));
+      const onPath = (unit: CombatUnit) => paths.some(path => pointOnSegment(unit, path.from, path.to, pathRadius));
       for (const enemy of c.enemies()) if (onPath(enemy)) c.status(enemy, 'slow', h('buff_persistence'), h('bonus_movespeed') / 100, { harmful: true, piercesImmunity: true });
       if (!c.caster.dead && onPath(c.caster)) { c.status(c.caster, 'haste', h('buff_persistence'), h('bonus_movespeed') / 100); c.status(c.caster, 'freePathing', h('dagger_grace_period')); }
       if (flying || paths.length || marked.size) c.delay(interval, pulse);

@@ -2,7 +2,7 @@
   "name": "arcane-arena",
   "private": true,
   "version": "0.1.1",
-  "releaseRevision": "r13",
+  "releaseRevision": "r14",
   "type": "module",
   "scripts": {
     "predev": "node scripts/config-check.mjs",
@@ -12,6 +12,7 @@
     "config:audit": "node scripts/audit-configurables.mjs",
     "ranges:audit": "node scripts/audit-skill-ranges.mjs",
     "ranges:test": "vitest run tests/skill-range-catalog.test.ts tests/range-geometry.test.ts tests/zone-range-propagation.test.ts",
+    "balance:run": "node scripts/balance-experiment.mjs",
     "reference:report": "node scripts/build-reference-acceptance.mjs",
     "reference:verify": "node scripts/verify-reference-acceptance.mjs",
     "prebuild": "node scripts/config-check.mjs && node scripts/build-mechanics-coverage.mjs",

@@ -105,30 +105,28 @@ describe('five-level shop and inactive God positions', () => {
   });
 });
 
-describe('FAQ movement fees and permanent ability ownership', () => {
-  it('charges hero-to-reserve once and permits free reserve-to-hero and internal ordering', () => {
+describe('free skill movement and permanent ability ownership', () => {
+  it('moves from hero to reserve, within reserve, and back to a hero for free', () => {
     const state = twoHeroes(), p = state.players[0], [first, second] = buyDistinct(state, 2); p.gold = 10;
     expect(moveSkill(state, 0, { hero: 0, slot: 0 }, { hero: 0, slot: 1 })).toBeNull(); expect(p.gold).toBe(10);
     expect(p.heroes[0].skills.slice(0, 2).map(s => s?.id)).toEqual([second.id, first.id]);
-    expect(moveSkill(state, 0, { hero: 0, slot: 1 }, { reserve: 0 })).toBeNull(); expect(p.gold).toBe(9);
-    expect(moveSkill(state, 0, { reserve: 0 }, { reserve: 3 })).toBeNull(); expect(p.gold).toBe(9);
+    expect(moveSkill(state, 0, { hero: 0, slot: 1 }, { reserve: 0 })).toBeNull(); expect(p.gold).toBe(10);
+    expect(moveSkill(state, 0, { reserve: 0 }, { reserve: 3 })).toBeNull(); expect(p.gold).toBe(10);
     expect(p.reserve[0]).toBeNull(); expect(p.reserve[3]?.id).toBe(first.id);
-    expect(moveSkill(state, 0, { reserve: 3 }, { hero: 1, slot: 3 })).toBeNull(); expect(p.gold).toBe(9);
+    expect(moveSkill(state, 0, { reserve: 3 }, { hero: 1, slot: 3 })).toBeNull(); expect(p.gold).toBe(10);
     expect(p.heroes[1].skills[3]?.id).toBe(first.id); expect(p.reserve[3]).toBeNull(); assertInventory(state);
   });
-  it('charges one gold for a cross-hero swap, not one for each displaced spell', () => {
+  it('permits cross-hero swaps at zero gold', () => {
     const state = twoHeroes(), p = state.players[0], [first, second] = buyDistinct(state, 2);
-    expect(moveSkill(state, 0, { hero: 0, slot: 1 }, { hero: 1, slot: 0 })).toBeNull(); p.gold = 10;
+    expect(moveSkill(state, 0, { hero: 0, slot: 1 }, { hero: 1, slot: 0 })).toBeNull(); p.gold = 0;
     expect(moveSkill(state, 0, { hero: 0, slot: 0 }, { hero: 1, slot: 0 })).toBeNull();
-    expect(p.gold).toBe(9); expect(p.heroes[0].skills[0]?.id).toBe(second.id); expect(p.heroes[1].skills[0]?.id).toBe(first.id);
+    expect(p.gold).toBe(0); expect(p.heroes[0].skills[0]?.id).toBe(second.id); expect(p.heroes[1].skills[0]?.id).toBe(first.id);
     assertInventory(state);
   });
-  it('rejects unaffordable buy/upgrade/reroll/moves atomically, while free movements still work at zero gold', () => {
+  it('allows swapping a reserve stack with an equipped one at zero gold while purchases still cost gold', () => {
     const state = twoHeroes(), p = state.players[0]; buyDistinct(state, 3);
     expect(moveSkill(state, 0, { hero: 0, slot: 2 }, { reserve: 0 })).toBeNull(); p.gold = 0;
-    unchanged(state, () => moveSkill(state, 0, { hero: 0, slot: 0 }, { reserve: 1 }));
-    unchanged(state, () => moveSkill(state, 0, { hero: 0, slot: 0 }, { hero: 1, slot: 0 }));
-    unchanged(state, () => moveSkill(state, 0, { reserve: 0 }, { hero: 0, slot: 0 }));
+    expect(moveSkill(state, 0, { reserve: 0 }, { hero: 0, slot: 0 })).toBeNull();
     unchanged(state, () => buySkill(state, 0, p.shop.findIndex(Boolean)));
     unchanged(state, () => upgradeShop(state, 0)); unchanged(state, () => rerollShop(state, 0));
     expect(moveSkill(state, 0, { hero: 0, slot: 0 }, { hero: 0, slot: 1 })).toBeNull();

@@ -14,6 +14,8 @@ import {GLOBAL_BATTLE_CONFIG} from './global-config';
 import {resolveSkillCastRange} from './skill-range';
 import {heroStatsAtLevel} from './hero-progression';
 import { BATTLE_BOUNDS } from './arena-layout';
+import {GOD_SKILLS} from './gods';
+import {initializeGods,recordGodManaSpend,recordGodSummon} from './combat/gods';
 export {removeStatuses as dispelBattleStatuses};
 
 export const FIXED_STEP = 1 / 30;
@@ -35,7 +37,7 @@ export interface SpellOrderInput {tick:number;unitId:string;slot:number;skillId:
 interface UnitRuntime { pending?: PendingAction; token: number; channelUntil: number;channelEnd?:(reason:'complete'|'interrupted')=>void; lastTarget?: string;attackPeriod?:number;attackWindup?:number;castScale?:number;recoveringCast?:boolean;recoveringAttackCast?:boolean; motion?:MotionController;toggleOffTick?:WeakMap<SkillStack,number> }
 interface UnitRuntime {cooldownLocks?:Record<string,{slot:number;skill:SkillStack;duration:number;active:boolean}>;attackBackswing?:number;orderedCast?:SpellOrderInput}
 interface Task { due: number; sequence: number; effect: () => void; source?: string; token?: number; cancelOnInterrupt?: boolean; stolenOrigin?:string }
-interface VisualOrigin {points?:number;visualSkill?:string;visualPoints?:number;attribution?:Attribution;category?:DamageCategory;flags?:DamageFlags;lifesteal?:boolean;healingKind?:'heal'|'regen'|'lifesteal';lifestealProviders?:EffectStatus[];lifestealVictimScale?:number;lifestealAmplificationSource?:string}
+interface VisualOrigin {points?:number;visualSkill?:string;visualPoints?:number;attribution?:Attribution;category?:DamageCategory;flags?:DamageFlags;lifesteal?:boolean;healingKind?:'heal'|'regen'|'lifesteal';baseRegeneration?:boolean;lifestealProviders?:EffectStatus[];lifestealVictimScale?:number;lifestealAmplificationSource?:string}
 interface Projectile extends VisualOrigin { id:string;createdAt:number;source: string; target: string; skill: string; x: number; y: number; speed: number; effect: (target: CombatUnit) => void;disjointable?:boolean;disjointOnInvisibility?:boolean;disjointOnUndetectable?:boolean;attackProjectile?:boolean;onMove?:(position:{x:number;y:number})=>void;line?:{followOrigin?:{sourceId:string;x:number;y:number};angle:number;remaining:number;distance:number;width:number;endWidth?:number;stopOnHit:boolean;targets:'enemies'|'all';targetFilter?:(unit:CombatUnit)=>boolean;hit:string[];shouldContinue?:()=>boolean;onMove?:(position:{x:number;y:number})=>void;onEnd?:()=>void} }
 interface Projectile {cancelled?:boolean;onDisjoint?:(position:{x:number;y:number})=>void;onTargetLost?:(position:{x:number;y:number},reason:'dead'|'missing')=>void;ignoreInitialInvisibility?:boolean;visualProjectile?:string;visualLayer?:string}
 interface Zone extends VisualOrigin { id:string;createdAt:number;source: string; skill: string; x: number; y: number; until: number; next: number; interval: number; tick: number; token: number; options: ZoneOptions; stolenOrigin?:string;ended?:boolean }
@@ -134,7 +136,10 @@ export function effectiveStatusEffects(u:CombatUnit,kind:string,include:(status:
   }
   return selected;
 }
-export function statusValue(u:CombatUnit,kind:string):number{return effectiveStatusEffects(u,kind).reduce((n,status)=>n+(status.value??0)*(kind==='spellAmp'&&status.data?.manaRatioSpellAmp?Math.min(1,Math.max(0,u.mana/Math.max(1,u.maxMana))):1),0);}
+export function statusValue(u:CombatUnit,kind:string):number {
+  const godBonus=kind==='spellAmp'?u.godSpellAmp??0:kind==='attackSpeed'?u.godSummonAttackSpeed??0:0;
+  return effectiveStatusEffects(u,kind).reduce((n,status)=>n+(status.value??0)*(kind==='spellAmp'&&status.data?.manaRatioSpellAmp?Math.min(1,Math.max(0,u.mana/Math.max(1,u.maxMana))):1),godBonus);
+}
 function effectiveArmor(u:CombatUnit,options:{excludeSourceId?:string;excludeSkillId?:string}={}):number{
   const excluding=options.excludeSourceId!==undefined||options.excludeSkillId!==undefined;
   const include=(s:EffectStatus)=>!excluding||!((options.excludeSourceId===undefined||s.source===options.excludeSourceId)&&(options.excludeSkillId===undefined||s.skill===options.excludeSkillId));
@@ -404,7 +409,7 @@ function heal(b: BattleState, source: CombatUnit, target: CombatUnit, amount: nu
   if(hasStatus(target,'falsePromise')){const ledger=deferredLedger(target);ledger.healing+=reduced;ledger.healingEntries.push({source:source.id,amount:reduced,attribution});return 0;}
   const actual = Math.max(0,Math.min(target.maxHp-target.hp,reduced));
   target.hp += actual;recordHealing(b,source,target,actual,attribution);
-  if(actual>0)emit(b,{type:'heal',source:source.id,target:target.id,skill,x:target.x,y:target.y,amount:actual,...visual,attribution});
+  if(actual>0&&!visual.baseRegeneration)emit(b,{type:'heal',source:source.id,target:target.id,skill,x:target.x,y:target.y,amount:actual,...visual,attribution});
   if(reduced>0&&!transferred){const tether=tetherPartner(b,target);if(tether)heal(b,target,tether.unit,reduced*tether.multiplier,'wisp_tether',true,depth+1);}
   if(actual>0&&!transferred&&!visual.lifesteal&&depth===0&&skill&&!skill.toLowerCase().includes('lifesteal'))runHooks(b,source,'onHeal',target,actual,undefined,depth+1,skill);
   return actual;
@@ -720,6 +725,9 @@ function commitResolvedDamage(b:BattleState,source:CombatUnit,target:CombatUnit,
     if(depth===0)runHooks(b,target,'onDamage',source,actual,type,depth+1,skill,source.id,{damageFlags:{...flags},damageCategory:category});
   }
   if(depth===0&&actual>0&&!flags.noDamageHooks&&!flags.healthRemoval)runHooks(b,source,'onDealDamage',target,actual,type,depth+1,skill);
+  if(target.godRetaliate&&actual>0&&category==='attack'&&type==='physical'&&source.side!==target.side&&!flags.reflection&&!flags.noReflection&&!flags.healthRemoval&&!flags.noDamageHooks){
+    applyDamage(b,target,source,actual*target.godRetaliate,'physical',GOD_SKILLS.centaur,true,depth+1,false,undefined,{category:'spell',flags:{reflection:true,noAmplification:true,noSpellLifesteal:true,noReflection:true,noDamageHooks:true}});
+  }
   const lifestealDamage=category==='attack'&&!flags.convertedAttack?damage:actual;
   if(lifestealDamage>0&&lifestealProviders&&source.side!==target.side)healFromLifesteal(b,source,lifestealDamage*lifestealVictimScale,lifestealProviders,lifestealProviders.map(provider=>(provider.kind==='openWounds'?actual:lifestealDamage)*lifestealVictimScale));
   return actual;
@@ -735,7 +743,7 @@ function tryAutomaticBorrowedTime(b:BattleState,u:CombatUnit):void {
   const c=context(b,u,u,skill,definition),balance=skillBalance(definition,skill.points);
   if(u.hp>=skillValue(c,'HEALTH THRESHOLD'))return;
   const cost=balance?.mana??(program.manaCost?program.manaCost(c):arrayValue(definition.mana,skill.points));
-  if(u.mana<cost)return;u.mana-=cost;
+  if(u.mana<cost)return;u.mana-=cost;recordGodManaSpend(b,u,cost);
   const cooldown=balance?.cooldown??(program.cooldown?program.cooldown(c):arrayValue(definition.cooldowns,skill.points));
   u.cooldowns[slot]=b.time+Math.max(.2,cooldown*(1-Math.min(.9,Math.max(0,statusValue(u,'cooldownReduction')))));
   program.cast(c);
@@ -887,7 +895,7 @@ function context(b: BattleState, caster: CombatUnit, target: CombatUnit, skill: 
     linearProjectile:o=>r.projectiles.push({id:`projectile:${r.nextProjectile++}`,createdAt:b.time,source:caster.id,target:'',skill:skill.id,...visual,visualLayer:o.visualLayer,x:o.origin?.x??caster.x,y:o.origin?.y??caster.y,speed:o.speed,attackProjectile:getSkillProgram(skill.id)?.attackProjectile,effect:guard(o.effect),line:{...(o.followOrigin?{followOrigin:{sourceId:o.followOrigin.id,x:o.followOrigin.x,y:o.followOrigin.y}}:{}),angle:o.angle,remaining:o.distance,distance:o.distance,width:o.width,endWidth:o.endWidth,stopOnHit:o.stopOnHit??false,targets:o.targets??'enemies',targetFilter:o.targetFilter,hit:[],shouldContinue:o.shouldContinue,onMove:o.onMove&&guard(o.onMove),onEnd:o.onEnd&&guard(o.onEnd)}}),
     disjoint:t=>{const removed=[...new Set([...r.projectiles,...(r.updatingProjectiles??[])])].filter(p=>!p.cancelled&&p.target===t.id&&p.disjointable!==false);for(const p of removed){p.cancelled=true;r.updatingProjectiles?.delete(p);}r.projectiles=r.projectiles.filter(p=>!p.cancelled);for(const p of removed)p.onDisjoint?.({x:p.x,y:p.y});b.projectiles=r.projectiles.map(p=>({id:p.id,createdAt:p.createdAt,source:p.source,target:p.target,skill:p.skill,points:p.points,visualSkill:p.visualSkill,visualPoints:p.visualPoints,visualProjectile:p.visualProjectile,visualLayer:p.visualLayer,x:p.x,y:p.y,angle:p.line?.angle}));emit(b,{type:'status',source:t.id,skill:skill.id,x:t.x,y:t.y,status:'projectileDisjoint',...visual});},
     endChannel:()=>{const state=r.units.get(caster.id);if(!state)return;const onEnd=state.channelEnd;state.channelEnd=undefined;if(state.pending?.type==='cast')state.pending=undefined;state.token++;state.channelUntil=0;state.recoveringCast=false;caster.castUntil=b.time;removeZones(b,z=>z.source===caster.id&&!!z.options.channel);setAction(b,caster,'idle');emit(b,{type:'status',source:caster.id,skill:skill.id,x:caster.x,y:caster.y,status:'channelEnded',...visual});onEnd?.('interrupted');},
-    movementSpeed,attackInterval,attackRange:effectiveAttackRange,isRangedAttack:isRangedAttackType,canTarget,effectiveCastRange:base=>base*(1+statusValue(caster,'castRangePct'))+statusValue(caster,'castRange'),
+    movementSpeed,attackInterval,attackRange:effectiveAttackRange,isRangedAttack:isRangedAttackType,canTarget,effectiveCastRange:base=>base*(1+statusValue(caster,'castRangePct'))+statusValue(caster,'castRange')+(caster.castRangeBonus??0),
     flatAttackBonus:(unit,options)=>effectiveStatusEffects(unwrap(unit),'attackBonus',status=>!options?.excludeSkillIds?.includes(status.skill??'')).reduce((sum,status)=>sum+(status.value??0),0),
     orderAttack:(attacker,target,options)=>{const unit=unwrap(attacker),victim=unwrap(target);if(unit.dead||victim.dead||unit.side===victim.side)return;unit.attackOrder={targetId:victim.id,withinRangeOnly:!!options?.withinRangeOnly};},
     reduceCooldowns:(target,seconds,options)=>reduceCooldowns(b,unwrap(target),seconds,options),
@@ -946,6 +954,15 @@ function summon(b: BattleState, source: CombatUnit, skill: SkillStack, options: 
       sourceSkill:skill.id,statSummonRootId:(skill as RuntimeSkill).statRootId??skill.id,visualBody:options.visualBody,inheritedMode:options.inheritedMode,
       deferredHealth:undefined,pendingFalsePromises:[],damageHistory:[],permanentAttackGain:0,reviveAt:undefined,stolenAbilities:[],stolenSpellMemory:{},attackOrder:undefined,prdState:{},warpSequence:0,previousTransform:undefined,
     };
+    if(!options.illusion&&template.enchantmentId){
+      delete unit.enchantmentId;delete unit.healthRegen;delete unit.manaRegenBonus;
+      delete unit.attackRangeBonus;delete unit.castRangeBonus;delete unit.skillAreaBonus;
+    }
+    if(template.godId){
+      unit.godId=source.godId==='kanna'?'kanna':undefined;
+      delete unit.godRetaliate;delete unit.godTravel;delete unit.godMulticast;
+      delete unit.godSummonAttackSpeed;delete unit.godSpellAmp;
+    }
     if(options.illusion)for(const inherited of template.skills){if(!inherited||!getSkillProgram(inherited.id)?.onIllusionCreated||unit.skills.some(skill=>skill?.id===inherited.id&&skill.instanceId===inherited.instanceId))continue;unit.skills.push(structuredClone(inherited));}
     if(options.inheritedPointsCap!==undefined)for(const inherited of unit.skills)if(inherited&&r.definitions.get(inherited.id)?.balanceDomain!=='native')inherited.points=Math.max(1,Math.min(inherited.points,Math.floor(options.inheritedPointsCap)));
     // Illusion totals are already snapshots. Fresh attributes must not reapply
@@ -958,6 +975,7 @@ function summon(b: BattleState, source: CombatUnit, skill: SkillStack, options: 
     if(options.nativeTemplateId)applyNativeUnitProfile(unit,options.nativeTemplateId);
     beginMovementFrame(unit,Number(b.tickCount??0),movementSpeed(unit),FIXED_STEP);
     b.units.push(unit);battleByUnit.set(unit,b);r.units.set(unit.id,{token:0,channelUntil:0});result.push(unit);
+    if(source.godId==='kanna'){unit.godId='kanna';recordGodSummon(b,unit);}
     emit(b,{type:'summon',source:source.id,target:unit.id,skill:skill.id,x:unit.x,y:unit.y,duration:options.lifetime});
     if(options.inheritsSkills&&options.initializeInherited){
       // Direct totals and attributes already come from the illusion snapshot.
@@ -990,7 +1008,7 @@ function attackInterval(u: CombatUnit, target?:CombatUnit): number {
 }
 function attackWindup(u:CombatUnit,_interval:number,target?:CombatUnit):number {return Math.max(0,Number(effects(u).find(s=>s.kind==='attackPointOverride')?.value??u.attackPoint??Math.min(GLOBAL_BATTLE_CONFIG.defaultAttackPointCap,u.attackInterval*GLOBAL_BATTLE_CONFIG.defaultAttackPointFactor)))*100/effectiveAttackSpeed(u,target)*Math.max(.01,1+statusValue(u,'attackTimePct'));}
 function attackBackswing(u:CombatUnit,_interval:number,target?:CombatUnit):number {return Math.max(0,Number(u.attackBackswing??Math.max(0,u.attackInterval-Number(u.attackPoint??Math.min(GLOBAL_BATTLE_CONFIG.defaultAttackPointCap,u.attackInterval*GLOBAL_BATTLE_CONFIG.defaultAttackPointFactor)))))*100/effectiveAttackSpeed(u,target)*Math.max(.01,1+statusValue(u,'attackTimePct'));}
-export function effectiveAttackRange(u:CombatUnit){return (effectiveStatusEffects(u,'attackRangeOverride',s=>!s.data?.rangedOnly||isRangedAttackType(u))[0]?.value??u.range)+effectiveStatusEffects(u,'range',s=>!s.data?.rangedOnly||isRangedAttackType(u)).reduce((sum,s)=>sum+(s.value??0),0);}
+export function effectiveAttackRange(u:CombatUnit){return (effectiveStatusEffects(u,'attackRangeOverride',s=>!s.data?.rangedOnly||isRangedAttackType(u))[0]?.value??u.range)+(u.attackRangeBonus??0)+effectiveStatusEffects(u,'range',s=>!s.data?.rangedOnly||isRangedAttackType(u)).reduce((sum,s)=>sum+(s.value??0),0);}
 const attackRange=effectiveAttackRange;
 export function isRangedAttackType(u:CombatUnit):boolean{const override=effects(u).find(s=>s.kind==='attackTypeOverride')?.value;return override===2||(override!==1&&(u.attackCapability?u.attackCapability==='ranged':u.range>2));}
 const attackCriticalProfiles=new WeakMap<AttackRecord,CriticalRoll[]>();
@@ -1025,6 +1043,7 @@ function prepareAttackOptions(b:BattleState,source:CombatUnit,target:CombatUnit,
 function collectCriticalChoices(b:BattleState,source:CombatUnit,target:CombatUnit,record:AttackRecord,options:InstantAttackOptions,depth:number,triggerModifiers=true):CriticalRoll[]{
   if(options.modifierPolicy==='none')return[];
   const choices:CriticalRoll[]=[];
+  if(source.godTravel!==undefined)choices.push({key:GOD_SKILLS.phantomAssassin,multiplier:1.5+.025*Math.floor(source.godTravel),roll:()=>nextRandom(b)<.2});
   const variable=effectiveStatusEffects(source,'variableCrit').filter(status=>!(status.data?.excludeBuildingsAndWards&&(target.ward||target.building))).sort((a,c)=>(c.value??0)-(a.value??0))[0];
   if(variable){const probability=variable.value??0,key=typeof variable.data?.prdKey==='string'?variable.data.prdKey:undefined,provider={id:variable.skill??'variableCrit',points:variable.points??3,prdOrigin:`provider:${variable.data?.uniqueGroup??variable.skill}`}as RuntimeSkill;
     const creep=target.summoned&&!target.illusion&&!target.consideredHero?Number(variable.data?.creepMultiplier??1):1,max=Number(variable.data?.max??1)*creep,min=Number(variable.data?.min??variable.data?.max??1)*creep,candidate:CriticalRoll={key:variable.skill??'variableCrit',multiplier:max,lifesteal:Number(variable.data?.lifesteal??0),roll:()=>{
@@ -1233,8 +1252,9 @@ function updateStatuses(b:BattleState,u:CombatUnit) {
   if(u.dead)return;
   updatePendingPromises(b,u);if(u.dead)return;
   repayRum(b,u);
+  if(u.healthRegen)heal(b,u,u,u.healthRegen*FIXED_STEP,undefined,false,0,{healingKind:'regen',baseRegeneration:true,attribution:{abilityId:'regeneration'}});
   for(const s of effectiveStatusEffects(u,'regen'))heal(b,b.units.find(t=>t.id===s.source)??u,u,(s.value??0)*FIXED_STEP,s.skill,false,0,{attribution:s.attribution,healingKind:'regen'});
-  changeMana(b,u,(BATTLE_CONFIG.baseManaRegen+statusValue(u,'manaRegen'))*FIXED_STEP);
+  changeMana(b,u,(BATTLE_CONFIG.baseManaRegen+(u.manaRegenBonus??0)+statusValue(u,'manaRegen'))*FIXED_STEP);
   if(Number(u.expiresAt??Infinity)<=b.time)kill(b,u);
 }
 function updateTasks(b:BattleState) {
@@ -1286,6 +1306,26 @@ function updateZones(b:BattleState) {
   r.updatingZones=undefined;
   b.zones=r.zones.map(z=>({id:z.id,createdAt:z.createdAt,source:z.source,skill:z.skill,layer:z.options.visualLayer,points:z.points,visualSkill:z.visualSkill,visualPoints:z.visualPoints,x:z.x,y:z.y,radius:z.options.radius,until:z.until}));
 }
+function queueGodMulticast(b:BattleState,caster:CombatUnit,skill:SkillStack,definition:SkillDefinition,program:SkillProgram,pending:PendingAction,channel:number):void {
+  if(!caster.godMulticast||caster.dead||channel>0||program.itemActive||program.toggleActive||program.toggleOff||program.attackCastPointFactor!==undefined||program.cooldownStart==='effectEnd'||program.procsOnCast===false||(skill as RuntimeSkill).statParentId||nextRandom(b)>=caster.godMulticast)return;
+  const r=runtime(b);
+  r.tasks.push({due:b.time+.25,sequence:r.nextSequence++,effect:()=>{
+    if(caster.dead||!caster.skills.includes(skill))return;
+    const eligible=(target:CombatUnit)=>{
+      if(target.dead)return false;
+      const c=context(b,caster,target,skill,definition);
+      if(!unitTarget(program,c))return true;
+      return distance(caster,target)<=(pending.range??Infinity)+BODY_RADIUS+(pending.rangeBuffer??0)&&(program.targetEligibility?program.targetEligibility(c,target):target.side===caster.side||canTarget(target));
+    };
+    const original=b.units.find(unit=>unit.id===pending.target),target=original&&eligible(original)?original:selectTarget(b,caster,program,eligible)??(pending.castPosition?caster:undefined);
+    if(!target)return;
+    const c=context(b,caster,target,skill,definition,0,{castPosition:pending.castPosition});
+    const blocked=target.side!==caster.side&&unitTarget(program,c)&&(program.spellBlockTiming??'cast')==='cast'&&consumeSpellBlock(b,caster,target,skill.id);
+    emit(b,{type:'cast',source:caster.id,target:target.id,skill:skill.id,x:caster.x,y:caster.y,toX:pending.castPosition?.x??target.x,toY:pending.castPosition?.y??target.y,duplicatedBy:GOD_SKILLS.ogreMagi,...(blocked?{blocked:true}:{})});
+    if(!blocked)program.cast!(c);
+  }});
+}
+
 function completePending(b:BattleState,u:CombatUnit,virtualPending?:PendingAction) {
   const r=runtime(b),state=r.units.get(u.id)!,pending=virtualPending??state.pending;if(!pending||pending.due>b.time+1e-8)return;
   if(!virtualPending)state.pending=undefined;const target=b.units.find(t=>t.id===pending.target);if(!target||u.dead||(target.dead&&!pending.castPosition))return;
@@ -1309,7 +1349,7 @@ function completePending(b:BattleState,u:CombatUnit,virtualPending?:PendingActio
     u.nextAttack=Math.max(u.nextAttack,pending.attackReadyAt??b.time);if(!virtualPending){u.castUntil=pending.recoverUntil;state.recoveringCast=true;state.recoveringAttackCast=true;}
     emit(b,{type:'attack',source:u.id,target:target.id,skill:skill.id,x:u.x,y:u.y,toX:target.x,toY:target.y,windup:0,duration:Math.max(0,pending.recoverUntil-b.time),ranged:isRangedAttackType(u),passiveReplacement:true});p.cast(c);return;
   }
-  if(u.mana<cost)return;u.mana-=cost;
+  if(u.mana<cost)return;u.mana-=cost;recordGodManaSpend(b,u,cost);
   if(p.attackCastPointFactor!==undefined)u.nextAttack=Math.max(u.nextAttack,pending.attackReadyAt??u.actionStart+(pending.attackPeriod??attackInterval(u,target)));
   const nextReduction=Math.min(1,Math.max(0,statusValue(u,'nextCastCooldownReduction')));
   const configuredCooldown=Math.max(0,(native&&p.cooldown?p.cooldown(c):balance?.cooldown??(p.cooldown?p.cooldown(c):arrayValue(definition.cooldowns,skill.points,10)))-(stolenOrigin(b,skill)?.entry.cooldownReduction??0));
@@ -1320,7 +1360,7 @@ function completePending(b:BattleState,u:CombatUnit,virtualPending?:PendingActio
   const execution={executedAbility:{id:skill.id,cooldown:configuredCooldown,manaCost:cost,procsOnCast:p.procsOnCast!==false,granted:!!(skill as RuntimeSkill).statParentId,itemActive:!!p.itemActive}};
   const executed=()=>{runHooks(b,u,'onAbilityExecuted',target,0,undefined,0,skill.id,u.id,execution);if(p.procsOnCast!==false){runHooks(b,u,'onCast',target,0,undefined,0,skill.id,u.id,execution);for(const ally of live(b).filter(t=>t.side===u.side&&t.id!==u.id))runHooks(b,ally,'onAllyCast',u,0,undefined,0,skill.id,u.id,execution);}for(const status of executionStatuses)notifyAffectedExecuted(b,u,status,execution.executedAbility);};
   runHooks(b,u,'onBeforeAbilityEffect',target,0,undefined,0,skill.id,u.id,execution);
-  if(target.side!==u.side&&unitTarget(p,c)&&(p.spellBlockTiming??'cast')==='cast'&&consumeSpellBlock(b,u,target,skill.id)){finishEffectCooldown(b,u,skill);if(!virtualPending){u.castUntil=pending.recoverUntil;state.recoveringCast=true;}emit(b,{type:'cast',source:u.id,target:target.id,skill:skill.id,x:u.x,y:u.y,toX:target.x,toY:target.y,duration:castBackswing(p,c,balance),blocked:true});executed();return;}
+  if(target.side!==u.side&&unitTarget(p,c)&&(p.spellBlockTiming??'cast')==='cast'&&consumeSpellBlock(b,u,target,skill.id)){finishEffectCooldown(b,u,skill);if(!virtualPending){u.castUntil=pending.recoverUntil;state.recoveringCast=true;}emit(b,{type:'cast',source:u.id,target:target.id,skill:skill.id,x:u.x,y:u.y,toX:target.x,toY:target.y,duration:castBackswing(p,c,balance),blocked:true});executed();if(u.godMulticast)queueGodMulticast(b,u,skill,definition,p,pending,typeof p.channel==='function'?p.channel(c):p.channel??0);return;}
   const channel=typeof p.channel==='function'?p.channel(c):p.channel??0;
   if(!virtualPending){if(channel>0){state.channelUntil=b.time+channel;u.castUntil=state.channelUntil;state.recoveringCast=false;state.recoveringAttackCast=false;setAction(b,u,'channel',true);}else {u.castUntil=pending.recoverUntil;state.recoveringCast=true;state.recoveringAttackCast=p.attackCastPointFactor!==undefined;}}
   emit(b,{type:'cast',source:u.id,target:target.id,skill:skill.id,x:u.x,y:u.y,toX:pending.castPosition?.x??target.x,toY:pending.castPosition?.y??target.y,duration:channel>0?channel:castBackswing(p,c,balance)});
@@ -1328,6 +1368,7 @@ function completePending(b:BattleState,u:CombatUnit,virtualPending?:PendingActio
   if(p.procsOnCast!==false)for(const curse of effects(u).filter(s=>s.kind==='arcaneCurse'))curse.until+=Number(curse.data?.penaltyDuration??2);
   p.cast(c);if(skill.id==='troll_warlord_battle_trance')tranceTarget(b,u);
   executed();
+  queueGodMulticast(b,u,skill,definition,p,pending,channel);
   if(p.soulbindCopies!==false&&skill.id!=='custom_grimstroke_soul_bind'&&unitTarget(p,c))for(const partner of b.units.filter(t=>boundIds.includes(t.id)&&t.id!==target.id&&!t.dead)){
     emit(b,{type:'cast',source:u.id,target:partner.id,skill:skill.id,x:u.x,y:u.y,toX:partner.x,toY:partner.y,duplicatedBy:'custom_grimstroke_soul_bind'});const duplicate=context(b,u,partner,skill,definition);if(channel>0){duplicate.endChannel=()=>{};duplicate.channelUnit=(body,duration,onEnd)=>body.id===u.id?shareUnitChannel(b,u,onEnd):channelUnit(b,unwrap(body),duration,onEnd);}p.cast(duplicate);
   }
@@ -1538,16 +1579,18 @@ export function createBattle(a:Player,b:Player,seed:number,definitions:SkillDefi
   const state=restoreTarget?Object.assign(restoreTarget,initialState):initialState;
   const r:Runtime={units:new Map(),definitions:new Map([...GRANTED_SKILL_DEFINITIONS,...definitions].map(d=>[d.id,d])),tasks:[],projectiles:[],zones:[],nextSequence:0,nextSummon:0,nextProjectile:0,nextZone:0,initializing:true,initialEffects:[],nestedCasts:0,stolen:new Map(),nextStolen:0,initializedSkills:new WeakSet()};runtimeByBattle.set(state,r);
   for(const [player,mirror] of [[a,false],[b,true]] as const)for(const hero of player.heroes){
-    const stats=heroStatsAtLevel(hero.role,round);const u:CombatUnit={id:`${player.id}:${hero.id}`,name:hero.name,role:hero.role,skin:hero.skin,side:player.id,level:stats.level,levelAttackSpeed:stats.levelAttackSpeed,
+    const stats=heroStatsAtLevel(hero.role,round,hero.enchantmentId);const u:CombatUnit={id:`${player.id}:${hero.id}`,name:hero.name,role:hero.role,skin:hero.skin,side:player.id,level:stats.level,levelAttackSpeed:stats.levelAttackSpeed,
       x:clamp(mirror?-hero.x:hero.x,BATTLE_BOUNDS.x-BODY_RADIUS),y:clamp(mirror?-hero.y:hero.y,BATTLE_BOUNDS.y-BODY_RADIUS),
       facing:mirror?-Math.PI/2:Math.PI/2,turnRate:stats.turnRate??BATTLE_CONFIG.turnRate,attackPoint:stats.attackPoint,attackBackswing:stats.attackBackswing,projectileSpeed:stats.projectileSpeed??BATTLE_CONFIG.basicAttackProjectileSpeed,attackRangeBuffer:stats.attackRangeBuffer??BATTLE_CONFIG.attackRangeBuffer,warpSequence:0,hp:stats.hp,maxHp:stats.hp,mana:stats.mana,maxMana:stats.mana,attack:stats.attack+Number((hero as typeof hero&{persistentAttackBonus?:number}).persistentAttackBonus??0),armor:stats.armor,magicResist:BATTLE_CONFIG.magicResist,
-      attackInterval:stats.attackInterval,range:stats.range,moveSpeed:stats.moveSpeed,skills:structuredClone(hero.skills),cooldowns:hero.skills.map(()=>0),statuses:[],nextAttack:0,castUntil:0,
+      attackInterval:stats.attackInterval,range:ROLE_CONFIG[hero.role].range,moveSpeed:stats.moveSpeed,skills:structuredClone(hero.skills),cooldowns:hero.skills.map(()=>0),statuses:[],nextAttack:0,castUntil:0,
+      ...(hero.enchantmentId?{enchantmentId:hero.enchantmentId,healthRegen:stats.healthRegen,manaRegenBonus:stats.manaRegenBonus,attackRangeBonus:stats.attackRangeBonus,castRangeBonus:stats.castRangeBonus,skillAreaBonus:stats.skillAreaBonus}:{}),
       action:'idle',actionStart:0,dead:false,damage:0,taken:0,healing:0,heroId:hero.id,permanentAttackGain:0,persistentBuffs:structuredClone(hero.persistentBuffs??{}),permanentBuffGains:{},persistentAttackBonus:hero.persistentAttackBonus??0,persistentStrengthBonus:hero.persistentStrengthBonus??0,persistentAgilityBonus:hero.persistentAgilityBonus??0,persistentIntelligenceBonus:hero.persistentIntelligenceBonus??0,skillState:hero.skills.reduce<Record<string,number>>((state,skill)=>{for(const[key,value]of Object.entries((skill as (SkillStack&{persistentState?:Record<string,number>})|null)?.persistentState??{}))state[key]=(state[key]??0)+value;return state;},{}),permanentSkillGains:{}};
     initializeAttributes(u,{strength:stats.strength,agility:stats.agility,intelligence:stats.intelligence},stats.primaryAttribute,{strength:Number(hero.persistentStrengthBonus??0),agility:Number(hero.persistentAgilityBonus??0),intelligence:Number(hero.persistentIntelligenceBonus??0)},stats.levelAttackSpeed);
     state.units.push(u);battleByUnit.set(u,state);r.units.set(u.id,{token:0,channelUntil:0});
   }
   // An init hook may immediately damage another unit. Every ledger must exist
   // before any hook runs, otherwise a later unit would erase incoming rows.
+  if(a.god||b.god)initializeGods(state,[a,b],round,()=>nextRandom(state));
   for(const u of state.units){u.abilityStats=[];u.absorbed=0;}
   for(const u of state.units)for(const skill of u.skills)if(skill)initializeSkill(state,u,skill);
   state.skillUltimates=Object.fromEntries([...r.definitions.values()].map(d=>[d.id,d.ultimate]));r.initializing=false;

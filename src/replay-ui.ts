@@ -19,7 +19,7 @@ export class ReplayViewer {
   get active(){return !!this.root;}
   get state(){return this.battle;}
   private get displayDefinitions(){return [...new Map([...GRANTED_SKILL_DEFINITIONS,...this.definitions].map(d=>[d.id,d])).values()];}
-  constructor(private assets:AssetManifest,private definitions:SkillDefinition[],private onEnter:()=>void,private onExit:()=>void){}
+  constructor(private assets:AssetManifest,private definitions:SkillDefinition[],private onEnter:()=>void,private onExit:()=>void,private onStep?:(battle:BattleState,from:number)=>void){}
   open(file:BattleReplayFile,scene=0){
     if(this.active)this.close();this.file=file;this.battle=beginReplay(file,this.definitions);this.paused=true;this.speed=1;this.accumulator=0;this.selected=this.battle.units[0]?.id??'';this.onEnter();
     try{this.root=document.createElement('section');this.root.className='replay-viewer';this.root.setAttribute('role','dialog');this.root.setAttribute('aria-modal','true');this.root.setAttribute('aria-label','战斗录像回放');
@@ -44,7 +44,7 @@ export class ReplayViewer {
   }
   private frame=(now:number)=>{
     if(!this.root||!this.renderer||!this.file||!this.battle)return;const dt=Math.max(0,Math.min(.1,(now-this.last)/1000));this.last=now;
-    if(!this.paused&&!this.seeking){this.accumulator+=dt*this.speed;let count=0;while(this.accumulator>=FIXED_STEP&&count++<16&&Number(this.battle.tickCount)<this.file.targetTick&&!this.battle.finished){stepBattle(this.battle,FIXED_STEP,this.definitions);this.accumulator-=FIXED_STEP;}if(this.battle.finished||Number(this.battle.tickCount)>=this.file.targetTick){this.paused=true;this.accumulator=0;}}
+    if(!this.paused&&!this.seeking){const tick=this.battle.tickCount,from=tick?this.battle.events.length:0;this.accumulator+=dt*this.speed;let count=0;while(this.accumulator>=FIXED_STEP&&count++<16&&Number(this.battle.tickCount)<this.file.targetTick&&!this.battle.finished){stepBattle(this.battle,FIXED_STEP,this.definitions);this.accumulator-=FIXED_STEP;}if(this.battle.tickCount!==tick)this.onStep?.(this.battle,from);if(this.battle.finished||Number(this.battle.tickCount)>=this.file.targetTick){this.paused=true;this.accumulator=0;}}
     this.renderer.draw(this.file.initial.a.heroes,this.file.initial.b.heroes,this.battle,this.file.initial.a.id,dt,this.paused?1:Math.min(1,this.accumulator/FIXED_STEP));
     if(now-this.lastPanel>150){this.updatePanel();this.lastPanel=now;}this.updateControls();this.raf=requestAnimationFrame(this.frame);
   };

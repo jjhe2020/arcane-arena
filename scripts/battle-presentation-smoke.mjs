@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 
 const url = process.env.ARENA_TEST_URL ?? 'http://localhost:4173';
-const output = 'artifacts/battle-presentation';
+const output = process.env.ARENA_SMOKE_OUTPUT ?? 'artifacts/battle-presentation';
 const results = [];
 await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -21,9 +21,18 @@ try {
     await page.locator('#seedInput').fill('743');
     await page.locator('[data-action=newGame]').click();
     await page.waitForFunction(() => window.arena.renderer.diagnostics().unitBodies.some(b => b.image?.endsWith('/idle.webp')));
+    // God strategies can give the paired opponent the same body as the player.
+    // Keep the opponent atlas cold regardless of seeded matchmaking and AI builds.
+    const opponentAtlas = await page.evaluate(() => {
+      const arena = window.arena;
+      for (const player of arena.state.players.slice(1)) {
+        for (const hero of player.heroes) Object.assign(hero, { role: 'archer', skin: 'male' });
+      }
+      return arena.assets.characters['archer-male'].idle.image;
+    });
     let release;
     const gate = new Promise(resolve => { release = resolve; });
-    await page.route('**/art/characters/*/idle.webp', async route => {
+    await page.route(`**${opponentAtlas}`, async route => {
       held.push(route.request().url());
       await gate;
       await route.continue();

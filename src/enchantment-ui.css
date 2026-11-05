@@ -1,0 +1,44 @@
+.enchantment-badge {
+  --enchantment-color: #c3ced5;
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4em;
+  padding: 0 .24em;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: var(--enchantment-color);
+  background: #141c22;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.enchantment-badge[data-grade="C"] { --enchantment-color: #9cdeae; }
+.enchantment-badge[data-grade="B"] { --enchantment-color: #97cafa; }
+.enchantment-badge[data-grade="A"] { --enchantment-color: #d5acff; }
+.enchantment-badge[data-grade="S"] { --enchantment-color: #f5ce79; }
+.hero-enchantment-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  pointer-events: none;
+}
+.enchantment-inspector {
+  padding: .4rem .55rem;
+  margin: .4rem 0;
+  border: 1px solid #536257;
+  border-radius: 4px;
+  background: #16232a7d;
+  font-size: 11px;
+}
+.enchantment-inspector .text-button { padding: 2px 0; min-height: 26px; font-size: 11px; }
+.enchantment-heading { display: flex; align-items: center; gap: .45rem; }
+.enchantment-heading small { margin-left: auto; }
+.enchantment-effects { display: grid; gap: .2rem; margin: .4rem 0 0; padding: 0; list-style: none; }
+.enchantment-effects li { display: flex; justify-content: space-between; gap: .4rem; }
+.enchantment-effects li span { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.enchantment-up { color: #a8e1bb; }
+.enchantment-down { color: #ffb3a9; }
+.enchantment-current { max-width: 18rem; padding: .65rem .75rem; border: 1px solid #637162; border-radius: 4px; }
+.enchantment-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: .65rem; }
+.enchantment-option { min-height: 6rem; padding: .6rem; text-align: left; align-content: start; }
+.enchantment-option .enchantment-effects { font-size: 12px; }
