@@ -1,3 +1,4 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {readFileSync} from 'node:fs';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,stepBattle} from '../src/combat';
@@ -6,7 +7,7 @@ import type {BattleBarrier} from '../src/combat/barriers';
 import type {AssetManifest,CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 import {GRANTED_SKILL_DEFINITIONS,SKILL_IMPLEMENTATIONS,type EffectContext as C,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 const SNOW='custom_tusk_snowball',TORRENT='kunkka_torrent',SPLIT='custom_leshrac_split_earth',AXES='beastmaster_wild_axes',WAVE='morphling_waveform',SHARDS='aa_granted_snowball_ice_shards',STORM='kunkka_torrent_storm',LIGHTNING='leshrac_lightning_storm',OP='ursa_overpower';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[],registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>,contexts=new WeakMap<object,Map<string,C>>();
+const catalog=readReferenceSkillCatalog(),registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>,contexts=new WeakMap<object,Map<string,C>>();
 const assets=JSON.parse(readFileSync(new URL('../public/data/assets.json',import.meta.url),'utf8')) as AssetManifest;
 const observer:SkillDefinition={id:'mr_observer',name:'observer',nameEn:'observer',description:'Explicit engine observation/qualification fixture.',descriptionEn:'Explicit engine observation/qualification fixture.',icon:'',tags:[],values:[],cooldowns:[0],mana:[0],super:'',gaben:'',categories:['ABILITY: Passive'],passive:true,ultimate:false};
 registry.mr_observer={passive:true,implemented:[],remaining:[],init:c=>{let m=contexts.get(c.battle);if(!m){m=new Map;contexts.set(c.battle,m);}m.set(c.caster.id,c);}};

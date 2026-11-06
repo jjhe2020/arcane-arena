@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,getCombatStats,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import {BATTLE_CONFIG} from '../src/config';
@@ -6,7 +6,7 @@ import {GRANTED_SKILL_DEFINITIONS,type EffectStatus} from '../src/skill-effects'
 import {validateUnitStatistics} from '../src/combat/statistics';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const NA='custom_enchantress_natures_attendants',NC='custom_furion_force_of_nature',SWAP='vengefulspirit_nether_swap',TOXIN='viper_nethertoxin',OMNI='juggernaut_omni_slash';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const player=(side:number,skills:SkillStack[],count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function world(id:string,points=3,enemies=2,extra:SkillStack[]=[]){
  const definitions=structuredClone([...catalog,...GRANTED_SKILL_DEFINITIONS]);if(!definitions.some(d=>d.id===id)||extra.some(s=>!definitions.some(d=>d.id===s.id)))throw Error('Unknown fixture skill');

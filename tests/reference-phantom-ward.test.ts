@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {BATTLE_CONFIG} from '../src/config';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,stepBattle} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 import {SKILL_IMPLEMENTATIONS,GRANTED_SKILL_DEFINITIONS,type EffectContext as C,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 const PHANTASM='custom_chaos_knight_phantasm',STRIKE='phantom_assassin_phantom_strike',SHIFT='puck_phase_shift',VEIL='muerta_pierce_the_veil',WARD='custom_venomancer_plague_ward',DAGGER='phantom_assassin_stifling_dagger';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[],registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
+const catalog=readReferenceSkillCatalog(),registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 function probe(id:string,cast:(c:C)=>void,opts:Partial<SkillProgram>={}):SkillDefinition{registry[id]={cast,target:'enemy',range:50,castPoint:0,backswing:0,requiresFacing:false,targetSelector:(c,ts)=>ts.find(t=>t.id===c.caster.testTarget)??ts[0],implemented:[],remaining:[],...opts};return{id,name:id,nameEn:id,icon:'',description:'Engine stimulus',descriptionEn:'Engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};}
 const probes=[probe('test_pw_attack',c=>c.attack(c.target,1,true,undefined,true)),probe('test_pw_launch',c=>c.launchAttack?.(c.target,1,true,{projectileSpeed:1,rangedAttackPoint:true})),probe('test_pw_dagger',c=>c.castAbility(DAGGER,4,c.target)),probe('test_pw_disjoint',c=>c.disjoint(c.target)),probe('test_pw_stun',c=>c.status(c.target,'stun',2,0,{harmful:true,affectsInvulnerable:true,dispel:'strong'})),probe('test_pw_basic',c=>c.dispel(c.target,false,c.target.side!==c.caster.side)),probe('test_pw_strong',c=>c.dispel(c.target,true,c.target.side!==c.caster.side))];
 const player=(id:number,skills:SkillStack[]=[],count=1):Player=>({id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});

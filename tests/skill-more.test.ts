@@ -4,7 +4,7 @@ import { applyDamage, BATTLE_BOUNDS, createBattle, stepBattle } from '../src/com
 import type { BattleState, Player, SkillDefinition } from '../src/model';
 import { MORE_PROGRAMS } from '../src/skill-effects-more';
 import { MORE_CHILD_DEFINITIONS } from '../src/skill-effects-more-children';
-import {BATTLE_CONFIG,ROLE_CONFIG,skillBalance} from '../src/config';
+import {BATTLE_CONFIG,ROLE_CONFIG,nativeBalance,skillBalance} from '../src/config';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
 function player(id: number, skill?: string, points = 3, count = 1): Player {
@@ -100,10 +100,13 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Swashbuckle Gaben doubles fixed-damage strikes without substituting the hero attack stat', () => {
+    const id = 'pangolier_swashbuckle', definition = defs.find(d => d.id === id)!;
     for (const [points, count] of [[3, 3], [9, 6]]) {
-      const state = battle('pangolier_swashbuckle', points); state.units[1].armor = 0; state.units[0].attack = 1000;
+      const state = battle(id, points); state.units[1].armor = 0; state.units[0].attack = 1000;
+      const strikeDamage = skillBalance(definition, points)!.params['DAMAGE PER STRIKE'];
       advance(state, 1);
-      expect(state.events.filter(e => e.type === 'hit' && e.source === state.units[0].id && e.amount === 85)).toHaveLength(count);
+      const strikes = state.events.filter(e => e.type === 'hit' && e.skill === id && e.source === state.units[0].id);
+      expect(strikes.map(e => e.amount)).toEqual(Array(count).fill(strikeDamage));
     }
   });
 
@@ -482,13 +485,16 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Greater Bash charge damage uses effective movement modifiers despite the caster action-lock root', () => {
-    const state = battle('custom_spirit_breaker_charge_of_darkness', 3), caster = state.units[0];
+    const id = 'custom_spirit_breaker_charge_of_darkness', child = 'aa_granted_greater_bash';
+    const state = battle(id, 3), [caster, target] = state.units;
+    const bonus = skillBalance(defs.find(d => d.id === id)!, 3)!.params['CHARGE BONUS SPEED'] / 100;
+    const damagePerSpeed = nativeBalance(child, 4)!.params.DAMAGE / 100;
     caster.moveSpeed = 3;
     caster.statuses.push({ kind: 'moveFlat', value: 1, until: 200 }, { kind: 'haste', value: .5, until: 200 }, { kind: 'slow', value: .2, until: 200 }, { kind: 'disarm', until: 200 });
     advance(state, 1);
-    const hit = state.events.find(e => e.type === 'hit' && e.skill === 'aa_granted_greater_bash');
+    const hit = state.events.find(e => e.type === 'hit' && e.skill === child);
     // Charge is a flat movement bonus, applied before percentage modifiers.
-    expect(hit?.amount).toBeCloseTo((3 + 1 + 3.75) * 1.5 * .8 * 100 * .3 * .75);
+    expect(hit?.amount).toBeCloseTo((3 + 1 + bonus) * 1.5 * .8 * 100 * damagePerSpeed * (1 - target.magicResist));
   });
 
   it('Fissure explicitly lets allies through and Aftershock does not trigger from a merely nearby caster', () => {
@@ -501,11 +507,17 @@ describe('catalog-driven additional skills', () => {
   });
 
   it('Multishot invokes equipped attack modifiers on every real arrow hit', () => {
-    const state = battle('custom_drow_ranger_multishot', 3), [caster, target] = state.units;
-    caster.skills.push({ id: 'custom_drow_ranger_frost_arrows', points: 3 }); caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;
+    const multishot = 'custom_drow_ranger_multishot', frostArrows = 'custom_drow_ranger_frost_arrows';
+    const state = battle(multishot, 3), [caster, target] = state.units;
+    const arrowFactor = skillBalance(defs.find(d => d.id === multishot)!, 3)!.params['ARROW BASE DAMAGE BONUS'] / 100;
+    const frost = skillBalance(defs.find(d => d.id === frostArrows)!, 3)!.params;
+    caster.skills.push({ id: frostArrows, points: 3 }); caster.statuses.push({ kind: 'disarm', until: 200 }); target.armor = 0;
     advance(state, 2.4);
     const hits = state.events.filter(e => e.type === 'hit' && e.source === caster.id && e.damageType === 'physical' && (e.amount ?? 0) > 0);
-    expect(hits).toHaveLength(3); expect(hits.every((e,index) => Math.abs(Number(e.amount) - (caster.attack * 1.6 + 30 + 5 * (index+1))) < 1e-6)).toBe(true);
+    expect(hits).toHaveLength(3);
+    for (const [index, event] of hits.entries()) {
+      expect(event.amount).toBeCloseTo(caster.attack * arrowFactor + frost['BONUS DAMAGE'] + frost['HYPOTHERMIA BONUS DAMAGE PER STACK'] * (index + 1), 6);
+    }
     expect(target.statuses.some(s => s.kind === 'hypothermia')).toBe(true);
   });
 

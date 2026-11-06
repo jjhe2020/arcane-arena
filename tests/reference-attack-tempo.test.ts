@@ -1,10 +1,10 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {createBattle,stepBattle,FIXED_STEP,getCombatStats,dispelBattleStatuses} from '../src/combat';
 import {GRANTED_SKILL_DEFINITIONS,type EffectStatus} from '../src/skill-effects';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const AIM='custom_sniper_take_aim',TIDE='kunkka_tidebringer',TRICKS='custom_riki_tricks_of_the_trade',FURY='marci_unleash',WIND='custom_windrunner_windrun',GRENADE='sniper_concussive_grenade',ASSASSINATE='sniper_assassinate',SMOKE='riki_smoke_screen';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8'))as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const player=(side:number,skills:SkillStack[],role:'mage'|'assassin'='mage'):Player=>({id:side,name:'QA',hp:100,gold:0,shopLevel:5,locked:false,reserve:[],shop:[],heroes:[0,1,2].map(i=>({id:`h${i}`,name:'H',role,skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function world(id:string,points=3,extra:SkillStack[]=[],enemySkills:SkillStack[]=[],role:'mage'|'assassin'='mage',enemyAllySkills:SkillStack[]=[],friendlyOtherSkills:SkillStack[]=[]){
  const definitions=structuredClone([...catalog,...GRANTED_SKILL_DEFINITIONS]);for(const skill of[{id},...extra,...enemySkills,...enemyAllySkills,...friendlyOtherSkills])if(!definitions.some(d=>d.id===skill.id))throw Error('Unknown genuine fixture '+skill.id);

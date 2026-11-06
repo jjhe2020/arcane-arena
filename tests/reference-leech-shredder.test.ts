@@ -1,3 +1,4 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {readFileSync} from 'node:fs';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,getCombatStats,physicalDamageMultiplier,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
@@ -8,7 +9,7 @@ import {statusVisuals} from '../src/visual-bindings';
 import {validateUnitStatistics} from '../src/combat/statistics';
 import type {AssetManifest,CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const SEED='custom_treant_leech_seed',BREAK='custom_huskar_life_break',DRAIN='custom_pugna_life_drain',BOLT='zuus_lightning_bolt',SHRED='custom_snapfire_lil_shredder',CLOUD='zuus_cloud',WRATH='zuus_thundergods_wrath';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const assets=JSON.parse(readFileSync('public/data/assets.json','utf8')) as AssetManifest;
 const player=(id:number,skills:SkillStack[],count=1):Player=>({id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function world(id:string,points=3,enemies=2,allies=2,extra:SkillStack[]=[]){

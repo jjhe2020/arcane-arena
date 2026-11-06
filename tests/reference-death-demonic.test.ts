@@ -1,7 +1,8 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import{describe,it,expect}from'vitest';import{readFileSync}from'node:fs';
 import{applyDamage,createBattle,dispelBattleStatuses,serializeBattle,restoreBattle,statusValue,stepBattle}from'../src/combat';
 import type{CombatUnit,Player,SkillDefinition}from'../src/model';import type{SkillBalance}from'../src/config';import type{EffectStatus}from'../src/skill-effects';
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8'))as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const PULSE='custom_necrolyte_death_pulse',WARD='custom_witch_doctor_death_ward',SWITCH='aa_granted_voodoo_switcheroo',DECAY='custom_undying_decay',CLEANSE='custom_shadow_demon_demonic_cleanse',PURGE='custom_shadow_demon_demonic_purge';
 const player=(side:number,id:string,points:number,count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:3,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i*3,y:0,skills:i===0&&id?[{id,points}]:[]}))});
 function setup(id:string,points=3,enemies=3,extra:SkillDefinition[]=[]){const catalog=extra.length?defs.map(d=>extra.find(x=>x.id===d.id)??d):defs,b=createBattle(player(0,id,points),player(1,'',0,enemies),58,catalog),c=b.units[0],ally=b.units[1],foes=b.units.filter(u=>u.side===1),t=foes[0];for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=100000;u.armor=u.magicResist=0;u.nextAttack=99999;u.moveSpeed=0;u.statuses.push({kind:'disarm',until:200});}c.x=c.y=0;c.facing=Math.PI/2;ally.x=3;ally.y=0;foes.forEach((u,i)=>{u.x=0;u.y=2+i*2;});return{b,c,ally,foes,t,catalog,advance:(s:number)=>stepBattle(b,s,catalog)};}

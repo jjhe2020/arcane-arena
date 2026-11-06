@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,getCombatStats,isRangedAttackType,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import {UNIT_CONFIG} from '../src/config';
 import type {BattleState,CombatUnit,Player,Role,SkillDefinition} from '../src/model';
 
 const WILD='custom_beastmaster_call_of_the_wild',TREANTS='custom_furion_force_of_nature',WOLVES='custom_lycan_summon_wolves',GAZE='medusa_stone_gaze',WARD='custom_witch_doctor_death_ward';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 function player(side:number,id='',points=3,role:Role='mage'):Player{if(id&&!catalog.some(d=>d.id===id))throw new Error(`Unknown test skill: ${id}`);return{id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:[{id:'h',name:'H',role,skin:'male',x:0,y:-2,skills:id?[{id,points}]:[]},{id:'survivor',name:'Survivor',role:'tank',skin:'female',x:12,y:-12,skills:[]}]};}
 function setup(id:string,points=3,seed=1){
  const b=createBattle(player(0,id,points),player(1),seed,catalog),u=b.units[0],t=b.units.find(unit=>unit.side===1)!;

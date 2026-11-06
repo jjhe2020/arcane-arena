@@ -1,3 +1,4 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {readFileSync} from 'node:fs';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,stepBattle,statusValue} from '../src/combat';
@@ -5,7 +6,7 @@ import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 import {SKILL_IMPLEMENTATIONS,GRANTED_SKILL_DEFINITIONS,type EffectContext as C,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 import {movingVisuals} from '../src/visual-bindings';
 const COIL='custom_abaddon_death_coil',MOON='custom_luna_moon_glaive',KISSES='custom_snapfire_mortimer_kisses',MULTI='custom_drow_ranger_multishot',FLARE='custom_skywrath_mage_mystic_flare',SOLAR='aa_granted_solar_crest',GOBBLE='aa_granted_gobble_up',SPIT='aa_granted_spit_out',MARK='drow_ranger_marksmanship',COOKIE='custom_snapfire_firesnap_cookie';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[],registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
+const catalog=readReferenceSkillCatalog(),registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 const assets=JSON.parse(readFileSync(new URL('../public/data/assets.json',import.meta.url),'utf8'));
 function probe(id:string,cast:(c:C)=>void,opts:Partial<SkillProgram>={}):SkillDefinition{registry[id]={cast,target:'enemy',range:50,castPoint:0,backswing:0,requiresFacing:false,targetSelector:(c,ts)=>ts.find(t=>t.id===c.caster.testTarget)??ts[0],implemented:[],remaining:[],...opts};return{id,name:id,nameEn:id,icon:'',description:'Engine stimulus',descriptionEn:'Engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};}
 const probes=[probe('test_mf_attack',c=>c.attack(c.target,1,true,undefined,true)),probe('test_mf_launch',c=>c.launchAttack?.(c.target,1,true,{projectileSpeed:2,rangedAttackPoint:true})),probe('test_mf_disjoint',c=>c.disjoint(c.battle.units.find(t=>t.id===c.caster.testTarget)!)),probe('test_mf_solar',c=>c.castAbility(SOLAR,1,c.battle.units.find(t=>t.id===c.caster.testTarget)!)),probe('test_mf_basic',c=>{const t=c.battle.units.find(t=>t.id===c.caster.testTarget)!;c.dispel(t,false,t.side!==c.caster.side);}),probe('test_mf_stun',c=>c.status(c.target,'stun',2,0,{harmful:true,dispel:'strong'}))];

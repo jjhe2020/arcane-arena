@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import {GRANTED_SKILL_DEFINITIONS,type EffectStatus} from '../src/skill-effects';
@@ -7,7 +7,7 @@ import type {VisualWorldEffect} from '../src/combat/visual-state';
 import {validateUnitStatistics} from '../src/combat/statistics';
 
 const FORTUNE='custom_oracle_fortunes_end',FIELD='custom_crystal_maiden_freezing_field',ARROWS='custom_drow_ranger_frost_arrows',SHIELD='lich_frost_shield',BITE='crystal_maiden_frostbite',FLAMES='oracle_purifying_flames',RAIN='oracle_rain_of_destiny';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 function player(id:number,skills:SkillStack[]=[],count=1):Player{return{id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))};}
 function world(id:string,points=3,enemies=2,allies=1,extra:SkillStack[]=[]){
  const definitions=structuredClone([...catalog,...GRANTED_SKILL_DEFINITIONS]);if(!definitions.some(d=>d.id===id)||extra.some(s=>!definitions.some(d=>d.id===s.id)))throw Error('Unknown fixture ability');

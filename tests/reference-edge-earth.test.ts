@@ -1,5 +1,5 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {applyDamage,battleGains,createBattle,dispelBattleStatuses,getCombatStats,physicalDamageMultiplier,stepBattle} from '../src/combat';
 import {BATTLE_CONFIG,type SkillBalance} from '../src/config';
 import type {CombatUnit,Player,RoundReport,SkillDefinition} from '../src/model';
@@ -7,7 +7,7 @@ import type {EffectStatus} from '../src/skill-effects';
 import {buySkill,moveSkill,finishRound,getBattlePlayers,newGame,prepareRound,rerollShop,startRound} from '../src/game';
 
 const EDGE='centaur_double_edge',SLAVE='custom_lina_dragon_slave',DUEL='custom_legion_commander_duel',SPLITTER='elder_titan_earth_splitter',SHOCK='custom_ursa_earthshock';
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8'))as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const player=(side:number,id:string,points:number,count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:3,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i*3,y:0,skills:i===0&&id?[{id,points}]:[]}))});
 function setup(id:string,tier=3,count=3,changes?:(d:SkillDefinition)=>void,seed=92){const catalog=changes?defs.map(d=>{if(d.id!==id)return d;const copy=structuredClone(d);changes(copy);return copy;}):defs,b=createBattle(player(0,id,tier),player(1,'',0,count),seed,catalog),c=b.units[0],ally=b.units[1],foes=b.units.filter(u=>u.side===1),t=foes[0];for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=100000;u.armor=u.magicResist=0;u.moveSpeed=0;u.nextAttack=99999;u.statuses.push({kind:'disarm',until:200});}c.x=c.y=0;c.facing=Math.PI/2;ally.x=-3;ally.y=0;ally.facing=0;foes.forEach((u,i)=>{u.x=0;u.y=1+i;});return{b,c,ally,foes,t,catalog,advance:(seconds:number)=>stepBattle(b,seconds,catalog)};}
 type H=ReturnType<typeof setup>;

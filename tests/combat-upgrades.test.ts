@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { applyDamage,createBattle,restoreBattle,serializeBattle,stepBattle } from '../src/combat';
 import { GRANTED_SKILL_DEFINITIONS,referenceCastPoint } from '../src/skill-effects';
 import type { Player,SkillDefinition,SkillStack } from '../src/model';
-import {ROLE_CONFIG} from '../src/config';
+import {ROLE_CONFIG,skillBalance} from '../src/config';
 const source=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
 const definition=(id:string,overrides:Partial<SkillDefinition>={})=>({...source.find(d=>d.id===id)!,...overrides});
 function player(id:number,skills:SkillStack[]=[],two=false):Player {return {id,name:`P${id}`,hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:[{id:'h0',name:'Caster',role:'mage',skin:'female',x:0,y:-2,skills},...(two?[{id:'h1',name:'Ally',role:'tank' as const,skin:'male' as const,x:1,y:-2,skills:[]}]:[])]};}
@@ -100,13 +100,19 @@ describe('historical candidate child abilities and replay revision',()=>{
     expect(restoreBattle(serializeBattle(b),[flare]).zones).toEqual(zones);
   });
   it('steals two spells into free slots without replacing another granted ability',()=>{
-    const steal=definition('custom_rubick_spell_steal',{mana:[0],cooldowns:[1]}),missile=definition('custom_vengefulspirit_magic_missile',{mana:[0],cooldowns:[100]}),sap=definition('custom_bane_brain_sap',{mana:[0],cooldowns:[100]});
+    const steal=structuredClone(definition('custom_rubick_spell_steal')),missile=structuredClone(definition('custom_vengefulspirit_magic_missile')),sap=structuredClone(definition('custom_bane_brain_sap'));
+    const stealRank=skillBalance(steal,9)!,missileRank=skillBalance(missile,1)!,sapRank=skillBalance(sap,1)!;
+    // Override resource costs and cooldowns on the fixture rows so level-specific effects remain active.
+    Object.assign(stealRank,{mana:0,cooldown:1});
+    for(const rank of [missileRank,sapRank])Object.assign(rank,{mana:0,cooldown:100});
     const a=player(0,[{id:steal.id,points:9}]);a.heroes[0].skills=[{id:steal.id,points:9},null,null,null,null,{id:'slark_depth_shroud',points:1}];
     const b=createBattle(a,player(1,[{id:missile.id,points:1},{id:sap.id,points:1}]),7,[steal,missile,sap]);b.units[0].cooldowns[5]=100;stepBattle(b,4,[steal,missile,sap]);
     expect(b.units[0].skills[5]?.id).toBe('slark_depth_shroud');
     expect((b.units[0].stolenAbilities as {id:string}[]).map(s=>s.id).sort()).toEqual([missile.id,sap.id].sort());
-    const hit=b.events.find(e=>e.type==='hit'&&e.source===b.units[0].id&&e.skill===missile.id);expect(hit?.amount).toBeCloseTo(81);
-    const stun=b.events.find(e=>e.type==='status'&&e.source===b.units[0].id&&e.skill===missile.id&&e.status==='stun');expect(stun?.duration).toBeCloseTo(1.82);
+    const hit=b.events.find(e=>e.type==='hit'&&e.source===b.units[0].id&&e.skill===missile.id);
+    expect(hit?.amount).toBeCloseTo(missileRank.params.DAMAGE*(1+stealRank.params['STOLEN SPELL AMP']/100)*(1-b.units[1].magicResist));
+    const stun=b.events.find(e=>e.type==='status'&&e.source===b.units[0].id&&e.skill===missile.id&&e.status==='stun');
+    expect(stun?.duration).toBeCloseTo(missileRank.params['STUN DURATION']*(1+stealRank.params['STOLEN DEBUFF AMP']/100));
   });
   it('defers Rum damage and pays it back after expiration without a second resistance calculation',()=>{
     const b=createBattle(player(0),player(1),1,[]),[source,target]=b.units;b.units.forEach(u=>u.statuses.push({kind:'stun',until:100}));

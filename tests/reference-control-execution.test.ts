@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,battleGains,battleStats,createBattle,FIXED_STEP,stepBattle,statusValue,serializeBattle,restoreBattle} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
@@ -7,7 +7,7 @@ import {validateUnitStatistics} from '../src/combat/statistics';
 import {activeVisualWorldEffects} from '../src/combat/visual-state';
 
 const FROST='custom_lich_chain_frost',CHAKRA='keeper_of_the_light_chakra_magic',HAZE='custom_slardar_amplify_damage',FEAR='night_stalker_crippling_fear',CULL='custom_axe_culling_blade',VOID='night_stalker_void';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const player=(id:number,skills:SkillStack[]=[],count=1):Player=>({id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function world(id:string,points=3,enemies=2,allies=1,extra:SkillStack[]=[]){
  const definitions=structuredClone(catalog),d=definitions.find(d=>d.id===id)!,b=createBattle(player(0,[{id,points},...extra],allies),player(1,[],enemies),913,definitions),u=b.units[0],targets=b.units.filter(t=>t.side===1),friends=b.units.filter(t=>t.side===0);

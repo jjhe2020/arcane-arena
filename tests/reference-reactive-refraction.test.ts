@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {ATTRIBUTE_CONFIG} from '../src/config';
 import {applyDamage,battleGains,createBattle,dispelBattleStatuses,FIXED_STEP,stepBattle,statusValue} from '../src/combat';
 import type {CombatUnit,Player,Role,SkillDefinition,SkillStack} from '../src/model';
 import {GRANTED_SKILL_DEFINITIONS,SKILL_IMPLEMENTATIONS,type EffectContext as C,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 const ARMOR='shredder_reactive_armor',RIFT='custom_chaos_knight_reality_rift',SCYTHE='custom_necrolyte_reapers_scythe',REBOUND='marci_companion_run',REFRACTION='templar_assassin_refraction',WHIRL='shredder_whirling_death',BOLT='chaos_knight_chaos_bolt',DISPOSE='aa_granted_rebound_dispose',PHANTASM='custom_chaos_knight_phantasm';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[],registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
+const catalog=readReferenceSkillCatalog(),registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 function probe(id:string,cast:(c:C)=>void):SkillDefinition{registry[id]={cast,target:'any',range:50,castPoint:0,backswing:0,requiresFacing:false,targetSelector:(c,ts)=>ts.find(t=>t.id===c.caster.testTarget)??ts.find(t=>t.side!==c.caster.side),implemented:[],remaining:[]};return{id,name:id,nameEn:id,icon:'',description:'Explicit engine stimulus',descriptionEn:'Explicit engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};}
 const probes=[probe('rr_attack',c=>c.attack(c.target,1,true,undefined,true)),probe('rr_nomods',c=>c.attack(c.target,1,false,undefined,true)),probe('rr_launch',c=>c.launchAttack?.(c.target,1,true,{projectileSpeed:1,rangedAttackPoint:true})),probe('rr_whirl',c=>c.castAbility(WHIRL,4,c.caster)),probe('rr_kill',c=>c.damage(c.target,200000,'pure',true)),probe('rr_disjoint',c=>c.disjoint(c.target)),probe('rr_dispose',c=>c.castAbility(DISPOSE,4,c.target))];
 const player=(side:number,skills:SkillStack[]=[],count=1,role:Role='mage'):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role,skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});

@@ -1,9 +1,10 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import{describe,expect,it}from'vitest';
 import{readFileSync}from'node:fs';
 import{applyDamage,createBattle,dispelBattleStatuses,statusValue,stepBattle}from'../src/combat';
 import type{CombatUnit,Player,SkillDefinition}from'../src/model';
 import type{EffectStatus}from'../src/skill-effects';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8'))as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const WILD='custom_beastmaster_call_of_the_wild',OFFER='custom_warlock_chaotic_offering',RAGE='alchemist_chemical_rage',EMBRACE='custom_winter_wyvern_cold_embrace',SKIN='viper_corrosive_skin';
 const player=(side:number,id:string,points:number,count:number):Player=>({id:side,name:`P${side}`,hp:100,gold:0,shopLevel:3,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:`h${i}`,role:'mage',skin:'male',x:i*3,y:0,skills:i||!id?[]:[{id,points}]}))});
 function setup(id:string,points=3,allies=2,enemies=3){const b=createBattle(player(0,id,points,allies),player(1,'',0,enemies),148,catalog),c=b.units[0],friends=b.units.filter(u=>u.side===0),foes=b.units.filter(u=>u.side===1);for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=100000;u.armor=u.magicResist=0;u.moveSpeed=0;u.nextAttack=99999;u.statuses.push({kind:'disarm',until:200});}c.x=c.y=0;c.facing=Math.PI/2;foes.forEach((u,i)=>{u.x=0;u.y=2+i*2;});return{b,c,friends,foes,t:foes[0],advance:(s:number)=>stepBattle(b,s,catalog)};}

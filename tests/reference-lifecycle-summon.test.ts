@@ -1,3 +1,4 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {readFileSync} from 'node:fs';
 import {describe,it,expect} from 'vitest';
 import {createBattle,stepBattle,FIXED_STEP} from '../src/combat';
@@ -9,7 +10,7 @@ import {activeVisualWorldEffects} from '../src/combat/visual-state';
 import {worldVisuals} from '../src/visual-bindings';
 import type {CombatUnit,Player,Role,SkillDefinition,SkillStack} from '../src/model';
 
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const assets=JSON.parse(readFileSync(new URL('../public/data/assets.json',import.meta.url),'utf8'));
 const CH='keeper_of_the_light_chakra_magic',WIND='custom_windrunner_windrun',FINGER='custom_lion_finger_of_death',STEP='void_spirit_astral_step',NC='custom_furion_force_of_nature',J='custom_monkey_king_jingu_mastery',COOKIE='custom_snapfire_firesnap_cookie',KISSES='custom_snapfire_mortimer_kisses',SPIT='aa_granted_spit_out',GOBBLE='aa_granted_gobble_up';
 /** Only initial statistics,positions and action clocks are controlled. All

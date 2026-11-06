@@ -1,12 +1,12 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {applyDamage,battleGains,createBattle,dispelBattleStatuses,getCombatStats,serializeBattle,stepBattle} from '../src/combat';
 import {buySkill,moveSkill,finishRound,getBattlePlayers,newGame,prepareRound,rerollShop,restoreGame,serializeGame,startRound} from '../src/game';
 import type {CombatUnit,Player,RoundReport,SkillDefinition} from '../src/model';
 import {BATTLE_CONFIG,type SkillBalance} from '../src/config';
 import {GRANTED_SKILL_DEFINITIONS,getSkillProgram,type EffectStatus} from '../src/skill-effects';
 const FURY='ursa_fury_swipes',STRENGTH='custom_sven_gods_strength',SHIP='kunkka_ghostship',GLAIVES='custom_silencer_glaives_of_wisdom',GLOBAL='custom_silencer_global_silence',BOLT='sven_storm_bolt',CURSE='silencer_curse_of_the_silent',TIDAL='aa_granted_tidal_wave';
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8'))as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const player=(side:number,id:string,tier:number,count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:3,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`p${side}h${i}`,name:'H',role:'mage',skin:'male',x:i*3,y:0,skills:i===0&&id?[{id,points:tier}]:[]}))});
 const row=(d:SkillDefinition,t:number)=>(d.balanceLevels as Record<string,SkillBalance>)[t];
 function setup(id:string,tier=3,count=3,change?:(d:SkillDefinition)=>void,extra:SkillDefinition[]=[]){const catalog=[...(change?defs.map(d=>{if(d.id!==id)return d;const n=structuredClone(d);change(n);return n;}):defs),...extra],b=createBattle(player(0,id,tier),player(1,'',0,count),717,catalog),c=b.units[0],ally=b.units[1],foes=b.units.filter(u=>u.side===1),t=foes[0];for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=100000;u.armor=u.magicResist=0;u.moveSpeed=0;u.nextAttack=99999;u.statuses.push({kind:'manaRegen',until:200,value:-BATTLE_CONFIG.baseManaRegen});}c.x=c.y=0;c.facing=Math.PI/2;c.attack=100;c.attackMin=c.attackMax=100;c.attackPoint=0;c.attackBackswing=0;c.attackCapability='melee';c.range=3;ally.x=-12;ally.y=-10;foes.forEach((u,i)=>{u.x=i?8:0;u.y=i?8:1;});return{b,c,ally,foes,t,catalog,advance:(s:number)=>stepBattle(b,s,catalog)};}

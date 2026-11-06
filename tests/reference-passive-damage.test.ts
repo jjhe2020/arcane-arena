@@ -1,3 +1,4 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import fs from 'node:fs';
 import {describe,it,expect} from 'vitest';
 import {createBattle,stepBattle,statusValue,dispelBattleStatuses,applyDamage} from '../src/combat';
@@ -8,7 +9,7 @@ import{statusVisuals,worldVisuals}from'../src/visual-bindings';
 import{linePresentations}from'../src/animation';
 import type {EffectStatus} from '../src/skill-effects';
 const SF='custom_zuus_static_field',N='batrider_sticky_napalm',U='primal_beast_uproar',G='venomancer_venomous_gale',W='vengefulspirit_wave_of_terror',BEAM='custom_luna_lucent_beam',ARC='custom_zuus_arc_lightning',WOLVES='custom_lycan_summon_wolves',JUMP='zuus_heavenly_jump';
-const definitions=JSON.parse(fs.readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const definitions=readReferenceSkillCatalog();
 type Extra=string|{id:string;points:number};
 function world(id:string,tier=3,extra:Extra[]=[],enemy:Extra[]=[],defs=definitions){
  const slots=(items:Extra[])=>items.map(s=>typeof s==='string'?{id:s,points:3}:s);

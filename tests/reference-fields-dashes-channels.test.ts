@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import {getSkillProgram,type EffectStatus} from '../src/skill-effects';
@@ -6,7 +6,7 @@ import {barrierBlocksUnit,type BattleBarrier} from '../src/combat/barriers';
 import type {BattleState,CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 
 const ARENA='mars_arena_of_blood',SPIRIT='custom_elder_titan_ancestral_spirit',STEP='void_spirit_astral_step',HOLE='enigma_black_hole',BLAST='techies_suicide',PACT='custom_slark_dark_pact';
-const definitions=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const definitions=readReferenceSkillCatalog();
 function player(id:number,loadouts:SkillStack[][]):Player{return{id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:loadouts.map((skills,i)=>({id:`h${i}`,name:`H${i}`,role:'mage',skin:'male',x:i*2,y:-2,skills}))};}
 function match(id:string,points=3,enemySkill?:string,allies=1,enemies=1){
  const b=createBattle(player(0,[[{id,points}],...Array.from({length:allies-1},()=>[])]),player(1,[enemySkill?[{id:enemySkill,points:3}]:[],...Array.from({length:enemies-1},()=>[])]),119,definitions),a=b.units.filter(u=>u.side===0),e=b.units.filter(u=>u.side===1);

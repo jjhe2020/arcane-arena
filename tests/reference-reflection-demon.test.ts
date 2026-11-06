@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,stepBattle,statusValue,battleStats,physicalDamageMultiplier} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 import {SKILL_IMPLEMENTATIONS,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 
 const DISPERSION='custom_spectre_dispersion',DISPOSE='marci_grapple',DISRUPTION='custom_shadow_demon_disruption',DISSIMILATE='custom_void_spirit_dissimilate',DOOM='custom_doom_bringer_doom',CATCHER='shadow_demon_soul_catcher';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 const probe=(id:string,cast:NonNullable<SkillProgram['cast']>,side:'ally'|'enemy'='ally'):SkillDefinition=>{registry[id]={cast,castPoint:0,backswing:0,target:side,targetEligibility:(_c,t)=>!t.dead,targetSelector:(c,targets)=>targets.find(t=>t.id===c.caster.testStimulusTargetId)??targets[0],requiresFacing:false,implemented:[],remaining:[]};return{id,name:id,nameEn:id,icon:'',description:'engine stimulus',descriptionEn:'engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};};
 const probes=[probe('test_rd_strong',c=>c.dispel(c.target,true)),probe('test_rd_basic',c=>c.dispel(c.target)),probe('test_rd_motion',c=>{c.moveContinuous(c.target,c.target.x+3,c.target.y,{duration:.5});}),probe('test_rd_heal',c=>{c.heal(c.target,1000);}),probe('test_rd_soulcatcher',c=>c.castAbility(CATCHER,4,c.target),'enemy')];

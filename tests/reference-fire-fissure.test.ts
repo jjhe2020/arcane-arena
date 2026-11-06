@@ -1,11 +1,11 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {applyDamage,battleGains,createBattle,dispelBattleStatuses,getCombatStats,stepBattle} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition} from '../src/model';
 import {BATTLE_CONFIG,type SkillBalance} from '../src/config';
 import {getSkillProgram,type EffectStatus} from '../src/skill-effects';
 const GRIP='custom_bane_fiends_grip',SOUL='custom_lina_fiery_soul',FINGER='custom_lion_finger_of_death',COOKIE='custom_snapfire_firesnap_cookie',FISSURE='custom_earthshaker_fissure',BOLT='custom_lina_dragon_slave';
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8'))as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const player=(side:number,id:string,points:number,count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:3,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i*3,y:0,skills:i===0&&id?[{id,points}]:[]}))});
 function setup(id:string,tier=3,count=3,change?:(d:SkillDefinition)=>void,extras:{id:string;points:number}[]=[]){const catalog=change?defs.map(d=>{if(d.id!==id)return d;const n=structuredClone(d);change(n);return n;}):defs,p=player(0,id,tier);p.heroes[0].skills.push(...extras);const b=createBattle(p,player(1,'',0,count),717,catalog),c=b.units[0],ally=b.units[1],foes=b.units.filter(u=>u.side===1),t=foes[0];for(const u of b.units){u.hp=u.maxHp=100000;u.mana=u.maxMana=100000;u.armor=u.magicResist=0;u.moveSpeed=0;u.nextAttack=99999;u.statuses.push({kind:'disarm',until:200},{kind:'manaRegen',until:200,value:-BATTLE_CONFIG.baseManaRegen});}c.x=c.y=0;c.facing=Math.PI/2;ally.x=-4;ally.y=0;foes.forEach((u,i)=>{u.x=0;u.y=2+i*3;});return{b,c,ally,foes,t,catalog,advance:(s:number)=>stepBattle(b,s,catalog)};}
 type H=ReturnType<typeof setup>;

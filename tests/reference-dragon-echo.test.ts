@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,stepBattle,statusValue,effectiveAttackRange,isRangedAttackType,physicalDamageMultiplier} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 import {SKILL_IMPLEMENTATIONS,GRANTED_SKILL_DEFINITIONS,type EffectContext,type EffectStatus,type SkillProgram} from '../src/skill-effects';
 
 const DRAGON='dragon_knight_elder_dragon_form',FIRE='dragon_knight_fireball',EMPOWER='custom_magnataur_empower',TOTEM='custom_earthshaker_enchant_totem',EPIC='custom_sandking_epicenter',FLUX='custom_obsidian_destroyer_equilibrium';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 const probe=(id:string,cast:(c:EffectContext)=>void,options:Partial<SkillProgram>={}):SkillDefinition=>{registry[id]={cast,castPoint:0,backswing:0,target:'enemy',range:50,requiresFacing:false,targetSelector:(c,ts)=>ts.find(t=>t.id===c.caster.testTarget)??ts[0],implemented:[],remaining:[],...options};return{id,name:id,nameEn:id,icon:'',description:'engine stimulus',descriptionEn:'engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[id==='test_de_costly'?200:0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};};
 const probes=[probe('test_de_attack',c=>{c.attack(c.target,1,true,undefined,true);}),probe('test_de_fixed',c=>{c.attack(c.target,1,true,85,true);}),probe('test_de_spell',c=>{c.damage(c.target,100,'pure');}),probe('test_de_costly',()=>{}),probe('test_de_no_cast',()=>{},{procsOnCast:false,allowZeroCooldown:true}),probe('test_de_basic',c=>c.dispel(c.target,false,false),{target:'ally'}),probe('test_de_strong',c=>c.dispel(c.target,true,false),{target:'ally'}),probe('test_de_warp',c=>c.warp(c.caster,c.caster.x+20,c.caster.y)),probe('test_de_move',c=>{c.moveContinuous(c.caster,c.caster.x+7,c.caster.y,{duration:.5,ignoreBarriers:true});})];

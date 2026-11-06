@@ -1,11 +1,11 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,stepBattle,statusValue,getCombatStats} from '../src/combat';
 import type {Player,SkillDefinition,SkillStack,CombatUnit} from '../src/model';
 import {type EffectStatus,GRANTED_SKILL_DEFINITIONS} from '../src/skill-effects';
 import {BATTLE_CONFIG} from '../src/config';
 const BURN='winter_wyvern_arctic_burn',FURY='custom_juggernaut_blade_fury',TRANCE='troll_warlord_battle_trance',BLOOD='huskar_berserkers_blood',RAGE='custom_troll_warlord_berserkers_rage';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const player=(id:number,skills:SkillStack[]=[],count=1):Player=>({id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,shop:[],reserve:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function fixture(id:string,points=3,count=2,allies=1,extra:SkillStack[]=[]){
  const definitions=structuredClone(catalog),d=definitions.find(row=>row.id===id)!;

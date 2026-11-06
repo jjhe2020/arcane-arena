@@ -70,7 +70,7 @@ export async function buildReferenceAcceptance(base=root){
    auditFile:audit?.file??null,byDimension,sources,requirements,upgradeProvenance:audit?.upgradeProvenance??[],unresolved:audit?.unresolved??['Mechanism clauses, source-version comparison, action clocks and relevant combinations have not yet been individually reviewed.']};
  });
  const requirements=skills.flatMap(skill=>skill.requirements);
- const report={schemaVersion:1,policy:'AA explicit custom clauses and values remain authoritative. Wiki non-numeric mechanisms are checked against historical versions; unresolved conflicts are not silently imported.',
+ const report={schemaVersion:1,policy:'AA clauses and reference values are used for source acceptance. Tests with pinned values use reference fixtures. Live balance values are compiled from the current workbook and checked separately. Wiki mechanisms are checked against historical versions.',
   sourceFingerprint:fingerprint,proofCurrent:current,proofFile:proof?'artifacts/reference-acceptance-proof.json':null,
   engineRequirements,overallComplete:skills.every(skill=>skill.status==='reference_verified')&&engineRequirements.every(q=>q.referenceVerified),
   counts:{catalog:skills.length,reviewStarted:skills.filter(s=>s.status!=='unreviewed').length,unreviewed:skills.filter(s=>s.status==='unreviewed').length,fullyReferenceVerified:skills.filter(s=>s.status==='reference_verified').length,
@@ -80,7 +80,7 @@ export async function buildReferenceAcceptance(base=root){
  const label={unreviewed:'未逐项审查',in_progress:'审查中',reference_verified:'逐项通过'};
  const lines=['# 技能原作逐项验收','',`目录 ${skills.length} 项；已开始 ${report.counts.reviewStarted} 项；完整逐项通过 ${report.counts.fullyReferenceVerified} 项。`,
   `当前代码下，${report.counts.resultTestPassed} 条具名结果测试要求通过，${report.counts.referenceVerifiedRequirements} 条同时具备逐条来源绑定；另有${report.counts.enginePending}项跨技能引擎要求未闭合。测试证据${current?'与当前代码一致':'尚未生成或已过期'}。`,'',
-  '这里的“审查中”不表示整项通过。完整规则、版本冲突、升级来源和具名测试见逐组 JSON；运行 `npm run reference:verify` 更新代码指纹与实际 Vitest 证据。所有未审查技能均保留在表内。','',
+  '具名原作测试使用对应来源的参考数值。实战数值以当前版本工作簿的编译结果为准，另行验证。完整规则、版本冲突、升级来源和具名测试见逐组 JSON。运行 `npm run reference:verify` 更新代码指纹与 Vitest 证据。','',
   '| 技能 | 状态 | 机制/时序/Super/Gaben/组合的已核查条款 | 未解决项 | 证据 |','|---|---|---|---:|---|',
   ...skills.map(s=>`| ${s.name} (${s.nameEn}) | ${label[s.status]} | ${dimensions.map(kind=>s.byDimension[kind].referenceVerified).join(' / ')} | ${s.unresolved.length} | ${s.auditFile?`[审查记录](../${s.auditFile})`:'待取证'} |`),''];
  await fs.writeFile(path.join(base,'docs/skill-reference-status.md'),lines.join('\n'));

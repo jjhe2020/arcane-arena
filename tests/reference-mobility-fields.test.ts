@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,getCombatStats,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import type {BattleState,CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
@@ -7,7 +7,7 @@ import {PRD_WORKING_ELIGIBILITY} from '../src/combat/prd';
 
 const BARRAGE='clinkz_strafe',BURROW='sandking_burrowstrike',CHARGE='custom_spirit_breaker_charge_of_darkness',CHRONO='custom_faceless_void_chronosphere',CHAKRAM='custom_shredder_chakram';
 const SECOND='aa_granted_second_chakram',RETURN='aa_return_chakram',RETURN_SECOND='aa_return_second_chakram',CAUSTIC='aa_granted_burrow_caustic_finale',FLAME='aa_granted_throwable_flamethrower',BASH='aa_granted_greater_bash';
-const definitions=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const definitions=readReferenceSkillCatalog();
 function player(id:number,loadouts:SkillStack[][]):Player{return{id,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:loadouts.map((skills,i)=>({id:`h${i}`,name:`H${i}`,role:'mage',skin:'male',x:i*2,y:-2,skills}))};}
 function match(id:string,points=3,allies=1,enemies=1){
  const b=createBattle(player(0,[[{id,points}],...Array.from({length:allies-1},()=>[])]),player(1,Array.from({length:enemies},()=>[])),119,definitions),a=b.units.filter(u=>u.side===0),e=b.units.filter(u=>u.side===1);

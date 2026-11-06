@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,getCombatStats,restoreBattle,serializeBattle,statusValue,stepBattle} from '../src/combat';
 import {BATTLE_CONFIG,skillBalance,UNIT_CONFIG} from '../src/config';
@@ -6,7 +6,7 @@ import {GRANTED_SKILL_DEFINITIONS,type EffectStatus} from '../src/skill-effects'
 import {validateUnitStatistics} from '../src/combat/statistics';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const PULSE='void_spirit_resonant_pulse',BOULDER='earth_spirit_rolling_boulder',THUNDER='custom_pangolier_rolling_thunder',ROT='pudge_rot',ARROW='custom_mirana_arrow',DISMEMBER='pudge_dismember',STARFALL='mirana_starfall',STOP='pangolier_gyroshell_stop';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 // This historical packet matrix explicitly uses eighteen strength. New level
 // progression is tested separately;the initial permanent point is replayable.
 const player=(side:number,skills:SkillStack[],count=2):Player=>({id:side,name:'P',hp:100,gold:0,shopLevel:1,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,persistentStrengthBonus:1,skills:i===0?skills:[]}))});

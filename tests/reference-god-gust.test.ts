@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,FIXED_STEP,stepBattle,statusValue,effectiveAttackRange,isRangedAttackType,physicalDamageMultiplier,getCombatStats} from '../src/combat';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
@@ -7,7 +7,7 @@ import {BATTLE_BOUNDS} from '../src/arena-layout';
 import {BATTLE_CONFIG} from '../src/config';
 
 const REBUKE='mars_gods_rebuke',CHILL='custom_visage_grave_chill',GROW='tiny_grow',ANGEL='custom_omniknight_guardian_angel',GUST='custom_drow_ranger_wave_of_silence',TOSS='custom_tiny_toss',TOTEM='custom_earthshaker_enchant_totem',PA='custom_phantom_assassin_coup_de_grace',HAMMER='omniknight_hammer_of_purity';
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const registry=SKILL_IMPLEMENTATIONS as Record<string,SkillProgram>;
 const probe=(id:string,cast:(c:EffectContext)=>void,options:Partial<SkillProgram>={}):SkillDefinition=>{registry[id]={cast,castPoint:0,backswing:0,target:'enemy',range:50,requiresFacing:false,targetSelector:(c,ts)=>ts.find(t=>t.id===c.caster.testTarget)??ts[0],implemented:[],remaining:[],...options};return{id,name:id,nameEn:id,icon:'',description:'engine stimulus',descriptionEn:'engine stimulus',tags:[],super:'',gaben:'',values:[],cooldowns:[100],mana:[0],categories:['ABILITY: Unit Target'],passive:false,ultimate:false};};
 const probes=[probe('test_gg_attack',c=>{c.attack(c.target,1,true,100,true);}),probe('test_gg_natural',c=>{c.attack(c.target,1,true,undefined,true);}),probe('test_gg_launch',c=>{c.launchAttack?.(c.target,1,true,{rangedAttackPoint:true,projectileSpeed:2});}),probe('test_gg_spawn',c=>{c.summon({name:'controlled',count:3,hp:1000,attack:0,range:1,interval:100,speed:0,lifetime:100});},{target:'self'}),probe('test_gg_motion',c=>{c.moveContinuous(c.target,c.target.x+2,c.target.y,{duration:1,priority:10,lockActions:false});}),probe('test_gg_spell',c=>{c.damage(c.target,100,'magical');}),probe('test_gg_stun',c=>c.status(c.target,'stun',2,0,{harmful:true,dispel:'strong'})),probe('test_gg_basic',c=>{const t=c.battle.units.find(t=>t.id===c.caster.testTarget)!;c.dispel(t,false,t.side!==c.caster.side);},{target:'self'}),probe('test_gg_strong',c=>c.dispel(c.target,true,false),{target:'ally'}),probe('test_gg_illusion',c=>{c.summon({name:'image',count:1,hp:c.caster.maxHp,attack:c.caster.attack,range:c.caster.range,interval:c.caster.attackInterval,speed:0,lifetime:100,template:c.caster,illusion:true,inheritsSkills:true,initializeInherited:true,inheritedMode:'passives'});},{target:'self'})];

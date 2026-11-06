@@ -1,10 +1,10 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {createBattle,stepBattle} from '../src/combat';
 import type {BattleState,Player,SkillDefinition} from '../src/model';
 import type {EffectStatus} from '../src/skill-effects';
 
-const catalog=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const ids={acorn:'hoodwink_acorn_shot',anchor:'tidehunter_anchor_smash',boundless:'custom_monkey_king_boundless_strike',walrus:'custom_tusk_walrus_punch',swash:'pangolier_swashbuckle',jingu:'custom_monkey_king_jingu_mastery'};
 function player(side:number,skills:{id:string;points:number}[]=[],count=1):Player{return{id:side,name:`P${side}`,hp:100,gold:0,shopLevel:3,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:`h${i}`,role:'mage',skin:'female',x:0,y:-2,skills:i?[]:skills}))};}
 function setup(id:string,points=3,targets=1,extras:{id:string;points:number}[]=[],fixture=false){

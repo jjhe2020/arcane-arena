@@ -1,10 +1,10 @@
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,expect,it} from 'vitest';
-import {readFileSync} from 'node:fs';
 import {applyDamage,createBattle,effectiveStatusEffects,statusValue,stepBattle} from '../src/combat';
 import type {Player,SkillDefinition} from '../src/model';
 import type {EffectStatus} from '../src/skill-effects';
 
-const defs=JSON.parse(readFileSync(new URL('../public/data/skills.json',import.meta.url),'utf8')) as SkillDefinition[];
+const defs=readReferenceSkillCatalog();
 const ids={aura:'crystal_maiden_brilliance_aura',atrophy:'custom_abyssal_underlord_atrophy_aura',blood:'custom_dragon_knight_dragon_blood',feral:'custom_lycan_feral_impulse',fervor:'troll_warlord_fervor'};
 function player(side:number,skills:{id:string;points:number}[]=[],count=1):Player{return{id:side,name:`P${side}`,hp:100,gold:0,shopLevel:3,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:`h${i}`,role:'mage',skin:'male',x:i*2,y:-2,skills:i?[]:skills}))};}
 function setup(id:string,points=3,allies=1,enemies=3,extras:{id:string;points:number}[]=[]){

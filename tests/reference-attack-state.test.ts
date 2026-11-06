@@ -1,4 +1,4 @@
-import {readFileSync} from 'node:fs';
+import {readReferenceSkillCatalog} from './reference-skill-catalog';
 import {describe,it,expect} from 'vitest';
 import {applyDamage,createBattle,dispelBattleStatuses,FIXED_STEP,getCombatStats,stepBattle} from '../src/combat';
 import {GRANTED_SKILL_DEFINITIONS,type EffectStatus} from '../src/skill-effects';
@@ -6,7 +6,7 @@ import {BATTLE_BOUNDS} from '../src/arena-layout';
 import {BATTLE_CONFIG} from '../src/config';
 import type {CombatUnit,Player,SkillDefinition,SkillStack} from '../src/model';
 const ARROW='clinkz_searing_arrows',DANCE='slark_shadow_dance',FIST='ember_spirit_sleight_of_fist',SPEAR='custom_mars_spear_of_mars',LANCE='custom_phantom_lancer_spirit_lance',ARMY='clinkz_burning_army',SHROUD='slark_depth_shroud';
-const catalog=JSON.parse(readFileSync('public/data/skills.json','utf8'))as SkillDefinition[];
+const catalog=readReferenceSkillCatalog();
 const player=(side:number,skills:SkillStack[],count=3):Player=>({id:side,name:'QA',hp:100,gold:0,shopLevel:5,locked:false,reserve:[],shop:[],heroes:Array.from({length:count},(_,i)=>({id:`h${i}`,name:'H',role:'mage',skin:'male',x:i,y:-3,skills:i===0?skills:[]}))});
 function world(id:string,points=3,extra:SkillStack[]=[]){const definitions=structuredClone([...catalog,...GRANTED_SKILL_DEFINITIONS]);for(const s of[{id},...extra])if(!definitions.some(d=>d.id===s.id))throw Error('Unknown fixture '+s.id);const b=createBattle(player(0,[{id,points},...extra]),player(1,[]),1,definitions),u=b.units[0],foes=b.units.filter(t=>t.side===1),friends=b.units.filter(t=>t.side===0);for(const t of b.units){t.hp=t.maxHp=100000;t.mana=t.maxMana=10000;t.armor=t.magicResist=t.moveSpeed=0;t.attack=t.attackMin=t.attackMax=100;t.nextAttack=99999;t.cooldowns=t.skills.map(()=>99999);}u.x=u.y=0;u.facing=0;foes.forEach((t,i)=>{t.x=1+i*3;t.y=0;t.facing=Math.PI;});friends.slice(1).forEach((t,i)=>{t.x=-10-i;t.y=10;});return{b,u,t:foes[0],foes,friends,definitions,step:(seconds:number)=>stepBattle(b,seconds,definitions)};}
 type W=ReturnType<typeof world>;

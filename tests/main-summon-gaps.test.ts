@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { applyDamage, createBattle, FIXED_STEP, stepBattle } from '../src/combat';
+import { skillBalance } from '../src/config';
 import type { CombatUnit, Player, SkillDefinition } from '../src/model';
 
 const defs = JSON.parse(readFileSync(new URL('../public/data/skills.json', import.meta.url), 'utf8')) as SkillDefinition[];
@@ -17,15 +18,21 @@ function setup(id: string, points = 9, seed = 23, friend = false) {
 const advance = (b: ReturnType<typeof createBattle>, seconds: number) => { for (let i = 0; i < Math.round(seconds / FIXED_STEP); i++) stepBattle(b, FIXED_STEP, defs); };
 const status = (u: CombatUnit, kind: string) => u.statuses.find(s => s.kind === kind);
 function graniteFixture() {
+  const id = 'custom_beastmaster_call_of_the_wild', points = 9;
+  const multiplier = 1 + skillBalance(defs.find(d => d.id === id)!, points)!.params['ANCIENT HEALTH AURA'] / 100;
   // Fixed bounded seed search verifies the actual random ancient selection;
   // no fabricated body or hand-inserted aura bypasses the summon pipeline.
   for (let attempt = 1; attempt <= 40; attempt++) {
     // Xorshift's first draw is strongly correlated for adjacent tiny seeds.
     const seed = Math.imul(attempt, 0x9e3779b9) >>> 0;
-    const h = setup('custom_beastmaster_call_of_the_wild', 9, seed, true);
-    h.friend!.x = 2; h.friend!.hp = 5000; advance(h.battle, .8);
+    const h = setup(id, points, seed, true), ally = h.friend!;
+    const baseMaxHp = ally.maxHp, baseHp = baseMaxHp / 2;
+    ally.x = 2; ally.hp = baseHp; advance(h.battle, .8);
     const golem = h.battle.units.find(u => u.sourceUnitType === 'npc_dota_neutral_granite_golem');
-    if (golem) { for (const u of h.battle.units) { u.moveSpeed = 0; u.nextAttack = 100; } return { ...h, golem }; }
+    if (golem) {
+      for (const u of h.battle.units) { u.moveSpeed = 0; u.nextAttack = 100; }
+      return { ...h, golem, baseMaxHp, baseHp, buffedMaxHp: baseMaxHp * multiplier, buffedHp: baseHp * multiplier };
+    }
   }
   throw new Error('No granite candidate in the deterministic seed fixture');
 }
@@ -49,15 +56,15 @@ describe('historical summon behavior gaps', () => {
   });
   it('applies Granite max HP once, preserves health ratio, and reverses it when leaving or killing the aura body', () => {
     const h = graniteFixture(), ally = h.friend!;
-    expect(ally.maxHp).toBeCloseTo(11500); expect(ally.hp).toBeCloseTo(5750);
-    ally.x = 14; ally.y = 0; advance(h.battle, .3); expect(ally.maxHp).toBeCloseTo(10000); expect(ally.hp).toBeCloseTo(5000);
-    ally.x = h.golem.x; ally.y = h.golem.y; advance(h.battle, .2); expect(ally.maxHp).toBeCloseTo(11500);
+    expect(ally.maxHp).toBeCloseTo(h.buffedMaxHp); expect(ally.hp).toBeCloseTo(h.buffedHp);
+    ally.x = 14; ally.y = 0; advance(h.battle, .3); expect(ally.maxHp).toBeCloseTo(h.baseMaxHp); expect(ally.hp).toBeCloseTo(h.baseHp);
+    ally.x = h.golem.x; ally.y = h.golem.y; advance(h.battle, .2); expect(ally.maxHp).toBeCloseTo(h.buffedMaxHp);
     applyDamage(h.battle, h.enemy, h.golem, 100000, 'pure'); advance(h.battle, .3);
-    expect(ally.maxHp).toBeCloseTo(10000); expect(ally.hp).toBeCloseTo(5000);
+    expect(ally.maxHp).toBeCloseTo(h.baseMaxHp); expect(ally.hp).toBeCloseTo(h.baseHp);
   });
   it('keeps the Granite aura after its original hero dies', () => {
     const h = graniteFixture(); applyDamage(h.battle, h.enemy, h.caster, 100000, 'pure'); advance(h.battle, .4);
-    expect(h.golem.dead).toBe(false); expect(h.friend!.maxHp).toBeCloseTo(11500);
+    expect(h.golem.dead).toBe(false); expect(h.friend!.maxHp).toBeCloseTo(h.buffedMaxHp);
   });
   it('does not stack two Granite sources or dip during source handoff', () => {
     const h = graniteFixture();
@@ -66,10 +73,10 @@ describe('historical summon behavior gaps', () => {
       for (const u of h.battle.units) { u.moveSpeed = 0; u.nextAttack = 100; }
     }
     const golems = h.battle.units.filter(u => u.sourceUnitType === 'npc_dota_neutral_granite_golem'); expect(golems.length).toBeGreaterThanOrEqual(2);
-    expect(h.friend!.maxHp).toBeCloseTo(11500);
+    expect(h.friend!.maxHp).toBeCloseTo(h.buffedMaxHp);
     const elected = String(status(h.friend!, 'maxHpPct')!.source), old = golems.find(u => u.id === elected)!;
     applyDamage(h.battle, h.enemy, old, 100000, 'pure'); advance(h.battle, .3);
-    expect(h.friend!.maxHp).toBeCloseTo(11500); expect(h.friend!.statuses.filter(s => s.kind === 'maxHpPct')).toHaveLength(1);
+    expect(h.friend!.maxHp).toBeCloseTo(h.buffedMaxHp); expect(h.friend!.statuses.filter(s => s.kind === 'maxHpPct')).toHaveLength(1);
   });
   it('makes Standard wolves invisible, reveals attacks, and fades again two seconds after their last attack', () => {
     const h = setup('custom_lycan_summon_wolves', 3); advance(h.battle, .6);
