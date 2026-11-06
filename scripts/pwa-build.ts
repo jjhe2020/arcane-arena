@@ -21,7 +21,7 @@ export function offlineBuild():Plugin{
     }
    }
    await walk(outDir);
-   const shell=files.filter(f=>f.url==='/index.html'||f.url.startsWith('/assets/')||f.url.startsWith('/pwa/')||f.url==='/manifest.webmanifest'||['/data/assets.json','/data/skills.json'].includes(f.url)).map(f=>f.url);
+   const shell=files.filter(f=>['/index.html','/skill-lab.html','/manifest.webmanifest','/data/assets.json','/data/skills.json'].includes(f.url)||f.url.startsWith('/assets/')||f.url.startsWith('/pwa/')).map(f=>f.url);
    const manifest={version:hash.digest('hex').slice(0,20),totalBytes:files.reduce((n,f)=>n+f.bytes,0),files,shell};
    const worker=await readFile(new URL('./pwa-worker.js',import.meta.url),'utf8');
    await writeFile(path.join(outDir,'offline-assets.json'),JSON.stringify(manifest));

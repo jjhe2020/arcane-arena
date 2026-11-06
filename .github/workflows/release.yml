@@ -87,6 +87,7 @@ jobs:
           fi
           node scripts/verify-release.mjs
           node scripts/browser-smoke.mjs
+          node scripts/skill-lab-smoke.mjs
           node scripts/gods-enchant-audio-smoke.mjs
           node scripts/pwa-smoke.mjs
           node scripts/sidebar-layout-smoke.mjs
@@ -209,6 +210,7 @@ jobs:
             artifacts/tablet-layout/
             artifacts/r13-buffs-inspection/
             artifacts/r14-gameplay/
+            artifacts/skill-lab/
             artifacts/*.json
             artifacts/*.png
             ${{ runner.temp }}/arena-release-server.log

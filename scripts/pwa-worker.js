@@ -10,11 +10,12 @@ async function fetchResource(url){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),45000);
  try{
   const response=await fetch(url,{cache:'reload',signal:controller.signal});
-  if(!response.ok||response.type==='opaque'||response.headers.get('content-type')?.includes('text/html')&&!url.endsWith('/index.html'))throw Error(`资源下载失败（${response.status}）：${new URL(url).pathname}`);
-  const body=await response.arrayBuffer(),expected=resources.get(new URL(url,self.registration.scope).href);
+  const resourceURL=new URL(url,self.registration.scope);
+  if(!response.ok||response.type==='opaque'||response.headers.get('content-type')?.includes('text/html')&&!resourceURL.pathname.endsWith('.html'))throw Error(`资源下载失败（${response.status}）：${resourceURL.pathname}`);
+  const body=await response.arrayBuffer(),expected=resources.get(resourceURL.href);
   if(expected){
    const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',body))].map(byte=>byte.toString(16).padStart(2,'0')).join('');
-   if(body.byteLength!==expected.bytes||digest!==expected.sha256)throw Error('资源版本已变化，请联网更新并重新打开游戏：'+new URL(url,self.registration.scope).pathname);
+   if(body.byteLength!==expected.bytes||digest!==expected.sha256)throw Error('资源版本已变化，请联网更新并重新打开游戏：'+resourceURL.pathname);
   }
   const headers=new Headers(response.headers);headers.delete('content-encoding');headers.delete('content-length');
   return new Response(body,{status:response.status,statusText:response.statusText,headers});
@@ -53,7 +54,8 @@ self.addEventListener('activate',event=>event.waitUntil((async()=>{
 self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);
  if(request.method!=='GET'||url.origin!==self.location.origin)return;
- const key=request.mode==='navigate'?new URL('/index.html',self.registration.scope).href:url.origin+url.pathname;
+ const pathnameKey=url.origin+url.pathname;
+ const key=request.mode==='navigate'&&!resources.has(pathnameKey)?new URL('/index.html',self.registration.scope).href:pathnameKey;
  if(!resources.has(key)&&url.pathname!=='/offline-assets.json'&&!url.pathname.startsWith('/assets/'))return;
  event.respondWith((async()=>{
   const cache=await caches.open(CACHE),cached=await cache.match(key);

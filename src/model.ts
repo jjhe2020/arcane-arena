@@ -50,5 +50,6 @@ export interface CombatUnit {piercingAttackClass?:{hero:number;creep:number;rein
 /** Pure launch presentation; it never changes an attack's statistical source. */
 export interface AttackRecord {projectileVisual?:{skill:string;points:number}}
 export interface CombatUnit {attackOrder?:{targetId:string;withinRangeOnly?:boolean}}
+export interface CombatUnit {trainingDummy?:number}
 export interface AnimationClip { image: string; frames: number; columns: number; frameWidth: number; frameHeight: number; fps: number; pivot?: [number, number]; loop?: boolean; [key:string]: unknown }
 export interface AssetManifest { characters: Record<string, Record<string, AnimationClip>>; skills: Record<string, unknown>; arenas: { name: string; image: string; [key: string]: unknown }[]; projectiles?:Record<string,AnimationClip>; mobileAtlases?:Record<string,Partial<AnimationClip>&{image:string;frameWidth:number;frameHeight:number}>; [key:string]: unknown }

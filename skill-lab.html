@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101918">
+  <title>技能实验场 · 秘境竞技场</title>
+  <link rel="icon" href="/pwa/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="/src/skill-lab.css">
+</head>
+<body>
+  <main class="lab">
+    <header class="lab-heading">
+      <div>
+        <p class="lab-brand"><span aria-hidden="true">✧</span> 秘境竞技场 <small>ARCANE ARENA</small></p>
+        <h1>技能实验场</h1>
+        <p class="lab-intro">逐项查看技能实战特效，对照同一技能的三个点数档。</p>
+      </div>
+      <a class="lab-control" href="/">← 返回游戏</a>
+    </header>
+    <div class="lab-toolbar" id="labToolbar" hidden>
+      <nav class="lab-pagination" aria-label="技能分页">
+        <a class="lab-control" id="labPrevious">← 上一页</a>
+        <label><span class="sr-only">选择页码</span><select id="labPage"></select></label>
+        <a class="lab-control" id="labNext">下一页 →</a>
+      </nav>
+      <div class="lab-playback" aria-label="本页演示控制">
+        <button class="lab-control" type="button" id="labPlay">暂停</button>
+        <button class="lab-control" type="button" id="labReplay">重播本页</button>
+        <label><span class="sr-only">播放速度</span><select id="labSpeed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+        <output id="labTime" data-time="0" aria-label="演示用时"></output>
+      </div>
+    </div>
+    <p class="lab-notice" id="labNotice" role="status">正在载入技能与战场资源…</p>
+    <div id="labSkills" data-ready="false"></div>
+    <nav class="lab-pagination lab-bottom" id="labBottom" aria-label="底部分页" hidden>
+      <a class="lab-control" id="labBottomPrevious">← 上一页</a>
+      <span id="labPageSummary"></span>
+      <a class="lab-control" id="labBottomNext">下一页 →</a>
+    </nav>
+  </main>
+  <script type="module" src="/src/skill-lab.ts"></script>
+</body>
+</html>
